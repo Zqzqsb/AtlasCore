@@ -68,3 +68,5 @@ contexts/sqlite/
 .data_stash/
 
 iters/
+
+third_party/

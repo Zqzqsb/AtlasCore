@@ -130,6 +130,12 @@ var evalModes = []EvalMode{
 		EnableClarify: "off", EnableProofread: false,
 	},
 	{
+		Name:        "react+rich_context+clarify",
+		Description: "ReAct + Rich Context + Forced Fields — ReAct reasoning with rich context and forced field injection (no linking/proofread)",
+		UseReact:    true, UseRichContext: true, ReactLinking: false,
+		EnableClarify: "force", EnableProofread: false,
+	},
+	{
 		Name:        "full",
 		Description: "Full Pipeline — All features enabled (ReAct + Rich Context + Linking + Clarify + Proofread)",
 		UseReact:    true, UseRichContext: true, ReactLinking: true,
