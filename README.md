@@ -78,11 +78,16 @@ All commands support both **interactive mode** (no args) and **CLI mode** (with 
 
 ## Key Results
 
-| Method           | Base Model     | EX (%)    |
-| ---------------- | -------------- | --------- |
-| DAIL-SQL + GPT-4 | GPT-4          | 86.6      |
-| DIN-SQL + GPT-4  | GPT-4          | 85.3      |
-| **ReAct SQL**    | **Qwen-3 Max** | **94.39** |
+### Ablation Study (BIRD Dev Set)
+
+Each row removes one Rich Context component from the full ATLAS pipeline.
+
+| Configuration                     | EX (%)    | Avg Iters |
+| --------------------------------- | --------- | --------- |
+| Full ATLAS pipeline               | **75.55** | **3.37**  |
+| − Business rules & value mappings | 72.04     | 3.62      |
+| − Sample values & synonyms        | 70.86     | 3.91      |
+| Schema only (no Rich Context)     | 65.45     | 4.49      |
 
 ## Prerequisites
 
