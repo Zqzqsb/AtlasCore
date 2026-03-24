@@ -1,12 +1,18 @@
-# ReAct SQL
+# ReAct SQL — ATLAS Inference Engine
 
 <p align="center">
   <img src="pics/react_sql.png" width="720" alt="ReAct SQL" />
 </p>
 
 <p align="center">
-  A Text2SQL experiment framework built on the <b>ReAct paradigm</b> and <b>Rich Context</b>.<br/>
-  Achieves <b>94.39%</b> execution accuracy (EX) on the calibrated Spider 1.0 dev set.
+  The standalone experiment framework for the inference engine of
+  <b><a href="https://github.com/Zqzqsb/Lucid">ATLAS</a></b>,
+  a lake-based Text-to-SQL system presented at VLDB 2025 Demo Track.<br/>
+  This repository isolates the core <b>ReAct + Rich Context</b> pipeline for reproducible benchmark evaluation.
+</p>
+
+<p align="center">
+  <b>75.55%</b> EX on BIRD dev · <b>94.39%</b> EX on Spider dev (calibrated) · DeepSeek-V3
 </p>
 
 ---
@@ -78,9 +84,25 @@ All commands support both **interactive mode** (no args) and **CLI mode** (with 
 
 ## Key Results
 
-### Ablation Study (BIRD Dev Set)
+### BIRD Dev Set (1,534 questions, 11 databases, DeepSeek-V3)
 
-Each row removes one Rich Context component from the full ATLAS pipeline.
+#### Overall Accuracy
+
+| Configuration                     | EX (%)    | Avg Iters | Δ EX    |
+| --------------------------------- | --------- | --------- | ------- |
+| **Full ATLAS pipeline**           | **75.55** | **3.37**  | —       |
+| − ReAct Loop (one-shot + RC)      | 68.71     | 1.00      | −6.84   |
+| − Business rules & value mappings | 72.04     | 3.62      | −3.51   |
+| − Sample values & synonyms        | 70.86     | 3.91      | −4.69   |
+| Schema only (no Rich Context)     | 65.45     | 4.49      | −10.10  |
+| Baseline (direct generation)      | 58.93     | 1.00      | −16.62  |
+
+> **Reading guide**: "− X" means removing component X from the full pipeline.
+> *Avg Iters* = average ReAct reasoning iterations per query (1.00 = one-shot, no self-correction).
+
+#### Rich Context Ablation
+
+Each row removes one Rich Context layer from the full pipeline, isolating the contribution of each context component.
 
 | Configuration                     | EX (%)    | Avg Iters |
 | --------------------------------- | --------- | --------- |
@@ -88,6 +110,14 @@ Each row removes one Rich Context component from the full ATLAS pipeline.
 | − Business rules & value mappings | 72.04     | 3.62      |
 | − Sample values & synonyms        | 70.86     | 3.91      |
 | Schema only (no Rich Context)     | 65.45     | 4.49      |
+
+#### Accuracy by Difficulty
+
+| Difficulty  | Total | Correct | EX (%)    | Primary Error Types                        |
+| ----------- | ----- | ------- | --------- | ------------------------------------------ |
+| Simple      | 925   | 725     | **78.4%** | row_count: 111, data_mismatch: 79          |
+| Moderate    | 464   | 332     | **71.6%** | data_mismatch: 70, row_count: 56           |
+| Challenging | 145   | 101     | **69.7%** | row_count: 20, data_mismatch: 20           |
 
 ## Prerequisites
 
