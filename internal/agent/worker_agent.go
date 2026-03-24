@@ -119,9 +119,9 @@ func (a *WorkerAgent) Execute(ctx context.Context) error {
 		fmt.Printf("\n[%s] Phase 3: Generating table description...\n", a.id)
 	}
 	if err := a.generateTableDescription(ctx); err != nil {
-	if !a.sharedCtx.Quiet {
-		fmt.Printf("[%s] Warning: Failed to generate description: %v\n", a.id, err)
-	}
+		if !a.sharedCtx.Quiet {
+			fmt.Printf("[%s] Warning: Failed to generate description: %v\n", a.id, err)
+		}
 		// Do not interrupt flow, description gen failure is non-fatal
 	}
 
@@ -136,48 +136,67 @@ func (a *WorkerAgent) Execute(ctx context.Context) error {
 	return nil
 }
 
-// collectBasicMetadata Phase 1: collect basic metadata (fixed flow)
+// collectBasicMetadata Phase 1: collect basic metadata (deterministic, no LLM)
 func (a *WorkerAgent) collectBasicMetadata(ctx context.Context) error {
-	// Generate queries based on DB type
-	var queries string
-	switch a.adapter.GetDatabaseType() {
-	case "MySQL":
-		queries = fmt.Sprintf(`1. DESCRIBE %s
-2. SHOW INDEX FROM %s
-3. SELECT COUNT(*) FROM %s
-4. SHOW CREATE TABLE %s`, a.tableName, a.tableName, a.tableName, a.tableName)
-	case "PostgreSQL":
-		queries = fmt.Sprintf(`1. SELECT column_name, data_type, is_nullable, column_default FROM information_schema.columns WHERE table_name='%s'
-2. SELECT indexname, indexdef FROM pg_indexes WHERE tablename='%s'
-3. SELECT COUNT(*) FROM %s
-4. SELECT tc.constraint_name, kcu.column_name, ccu.table_name AS foreign_table_name, ccu.column_name AS foreign_column_name FROM information_schema.table_constraints AS tc JOIN information_schema.key_column_usage AS kcu ON tc.constraint_name = kcu.constraint_name AND tc.table_schema = kcu.table_schema JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name AND ccu.table_schema = tc.table_schema WHERE tc.constraint_type = 'FOREIGN KEY' AND tc.table_name='%s'`, a.tableName, a.tableName, a.tableName, a.tableName)
+	dbType := a.adapter.GetDatabaseType()
+
+	// Define queries per DB type
+	type metadataQuery struct {
+		sql     string
+		dataKey string // key suffix for tempData: tableName + "_" + dataKey
+	}
+
+	var queries []metadataQuery
+	switch dbType {
 	case "SQLite":
-		queries = fmt.Sprintf(`1. PRAGMA table_info(%s)
-2. PRAGMA index_list(%s)
-3. SELECT COUNT(*) FROM %s
-4. PRAGMA foreign_key_list(%s)`, a.tableName, a.tableName, a.tableName, a.tableName)
+		queries = []metadataQuery{
+			{fmt.Sprintf("PRAGMA table_info(\"%s\")", a.tableName), "columns"},
+			{fmt.Sprintf("PRAGMA index_list(\"%s\")", a.tableName), "indexes"},
+			{fmt.Sprintf("SELECT COUNT(*) FROM \"%s\"", a.tableName), "rowcount"},
+			{fmt.Sprintf("PRAGMA foreign_key_list(\"%s\")", a.tableName), "foreignkeys"},
+		}
+	case "MySQL":
+		queries = []metadataQuery{
+			{fmt.Sprintf("DESCRIBE `%s`", a.tableName), "columns"},
+			{fmt.Sprintf("SHOW INDEX FROM `%s`", a.tableName), "indexes"},
+			{fmt.Sprintf("SELECT COUNT(*) FROM `%s`", a.tableName), "rowcount"},
+			{fmt.Sprintf("SHOW CREATE TABLE `%s`", a.tableName), "foreignkeys"},
+		}
+	case "PostgreSQL":
+		queries = []metadataQuery{
+			{fmt.Sprintf("SELECT column_name, data_type, is_nullable, column_default FROM information_schema.columns WHERE table_name='%s'", a.tableName), "columns"},
+			{fmt.Sprintf("SELECT indexname, indexdef FROM pg_indexes WHERE tablename='%s'", a.tableName), "indexes"},
+			{fmt.Sprintf("SELECT COUNT(*) FROM \"%s\"", a.tableName), "rowcount"},
+			{fmt.Sprintf("SELECT tc.constraint_name, kcu.column_name, ccu.table_name AS foreign_table_name, ccu.column_name AS foreign_column_name FROM information_schema.table_constraints AS tc JOIN information_schema.key_column_usage AS kcu ON tc.constraint_name = kcu.constraint_name AND tc.table_schema = kcu.table_schema JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name AND ccu.table_schema = tc.table_schema WHERE tc.constraint_type = 'FOREIGN KEY' AND tc.table_name='%s'", a.tableName, a.tableName), "foreignkeys"},
+		}
 	default:
-		queries = fmt.Sprintf(`1. DESCRIBE %s
-2. SHOW INDEX FROM %s
-3. SELECT COUNT(*) FROM %s
-4. SHOW CREATE TABLE %s`, a.tableName, a.tableName, a.tableName, a.tableName)
+		queries = []metadataQuery{
+			{fmt.Sprintf("DESCRIBE `%s`", a.tableName), "columns"},
+			{fmt.Sprintf("SHOW INDEX FROM `%s`", a.tableName), "indexes"},
+			{fmt.Sprintf("SELECT COUNT(*) FROM `%s`", a.tableName), "rowcount"},
+			{fmt.Sprintf("SHOW CREATE TABLE `%s`", a.tableName), "foreignkeys"},
+		}
 	}
 
-	prompt := fmt.Sprintf(`You are analyzing table "%s" in %s database.
-
-Phase 1: Collect basic metadata using these EXACT queries:
-
-%s
-
-Execute these queries ONE BY ONE. After all queries complete, say "Phase 1 complete".`,
-		a.tableName, a.adapter.GetDatabaseType(), queries)
-
-	_, err := a.executor.Call(ctx, map[string]any{"input": prompt})
-	if err != nil {
-		return err
+	// Execute each query deterministically and save to tempData
+	for _, q := range queries {
+		if !a.sharedCtx.Quiet {
+			fmt.Printf("[%s] SQL: %s\n", a.id, q.sql)
+		}
+		result, err := a.adapter.ExecuteQuery(ctx, q.sql)
+		if err != nil {
+			if !a.sharedCtx.Quiet {
+				fmt.Printf("[%s] Warning: query failed: %v\n", a.id, err)
+			}
+			continue // Non-fatal: skip this query
+		}
+		if result.Error == "" && result.Rows != nil {
+			dataKey := fmt.Sprintf("%s_%s", a.tableName, q.dataKey)
+			a.sharedCtx.SetData(dataKey, result.Rows)
+		}
 	}
 
-	// Build basic metadata after Phase 1 completes
+	// Build basic metadata after all queries complete
 	a.sharedCtx.BuildTableMetadata(a.tableName)
 	return nil
 }
@@ -333,9 +352,9 @@ func (a *WorkerAgent) generateTableDescription(ctx context.Context) error {
 	table, exists := a.sharedCtx.Tables[a.tableName]
 	if !exists {
 		// Table metadata may not have been built yet, skip description
-	if !a.sharedCtx.Quiet {
-		fmt.Printf("[%s] Warning: table %s not found in Tables map, skipping description\n", a.id, a.tableName)
-	}
+		if !a.sharedCtx.Quiet {
+			fmt.Printf("[%s] Warning: table %s not found in Tables map, skipping description\n", a.id, a.tableName)
+		}
 		return nil
 	}
 

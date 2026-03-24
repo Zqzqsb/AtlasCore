@@ -102,7 +102,7 @@ func main() {
 		fmt.Println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 		fmt.Println("🤖 Select Model")
 		fmt.Println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-		
+
 		// Load config to show available models
 		cfg := llm.GetConfig()
 		modelOptions := []struct {
@@ -119,24 +119,24 @@ func main() {
 			{"doubao-seed2-pro", "Doubao-Seed2-Pro (Volcano)", cfg.DoubaoSeed2Pro.ModelName},
 			{"qwen3-coder-plus", "Qwen3-Coder-Plus (Aliyun)", cfg.Qwen3CoderPlus.ModelName},
 		}
-		
+
 		for i, opt := range modelOptions {
 			fmt.Printf("  %d. %-25s — %s\n", i+1, opt.displayName, opt.modelName)
 		}
 		fmt.Println()
 		fmt.Printf("Enter choice [1-%d] (default: 1): ", len(modelOptions))
-		
+
 		input, _ := reader.ReadString('\n')
 		input = strings.TrimSpace(input)
 		if input == "" {
 			input = "1"
 		}
-		
+
 		var choice int
 		if _, err := fmt.Sscanf(input, "%d", &choice); err != nil || choice < 1 || choice > len(modelOptions) {
 			log.Fatalf("Invalid choice: %s", input)
 		}
-		
+
 		*modelType = modelOptions[choice-1].key
 	}
 
@@ -428,22 +428,37 @@ func processDatabase(model llm.ModelType, dbDir, outputDir, dbName string, loadS
 		return fmt.Errorf("failed to create LLM: %w", err)
 	}
 
-	// 4. Phase 1: Coordinator Agent discovers tables
+	// 4. Phase 1: Deterministic table discovery (no LLM needed)
 	update("Phase 1: Discovering tables", 10)
 
 	var progLogger *logger.Logger
-	if !sharedCtx.Quiet {
-		progLogger = logger.NewLogger(0)
-		progLogger.SetPhase(fmt.Sprintf("[%s] Phase 1: Discovering Tables", dbName))
+
+	// Discover tables directly via SQL — deterministic, no LLM dependency
+	var discoverQuery string
+	switch dbAdapter.GetDatabaseType() {
+	case "SQLite":
+		discoverQuery = "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'"
+	case "MySQL":
+		discoverQuery = "SHOW TABLES"
+	case "PostgreSQL":
+		discoverQuery = "SELECT tablename FROM pg_tables WHERE schemaname='public'"
+	default:
+		discoverQuery = "SHOW TABLES"
 	}
 
-	coordinator, err := agent.NewCoordinatorAgent("coordinator", llmInstance, dbAdapter, sharedCtx)
+	discoverResult, err := dbAdapter.ExecuteQuery(ctx, discoverQuery)
 	if err != nil {
-		return fmt.Errorf("failed to create coordinator: %w", err)
+		return fmt.Errorf("failed to discover tables: %w", err)
 	}
 
-	if err := coordinator.Execute(ctx); err != nil {
-		return fmt.Errorf("coordinator failed: %w", err)
+	for _, row := range discoverResult.Rows {
+		for _, val := range row {
+			if tableName, ok := val.(string); ok {
+				taskID := "analyze_" + tableName
+				agentID := "worker_" + tableName
+				_ = sharedCtx.RegisterTask(taskID, agentID, fmt.Sprintf("Analyze table: %s", tableName))
+			}
+		}
 	}
 
 	// 5. Phase 2: Worker Agents analyze tables in parallel
