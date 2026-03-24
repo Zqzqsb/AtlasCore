@@ -1,0 +1,238 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=27, pred=24",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "forename",
+        "surname"
+      ],
+      [
+        "Mark",
+        "Webber"
+      ],
+      [
+        "Fernando",
+        "Alonso"
+      ],
+      [
+        "Lewis",
+        "Hamilton"
+      ],
+      [
+        "Sebastian",
+        "Vettel"
+      ],
+      [
+        "Jenson",
+        "Button"
+      ],
+      [
+        "Felipe",
+        "Massa"
+      ],
+      [
+        "Nico",
+        "Rosberg"
+      ],
+      [
+        "Robert",
+        "Kubica"
+      ],
+      [
+        "Adrian",
+        "Sutil"
+      ],
+      [
+        "Michael",
+        "Schumacher"
+      ],
+      [
+        "Rubens",
+        "Barrichello"
+      ],
+      [
+        "Kamui",
+        "Kobayashi"
+      ],
+      [
+        "Vitaly",
+        "Petrov"
+      ],
+      [
+        "Nico",
+        "Hülkenberg"
+      ],
+      [
+        "Vitantonio",
+        "Liuzzi"
+      ],
+      [
+        "Sébastien",
+        "Buemi"
+      ],
+      [
+        "Pedro",
+        "de la Rosa"
+      ],
+      [
+        "Jaime",
+        "Alguersuari"
+      ],
+      [
+        "Heikki",
+        "Kovalainen"
+      ],
+      [
+        "Karun",
+        "Chandhok"
+      ],
+      [
+        "Lucas",
+        "di Grassi"
+      ],
+      [
+        "Jarno",
+        "Trulli"
+      ],
+      [
+        "Bruno",
+        "Senna"
+      ],
+      [
+        "Timo",
+        "Glock"
+      ],
+      [
+        "Sakon",
+        "Yamamoto"
+      ],
+      [
+        "Nick",
+        "Heidfeld"
+      ],
+      [
+        "Christian",
+        "Klien"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T3.forename, T3.surname FROM races AS T1 INNER JOIN driverStandings AS T2 ON T2.raceId = T1.raceId INNER JOIN drivers AS T3 ON T3.driverId = T2.driverId WHERE T1.name = 'Singapore Grand Prix' AND T1.year = 2010 ORDER BY T2.position ASC",
+  "id": 892,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "forename",
+        "surname"
+      ],
+      [
+        "Timo",
+        "Glock"
+      ],
+      [
+        "Nick",
+        "Heidfeld"
+      ],
+      [
+        "Lewis",
+        "Hamilton"
+      ],
+      [
+        "Christian",
+        "Klien"
+      ],
+      [
+        "Kamui",
+        "Kobayashi"
+      ],
+      [
+        "Bruno",
+        "Senna"
+      ],
+      [
+        "Jarno",
+        "Trulli"
+      ],
+      [
+        "Vitantonio",
+        "Liuzzi"
+      ],
+      [
+        "Fernando",
+        "Alonso"
+      ],
+      [
+        "Sebastian",
+        "Vettel"
+      ],
+      [
+        "Mark",
+        "Webber"
+      ],
+      [
+        "Jenson",
+        "Button"
+      ],
+      [
+        "Nico",
+        "Rosberg"
+      ],
+      [
+        "Rubens",
+        "Barrichello"
+      ],
+      [
+        "Robert",
+        "Kubica"
+      ],
+      [
+        "Felipe",
+        "Massa"
+      ],
+      [
+        "Adrian",
+        "Sutil"
+      ],
+      [
+        "Nico",
+        "Hülkenberg"
+      ],
+      [
+        "Vitaly",
+        "Petrov"
+      ],
+      [
+        "Jaime",
+        "Alguersuari"
+      ],
+      [
+        "Michael",
+        "Schumacher"
+      ],
+      [
+        "Sébastien",
+        "Buemi"
+      ],
+      [
+        "Lucas",
+        "di Grassi"
+      ],
+      [
+        "Heikki",
+        "Kovalainen"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT d.forename, d.surname FROM results r JOIN drivers d ON r.driverId = d.driverId WHERE r.raceId = 351 ORDER BY r.position;",
+  "question": "Name all drivers in the 2010 Singapore Grand Prix order by their position stands.",
+  "thinking": ""
+}

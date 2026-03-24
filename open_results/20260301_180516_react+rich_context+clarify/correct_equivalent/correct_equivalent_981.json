@@ -1,0 +1,186 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "driverRef",
+        "nationality",
+        "dob"
+      ],
+      [
+        "massa",
+        "Brazilian",
+        "1981-04-25 00:00:00 +0000 UTC"
+      ],
+      [
+        "raikkonen",
+        "Finnish",
+        "1979-10-17 00:00:00 +0000 UTC"
+      ],
+      [
+        "hamilton",
+        "British",
+        "1985-01-07 00:00:00 +0000 UTC"
+      ],
+      [
+        "kovalainen",
+        "Finnish",
+        "1981-10-19 00:00:00 +0000 UTC"
+      ],
+      [
+        "kubica",
+        "Polish",
+        "1984-12-07 00:00:00 +0000 UTC"
+      ],
+      [
+        "rosberg",
+        "German",
+        "1985-06-27 00:00:00 +0000 UTC"
+      ],
+      [
+        "alonso",
+        "Spanish",
+        "1981-07-29 00:00:00 +0000 UTC"
+      ],
+      [
+        "trulli",
+        "Italian",
+        "1974-07-13 00:00:00 +0000 UTC"
+      ],
+      [
+        "webber",
+        "Australian",
+        "1976-08-27 00:00:00 +0000 UTC"
+      ],
+      [
+        "coulthard",
+        "British",
+        "1971-03-27 00:00:00 +0000 UTC"
+      ],
+      [
+        "glock",
+        "German",
+        "1982-03-18 00:00:00 +0000 UTC"
+      ],
+      [
+        "button",
+        "British",
+        "1980-01-19 00:00:00 +0000 UTC"
+      ],
+      [
+        "heidfeld",
+        "German",
+        "1977-05-10 00:00:00 +0000 UTC"
+      ],
+      [
+        "nakajima",
+        "Japanese",
+        "1985-01-11 00:00:00 +0000 UTC"
+      ],
+      [
+        "barrichello",
+        "Brazilian",
+        "1972-05-23 00:00:00 +0000 UTC"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.driverRef, T2.nationality, T2.dob FROM qualifying AS T1 INNER JOIN drivers AS T2 on T1.driverId = T2.driverId WHERE T1.raceId = 23 AND T1.q2 IS NOT NULL",
+  "id": 981,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "driverRef",
+        "nationality",
+        "dob"
+      ],
+      [
+        "massa",
+        "Brazilian",
+        "1981-04-25 00:00:00 +0000 UTC"
+      ],
+      [
+        "raikkonen",
+        "Finnish",
+        "1979-10-17 00:00:00 +0000 UTC"
+      ],
+      [
+        "hamilton",
+        "British",
+        "1985-01-07 00:00:00 +0000 UTC"
+      ],
+      [
+        "kovalainen",
+        "Finnish",
+        "1981-10-19 00:00:00 +0000 UTC"
+      ],
+      [
+        "kubica",
+        "Polish",
+        "1984-12-07 00:00:00 +0000 UTC"
+      ],
+      [
+        "rosberg",
+        "German",
+        "1985-06-27 00:00:00 +0000 UTC"
+      ],
+      [
+        "alonso",
+        "Spanish",
+        "1981-07-29 00:00:00 +0000 UTC"
+      ],
+      [
+        "trulli",
+        "Italian",
+        "1974-07-13 00:00:00 +0000 UTC"
+      ],
+      [
+        "webber",
+        "Australian",
+        "1976-08-27 00:00:00 +0000 UTC"
+      ],
+      [
+        "coulthard",
+        "British",
+        "1971-03-27 00:00:00 +0000 UTC"
+      ],
+      [
+        "glock",
+        "German",
+        "1982-03-18 00:00:00 +0000 UTC"
+      ],
+      [
+        "button",
+        "British",
+        "1980-01-19 00:00:00 +0000 UTC"
+      ],
+      [
+        "heidfeld",
+        "German",
+        "1977-05-10 00:00:00 +0000 UTC"
+      ],
+      [
+        "nakajima",
+        "Japanese",
+        "1985-01-11 00:00:00 +0000 UTC"
+      ],
+      [
+        "barrichello",
+        "Brazilian",
+        "1972-05-23 00:00:00 +0000 UTC"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT d.driverRef, d.nationality, d.dob \nFROM qualifying q\nJOIN drivers d ON q.driverId = d.driverId\nWHERE q.raceId = 23 \nAND q.q2 IS NOT NULL;",
+  "question": "List the reference name of the drivers who passed the second qualifying lap during race no. 23. Indicate their nationality and birthday.",
+  "thinking": ""
+}

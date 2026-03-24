@@ -1,0 +1,42 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "moderate",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name",
+        "max_count"
+      ],
+      [
+        "England Premier League",
+        "3040"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT t2.name, t1.max_count FROM League AS t2 JOIN (SELECT league_id, MAX(cnt) AS max_count FROM (SELECT league_id, COUNT(id) AS cnt FROM Match GROUP BY league_id) AS subquery) AS t1 ON t1.league_id = t2.id",
+  "id": 1033,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name",
+        "max_count"
+      ],
+      [
+        "Spain LIGA BBVA",
+        "3040"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT l.name, COUNT(m.league_id) as max_count\nFROM Match m\nJOIN League l ON m.league_id = l.id\nGROUP BY l.name\nORDER BY max_count DESC\nLIMIT 1",
+  "question": "Give the name of the league with the highest matches of all time and how many matches were played in the said league.",
+  "thinking": ""
+}

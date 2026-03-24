@@ -1,0 +1,39 @@
+======================================
+             SQL Analysis Summary             
+======================================
+
+Total Queries: 1534
+Correct Count: 1158 (Exact Match: 222, Semantic Match: 936)
+Ambiguous: 0
+Error Count: 376
+Accuracy (excl. ambiguous & ref errors): 75.55%
+
+Error Type Statistics (by frequency)
+--------------------------------------
+Error Type                Count      Percentage
+----------------------------------------
+row_count_error             187           12.19%
+data_mismatch               169           11.02%
+
+Detailed Error Classification
+--------------------------------------
+Error Type                Count      Percentage
+----------------------------------------
+Syntax Error                 17            1.11%
+Reference Error               1            0.07%
+Projection Error              0            0.00%
+Row Count Error             187           12.19%
+Data Mismatch               169           11.02%
+Execution Error               2            0.13%
+Timeout Error                 3            0.20%
+Other Error                   0            0.00%
+
+Report saved to: results/bird/20260301_180516_react+rich_context+clarify/analysis_reports/summary_report.json
+
+Accuracy by Difficulty
+────────────────────────────────────────────────────────────
+Difficulty         Total  Correct   Accuracy   Error Breakdown               
+────────────────────────────────────────────────────────────
+simple               925      725      78.4%   row_count_error:111, data_mismatch:79, execution_error:9, timeout_error:1
+moderate             464      332      71.6%   data_mismatch:70, row_count_error:56, execution_error:5, timeout_error:1
+challenging          145      101      69.7%   row_count_error:20, data_mismatch:20, execution_error:3, timeout_error:1

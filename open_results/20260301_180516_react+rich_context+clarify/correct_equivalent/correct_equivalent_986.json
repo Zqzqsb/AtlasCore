@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "driverId"
+      ],
+      [
+        "15"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.driverId FROM lapTimes AS T1 INNER JOIN races AS T2 on T1.raceId = T2.raceId WHERE T2.name = 'French Grand Prix' AND T1.lap = 3 ORDER BY T1.time DESC LIMIT 1",
+  "id": 986,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "driverId"
+      ],
+      [
+        "15"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT lt.driverId\nFROM races r\nJOIN lapTimes lt ON r.raceId = lt.raceId\nWHERE r.name = 'French Grand Prix'\n  AND lt.lap = 3\nORDER BY CAST(lt.time AS INTEGER) DESC\nLIMIT 1;",
+  "question": "Among the drivers who participated in the French Grand Prix, who has the slowest time in the 3rd lap.",
+  "thinking": ""
+}

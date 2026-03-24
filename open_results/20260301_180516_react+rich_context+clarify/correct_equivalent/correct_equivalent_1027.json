@@ -1,0 +1,38 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "team_long_name"
+      ],
+      [
+        "Piast Gliwice"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT teamDetails.team_long_name FROM Match AS matchData INNER JOIN Team AS teamDetails ON matchData.home_team_api_id = teamDetails.team_api_id WHERE matchData.season = '2015/2016' AND matchData.home_team_goal - matchData.away_team_goal \u003c 0 GROUP BY matchData.home_team_api_id ORDER BY COUNT(*) ASC LIMIT 1",
+  "id": 1027,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "team_long_name"
+      ],
+      [
+        "Piast Gliwice"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT t.team_long_name\nFROM Match m\nJOIN Team t ON m.home_team_api_id = t.team_api_id\nWHERE m.season = '2015/2016'\n  AND m.home_team_goal \u003c m.away_team_goal\nGROUP BY t.team_api_id, t.team_long_name\nORDER BY COUNT(*) ASC\nLIMIT 1;",
+  "question": "Which home team had lost the fewest matches in the 2016 season?",
+  "thinking": ""
+}

@@ -1,0 +1,16 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT team_long_name FROM Team WHERE team_short_name = 'GEN'",
+  "id": 1078,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT team_long_name FROM Team WHERE team_short_name = 'GEN';",
+  "question": "What's the long name for the team GEN?",
+  "thinking": ""
+}

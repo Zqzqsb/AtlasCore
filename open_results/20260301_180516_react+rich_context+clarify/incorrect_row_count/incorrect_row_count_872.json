@@ -1,0 +1,50 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=5, pred=1",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "nationality"
+      ],
+      [
+        "German"
+      ],
+      [
+        "Japanese"
+      ],
+      [
+        "Russian"
+      ],
+      [
+        "Spanish"
+      ],
+      [
+        "Swiss"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T2.nationality FROM qualifying AS T1 INNER JOIN drivers AS T2 ON T2.driverId = T1.driverId WHERE T1.raceId = 347 AND T1.q2 LIKE '1:15%'",
+  "id": 872,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "nationality"
+      ],
+      [
+        "German"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT d.nationality \nFROM qualifying q\nJOIN drivers d ON q.driverId = d.driverId\nWHERE q.raceId = 347 \n  AND q.q2 = '1:15.018';",
+  "question": "For the driver who had the Q2 time as 0:01:15 in race No. 347, where is he from?",
+  "thinking": ""
+}

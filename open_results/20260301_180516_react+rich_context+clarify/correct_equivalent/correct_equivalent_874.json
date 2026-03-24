@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "time"
+      ],
+      [
+        "+2:41.4"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.time FROM drivers AS T1 INNER JOIN results AS T2 ON T2.driverId = T1.driverId WHERE T2.raceId = 743 AND T1.forename = 'Bruce' AND T1.surname = 'McLaren'",
+  "id": 874,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "time"
+      ],
+      [
+        "+2:41.4"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT time FROM results WHERE raceId = 743 AND driverId = 360;",
+  "question": "What is the actual finish time for Bruce McLaren in the race No.743?",
+  "thinking": ""
+}

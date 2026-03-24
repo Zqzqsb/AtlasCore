@@ -1,0 +1,38 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(Id)"
+      ],
+      [
+        "1"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(Id) FROM tags WHERE TagName = 'careers'",
+  "id": 697,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(Id)"
+      ],
+      [
+        "22"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(Id) FROM posts WHERE Tags LIKE '%\u003ccareers\u003e%';",
+  "question": "Count the number of posts with a tag specified as 'careers'.",
+  "thinking": ""
+}

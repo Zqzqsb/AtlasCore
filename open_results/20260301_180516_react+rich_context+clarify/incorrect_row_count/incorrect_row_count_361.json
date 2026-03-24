@@ -1,0 +1,68 @@
+{
+  "db_id": "card_games",
+  "difficulty": "moderate",
+  "error_reason": "row count mismatch: gold=2, pred=10",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "language"
+      ],
+      [
+        "Chinese Traditional"
+      ],
+      [
+        "Chinese Simplified"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT language FROM set_translations WHERE id IN ( SELECT id FROM cards WHERE name = 'Angel of Mercy' )",
+  "id": 361,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "language"
+      ],
+      [
+        "Chinese Simplified"
+      ],
+      [
+        "Chinese Traditional"
+      ],
+      [
+        "French"
+      ],
+      [
+        "German"
+      ],
+      [
+        "Italian"
+      ],
+      [
+        "Japanese"
+      ],
+      [
+        "Korean"
+      ],
+      [
+        "Portuguese (Brazil)"
+      ],
+      [
+        "Russian"
+      ],
+      [
+        "Spanish"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT st.language\nFROM cards c\nJOIN sets s ON c.setCode = s.code\nJOIN set_translations st ON s.code = st.setCode\nWHERE c.name = 'Angel of Mercy';",
+  "question": "cards are not directly linked to language but through table 'set'. you need to add set in covered table \u0026 rephrase your question\nWhat are the languages available for the set that card 'Angel of Mercy' is in?",
+  "thinking": ""
+}

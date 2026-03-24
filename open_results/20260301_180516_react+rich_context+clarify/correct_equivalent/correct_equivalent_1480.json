@@ -1,0 +1,38 @@
+{
+  "db_id": "debit_card_specializing",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "SUBSTR(T2.Date, 1, 4)"
+      ],
+      [
+        "2013"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT SUBSTR(T2.Date, 1, 4) FROM customers AS T1 INNER JOIN yearmonth AS T2 ON T1.CustomerID = T2.CustomerID WHERE T1.Currency = 'CZK' GROUP BY SUBSTR(T2.Date, 1, 4) ORDER BY SUM(T2.Consumption) DESC LIMIT 1",
+  "id": 1480,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "SUBSTR(T2.Date, 1, 4)"
+      ],
+      [
+        "2013"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT SUBSTR(T2.Date, 1, 4) \nFROM yearmonth AS T2\nJOIN customers AS T1 ON T2.CustomerID = T1.CustomerID\nWHERE T1.Currency = 'CZK'\nGROUP BY SUBSTR(T2.Date, 1, 4)\nORDER BY SUM(T2.Consumption) DESC\nLIMIT 1",
+  "question": "Which year recorded the most consumption of gas paid in CZK?",
+  "thinking": ""
+}

@@ -1,0 +1,38 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "ID"
+      ],
+      [
+        "1567380"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T1.ID FROM Patient AS T1 INNER JOIN Examination AS T2 ON T1.ID = T2.ID INNER JOIN Laboratory AS T3 on T1.ID = T3.ID WHERE (T3.HCT \u003e= 52 OR T3.HCT \u003c= 29) ORDER BY T2.`aCL IgA` DESC LIMIT 1",
+  "id": 1264,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "ID"
+      ],
+      [
+        "1567380"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT e.ID\nFROM Examination e\nJOIN Laboratory l ON e.ID = l.ID\nWHERE l.HCT \u003c= 29 OR l.HCT \u003e= 52\nORDER BY e.\"aCL IgA\" DESC\nLIMIT 1",
+  "question": "Among the patients whose level of Hematoclit isn't normal, which patient has the highest anti-Cardiolipin antibody concentration? Please list his or her ID.",
+  "thinking": ""
+}

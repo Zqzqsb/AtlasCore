@@ -1,0 +1,16 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT id FROM cards WHERE duelDeck = 'a'",
+  "id": 380,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT id FROM cards WHERE duelDeck = 'a';",
+  "question": "What are the cards belong to duel deck a? List the ID.",
+  "thinking": ""
+}

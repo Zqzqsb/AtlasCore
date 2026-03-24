@@ -1,0 +1,38 @@
+{
+  "db_id": "student_club",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "city"
+      ],
+      [
+        "Salisbury"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.city FROM member AS T1 INNER JOIN zip_code AS T2 ON T2.zip_code = T1.zip WHERE T1.first_name = 'Garrett' AND T1.last_name = 'Gerke'",
+  "id": 1469,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "city"
+      ],
+      [
+        "Salisbury"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT z.city FROM member m JOIN zip_code z ON m.zip = z.zip_code WHERE m.first_name = 'Garrett' AND m.last_name = 'Gerke';",
+  "question": "Where is the hometown of Garrett Gerke?",
+  "thinking": ""
+}

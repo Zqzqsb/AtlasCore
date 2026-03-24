@@ -1,0 +1,86 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "ID"
+      ],
+      [
+        "1061042"
+      ],
+      [
+        "3046555"
+      ],
+      [
+        "3420980"
+      ],
+      [
+        "4904957"
+      ],
+      [
+        "5093771"
+      ],
+      [
+        "5112904"
+      ],
+      [
+        "5126587"
+      ],
+      [
+        "5277461"
+      ],
+      [
+        "5493353"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT ID FROM Patient WHERE STRFTIME('%Y', Birthday) = '1964' AND SEX = 'F' AND Admission = '+'",
+  "id": 1189,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "ID"
+      ],
+      [
+        "1061042"
+      ],
+      [
+        "3046555"
+      ],
+      [
+        "3420980"
+      ],
+      [
+        "4904957"
+      ],
+      [
+        "5093771"
+      ],
+      [
+        "5112904"
+      ],
+      [
+        "5126587"
+      ],
+      [
+        "5277461"
+      ],
+      [
+        "5493353"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT ID FROM Patient WHERE SEX = 'F' AND STRFTIME('%Y', Birthday) = '1964' AND Admission = '+'",
+  "question": "How many female patients born in 1964 were admitted to the hospital? List them by ID.",
+  "thinking": ""
+}

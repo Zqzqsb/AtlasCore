@@ -1,0 +1,38 @@
+{
+  "db_id": "superhero",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "race"
+      ],
+      [
+        "Cosmic Entity"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T3.race FROM superhero AS T1 INNER JOIN hero_attribute AS T2 ON T1.id = T2.hero_id INNER JOIN race AS T3 ON T1.race_id = T3.id ORDER BY T2.attribute_value DESC LIMIT 1",
+  "id": 811,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "race"
+      ],
+      [
+        "Cosmic Entity"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT r.race\nFROM superhero s\nJOIN race r ON s.race_id = r.id\nJOIN hero_attribute ha ON s.id = ha.hero_id\nORDER BY ha.attribute_value DESC\nLIMIT 1;",
+  "question": "What is the race of the superhero with maximum attribute value?",
+  "thinking": ""
+}

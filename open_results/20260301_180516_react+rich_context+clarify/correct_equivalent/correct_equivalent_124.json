@@ -1,0 +1,856 @@
+{
+  "db_id": "financial",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "account_id",
+        "A2",
+        "A3"
+      ],
+      [
+        "37",
+        "Strakonice",
+        "south Bohemia"
+      ],
+      [
+        "105",
+        "Tabor",
+        "south Bohemia"
+      ],
+      [
+        "319",
+        "Pardubice",
+        "east Bohemia"
+      ],
+      [
+        "330",
+        "Havlickuv Brod",
+        "east Bohemia"
+      ],
+      [
+        "339",
+        "Nachod",
+        "east Bohemia"
+      ],
+      [
+        "442",
+        "Brno - mesto",
+        "south Moravia"
+      ],
+      [
+        "817",
+        "Kolin",
+        "central Bohemia"
+      ],
+      [
+        "915",
+        "Olomouc",
+        "north Moravia"
+      ],
+      [
+        "1093",
+        "Brno - mesto",
+        "south Moravia"
+      ],
+      [
+        "1374",
+        "Blansko",
+        "south Moravia"
+      ],
+      [
+        "1583",
+        "Jesenik",
+        "north Moravia"
+      ],
+      [
+        "1808",
+        "Plzen - sever",
+        "west Bohemia"
+      ],
+      [
+        "1862",
+        "Prachatice",
+        "south Bohemia"
+      ],
+      [
+        "2245",
+        "Rokycany",
+        "west Bohemia"
+      ],
+      [
+        "2246",
+        "Hl.m. Praha",
+        "Prague"
+      ],
+      [
+        "2279",
+        "Benesov",
+        "central Bohemia"
+      ],
+      [
+        "2335",
+        "Karvina",
+        "north Moravia"
+      ],
+      [
+        "2516",
+        "Kutna Hora",
+        "central Bohemia"
+      ],
+      [
+        "2545",
+        "Hl.m. Praha",
+        "Prague"
+      ],
+      [
+        "2572",
+        "Zlin",
+        "south Moravia"
+      ],
+      [
+        "2754",
+        "Hodonin",
+        "south Moravia"
+      ],
+      [
+        "2910",
+        "Frydek - Mistek",
+        "north Moravia"
+      ],
+      [
+        "2912",
+        "Ostrava - mesto",
+        "north Moravia"
+      ],
+      [
+        "2936",
+        "Beroun",
+        "central Bohemia"
+      ],
+      [
+        "3005",
+        "Havlickuv Brod",
+        "east Bohemia"
+      ],
+      [
+        "3115",
+        "Ceske Budejovice",
+        "south Bohemia"
+      ],
+      [
+        "3678",
+        "Hl.m. Praha",
+        "Prague"
+      ],
+      [
+        "3679",
+        "Zlin",
+        "south Moravia"
+      ],
+      [
+        "3711",
+        "Beroun",
+        "central Bohemia"
+      ],
+      [
+        "3859",
+        "Blansko",
+        "south Moravia"
+      ],
+      [
+        "3906",
+        "Usti nad Orlici",
+        "east Bohemia"
+      ],
+      [
+        "4190",
+        "Uherske Hradiste",
+        "south Moravia"
+      ],
+      [
+        "4354",
+        "Louny",
+        "north Bohemia"
+      ],
+      [
+        "4456",
+        "Ceske Budejovice",
+        "south Bohemia"
+      ],
+      [
+        "4576",
+        "Plzen - jih",
+        "west Bohemia"
+      ],
+      [
+        "4650",
+        "Kladno",
+        "central Bohemia"
+      ],
+      [
+        "4774",
+        "Zdar nad Sazavou",
+        "south Moravia"
+      ],
+      [
+        "4794",
+        "Olomouc",
+        "north Moravia"
+      ],
+      [
+        "4858",
+        "Bruntal",
+        "north Moravia"
+      ],
+      [
+        "4948",
+        "Hradec Kralove",
+        "east Bohemia"
+      ],
+      [
+        "5072",
+        "Kutna Hora",
+        "central Bohemia"
+      ],
+      [
+        "5120",
+        "Hl.m. Praha",
+        "Prague"
+      ],
+      [
+        "5181",
+        "Prerov",
+        "north Moravia"
+      ],
+      [
+        "5213",
+        "Hl.m. Praha",
+        "Prague"
+      ],
+      [
+        "5313",
+        "Teplice",
+        "north Bohemia"
+      ],
+      [
+        "5422",
+        "Zdar nad Sazavou",
+        "south Moravia"
+      ],
+      [
+        "5477",
+        "Hodonin",
+        "south Moravia"
+      ],
+      [
+        "6034",
+        "Kutna Hora",
+        "central Bohemia"
+      ],
+      [
+        "6062",
+        "Karlovy Vary",
+        "west Bohemia"
+      ],
+      [
+        "6075",
+        "Prachatice",
+        "south Bohemia"
+      ],
+      [
+        "6083",
+        "Kutna Hora",
+        "central Bohemia"
+      ],
+      [
+        "6226",
+        "Ostrava - mesto",
+        "north Moravia"
+      ],
+      [
+        "6592",
+        "Hl.m. Praha",
+        "Prague"
+      ],
+      [
+        "6950",
+        "Liberec",
+        "north Bohemia"
+      ],
+      [
+        "7049",
+        "Jesenik",
+        "north Moravia"
+      ],
+      [
+        "7542",
+        "Brno - mesto",
+        "south Moravia"
+      ],
+      [
+        "7562",
+        "Olomouc",
+        "north Moravia"
+      ],
+      [
+        "7614",
+        "Uherske Hradiste",
+        "south Moravia"
+      ],
+      [
+        "7637",
+        "Nachod",
+        "east Bohemia"
+      ],
+      [
+        "7795",
+        "Zlin",
+        "south Moravia"
+      ],
+      [
+        "7966",
+        "Brno - mesto",
+        "south Moravia"
+      ],
+      [
+        "8320",
+        "Trutnov",
+        "east Bohemia"
+      ],
+      [
+        "8377",
+        "Rokycany",
+        "west Bohemia"
+      ],
+      [
+        "8381",
+        "Ceske Budejovice",
+        "south Bohemia"
+      ],
+      [
+        "8926",
+        "Hl.m. Praha",
+        "Prague"
+      ],
+      [
+        "9037",
+        "Hl.m. Praha",
+        "Prague"
+      ],
+      [
+        "9455",
+        "Opava",
+        "north Moravia"
+      ],
+      [
+        "9504",
+        "Nymburk",
+        "central Bohemia"
+      ],
+      [
+        "9859",
+        "Plzen - jih",
+        "west Bohemia"
+      ],
+      [
+        "9869",
+        "Pribram",
+        "central Bohemia"
+      ],
+      [
+        "10065",
+        "Sumperk",
+        "north Moravia"
+      ],
+      [
+        "10202",
+        "Karvina",
+        "north Moravia"
+      ],
+      [
+        "10280",
+        "Jesenik",
+        "north Moravia"
+      ],
+      [
+        "10297",
+        "Ceske Budejovice",
+        "south Bohemia"
+      ],
+      [
+        "10451",
+        "Hl.m. Praha",
+        "Prague"
+      ],
+      [
+        "10520",
+        "Brno - venkov",
+        "south Moravia"
+      ],
+      [
+        "10774",
+        "Nachod",
+        "east Bohemia"
+      ],
+      [
+        "10857",
+        "Svitavy",
+        "east Bohemia"
+      ],
+      [
+        "10942",
+        "Chrudim",
+        "east Bohemia"
+      ],
+      [
+        "11186",
+        "Pribram",
+        "central Bohemia"
+      ],
+      [
+        "11317",
+        "Svitavy",
+        "east Bohemia"
+      ],
+      [
+        "11349",
+        "Hl.m. Praha",
+        "Prague"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.account_id, T2.A2, T2.A3 FROM account AS T1 INNER JOIN district AS T2 ON T1.district_id = T2.district_id INNER JOIN loan AS T3 ON T1.account_id = T3.account_id WHERE T3.amount \u003e 300000",
+  "id": 124,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "account_id",
+        "A2",
+        "A3"
+      ],
+      [
+        "37",
+        "Strakonice",
+        "south Bohemia"
+      ],
+      [
+        "105",
+        "Tabor",
+        "south Bohemia"
+      ],
+      [
+        "319",
+        "Pardubice",
+        "east Bohemia"
+      ],
+      [
+        "330",
+        "Havlickuv Brod",
+        "east Bohemia"
+      ],
+      [
+        "339",
+        "Nachod",
+        "east Bohemia"
+      ],
+      [
+        "442",
+        "Brno - mesto",
+        "south Moravia"
+      ],
+      [
+        "817",
+        "Kolin",
+        "central Bohemia"
+      ],
+      [
+        "915",
+        "Olomouc",
+        "north Moravia"
+      ],
+      [
+        "1093",
+        "Brno - mesto",
+        "south Moravia"
+      ],
+      [
+        "1374",
+        "Blansko",
+        "south Moravia"
+      ],
+      [
+        "1583",
+        "Jesenik",
+        "north Moravia"
+      ],
+      [
+        "1808",
+        "Plzen - sever",
+        "west Bohemia"
+      ],
+      [
+        "1862",
+        "Prachatice",
+        "south Bohemia"
+      ],
+      [
+        "2245",
+        "Rokycany",
+        "west Bohemia"
+      ],
+      [
+        "2246",
+        "Hl.m. Praha",
+        "Prague"
+      ],
+      [
+        "2279",
+        "Benesov",
+        "central Bohemia"
+      ],
+      [
+        "2335",
+        "Karvina",
+        "north Moravia"
+      ],
+      [
+        "2516",
+        "Kutna Hora",
+        "central Bohemia"
+      ],
+      [
+        "2545",
+        "Hl.m. Praha",
+        "Prague"
+      ],
+      [
+        "2572",
+        "Zlin",
+        "south Moravia"
+      ],
+      [
+        "2754",
+        "Hodonin",
+        "south Moravia"
+      ],
+      [
+        "2910",
+        "Frydek - Mistek",
+        "north Moravia"
+      ],
+      [
+        "2912",
+        "Ostrava - mesto",
+        "north Moravia"
+      ],
+      [
+        "2936",
+        "Beroun",
+        "central Bohemia"
+      ],
+      [
+        "3005",
+        "Havlickuv Brod",
+        "east Bohemia"
+      ],
+      [
+        "3115",
+        "Ceske Budejovice",
+        "south Bohemia"
+      ],
+      [
+        "3678",
+        "Hl.m. Praha",
+        "Prague"
+      ],
+      [
+        "3679",
+        "Zlin",
+        "south Moravia"
+      ],
+      [
+        "3711",
+        "Beroun",
+        "central Bohemia"
+      ],
+      [
+        "3859",
+        "Blansko",
+        "south Moravia"
+      ],
+      [
+        "3906",
+        "Usti nad Orlici",
+        "east Bohemia"
+      ],
+      [
+        "4190",
+        "Uherske Hradiste",
+        "south Moravia"
+      ],
+      [
+        "4354",
+        "Louny",
+        "north Bohemia"
+      ],
+      [
+        "4456",
+        "Ceske Budejovice",
+        "south Bohemia"
+      ],
+      [
+        "4576",
+        "Plzen - jih",
+        "west Bohemia"
+      ],
+      [
+        "4650",
+        "Kladno",
+        "central Bohemia"
+      ],
+      [
+        "4774",
+        "Zdar nad Sazavou",
+        "south Moravia"
+      ],
+      [
+        "4794",
+        "Olomouc",
+        "north Moravia"
+      ],
+      [
+        "4858",
+        "Bruntal",
+        "north Moravia"
+      ],
+      [
+        "4948",
+        "Hradec Kralove",
+        "east Bohemia"
+      ],
+      [
+        "5072",
+        "Kutna Hora",
+        "central Bohemia"
+      ],
+      [
+        "5120",
+        "Hl.m. Praha",
+        "Prague"
+      ],
+      [
+        "5181",
+        "Prerov",
+        "north Moravia"
+      ],
+      [
+        "5213",
+        "Hl.m. Praha",
+        "Prague"
+      ],
+      [
+        "5313",
+        "Teplice",
+        "north Bohemia"
+      ],
+      [
+        "5422",
+        "Zdar nad Sazavou",
+        "south Moravia"
+      ],
+      [
+        "5477",
+        "Hodonin",
+        "south Moravia"
+      ],
+      [
+        "6034",
+        "Kutna Hora",
+        "central Bohemia"
+      ],
+      [
+        "6062",
+        "Karlovy Vary",
+        "west Bohemia"
+      ],
+      [
+        "6075",
+        "Prachatice",
+        "south Bohemia"
+      ],
+      [
+        "6083",
+        "Kutna Hora",
+        "central Bohemia"
+      ],
+      [
+        "6226",
+        "Ostrava - mesto",
+        "north Moravia"
+      ],
+      [
+        "6592",
+        "Hl.m. Praha",
+        "Prague"
+      ],
+      [
+        "6950",
+        "Liberec",
+        "north Bohemia"
+      ],
+      [
+        "7049",
+        "Jesenik",
+        "north Moravia"
+      ],
+      [
+        "7542",
+        "Brno - mesto",
+        "south Moravia"
+      ],
+      [
+        "7562",
+        "Olomouc",
+        "north Moravia"
+      ],
+      [
+        "7614",
+        "Uherske Hradiste",
+        "south Moravia"
+      ],
+      [
+        "7637",
+        "Nachod",
+        "east Bohemia"
+      ],
+      [
+        "7795",
+        "Zlin",
+        "south Moravia"
+      ],
+      [
+        "7966",
+        "Brno - mesto",
+        "south Moravia"
+      ],
+      [
+        "8320",
+        "Trutnov",
+        "east Bohemia"
+      ],
+      [
+        "8377",
+        "Rokycany",
+        "west Bohemia"
+      ],
+      [
+        "8381",
+        "Ceske Budejovice",
+        "south Bohemia"
+      ],
+      [
+        "8926",
+        "Hl.m. Praha",
+        "Prague"
+      ],
+      [
+        "9037",
+        "Hl.m. Praha",
+        "Prague"
+      ],
+      [
+        "9455",
+        "Opava",
+        "north Moravia"
+      ],
+      [
+        "9504",
+        "Nymburk",
+        "central Bohemia"
+      ],
+      [
+        "9859",
+        "Plzen - jih",
+        "west Bohemia"
+      ],
+      [
+        "9869",
+        "Pribram",
+        "central Bohemia"
+      ],
+      [
+        "10065",
+        "Sumperk",
+        "north Moravia"
+      ],
+      [
+        "10202",
+        "Karvina",
+        "north Moravia"
+      ],
+      [
+        "10280",
+        "Jesenik",
+        "north Moravia"
+      ],
+      [
+        "10297",
+        "Ceske Budejovice",
+        "south Bohemia"
+      ],
+      [
+        "10451",
+        "Hl.m. Praha",
+        "Prague"
+      ],
+      [
+        "10520",
+        "Brno - venkov",
+        "south Moravia"
+      ],
+      [
+        "10774",
+        "Nachod",
+        "east Bohemia"
+      ],
+      [
+        "10857",
+        "Svitavy",
+        "east Bohemia"
+      ],
+      [
+        "10942",
+        "Chrudim",
+        "east Bohemia"
+      ],
+      [
+        "11186",
+        "Pribram",
+        "central Bohemia"
+      ],
+      [
+        "11317",
+        "Svitavy",
+        "east Bohemia"
+      ],
+      [
+        "11349",
+        "Hl.m. Praha",
+        "Prague"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT a.account_id, d.A2, d.A3\nFROM loan l\nJOIN account a ON l.account_id = a.account_id\nJOIN district d ON a.district_id = d.district_id\nWHERE l.amount \u003e 300000;",
+  "question": "Provide the account ID, district and region for loan amount greater than USD300,000.",
+  "thinking": ""
+}

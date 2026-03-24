@@ -1,0 +1,16 @@
+{
+  "db_id": "superhero",
+  "difficulty": "simple",
+  "error_reason": "predicted SQL is empty",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT T2.colour FROM superhero AS T1 INNER JOIN colour AS T2 ON T1.eye_colour_id = T2.id WHERE T1.id = 75",
+  "id": 749,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "",
+  "question": "What is the eye colour of superhero with superhero ID 75?",
+  "thinking": ""
+}

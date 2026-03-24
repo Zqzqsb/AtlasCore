@@ -1,0 +1,38 @@
+{
+  "db_id": "toxicology",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(COUNT(CASE WHEN T.bond_type = '-' THEN T.bond_id ELSE NULL END) AS REAL) * 100 / COUNT(T.bond_id)"
+      ],
+      [
+        "84.56749672346002"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT CAST(COUNT(CASE WHEN T.bond_type = '-' THEN T.bond_id ELSE NULL END) AS REAL) * 100 / COUNT(T.bond_id) FROM bond t",
+  "id": 325,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "percentage"
+      ],
+      [
+        "84.56749672346002"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT CAST(SUM(bond_type = '-') AS REAL) * 100 / COUNT(bond_id) AS percentage FROM bond;",
+  "question": "Find the percentage of atoms with single bond.",
+  "thinking": ""
+}

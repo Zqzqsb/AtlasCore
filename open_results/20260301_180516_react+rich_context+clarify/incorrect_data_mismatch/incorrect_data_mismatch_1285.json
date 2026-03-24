@@ -1,0 +1,38 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "moderate",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "First Date"
+      ],
+      [
+        "1992-05-11 00:00:00 +0000 UTC"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.`First Date` FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.LDH \u003c 500 ORDER BY T2.LDH ASC LIMIT 1",
+  "id": 1285,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "First Date"
+      ],
+      [
+        "1992-09-21 00:00:00 +0000 UTC"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT p.\"First Date\"\nFROM Laboratory l\nJOIN Patient p ON l.ID = p.ID\nWHERE l.LDH \u003c 500\nORDER BY l.LDH DESC\nLIMIT 1;",
+  "question": "For the patient with the highest lactate dehydrogenase in the normal range, when was his or her data first recorded?",
+  "thinking": ""
+}

@@ -1,0 +1,16 @@
+{
+  "db_id": "superhero",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT full_name FROM superhero WHERE superhero_name = 'Alien'",
+  "id": 839,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT full_name FROM superhero WHERE superhero_name = 'Alien';",
+  "question": "Provide the full name of the superhero named Alien.",
+  "thinking": ""
+}

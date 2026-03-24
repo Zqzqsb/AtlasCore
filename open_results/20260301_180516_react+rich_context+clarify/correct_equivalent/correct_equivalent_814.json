@@ -1,0 +1,38 @@
+{
+  "db_id": "superhero",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AVG(T1.attribute_value)"
+      ],
+      [
+        "60.60897435897436"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT AVG(T1.attribute_value) FROM hero_attribute AS T1 INNER JOIN superhero AS T2 ON T1.hero_id = T2.id INNER JOIN alignment AS T3 ON T2.alignment_id = T3.id WHERE T3.alignment = 'Neutral'",
+  "id": 814,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AVG(T1.attribute_value)"
+      ],
+      [
+        "60.60897435897436"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT AVG(ha.attribute_value) AS \"AVG(T1.attribute_value)\" FROM superhero s JOIN hero_attribute ha ON s.id = ha.hero_id WHERE s.alignment_id = 3;",
+  "question": "Calculate the average attribute value of all neutral superheroes.",
+  "thinking": ""
+}

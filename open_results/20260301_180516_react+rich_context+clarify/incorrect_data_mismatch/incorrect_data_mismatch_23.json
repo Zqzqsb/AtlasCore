@@ -1,0 +1,38 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "sname"
+      ],
+      [
+        "Dougherty Valley High"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT sname FROM satscores WHERE cname = 'Contra Costa' AND sname IS NOT NULL ORDER BY NumTstTakr DESC LIMIT 1",
+  "id": 23,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "sname"
+      ],
+      [
+        "\u003cnil\u003e"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT sname FROM satscores WHERE cname = 'Contra Costa' ORDER BY NumTstTakr DESC LIMIT 1",
+  "question": "Which school in Contra Costa has the highest number of test takers?",
+  "thinking": ""
+}

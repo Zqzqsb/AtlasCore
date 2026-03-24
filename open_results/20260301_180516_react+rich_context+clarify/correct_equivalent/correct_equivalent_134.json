@@ -1,0 +1,42 @@
+{
+  "db_id": "financial",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "district_id",
+        "A2"
+      ],
+      [
+        "39",
+        "Most"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT district_id, A2 FROM district ORDER BY A13 DESC LIMIT 1",
+  "id": 134,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "district_id",
+        "A2"
+      ],
+      [
+        "39",
+        "Most"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT district_id, A2 FROM district WHERE A13 = (SELECT MAX(A13) FROM district)",
+  "question": "In 1996, which districts have the highest unemployment rate? List their branch location and district name.",
+  "thinking": ""
+}

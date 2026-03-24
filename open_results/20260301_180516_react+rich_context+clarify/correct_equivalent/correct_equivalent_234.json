@@ -1,0 +1,44 @@
+{
+  "db_id": "toxicology",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "bond_id"
+      ],
+      [
+        "TR006_11_12"
+      ],
+      [
+        "TR006_11_13"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T2.bond_id FROM atom AS T1 INNER JOIN connected AS T2 ON T1.atom_id = T2.atom_id WHERE T1.molecule_id = 'TR006' ORDER BY T2.bond_id LIMIT 2",
+  "id": 234,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "bond_id"
+      ],
+      [
+        "TR006_11_12"
+      ],
+      [
+        "TR006_11_13"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT bond_id FROM bond WHERE molecule_id = 'TR006' ORDER BY bond_id ASC LIMIT 2;",
+  "question": "Please list top two bonds that happened with the molecule TR006 in alphabetical order.",
+  "thinking": ""
+}

@@ -1,0 +1,16 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT COUNT(id) FROM votes WHERE STRFTIME('%Y', CreationDate) = '2010'",
+  "id": 627,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT COUNT(Id) FROM votes WHERE strftime('%Y', CreationDate) = '2010';",
+  "question": "How many votes were made in 2010?",
+  "thinking": ""
+}

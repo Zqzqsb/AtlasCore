@@ -1,0 +1,38 @@
+{
+  "db_id": "financial",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "amount"
+      ],
+      [
+        "300"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T3.amount FROM loan AS T1 INNER JOIN account AS T2 ON T1.account_id = T2.account_id INNER JOIN trans AS T3 ON T2.account_id = T3.account_id ORDER BY T1.amount DESC, T3.date ASC LIMIT 1",
+  "id": 109,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "amount"
+      ],
+      [
+        "15914"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT t.amount\nFROM loan l\nJOIN account a ON l.account_id = a.account_id\nJOIN trans t ON a.account_id = t.account_id\nWHERE l.amount = (SELECT MAX(amount) FROM loan)\nAND t.date \u003e a.date\nORDER BY t.date\nLIMIT 1",
+  "question": "For the client who applied the biggest loan, what was his/her first amount of transaction after opened the account?",
+  "thinking": ""
+}

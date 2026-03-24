@@ -1,0 +1,446 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=95, pred=43",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Name"
+      ],
+      [
+        "Teacher"
+      ],
+      [
+        "Student"
+      ],
+      [
+        "Autobiographer"
+      ],
+      [
+        "Supporter"
+      ],
+      [
+        "Editor"
+      ],
+      [
+        "Commentator"
+      ],
+      [
+        "Critic"
+      ],
+      [
+        "Scholar"
+      ],
+      [
+        "Nice Answer"
+      ],
+      [
+        "Beta"
+      ],
+      [
+        "Organizer"
+      ],
+      [
+        "Nice Question"
+      ],
+      [
+        "Nice Question"
+      ],
+      [
+        "Nice Question"
+      ],
+      [
+        "Nice Answer"
+      ],
+      [
+        "Nice Answer"
+      ],
+      [
+        "Nice Answer"
+      ],
+      [
+        "Enlightened"
+      ],
+      [
+        "Nice Question"
+      ],
+      [
+        "Enthusiast"
+      ],
+      [
+        "Nice Answer"
+      ],
+      [
+        "Enlightened"
+      ],
+      [
+        "Nice Question"
+      ],
+      [
+        "Nice Answer"
+      ],
+      [
+        "Suffrage"
+      ],
+      [
+        "Self-Learner"
+      ],
+      [
+        "Nice Question"
+      ],
+      [
+        "Civic Duty"
+      ],
+      [
+        "Good Question"
+      ],
+      [
+        "Nice Question"
+      ],
+      [
+        "Nice Answer"
+      ],
+      [
+        "Taxonomist"
+      ],
+      [
+        "Fanatic"
+      ],
+      [
+        "Investor"
+      ],
+      [
+        "Nice Question"
+      ],
+      [
+        "Precognitive"
+      ],
+      [
+        "Talkative"
+      ],
+      [
+        "Altruist"
+      ],
+      [
+        "Convention"
+      ],
+      [
+        "Quorum"
+      ],
+      [
+        "Nice Answer"
+      ],
+      [
+        "Nice Answer"
+      ],
+      [
+        "Popular Question"
+      ],
+      [
+        "Strunk \u0026 White"
+      ],
+      [
+        "Citizen Patrol"
+      ],
+      [
+        "Good Answer"
+      ],
+      [
+        "Popular Question"
+      ],
+      [
+        "Synonymizer"
+      ],
+      [
+        "Yearling"
+      ],
+      [
+        "Nice Answer"
+      ],
+      [
+        "Good Question"
+      ],
+      [
+        "Favorite Question"
+      ],
+      [
+        "Nice Question"
+      ],
+      [
+        "Notable Question"
+      ],
+      [
+        "Popular Question"
+      ],
+      [
+        "Announcer"
+      ],
+      [
+        "Nice Answer"
+      ],
+      [
+        "Nice Answer"
+      ],
+      [
+        "Notable Question"
+      ],
+      [
+        "Favorite Question"
+      ],
+      [
+        "Nice Question"
+      ],
+      [
+        "r"
+      ],
+      [
+        "Nice Answer"
+      ],
+      [
+        "Caucus"
+      ],
+      [
+        "Constituent"
+      ],
+      [
+        "Popular Question"
+      ],
+      [
+        "Yearling"
+      ],
+      [
+        "Custodian"
+      ],
+      [
+        "Nice Answer"
+      ],
+      [
+        "Nice Answer"
+      ],
+      [
+        "Good Answer"
+      ],
+      [
+        "Custodian"
+      ],
+      [
+        "Good Question"
+      ],
+      [
+        "Nice Answer"
+      ],
+      [
+        "Enlightened"
+      ],
+      [
+        "Notable Question"
+      ],
+      [
+        "Nice Question"
+      ],
+      [
+        "Famous Question"
+      ],
+      [
+        "Good Answer"
+      ],
+      [
+        "Popular Question"
+      ],
+      [
+        "Good Question"
+      ],
+      [
+        "Nice Answer"
+      ],
+      [
+        "Good Answer"
+      ],
+      [
+        "Popular Question"
+      ],
+      [
+        "Constable"
+      ],
+      [
+        "Popular Question"
+      ],
+      [
+        "Yearling"
+      ],
+      [
+        "Nice Answer"
+      ],
+      [
+        "Good Question"
+      ],
+      [
+        "Disciplined"
+      ],
+      [
+        "Nice Answer"
+      ],
+      [
+        "Popular Question"
+      ],
+      [
+        "Curious"
+      ],
+      [
+        "Yearling"
+      ],
+      [
+        "Popular Question"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.`Name` FROM badges AS T1 INNER JOIN users AS T2 ON T1.UserId = T2.Id WHERE T2.DisplayName = 'csgillespie'",
+  "id": 553,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Name"
+      ],
+      [
+        "Teacher"
+      ],
+      [
+        "Student"
+      ],
+      [
+        "Autobiographer"
+      ],
+      [
+        "Supporter"
+      ],
+      [
+        "Editor"
+      ],
+      [
+        "Commentator"
+      ],
+      [
+        "Critic"
+      ],
+      [
+        "Scholar"
+      ],
+      [
+        "Nice Answer"
+      ],
+      [
+        "Beta"
+      ],
+      [
+        "Organizer"
+      ],
+      [
+        "Nice Question"
+      ],
+      [
+        "Enlightened"
+      ],
+      [
+        "Enthusiast"
+      ],
+      [
+        "Suffrage"
+      ],
+      [
+        "Self-Learner"
+      ],
+      [
+        "Civic Duty"
+      ],
+      [
+        "Good Question"
+      ],
+      [
+        "Taxonomist"
+      ],
+      [
+        "Fanatic"
+      ],
+      [
+        "Investor"
+      ],
+      [
+        "Precognitive"
+      ],
+      [
+        "Talkative"
+      ],
+      [
+        "Altruist"
+      ],
+      [
+        "Convention"
+      ],
+      [
+        "Quorum"
+      ],
+      [
+        "Popular Question"
+      ],
+      [
+        "Strunk \u0026 White"
+      ],
+      [
+        "Citizen Patrol"
+      ],
+      [
+        "Good Answer"
+      ],
+      [
+        "Synonymizer"
+      ],
+      [
+        "Yearling"
+      ],
+      [
+        "Favorite Question"
+      ],
+      [
+        "Notable Question"
+      ],
+      [
+        "Announcer"
+      ],
+      [
+        "r"
+      ],
+      [
+        "Caucus"
+      ],
+      [
+        "Constituent"
+      ],
+      [
+        "Custodian"
+      ],
+      [
+        "Famous Question"
+      ],
+      [
+        "Constable"
+      ],
+      [
+        "Disciplined"
+      ],
+      [
+        "Curious"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT b.Name \nFROM badges b\nJOIN users u ON b.UserId = u.Id\nWHERE TRIM(u.DisplayName) = 'csgillespie'",
+  "question": "Please list the names of the badges obtained by csgillespie.",
+  "thinking": ""
+}

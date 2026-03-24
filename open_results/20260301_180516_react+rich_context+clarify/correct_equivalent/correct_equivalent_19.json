@@ -1,0 +1,38 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.CDSCode)"
+      ],
+      [
+        "14"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T1.CDSCode) FROM frpm AS T1 INNER JOIN satscores AS T2 ON T1.CDSCode = T2.cds WHERE T1.`Charter Funding Type` = 'Directly funded' AND T1.`County Name` = 'Fresno' AND T2.NumTstTakr \u003c= 250",
+  "id": 19,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.CDSCode)"
+      ],
+      [
+        "14"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(T1.CDSCode)\nFROM schools AS T1\nINNER JOIN satscores AS T2\nON CAST(T1.CDSCode AS INTEGER) = CAST(T2.cds AS INTEGER)\nWHERE T1.County = 'Fresno'\nAND T1.FundingType = 'Directly funded'\nAND T2.NumTstTakr \u003c= 250",
+  "question": "How many schools in Fresno (directly funded) have number of test takers not more than 250?",
+  "thinking": ""
+}

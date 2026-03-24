@@ -1,0 +1,16 @@
+{
+  "db_id": "toxicology",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT COUNT(T.bond_id) FROM bond AS T WHERE T.bond_type = '-'",
+  "id": 315,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT COUNT(T.bond_id) FROM bond AS T WHERE T.bond_type = '-';",
+  "question": "How many single bonds are there in the list?",
+  "thinking": ""
+}

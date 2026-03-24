@@ -1,0 +1,56 @@
+{
+  "db_id": "toxicology",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "bond_type",
+        "atom_id",
+        "atom_id2"
+      ],
+      [
+        "-",
+        "TR001_6",
+        "TR001_9"
+      ],
+      [
+        "-",
+        "TR001_9",
+        "TR001_6"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.bond_type, T2.atom_id, T2.atom_id2 FROM bond AS T1 INNER JOIN connected AS T2 ON T1.bond_id = T2.bond_id WHERE T2.bond_id = 'TR001_6_9'",
+  "id": 237,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "bond_type",
+        "atom_id",
+        "atom_id2"
+      ],
+      [
+        "-",
+        "TR001_6",
+        "TR001_9"
+      ],
+      [
+        "-",
+        "TR001_9",
+        "TR001_6"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT b.bond_type, c.atom_id, c.atom_id2 FROM bond b JOIN connected c ON b.bond_id = c.bond_id WHERE b.bond_id = 'TR001_6_9'",
+  "question": "What are the bond type and the atoms of the bond ID of TR001_6_9?",
+  "thinking": ""
+}

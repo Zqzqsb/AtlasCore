@@ -1,0 +1,38 @@
+{
+  "db_id": "financial",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "district_id"
+      ],
+      [
+        "31"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.district_id FROM account AS T1 INNER JOIN loan AS T2 ON T1.account_id = T2.account_id WHERE T2.date = '1994-08-25'",
+  "id": 106,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "district_id"
+      ],
+      [
+        "31"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT a.district_id\nFROM loan l\nJOIN account a ON l.account_id = a.account_id\nWHERE l.date = '1994-08-25';",
+  "question": "There was a loan approved in 1994/8/25, where was that account opened, give the district Id of the branch.",
+  "thinking": ""
+}

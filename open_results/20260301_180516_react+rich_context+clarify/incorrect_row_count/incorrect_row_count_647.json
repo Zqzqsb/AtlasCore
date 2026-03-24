@@ -1,0 +1,806 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=192, pred=1",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Title",
+        "UserDisplayName"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "The Two Cultures: statistics vs. machine learning?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "The Two Cultures: statistics vs. machine learning?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Locating freely available data samples",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Locating freely available data samples",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Bayesian and frequentist reasoning in plain English",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Bayesian and frequentist reasoning in plain English",
+        "\u003cnil\u003e"
+      ],
+      [
+        "What is the meaning of p values and t values in statistical tests?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "What is the meaning of p values and t values in statistical tests?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Why square the difference instead of taking the absolute value in standard deviation?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Why square the difference instead of taking the absolute value in standard deviation?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "What is the best introductory Bayesian statistics textbook?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "What is the best introductory Bayesian statistics textbook?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Resources for learning R",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Resources for learning R",
+        "\u003cnil\u003e"
+      ],
+      [
+        "What is your favorite \"data analysis\" cartoon?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "What is your favorite \"data analysis\" cartoon?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Is there any reason to prefer the AIC or BIC over the other?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Is there any reason to prefer the AIC or BIC over the other?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Famous statistician quotes",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Famous statistician quotes",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Statistics Jokes",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Statistics Jokes",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "How should I transform non-negative data including zeros?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "How should I transform non-negative data including zeros?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "What are the differences between Factor Analysis and Principal Component Analysis",
+        "\u003cnil\u003e"
+      ],
+      [
+        "What are the differences between Factor Analysis and Principal Component Analysis",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Python as a statistics workbench",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Python as a statistics workbench",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "What's the difference between a confidence interval and a credible interval?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "What's the difference between a confidence interval and a credible interval?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Is normality testing 'essentially useless'?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Is normality testing 'essentially useless'?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "What is the difference between \"likelihood\" and \"probability\"?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "What is the difference between \"likelihood\" and \"probability\"?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Making sense of principal component analysis, eigenvectors \u0026 eigenvalues",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Making sense of principal component analysis, eigenvectors \u0026 eigenvalues",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "How to efficiently manage a statistical analysis project?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "How to efficiently manage a statistical analysis project?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "How to annoy a statistical referee?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "How to annoy a statistical referee?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "What are common statistical sins?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "What are common statistical sins?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "What is the difference between data mining, statistics, machine learning and AI?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "What is the difference between data mining, statistics, machine learning and AI?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Interpretation of R's lm() output",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Interpretation of R's lm() output",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Detecting a given face in a database of facial images",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Detecting a given face in a database of facial images",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "What skills are required to perform large scale statistical analyses?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "What skills are required to perform large scale statistical analyses?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "How to summarize data by group in R?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "How to summarize data by group in R?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Essential data checking tests",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Essential data checking tests",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Is $R^2$ useful or dangerous?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Is $R^2$ useful or dangerous?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "How to understand degrees of freedom?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "How to understand degrees of freedom?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Difference between logit and probit models",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Difference between logit and probit models",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Which \"mean\" to use and when?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Which \"mean\" to use and when?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Does Julia have any hope of sticking in the statistical community?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Does Julia have any hope of sticking in the statistical community?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Explaining to laypeople why bootstrapping works ",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Explaining to laypeople why bootstrapping works ",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Does causation imply correlation?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Does causation imply correlation?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Why does a 95% CI not imply a 95% chance of containing the mean?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Why does a 95% CI not imply a 95% chance of containing the mean?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "R vs SAS, why is SAS preferred by private companies?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "R vs SAS, why is SAS preferred by private companies?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "What is the intuition behind beta distribution?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "What is the intuition behind beta distribution?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Is Facebook coming to an end?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Is Facebook coming to an end?",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Amazon interview question—probability of 2nd interview",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Amazon interview question—probability of 2nd interview",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.Title, T2.UserDisplayName FROM posts AS T1 INNER JOIN comments AS T2 ON T2.PostId = T2.Id WHERE T1.Score \u003e 60",
+  "id": 647,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Title",
+        "UserDisplayName"
+      ],
+      [
+        "Detecting a given face in a database of facial images",
+        "Hans Westerbeek"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT p.Title, c.UserDisplayName FROM posts p JOIN comments c ON p.Id = c.PostId WHERE c.Score \u003e 60;",
+  "question": "Describe the post title which got positive comments and display names of the users who posted those comments.",
+  "thinking": ""
+}

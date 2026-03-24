@@ -1,0 +1,46 @@
+{
+  "db_id": "card_games",
+  "difficulty": "moderate",
+  "error_reason": "row count mismatch: gold=1, pred=2",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "artist",
+        "format"
+      ],
+      [
+        "Anna Pavleeva",
+        "gladiator"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.artist, T2.format FROM cards AS T1 INNER JOIN legalities AS T2 ON T2.uuid = T1.uuid GROUP BY T1.artist ORDER BY COUNT(T1.id) ASC LIMIT 1",
+  "id": 521,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "artist",
+        "format"
+      ],
+      [
+        "Anna Pavleeva",
+        "gladiator"
+      ],
+      [
+        "Anna Pavleeva",
+        "historic"
+      ]
+    ]
+  },
+  "pred_sql": "WITH artist_legal_counts AS (\n  SELECT c.artist, COUNT(*) as card_count\n  FROM cards c\n  JOIN legalities l ON c.uuid = l.uuid\n  WHERE c.artist IS NOT NULL\n  GROUP BY c.artist\n),\nmin_artist AS (\n  SELECT artist\n  FROM artist_legal_counts\n  ORDER BY card_count ASC\n  LIMIT 1\n)\nSELECT c.artist, l.format\nFROM cards c\nJOIN legalities l ON c.uuid = l.uuid\nJOIN min_artist ma ON c.artist = ma.artist\nORDER BY c.artist, l.format;",
+  "question": "Who is the illustrator that illustrated the least amount of cards? List the format of play of the cards that he/she illustrated.",
+  "thinking": ""
+}

@@ -1,0 +1,38 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(id)"
+      ],
+      [
+        "87"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(id) FROM votes WHERE BountyAmount \u003e= 30",
+  "id": 701,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(id)"
+      ],
+      [
+        "86"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(DISTINCT PostId) AS \"COUNT(id)\" FROM votes WHERE BountyAmount \u003e= 30;",
+  "question": "Identify the number of posts that offer a bounty amount over 30.",
+  "thinking": ""
+}

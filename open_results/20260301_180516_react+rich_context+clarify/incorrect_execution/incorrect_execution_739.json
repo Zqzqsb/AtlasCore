@@ -1,0 +1,16 @@
+{
+  "db_id": "superhero",
+  "difficulty": "simple",
+  "error_reason": "predicted SQL is empty",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT superhero_name FROM superhero AS T1 WHERE EXISTS (SELECT 1 FROM hero_attribute AS T2 INNER JOIN attribute AS T3 ON T2.attribute_id = T3.id WHERE T3.attribute_name = 'Durability' AND T2.attribute_value \u003c 50 AND T1.id = T2.hero_id)",
+  "id": 739,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "",
+  "question": "Which superheroes have a durability attribute value of less than 50?",
+  "thinking": ""
+}

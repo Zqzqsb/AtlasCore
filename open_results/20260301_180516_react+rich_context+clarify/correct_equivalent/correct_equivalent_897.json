@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "challenging",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(COUNT(CASE WHEN T2.position \u003c\u003e 1 THEN T2.position END) AS REAL) * 100 / COUNT(T2.driverStandingsId)"
+      ],
+      [
+        "73.2394366197183"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT CAST(COUNT(CASE WHEN T2.position \u003c\u003e 1 THEN T2.position END) AS REAL) * 100 / COUNT(T2.driverStandingsId) FROM races AS T1 INNER JOIN driverStandings AS T2 ON T2.raceId = T1.raceId INNER JOIN drivers AS T3 ON T3.driverId = T2.driverId WHERE T3.surname = 'Hamilton' AND T1.year \u003e= 2010",
+  "id": 897,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(COUNT(CASE WHEN T2.position \u003c\u003e 1 THEN T2.position END) AS REAL) * 100 / COUNT(T2.driverStandingsId)"
+      ],
+      [
+        "73.2394366197183"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT CAST(COUNT(CASE WHEN T2.position \u003c\u003e 1 THEN T2.position END) AS REAL) * 100 / COUNT(T2.driverStandingsId)\nFROM drivers AS T1\nJOIN driverStandings AS T2 ON T1.driverId = T2.driverId\nJOIN races AS T3 ON T2.raceId = T3.raceId\nWHERE T1.surname = 'Hamilton' AND T3.year \u003e= 2010",
+  "question": "Calculate the percentage whereby Hamilton was not at the 1st track of the the f1 circuit since 2010.",
+  "thinking": ""
+}

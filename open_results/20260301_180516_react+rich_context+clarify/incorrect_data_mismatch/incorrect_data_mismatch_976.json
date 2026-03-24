@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "year"
+      ],
+      [
+        "2005"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.year FROM lapTimes AS T1 INNER JOIN races AS T2 on T1.raceId = T2.raceId ORDER BY T1.time DESC LIMIT 1",
+  "id": 976,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "year"
+      ],
+      [
+        "2012"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT r.year FROM lapTimes l JOIN races r ON l.raceId = r.raceId ORDER BY CAST(l.time AS INTEGER) DESC LIMIT 1;",
+  "question": "Which year has the lowest speed of lap time?",
+  "thinking": ""
+}

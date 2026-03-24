@@ -1,0 +1,38 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "moderate",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Diagnosis"
+      ],
+      [
+        "SLE"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.Diagnosis FROM Examination AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.TG \u003c 200 ORDER BY T2.TG DESC LIMIT 1",
+  "id": 1301,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Diagnosis"
+      ],
+      [
+        "SLE, MCTD"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT p.Diagnosis \nFROM Laboratory l\nJOIN Patient p ON l.ID = p.ID\nWHERE l.TG IS NOT NULL AND l.TG \u003c 200\nORDER BY l.TG DESC\nLIMIT 1;",
+  "question": "What is the disease name of the patient who has the highest level of triglyceride within the normal range?",
+  "thinking": ""
+}

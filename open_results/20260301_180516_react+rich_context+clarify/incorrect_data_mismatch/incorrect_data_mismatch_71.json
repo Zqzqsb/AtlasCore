@@ -1,0 +1,38 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(School)"
+      ],
+      [
+        "2"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(School) FROM schools WHERE (StatusType = 'Closed' OR StatusType = 'Active') AND SOC = 69 AND County = 'Alpine'",
+  "id": 71,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(School)"
+      ],
+      [
+        "0"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(School) FROM schools WHERE County = 'Alpine' AND EdOpsName = 'District Community Day School' AND StatusType IN ('Active', 'Closed')",
+  "question": "How many active and closed District Community Day Schools are there in the county of Alpine?",
+  "thinking": ""
+}

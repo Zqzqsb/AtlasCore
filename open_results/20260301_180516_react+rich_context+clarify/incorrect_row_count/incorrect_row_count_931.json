@@ -1,0 +1,146 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=37, pred=1",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name"
+      ],
+      [
+        "Chinese Grand Prix"
+      ],
+      [
+        "Malaysian Grand Prix"
+      ],
+      [
+        "Japanese Grand Prix"
+      ],
+      [
+        "Chinese Grand Prix"
+      ],
+      [
+        "Spanish Grand Prix"
+      ],
+      [
+        "Belgian Grand Prix"
+      ],
+      [
+        "Brazilian Grand Prix"
+      ],
+      [
+        "Abu Dhabi Grand Prix"
+      ],
+      [
+        "Spanish Grand Prix"
+      ],
+      [
+        "German Grand Prix"
+      ],
+      [
+        "Italian Grand Prix"
+      ],
+      [
+        "Brazilian Grand Prix"
+      ],
+      [
+        "Italian Grand Prix"
+      ],
+      [
+        "Malaysian Grand Prix"
+      ],
+      [
+        "British Grand Prix"
+      ],
+      [
+        "German Grand Prix"
+      ],
+      [
+        "Italian Grand Prix"
+      ],
+      [
+        "Singapore Grand Prix"
+      ],
+      [
+        "Japanese Grand Prix"
+      ],
+      [
+        "Brazilian Grand Prix"
+      ],
+      [
+        "Chinese Grand Prix"
+      ],
+      [
+        "Spanish Grand Prix"
+      ],
+      [
+        "British Grand Prix"
+      ],
+      [
+        "Italian Grand Prix"
+      ],
+      [
+        "Japanese Grand Prix"
+      ],
+      [
+        "Brazilian Grand Prix"
+      ],
+      [
+        "Abu Dhabi Grand Prix"
+      ],
+      [
+        "Monaco Grand Prix"
+      ],
+      [
+        "Austrian Grand Prix"
+      ],
+      [
+        "Belgian Grand Prix"
+      ],
+      [
+        "Chinese Grand Prix"
+      ],
+      [
+        "Bahrain Grand Prix"
+      ],
+      [
+        "Spanish Grand Prix"
+      ],
+      [
+        "Canadian Grand Prix"
+      ],
+      [
+        "Austrian Grand Prix"
+      ],
+      [
+        "British Grand Prix"
+      ],
+      [
+        "Singapore Grand Prix"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT name FROM races WHERE raceId IN ( SELECT raceId FROM results WHERE rank = 1 AND driverId = ( SELECT driverId FROM drivers WHERE forename = 'Lewis' AND surname = 'Hamilton' ) )",
+  "id": 931,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name"
+      ],
+      [
+        "Chinese Grand Prix"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT r.name\nFROM results res\nJOIN drivers d ON res.driverId = d.driverId\nJOIN races r ON res.raceId = r.raceId\nWHERE d.forename = 'Lewis' AND d.surname = 'Hamilton'\n  AND res.rank IS NOT NULL\nORDER BY res.rank ASC\nLIMIT 1;",
+  "question": "In which Formula_1 race did Lewis Hamilton rank the highest?",
+  "thinking": ""
+}

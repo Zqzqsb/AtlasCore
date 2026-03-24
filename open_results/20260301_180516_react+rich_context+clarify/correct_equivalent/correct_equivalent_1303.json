@@ -1,0 +1,38 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "challenging",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.ID)"
+      ],
+      [
+        "7"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID INNER JOIN Examination AS T3 ON T1.ID = T3.ID WHERE T2.CPK \u003c 250 AND (T3.KCT = '+' OR T3.RVVT = '+' OR T3.LAC = '+')",
+  "id": 1303,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.ID)"
+      ],
+      [
+        "7"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(T1.ID) FROM Laboratory AS T1 INNER JOIN Examination AS T2 ON T1.ID = T2.ID WHERE T1.CPK \u003c 250 AND (T2.KCT = '+' OR T2.RVVT = '+' OR T2.LAC = '+')",
+  "question": "For the patients with a normal range of creatinine phosphokinase, how many of them have a positive measure of degree of coagulation?",
+  "thinking": ""
+}

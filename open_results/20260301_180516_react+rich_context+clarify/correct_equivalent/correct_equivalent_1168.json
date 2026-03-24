@@ -1,0 +1,38 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(COUNT(T1.ID) AS REAL) / 12"
+      ],
+      [
+        "7.583333333333333"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT CAST(COUNT(T1.ID) AS REAL) / 12 FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE STRFTIME('%Y', T2.Date) = '1998' AND T1.SEX = 'M'",
+  "id": 1168,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(COUNT(T1.ID) AS REAL) / 12"
+      ],
+      [
+        "7.583333333333333"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT CAST(COUNT(T1.ID) AS REAL) / 12\nFROM Laboratory AS T1\nJOIN Patient AS T2 ON T1.ID = T2.ID\nWHERE T2.SEX = 'M'\n  AND T1.Date BETWEEN '1998-01-01' AND '1998-12-31';",
+  "question": "For the year that concluded on December 31, 1998, how many male patients on average were tested in the lab each month?",
+  "thinking": ""
+}

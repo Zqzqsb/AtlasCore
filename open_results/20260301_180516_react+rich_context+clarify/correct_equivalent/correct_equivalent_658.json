@@ -1,0 +1,42 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "DisplayName",
+        "WebsiteUrl"
+      ],
+      [
+        "probabilityislogic",
+        "\u003cnil\u003e"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DisplayName, WebsiteUrl FROM users WHERE Id = ( SELECT UserId FROM votes WHERE VoteTypeId = 8 ORDER BY BountyAmount DESC LIMIT 1 )",
+  "id": 658,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "DisplayName",
+        "WebsiteUrl"
+      ],
+      [
+        "probabilityislogic",
+        "\u003cnil\u003e"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT u.DisplayName, u.WebsiteUrl\nFROM votes v\nJOIN users u ON v.UserId = u.Id\nWHERE v.VoteTypeId = 8\nORDER BY v.BountyAmount DESC\nLIMIT 1;",
+  "question": "Under the vote type of 8, provide the display names and websites URLs of the user who got the highest bounty amount.",
+  "thinking": ""
+}

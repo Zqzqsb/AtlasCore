@@ -1,0 +1,47 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=4, pred=1",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name"
+      ],
+      [
+        "England Premier League"
+      ],
+      [
+        "France Ligue 1"
+      ],
+      [
+        "Italy Serie A"
+      ],
+      [
+        "Spain LIGA BBVA"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT t1.name FROM League AS t1 JOIN Match AS t2 ON t1.id = t2.league_id WHERE t2.season = '2008/2009' GROUP BY t1.name HAVING COUNT(t2.id) = (SELECT MAX(match_count) FROM (SELECT COUNT(t2.id) AS match_count FROM Match AS t2 WHERE t2.season = '2008/2009' GROUP BY t2.league_id))",
+  "id": 1093,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name"
+      ],
+      [
+        "Spain LIGA BBVA"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT l.name\nFROM Match m\nJOIN League l ON m.league_id = l.id\nWHERE m.season = '2008/2009'\nGROUP BY l.name\nORDER BY COUNT(*) DESC\nLIMIT 1",
+  "question": "Give the name of the league had the most matches in the 2008/2009 season?",
+  "thinking": ""
+}

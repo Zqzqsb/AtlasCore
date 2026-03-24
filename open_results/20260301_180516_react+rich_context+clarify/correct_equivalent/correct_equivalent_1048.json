@@ -1,0 +1,38 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "heading_accuracy"
+      ],
+      [
+        "65"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT t2.heading_accuracy FROM Player AS t1 INNER JOIN Player_Attributes AS t2 ON t1.player_api_id = t2.player_api_id WHERE t1.player_name = 'Francois Affolter' AND SUBSTR(t2.`date`, 1, 10) = '2014-09-18'",
+  "id": 1048,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "heading_accuracy"
+      ],
+      [
+        "65"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT pa.heading_accuracy\nFROM Player p\nJOIN Player_Attributes pa ON p.player_api_id = pa.player_api_id\nWHERE p.player_name = 'Francois Affolter'\n  AND pa.date = '2014-09-18 00:00:00';",
+  "question": "What is the football player Francois Affolter header's finishing rate on 18/09/2014?",
+  "thinking": ""
+}

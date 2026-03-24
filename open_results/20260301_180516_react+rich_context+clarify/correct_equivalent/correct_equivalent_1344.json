@@ -1,0 +1,38 @@
+{
+  "db_id": "student_club",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "remaining"
+      ],
+      [
+        "22.9299999999999"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT remaining FROM budget WHERE category = 'Food' AND amount = ( SELECT MAX(amount) FROM budget WHERE category = 'Food' )",
+  "id": 1344,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "remaining"
+      ],
+      [
+        "22.9299999999999"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT remaining FROM budget WHERE category = 'Food' ORDER BY amount DESC LIMIT 1;",
+  "question": "With the biggest budget for the \"Food\", what was the remaining of it?",
+  "thinking": ""
+}

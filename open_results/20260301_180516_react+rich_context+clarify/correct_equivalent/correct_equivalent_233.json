@@ -1,0 +1,50 @@
+{
+  "db_id": "toxicology",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "molecule_id"
+      ],
+      [
+        "TR002"
+      ],
+      [
+        "TR004"
+      ],
+      [
+        "TR007"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T2.molecule_id FROM bond AS T1 INNER JOIN molecule AS T2 ON T1.molecule_id = T2.molecule_id WHERE T1.bond_type = '-' AND T2.label = '-' ORDER BY T2.molecule_id LIMIT 3",
+  "id": 233,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "molecule_id"
+      ],
+      [
+        "TR002"
+      ],
+      [
+        "TR004"
+      ],
+      [
+        "TR007"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT m.molecule_id\nFROM molecule m\nJOIN bond b ON m.molecule_id = b.molecule_id\nWHERE m.label = '-' \n  AND b.bond_type = '-'\nORDER BY m.molecule_id\nLIMIT 3;",
+  "question": "Please list top three molecules that have single bonds between two atoms and are not carcinogenic in alphabetical order.",
+  "thinking": ""
+}

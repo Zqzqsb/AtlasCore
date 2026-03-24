@@ -1,0 +1,16 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT DISTINCT name FROM cards WHERE isPromo = 1 AND side IS NOT NULL",
+  "id": 456,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT DISTINCT name FROM cards WHERE isPromo = 1 AND side IS NOT NULL;",
+  "question": "Which of the cards that are a promotional painting have multiple faces on the same card? Please list their names.",
+  "thinking": ""
+}

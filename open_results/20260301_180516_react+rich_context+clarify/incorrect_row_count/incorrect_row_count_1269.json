@@ -1,0 +1,50 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "simple",
+  "error_reason": "data row count mismatch (strategy: exact_column_names)",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "ID"
+      ],
+      [
+        "5302954"
+      ],
+      [
+        "5302954"
+      ],
+      [
+        "3561717"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.ID FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.SM NOT IN ('negative','0') ORDER BY T1.Birthday DESC LIMIT 3",
+  "id": 1269,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "ID"
+      ],
+      [
+        "5302954"
+      ],
+      [
+        "3561717"
+      ],
+      [
+        "283032"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT p.ID\nFROM Patient p\nJOIN Laboratory l ON p.ID = l.ID\nWHERE l.SM NOT IN ('negative', '0')\nORDER BY p.Birthday DESC\nLIMIT 3",
+  "question": "For the patients with an abnormal anti-SM, please list the IDs of the three youngest ones.",
+  "thinking": ""
+}

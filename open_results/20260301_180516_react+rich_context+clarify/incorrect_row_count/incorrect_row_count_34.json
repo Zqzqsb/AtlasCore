@@ -1,0 +1,54 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "moderate",
+  "error_reason": "row count mismatch: gold=2, pred=3",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Website",
+        "School Name"
+      ],
+      [
+        "http://lhs.lynwood.edlioschool.com/",
+        "Lynwood High"
+      ],
+      [
+        "www.auhsd.us/katella",
+        "Katella High"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.Website, T1.`School Name` FROM frpm AS T1 INNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode WHERE T1.`Free Meal Count (Ages 5-17)` BETWEEN 1900 AND 2000 AND T2.Website IS NOT NULL",
+  "id": 34,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Website",
+        "School Name"
+      ],
+      [
+        "\u003cnil\u003e",
+        "South Gate Middle"
+      ],
+      [
+        "http://lhs.lynwood.edlioschool.com/",
+        "Lynwood High"
+      ],
+      [
+        "www.auhsd.us/katella",
+        "Katella High"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT s.Website, s.School AS \"School Name\"\nFROM schools s\nJOIN frpm f ON CAST(s.CDSCode AS INTEGER) = CAST(f.CDSCode AS INTEGER)\nWHERE f.\"Free Meal Count (Ages 5-17)\" BETWEEN 1900 AND 2000;",
+  "question": "If there are any, what are the websites address of the schools with a free meal count of 1,900-2,000 to students aged 5-17? Include the name of the school.",
+  "thinking": ""
+}

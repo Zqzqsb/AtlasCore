@@ -1,0 +1,31 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=1, pred=-1",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Score"
+      ],
+      [
+        "11"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.Score FROM comments AS T1 INNER JOIN posts AS T2 ON T1.PostId = T2.Id WHERE T1.CreationDate = '2010-07-19 19:19:56.0'",
+  "id": 617,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": []
+  },
+  "pred_sql": "SELECT c.Score\nFROM comments c\nJOIN posts p ON c.PostId = p.Id\nWHERE p.CreaionDate = '2010-07-19 19:19:56.0';",
+  "question": "What is the comment's rating score of the post which was created on 7/19/2010 7:19:56 PM",
+  "thinking": ""
+}

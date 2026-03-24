@@ -1,0 +1,68 @@
+{
+  "db_id": "superhero",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "attribute_value"
+      ],
+      [
+        "85"
+      ],
+      [
+        "80"
+      ],
+      [
+        "55"
+      ],
+      [
+        "55"
+      ],
+      [
+        "55"
+      ],
+      [
+        "55"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.attribute_value FROM superhero AS T1 INNER JOIN hero_attribute AS T2 ON T1.id = T2.hero_id WHERE T1.superhero_name = 'Abomination'",
+  "id": 764,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "attribute_value"
+      ],
+      [
+        "85"
+      ],
+      [
+        "80"
+      ],
+      [
+        "55"
+      ],
+      [
+        "55"
+      ],
+      [
+        "55"
+      ],
+      [
+        "55"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT ha.attribute_value\nFROM superhero s\nJOIN hero_attribute ha ON s.id = ha.hero_id\nWHERE s.superhero_name = 'Abomination';",
+  "question": "Indicate the attribute value of superhero Abomination.",
+  "thinking": ""
+}

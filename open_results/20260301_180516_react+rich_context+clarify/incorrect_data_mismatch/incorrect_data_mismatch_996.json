@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "moderate",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AVG(T2.points)"
+      ],
+      [
+        "52.8"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT AVG(T2.points) FROM drivers AS T1 INNER JOIN driverStandings AS T2 ON T1.driverId = T2.driverId INNER JOIN races AS T3 ON T3.raceId = T2.raceId WHERE T1.forename = 'Lewis' AND T1.surname = 'Hamilton' AND T3.name = 'Turkish Grand Prix'",
+  "id": 996,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AVG(T2.points)"
+      ],
+      [
+        "9.8"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT AVG(T2.points) \nFROM drivers AS T1 \nINNER JOIN results AS T2 ON T1.driverId = T2.driverId \nINNER JOIN races AS T3 ON T2.raceId = T3.raceId \nWHERE T1.forename = 'Lewis' \nAND T1.surname = 'Hamilton' \nAND T3.name LIKE '%Turkish Grand Prix%'",
+  "question": "What is the average score of Lewis Hamilton among all the Turkish Grand Prix?",
+  "thinking": ""
+}

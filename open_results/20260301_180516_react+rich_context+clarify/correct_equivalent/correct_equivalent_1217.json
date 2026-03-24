@@ -1,0 +1,122 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "ID"
+      ],
+      [
+        "3362815"
+      ],
+      [
+        "4007151"
+      ],
+      [
+        "5119703"
+      ],
+      [
+        "4934716"
+      ],
+      [
+        "5092228"
+      ],
+      [
+        "4865142"
+      ],
+      [
+        "4432946"
+      ],
+      [
+        "5408290"
+      ],
+      [
+        "444499"
+      ],
+      [
+        "2307640"
+      ],
+      [
+        "3182521"
+      ],
+      [
+        "5181621"
+      ],
+      [
+        "4792459"
+      ],
+      [
+        "57266"
+      ],
+      [
+        "4618443"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T1.ID FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T1.SEX = 'M' AND (T2.ALB \u003c= 3.5 OR T2.ALB \u003e= 5.5) ORDER BY T1.Birthday DESC",
+  "id": 1217,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "ID"
+      ],
+      [
+        "3362815"
+      ],
+      [
+        "4007151"
+      ],
+      [
+        "5119703"
+      ],
+      [
+        "4934716"
+      ],
+      [
+        "5092228"
+      ],
+      [
+        "4865142"
+      ],
+      [
+        "4432946"
+      ],
+      [
+        "5408290"
+      ],
+      [
+        "444499"
+      ],
+      [
+        "2307640"
+      ],
+      [
+        "3182521"
+      ],
+      [
+        "5181621"
+      ],
+      [
+        "4792459"
+      ],
+      [
+        "57266"
+      ],
+      [
+        "4618443"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT p.ID\nFROM Patient p\nJOIN Laboratory l ON p.ID = l.ID\nWHERE p.SEX = 'M'\n  AND (l.ALB \u003c= 3.5 OR l.ALB \u003e= 5.5)\nORDER BY p.Birthday DESC;",
+  "question": "Sort in descending order all patients by birthday for male patient with albumin not within range.",
+  "thinking": ""
+}

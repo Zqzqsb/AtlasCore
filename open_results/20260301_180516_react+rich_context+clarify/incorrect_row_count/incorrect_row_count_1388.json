@@ -1,0 +1,58 @@
+{
+  "db_id": "student_club",
+  "difficulty": "moderate",
+  "error_reason": "row count mismatch: gold=4, pred=2",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "first_name",
+        "last_name"
+      ],
+      [
+        "Sacha",
+        "Harrison"
+      ],
+      [
+        "Elijah",
+        "Allen"
+      ],
+      [
+        "Elijah",
+        "Allen"
+      ],
+      [
+        "Sacha",
+        "Harrison"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T4.first_name, T4.last_name FROM event AS T1 INNER JOIN budget AS T2 ON T1.event_id = T2.link_to_event INNER JOIN expense AS T3 ON T2.budget_id = T3.link_to_budget INNER JOIN member AS T4 ON T3.link_to_member = T4.member_id WHERE T1.event_name = 'Yearly Kickoff'",
+  "id": 1388,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "first_name",
+        "last_name"
+      ],
+      [
+        "Sacha",
+        "Harrison"
+      ],
+      [
+        "Elijah",
+        "Allen"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT m.first_name, m.last_name\nFROM event e\nJOIN budget b ON e.event_id = b.link_to_event\nJOIN expense exp ON b.budget_id = exp.link_to_budget\nJOIN member m ON exp.link_to_member = m.member_id\nWHERE e.event_name = 'Yearly Kickoff';",
+  "question": "Which student has been entrusted to manage the budget for the Yearly Kickoff?",
+  "thinking": ""
+}

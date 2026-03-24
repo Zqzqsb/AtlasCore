@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(DISTINCT T2.constructorId)"
+      ],
+      [
+        "11"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(DISTINCT T2.constructorId) FROM results AS T1 INNER JOIN constructors AS T2 on T1.constructorId = T2.constructorId WHERE T1.laps \u003e 50 AND T2.nationality = 'French'",
+  "id": 954,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(DISTINCT T1.constructorId)"
+      ],
+      [
+        "11"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(DISTINCT T1.constructorId)\nFROM constructors AS T1\nJOIN results AS T2 ON T1.constructorId = T2.constructorId\nWHERE T1.nationality = 'French' AND T2.laps \u003e 50",
+  "question": "How many French constructors have a lap number of over 50?",
+  "thinking": ""
+}

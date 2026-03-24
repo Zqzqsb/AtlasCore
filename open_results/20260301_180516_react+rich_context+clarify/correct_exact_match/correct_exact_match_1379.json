@@ -1,0 +1,16 @@
+{
+  "db_id": "student_club",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT MAX(spent) FROM budget",
+  "id": 1379,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT MAX(spent) FROM budget;",
+  "question": "What is the highest amount of budget spend for an event?",
+  "thinking": ""
+}

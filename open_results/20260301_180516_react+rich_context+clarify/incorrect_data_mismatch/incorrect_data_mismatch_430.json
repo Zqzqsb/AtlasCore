@@ -1,0 +1,42 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "language",
+        "type"
+      ],
+      [
+        "Japanese",
+        "commander"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.language, T1.type FROM sets AS T1 INNER JOIN set_translations AS T2 ON T1.code = T2.setCode WHERE T2.id = 206",
+  "id": 430,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "language",
+        "type"
+      ],
+      [
+        "\u003cnil\u003e",
+        "core"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT st.language, s.type FROM sets s LEFT JOIN set_translations st ON s.code = st.setCode WHERE s.id = 206;",
+  "question": "What is the language and expansion type of set number 206?",
+  "thinking": ""
+}

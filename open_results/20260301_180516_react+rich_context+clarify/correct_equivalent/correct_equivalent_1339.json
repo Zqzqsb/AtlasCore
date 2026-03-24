@@ -1,0 +1,50 @@
+{
+  "db_id": "student_club",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "approved"
+      ],
+      [
+        "true"
+      ],
+      [
+        "true"
+      ],
+      [
+        "true"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T3.approved FROM event AS T1 INNER JOIN budget AS T2 ON T1.event_id = T2.link_to_event INNER JOIN expense AS T3 ON T2.budget_id = T3.link_to_budget WHERE T1.event_name = 'October Meeting' AND T1.event_date LIKE '2019-10-08%'",
+  "id": 1339,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "approved"
+      ],
+      [
+        "true"
+      ],
+      [
+        "true"
+      ],
+      [
+        "true"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT e.approved FROM event ev JOIN budget b ON ev.event_id = b.link_to_event JOIN expense e ON b.budget_id = e.link_to_budget WHERE ev.event_name = 'October Meeting' AND ev.event_date LIKE '2019-10-08%' ORDER BY e.expense_id;",
+  "question": "Was each expense in October Meeting on October 8, 2019 approved?",
+  "thinking": ""
+}

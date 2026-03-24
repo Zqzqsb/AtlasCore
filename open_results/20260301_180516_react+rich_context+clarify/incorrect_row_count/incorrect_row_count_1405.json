@@ -1,0 +1,46 @@
+{
+  "db_id": "student_club",
+  "difficulty": "moderate",
+  "error_reason": "row count mismatch: gold=1, pred=2",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "type",
+        "SUM(T3.cost)"
+      ],
+      [
+        "Meeting",
+        "175.39"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.type, SUM(T3.cost) FROM event AS T1 INNER JOIN budget AS T2 ON T1.event_id = T2.link_to_event INNER JOIN expense AS T3 ON T2.budget_id = T3.link_to_budget WHERE T1.event_name = 'October Meeting'",
+  "id": 1405,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "type",
+        "SUM(T3.cost)"
+      ],
+      [
+        "Advertisement",
+        "54.25"
+      ],
+      [
+        "Food",
+        "121.14"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT T2.category AS type, SUM(T1.cost) AS \"SUM(T3.cost)\" FROM expense AS T1 JOIN budget AS T2 ON T1.link_to_budget = T2.budget_id JOIN event AS T3 ON T2.link_to_event = T3.event_id WHERE T3.event_name = 'October Meeting' AND T1.approved = 'true' GROUP BY T2.category",
+  "question": "Identify the type of expenses and their total value approved for 'October Meeting' event.",
+  "thinking": ""
+}

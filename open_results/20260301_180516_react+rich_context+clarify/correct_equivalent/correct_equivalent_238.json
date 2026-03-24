@@ -1,0 +1,42 @@
+{
+  "db_id": "toxicology",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "molecule_id",
+        "flag_carcinogenic"
+      ],
+      [
+        "TR001",
+        "YES"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.molecule_id , IIF(T2.label = '+', 'YES', 'NO') AS flag_carcinogenic FROM atom AS T1 INNER JOIN molecule AS T2 ON T1.molecule_id = T2.molecule_id WHERE T1.atom_id = 'TR001_10'",
+  "id": 238,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "molecule_id",
+        "flag_carcinogenic"
+      ],
+      [
+        "TR001",
+        "YES"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT m.molecule_id, IIF(m.label = '+', 'YES', 'NO') AS flag_carcinogenic FROM atom a JOIN molecule m ON a.molecule_id = m.molecule_id WHERE a.atom_id = 'TR001_10';",
+  "question": "Which molecule does the atom TR001_10 belong to? Please state whether this molecule is carcinogenic or not.",
+  "thinking": ""
+}

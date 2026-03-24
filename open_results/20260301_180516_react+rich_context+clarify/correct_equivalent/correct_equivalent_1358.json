@@ -1,0 +1,44 @@
+{
+  "db_id": "student_club",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "date_received"
+      ],
+      [
+        "2019-10-02"
+      ],
+      [
+        "2019-09-12"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.date_received FROM member AS T1 INNER JOIN income AS T2 ON T1.member_id = T2.link_to_member WHERE T1.first_name = 'Connor' AND T1.last_name = 'Hilton' AND T2.source = 'Dues'",
+  "id": 1358,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "date_received"
+      ],
+      [
+        "2019-10-02"
+      ],
+      [
+        "2019-09-12"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT i.date_received\nFROM income i\nJOIN member m ON i.link_to_member = m.member_id\nWHERE m.first_name = 'Connor'\n  AND m.last_name = 'Hilton'\n  AND i.source = 'Dues';",
+  "question": "State the date Connor Hilton paid his/her dues.",
+  "thinking": ""
+}

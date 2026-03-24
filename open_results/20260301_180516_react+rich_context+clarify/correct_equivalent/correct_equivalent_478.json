@@ -1,0 +1,44 @@
+{
+  "db_id": "card_games",
+  "difficulty": "challenging",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "artist"
+      ],
+      [
+        "Chippy"
+      ],
+      [
+        "Jeremy Jarvis"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.artist FROM cards AS T1 INNER JOIN sets AS T2 ON T2.code = T1.setCode WHERE (T2.name = 'Coldsnap' AND T1.artist = 'Chippy') OR (T2.name = 'Coldsnap' AND T1.artist = 'Aaron Miller') OR (T2.name = 'Coldsnap' AND T1.artist = 'Jeremy Jarvis') GROUP BY T1.artist",
+  "id": 478,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "artist"
+      ],
+      [
+        "Jeremy Jarvis"
+      ],
+      [
+        "Chippy"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT c.artist\nFROM cards c\nJOIN sets s ON c.setCode = s.code\nWHERE s.name = 'Coldsnap'\n  AND c.artist IN ('Jeremy Jarvis', 'Aaron Miller', 'Chippy');",
+  "question": "Which of these artists have designed a card in the set Coldsnap, Jeremy Jarvis, Aaron Miller or Chippy?",
+  "thinking": ""
+}

@@ -1,0 +1,1010 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "challenging",
+  "error_reason": "row count mismatch: gold=220, pred=106",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "team_long_name"
+      ],
+      [
+        "Athletic Club de Bilbao"
+      ],
+      [
+        "Cardiff City"
+      ],
+      [
+        "KSV Cercle Brugge"
+      ],
+      [
+        "KSV Cercle Brugge"
+      ],
+      [
+        "Chievo Verona"
+      ],
+      [
+        "Chievo Verona"
+      ],
+      [
+        "SV Darmstadt 98"
+      ],
+      [
+        "Dundee United"
+      ],
+      [
+        "FC Energie Cottbus"
+      ],
+      [
+        "RCD Espanyol"
+      ],
+      [
+        "RCD Espanyol"
+      ],
+      [
+        "Évian Thonon Gaillard FC"
+      ],
+      [
+        "Évian Thonon Gaillard FC"
+      ],
+      [
+        "GKS Bełchatów"
+      ],
+      [
+        "Grasshopper Club Zürich"
+      ],
+      [
+        "Grasshopper Club Zürich"
+      ],
+      [
+        "FC Lausanne-Sports"
+      ],
+      [
+        "Legia Warszawa"
+      ],
+      [
+        "Legia Warszawa"
+      ],
+      [
+        "AS Nancy-Lorraine"
+      ],
+      [
+        "AS Nancy-Lorraine"
+      ],
+      [
+        "FC Nantes"
+      ],
+      [
+        "N.E.C."
+      ],
+      [
+        "FC Paços de Ferreira"
+      ],
+      [
+        "SC Paderborn 07"
+      ],
+      [
+        "FC Penafiel"
+      ],
+      [
+        "Pogoń Szczecin"
+      ],
+      [
+        "Toulouse FC"
+      ],
+      [
+        "Toulouse FC"
+      ],
+      [
+        "ES Troyes AC"
+      ],
+      [
+        "ES Troyes AC"
+      ],
+      [
+        "Wigan Athletic"
+      ],
+      [
+        "Wigan Athletic"
+      ],
+      [
+        "Real Zaragoza"
+      ],
+      [
+        "Aberdeen"
+      ],
+      [
+        "Ajax"
+      ],
+      [
+        "AJ Auxerre"
+      ],
+      [
+        "AJ Auxerre"
+      ],
+      [
+        "VfL Bochum"
+      ],
+      [
+        "Celtic"
+      ],
+      [
+        "Frosinone"
+      ],
+      [
+        "Hertha BSC Berlin"
+      ],
+      [
+        "Moreirense FC"
+      ],
+      [
+        "1. FC Nürnberg"
+      ],
+      [
+        "Pescara"
+      ],
+      [
+        "Śląsk Wrocław"
+      ],
+      [
+        "Stoke City"
+      ],
+      [
+        "Valenciennes FC"
+      ],
+      [
+        "Valenciennes FC"
+      ],
+      [
+        "Athletic Club de Bilbao"
+      ],
+      [
+        "Inverness Caledonian Thistle"
+      ],
+      [
+        "Lechia Gdańsk"
+      ],
+      [
+        "Royal Excel Mouscron"
+      ],
+      [
+        "Royal Excel Mouscron"
+      ],
+      [
+        "Royal Excel Mouscron"
+      ],
+      [
+        "Oud-Heverlee Leuven"
+      ],
+      [
+        "AC Arles-Avignon"
+      ],
+      [
+        "FC Augsburg"
+      ],
+      [
+        "Girondins de Bordeaux"
+      ],
+      [
+        "Girondins de Bordeaux"
+      ],
+      [
+        "Bournemouth"
+      ],
+      [
+        "Stade Brestois 29"
+      ],
+      [
+        "Stade Brestois 29"
+      ],
+      [
+        "Dijon FCO"
+      ],
+      [
+        "Dijon FCO"
+      ],
+      [
+        "1. FC Kaiserslautern"
+      ],
+      [
+        "Kilmarnock"
+      ],
+      [
+        "Le Havre AC"
+      ],
+      [
+        "Le Havre AC"
+      ],
+      [
+        "RC Lens"
+      ],
+      [
+        "RC Lens"
+      ],
+      [
+        "Olympique Lyonnais"
+      ],
+      [
+        "Olympique Lyonnais"
+      ],
+      [
+        "1. FSV Mainz 05"
+      ],
+      [
+        "Manchester United"
+      ],
+      [
+        "Manchester United"
+      ],
+      [
+        "Olympique de Marseille"
+      ],
+      [
+        "FC Metz"
+      ],
+      [
+        "OGC Nice"
+      ],
+      [
+        "OGC Nice"
+      ],
+      [
+        "Partick Thistle F.C."
+      ],
+      [
+        "Stade Rennais FC"
+      ],
+      [
+        "Stade Rennais FC"
+      ],
+      [
+        "Sampdoria"
+      ],
+      [
+        "Sampdoria"
+      ],
+      [
+        "AC Ajaccio"
+      ],
+      [
+        "AC Ajaccio"
+      ],
+      [
+        "SM Caen"
+      ],
+      [
+        "SM Caen"
+      ],
+      [
+        "Excelsior"
+      ],
+      [
+        "Feyenoord"
+      ],
+      [
+        "Heracles Almelo"
+      ],
+      [
+        "Heracles Almelo"
+      ],
+      [
+        "FC Lorient"
+      ],
+      [
+        "FC Lorient"
+      ],
+      [
+        "Montpellier Hérault SC"
+      ],
+      [
+        "Montpellier Hérault SC"
+      ],
+      [
+        "Stade de Reims"
+      ],
+      [
+        "Stade de Reims"
+      ],
+      [
+        "AS Saint-Étienne"
+      ],
+      [
+        "AS Saint-Étienne"
+      ],
+      [
+        "Sporting Charleroi"
+      ],
+      [
+        "Sporting Charleroi"
+      ],
+      [
+        "Willem II"
+      ],
+      [
+        "Carpi"
+      ],
+      [
+        "Eintracht Frankfurt"
+      ],
+      [
+        "Estoril Praia"
+      ],
+      [
+        "Estoril Praia"
+      ],
+      [
+        "FC Zürich"
+      ],
+      [
+        "FC Zürich"
+      ],
+      [
+        "Hibernian"
+      ],
+      [
+        "FC Ingolstadt 04"
+      ],
+      [
+        "KV Mechelen"
+      ],
+      [
+        "KV Mechelen"
+      ],
+      [
+        "Leicester City"
+      ],
+      [
+        "Leicester City"
+      ],
+      [
+        "Newcastle United"
+      ],
+      [
+        "Partick Thistle F.C."
+      ],
+      [
+        "St. Johnstone FC"
+      ],
+      [
+        "St. Johnstone FC"
+      ],
+      [
+        "SV Zulte-Waregem"
+      ],
+      [
+        "SV Zulte-Waregem"
+      ],
+      [
+        "Bournemouth"
+      ],
+      [
+        "SC Cambuur"
+      ],
+      [
+        "SC Cambuur"
+      ],
+      [
+        "FC Metz"
+      ],
+      [
+        "Norwich City"
+      ],
+      [
+        "Ross County FC"
+      ],
+      [
+        "Zawisza Bydgoszcz"
+      ],
+      [
+        "KV Oostende"
+      ],
+      [
+        "KV Oostende"
+      ],
+      [
+        "RC Recreativo"
+      ],
+      [
+        "Waasland-Beveren"
+      ],
+      [
+        "Motherwell"
+      ],
+      [
+        "Rayo Vallecano"
+      ],
+      [
+        "Rayo Vallecano"
+      ],
+      [
+        "Ross County FC"
+      ],
+      [
+        "CF Os Belenenses"
+      ],
+      [
+        "FC Twente"
+      ],
+      [
+        "Villarreal CF"
+      ],
+      [
+        "Club Brugge KV"
+      ],
+      [
+        "Club Brugge KV"
+      ],
+      [
+        "KAA Gent"
+      ],
+      [
+        "En Avant de Guingamp"
+      ],
+      [
+        "Sporting Lokeren"
+      ],
+      [
+        "Sporting Lokeren"
+      ],
+      [
+        "Motherwell"
+      ],
+      [
+        "FC Schalke 04"
+      ],
+      [
+        "Southampton"
+      ],
+      [
+        "Sporting CP"
+      ],
+      [
+        "Sporting CP"
+      ],
+      [
+        "FC Augsburg"
+      ],
+      [
+        "Brescia"
+      ],
+      [
+        "RC Celta de Vigo"
+      ],
+      [
+        "Chelsea"
+      ],
+      [
+        "Chelsea"
+      ],
+      [
+        "Górnik Łęczna"
+      ],
+      [
+        "Málaga CF"
+      ],
+      [
+        "Tottenham Hotspur"
+      ],
+      [
+        "Tottenham Hotspur"
+      ],
+      [
+        "Angers SCO"
+      ],
+      [
+        "Angers SCO"
+      ],
+      [
+        "Bari"
+      ],
+      [
+        "CF Os Belenenses"
+      ],
+      [
+        "Córdoba CF"
+      ],
+      [
+        "Everton"
+      ],
+      [
+        "Everton"
+      ],
+      [
+        "Fulham"
+      ],
+      [
+        "FC St. Gallen"
+      ],
+      [
+        "FC St. Gallen"
+      ],
+      [
+        "Real Valladolid"
+      ],
+      [
+        "Hellas Verona"
+      ],
+      [
+        "BSC Young Boys"
+      ],
+      [
+        "BSC Young Boys"
+      ],
+      [
+        "Atalanta"
+      ],
+      [
+        "Atalanta"
+      ],
+      [
+        "Borussia Mönchengladbach"
+      ],
+      [
+        "Borussia Mönchengladbach"
+      ],
+      [
+        "RC Deportivo de La Coruña"
+      ],
+      [
+        "RC Deportivo de La Coruña"
+      ],
+      [
+        "Hannover 96"
+      ],
+      [
+        "Hannover 96"
+      ],
+      [
+        "Livorno"
+      ],
+      [
+        "Livorno"
+      ],
+      [
+        "Manchester City"
+      ],
+      [
+        "Rangers"
+      ],
+      [
+        "Rangers"
+      ],
+      [
+        "Śląsk Wrocław"
+      ],
+      [
+        "Valencia CF"
+      ],
+      [
+        "Zagłębie Lubin"
+      ],
+      [
+        "FC Barcelona"
+      ],
+      [
+        "Boavista FC"
+      ],
+      [
+        "Go Ahead Eagles"
+      ],
+      [
+        "Go Ahead Eagles"
+      ],
+      [
+        "KV Kortrijk"
+      ],
+      [
+        "KV Kortrijk"
+      ],
+      [
+        "Valencia CF"
+      ],
+      [
+        "SV Werder Bremen"
+      ],
+      [
+        "FC Barcelona"
+      ],
+      [
+        "Villarreal CF"
+      ],
+      [
+        "Wisła Kraków"
+      ],
+      [
+        "Liverpool"
+      ],
+      [
+        "Liverpool"
+      ],
+      [
+        "Swansea City"
+      ],
+      [
+        "Swansea City"
+      ],
+      [
+        "Cagliari"
+      ],
+      [
+        "Wisła Kraków"
+      ],
+      [
+        "Bologna"
+      ],
+      [
+        "Bologna"
+      ],
+      [
+        "Dundee FC"
+      ],
+      [
+        "Manchester City"
+      ],
+      [
+        "NAC Breda"
+      ],
+      [
+        "NAC Breda"
+      ],
+      [
+        "KRC Genk"
+      ],
+      [
+        "RC Recreativo"
+      ],
+      [
+        "Waasland-Beveren"
+      ],
+      [
+        "Arsenal"
+      ],
+      [
+        "Arsenal"
+      ],
+      [
+        "KAA Gent"
+      ],
+      [
+        "FC Bayern Munich"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT t3.team_long_name FROM Team AS t3 INNER JOIN Team_Attributes AS t4 ON t3.team_api_id = t4.team_api_id WHERE t4.buildUpPlayDribblingClass = 'Normal' AND t4.chanceCreationPassing \u003c ( SELECT CAST(SUM(t2.chanceCreationPassing) AS REAL) / COUNT(t1.id) FROM Team AS t1 INNER JOIN Team_Attributes AS t2 ON t1.team_api_id = t2.team_api_id WHERE t2.buildUpPlayDribblingClass = 'Normal' AND SUBSTR(t2.`date`, 1, 4) = '2014') ORDER BY t4.chanceCreationPassing DESC",
+  "id": 1042,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "team_long_name"
+      ],
+      [
+        "Athletic Club de Bilbao"
+      ],
+      [
+        "KSV Cercle Brugge"
+      ],
+      [
+        "Chievo Verona"
+      ],
+      [
+        "Dundee United"
+      ],
+      [
+        "FC Energie Cottbus"
+      ],
+      [
+        "RCD Espanyol"
+      ],
+      [
+        "Évian Thonon Gaillard FC"
+      ],
+      [
+        "Grasshopper Club Zürich"
+      ],
+      [
+        "FC Lausanne-Sports"
+      ],
+      [
+        "Legia Warszawa"
+      ],
+      [
+        "AS Nancy-Lorraine"
+      ],
+      [
+        "FC Nantes"
+      ],
+      [
+        "N.E.C."
+      ],
+      [
+        "FC Paços de Ferreira"
+      ],
+      [
+        "SC Paderborn 07"
+      ],
+      [
+        "Pogoń Szczecin"
+      ],
+      [
+        "Toulouse FC"
+      ],
+      [
+        "ES Troyes AC"
+      ],
+      [
+        "Wigan Athletic"
+      ],
+      [
+        "Ajax"
+      ],
+      [
+        "AJ Auxerre"
+      ],
+      [
+        "VfL Bochum"
+      ],
+      [
+        "Hertha BSC Berlin"
+      ],
+      [
+        "Pescara"
+      ],
+      [
+        "Valenciennes FC"
+      ],
+      [
+        "Inverness Caledonian Thistle"
+      ],
+      [
+        "Lechia Gdańsk"
+      ],
+      [
+        "Oud-Heverlee Leuven"
+      ],
+      [
+        "AC Arles-Avignon"
+      ],
+      [
+        "Girondins de Bordeaux"
+      ],
+      [
+        "Stade Brestois 29"
+      ],
+      [
+        "Dijon FCO"
+      ],
+      [
+        "Le Havre AC"
+      ],
+      [
+        "RC Lens"
+      ],
+      [
+        "Olympique Lyonnais"
+      ],
+      [
+        "Manchester United"
+      ],
+      [
+        "Olympique de Marseille"
+      ],
+      [
+        "FC Metz"
+      ],
+      [
+        "OGC Nice"
+      ],
+      [
+        "Partick Thistle F.C."
+      ],
+      [
+        "Stade Rennais FC"
+      ],
+      [
+        "Sampdoria"
+      ],
+      [
+        "AC Ajaccio"
+      ],
+      [
+        "SM Caen"
+      ],
+      [
+        "Feyenoord"
+      ],
+      [
+        "Heracles Almelo"
+      ],
+      [
+        "FC Lorient"
+      ],
+      [
+        "Montpellier Hérault SC"
+      ],
+      [
+        "Stade de Reims"
+      ],
+      [
+        "AS Saint-Étienne"
+      ],
+      [
+        "Sporting Charleroi"
+      ],
+      [
+        "Carpi"
+      ],
+      [
+        "Estoril Praia"
+      ],
+      [
+        "FC Zürich"
+      ],
+      [
+        "Hibernian"
+      ],
+      [
+        "KV Mechelen"
+      ],
+      [
+        "Leicester City"
+      ],
+      [
+        "St. Johnstone FC"
+      ],
+      [
+        "SV Zulte-Waregem"
+      ],
+      [
+        "Bournemouth"
+      ],
+      [
+        "SC Cambuur"
+      ],
+      [
+        "KV Oostende"
+      ],
+      [
+        "RC Recreativo"
+      ],
+      [
+        "Rayo Vallecano"
+      ],
+      [
+        "Ross County FC"
+      ],
+      [
+        "Villarreal CF"
+      ],
+      [
+        "Club Brugge KV"
+      ],
+      [
+        "Sporting Lokeren"
+      ],
+      [
+        "Motherwell"
+      ],
+      [
+        "FC Schalke 04"
+      ],
+      [
+        "Southampton"
+      ],
+      [
+        "Sporting CP"
+      ],
+      [
+        "FC Augsburg"
+      ],
+      [
+        "Chelsea"
+      ],
+      [
+        "Tottenham Hotspur"
+      ],
+      [
+        "Angers SCO"
+      ],
+      [
+        "CF Os Belenenses"
+      ],
+      [
+        "Córdoba CF"
+      ],
+      [
+        "Everton"
+      ],
+      [
+        "FC St. Gallen"
+      ],
+      [
+        "Hellas Verona"
+      ],
+      [
+        "BSC Young Boys"
+      ],
+      [
+        "Atalanta"
+      ],
+      [
+        "Borussia Mönchengladbach"
+      ],
+      [
+        "RC Deportivo de La Coruña"
+      ],
+      [
+        "Hannover 96"
+      ],
+      [
+        "Livorno"
+      ],
+      [
+        "Rangers"
+      ],
+      [
+        "Śląsk Wrocław"
+      ],
+      [
+        "Valencia CF"
+      ],
+      [
+        "Zagłębie Lubin"
+      ],
+      [
+        "FC Barcelona"
+      ],
+      [
+        "Go Ahead Eagles"
+      ],
+      [
+        "KV Kortrijk"
+      ],
+      [
+        "SV Werder Bremen"
+      ],
+      [
+        "Wisła Kraków"
+      ],
+      [
+        "Liverpool"
+      ],
+      [
+        "Swansea City"
+      ],
+      [
+        "Cagliari"
+      ],
+      [
+        "Bologna"
+      ],
+      [
+        "Manchester City"
+      ],
+      [
+        "NAC Breda"
+      ],
+      [
+        "Waasland-Beveren"
+      ],
+      [
+        "Arsenal"
+      ],
+      [
+        "KAA Gent"
+      ],
+      [
+        "FC Bayern Munich"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT t.team_long_name\nFROM Team t\nJOIN Team_Attributes ta ON t.team_api_id = ta.team_api_id\nWHERE ta.buildUpPlayDribblingClass = 'Normal'\n  AND ta.date LIKE '2014%'\n  AND ta.chanceCreationPassing \u003c (\n    SELECT AVG(ta2.chanceCreationPassing)\n    FROM Team_Attributes ta2\n    WHERE ta2.buildUpPlayDribblingClass = 'Normal'\n      AND ta2.date LIKE '2014%'\n  )\nORDER BY ta.chanceCreationPassing DESC;",
+  "question": "For the teams with normal build-up play dribbling class in 2014, List the names of the teams with less than average chance creation passing, in descending order of chance creation passing.",
+  "thinking": ""
+}

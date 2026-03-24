@@ -1,0 +1,38 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Title"
+      ],
+      [
+        "Detecting a given face in a database of facial images"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT Title FROM posts WHERE Id = ( SELECT PostId FROM comments ORDER BY Score DESC LIMIT 1 )",
+  "id": 562,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Title"
+      ],
+      [
+        "Detecting a given face in a database of facial images"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT p.Title\nFROM comments c\nJOIN posts p ON c.PostId = p.Id\nORDER BY c.Score DESC\nLIMIT 1",
+  "question": "What is the title for the post which got the highest score comment?",
+  "thinking": ""
+}

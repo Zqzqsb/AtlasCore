@@ -1,0 +1,42 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Score",
+        "LinkTypeId"
+      ],
+      [
+        "4",
+        "1"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.Score, T2.LinkTypeId FROM posts AS T1 INNER JOIN postLinks AS T2 ON T1.Id = T2.PostId WHERE T2.PostId = 395",
+  "id": 602,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Score",
+        "LinkTypeId"
+      ],
+      [
+        "4",
+        "1"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT p.Score, pl.LinkTypeId FROM posts p JOIN postLinks pl ON p.Id = pl.PostId WHERE p.Id = 395;",
+  "question": "What is the score and the link type ID for post ID 395?",
+  "thinking": ""
+}

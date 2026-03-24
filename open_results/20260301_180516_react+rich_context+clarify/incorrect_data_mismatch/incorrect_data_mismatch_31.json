@@ -1,0 +1,62 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "City"
+      ],
+      [
+        "Coulterville"
+      ],
+      [
+        "Pinecrest"
+      ],
+      [
+        "Shaver Lake"
+      ],
+      [
+        "Emigrant Gap"
+      ],
+      [
+        "Hyampom"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.City FROM frpm AS T1 INNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode GROUP BY T2.City ORDER BY SUM(T1.`Enrollment (K-12)`) ASC LIMIT 5",
+  "id": 31,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "City"
+      ],
+      [
+        "Kettleman City"
+      ],
+      [
+        "Burbank"
+      ],
+      [
+        "Tiburon"
+      ],
+      [
+        "Laytonville"
+      ],
+      [
+        "Yreka"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT s.City FROM frpm f JOIN schools s ON CAST(f.CDSCode AS INTEGER) = CAST(s.CDSCode AS INTEGER) WHERE f.\"Enrollment (K-12)\" IS NOT NULL ORDER BY f.\"Enrollment (K-12)\" ASC LIMIT 5;",
+  "question": "Which cities have the top 5 lowest enrollment number for students in grades 1 through 12?",
+  "thinking": ""
+}

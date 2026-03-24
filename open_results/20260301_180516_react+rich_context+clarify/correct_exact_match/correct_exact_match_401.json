@@ -1,0 +1,16 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT setCode FROM set_translations WHERE language = 'Spanish'",
+  "id": 401,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT setCode FROM set_translations WHERE language = 'Spanish';",
+  "question": "Lists the set code of all cards translated into Spanish.",
+  "thinking": ""
+}

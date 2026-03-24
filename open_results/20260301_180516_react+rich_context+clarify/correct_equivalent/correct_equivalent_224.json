@@ -1,0 +1,44 @@
+{
+  "db_id": "toxicology",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "atom_id"
+      ],
+      [
+        "TR000_2"
+      ],
+      [
+        "TR000_5"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T.atom_id FROM connected AS T WHERE T.bond_id = 'TR000_2_5'",
+  "id": 224,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "atom_id"
+      ],
+      [
+        "TR000_2"
+      ],
+      [
+        "TR000_5"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT atom_id FROM connected WHERE bond_id = 'TR000_2_5' UNION SELECT atom_id2 FROM connected WHERE bond_id = 'TR000_2_5';",
+  "question": "What are the atom IDs of the bond TR000_2_5?",
+  "thinking": ""
+}

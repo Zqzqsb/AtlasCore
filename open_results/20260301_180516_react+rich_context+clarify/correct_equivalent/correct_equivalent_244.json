@@ -1,0 +1,68 @@
+{
+  "db_id": "toxicology",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "bond_id"
+      ],
+      [
+        "TR032_2_3"
+      ],
+      [
+        "TR032_3_5"
+      ],
+      [
+        "TR058_1_3"
+      ],
+      [
+        "TR058_1_4"
+      ],
+      [
+        "TR058_1_5"
+      ],
+      [
+        "TR298_1_5"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.bond_id FROM atom AS T1 INNER JOIN connected AS T2 ON T1.atom_id = T2.atom_id WHERE T2.bond_id IN ( SELECT T3.bond_id FROM connected AS T3 INNER JOIN atom AS T4 ON T3.atom_id = T4.atom_id WHERE T4.element = 'p' ) AND T1.element = 'n'",
+  "id": 244,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "bond_id"
+      ],
+      [
+        "TR032_2_3"
+      ],
+      [
+        "TR032_3_5"
+      ],
+      [
+        "TR058_1_3"
+      ],
+      [
+        "TR058_1_4"
+      ],
+      [
+        "TR058_1_5"
+      ],
+      [
+        "TR298_1_5"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT c.bond_id\nFROM connected c\nJOIN atom a1 ON c.atom_id = a1.atom_id\nJOIN atom a2 ON c.atom_id2 = a2.atom_id\nWHERE (a1.element = 'p' AND a2.element = 'n')\n   OR (a1.element = 'n' AND a2.element = 'p');",
+  "question": "What are the bonds that have phosphorus and nitrogen as their atom elements?",
+  "thinking": ""
+}

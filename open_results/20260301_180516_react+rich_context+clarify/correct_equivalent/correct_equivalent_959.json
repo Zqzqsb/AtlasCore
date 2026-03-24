@@ -1,0 +1,46 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "forename",
+        "surname",
+        "fastestLapTime"
+      ],
+      [
+        "Lewis",
+        "Hamilton",
+        "1:07.411"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.forename, T2.surname, T1.fastestLapTime FROM results AS T1 INNER JOIN drivers AS T2 on T1.driverId = T2.driverId WHERE T1.fastestLapTime IS NOT NULL ORDER BY T1.fastestLapTime ASC LIMIT 1",
+  "id": 959,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "forename",
+        "surname",
+        "fastestLapTime"
+      ],
+      [
+        "Lewis",
+        "Hamilton",
+        "1:07.411"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT d.forename, d.surname, r.fastestLapTime \nFROM results r\nJOIN drivers d ON r.driverId = d.driverId\nWHERE r.fastestLapTime IS NOT NULL\nORDER BY r.fastestLapTime ASC\nLIMIT 1;",
+  "question": "Which driver has the fastest lap time? Please give their forenames and surnames.",
+  "thinking": ""
+}

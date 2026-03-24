@@ -1,0 +1,46 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "STRFTIME('%Y', CURRENT_TIMESTAMP) - STRFTIME('%Y', dob)",
+        "forename",
+        "surname"
+      ],
+      [
+        "40",
+        "Kamui",
+        "Kobayashi"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT STRFTIME('%Y', CURRENT_TIMESTAMP) - STRFTIME('%Y', dob), forename , surname FROM drivers WHERE nationality = 'Japanese' ORDER BY dob DESC LIMIT 1",
+  "id": 899,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "STRFTIME('%Y', CURRENT_TIMESTAMP) - STRFTIME('%Y', dob)",
+        "forename",
+        "surname"
+      ],
+      [
+        "40",
+        "Kamui",
+        "Kobayashi"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT STRFTIME('%Y', CURRENT_TIMESTAMP) - STRFTIME('%Y', dob), forename, surname FROM drivers WHERE nationality = 'Japanese' ORDER BY dob DESC LIMIT 1;",
+  "question": "How old is the youngest Japanese driver? What is his name?",
+  "thinking": ""
+}

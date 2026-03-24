@@ -1,0 +1,62 @@
+{
+  "db_id": "superhero",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "superhero_name"
+      ],
+      [
+        "Abe Sapien"
+      ],
+      [
+        "Abin Sur"
+      ],
+      [
+        "Abraxas"
+      ],
+      [
+        "Absorbing Man"
+      ],
+      [
+        "Adam Monroe"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.superhero_name FROM superhero AS T1 INNER JOIN colour AS T2 ON T1.eye_colour_id = T2.id WHERE T2.colour = 'Blue' LIMIT 5",
+  "id": 813,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "superhero_name"
+      ],
+      [
+        "Abe Sapien"
+      ],
+      [
+        "Abin Sur"
+      ],
+      [
+        "Abraxas"
+      ],
+      [
+        "Absorbing Man"
+      ],
+      [
+        "Adam Monroe"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT s.superhero_name\nFROM superhero s\nJOIN colour c ON s.eye_colour_id = c.id\nWHERE c.colour = 'Blue'\nLIMIT 5;",
+  "question": "List down at least five full names of superheroes with blue eyes.",
+  "thinking": ""
+}

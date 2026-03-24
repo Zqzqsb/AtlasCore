@@ -1,0 +1,80 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=7, pred=9",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name"
+      ],
+      [
+        "Chinese Grand Prix"
+      ],
+      [
+        "Bahrain Grand Prix"
+      ],
+      [
+        "Russian Grand Prix"
+      ],
+      [
+        "Azerbaijan Grand Prix"
+      ],
+      [
+        "Singapore Grand Prix"
+      ],
+      [
+        "Mexican Grand Prix"
+      ],
+      [
+        "Abu Dhabi Grand Prix"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT name FROM races WHERE year = 2017 AND name NOT IN ( SELECT name FROM races WHERE year = 2000 )",
+  "id": 888,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name"
+      ],
+      [
+        "Chinese Grand Prix"
+      ],
+      [
+        "Bahrain Grand Prix"
+      ],
+      [
+        "Russian Grand Prix"
+      ],
+      [
+        "Azerbaijan Grand Prix"
+      ],
+      [
+        "Austrian Grand Prix"
+      ],
+      [
+        "Singapore Grand Prix"
+      ],
+      [
+        "United States Grand Prix"
+      ],
+      [
+        "Mexican Grand Prix"
+      ],
+      [
+        "Abu Dhabi Grand Prix"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT name FROM races WHERE year = 2017 AND circuitId NOT IN (SELECT circuitId FROM races WHERE year = 2000)",
+  "question": "Name the races in year 2017 that are not hosted in year 2000.",
+  "thinking": ""
+}

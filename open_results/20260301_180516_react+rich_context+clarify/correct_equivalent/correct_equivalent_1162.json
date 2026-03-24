@@ -1,0 +1,38 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "challenging",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AVG(T2.`aCL IgG`)"
+      ],
+      [
+        "6.120833333333334"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT AVG(T2.`aCL IgG`) FROM Patient AS T1 INNER JOIN Examination AS T2 ON T1.ID = T2.ID WHERE STRFTIME('%Y', CURRENT_TIMESTAMP) - STRFTIME('%Y', T1.Birthday) \u003e= 50 AND T1.Admission = '+'",
+  "id": 1162,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AVG(T2.`aCL IgG`)"
+      ],
+      [
+        "6.120833333333334"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT AVG(T2.`aCL IgG`) \nFROM Patient AS T1 \nINNER JOIN Examination AS T2 ON T1.ID = T2.ID \nWHERE T1.Admission = '+' \nAND CAST(strftime('%Y', 'now') AS INTEGER) - CAST(strftime('%Y', T1.Birthday) AS INTEGER) \u003e= 50",
+  "question": "For in-patient age 50 and above, what is their average anti-cardiolipin antibody (IgG) concentration?",
+  "thinking": ""
+}

@@ -1,0 +1,50 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "forename",
+        "surname",
+        "nationality",
+        "MAX(T2.points)"
+      ],
+      [
+        "Michael",
+        "Schumacher",
+        "German",
+        "148"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.forename, T1.surname, T1.nationality, MAX(T2.points) FROM drivers AS T1 INNER JOIN driverStandings AS T2 ON T2.driverId = T1.driverId WHERE T2.wins \u003e= 1 GROUP BY T1.forename, T1.surname, T1.nationality ORDER BY COUNT(T2.wins) DESC LIMIT 1",
+  "id": 898,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "forename",
+        "surname",
+        "nationality",
+        "MAX(ds.points)"
+      ],
+      [
+        "Michael",
+        "Schumacher",
+        "German",
+        "148"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT d.forename, d.surname, d.nationality, MAX(ds.points) \nFROM drivers d\nJOIN driverStandings ds ON d.driverId = ds.driverId\nGROUP BY d.driverId, d.forename, d.surname, d.nationality\nORDER BY SUM(ds.wins) DESC\nLIMIT 1",
+  "question": "Name the driver with the most winning. Mention his nationality and what is his maximum point scores.",
+  "thinking": ""
+}

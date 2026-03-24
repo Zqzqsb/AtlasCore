@@ -1,0 +1,38 @@
+{
+  "db_id": "financial",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "SUM(T3.amount)"
+      ],
+      [
+        "303276"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT SUM(T3.amount) FROM client AS T1 INNER JOIN disp AS T4 ON T1.client_id = T4.client_id INNER JOIN account AS T2 ON T4.account_id = T2.account_id INNER JOIN trans AS T3 ON T2.account_id = T3.account_id WHERE STRFTIME('%Y', T3.date)= '1998' AND T1.client_id = 617",
+  "id": 180,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "SUM(T3.amount)"
+      ],
+      [
+        "143545"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT SUM(T3.amount)\nFROM client T1\nJOIN disp T2 ON T1.client_id = T2.client_id\nJOIN account T4 ON T2.account_id = T4.account_id\nJOIN trans T3 ON T4.account_id = T3.account_id\nWHERE T1.client_id = 617\n  AND STRFTIME('%Y', T3.date) = '1998'\n  AND T3.type IN ('VYDAJ', 'VYBER')",
+  "question": "How much, in total, did client number 617 pay for all of the transactions in 1998?",
+  "thinking": ""
+}

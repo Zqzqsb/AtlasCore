@@ -1,0 +1,1061 @@
+{
+  "db_id": "superhero",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=107, pred=236",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "full_name"
+      ],
+      [
+        "Abraxas"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Alexander J. Mercer"
+      ],
+      [
+        "Alex Woolsly"
+      ],
+      [
+        "Ando Masahashi"
+      ],
+      [
+        "Liam"
+      ],
+      [
+        "Jason Wynn"
+      ],
+      [
+        "Arthur Curry, Jr."
+      ],
+      [
+        "Roy William Harper, Jr."
+      ],
+      [
+        "Michael Washington Lane"
+      ],
+      [
+        "Aztar"
+      ],
+      [
+        "Helena Rosa Bertinelli"
+      ],
+      [
+        "Benjamin Kirby Tennyson"
+      ],
+      [
+        "Damon Macready"
+      ],
+      [
+        "Jamie Wells Sommers"
+      ],
+      [
+        "Ray Randal"
+      ],
+      [
+        "Lemuel Krug"
+      ],
+      [
+        "Sean Dolan"
+      ],
+      [
+        "Daniel Garrett"
+      ],
+      [
+        "Jaime Reyes"
+      ],
+      [
+        "Madison Jeffries"
+      ],
+      [
+        "Sethaniel Brundle"
+      ],
+      [
+        "Ryuko Orsono"
+      ],
+      [
+        "Leonard Snart"
+      ],
+      [
+        "Jack Brolin"
+      ],
+      [
+        "Shakti Haddad"
+      ],
+      [
+        "Dmitri Anatoly Nikolayevich Smerdyakov"
+      ],
+      [
+        "Claire Bennet"
+      ],
+      [
+        "Clea"
+      ],
+      [
+        "Cain"
+      ],
+      [
+        "Rory Destine"
+      ],
+      [
+        "Henry Henshaw"
+      ],
+      [
+        "Daphne Powell"
+      ],
+      [
+        "Peyton Westlake"
+      ],
+      [
+        "Daniel Lawrence Hawkins"
+      ],
+      [
+        "Dormammu"
+      ],
+      [
+        "Jonathan Osterman"
+      ],
+      [
+        "Ego"
+      ],
+      [
+        "Faora Hu-Ul"
+      ],
+      [
+        "Paul Norbert Ebersol"
+      ],
+      [
+        "Richard Ethan Morse"
+      ],
+      [
+        "Gary Bell"
+      ],
+      [
+        "Dru-Zod"
+      ],
+      [
+        "Daniel Ketch"
+      ],
+      [
+        "Henry Jonathan Pym"
+      ],
+      [
+        "Jessica Viviana Cruz"
+      ],
+      [
+        "Dr. James McDonald Hudson"
+      ],
+      [
+        "John Hancock"
+      ],
+      [
+        "Sharon Parker"
+      ],
+      [
+        "Hiro Nakamura"
+      ],
+      [
+        "Mindy McCready"
+      ],
+      [
+        "Monet St. Croix"
+      ],
+      [
+        "Adrianna Tomaz"
+      ],
+      [
+        "James Bond"
+      ],
+      [
+        "Jessica Belle Chambers"
+      ],
+      [
+        "Jim Powell"
+      ],
+      [
+        "JJ Powell"
+      ],
+      [
+        "John Constantine"
+      ],
+      [
+        "Joseph Dredd"
+      ],
+      [
+        "Kathryn M. Janeway"
+      ],
+      [
+        "Kevin Ethan Levin"
+      ],
+      [
+        "Dave Lizewski"
+      ],
+      [
+        "Wallace Rudolph West"
+      ],
+      [
+        "Bartholomew Allen II"
+      ],
+      [
+        "Elizabeth Anne Sherman"
+      ],
+      [
+        "Luna Maximoff"
+      ],
+      [
+        "Lyja"
+      ],
+      [
+        "David Reid"
+      ],
+      [
+        "Robert Kirkland Langstrom"
+      ],
+      [
+        "John-117"
+      ],
+      [
+        "Kent Connor"
+      ],
+      [
+        "Matthew Parkman"
+      ],
+      [
+        "Maya Herrera"
+      ],
+      [
+        "Micah Sanders"
+      ],
+      [
+        "Charlotte Gage-Radcliffe"
+      ],
+      [
+        "Mr. Mxyzptlk"
+      ],
+      [
+        "Mogo"
+      ],
+      [
+        "Edgar William Jacobi"
+      ],
+      [
+        "Monica Dawson"
+      ],
+      [
+        "Nicole Sanders"
+      ],
+      [
+        "Daniel Dreiberg"
+      ],
+      [
+        "Luke O'Brian"
+      ],
+      [
+        "Amon Tomaz"
+      ],
+      [
+        "Adrian Alexander Veidt"
+      ],
+      [
+        "Peter Petrelli"
+      ],
+      [
+        "Christopher Walker"
+      ],
+      [
+        "Nels Van Adder"
+      ],
+      [
+        "Chris Genovese"
+      ],
+      [
+        "Edward Nigma"
+      ],
+      [
+        "Carrie Kelley"
+      ],
+      [
+        "Alexander James Murphy"
+      ],
+      [
+        "Kurr"
+      ],
+      [
+        "Elaine Coll"
+      ],
+      [
+        "Sebastian Hiram Shaw"
+      ],
+      [
+        "Laurie Juspeczyk"
+      ],
+      [
+        "Yurrd the Unknown"
+      ],
+      [
+        "Thea Dearden Queen"
+      ],
+      [
+        "Benjamin Reilly"
+      ],
+      [
+        "Stephanie Powell"
+      ],
+      [
+        "Alec Holland"
+      ],
+      [
+        "Gabriel Gray"
+      ],
+      [
+        "Tracy Strauss"
+      ],
+      [
+        "Gabriel Summers"
+      ],
+      [
+        "Uatu"
+      ],
+      [
+        "Weapon XI"
+      ],
+      [
+        "Drake Burroughs"
+      ],
+      [
+        "Ymir"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT full_name FROM superhero WHERE full_name IS NOT NULL AND (weight_kg IS NULL OR weight_kg = 0)",
+  "id": 806,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "full_name"
+      ],
+      [
+        "Abraxas"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Alexander J. Mercer"
+      ],
+      [
+        "Alex Woolsly"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Ando Masahashi"
+      ],
+      [
+        "Liam"
+      ],
+      [
+        "-"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Jason Wynn"
+      ],
+      [
+        "Arthur Curry, Jr."
+      ],
+      [
+        "Roy William Harper, Jr."
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Michael Washington Lane"
+      ],
+      [
+        "Aztar"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Helena Rosa Bertinelli"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Benjamin Kirby Tennyson"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Damon Macready"
+      ],
+      [
+        "-"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Jamie Wells Sommers"
+      ],
+      [
+        "-"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Ray Randal"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "-"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Lemuel Krug"
+      ],
+      [
+        "Sean Dolan"
+      ],
+      [
+        "Daniel Garrett"
+      ],
+      [
+        "Jaime Reyes"
+      ],
+      [
+        "-"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "-"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Madison Jeffries"
+      ],
+      [
+        "Sethaniel Brundle"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Ryuko Orsono"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Leonard Snart"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Jack Brolin"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "-"
+      ],
+      [
+        "-"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Shakti Haddad"
+      ],
+      [
+        "Dmitri Anatoly Nikolayevich Smerdyakov"
+      ],
+      [
+        "Dmitri Anatoly Nikolayevich Smerdyakov"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Claire Bennet"
+      ],
+      [
+        "Clea"
+      ],
+      [
+        "Cain"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Rory Destine"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Henry Henshaw"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Daphne Powell"
+      ],
+      [
+        "Peyton Westlake"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "-"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Daniel Lawrence Hawkins"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Dormammu"
+      ],
+      [
+        "Jonathan Osterman"
+      ],
+      [
+        "Ego"
+      ],
+      [
+        "-"
+      ],
+      [
+        "-"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Faora Hu-Ul"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Paul Norbert Ebersol"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Richard Ethan Morse"
+      ],
+      [
+        "Gary Bell"
+      ],
+      [
+        "Dru-Zod"
+      ],
+      [
+        "Daniel Ketch"
+      ],
+      [
+        "Henry Jonathan Pym"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "-"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "-"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Jessica Viviana Cruz"
+      ],
+      [
+        "Dr. James McDonald Hudson"
+      ],
+      [
+        "John Hancock"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Sharon Parker"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Hiro Nakamura"
+      ],
+      [
+        "Mindy McCready"
+      ],
+      [
+        "Monet St. Croix"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Adrianna Tomaz"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "James Bond"
+      ],
+      [
+        "-"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Jessica Belle Chambers"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Jim Powell"
+      ],
+      [
+        "JJ Powell"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "John Constantine"
+      ],
+      [
+        "Joseph Dredd"
+      ],
+      [
+        "-"
+      ],
+      [
+        "-"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Kathryn M. Janeway"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Kevin Ethan Levin"
+      ],
+      [
+        "Dave Lizewski"
+      ],
+      [
+        "Wallace Rudolph West"
+      ],
+      [
+        "Bartholomew Allen II"
+      ],
+      [
+        "-"
+      ],
+      [
+        "-"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "-"
+      ],
+      [
+        "-"
+      ],
+      [
+        "-"
+      ],
+      [
+        "-"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Elizabeth Anne Sherman"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Luna Maximoff"
+      ],
+      [
+        "Lyja"
+      ],
+      [
+        "David Reid"
+      ],
+      [
+        "-"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Robert Kirkland Langstrom"
+      ],
+      [
+        "John-117"
+      ],
+      [
+        "Kent Connor"
+      ],
+      [
+        "Matthew Parkman"
+      ],
+      [
+        "Maya Herrera"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Micah Sanders"
+      ],
+      [
+        "-"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Charlotte Gage-Radcliffe"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Mr. Mxyzptlk"
+      ],
+      [
+        "Mogo"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Edgar William Jacobi"
+      ],
+      [
+        "Monica Dawson"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Nicole Sanders"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Daniel Dreiberg"
+      ],
+      [
+        "Luke O'Brian"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Amon Tomaz"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Adrian Alexander Veidt"
+      ],
+      [
+        "-"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Peter Petrelli"
+      ],
+      [
+        "Christopher Walker"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Nels Van Adder"
+      ],
+      [
+        "-"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "-"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Chris Genovese"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Edward Nigma"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Carrie Kelley"
+      ],
+      [
+        "Alexander James Murphy"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Kurr"
+      ],
+      [
+        "Elaine Coll"
+      ],
+      [
+        "Sebastian Hiram Shaw"
+      ],
+      [
+        "-"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "-"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Laurie Juspeczyk"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Yurrd the Unknown"
+      ],
+      [
+        "-"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Thea Dearden Queen"
+      ],
+      [
+        "Benjamin Reilly"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Stephanie Powell"
+      ],
+      [
+        "-"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Alec Holland"
+      ],
+      [
+        "Gabriel Gray"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "-"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Tracy Strauss"
+      ],
+      [
+        "-"
+      ],
+      [
+        "-"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Gabriel Summers"
+      ],
+      [
+        "Uatu"
+      ],
+      [
+        "Weapon XI"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Drake Burroughs"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Ymir"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT full_name FROM superhero WHERE weight_kg = 0 OR weight_kg IS NULL;",
+  "question": "List the full names of superheroes with missing weight.",
+  "thinking": ""
+}

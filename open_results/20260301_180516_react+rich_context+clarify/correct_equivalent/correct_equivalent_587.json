@@ -1,0 +1,50 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "challenging",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "DisplayName",
+        "Title"
+      ],
+      [
+        "chl",
+        "How to combine confidence intervals for a variance component of a mixed-effects model when using multiple imputation"
+      ],
+      [
+        "shabbychef",
+        "Unbiased estimation of covariance matrix for multiply censored data"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T3.DisplayName, T1.Title FROM posts AS T1 INNER JOIN votes AS T2 ON T1.Id = T2.PostId INNER JOIN users AS T3 ON T3.Id = T2.UserId WHERE T2.BountyAmount = 50 AND T1.Title LIKE '%variance%'",
+  "id": 587,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "DisplayName",
+        "Title"
+      ],
+      [
+        "chl",
+        "How to combine confidence intervals for a variance component of a mixed-effects model when using multiple imputation"
+      ],
+      [
+        "shabbychef",
+        "Unbiased estimation of covariance matrix for multiply censored data"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT u.DisplayName, p.Title\nFROM votes v\nJOIN posts p ON v.PostId = p.Id\nJOIN users u ON v.UserId = u.Id\nWHERE v.BountyAmount = 50\nAND p.Title LIKE '%variance%';",
+  "question": "Which user added a bounty amount of 50 to the post title mentioning variance?",
+  "thinking": ""
+}

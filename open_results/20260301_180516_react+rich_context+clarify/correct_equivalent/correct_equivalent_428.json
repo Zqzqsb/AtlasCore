@@ -1,0 +1,92 @@
+{
+  "db_id": "card_games",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "language"
+      ],
+      [
+        "Chinese Simplified"
+      ],
+      [
+        "Chinese Traditional"
+      ],
+      [
+        "French"
+      ],
+      [
+        "German"
+      ],
+      [
+        "Italian"
+      ],
+      [
+        "Japanese"
+      ],
+      [
+        "Korean"
+      ],
+      [
+        "Portuguese (Brazil)"
+      ],
+      [
+        "Russian"
+      ],
+      [
+        "Spanish"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.language FROM sets AS T1 INNER JOIN set_translations AS T2 ON T1.code = T2.setCode WHERE T1.mcmName = 'Archenemy' AND T2.setCode = 'ARC'",
+  "id": 428,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "language"
+      ],
+      [
+        "Chinese Simplified"
+      ],
+      [
+        "Chinese Traditional"
+      ],
+      [
+        "French"
+      ],
+      [
+        "German"
+      ],
+      [
+        "Italian"
+      ],
+      [
+        "Japanese"
+      ],
+      [
+        "Korean"
+      ],
+      [
+        "Portuguese (Brazil)"
+      ],
+      [
+        "Russian"
+      ],
+      [
+        "Spanish"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT st.language FROM sets s JOIN set_translations st ON s.code = st.setCode WHERE s.mcmName = 'Archenemy' AND s.code = 'ARC';",
+  "question": "What languages are available in the set known as Archenemy on the magic card market and having the code ARC?",
+  "thinking": ""
+}

@@ -1,0 +1,38 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "MAX(t2.overall_rating)"
+      ],
+      [
+        "76"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT MAX(t2.overall_rating) FROM Player AS t1 INNER JOIN Player_Attributes AS t2 ON t1.player_api_id = t2.player_api_id WHERE t1.player_name = 'Dorlan Pabon'",
+  "id": 1101,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "MAX(t2.overall_rating)"
+      ],
+      [
+        "76"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT MAX(t2.overall_rating) FROM Player AS t1 JOIN Player_Attributes AS t2 ON t1.player_fifa_api_id = t2.player_fifa_api_id WHERE t1.player_name = 'Dorlan Pabon';",
+  "question": "What is the highest overall rating received by Dorlan Pabon?",
+  "thinking": ""
+}

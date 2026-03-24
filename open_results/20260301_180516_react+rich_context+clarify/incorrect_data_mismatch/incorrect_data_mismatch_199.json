@@ -1,0 +1,38 @@
+{
+  "db_id": "toxicology",
+  "difficulty": "challenging",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AVG(single_bond_count)"
+      ],
+      [
+        "732.125"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT AVG(single_bond_count) FROM (SELECT T3.molecule_id, COUNT(T1.bond_type) AS single_bond_count FROM bond AS T1  INNER JOIN atom AS T2 ON T1.molecule_id = T2.molecule_id INNER JOIN molecule AS T3 ON T3.molecule_id = T2.molecule_id WHERE T1.bond_type = '-' AND T3.label = '+' GROUP BY T3.molecule_id) AS subquery",
+  "id": 199,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AVG(single_bond_count)"
+      ],
+      [
+        "20.25"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT AVG(single_bond_count) FROM (SELECT m.molecule_id, COUNT(CASE WHEN b.bond_type = '-' THEN 1 END) AS single_bond_count FROM molecule m JOIN bond b ON m.molecule_id = b.molecule_id WHERE m.label = '+' GROUP BY m.molecule_id)",
+  "question": "On average how many carcinogenic molecules are single bonded?",
+  "thinking": ""
+}

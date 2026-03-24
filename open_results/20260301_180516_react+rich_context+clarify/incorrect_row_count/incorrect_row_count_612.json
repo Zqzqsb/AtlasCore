@@ -1,0 +1,104 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=13, pred=11",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Reputation"
+      ],
+      [
+        "817"
+      ],
+      [
+        "128"
+      ],
+      [
+        "308"
+      ],
+      [
+        "344"
+      ],
+      [
+        "402"
+      ],
+      [
+        "614"
+      ],
+      [
+        "530"
+      ],
+      [
+        "321"
+      ],
+      [
+        "817"
+      ],
+      [
+        "308"
+      ],
+      [
+        "457"
+      ],
+      [
+        "101"
+      ],
+      [
+        "211"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.Reputation FROM users AS T1 INNER JOIN badges AS T2 ON T1.Id = T2.UserId WHERE T2.Date = '2010-07-19 19:39:08.0'",
+  "id": 612,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Reputation"
+      ],
+      [
+        "817"
+      ],
+      [
+        "128"
+      ],
+      [
+        "308"
+      ],
+      [
+        "344"
+      ],
+      [
+        "402"
+      ],
+      [
+        "614"
+      ],
+      [
+        "530"
+      ],
+      [
+        "321"
+      ],
+      [
+        "457"
+      ],
+      [
+        "101"
+      ],
+      [
+        "211"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT u.Reputation\nFROM badges b\nJOIN users u ON b.UserId = u.Id\nWHERE b.Date = '2010-07-19 19:39:08.0'",
+  "question": "Mention the reputation of users who had obtained the badge on 7/19/2010 7:39:08 PM.",
+  "thinking": ""
+}

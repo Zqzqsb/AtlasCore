@@ -1,0 +1,38 @@
+{
+  "db_id": "toxicology",
+  "difficulty": "moderate",
+  "error_reason": "column name mismatch and positional data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST((SELECT COUNT(T1.atom_id) FROM connected AS T1 INNER JOIN bond AS T2 ON T1.bond_id = T2.bond_id GROUP BY T2.bond_type ORDER BY COUNT(T2.bond_id) DESC LIMIT 1 ) AS REAL) * 100 / ( SELECT COUNT(atom_id) FROM connected )"
+      ],
+      [
+        "84.56749672346002"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT CAST((SELECT COUNT(T1.atom_id) FROM connected AS T1 INNER JOIN bond AS T2 ON T1.bond_id = T2.bond_id GROUP BY T2.bond_type ORDER BY COUNT(T2.bond_id) DESC LIMIT 1 ) AS REAL) * 100 / ( SELECT COUNT(atom_id) FROM connected )",
+  "id": 255,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "percentage"
+      ],
+      [
+        "34.30537352555701"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT CAST((SELECT COUNT(*) FROM (SELECT T1.element AS e1, T2.element AS e2 FROM connected AS C INNER JOIN atom AS T1 ON C.atom_id = T1.atom_id INNER JOIN atom AS T2 ON C.atom_id2 = T2.atom_id) GROUP BY e1, e2 ORDER BY COUNT(*) DESC LIMIT 1) AS REAL) * 100 / (SELECT COUNT(*) FROM connected) AS percentage;",
+  "question": "What percentage of bonds have the most common combination of atoms' elements?",
+  "thinking": ""
+}

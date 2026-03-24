@@ -1,0 +1,38 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "challenging",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "team_short_name"
+      ],
+      [
+        "GLA"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT t1.team_short_name FROM Team AS t1 INNER JOIN Team_Attributes AS t2 ON t1.team_api_id = t2.team_api_id WHERE t2.buildUpPlaySpeed = 31 AND t2.buildUpPlayDribbling = 53 AND t2.buildUpPlayPassing = 32",
+  "id": 1072,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "team_short_name"
+      ],
+      [
+        "GLA"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT t.team_short_name\nFROM Team t\nJOIN Team_Attributes ta ON t.team_api_id = ta.team_api_id\nWHERE ta.buildUpPlaySpeed = 31\n  AND ta.buildUpPlayDribbling = 53\n  AND ta.buildUpPlayPassing = 32;",
+  "question": "List the football team that has a build up play speed of 31, build up plan dribbling of 53, and build up play passing of 32. Only indicate the short name of the team.",
+  "thinking": ""
+}

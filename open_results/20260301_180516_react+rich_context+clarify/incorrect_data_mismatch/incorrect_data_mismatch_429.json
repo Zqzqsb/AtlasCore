@@ -1,0 +1,42 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name",
+        "translation"
+      ],
+      [
+        "Tenth Edition",
+        "Set Base Decima Edizione"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.name, T2.translation FROM sets AS T1 INNER JOIN set_translations AS T2 ON T1.code = T2.setCode WHERE T2.id = 5 GROUP BY T1.name, T2.translation",
+  "id": 429,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name",
+        "translation"
+      ],
+      [
+        "Fourth Edition Foreign Black Border",
+        "\u003cnil\u003e"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT s.name, st.translation FROM sets s LEFT JOIN set_translations st ON s.code = st.setCode WHERE s.id = 5;",
+  "question": "What is the name of set number 5 and its translation?",
+  "thinking": ""
+}

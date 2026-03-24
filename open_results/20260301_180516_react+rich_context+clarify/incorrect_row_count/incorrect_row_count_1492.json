@@ -1,0 +1,46 @@
+{
+  "db_id": "debit_card_specializing",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=1, pred=2",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Country",
+        "( SELECT COUNT(GasStationID) FROM gasstations WHERE Segment = 'Value for money' )"
+      ],
+      [
+        "CZE",
+        "597"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT Country , ( SELECT COUNT(GasStationID) FROM gasstations WHERE Segment = 'Value for money' ) FROM gasstations WHERE Segment = 'Value for money' GROUP BY Country ORDER BY COUNT(GasStationID) DESC LIMIT 1",
+  "id": 1492,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Country",
+        "(SELECT COUNT(GasStationID) FROM gasstations WHERE Segment = 'Value for money')"
+      ],
+      [
+        "CZE",
+        "597"
+      ],
+      [
+        "SVK",
+        "597"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT Country, (SELECT COUNT(GasStationID) FROM gasstations WHERE Segment = 'Value for money') FROM gasstations WHERE Segment = 'Value for money' GROUP BY Country;",
+  "question": "Which country has more \"value for money\" gas stations? Please give a total number of \"value for money\" gas stations in each country.",
+  "thinking": ""
+}

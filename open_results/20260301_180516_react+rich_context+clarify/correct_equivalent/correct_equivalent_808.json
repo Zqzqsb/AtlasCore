@@ -1,0 +1,74 @@
+{
+  "db_id": "superhero",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "power_name"
+      ],
+      [
+        "Agility"
+      ],
+      [
+        "Durability"
+      ],
+      [
+        "Super Strength"
+      ],
+      [
+        "Size Changing"
+      ],
+      [
+        "Shapeshifting"
+      ],
+      [
+        "Invulnerability"
+      ],
+      [
+        "Elasticity"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T3.power_name FROM superhero AS T1 INNER JOIN hero_power AS T2 ON T1.id = T2.hero_id INNER JOIN superpower AS T3 ON T2.power_id = T3.id WHERE T1.full_name = 'Helen Parr'",
+  "id": 808,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "power_name"
+      ],
+      [
+        "Agility"
+      ],
+      [
+        "Durability"
+      ],
+      [
+        "Super Strength"
+      ],
+      [
+        "Size Changing"
+      ],
+      [
+        "Shapeshifting"
+      ],
+      [
+        "Invulnerability"
+      ],
+      [
+        "Elasticity"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT sp.power_name\nFROM superhero s\nJOIN hero_power hp ON s.id = hp.hero_id\nJOIN superpower sp ON hp.power_id = sp.id\nWHERE s.full_name = 'Helen Parr';",
+  "question": "What is the superpowers of the superhero has Helen Parr as their full name?",
+  "thinking": ""
+}

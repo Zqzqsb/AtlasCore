@@ -1,0 +1,31 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=1, pred=-1",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "language"
+      ],
+      [
+        "Chinese Simplified"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT language FROM set_translations WHERE id IN ( SELECT id FROM sets WHERE name = 'Battlebond' )",
+  "id": 520,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": []
+  },
+  "pred_sql": "SELECT st.language FROM sets s JOIN set_translations st ON s.code = st.setCode WHERE s.name = 'Battlebond';",
+  "question": "What is the language of the \"Battlebond\" set?",
+  "thinking": ""
+}

@@ -1,0 +1,38 @@
+{
+  "db_id": "debit_card_specializing",
+  "difficulty": "moderate",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.TransactionID)"
+      ],
+      [
+        "68"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T1.TransactionID) FROM transactions_1k AS T1 INNER JOIN customers AS T2 ON T1.CustomerID = T2.CustomerID WHERE T1.Date = '2012-08-26' AND T1.Time \u003c '13:00:00' AND T2.Currency = 'CZK'",
+  "id": 1517,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.TransactionID)"
+      ],
+      [
+        "73"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(T1.TransactionID) FROM transactions_1k T1 JOIN customers T2 ON T1.CustomerID = T2.CustomerID WHERE T1.Date = '2012-08-26' AND T2.Currency = 'CZK' AND CAST(T1.Time AS INTEGER) \u003c 1300",
+  "question": "How many transactions were paid in CZK in the morning of 2012/8/26?",
+  "thinking": ""
+}

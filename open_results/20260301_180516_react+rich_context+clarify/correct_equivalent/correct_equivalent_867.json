@@ -1,0 +1,126 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "forename",
+        "surname",
+        "url"
+      ],
+      [
+        "David",
+        "Coulthard",
+        "http://en.wikipedia.org/wiki/David_Coulthard"
+      ],
+      [
+        "Jarno",
+        "Trulli",
+        "http://en.wikipedia.org/wiki/Jarno_Trulli"
+      ],
+      [
+        "Jenson",
+        "Button",
+        "http://en.wikipedia.org/wiki/Jenson_Button"
+      ],
+      [
+        "Rubens",
+        "Barrichello",
+        "http://en.wikipedia.org/wiki/Rubens_Barrichello"
+      ],
+      [
+        "Ralf",
+        "Schumacher",
+        "http://en.wikipedia.org/wiki/Ralf_Schumacher"
+      ],
+      [
+        "Michael",
+        "Schumacher",
+        "http://en.wikipedia.org/wiki/Michael_Schumacher"
+      ],
+      [
+        "Ricardo",
+        "Zonta",
+        "http://en.wikipedia.org/wiki/Ricardo_Zonta"
+      ],
+      [
+        "Heinz-Harald",
+        "Frentzen",
+        "http://en.wikipedia.org/wiki/Heinz-Harald_Frentzen"
+      ],
+      [
+        "Mika",
+        "Häkkinen",
+        "http://en.wikipedia.org/wiki/Mika_H%C3%A4kkinen"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T2.forename, T2.surname, T2.url FROM lapTimes AS T1 INNER JOIN drivers AS T2 ON T2.driverId = T1.driverId WHERE T1.raceId = 161 AND T1.time LIKE '1:27%'",
+  "id": 867,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "forename",
+        "surname",
+        "url"
+      ],
+      [
+        "David",
+        "Coulthard",
+        "http://en.wikipedia.org/wiki/David_Coulthard"
+      ],
+      [
+        "Jarno",
+        "Trulli",
+        "http://en.wikipedia.org/wiki/Jarno_Trulli"
+      ],
+      [
+        "Jenson",
+        "Button",
+        "http://en.wikipedia.org/wiki/Jenson_Button"
+      ],
+      [
+        "Rubens",
+        "Barrichello",
+        "http://en.wikipedia.org/wiki/Rubens_Barrichello"
+      ],
+      [
+        "Ralf",
+        "Schumacher",
+        "http://en.wikipedia.org/wiki/Ralf_Schumacher"
+      ],
+      [
+        "Michael",
+        "Schumacher",
+        "http://en.wikipedia.org/wiki/Michael_Schumacher"
+      ],
+      [
+        "Ricardo",
+        "Zonta",
+        "http://en.wikipedia.org/wiki/Ricardo_Zonta"
+      ],
+      [
+        "Heinz-Harald",
+        "Frentzen",
+        "http://en.wikipedia.org/wiki/Heinz-Harald_Frentzen"
+      ],
+      [
+        "Mika",
+        "Häkkinen",
+        "http://en.wikipedia.org/wiki/Mika_H%C3%A4kkinen"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT d.forename, d.surname, d.url\nFROM lapTimes lt\nJOIN drivers d ON lt.driverId = d.driverId\nWHERE lt.raceId = 161\n  AND lt.time LIKE '1:27.%';",
+  "question": "Who was the player that got the lap time of 0:01:27 in the race No. 161? Show his introduction website.",
+  "thinking": ""
+}

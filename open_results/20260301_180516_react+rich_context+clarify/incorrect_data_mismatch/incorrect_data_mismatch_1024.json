@@ -1,0 +1,38 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "moderate",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(id)"
+      ],
+      [
+        "3594"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(id) FROM Player_Attributes WHERE overall_rating BETWEEN 60 AND 65 AND defensive_work_rate = 'low'",
+  "id": 1024,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(id)"
+      ],
+      [
+        "2708"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(id) FROM Player_Attributes WHERE overall_rating \u003e= 60 AND overall_rating \u003c 65 AND defensive_work_rate = 'low';",
+  "question": "Among the players with an overall rating between 60 to 65, how many players whose going to be in all of your attack moves instead of defensing?",
+  "thinking": ""
+}

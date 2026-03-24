@@ -1,0 +1,578 @@
+{
+  "db_id": "superhero",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "full_name"
+      ],
+      [
+        "Charles Chandler"
+      ],
+      [
+        "Bob"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Angel Salvadore Bohusk"
+      ],
+      [
+        "Raymond Palmer"
+      ],
+      [
+        "Ryan Choi"
+      ],
+      [
+        "Michael Washington Lane"
+      ],
+      [
+        "Roberto Velasquez"
+      ],
+      [
+        "Dane Whitman"
+      ],
+      [
+        "Jefferson Pierce"
+      ],
+      [
+        "T'Challa"
+      ],
+      [
+        "Eric Brooks"
+      ],
+      [
+        "Donald Gill"
+      ],
+      [
+        "Jaime Reyes"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Madison Jeffries"
+      ],
+      [
+        "Jericho Drumm"
+      ],
+      [
+        "Karen Beecher-Duncan"
+      ],
+      [
+        "Leonard Snart"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Jonothon Evan Starsmore"
+      ],
+      [
+        "Kevin Sidney"
+      ],
+      [
+        "Barbara Ann Minerva"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Tyrone Johnson"
+      ],
+      [
+        "Christopher Summers"
+      ],
+      [
+        "Burchell Clemens"
+      ],
+      [
+        "Scott Summers"
+      ],
+      [
+        "Christopher Powell"
+      ],
+      [
+        "Laynia Petrovna"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Floyd Lawton"
+      ],
+      [
+        "Willis Stryker"
+      ],
+      [
+        "Helen Parr"
+      ],
+      [
+        "Bonita Juarez"
+      ],
+      [
+        "Jason Rusch"
+      ],
+      [
+        "-"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Dr. James McDonald Hudson"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Han Solo"
+      ],
+      [
+        "John Hancock"
+      ],
+      [
+        "Howard (Last name unrevealed)"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Robert Louis Drake"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "John Wraith"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Alyosha Kravinoff"
+      ],
+      [
+        "Yuriko Oyama"
+      ],
+      [
+        "Abner Jenkins"
+      ],
+      [
+        "Robert Kirkland Langstrom"
+      ],
+      [
+        "John Jameson"
+      ],
+      [
+        "John-117"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Micah Sanders"
+      ],
+      [
+        "Reed Richards"
+      ],
+      [
+        "Moses Magnum"
+      ],
+      [
+        "Quentin Beck"
+      ],
+      [
+        "Nicholas Joseph Fury"
+      ],
+      [
+        "Richard Rider"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Amon Tomaz"
+      ],
+      [
+        "Daisy Louise Johnson"
+      ],
+      [
+        "Maxwell Jordan"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Rocket Raccoon"
+      ],
+      [
+        "Shang-Chi"
+      ],
+      [
+        "Gaveedra Seven"
+      ],
+      [
+        "Herman Schultz"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Maria de Guadalupe Santiago"
+      ],
+      [
+        "Martha Franklin"
+      ],
+      [
+        "-"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Virgil Ovid Hawkins"
+      ],
+      [
+        "Roberto DaCosta"
+      ],
+      [
+        "Everett Thomas"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Angel Salvadore Bohusk"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Phineas Mason"
+      ],
+      [
+        "Angelo Fortunato"
+      ],
+      [
+        "Francisco Paco Ramon"
+      ],
+      [
+        "Adrian Toomes"
+      ],
+      [
+        "James Rupert Rhodes"
+      ],
+      [
+        "Emil LaSalle"
+      ],
+      [
+        "-"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Yoda"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.full_name FROM superhero AS T1 INNER JOIN colour AS T2 ON T1.eye_colour_id = T2.id WHERE T1.weight_kg \u003c 100 AND T2.colour = 'Brown'",
+  "id": 840,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "full_name"
+      ],
+      [
+        "Charles Chandler"
+      ],
+      [
+        "Bob"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Angel Salvadore Bohusk"
+      ],
+      [
+        "Raymond Palmer"
+      ],
+      [
+        "Ryan Choi"
+      ],
+      [
+        "Michael Washington Lane"
+      ],
+      [
+        "Roberto Velasquez"
+      ],
+      [
+        "Dane Whitman"
+      ],
+      [
+        "Jefferson Pierce"
+      ],
+      [
+        "T'Challa"
+      ],
+      [
+        "Eric Brooks"
+      ],
+      [
+        "Donald Gill"
+      ],
+      [
+        "Jaime Reyes"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Madison Jeffries"
+      ],
+      [
+        "Jericho Drumm"
+      ],
+      [
+        "Karen Beecher-Duncan"
+      ],
+      [
+        "Leonard Snart"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Jonothon Evan Starsmore"
+      ],
+      [
+        "Kevin Sidney"
+      ],
+      [
+        "Barbara Ann Minerva"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Tyrone Johnson"
+      ],
+      [
+        "Christopher Summers"
+      ],
+      [
+        "Burchell Clemens"
+      ],
+      [
+        "Scott Summers"
+      ],
+      [
+        "Christopher Powell"
+      ],
+      [
+        "Laynia Petrovna"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Floyd Lawton"
+      ],
+      [
+        "Willis Stryker"
+      ],
+      [
+        "Helen Parr"
+      ],
+      [
+        "Bonita Juarez"
+      ],
+      [
+        "Jason Rusch"
+      ],
+      [
+        "-"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Dr. James McDonald Hudson"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Han Solo"
+      ],
+      [
+        "John Hancock"
+      ],
+      [
+        "Howard (Last name unrevealed)"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Robert Louis Drake"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "John Wraith"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Alyosha Kravinoff"
+      ],
+      [
+        "Yuriko Oyama"
+      ],
+      [
+        "Abner Jenkins"
+      ],
+      [
+        "Robert Kirkland Langstrom"
+      ],
+      [
+        "John Jameson"
+      ],
+      [
+        "John-117"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Micah Sanders"
+      ],
+      [
+        "Reed Richards"
+      ],
+      [
+        "Moses Magnum"
+      ],
+      [
+        "Quentin Beck"
+      ],
+      [
+        "Nicholas Joseph Fury"
+      ],
+      [
+        "Richard Rider"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Amon Tomaz"
+      ],
+      [
+        "Daisy Louise Johnson"
+      ],
+      [
+        "Maxwell Jordan"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Rocket Raccoon"
+      ],
+      [
+        "Shang-Chi"
+      ],
+      [
+        "Gaveedra Seven"
+      ],
+      [
+        "Herman Schultz"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Maria de Guadalupe Santiago"
+      ],
+      [
+        "Martha Franklin"
+      ],
+      [
+        "-"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Virgil Ovid Hawkins"
+      ],
+      [
+        "Roberto DaCosta"
+      ],
+      [
+        "Everett Thomas"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Angel Salvadore Bohusk"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Phineas Mason"
+      ],
+      [
+        "Angelo Fortunato"
+      ],
+      [
+        "Francisco Paco Ramon"
+      ],
+      [
+        "Adrian Toomes"
+      ],
+      [
+        "James Rupert Rhodes"
+      ],
+      [
+        "Emil LaSalle"
+      ],
+      [
+        "-"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Yoda"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT s.full_name\nFROM superhero s\nJOIN colour c ON s.eye_colour_id = c.id\nWHERE s.weight_kg \u003c 100 \n  AND c.colour = 'Brown';",
+  "question": "In superheroes with weight less than 100, list the full name of the superheroes with brown eyes.",
+  "thinking": ""
+}

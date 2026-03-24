@@ -1,0 +1,38 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "DisplayName"
+      ],
+      [
+        "whuber"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.DisplayName FROM users AS T1 INNER JOIN badges AS T2 ON T1.Id = T2.UserId GROUP BY T1.DisplayName ORDER BY COUNT(T1.Id) DESC LIMIT 1",
+  "id": 669,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "DisplayName"
+      ],
+      [
+        "whuber"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT TRIM(u.DisplayName) AS DisplayName\nFROM badges b\nJOIN users u ON b.UserId = u.Id\nGROUP BY b.UserId, TRIM(u.DisplayName)\nORDER BY COUNT(b.Name) DESC\nLIMIT 1;",
+  "question": "What is the display name of the user who acquired the highest amount of badges?",
+  "thinking": ""
+}

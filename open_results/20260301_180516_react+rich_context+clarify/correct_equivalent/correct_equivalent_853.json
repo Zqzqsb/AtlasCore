@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T3.raceId)"
+      ],
+      [
+        "2"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T3.raceId) FROM circuits AS T1 INNER JOIN races AS T3 ON T3.circuitID = T1.circuitId WHERE T1.country NOT IN ( 'Bahrain', 'China', 'Singapore', 'Japan', 'Korea', 'Turkey', 'UAE', 'Malaysia', 'Spain', 'Monaco', 'Azerbaijan', 'Austria', 'Belgium', 'France', 'Germany', 'Hungary', 'Italy', 'UK' ) AND T3.year = 2010",
+  "id": 853,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T3.raceId)"
+      ],
+      [
+        "2"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(T3.raceId) \nFROM races AS T3\nJOIN circuits AS T2 ON T3.circuitId = T2.circuitId\nWHERE T3.year = 2010\nAND T2.country NOT IN ('Austria', 'Azerbaijan', 'Belgium', 'France', 'Germany', 'Hungary', 'Italy', 'Monaco', 'Netherlands', 'Portugal', 'Russia', 'Spain', 'Sweden', 'Switzerland', 'Turkey', 'UK', 'Bahrain', 'China', 'India', 'Japan', 'Korea', 'Malaysia', 'Singapore', 'UAE');",
+  "question": "How many races in the year 2010 are held on grand prixs outside Asia and Europe?",
+  "thinking": ""
+}

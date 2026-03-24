@@ -1,0 +1,38 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "moderate",
+  "error_reason": "column name mismatch and positional data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "SUM(t2.away_team_goal)"
+      ],
+      [
+        "29"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT SUM(t2.away_team_goal) FROM Player AS t1 INNER JOIN match AS t2 ON t1.player_api_id = t2.away_player_5 WHERE t1.player_name IN ('Daan Smith', 'Filipe Ferreira')",
+  "id": 1121,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "SUM(m.away_team_goal)"
+      ],
+      [
+        "35"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT SUM(m.away_team_goal) \nFROM Match m\nJOIN Player p ON p.player_api_id IN (m.away_player_1, m.away_player_2, m.away_player_3, m.away_player_4, m.away_player_5, m.away_player_6, m.away_player_7, m.away_player_8, m.away_player_9, m.away_player_10, m.away_player_11)\nWHERE p.player_name IN ('Daan Smith', 'Filipe Ferreira')",
+  "question": "Sum up the away team goal scored by both Daan Smith and Filipe Ferreira.",
+  "thinking": ""
+}

@@ -1,0 +1,38 @@
+{
+  "db_id": "toxicology",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T.bond_id)"
+      ],
+      [
+        "5"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T.bond_id) FROM bond AS T WHERE T.bond_type = '#'",
+  "id": 203,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(bond_id)"
+      ],
+      [
+        "5"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(bond_id) FROM bond WHERE bond_type = '#';",
+  "question": "How many triple type bonds are there?",
+  "thinking": ""
+}

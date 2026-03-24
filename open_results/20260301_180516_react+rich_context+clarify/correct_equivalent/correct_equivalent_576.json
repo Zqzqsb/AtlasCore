@@ -1,0 +1,104 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Name"
+      ],
+      [
+        "Editor"
+      ],
+      [
+        "Student"
+      ],
+      [
+        "Cleanup"
+      ],
+      [
+        "Supporter"
+      ],
+      [
+        "Nice Question"
+      ],
+      [
+        "Popular Question"
+      ],
+      [
+        "Taxonomist"
+      ],
+      [
+        "Favorite Question"
+      ],
+      [
+        "Good Question"
+      ],
+      [
+        "Notable Question"
+      ],
+      [
+        "Nice Question"
+      ],
+      [
+        "Famous Question"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.Name FROM users AS T1 INNER JOIN badges AS T2 ON T1.Id = T2.UserId WHERE T1.DisplayName = 'SilentGhost'",
+  "id": 576,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Name"
+      ],
+      [
+        "Editor"
+      ],
+      [
+        "Student"
+      ],
+      [
+        "Cleanup"
+      ],
+      [
+        "Supporter"
+      ],
+      [
+        "Nice Question"
+      ],
+      [
+        "Popular Question"
+      ],
+      [
+        "Taxonomist"
+      ],
+      [
+        "Favorite Question"
+      ],
+      [
+        "Good Question"
+      ],
+      [
+        "Notable Question"
+      ],
+      [
+        "Nice Question"
+      ],
+      [
+        "Famous Question"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT b.Name FROM badges b JOIN users u ON b.UserId = u.Id WHERE TRIM(u.DisplayName) = 'SilentGhost';",
+  "question": "What is the badge name that user 'SilentGhost' obtained?",
+  "thinking": ""
+}

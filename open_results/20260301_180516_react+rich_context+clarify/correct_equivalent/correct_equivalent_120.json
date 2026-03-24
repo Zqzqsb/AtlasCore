@@ -1,0 +1,246 @@
+{
+  "db_id": "financial",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "account_id",
+        "A2",
+        "A3"
+      ],
+      [
+        "66",
+        "Rychnov nad Kneznou",
+        "east Bohemia"
+      ],
+      [
+        "273",
+        "Karlovy Vary",
+        "west Bohemia"
+      ],
+      [
+        "485",
+        "Kutna Hora",
+        "central Bohemia"
+      ],
+      [
+        "539",
+        "Rakovnik",
+        "central Bohemia"
+      ],
+      [
+        "1050",
+        "Hodonin",
+        "south Moravia"
+      ],
+      [
+        "1286",
+        "Zdar nad Sazavou",
+        "south Moravia"
+      ],
+      [
+        "1527",
+        "Tachov",
+        "west Bohemia"
+      ],
+      [
+        "1539",
+        "Hl.m. Praha",
+        "Prague"
+      ],
+      [
+        "1965",
+        "Hodonin",
+        "south Moravia"
+      ],
+      [
+        "2137",
+        "Kladno",
+        "central Bohemia"
+      ],
+      [
+        "2464",
+        "Decin",
+        "north Bohemia"
+      ],
+      [
+        "2705",
+        "Vyskov",
+        "south Moravia"
+      ],
+      [
+        "3837",
+        "Rychnov nad Kneznou",
+        "east Bohemia"
+      ],
+      [
+        "4013",
+        "Opava",
+        "north Moravia"
+      ],
+      [
+        "5228",
+        "Vsetin",
+        "north Moravia"
+      ],
+      [
+        "5256",
+        "Olomouc",
+        "north Moravia"
+      ],
+      [
+        "7123",
+        "Zlin",
+        "south Moravia"
+      ],
+      [
+        "7774",
+        "Ostrava - mesto",
+        "north Moravia"
+      ],
+      [
+        "8073",
+        "Karlovy Vary",
+        "west Bohemia"
+      ],
+      [
+        "8212",
+        "Usti nad Orlici",
+        "east Bohemia"
+      ],
+      [
+        "10227",
+        "Uherske Hradiste",
+        "south Moravia"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.account_id, T2.A2, T2.A3 FROM account AS T1 INNER JOIN district AS T2 ON T1.district_id = T2.district_id WHERE T1.frequency = 'POPLATEK PO OBRATU' AND STRFTIME('%Y', T1.date)= '1993'",
+  "id": 120,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "account_id",
+        "A2",
+        "A3"
+      ],
+      [
+        "66",
+        "Rychnov nad Kneznou",
+        "east Bohemia"
+      ],
+      [
+        "273",
+        "Karlovy Vary",
+        "west Bohemia"
+      ],
+      [
+        "485",
+        "Kutna Hora",
+        "central Bohemia"
+      ],
+      [
+        "539",
+        "Rakovnik",
+        "central Bohemia"
+      ],
+      [
+        "1050",
+        "Hodonin",
+        "south Moravia"
+      ],
+      [
+        "1286",
+        "Zdar nad Sazavou",
+        "south Moravia"
+      ],
+      [
+        "1527",
+        "Tachov",
+        "west Bohemia"
+      ],
+      [
+        "1539",
+        "Hl.m. Praha",
+        "Prague"
+      ],
+      [
+        "1965",
+        "Hodonin",
+        "south Moravia"
+      ],
+      [
+        "2137",
+        "Kladno",
+        "central Bohemia"
+      ],
+      [
+        "2464",
+        "Decin",
+        "north Bohemia"
+      ],
+      [
+        "2705",
+        "Vyskov",
+        "south Moravia"
+      ],
+      [
+        "3837",
+        "Rychnov nad Kneznou",
+        "east Bohemia"
+      ],
+      [
+        "4013",
+        "Opava",
+        "north Moravia"
+      ],
+      [
+        "5228",
+        "Vsetin",
+        "north Moravia"
+      ],
+      [
+        "5256",
+        "Olomouc",
+        "north Moravia"
+      ],
+      [
+        "7123",
+        "Zlin",
+        "south Moravia"
+      ],
+      [
+        "7774",
+        "Ostrava - mesto",
+        "north Moravia"
+      ],
+      [
+        "8073",
+        "Karlovy Vary",
+        "west Bohemia"
+      ],
+      [
+        "8212",
+        "Usti nad Orlici",
+        "east Bohemia"
+      ],
+      [
+        "10227",
+        "Uherske Hradiste",
+        "south Moravia"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT a.account_id, d.A2, d.A3 \nFROM account a\nJOIN district d ON a.district_id = d.district_id\nWHERE a.frequency = 'POPLATEK PO OBRATU'\nAND STRFTIME('%Y', a.date) = '1993';",
+  "question": "For accounts in 1993 with statement issued after transaction, list the account ID, district name and district region.",
+  "thinking": ""
+}

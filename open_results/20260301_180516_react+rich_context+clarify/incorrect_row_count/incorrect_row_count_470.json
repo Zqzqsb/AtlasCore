@@ -1,0 +1,80 @@
+{
+  "db_id": "card_games",
+  "difficulty": "moderate",
+  "error_reason": "row count mismatch: gold=15, pred=1",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "IIF(T2.mtgoCode IS NOT NULL, 'YES', 'NO')"
+      ],
+      [
+        "YES"
+      ],
+      [
+        "YES"
+      ],
+      [
+        "YES"
+      ],
+      [
+        "YES"
+      ],
+      [
+        "YES"
+      ],
+      [
+        "NO"
+      ],
+      [
+        "YES"
+      ],
+      [
+        "YES"
+      ],
+      [
+        "NO"
+      ],
+      [
+        "NO"
+      ],
+      [
+        "NO"
+      ],
+      [
+        "NO"
+      ],
+      [
+        "NO"
+      ],
+      [
+        "NO"
+      ],
+      [
+        "NO"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT IIF(T2.mtgoCode IS NOT NULL, 'YES', 'NO') FROM cards AS T1 INNER JOIN sets AS T2 ON T2.code = T1.setCode WHERE T1.name = 'Angel of Mercy'",
+  "id": 470,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "IIF(T2.mtgoCode IS NOT NULL, 'YES', 'NO')"
+      ],
+      [
+        "YES"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT IIF(MAX(CASE WHEN T2.mtgoCode IS NOT NULL THEN 1 ELSE 0 END) = 1, 'YES', 'NO') AS \"IIF(T2.mtgoCode IS NOT NULL, 'YES', 'NO')\"\nFROM cards AS T1\nLEFT JOIN sets AS T2 ON T1.setCode = T2.code\nWHERE T1.name = 'Angel of Mercy';",
+  "question": "Did the set of cards with \"Angel of Mercy\" appear on Magic: The Gathering Online?",
+  "thinking": ""
+}

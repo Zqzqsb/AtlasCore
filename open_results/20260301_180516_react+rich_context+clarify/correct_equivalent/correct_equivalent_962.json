@@ -1,0 +1,42 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name",
+        "year"
+      ],
+      [
+        "Australian Grand Prix",
+        "1991"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.name, T1.year FROM races AS T1 INNER JOIN results AS T2 on T1.raceId = T2.raceId WHERE T2.milliseconds IS NOT NULL ORDER BY T2.milliseconds LIMIT 1",
+  "id": 962,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name",
+        "year"
+      ],
+      [
+        "Australian Grand Prix",
+        "1991"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT r.name, r.year\nFROM results res\nJOIN races r ON res.raceId = r.raceId\nWHERE res.milliseconds IS NOT NULL\nORDER BY res.milliseconds ASC\nLIMIT 1;",
+  "question": "Which race has the shortest actual finishing time? Please give the name and year.",
+  "thinking": ""
+}

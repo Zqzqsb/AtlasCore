@@ -1,0 +1,42 @@
+{
+  "db_id": "superhero",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "race",
+        "alignment"
+      ],
+      [
+        "Alpha",
+        "Good"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.race, T3.alignment FROM superhero AS T1 INNER JOIN race AS T2 ON T1.race_id = T2.id INNER JOIN alignment AS T3 ON T1.alignment_id = T3.id WHERE T1.superhero_name = 'Cameron Hicks'",
+  "id": 788,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "race",
+        "alignment"
+      ],
+      [
+        "Alpha",
+        "Good"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT r.race, a.alignment FROM superhero s JOIN race r ON s.race_id = r.id JOIN alignment a ON s.alignment_id = a.id WHERE s.superhero_name = 'Cameron Hicks';",
+  "question": "What are the race and alignment of Cameron Hicks?",
+  "thinking": ""
+}

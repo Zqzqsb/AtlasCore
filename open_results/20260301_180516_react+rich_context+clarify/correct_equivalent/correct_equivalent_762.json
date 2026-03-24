@@ -1,0 +1,38 @@
+{
+  "db_id": "superhero",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "superhero_name"
+      ],
+      [
+        "King Kong"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.superhero_name FROM superhero AS T1 INNER JOIN gender AS T2 ON T1.gender_id = T2.id WHERE T2.gender = 'Male' AND T1.weight_kg * 100 \u003e ( SELECT AVG(weight_kg) FROM superhero ) * 79",
+  "id": 762,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "superhero_name"
+      ],
+      [
+        "King Kong"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT s.superhero_name\nFROM superhero s\nJOIN gender g ON s.gender_id = g.id\nWHERE g.gender = 'Male'\n  AND s.weight_kg \u003e (SELECT AVG(weight_kg) * 0.79 FROM superhero)",
+  "question": "Among the male superheroes, list the super hero names of superheroes with weight greater than the 79% average weight of all superheroes.",
+  "thinking": ""
+}

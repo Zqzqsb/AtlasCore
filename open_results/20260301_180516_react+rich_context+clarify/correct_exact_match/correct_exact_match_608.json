@@ -1,0 +1,16 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT COUNT(id) FROM comments WHERE score \u003e 60",
+  "id": 608,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT COUNT(Id) FROM comments WHERE Score \u003e 60;",
+  "question": "How many positive comments are there on the list?",
+  "thinking": ""
+}

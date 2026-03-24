@@ -1,0 +1,38 @@
+{
+  "db_id": "student_club",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "major_name"
+      ],
+      [
+        "Communication Studies"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.major_name FROM major AS T1 INNER JOIN member AS T2 ON T1.major_id = T2.link_to_major WHERE T2.first_name = 'Phillip' AND T2.last_name = 'Cullen'",
+  "id": 1415,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "major_name"
+      ],
+      [
+        "Communication Studies"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT m.major_name\nFROM member mem\nJOIN major m ON mem.link_to_major = m.major_id\nWHERE mem.first_name = 'Phillip' AND mem.last_name = 'Cullen';",
+  "question": "State the name of major that Phillip Cullen has joined.",
+  "thinking": ""
+}

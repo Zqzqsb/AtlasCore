@@ -1,0 +1,114 @@
+{
+  "db_id": "student_club",
+  "difficulty": "moderate",
+  "error_reason": "row count mismatch: gold=4, pred=16",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "category",
+        "type"
+      ],
+      [
+        "Speaker Gifts",
+        "Guest Speaker"
+      ],
+      [
+        "Food",
+        "Guest Speaker"
+      ],
+      [
+        "Parking",
+        "Guest Speaker"
+      ],
+      [
+        "Advertisement",
+        "Guest Speaker"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T2.category, T1.type FROM event AS T1 INNER JOIN budget AS T2 ON T1.event_id = T2.link_to_event WHERE T1.location = 'MU 215' AND T2.spent = 0 AND T1.type = 'Guest Speaker'",
+  "id": 1428,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "category",
+        "type"
+      ],
+      [
+        "Speaker Gifts",
+        "Guest Speaker"
+      ],
+      [
+        "Food",
+        "Guest Speaker"
+      ],
+      [
+        "Parking",
+        "Guest Speaker"
+      ],
+      [
+        "Advertisement",
+        "Guest Speaker"
+      ],
+      [
+        "Speaker Gifts",
+        "Guest Speaker"
+      ],
+      [
+        "Speaker Gifts",
+        "Guest Speaker"
+      ],
+      [
+        "Food",
+        "Guest Speaker"
+      ],
+      [
+        "Food",
+        "Guest Speaker"
+      ],
+      [
+        "Advertisement",
+        "Guest Speaker"
+      ],
+      [
+        "Speaker Gifts",
+        "Guest Speaker"
+      ],
+      [
+        "Food",
+        "Guest Speaker"
+      ],
+      [
+        "Advertisement",
+        "Guest Speaker"
+      ],
+      [
+        "Parking",
+        "Guest Speaker"
+      ],
+      [
+        "Parking",
+        "Guest Speaker"
+      ],
+      [
+        "Advertisement",
+        "Guest Speaker"
+      ],
+      [
+        "Parking",
+        "Guest Speaker"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT b.category, e.type \nFROM budget b\nJOIN event e ON b.link_to_event = e.event_id\nWHERE e.location = 'MU 215' \n  AND e.type = 'Guest Speaker'\n  AND b.spent = 0",
+  "question": "What are the budget category of the events located at MU 215 and a guest speaker type with a 0 budget spent?",
+  "thinking": ""
+}

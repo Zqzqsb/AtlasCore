@@ -1,0 +1,38 @@
+{
+  "db_id": "student_club",
+  "difficulty": "challenging",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "member_id"
+      ],
+      [
+        "rec4BLdZHS2Blfp4v"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.member_id FROM expense AS T1 INNER JOIN member AS T2 ON T1.link_to_member = T2.member_id INNER JOIN budget AS T3 ON T1.link_to_budget = T3.budget_id INNER JOIN event AS T4 ON T3.link_to_event = T4.event_id GROUP BY T2.member_id HAVING COUNT(DISTINCT T4.event_id) \u003e 1 ORDER BY SUM(T1.cost) DESC LIMIT 1",
+  "id": 1452,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "member_id"
+      ],
+      [
+        "rec4BLdZHS2Blfp4v"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT e.link_to_member AS member_id\nFROM expense e\nJOIN budget b ON e.link_to_budget = b.budget_id\nGROUP BY e.link_to_member\nHAVING COUNT(DISTINCT b.link_to_event) \u003e 1\nORDER BY SUM(e.cost) DESC\nLIMIT 1",
+  "question": "Among the members who incurred expenses in more than one event, who paid the most amount?",
+  "thinking": ""
+}

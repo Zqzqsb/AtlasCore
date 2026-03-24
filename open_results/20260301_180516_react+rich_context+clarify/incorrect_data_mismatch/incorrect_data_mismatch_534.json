@@ -1,0 +1,38 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(Id)"
+      ],
+      [
+        "4941"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(Id) FROM users WHERE date(LastAccessDate) \u003e '2014-09-01'",
+  "id": 534,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(Id)"
+      ],
+      [
+        "5146"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(Id) FROM users WHERE LastAccessDate \u003e '2014-09-01'",
+  "question": "How many users last accessed the website after 2014/9/1?",
+  "thinking": ""
+}

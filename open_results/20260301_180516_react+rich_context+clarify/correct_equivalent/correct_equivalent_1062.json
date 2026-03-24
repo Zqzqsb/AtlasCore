@@ -1,0 +1,38 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(id)"
+      ],
+      [
+        "24"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(id) FROM Player WHERE weight \u003e 170 AND player_name LIKE 'Adam%'",
+  "id": 1062,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(id)"
+      ],
+      [
+        "24"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(id) FROM Player WHERE player_name LIKE 'Adam%' AND weight \u003e 170;",
+  "question": "How many players whose first names are Adam and weigh more than 170?",
+  "thinking": ""
+}

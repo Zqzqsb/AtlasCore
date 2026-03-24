@@ -1,0 +1,62 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "id"
+      ],
+      [
+        "38921"
+      ],
+      [
+        "38922"
+      ],
+      [
+        "38923"
+      ],
+      [
+        "38924"
+      ],
+      [
+        "81218"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT id FROM Player_Attributes ORDER BY crossing DESC LIMIT 5",
+  "id": 1025,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "id"
+      ],
+      [
+        "7701"
+      ],
+      [
+        "4894"
+      ],
+      [
+        "2324"
+      ],
+      [
+        "10028"
+      ],
+      [
+        "10861"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT p.id FROM Player_Attributes pa JOIN Player p ON pa.player_api_id = p.player_api_id GROUP BY p.id ORDER BY MAX(pa.crossing) DESC LIMIT 5",
+  "question": "Who are the top 5 players who perform better in crossing actions? Indicate their player id.",
+  "thinking": ""
+}

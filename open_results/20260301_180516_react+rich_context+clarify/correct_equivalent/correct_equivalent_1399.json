@@ -1,0 +1,38 @@
+{
+  "db_id": "student_club",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "event_name"
+      ],
+      [
+        "Yearly Kickoff"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.event_name FROM budget AS T1 INNER JOIN event AS T2 ON T1.link_to_event = T2.event_id WHERE T1.category = 'Advertisement' ORDER BY T1.spent DESC LIMIT 1",
+  "id": 1399,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "event_name"
+      ],
+      [
+        "Yearly Kickoff"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT e.event_name\nFROM budget b\nJOIN event e ON b.link_to_event = e.event_id\nWHERE b.category = 'Advertisement'\nORDER BY b.spent DESC\nLIMIT 1;",
+  "question": "Name the event with the highest amount spent on advertisement.",
+  "thinking": ""
+}

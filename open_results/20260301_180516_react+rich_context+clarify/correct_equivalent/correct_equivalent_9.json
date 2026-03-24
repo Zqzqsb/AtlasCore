@@ -1,0 +1,38 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "NumTstTakr"
+      ],
+      [
+        "459"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT NumTstTakr FROM satscores WHERE cds = ( SELECT CDSCode FROM frpm ORDER BY `FRPM Count (K-12)` DESC LIMIT 1 )",
+  "id": 9,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "NumTstTakr"
+      ],
+      [
+        "459"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT s.NumTstTakr\nFROM frpm f\nJOIN satscores s ON CAST(f.CDSCode AS INTEGER) = CAST(s.cds AS INTEGER)\nORDER BY f.\"FRPM Count (K-12)\" DESC\nLIMIT 1;",
+  "question": "What is the number of SAT test takers of the schools with the highest FRPM count for K-12 students?",
+  "thinking": ""
+}

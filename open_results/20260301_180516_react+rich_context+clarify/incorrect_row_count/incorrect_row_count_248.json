@@ -1,0 +1,56 @@
+{
+  "db_id": "toxicology",
+  "difficulty": "challenging",
+  "error_reason": "row count mismatch: gold=3, pred=5",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "element"
+      ],
+      [
+        "na"
+      ],
+      [
+        "zn"
+      ],
+      [
+        "k"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T.element FROM atom AS T WHERE T.element NOT IN ( SELECT DISTINCT T1.element FROM atom AS T1 INNER JOIN connected AS T2 ON T1.atom_id = T2.atom_id )",
+  "id": 248,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "element"
+      ],
+      [
+        "na"
+      ],
+      [
+        "cl"
+      ],
+      [
+        "h"
+      ],
+      [
+        "zn"
+      ],
+      [
+        "k"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT element FROM atom WHERE atom_id NOT IN (SELECT atom_id FROM connected);",
+  "question": "List all the elements of atoms that can not bond with any other atoms.",
+  "thinking": ""
+}

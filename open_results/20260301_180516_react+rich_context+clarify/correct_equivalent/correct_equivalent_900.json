@@ -1,0 +1,44 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name"
+      ],
+      [
+        "A1-Ring"
+      ],
+      [
+        "Autódromo Juan y Oscar Gálvez"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T1.name FROM circuits AS T1 INNER JOIN races AS T2 ON T2.circuitID = T1.circuitId WHERE STRFTIME('%Y', T2.date) BETWEEN '1990' AND '2000' GROUP BY T1.name HAVING COUNT(T2.raceId) = 4",
+  "id": 900,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name"
+      ],
+      [
+        "A1-Ring"
+      ],
+      [
+        "Autódromo Juan y Oscar Gálvez"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT c.name\nFROM circuits c\nJOIN races r ON c.circuitId = r.circuitId\nWHERE r.year BETWEEN 1990 AND 2000\nGROUP BY c.circuitId, c.name\nHAVING COUNT(*) = 4;",
+  "question": "List circuits which host 4 f1 races from year 1990 to 2000.",
+  "thinking": ""
+}

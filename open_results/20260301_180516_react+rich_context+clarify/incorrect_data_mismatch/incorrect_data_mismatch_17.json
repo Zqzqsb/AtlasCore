@@ -1,0 +1,38 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.CDSCode)"
+      ],
+      [
+        "1"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T1.CDSCode) FROM schools AS T1 INNER JOIN satscores AS T2 ON T1.CDSCode = T2.cds WHERE T1.StatusType = 'Merged' AND T2.NumTstTakr \u003c 100 AND T1.County = 'Lake'",
+  "id": 17,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.CDSCode)"
+      ],
+      [
+        "0"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(T1.CDSCode)\nFROM schools AS T1\nINNER JOIN satscores AS T2 ON CAST(T1.CDSCode AS INTEGER) = CAST(T2.cds AS INTEGER)\nWHERE T1.County = 'Alameda' \n  AND T1.StatusType = 'Merged'\n  AND T2.NumTstTakr \u003c 100",
+  "question": "How many schools in merged Alameda have number of test takers less than 100?",
+  "thinking": ""
+}

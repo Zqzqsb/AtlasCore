@@ -1,0 +1,50 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Birthday"
+      ],
+      [
+        "1943-06-02 00:00:00 +0000 UTC"
+      ],
+      [
+        "1943-06-02 00:00:00 +0000 UTC"
+      ],
+      [
+        "1953-04-06 00:00:00 +0000 UTC"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.Birthday FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.GPT \u003c 60 ORDER BY T2.GPT DESC LIMIT 3",
+  "id": 1283,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Birthday"
+      ],
+      [
+        "1943-06-02 00:00:00 +0000 UTC"
+      ],
+      [
+        "1943-06-02 00:00:00 +0000 UTC"
+      ],
+      [
+        "1953-04-06 00:00:00 +0000 UTC"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT p.Birthday\nFROM Patient p\nJOIN Laboratory l ON p.ID = l.ID\nWHERE l.GPT \u003c 60\nORDER BY l.GPT DESC\nLIMIT 3;",
+  "question": "Please list the top three patients' birthdays with the highest glutamic pylvic transaminase in the normal range.",
+  "thinking": ""
+}

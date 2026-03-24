@@ -1,0 +1,50 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "lap",
+        "name",
+        "year",
+        "location"
+      ],
+      [
+        "78",
+        "Monaco Grand Prix",
+        "2009",
+        "Monte-Carlo"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T3.lap, T2.name, T2.year, T1.location FROM circuits AS T1 INNER JOIN races AS T2 ON T1.circuitId = T2.circuitId INNER JOIN lapTimes AS T3 ON T3.raceId = T2.raceId ORDER BY T3.lap DESC LIMIT 1",
+  "id": 909,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "lap",
+        "name",
+        "year",
+        "location"
+      ],
+      [
+        "200",
+        "Indianapolis 500",
+        "1960",
+        "Indianapolis"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT r.laps AS lap, ra.name, ra.year, c.location\nFROM results r\nJOIN races ra ON r.raceId = ra.raceId\nJOIN circuits c ON ra.circuitId = c.circuitId\nORDER BY r.laps DESC\nLIMIT 1;",
+  "question": "What is the most laps f1 races had? Name the race, year and circuit location where the races with most laps was hosted.",
+  "thinking": ""
+}

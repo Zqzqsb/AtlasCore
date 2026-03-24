@@ -1,0 +1,234 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "challenging",
+  "error_reason": "column name mismatch and positional data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "year",
+        "AVG(time_seconds)"
+      ],
+      [
+        "1950",
+        "9712.01842857143"
+      ],
+      [
+        "1951",
+        "10870.343222222224"
+      ],
+      [
+        "1952",
+        "11061.26325"
+      ],
+      [
+        "1953",
+        "10828.015666666666"
+      ],
+      [
+        "1954",
+        "11212.563444444444"
+      ],
+      [
+        "1955",
+        "10791.868714285714"
+      ],
+      [
+        "1956",
+        "10871.124888888888"
+      ],
+      [
+        "1957",
+        "11322.675666666668"
+      ],
+      [
+        "1958",
+        "8379.745"
+      ],
+      [
+        "1959",
+        "8745.455555555556"
+      ],
+      [
+        "1960",
+        "8771.807"
+      ],
+      [
+        "1961",
+        "8258.129125"
+      ],
+      [
+        "1962",
+        "8410.781555555555"
+      ],
+      [
+        "1963",
+        "8280.7054"
+      ],
+      [
+        "1964",
+        "8005.1086"
+      ],
+      [
+        "1965",
+        "8165.3046"
+      ],
+      [
+        "1966",
+        "7834.341444444445"
+      ],
+      [
+        "1967",
+        "7645.46409090909"
+      ],
+      [
+        "1968",
+        "7626.180083333334"
+      ],
+      [
+        "1969",
+        "7006.474909090909"
+      ],
+      [
+        "1970",
+        "6520.316"
+      ],
+      [
+        "1971",
+        "6111.651454545455"
+      ],
+      [
+        "1972",
+        "6526.003250000001"
+      ],
+      [
+        "1973",
+        "6235.945266666667"
+      ],
+      [
+        "1974",
+        "6046.8204"
+      ]
+    ]
+  },
+  "gt_sql": "WITH time_in_seconds AS ( SELECT T2.year, T2.raceId, T1.positionOrder, CASE WHEN T1.positionOrder = 1 THEN (CAST(SUBSTR(T1.time, 1, 1) AS REAL) * 3600) + (CAST(SUBSTR(T1.time, 3, 2) AS REAL) * 60) + CAST(SUBSTR(T1.time, 6,2) AS REAL )   + CAST(SUBSTR(T1.time, 9) AS REAL)/1000 ELSE 0 END AS time_seconds FROM results AS T1 INNER JOIN races AS T2 ON T1.raceId = T2.raceId WHERE T1.time IS NOT NULL ), champion_time AS ( SELECT year, raceId, time_seconds FROM time_in_seconds WHERE positionOrder = 1 ) SELECT year, AVG(time_seconds) FROM champion_time WHERE year \u003c 1975 GROUP BY year HAVING AVG(time_seconds) IS NOT NULL",
+  "id": 956,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "year",
+        "AVG_time_seconds"
+      ],
+      [
+        "1950",
+        "7968.3099999999995"
+      ],
+      [
+        "1951",
+        "9044.976666666666"
+      ],
+      [
+        "1952",
+        "9611.585"
+      ],
+      [
+        "1953",
+        "9010.69888888889"
+      ],
+      [
+        "1954",
+        "9445.296666666667"
+      ],
+      [
+        "1955",
+        "9058.047142857144"
+      ],
+      [
+        "1956",
+        "9383.871111111112"
+      ],
+      [
+        "1957",
+        "10232.205555555554"
+      ],
+      [
+        "1958",
+        "7489.281818181818"
+      ],
+      [
+        "1959",
+        "7784.834444444444"
+      ],
+      [
+        "1960",
+        "7487.149"
+      ],
+      [
+        "1961",
+        "7406.0375"
+      ],
+      [
+        "1962",
+        "7597.822222222221"
+      ],
+      [
+        "1963",
+        "7476.24"
+      ],
+      [
+        "1964",
+        "7499.464999999999"
+      ],
+      [
+        "1965",
+        "7469.67"
+      ],
+      [
+        "1966",
+        "6749.138888888889"
+      ],
+      [
+        "1967",
+        "6141.290909090909"
+      ],
+      [
+        "1968",
+        "5957.411666666667"
+      ],
+      [
+        "1969",
+        "4625.961818181819"
+      ],
+      [
+        "1970",
+        "4145.206923076923"
+      ],
+      [
+        "1971",
+        "3908.354636363636"
+      ],
+      [
+        "1972",
+        "4495.376166666666"
+      ],
+      [
+        "1973",
+        "3937.5654"
+      ],
+      [
+        "1974",
+        "4023.781066666667"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT \n    r.year,\n    AVG(\n        CAST(SUBSTR(res.time, 1, 2) AS REAL) * 3600 + \n        CAST(SUBSTR(res.time, 4, 2) AS REAL) * 60 + \n        CAST(SUBSTR(res.time, 7, 6) AS REAL)\n    ) AS AVG_time_seconds\nFROM results res\nJOIN races r ON res.raceId = r.raceId\nWHERE r.year \u003c 1975\n    AND res.positionText = '1'\n    AND res.time IS NOT NULL\nGROUP BY r.year\nORDER BY r.year;",
+  "question": "What is the average time in seconds of champion for each year, before year 1975?",
+  "thinking": ""
+}

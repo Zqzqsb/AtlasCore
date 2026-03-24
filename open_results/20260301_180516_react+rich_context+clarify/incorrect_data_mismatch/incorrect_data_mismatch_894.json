@@ -1,0 +1,66 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "forename",
+        "surname",
+        "points"
+      ],
+      [
+        "Sebastian",
+        "Vettel",
+        "43"
+      ],
+      [
+        "Lewis",
+        "Hamilton",
+        "43"
+      ],
+      [
+        "Max",
+        "Verstappen",
+        "25"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T3.forename, T3.surname, T2.points FROM races AS T1 INNER JOIN driverStandings AS T2 ON T2.raceId = T1.raceId INNER JOIN drivers AS T3 ON T3.driverId = T2.driverId WHERE T1.name = 'Chinese Grand Prix' AND T1.year = 2017 ORDER BY T2.points DESC LIMIT 3",
+  "id": 894,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "forename",
+        "surname",
+        "points"
+      ],
+      [
+        "Lewis",
+        "Hamilton",
+        "25"
+      ],
+      [
+        "Sebastian",
+        "Vettel",
+        "18"
+      ],
+      [
+        "Max",
+        "Verstappen",
+        "15"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT d.forename, d.surname, r.points \nFROM results r\nJOIN drivers d ON r.driverId = d.driverId\nWHERE r.raceId = 970\nORDER BY r.points DESC\nLIMIT 3;",
+  "question": "Name the top 3 drivers and the points they scored in the 2017 Chinese Grand Prix.",
+  "thinking": ""
+}

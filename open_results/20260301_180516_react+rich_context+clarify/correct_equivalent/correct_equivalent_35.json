@@ -1,0 +1,38 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(T2.`Free Meal Count (Ages 5-17)` AS REAL) / T2.`Enrollment (Ages 5-17)`"
+      ],
+      [
+        "0.20174165457184326"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT CAST(T2.`Free Meal Count (Ages 5-17)` AS REAL) / T2.`Enrollment (Ages 5-17)` FROM schools AS T1 INNER JOIN frpm AS T2 ON T1.CDSCode = T2.CDSCode WHERE T1.AdmFName1 = 'Kacey' AND T1.AdmLName1 = 'Gibson'",
+  "id": 35,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(T2.`Free Meal Count (Ages 5-17)` AS REAL) / T2.`Enrollment (Ages 5-17)`"
+      ],
+      [
+        "0.20174165457184326"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT CAST(T2.`Free Meal Count (Ages 5-17)` AS REAL) / T2.`Enrollment (Ages 5-17)` \nFROM schools AS T1\nJOIN frpm AS T2 ON CAST(T1.CDSCode AS INTEGER) = CAST(T2.CDSCode AS INTEGER)\nWHERE T1.AdmFName1 = 'Kacey' AND T1.AdmLName1 = 'Gibson'",
+  "question": "What is the free rate for students between the ages of 5 and 17 at the school run by Kacey Gibson?",
+  "thinking": ""
+}

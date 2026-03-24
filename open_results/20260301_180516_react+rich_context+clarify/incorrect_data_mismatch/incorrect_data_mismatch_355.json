@@ -1,0 +1,38 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(type)"
+      ],
+      [
+        "12"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(type) FROM cards WHERE artist = 'Aaron Boyd'",
+  "id": 355,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(type)"
+      ],
+      [
+        "4"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(DISTINCT type) AS \"COUNT(type)\" FROM cards WHERE artist = 'Aaron Boyd';",
+  "question": "How many types of cards does the artist Aaron Boyd illustrated about card art?",
+  "thinking": ""
+}

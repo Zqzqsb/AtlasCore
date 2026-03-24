@@ -1,0 +1,38 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Title"
+      ],
+      [
+        "Time series for count data, with counts \u003c 20"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T3.Title FROM postLinks AS T1 INNER JOIN posts AS T2 ON T1.PostId = T2.Id INNER JOIN posts AS T3 ON T1.RelatedPostId = T3.Id WHERE T2.Title = 'How to tell if something happened in a data set which monitors a value over time'",
+  "id": 652,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Title"
+      ],
+      [
+        "Time series for count data, with counts \u003c 20"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT p2.Title\nFROM posts p1\nJOIN postLinks pl ON p1.Id = pl.PostId\nJOIN posts p2 ON pl.RelatedPostId = p2.Id\nWHERE TRIM(p1.Title) = 'How to tell if something happened in a data set which monitors a value over time'",
+  "question": "Provide the related post title of \"How to tell if something happened in a data set which monitors a value over time\".",
+  "thinking": ""
+}

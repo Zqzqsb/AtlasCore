@@ -1,0 +1,38 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.Id)"
+      ],
+      [
+        "3"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T1.Id) FROM users AS T1 INNER JOIN posts AS T2 ON T1.Id = T2.OwnerUserId WHERE STRFTIME('%Y', T2.CreaionDate) = '2010' AND T1.DisplayName = 'Jay Stevens'",
+  "id": 678,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.Id)"
+      ],
+      [
+        "3"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(T1.Id) FROM posts AS T1 JOIN users AS T2 ON T1.OwnerUserId = T2.Id WHERE TRIM(T2.DisplayName) = 'Jay Stevens' AND STRFTIME('%Y', T1.CreaionDate) = '2010';",
+  "question": "How many posts did Jay Stevens have in 2010?",
+  "thinking": ""
+}

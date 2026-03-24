@@ -1,0 +1,58 @@
+{
+  "db_id": "card_games",
+  "difficulty": "moderate",
+  "error_reason": "row count mismatch: gold=1, pred=5",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "originalReleaseDate",
+        "format"
+      ],
+      [
+        "2009/4/25",
+        "commander"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.originalReleaseDate, T2.format FROM cards AS T1 INNER JOIN legalities AS T2 ON T1.uuid = T2.uuid WHERE T1.rarity = 'mythic' AND T1.originalReleaseDate IS NOT NULL AND T2.status = 'Legal' ORDER BY T1.originalReleaseDate LIMIT 1",
+  "id": 516,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "originalReleaseDate",
+        "format"
+      ],
+      [
+        "2009/4/25",
+        "commander"
+      ],
+      [
+        "2009/4/25",
+        "duel"
+      ],
+      [
+        "2009/4/25",
+        "legacy"
+      ],
+      [
+        "2009/4/25",
+        "modern"
+      ],
+      [
+        "2009/4/25",
+        "vintage"
+      ]
+    ]
+  },
+  "pred_sql": "WITH OldestMythic AS (\n    SELECT MIN(originalReleaseDate) AS min_date\n    FROM cards\n    WHERE rarity = 'mythic'\n      AND originalReleaseDate IS NOT NULL\n)\nSELECT c.originalReleaseDate, l.format\nFROM cards c\nJOIN legalities l ON c.uuid = l.uuid\nJOIN OldestMythic om ON c.originalReleaseDate = om.min_date\nWHERE c.rarity = 'mythic'\n  AND l.status = 'Legal'\nORDER BY l.format",
+  "question": "When was the oldest mythic card released and what are its legal play formats?",
+  "thinking": ""
+}

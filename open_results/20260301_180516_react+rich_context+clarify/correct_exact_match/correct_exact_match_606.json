@@ -1,0 +1,16 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT COUNT(id) FROM badges WHERE Name = 'Announcer'",
+  "id": 606,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT COUNT(Id) FROM badges WHERE Name = 'Announcer';",
+  "question": "How many users obtained the \"Announcer\" badge?",
+  "thinking": ""
+}

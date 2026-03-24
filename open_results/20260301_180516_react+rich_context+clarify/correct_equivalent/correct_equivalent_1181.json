@@ -1,0 +1,38 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "SEX"
+      ],
+      [
+        "F"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.SEX FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.GPT = 9.0 AND T2.Date = '1992-06-12'",
+  "id": 1181,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "SEX"
+      ],
+      [
+        "F"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT p.SEX FROM Patient p JOIN Laboratory l ON p.ID = l.ID WHERE l.GPT = 9 AND l.Date = '1992-06-12';",
+  "question": "Was the patient a man or a women whose ALT glutamic pylvic transaminase status got 9 on 1992-6-12?",
+  "thinking": ""
+}

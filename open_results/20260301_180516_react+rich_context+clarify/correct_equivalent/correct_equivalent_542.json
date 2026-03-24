@@ -1,0 +1,38 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "DisplayName"
+      ],
+      [
+        "Fabian Fagerholm"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.DisplayName FROM posts AS T1 INNER JOIN users AS T2 ON T1.OwnerUserId = T2.Id ORDER BY T1.FavoriteCount DESC LIMIT 1",
+  "id": 542,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "DisplayName"
+      ],
+      [
+        "Fabian Fagerholm"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT u.DisplayName\nFROM posts p\nJOIN users u ON p.OwnerUserId = u.Id\nWHERE p.FavoriteCount IS NOT NULL\nORDER BY p.FavoriteCount DESC\nLIMIT 1;",
+  "question": "What is the display name of the user who is the owner of the most valuable post?",
+  "thinking": ""
+}

@@ -1,0 +1,50 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name"
+      ],
+      [
+        "British Grand Prix"
+      ],
+      [
+        "Monaco Grand Prix"
+      ],
+      [
+        "Indianapolis 500"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT name FROM races WHERE STRFTIME('%Y', date) = ( SELECT STRFTIME('%Y', date) FROM races ORDER BY date ASC LIMIT 1 ) AND STRFTIME('%m', date) = ( SELECT STRFTIME('%m', date) FROM races ORDER BY date ASC LIMIT 1 )",
+  "id": 885,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name"
+      ],
+      [
+        "British Grand Prix"
+      ],
+      [
+        "Monaco Grand Prix"
+      ],
+      [
+        "Indianapolis 500"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT name FROM races WHERE STRFTIME('%Y-%m', date) = (SELECT STRFTIME('%Y-%m', MIN(date)) FROM races);",
+  "question": "List the names of all races that occurred in the earliest recorded year and month.",
+  "thinking": ""
+}

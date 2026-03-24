@@ -1,0 +1,38 @@
+{
+  "db_id": "financial",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.client_id)"
+      ],
+      [
+        "26"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T1.client_id) FROM client AS T1 INNER JOIN district AS T2 ON T1.district_id = T2.district_id WHERE T1.gender = 'F' AND T2.A2 = 'Jesenik'",
+  "id": 110,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.client_id)"
+      ],
+      [
+        "25"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(T1.client_id)\nFROM client AS T1\nJOIN disp AS T2 ON T1.client_id = T2.client_id\nJOIN account AS T3 ON T2.account_id = T3.account_id\nJOIN district AS T4 ON T3.district_id = T4.district_id\nWHERE T4.A2 = 'Jesenik'\n  AND T1.gender = 'F';",
+  "question": "How many clients opened their accounts in Jesenik branch were women?",
+  "thinking": ""
+}

@@ -1,0 +1,137 @@
+{
+  "db_id": "student_club",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=24, pred=11",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "department"
+      ],
+      [
+        "Religious Studies Program"
+      ],
+      [
+        "Journalism and Communication Department"
+      ],
+      [
+        "Political Science Department"
+      ],
+      [
+        "Languages, Philosophy and Communication Studies Department"
+      ],
+      [
+        "Languages, Philosophy and Communication Studies Department"
+      ],
+      [
+        "Liberal Arts Program"
+      ],
+      [
+        "Languages, Philosophy and Communication Studies Department"
+      ],
+      [
+        "Languages, Philosophy and Communication Studies Department"
+      ],
+      [
+        "English Department"
+      ],
+      [
+        "Aerospace Studies Program"
+      ],
+      [
+        "Political Science Department"
+      ],
+      [
+        "Sociology, Social Work and Anthropology Department"
+      ],
+      [
+        "History Department"
+      ],
+      [
+        "Asian Studies Program"
+      ],
+      [
+        "Languages, Philosophy and Communication Studies Department"
+      ],
+      [
+        "Languages, Philosophy and Communication Studies Department"
+      ],
+      [
+        "Sociology, Social Work and Anthropology Department"
+      ],
+      [
+        "Sociology, Social Work and Anthropology Department"
+      ],
+      [
+        "Sociology, Social Work and Anthropology Department"
+      ],
+      [
+        "Languages, Philosophy and Communication Studies Department"
+      ],
+      [
+        "English Department"
+      ],
+      [
+        "Military Science Program"
+      ],
+      [
+        "Languages, Philosophy and Communication Studies Department"
+      ],
+      [
+        "Political Science Department"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT department FROM major WHERE college = 'College of Humanities and Social Sciences'",
+  "id": 1364,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "department"
+      ],
+      [
+        "Religious Studies Program"
+      ],
+      [
+        "Journalism and Communication Department"
+      ],
+      [
+        "Political Science Department"
+      ],
+      [
+        "Languages, Philosophy and Communication Studies Department"
+      ],
+      [
+        "Liberal Arts Program"
+      ],
+      [
+        "English Department"
+      ],
+      [
+        "Aerospace Studies Program"
+      ],
+      [
+        "Sociology, Social Work and Anthropology Department"
+      ],
+      [
+        "History Department"
+      ],
+      [
+        "Asian Studies Program"
+      ],
+      [
+        "Military Science Program"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT department FROM major WHERE college = 'College of Humanities and Social Sciences';",
+  "question": "List all of the College of Humanities and Social Sciences' departments.",
+  "thinking": ""
+}

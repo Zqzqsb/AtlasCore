@@ -1,0 +1,58 @@
+{
+  "db_id": "financial",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "client_id",
+        "account_id"
+      ],
+      [
+        "379",
+        "311"
+      ],
+      [
+        "734",
+        "611"
+      ],
+      [
+        "3428",
+        "2836"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.client_id, T3.account_id FROM client AS T1 INNER JOIN district AS T2 ON T1.district_id = T2.district_id INNER JOIN disp AS T4 ON T1.client_id = T4.client_id INNER JOIN account AS T3 ON T2.district_id = T3.district_id and T4.account_id = T3.account_id WHERE T2.A3 = 'east Bohemia' AND STRFTIME('%Y', T1.birth_date) BETWEEN '1983' AND '1987'",
+  "id": 181,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "client_id",
+        "account_id"
+      ],
+      [
+        "379",
+        "311"
+      ],
+      [
+        "734",
+        "611"
+      ],
+      [
+        "3428",
+        "2836"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT client.client_id, account.account_id\nFROM client\nJOIN disp ON client.client_id = disp.client_id\nJOIN account ON disp.account_id = account.account_id\nJOIN district ON account.district_id = district.district_id\nWHERE CAST(STRFTIME('%Y', client.birth_date) AS INTEGER) BETWEEN 1983 AND 1987\n  AND district.A3 = 'east Bohemia';",
+  "question": "Please provide a list of clients who were born between 1983 and 1987 and whose account branch is in East Bohemia, along with their IDs.",
+  "thinking": ""
+}

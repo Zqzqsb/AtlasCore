@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "milliseconds"
+      ],
+      [
+        "1026445"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.milliseconds FROM lapTimes AS T1 INNER JOIN races AS T2 on T1.raceId = T2.raceId WHERE T1.lap = 1 ORDER BY T1.time LIMIT 1",
+  "id": 987,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "milliseconds"
+      ],
+      [
+        "71506"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT milliseconds FROM lapTimes WHERE lap = 1 ORDER BY milliseconds ASC LIMIT 1;",
+  "question": "In which race did the fastest 1st lap time was recorded? Please indicate the time in milliseconds.",
+  "thinking": ""
+}

@@ -1,0 +1,38 @@
+{
+  "db_id": "superhero",
+  "difficulty": "challenging",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(COUNT(CASE WHEN T3.alignment = 'Good' THEN T1.id ELSE NULL END) AS REAL) * 100 / COUNT(T1.id)"
+      ],
+      [
+        "66.66666666666667"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT CAST(COUNT(CASE WHEN T3.alignment = 'Good' THEN T1.id ELSE NULL END) AS REAL) * 100 / COUNT(T1.id) FROM superhero AS T1 INNER JOIN publisher AS T2 ON T1.publisher_id = T2.id INNER JOIN alignment AS T3 ON T1.alignment_id = T3.id WHERE T2.publisher_name = 'Marvel Comics'",
+  "id": 836,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(COUNT(CASE WHEN T3.alignment = 'Good' THEN T1.id ELSE NULL END) AS REAL) * 100 / COUNT(T1.id)"
+      ],
+      [
+        "66.66666666666667"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT CAST(COUNT(CASE WHEN T3.alignment = 'Good' THEN T1.id ELSE NULL END) AS REAL) * 100 / COUNT(T1.id)\nFROM superhero AS T1\nJOIN publisher AS T2 ON T1.publisher_id = T2.id\nJOIN alignment AS T3 ON T1.alignment_id = T3.id\nWHERE T2.publisher_name = 'Marvel Comics';",
+  "question": "Among all superheroes in Marvel Comics, identify the percentage of 'good' superheroes.",
+  "thinking": ""
+}

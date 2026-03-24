@@ -1,0 +1,134 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "moderate",
+  "error_reason": "row count mismatch: gold=12, pred=13",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "PostId",
+        "Name"
+      ],
+      [
+        "58539",
+        "Custodian"
+      ],
+      [
+        "58539",
+        "Editor"
+      ],
+      [
+        "58539",
+        "Student"
+      ],
+      [
+        "58539",
+        "Supporter"
+      ],
+      [
+        "58539",
+        "Custodian"
+      ],
+      [
+        "58539",
+        "Editor"
+      ],
+      [
+        "58539",
+        "Student"
+      ],
+      [
+        "58539",
+        "Supporter"
+      ],
+      [
+        "58539",
+        "Custodian"
+      ],
+      [
+        "58539",
+        "Editor"
+      ],
+      [
+        "58539",
+        "Student"
+      ],
+      [
+        "58539",
+        "Supporter"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.PostId, T2.Name FROM postHistory AS T1 INNER JOIN badges AS T2 ON T1.UserId = T2.UserId WHERE T1.UserDisplayName = 'Samuel' AND STRFTIME('%Y', T1.CreationDate) = '2013' AND STRFTIME('%Y', T2.Date) = '2013'",
+  "id": 653,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "PostId",
+        "Name"
+      ],
+      [
+        "58539",
+        "Custodian"
+      ],
+      [
+        "58539",
+        "Editor"
+      ],
+      [
+        "58539",
+        "Student"
+      ],
+      [
+        "58539",
+        "Supporter"
+      ],
+      [
+        "58815",
+        "Custodian"
+      ],
+      [
+        "58815",
+        "Editor"
+      ],
+      [
+        "58815",
+        "Student"
+      ],
+      [
+        "58815",
+        "Supporter"
+      ],
+      [
+        "59490",
+        "Custodian"
+      ],
+      [
+        "59490",
+        "Editor"
+      ],
+      [
+        "59490",
+        "Student"
+      ],
+      [
+        "59490",
+        "Supporter"
+      ],
+      [
+        "74317",
+        "Student"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT p.Id as PostId, b.Name\nFROM users u\nJOIN posts p ON u.Id = p.OwnerUserId\nJOIN badges b ON u.Id = b.UserId\nWHERE TRIM(u.DisplayName) = 'Samuel'\nAND STRFTIME('%Y', p.CreaionDate) = '2013'\nAND STRFTIME('%Y', b.Date) = '2013'",
+  "question": "List the post IDs and badge names of the user Samuel in 2013.",
+  "thinking": ""
+}

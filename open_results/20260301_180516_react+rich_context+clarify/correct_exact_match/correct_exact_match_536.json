@@ -1,0 +1,16 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT COUNT(Id) FROM users WHERE Upvotes \u003e 100 AND Downvotes \u003e 1",
+  "id": 536,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT COUNT(Id) FROM users WHERE UpVotes \u003e 100 AND DownVotes \u003e 1;",
+  "question": "Among the users who have more than 100 upvotes, how many of them have more then 1 downvotes?",
+  "thinking": ""
+}

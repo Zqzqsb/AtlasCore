@@ -1,0 +1,16 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT country, lat, lng FROM circuits WHERE name = 'Hungaroring'",
+  "id": 994,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT country, lat, lng FROM circuits WHERE name = 'Hungaroring';",
+  "question": "In which location does the Hungaroring circuit located? Also, find the country and coordinates of this circuit?",
+  "thinking": ""
+}

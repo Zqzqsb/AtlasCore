@@ -1,0 +1,16 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT Text FROM comments WHERE Score = 17",
+  "id": 574,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT Text FROM comments WHERE Score = 17;",
+  "question": "Write the contents of comments with a score of 17.",
+  "thinking": ""
+}

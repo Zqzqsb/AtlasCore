@@ -1,0 +1,65 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=6, pred=5",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Name"
+      ],
+      [
+        "Autobiographer"
+      ],
+      [
+        "Teacher"
+      ],
+      [
+        "Supporter"
+      ],
+      [
+        "Teacher"
+      ],
+      [
+        "Student"
+      ],
+      [
+        "Editor"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.Name FROM users AS T1 INNER JOIN badges AS T2 ON T1.Id = T2.UserId WHERE T1.DisplayName = 'Pierre'",
+  "id": 613,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Name"
+      ],
+      [
+        "Autobiographer"
+      ],
+      [
+        "Teacher"
+      ],
+      [
+        "Supporter"
+      ],
+      [
+        "Student"
+      ],
+      [
+        "Editor"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT b.Name FROM badges b JOIN users u ON b.UserId = u.Id WHERE TRIM(u.DisplayName) = 'Pierre';",
+  "question": "What is the name of badge that the user whose display name is \"Pierre\" obtained?",
+  "thinking": ""
+}

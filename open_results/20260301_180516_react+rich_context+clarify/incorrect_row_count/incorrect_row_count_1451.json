@@ -1,0 +1,153 @@
+{
+  "db_id": "student_club",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=31, pred=-1",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "city",
+        "county"
+      ],
+      [
+        "Avon",
+        "Hendricks County"
+      ],
+      [
+        "Evansville",
+        "Vanderburgh County"
+      ],
+      [
+        "Ellicott City",
+        "Howard County"
+      ],
+      [
+        "Grosse Pointe",
+        "Wayne County"
+      ],
+      [
+        "New York",
+        "New York County"
+      ],
+      [
+        "American Fork",
+        "Utah County"
+      ],
+      [
+        "Mcminnville",
+        "Warren County"
+      ],
+      [
+        "San Angelo",
+        "Tom Green County"
+      ],
+      [
+        "Sykesville",
+        "Carroll County"
+      ],
+      [
+        "Lincolnton",
+        "Lincoln County"
+      ],
+      [
+        "Salisbury",
+        "Wicomico County"
+      ],
+      [
+        "Bayonne",
+        "Hudson County"
+      ],
+      [
+        "Hartselle",
+        "Morgan County"
+      ],
+      [
+        "Albany",
+        "Albany County"
+      ],
+      [
+        "Perth Amboy",
+        "Middlesex County"
+      ],
+      [
+        "Mc Lean",
+        "Fairfax County"
+      ],
+      [
+        "Lake Zurich",
+        "Lake County"
+      ],
+      [
+        "Apple Valley",
+        "San Bernardino County"
+      ],
+      [
+        "Rochester",
+        "Monroe County"
+      ],
+      [
+        "Fargo",
+        "Cass County"
+      ],
+      [
+        "Lafayette",
+        "Tippecanoe County"
+      ],
+      [
+        "South Plainfield",
+        "Middlesex County"
+      ],
+      [
+        "Sunnyside",
+        "Queens County"
+      ],
+      [
+        "Georgetown",
+        "Georgetown County"
+      ],
+      [
+        "Chicopee",
+        "Hampden County"
+      ],
+      [
+        "Saint Paul",
+        "Ramsey County"
+      ],
+      [
+        "Buffalo Grove",
+        "Lake County"
+      ],
+      [
+        "Cary",
+        "Wake County"
+      ],
+      [
+        "Westmont",
+        "DuPage County"
+      ],
+      [
+        "Amarillo",
+        "Potter County"
+      ],
+      [
+        "East Meadow",
+        "Nassau County"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T3.city, T3.county FROM income AS T1 INNER JOIN member AS T2 ON T1.link_to_member = T2.member_id INNER JOIN zip_code AS T3 ON T3.zip_code = T2.zip WHERE T1.amount \u003e 40",
+  "id": 1451,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": []
+  },
+  "pred_sql": "SELECT z.city, z.county\nFROM event e\nJOIN attendance a ON e.event_id = a.link_to_event\nJOIN member m ON a.link_to_member = m.member_id\nJOIN zip_code z ON m.zip = z.zip_code\nJOIN income i ON m.member_id = i.link_to_member\nGROUP BY e.event_id, z.city, z.county\nHAVING COUNT(i.income_id) \u003e 40",
+  "question": "In the events with more than forty incomes, list the city and country in which the event is happening.",
+  "thinking": ""
+}

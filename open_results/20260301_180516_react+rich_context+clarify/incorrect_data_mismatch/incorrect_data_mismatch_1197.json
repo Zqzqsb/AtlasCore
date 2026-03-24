@@ -1,0 +1,38 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Symptoms"
+      ],
+      [
+        "thrombophlebitis"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT Symptoms FROM Examination WHERE Diagnosis = 'SLE' GROUP BY Symptoms ORDER BY COUNT(Symptoms) DESC LIMIT 1",
+  "id": 1197,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Symptoms"
+      ],
+      [
+        "CNS lupus"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT e.\"Symptoms\"\nFROM Patient p\nJOIN Examination e ON p.\"ID\" = e.\"ID\"\nWHERE p.\"Diagnosis\" = 'SLE' AND e.\"Symptoms\" IS NOT NULL\nGROUP BY e.\"Symptoms\"\nORDER BY COUNT(*) DESC\nLIMIT 1",
+  "question": "What is the most common sign of patients with SLE disease?",
+  "thinking": ""
+}

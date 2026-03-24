@@ -1,0 +1,42 @@
+{
+  "db_id": "card_games",
+  "difficulty": "challenging",
+  "error_reason": "column name mismatch and positional data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "(CAST(SUM(T1.id) AS REAL) / COUNT(T1.id)) / 4",
+        "language"
+      ],
+      [
+        "66.95833333333333",
+        "Japanese"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT (CAST(SUM(T1.id) AS REAL) / COUNT(T1.id)) / 4, T2.language FROM sets AS T1 INNER JOIN set_translations AS T2 ON T1.id = T2.id WHERE T1.releaseDate BETWEEN '2012-01-01' AND '2015-12-31' GROUP BY T1.releaseDate ORDER BY COUNT(T2.language) DESC LIMIT 1",
+  "id": 524,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "(CAST(SUM(s.id) AS REAL) / COUNT(s.id)) / 4",
+        "language"
+      ],
+      [
+        "38.32481494536482",
+        "Japanese"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT (CAST(SUM(s.id) AS REAL) / COUNT(s.id)) / 4, fd.language\nFROM sets s\nJOIN cards c ON s.code = c.setCode\nJOIN foreign_data fd ON c.uuid = fd.uuid\nWHERE s.releaseDate BETWEEN '2012-01-01' AND '2015-12-31'\nGROUP BY fd.language\nORDER BY COUNT(fd.language) DESC\nLIMIT 1",
+  "question": "What is the annual average number of sets that were released between 1/1/2012 to 12/31/2015? Indicate the common langugage of the card.",
+  "thinking": ""
+}

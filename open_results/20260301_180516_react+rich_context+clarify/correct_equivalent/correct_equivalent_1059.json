@@ -1,0 +1,38 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "challenging",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "A"
+      ],
+      [
+        "Min"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT A FROM ( SELECT AVG(finishing) result, 'Max' A FROM Player AS T1 INNER JOIN Player_Attributes AS T2 ON T1.player_api_id = T2.player_api_id WHERE T1.height = ( SELECT MAX(height) FROM Player ) UNION SELECT AVG(finishing) result, 'Min' A FROM Player AS T1 INNER JOIN Player_Attributes AS T2 ON T1.player_api_id = T2.player_api_id WHERE T1.height = ( SELECT MIN(height) FROM Player ) ) ORDER BY result DESC LIMIT 1",
+  "id": 1059,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "A"
+      ],
+      [
+        "Min"
+      ]
+    ]
+  },
+  "pred_sql": "WITH height_extremes AS (\n  SELECT MAX(height) as max_height, MIN(height) as min_height\n  FROM Player\n),\nmax_height_players AS (\n  SELECT AVG(pa.finishing) as avg_finishing\n  FROM Player p\n  JOIN Player_Attributes pa ON p.player_api_id = pa.player_api_id\n  CROSS JOIN height_extremes he\n  WHERE p.height = he.max_height\n),\nmin_height_players AS (\n  SELECT AVG(pa.finishing) as avg_finishing\n  FROM Player p\n  JOIN Player_Attributes pa ON p.player_api_id = pa.player_api_id\n  CROSS JOIN height_extremes he\n  WHERE p.height = he.min_height\n)\nSELECT \n  CASE \n    WHEN mhp.avg_finishing \u003e= mnp.avg_finishing THEN 'Max'\n    ELSE 'Min'\n  END as A\nFROM max_height_players mhp, min_height_players mnp;",
+  "question": "Who has the highest average finishing rate between the highest and shortest football player?",
+  "thinking": ""
+}

@@ -1,0 +1,38 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "simple",
+  "error_reason": "column name mismatch and positional data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(SUM(T1.height) AS REAL) / COUNT(T1.id)"
+      ],
+      [
+        "181.13797313797315"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT CAST(SUM(T1.height) AS REAL) / COUNT(T1.id) FROM Player AS T1 INNER JOIN Match AS T2 ON T1.id = T2.id INNER JOIN Country AS T3 ON T2.country_id = T3.ID WHERE T3.NAME = 'Italy'",
+  "id": 1132,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(SUM(p.height) AS REAL) / COUNT(p.id)"
+      ],
+      [
+        "181.72906403940885"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT CAST(SUM(p.height) AS REAL) / COUNT(p.id) \nFROM Player p\nJOIN (\n    SELECT DISTINCT home_player_1 as player_api_id FROM Match m JOIN League l ON m.league_id = l.id JOIN Country c ON l.country_id = c.id WHERE c.name = 'Italy'\n    UNION\n    SELECT DISTINCT home_player_2 as player_api_id FROM Match m JOIN League l ON m.league_id = l.id JOIN Country c ON l.country_id = c.id WHERE c.name = 'Italy'\n    UNION\n    SELECT DISTINCT home_player_3 as player_api_id FROM Match m JOIN League l ON m.league_id = l.id JOIN Country c ON l.country_id = c.id WHERE c.name = 'Italy'\n    UNION\n    SELECT DISTINCT home_player_4 as player_api_id FROM Match m JOIN League l ON m.league_id = l.id JOIN Country c ON l.country_id = c.id WHERE c.name = 'Italy'\n    UNION\n    SELECT DISTINCT home_player_5 as player_api_id FROM Match m JOIN League l ON m.league_id = l.id JOIN Country c ON l.country_id = c.id WHERE c.name = 'Italy'\n    UNION\n    SELECT DISTINCT home_player_6 as player_api_id FROM Match m JOIN League l ON m.league_id = l.id JOIN Country c ON l.country_id = c.id WHERE c.name = 'Italy'\n    UNION\n    SELECT DISTINCT home_player_7 as player_api_id FROM Match m JOIN League l ON m.league_id = l.id JOIN Country c ON l.country_id = c.id WHERE c.name = 'Italy'\n    UNION\n    SELECT DISTINCT home_player_8 as player_api_id FROM Match m JOIN League l ON m.league_id = l.id JOIN Country c ON l.country_id = c.id WHERE c.name = 'Italy'\n    UNION\n    SELECT DISTINCT home_player_9 as player_api_id FROM Match m JOIN League l ON m.league_id = l.id JOIN Country c ON l.country_id = c.id WHERE c.name = 'Italy'\n    UNION\n    SELECT DISTINCT home_player_10 as player_api_id FROM Match m JOIN League l ON m.league_id = l.id JOIN Country c ON l.country_id = c.id WHERE c.name = 'Italy'\n    UNION\n    SELECT DISTINCT home_player_11 as player_api_id FROM Match m JOIN League l ON m.league_id = l.id JOIN Country c ON l.country_id = c.id WHERE c.name = 'Italy'\n    UNION\n    SELECT DISTINCT away_player_1 as player_api_id FROM Match m JOIN League l ON m.league_id = l.id JOIN Country c ON l.country_id = c.id WHERE c.name = 'Italy'\n    UNION\n    SELECT DISTINCT away_player_2 as player_api_id FROM Match m JOIN League l ON m.league_id = l.id JOIN Country c ON l.country_id = c.id WHERE c.name = 'Italy'\n    UNION\n    SELECT DISTINCT away_player_3 as player_api_id FROM Match m JOIN League l ON m.league_id = l.id JOIN Country c ON l.country_id = c.id WHERE c.name = 'Italy'\n    UNION\n    SELECT DISTINCT away_player_4 as player_api_id FROM Match m JOIN League l ON m.league_id = l.id JOIN Country c ON l.country_id = c.id WHERE c.name = 'Italy'\n    UNION\n    SELECT DISTINCT away_player_5 as player_api_id FROM Match m JOIN League l ON m.league_id = l.id JOIN Country c ON l.country_id = c.id WHERE c.name = 'Italy'\n    UNION\n    SELECT DISTINCT away_player_6 as player_api_id FROM Match m JOIN League l ON m.league_id = l.id JOIN Country c ON l.country_id = c.id WHERE c.name = 'Italy'\n    UNION\n    SELECT DISTINCT away_player_7 as player_api_id FROM Match m JOIN League l ON m.league_id = l.id JOIN Country c ON l.country_id = c.id WHERE c.name = 'Italy'\n    UNION\n    SELECT DISTINCT away_player_8 as player_api_id FROM Match m JOIN League l ON m.league_id = l.id JOIN Country c ON l.country_id = c.id WHERE c.name = 'Italy'\n    UNION\n    SELECT DISTINCT away_player_9 as player_api_id FROM Match m JOIN League l ON m.league_id = l.id JOIN Country c ON l.country_id = c.id WHERE c.name = 'Italy'\n    UNION\n    SELECT DISTINCT away_player_10 as player_api_id FROM Match m JOIN League l ON m.league_id = l.id JOIN Country c ON l.country_id = c.id WHERE c.name = 'Italy'\n    UNION\n    SELECT DISTINCT away_player_11 as player_api_id FROM Match m JOIN League l ON m.league_id = l.id JOIN Country c ON l.country_id = c.id WHERE c.name = 'Italy'\n) italy_players ON p.player_api_id = italy_players.player_api_id",
+  "question": "What is the average heights of Italy players?",
+  "thinking": ""
+}

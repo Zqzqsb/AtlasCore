@@ -1,0 +1,42 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "challenging",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "forename",
+        "surname"
+      ],
+      [
+        "Felipe",
+        "Massa"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.forename, T2.surname FROM qualifying AS T1 INNER JOIN drivers AS T2 on T1.driverId = T2.driverId INNER JOIN races AS T3 ON T1.raceid = T3.raceid WHERE q3 IS NOT NULL AND T3.year = 2008 AND T3.circuitId IN ( SELECT circuitId FROM circuits WHERE name = 'Marina Bay Street Circuit' ) ORDER BY CAST(SUBSTR(q3, 1, INSTR(q3, ':') - 1) AS INTEGER) * 60 + CAST(SUBSTR(q3, INSTR(q3, ':') + 1, INSTR(q3, '.') - INSTR(q3, ':') - 1) AS REAL) + CAST(SUBSTR(q3, INSTR(q3, '.') + 1) AS REAL) / 1000 ASC LIMIT 1",
+  "id": 1002,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "forename",
+        "surname"
+      ],
+      [
+        "Felipe",
+        "Massa"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT d.forename, d.surname\nFROM qualifying q\nJOIN races r ON q.raceId = r.raceId\nJOIN circuits c ON r.circuitId = c.circuitId\nJOIN drivers d ON q.driverId = d.driverId\nWHERE r.year = 2008\n  AND c.name = 'Marina Bay Street Circuit'\n  AND q.q3 IS NOT NULL\nORDER BY CAST(q.q3 AS INTEGER)\nLIMIT 1",
+  "question": "What is full name of the racer who ranked 1st in the 3rd qualifying race held in the Marina Bay Street Circuit in 2008?",
+  "thinking": ""
+}

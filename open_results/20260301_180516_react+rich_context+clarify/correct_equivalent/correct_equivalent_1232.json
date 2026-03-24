@@ -1,0 +1,38 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "challenging",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(DISTINCT T1.ID)"
+      ],
+      [
+        "2"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(DISTINCT T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE STRFTIME('%Y', T1.Birthday) BETWEEN '1936' AND '1956' AND T1.SEX = 'M' AND T2.CPK \u003e= 250",
+  "id": 1232,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(DISTINCT T1.ID)"
+      ],
+      [
+        "2"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(DISTINCT T1.ID) \nFROM Patient AS T1 \nINNER JOIN Laboratory AS T2 ON T1.ID = T2.ID \nWHERE T1.SEX = 'M' \nAND STRFTIME('%Y', T1.Birthday) BETWEEN '1936' AND '1956' \nAND T2.CPK \u003e= 250",
+  "question": "For patient born between 1936-1956, how many male patients have creatinine phosphokinase beyond the normal range?",
+  "thinking": ""
+}

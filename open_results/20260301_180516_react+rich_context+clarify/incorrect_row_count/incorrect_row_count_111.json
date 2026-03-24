@@ -1,0 +1,47 @@
+{
+  "db_id": "financial",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=1, pred=4",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "disp_id"
+      ],
+      [
+        "2231"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.disp_id FROM disp AS T1 INNER JOIN account AS T2 ON T1.account_id = T2.account_id INNER JOIN trans AS T3 ON T2.account_id = T3.account_id WHERE T3.date='1997-08-20' AND T3.amount = 5100",
+  "id": 111,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "disp_id"
+      ],
+      [
+        "1719"
+      ],
+      [
+        "4474"
+      ],
+      [
+        "4942"
+      ],
+      [
+        "5393"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT d.disp_id\nFROM trans t\nJOIN disp d ON t.account_id = d.account_id\nWHERE t.amount = 5100 \n  AND t.date = '1998-09-02';",
+  "question": "What is the disposition id of the client who made 5100 USD transaction in 1998/9/2?",
+  "thinking": ""
+}

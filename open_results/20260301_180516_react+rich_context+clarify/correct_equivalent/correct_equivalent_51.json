@@ -1,0 +1,42 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "MailStreet",
+        "School"
+      ],
+      [
+        "25 Churchill Avenue",
+        "\u003cnil\u003e"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.MailStreet, T2.School FROM satscores AS T1 INNER JOIN schools AS T2 ON T1.cds = T2.CDSCode ORDER BY T1.AvgScrMath DESC LIMIT 6, 1",
+  "id": 51,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "MailStreet",
+        "School"
+      ],
+      [
+        "25 Churchill Avenue",
+        "\u003cnil\u003e"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT s.MailStreet, COALESCE(s.School, sat.sname) AS School\nFROM schools s\nJOIN satscores sat ON CAST(s.CDSCode AS INTEGER) = CAST(sat.cds AS INTEGER)\nORDER BY sat.AvgScrMath DESC\nLIMIT 1 OFFSET 6",
+  "question": "What is the postal street address for the school with the 7th highest Math average? Indicate the school's name.",
+  "thinking": ""
+}

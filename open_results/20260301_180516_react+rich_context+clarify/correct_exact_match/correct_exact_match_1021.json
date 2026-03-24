@@ -1,0 +1,16 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT player_api_id FROM Player_Attributes ORDER BY overall_rating DESC LIMIT 1",
+  "id": 1021,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT player_api_id FROM Player_Attributes ORDER BY overall_rating DESC LIMIT 1;",
+  "question": "Which player has the highest overall rating? Indicate the player's api id.",
+  "thinking": ""
+}

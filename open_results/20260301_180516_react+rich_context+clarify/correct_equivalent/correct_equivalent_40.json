@@ -1,0 +1,38 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AVG(T1.NumTstTakr)"
+      ],
+      [
+        "137.88888888888889"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT AVG(T1.NumTstTakr) FROM satscores AS T1 INNER JOIN schools AS T2 ON T1.cds = T2.CDSCode WHERE strftime('%Y', T2.OpenDate) = '1980' AND T2.County = 'Fresno'",
+  "id": 40,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AVG(T1.NumTstTakr)"
+      ],
+      [
+        "137.88888888888889"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT AVG(T1.NumTstTakr)\nFROM satscores AS T1\nINNER JOIN schools AS T2 ON CAST(T1.cds AS INTEGER) = CAST(T2.CDSCode AS INTEGER)\nWHERE T2.County = 'Fresno' \nAND STRFTIME('%Y', T2.OpenDate) = '1980'",
+  "question": "What is the average number of test takers from Fresno schools that opened between 1/1/1980 and 12/31/1980?",
+  "thinking": ""
+}

@@ -1,0 +1,38 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(SUM(T1.away_team_goal) AS REAL) / COUNT(T1.id)"
+      ],
+      [
+        "1.0707964601769913"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT CAST(SUM(T1.away_team_goal) AS REAL) / COUNT(T1.id) FROM \"Match\" AS T1 INNER JOIN TEAM AS T2 ON T1.away_team_api_id = T2.team_api_id INNER JOIN Country AS T3 ON T1.country_id = T3.id WHERE T2.team_long_name = 'Parma' AND T3.name = 'Italy'",
+  "id": 1102,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(SUM(m.away_team_goal) AS REAL) / COUNT(m.id)"
+      ],
+      [
+        "1.0707964601769913"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT CAST(SUM(m.away_team_goal) AS REAL) / COUNT(m.id) \nFROM Match m \nJOIN Team t ON m.away_team_api_id = t.team_api_id \nJOIN Country c ON m.country_id = c.id \nWHERE t.team_long_name = 'Parma' \nAND c.name = 'Italy'",
+  "question": "What is the average number of goals made by Parma as the away team while playing in Italy?",
+  "thinking": ""
+}

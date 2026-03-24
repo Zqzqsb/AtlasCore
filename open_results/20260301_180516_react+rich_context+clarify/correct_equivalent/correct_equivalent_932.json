@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "fastestLapSpeed"
+      ],
+      [
+        "202.484"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.fastestLapSpeed FROM races AS T1 INNER JOIN results AS T2 ON T2.raceId = T1.raceId WHERE T1.name = 'Spanish Grand Prix' AND T1.year = 2009 AND T2.fastestLapSpeed IS NOT NULL ORDER BY T2.fastestLapSpeed DESC LIMIT 1",
+  "id": 932,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "fastestLapSpeed"
+      ],
+      [
+        "202.484"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT MAX(CAST(\"results\".\"fastestLapSpeed\" AS REAL)) AS fastestLapSpeed FROM \"results\" JOIN \"races\" ON \"results\".\"raceId\" = \"races\".\"raceId\" WHERE \"races\".\"year\" = 2009 AND \"races\".\"name\" = 'Spanish Grand Prix';",
+  "question": "What was the fastest lap speed among all drivers in the 2009 Spanish Grand Prix?",
+  "thinking": ""
+}

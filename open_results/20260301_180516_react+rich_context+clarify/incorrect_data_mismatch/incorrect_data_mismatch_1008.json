@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "duration"
+      ],
+      [
+        "35.688"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.duration FROM pitStops AS T1 INNER JOIN drivers AS T2 on T1.driverId = T2.driverId WHERE T2.forename = 'Lewis' AND T2.surname = 'Hamilton' ORDER BY T1.duration DESC LIMIT 1",
+  "id": 1008,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "duration"
+      ],
+      [
+        "35"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT MAX(CAST(pitStops.duration AS INTEGER)) AS duration FROM pitStops JOIN drivers ON pitStops.driverId = drivers.driverId WHERE drivers.forename = 'Lewis' AND drivers.surname = 'Hamilton';",
+  "question": "What was the longest time that Lewis Hamilton had spent at a pit stop?",
+  "thinking": ""
+}

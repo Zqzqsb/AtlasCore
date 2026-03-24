@@ -1,0 +1,90 @@
+{
+  "db_id": "student_club",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "SUM(T1.spent)",
+        "event_name"
+      ],
+      [
+        "0",
+        "April Speaker"
+      ],
+      [
+        "0",
+        "February Speaker"
+      ],
+      [
+        "0",
+        "January Speaker"
+      ],
+      [
+        "0",
+        "March Speaker"
+      ],
+      [
+        "16.28",
+        "November Speaker"
+      ],
+      [
+        "13.45",
+        "October Speaker"
+      ],
+      [
+        "13.45",
+        "September Speaker"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT SUM(T1.spent), T2.event_name FROM budget AS T1 INNER JOIN event AS T2 ON T1.link_to_event = T2.event_id WHERE T1.category = 'Speaker Gifts' GROUP BY T2.event_name",
+  "id": 1468,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "SUM(T1.spent)",
+        "event_name"
+      ],
+      [
+        "0",
+        "April Speaker"
+      ],
+      [
+        "0",
+        "February Speaker"
+      ],
+      [
+        "0",
+        "January Speaker"
+      ],
+      [
+        "0",
+        "March Speaker"
+      ],
+      [
+        "16.28",
+        "November Speaker"
+      ],
+      [
+        "13.45",
+        "October Speaker"
+      ],
+      [
+        "13.45",
+        "September Speaker"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT SUM(budget.spent) AS \"SUM(T1.spent)\", event.event_name FROM budget JOIN event ON budget.link_to_event = event.event_id WHERE budget.category = 'Speaker Gifts' GROUP BY event.event_name;",
+  "question": "Calculate the total amount spent on speaker gifts and list the name of the event they were spent on.",
+  "thinking": ""
+}

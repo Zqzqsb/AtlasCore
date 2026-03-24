@@ -1,0 +1,42 @@
+{
+  "db_id": "superhero",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "weight_kg",
+        "race"
+      ],
+      [
+        "63",
+        "Human"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.weight_kg, T2.race FROM superhero AS T1 INNER JOIN race AS T2 ON T1.race_id = T2.id WHERE T1.id = 40",
+  "id": 842,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "weight_kg",
+        "race"
+      ],
+      [
+        "63",
+        "Human"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT s.weight_kg, r.race FROM superhero s JOIN race r ON s.race_id = r.id WHERE s.id = 40;",
+  "question": "Provide the weight and race of the superhero with superhero ID 40.",
+  "thinking": ""
+}

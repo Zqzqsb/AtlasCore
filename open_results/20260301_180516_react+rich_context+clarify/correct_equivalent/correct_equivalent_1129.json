@@ -1,0 +1,38 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name"
+      ],
+      [
+        "Germany"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT t1.name FROM Country AS t1 INNER JOIN Match AS t2 ON t1.id = t2.country_id INNER JOIN Player AS t3 ON t2.home_player_1 = t3.player_api_id GROUP BY t1.name ORDER BY AVG(t3.weight) DESC LIMIT 1",
+  "id": 1129,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name"
+      ],
+      [
+        "Germany"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT c.name\nFROM Country c\nJOIN (\n    SELECT m.country_id, AVG(p.weight) as avg_weight\n    FROM Match m\n    JOIN Player p ON p.player_api_id IN (\n        m.home_player_1, m.home_player_2, m.home_player_3, m.home_player_4, m.home_player_5,\n        m.home_player_6, m.home_player_7, m.home_player_8, m.home_player_9, m.home_player_10, m.home_player_11,\n        m.away_player_1, m.away_player_2, m.away_player_3, m.away_player_4, m.away_player_5,\n        m.away_player_6, m.away_player_7, m.away_player_8, m.away_player_9, m.away_player_10, m.away_player_11\n    )\n    WHERE p.weight IS NOT NULL\n    GROUP BY m.country_id\n    ORDER BY avg_weight DESC\n    LIMIT 1\n) sub ON c.id = sub.country_id;",
+  "question": "Which country's players have the heaviest average weights?",
+  "thinking": ""
+}

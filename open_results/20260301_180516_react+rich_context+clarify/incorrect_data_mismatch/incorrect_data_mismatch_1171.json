@@ -1,0 +1,38 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "moderate",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(DISTINCT T1.ID)"
+      ],
+      [
+        "11"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(DISTINCT T1.ID) FROM Patient AS T1 INNER JOIN Examination AS T2 ON T1.ID = T2.ID WHERE T1.Admission = '+' AND STRFTIME('%Y', T2.`Examination Date`) - STRFTIME('%Y', T1.`First Date`) \u003e= 1",
+  "id": 1171,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(DISTINCT T1.ID)"
+      ],
+      [
+        "21"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(DISTINCT T1.ID) FROM Patient AS T1 LEFT JOIN Examination AS T2 ON T1.ID = T2.ID WHERE strftime('%Y', T2.\"Examination Date\") - strftime('%Y', T1.\"First Date\") \u003e= 1;",
+  "question": "How many patients hadn't undergone a medical examination until at least a year following their initial hospital visit?",
+  "thinking": ""
+}

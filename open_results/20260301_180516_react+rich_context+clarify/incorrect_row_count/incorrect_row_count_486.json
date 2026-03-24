@@ -1,0 +1,47 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=4, pred=1",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "date"
+      ],
+      [
+        "2013-07-01 00:00:00 +0000 UTC"
+      ],
+      [
+        "2013-07-01 00:00:00 +0000 UTC"
+      ],
+      [
+        "2013-07-01 00:00:00 +0000 UTC"
+      ],
+      [
+        "2013-07-01 00:00:00 +0000 UTC"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.date FROM cards AS T1 INNER JOIN rulings AS T2 ON T2.uuid = T1.uuid WHERE T1.name = 'Reminisce'",
+  "id": 486,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "date"
+      ],
+      [
+        "2013-07-01 00:00:00 +0000 UTC"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT r.date FROM rulings r JOIN cards c ON r.uuid = c.uuid WHERE c.name = 'Reminisce';",
+  "question": "When was the ruling for the card 'Reminisce' created?",
+  "thinking": ""
+}

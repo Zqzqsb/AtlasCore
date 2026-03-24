@@ -1,0 +1,16 @@
+{
+  "db_id": "superhero",
+  "difficulty": "moderate",
+  "error_reason": "predicted SQL is empty",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT T3.power_name FROM superhero AS T1 INNER JOIN hero_power AS T2 ON T1.id = T2.hero_id INNER JOIN superpower AS T3 ON T3.id = T2.power_id INNER JOIN gender AS T4 ON T4.id = T1.gender_id WHERE T4.gender = 'Male' LIMIT 5",
+  "id": 752,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "",
+  "question": "List down at least five superpowers of male superheroes.",
+  "thinking": ""
+}

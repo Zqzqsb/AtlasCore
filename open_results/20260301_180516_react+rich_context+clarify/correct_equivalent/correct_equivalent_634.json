@@ -1,0 +1,38 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "PostId"
+      ],
+      [
+        "351"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.PostId FROM users AS T1 INNER JOIN postHistory AS T2 ON T1.Id = T2.UserId INNER JOIN posts AS T3 ON T2.PostId = T3.Id WHERE T1.DisplayName = 'slashnick' ORDER BY T3.AnswerCount DESC LIMIT 1",
+  "id": 634,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "PostId"
+      ],
+      [
+        "351"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT p.\"Id\" AS PostId FROM \"posts\" p JOIN \"users\" u ON p.\"OwnerUserId\" = u.\"Id\" WHERE TRIM(u.\"DisplayName\") = 'slashnick' ORDER BY p.\"AnswerCount\" DESC LIMIT 1;",
+  "question": "Which post by slashnick has the most answers count? State the post ID.",
+  "thinking": ""
+}

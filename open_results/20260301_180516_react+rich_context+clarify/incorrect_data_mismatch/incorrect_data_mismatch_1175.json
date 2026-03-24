@@ -1,0 +1,38 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "moderate",
+  "error_reason": "column name mismatch and positional data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AVG('1999'  - STRFTIME('%Y', T2.Birthday))"
+      ],
+      [
+        "47.65217391304348"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT AVG('1999'  - STRFTIME('%Y', T2.Birthday)) FROM Laboratory AS T1 INNER JOIN Patient AS T2 ON T1.ID = T2.ID WHERE T1.Date BETWEEN '1991-10-01' AND '1991-10-30'",
+  "id": 1175,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AVG(1999 - CAST(STRFTIME('%Y', T2.Birthday) AS INTEGER))"
+      ],
+      [
+        "47.18"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT AVG(1999 - CAST(STRFTIME('%Y', T2.Birthday) AS INTEGER)) \nFROM Laboratory AS T1 \nINNER JOIN Patient AS T2 ON T1.ID = T2.ID \nWHERE T1.Date BETWEEN '1991-10-01' AND '1991-10-31'",
+  "question": "What is the average age of patients as of year 1999 examined in the laboratory for the October of the year 1991?",
+  "thinking": ""
+}

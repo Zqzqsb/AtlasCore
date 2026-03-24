@@ -1,0 +1,42 @@
+{
+  "db_id": "toxicology",
+  "difficulty": "moderate",
+  "error_reason": "column name mismatch and positional data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(DISTINCT T2.molecule_id)",
+        "SUM(CASE WHEN T2.label = '+' THEN 1 ELSE 0 END)"
+      ],
+      [
+        "291",
+        "634"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(DISTINCT T2.molecule_id), SUM(CASE WHEN T2.label = '+' THEN 1 ELSE 0 END) FROM bond AS T1 INNER JOIN molecule AS T2 ON T1.molecule_id = T2.molecule_id WHERE T1.bond_type = '='",
+  "id": 311,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(*)",
+        "SUM(CASE WHEN label = '+' THEN 1 ELSE 0 END)"
+      ],
+      [
+        "291",
+        "121"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(*), SUM(CASE WHEN label = '+' THEN 1 ELSE 0 END) FROM (SELECT DISTINCT T2.molecule_id, T2.label FROM bond AS T1 INNER JOIN molecule AS T2 ON T1.molecule_id = T2.molecule_id WHERE T1.bond_type = '=') AS sub",
+  "question": "How many molecules have a double bond type and among these molecule, how many are labeled as carcinogenic compound?",
+  "thinking": ""
+}

@@ -1,0 +1,92 @@
+{
+  "db_id": "financial",
+  "difficulty": "moderate",
+  "error_reason": "data row count mismatch (strategy: exact_column_names)",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "A2"
+      ],
+      [
+        "Benesov"
+      ],
+      [
+        "Beroun"
+      ],
+      [
+        "Blansko"
+      ],
+      [
+        "Breclav"
+      ],
+      [
+        "Brno - mesto"
+      ],
+      [
+        "Brno - venkov"
+      ],
+      [
+        "Bruntal"
+      ],
+      [
+        "Ceska Lipa"
+      ],
+      [
+        "Ceske Budejovice"
+      ],
+      [
+        "Cesky Krumlov"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T1.A2 FROM district AS T1 INNER JOIN account AS T2 ON T1.district_id = T2.district_id INNER JOIN trans AS T3 ON T2.account_id = T3.account_id WHERE T3.type = 'VYDAJ' AND T3.date LIKE '1996-01%' ORDER BY A2 ASC LIMIT 10",
+  "id": 130,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "A2"
+      ],
+      [
+        "Trutnov"
+      ],
+      [
+        "Pelhrimov"
+      ],
+      [
+        "Zlin"
+      ],
+      [
+        "Olomouc"
+      ],
+      [
+        "Frydek - Mistek"
+      ],
+      [
+        "Breclav"
+      ],
+      [
+        "Karvina"
+      ],
+      [
+        "Zlin"
+      ],
+      [
+        "Zlin"
+      ],
+      [
+        "Jihlava"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT d.A2\nFROM trans t\nJOIN account a ON t.account_id = a.account_id\nJOIN district d ON a.district_id = d.district_id\nWHERE t.type = 'VYDAJ'\n  AND t.date LIKE '1996-01%'\n  AND t.operation != 'VYBER KARTOU'\nORDER BY t.amount DESC\nLIMIT 10;",
+  "question": "Which are the top ten withdrawals (non-credit card) by district names for the month of January 1996?",
+  "thinking": ""
+}

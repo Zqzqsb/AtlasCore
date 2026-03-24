@@ -1,0 +1,68 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=10, pred=2",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "setCode"
+      ],
+      [
+        "10E"
+      ],
+      [
+        "10E"
+      ],
+      [
+        "10E"
+      ],
+      [
+        "10E"
+      ],
+      [
+        "10E"
+      ],
+      [
+        "10E"
+      ],
+      [
+        "10E"
+      ],
+      [
+        "10E"
+      ],
+      [
+        "10E"
+      ],
+      [
+        "10E"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.setCode FROM sets AS T1 INNER JOIN set_translations AS T2 ON T2.setCode = T1.code WHERE T1.releaseDate = '2007-07-13'",
+  "id": 442,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "setCode"
+      ],
+      [
+        "10E"
+      ],
+      [
+        "P10E"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT code AS setCode FROM sets WHERE releaseDate = '2007-07-13';",
+  "question": "State the set code of the set with release date of 07/13/2007?",
+  "thinking": ""
+}

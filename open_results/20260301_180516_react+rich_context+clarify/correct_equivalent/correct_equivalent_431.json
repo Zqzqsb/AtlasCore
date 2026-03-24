@@ -1,0 +1,50 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name",
+        "id"
+      ],
+      [
+        "Eventide",
+        "101"
+      ],
+      [
+        "Shadowmoor",
+        "485"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.name, T1.id FROM sets AS T1 INNER JOIN set_translations AS T2 ON T1.code = T2.setCode WHERE T1.block = 'Shadowmoor' AND T2.language = 'Italian' ORDER BY T1.id LIMIT 2",
+  "id": 431,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name",
+        "id"
+      ],
+      [
+        "Eventide",
+        "101"
+      ],
+      [
+        "Shadowmoor",
+        "485"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT s.name, s.id\nFROM sets s\nJOIN cards c ON s.code = c.setCode\nJOIN foreign_data fd ON c.uuid = fd.uuid\nWHERE fd.language = 'Italian'\n  AND s.block = 'Shadowmoor'\nORDER BY s.name\nLIMIT 2;",
+  "question": "Please list top two sets of cards with their IDs that have Italian-language cards and are located in the Shadowmoor block in alphabetical order.",
+  "thinking": ""
+}

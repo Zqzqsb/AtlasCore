@@ -1,0 +1,16 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT artist FROM cards WHERE flavorName = 'Battra, Dark Destroyer'",
+  "id": 461,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT artist FROM cards WHERE flavorName = 'Battra, Dark Destroyer';",
+  "question": "Which artist designed the card whose promotional name is \"Battra, Dark Destroyer\"?",
+  "thinking": ""
+}

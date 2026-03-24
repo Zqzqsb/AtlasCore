@@ -1,0 +1,38 @@
+{
+  "db_id": "superhero",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "attribute_name"
+      ],
+      [
+        "Strength"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T3.attribute_name FROM superhero AS T1 INNER JOIN hero_attribute AS T2 ON T1.id = T2.hero_id INNER JOIN attribute AS T3 ON T2.attribute_id = T3.id WHERE T1.superhero_name = 'Black Panther' ORDER BY T2.attribute_value ASC LIMIT 1",
+  "id": 831,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "attribute_name"
+      ],
+      [
+        "Strength"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT a.attribute_name\nFROM superhero s\nJOIN hero_attribute ha ON s.id = ha.hero_id\nJOIN attribute a ON ha.attribute_id = a.id\nWHERE s.superhero_name = 'Black Panther'\nORDER BY ha.attribute_value ASC\nLIMIT 1",
+  "question": "Identify the weakest attribute of the Black Panther.",
+  "thinking": ""
+}

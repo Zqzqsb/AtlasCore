@@ -1,0 +1,24 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": []
+  },
+  "gt_sql": "SELECT T1.duration FROM pitStops AS T1 INNER JOIN races AS T2 on T1.raceId = T2.raceId WHERE T2.year = 2011 AND T2.name = 'Australian Grand Prix'",
+  "id": 1010,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": []
+  },
+  "pred_sql": "SELECT CAST(pitStops.duration AS INTEGER) AS duration\nFROM pitStops\nJOIN races ON pitStops.raceId = races.raceId\nWHERE races.year = 2011 \n  AND races.name = 'Australian Grand Prix';",
+  "question": "Please list the time each driver spent at the pit stop during the 2011 Australian Grand Prix.",
+  "thinking": ""
+}

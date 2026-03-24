@@ -1,0 +1,38 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "challenging",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(DISTINCT T1.ID)"
+      ],
+      [
+        "75"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(DISTINCT T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.FG \u003c= 150 OR T2.FG \u003e= 450 AND T2.WBC \u003e 3.5 AND T2.WBC \u003c 9.0 AND T1.SEX = 'M'",
+  "id": 1248,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(DISTINCT T1.ID)"
+      ],
+      [
+        "6"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(DISTINCT T1.ID) \nFROM Patient AS T1 \nINNER JOIN Laboratory AS T2 ON T1.ID = T2.ID \nWHERE T1.SEX = 'M' \nAND T2.WBC \u003e 3.5 \nAND T2.WBC \u003c 9.0 \nAND (T2.FG \u003c= 150 OR T2.FG \u003e= 450)",
+  "question": "Among the male patients who have a normal level of white blood cells, how many of them have an abnormal fibrinogen level?",
+  "thinking": ""
+}

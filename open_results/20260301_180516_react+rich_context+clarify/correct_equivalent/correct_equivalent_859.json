@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "nationality"
+      ],
+      [
+        "Italian"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.nationality FROM constructorResults AS T1 INNER JOIN constructors AS T2 ON T2.constructorId = T1.constructorId WHERE T1.raceId = 24 AND T1.points = 1",
+  "id": 859,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "nationality"
+      ],
+      [
+        "Italian"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT c.nationality\nFROM constructorResults cr\nJOIN constructors c ON cr.constructorId = c.constructorId\nWHERE cr.raceId = 24 AND cr.points = 1;",
+  "question": "Which country is the constructor which got 1 point in the race No. 24 from?",
+  "thinking": ""
+}

@@ -1,0 +1,42 @@
+{
+  "db_id": "student_club",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T3.link_to_event)",
+        "major_name"
+      ],
+      [
+        "12",
+        "Civil Engineering"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T3.link_to_event), T1.major_name FROM major AS T1 INNER JOIN member AS T2 ON T1.major_id = T2.link_to_major INNER JOIN attendance AS T3 ON T2.member_id = T3.link_to_member WHERE T2.first_name = 'Luisa' AND T2.last_name = 'Guidi'",
+  "id": 1397,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T3.link_to_event)",
+        "major_name"
+      ],
+      [
+        "12",
+        "Civil Engineering"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(T3.link_to_event), T1.major_name\nFROM major AS T1\nJOIN member AS T2 ON T1.major_id = T2.link_to_major\nJOIN attendance AS T3 ON T2.member_id = T3.link_to_member\nWHERE T2.first_name = 'Luisa' AND T2.last_name = 'Guidi'\nGROUP BY T1.major_name",
+  "question": "Provide the number of events attended by Luisa Guidi. What is her major?",
+  "thinking": ""
+}

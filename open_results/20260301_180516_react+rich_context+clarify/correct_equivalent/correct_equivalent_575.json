@@ -1,0 +1,122 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "DisplayName"
+      ],
+      [
+        "Geoff Dalgas"
+      ],
+      [
+        "Jarrod Dixon"
+      ],
+      [
+        "Jeffrey"
+      ],
+      [
+        "rosh"
+      ],
+      [
+        "clyfe"
+      ],
+      [
+        "Rachel"
+      ],
+      [
+        "Paul R"
+      ],
+      [
+        "0xc0de"
+      ],
+      [
+        "Tom"
+      ],
+      [
+        "AGS"
+      ],
+      [
+        "Kuba Ober"
+      ],
+      [
+        "rob"
+      ],
+      [
+        "username"
+      ],
+      [
+        "Pio"
+      ],
+      [
+        "NickLarsen"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DisplayName FROM users WHERE WebsiteUrl = 'http://stackoverflow.com'",
+  "id": 575,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "DisplayName"
+      ],
+      [
+        "Geoff Dalgas"
+      ],
+      [
+        "Jarrod Dixon"
+      ],
+      [
+        "Jeffrey"
+      ],
+      [
+        "rosh"
+      ],
+      [
+        "clyfe"
+      ],
+      [
+        "Rachel"
+      ],
+      [
+        "Paul R"
+      ],
+      [
+        "0xc0de"
+      ],
+      [
+        "Tom"
+      ],
+      [
+        "AGS"
+      ],
+      [
+        "Kuba Ober"
+      ],
+      [
+        "rob"
+      ],
+      [
+        "username"
+      ],
+      [
+        "Pio"
+      ],
+      [
+        "NickLarsen"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT TRIM(DisplayName) AS DisplayName FROM users WHERE WebsiteUrl = 'http://stackoverflow.com'",
+  "question": "Which user has the website URL listed at 'http://stackoverflow.com'",
+  "thinking": ""
+}

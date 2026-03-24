@@ -1,0 +1,38 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "SUM(T1.CommentCount)"
+      ],
+      [
+        "256"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT SUM(T1.CommentCount) FROM posts AS T1 INNER JOIN users AS T2 ON T1.OwnerUserId = T2.Id WHERE T2.DisplayName = 'csgillespie'",
+  "id": 543,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "SUM(p.CommentCount)"
+      ],
+      [
+        "256"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT SUM(p.CommentCount) \nFROM posts p\nJOIN users u ON p.OwnerUserId = u.Id\nWHERE TRIM(u.DisplayName) = 'csgillespie'",
+  "question": "What is the total number of comments of all the posts owned by csgillespie?",
+  "thinking": ""
+}

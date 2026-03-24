@@ -1,0 +1,38 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "moderate",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AVG(T2.UA)"
+      ],
+      [
+        "4.054895464412201"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT AVG(T2.UA) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE (T2.UA \u003c 6.5 AND T1.SEX = 'F') OR (T2.UA \u003c 8.0 AND T1.SEX = 'M') AND T2.Date = ( SELECT MAX(Date) FROM Laboratory )",
+  "id": 1220,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AVG(T2.UA)"
+      ],
+      [
+        "4.239100346020761"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT AVG(T2.UA) \nFROM Patient AS T1\nJOIN (\n    SELECT ID, UA, Date,\n           ROW_NUMBER() OVER (PARTITION BY ID ORDER BY Date DESC) AS rn\n    FROM Laboratory\n    WHERE UA IS NOT NULL\n) AS T2 ON T1.ID = T2.ID\nWHERE T2.rn = 1\n  AND (\n    (T1.SEX = 'M' AND T2.UA \u003c 8.0)\n    OR (T1.SEX = 'F' AND T2.UA \u003c 6.5)\n  );",
+  "question": "For all patients with normal uric acid (UA), what is the average UA index based on their latest laboratory examination result?",
+  "thinking": ""
+}

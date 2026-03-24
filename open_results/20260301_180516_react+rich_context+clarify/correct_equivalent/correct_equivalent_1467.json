@@ -1,0 +1,46 @@
+{
+  "db_id": "student_club",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "first_name",
+        "last_name",
+        "college"
+      ],
+      [
+        "Annabella",
+        "Warren",
+        "College of Education \u0026 Human Services"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.first_name, T1.last_name, college FROM member AS T1 INNER JOIN major AS T2 ON T2.major_id = T1.link_to_major WHERE T1.position = 'Secretary'",
+  "id": 1467,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "first_name",
+        "last_name",
+        "college"
+      ],
+      [
+        "Annabella",
+        "Warren",
+        "College of Education \u0026 Human Services"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT m.first_name, m.last_name, maj.college FROM member m JOIN major maj ON m.link_to_major = maj.major_id WHERE m.position = 'Secretary';",
+  "question": "Write the full name of the club member with the position of 'Secretary' and list which college the club member belongs to.",
+  "thinking": ""
+}

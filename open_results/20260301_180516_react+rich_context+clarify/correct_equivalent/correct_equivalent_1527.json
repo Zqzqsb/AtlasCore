@@ -1,0 +1,38 @@
+{
+  "db_id": "debit_card_specializing",
+  "difficulty": "challenging",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(SUM(IIF(SUBSTR(Date, 1, 4) = '2012', Consumption, 0)) - SUM(IIF(SUBSTR(Date, 1, 4) = '2013', Consumption, 0)) AS FLOAT) / SUM(IIF(SUBSTR(Date, 1, 4) = '2012', Consumption, 0))"
+      ],
+      [
+        "-5.815242674672346"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT CAST(SUM(IIF(SUBSTR(Date, 1, 4) = '2012', Consumption, 0)) - SUM(IIF(SUBSTR(Date, 1, 4) = '2013', Consumption, 0)) AS FLOAT) / SUM(IIF(SUBSTR(Date, 1, 4) = '2012', Consumption, 0)) FROM yearmonth WHERE CustomerID = ( SELECT T1.CustomerID FROM transactions_1k AS T1 INNER JOIN gasstations AS T2 ON T1.GasStationID = T2.GasStationID WHERE T1.Date = '2012-08-25' AND T1.Price = 634.8 )",
+  "id": 1527,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(SUM(IIF(SUBSTR(y.Date, 1, 4) = '2012', y.Consumption, 0)) - SUM(IIF(SUBSTR(y.Date, 1, 4) = '2013', y.Consumption, 0)) AS FLOAT) / SUM(IIF(SUBSTR(y.Date, 1, 4) = '2012', y.Consumption, 0))"
+      ],
+      [
+        "-5.815242674672346"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT CAST(SUM(IIF(SUBSTR(y.Date, 1, 4) = '2012', y.Consumption, 0)) - SUM(IIF(SUBSTR(y.Date, 1, 4) = '2013', y.Consumption, 0)) AS FLOAT) / SUM(IIF(SUBSTR(y.Date, 1, 4) = '2012', y.Consumption, 0)) FROM transactions_1k t JOIN yearmonth y ON t.CustomerID = y.CustomerID WHERE t.Price = 634.8 AND t.Date = '2012-08-25'",
+  "question": "For the customer who paid 634.8 in 2012/8/25, what was the consumption decrease rate from Year 2012 to 2013?",
+  "thinking": ""
+}

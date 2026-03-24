@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T2.driverId)"
+      ],
+      [
+        "9"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T2.driverId) FROM races AS T1 INNER JOIN results AS T2 ON T2.raceId = T1.raceId WHERE T1.date = '2015-11-29' AND T2.time IS NULL",
+  "id": 877,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T2.driverId)"
+      ],
+      [
+        "9"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(T2.driverId) FROM races AS T1 INNER JOIN results AS T2 ON T1.raceId = T2.raceId WHERE T1.date = '2015-11-29' AND T2.time IS NULL;",
+  "question": "For the race happened in 2015/11/29, how many drivers did not finish the game?",
+  "thinking": ""
+}

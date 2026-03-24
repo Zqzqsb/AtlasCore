@@ -1,0 +1,224 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "NumTstTakr"
+      ],
+      [
+        "6"
+      ],
+      [
+        "5"
+      ],
+      [
+        "328"
+      ],
+      [
+        "335"
+      ],
+      [
+        "2216"
+      ],
+      [
+        "74"
+      ],
+      [
+        "8"
+      ],
+      [
+        "113"
+      ],
+      [
+        "10"
+      ],
+      [
+        "334"
+      ],
+      [
+        "0"
+      ],
+      [
+        "104"
+      ],
+      [
+        "0"
+      ],
+      [
+        "421"
+      ],
+      [
+        "0"
+      ],
+      [
+        "368"
+      ],
+      [
+        "144"
+      ],
+      [
+        "211"
+      ],
+      [
+        "212"
+      ],
+      [
+        "217"
+      ],
+      [
+        "0"
+      ],
+      [
+        "0"
+      ],
+      [
+        "0"
+      ],
+      [
+        "0"
+      ],
+      [
+        "0"
+      ],
+      [
+        "368"
+      ],
+      [
+        "0"
+      ],
+      [
+        "368"
+      ],
+      [
+        "114"
+      ],
+      [
+        "0"
+      ],
+      [
+        "1"
+      ],
+      [
+        "113"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.NumTstTakr FROM satscores AS T1 INNER JOIN schools AS T2 ON T1.cds = T2.CDSCode WHERE T2.MailCity = 'Fresno'",
+  "id": 54,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "NumTstTakr"
+      ],
+      [
+        "6"
+      ],
+      [
+        "5"
+      ],
+      [
+        "328"
+      ],
+      [
+        "335"
+      ],
+      [
+        "2216"
+      ],
+      [
+        "74"
+      ],
+      [
+        "8"
+      ],
+      [
+        "113"
+      ],
+      [
+        "10"
+      ],
+      [
+        "334"
+      ],
+      [
+        "0"
+      ],
+      [
+        "104"
+      ],
+      [
+        "0"
+      ],
+      [
+        "421"
+      ],
+      [
+        "0"
+      ],
+      [
+        "368"
+      ],
+      [
+        "144"
+      ],
+      [
+        "211"
+      ],
+      [
+        "212"
+      ],
+      [
+        "217"
+      ],
+      [
+        "0"
+      ],
+      [
+        "0"
+      ],
+      [
+        "0"
+      ],
+      [
+        "0"
+      ],
+      [
+        "0"
+      ],
+      [
+        "368"
+      ],
+      [
+        "0"
+      ],
+      [
+        "368"
+      ],
+      [
+        "114"
+      ],
+      [
+        "0"
+      ],
+      [
+        "1"
+      ],
+      [
+        "113"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT s.NumTstTakr\nFROM satscores s\nJOIN schools sch ON CAST(s.cds AS INTEGER) = CAST(sch.CDSCode AS INTEGER)\nWHERE sch.MailCity = 'Fresno'",
+  "question": "How many test takers are there at the school/s whose mailing city address is in Fresno?",
+  "thinking": ""
+}

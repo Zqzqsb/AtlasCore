@@ -1,0 +1,38 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "SUM(DISTINCT FavoriteCount)"
+      ],
+      [
+        "6"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT SUM(DISTINCT FavoriteCount) FROM posts WHERE Id IN ( SELECT PostId FROM postHistory WHERE UserId = 686 AND STRFTIME('%Y', CreationDate) = '2011' )",
+  "id": 604,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "SUM(DISTINCT FavoriteCount)"
+      ],
+      [
+        "1"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT SUM(DISTINCT FavoriteCount) FROM posts WHERE OwnerUserId = 686 AND STRFTIME('%Y', CreaionDate) = '2011';",
+  "question": "What is the sum of favourite count gained by user ID 686 in 2011?",
+  "thinking": ""
+}

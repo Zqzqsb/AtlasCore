@@ -1,0 +1,899 @@
+{
+  "db_id": "superhero",
+  "difficulty": "moderate",
+  "error_reason": "row count mismatch: gold=10, pred=279",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Grey"
+      ],
+      [
+        "Blue"
+      ],
+      [
+        "Green"
+      ],
+      [
+        "White"
+      ],
+      [
+        "Gold"
+      ],
+      [
+        "Blue/White"
+      ],
+      [
+        "Purple"
+      ],
+      [
+        "Red"
+      ],
+      [
+        "Silver"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T2.colour FROM superhero AS T1 INNER JOIN colour AS T2 ON T1.skin_colour_id = T2.id INNER JOIN hero_attribute AS T3 ON T1.id = T3.hero_id WHERE T3.attribute_value = 100",
+  "id": 815,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Grey"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Blue"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Green"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Blue"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "White"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Gold"
+      ],
+      [
+        "Blue/White"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Green"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "White"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Purple"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Grey"
+      ],
+      [
+        "Gold"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Grey"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Blue"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Purple"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Green"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Gold"
+      ],
+      [
+        "Blue/White"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Red"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Silver"
+      ],
+      [
+        "White"
+      ],
+      [
+        "White"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Purple"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Red"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "White"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Gold"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "White"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Purple"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Gold"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Silver"
+      ],
+      [
+        "White"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Gold"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "White"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Purple"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Gold"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Silver"
+      ],
+      [
+        "White"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Gold"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "White"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Purple"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Gold"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Silver"
+      ],
+      [
+        "White"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Gold"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "White"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Purple"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Gold"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Silver"
+      ],
+      [
+        "White"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "No Colour"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT c.colour\nFROM superhero s\nJOIN hero_attribute ha ON s.id = ha.hero_id\nJOIN colour c ON s.skin_colour_id = c.id\nWHERE ha.attribute_value = 100;",
+  "question": "List the skin colour of the superheroes with 100 attribute value.",
+  "thinking": ""
+}

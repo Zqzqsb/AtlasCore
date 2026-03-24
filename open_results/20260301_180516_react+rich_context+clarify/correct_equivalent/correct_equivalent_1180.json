@@ -1,0 +1,46 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "aCL IgA",
+        "aCL IgG",
+        "aCL IgM"
+      ],
+      [
+        "3",
+        "5.1",
+        "4.1"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT `aCL IgA`, `aCL IgG`, `aCL IgM` FROM Examination WHERE ID IN ( SELECT ID FROM Patient WHERE Diagnosis = 'SLE' AND Description = '1994-02-19' ) AND `Examination Date` = '1993-11-12'",
+  "id": 1180,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "aCL IgA",
+        "aCL IgG",
+        "aCL IgM"
+      ],
+      [
+        "3",
+        "5.1",
+        "4.1"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT e.\"aCL IgA\", e.\"aCL IgG\", e.\"aCL IgM\"\nFROM Patient p\nJOIN Examination e ON p.ID = e.ID\nWHERE p.Diagnosis = 'SLE' \n  AND p.Description = '1994-02-19'\n  AND e.\"Examination Date\" = '1993-11-12';",
+  "question": "For the patient who was diagnosed with SLE on 1994/2/19, what was his/her anti-Cardiolipin antibody concentration status on 1993/11/12?",
+  "thinking": ""
+}

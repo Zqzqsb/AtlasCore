@@ -1,0 +1,42 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "forename",
+        "surname"
+      ],
+      [
+        "Fernando",
+        "Alonso"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T3.forename, T3.surname FROM races AS T1 INNER JOIN results AS T2 ON T2.raceId = T1.raceId INNER JOIN drivers AS T3 ON T3.driverId = T2.driverId WHERE T1.year = 2006 AND T1.name = 'San Marino Grand Prix' AND T2.position = 2",
+  "id": 875,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "forename",
+        "surname"
+      ],
+      [
+        "Fernando",
+        "Alonso"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT d.forename, d.surname\nFROM races r\nJOIN results res ON r.raceId = res.raceId\nJOIN drivers d ON res.driverId = d.driverId\nWHERE r.name = 'San Marino Grand Prix'\n  AND r.year = 2006\n  AND res.position = 2;",
+  "question": "Who finished second in the San Marino Grand Prix in 2006?",
+  "thinking": ""
+}

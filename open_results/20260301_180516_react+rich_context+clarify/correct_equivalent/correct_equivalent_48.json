@@ -1,0 +1,38 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(COUNT(School) AS REAL) / 12"
+      ],
+      [
+        "1.4166666666666667"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT CAST(COUNT(School) AS REAL) / 12 FROM schools WHERE DOC = 52 AND County = 'Alameda' AND strftime('%Y', OpenDate) = '1980'",
+  "id": 48,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(COUNT(School) AS REAL) / 12"
+      ],
+      [
+        "1.4166666666666667"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT CAST(COUNT(School) AS REAL) / 12 FROM schools WHERE County = 'Alameda' AND DOC = '52' AND STRFTIME('%Y', OpenDate) = '1980'",
+  "question": "What is the monthly average number of schools that opened in Alameda County under the jurisdiction of the Elementary School District in 1980?",
+  "thinking": ""
+}

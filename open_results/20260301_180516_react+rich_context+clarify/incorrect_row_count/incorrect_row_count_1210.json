@@ -1,0 +1,2759 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "moderate",
+  "error_reason": "row count mismatch: gold=38, pred=871",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Diagnosis"
+      ],
+      [
+        "Adult STILL"
+      ],
+      [
+        "PSS, RA susp"
+      ],
+      [
+        "PNc"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "RA, UC"
+      ],
+      [
+        "PSS"
+      ],
+      [
+        "AORTITIS"
+      ],
+      [
+        "PSS, PM"
+      ],
+      [
+        "PN"
+      ],
+      [
+        ""
+      ],
+      [
+        "Vasculitis"
+      ],
+      [
+        "BEHCET"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "PM/DM"
+      ],
+      [
+        "RA"
+      ],
+      [
+        "ITP"
+      ],
+      [
+        "MRA"
+      ],
+      [
+        "Sweet"
+      ],
+      [
+        "RA, SJS, PM"
+      ],
+      [
+        "PM\u001dPSS\u001dRA"
+      ],
+      [
+        "SLE, APS"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "SLE, ITP"
+      ],
+      [
+        "SLE susp"
+      ],
+      [
+        "MCTD"
+      ],
+      [
+        "PN, AGA"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "Psoriatic Arthritis"
+      ],
+      [
+        "SLE, PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "collagen susp"
+      ],
+      [
+        "relapsing polychondritis"
+      ],
+      [
+        "DM, SJS, RA"
+      ],
+      [
+        "SJS"
+      ],
+      [
+        "RA,SJS"
+      ],
+      [
+        "MCTD, SJS"
+      ],
+      [
+        "DM (amyopathic)"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T1.Diagnosis FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.GPT \u003e 60 ORDER BY T1.Birthday ASC",
+  "id": 1210,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Diagnosis"
+      ],
+      [
+        "MRA"
+      ],
+      [
+        "MRA"
+      ],
+      [
+        "MRA"
+      ],
+      [
+        "MRA"
+      ],
+      [
+        "MRA"
+      ],
+      [
+        "MRA"
+      ],
+      [
+        "MRA"
+      ],
+      [
+        "MRA"
+      ],
+      [
+        "MRA"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "RA"
+      ],
+      [
+        "Adult STILL"
+      ],
+      [
+        "Adult STILL"
+      ],
+      [
+        "Adult STILL"
+      ],
+      [
+        "Adult STILL"
+      ],
+      [
+        "SJS"
+      ],
+      [
+        "SJS"
+      ],
+      [
+        "SJS"
+      ],
+      [
+        "SJS"
+      ],
+      [
+        "SJS"
+      ],
+      [
+        "SJS"
+      ],
+      [
+        "SJS"
+      ],
+      [
+        "SJS"
+      ],
+      [
+        "SJS"
+      ],
+      [
+        "SJS"
+      ],
+      [
+        "RA"
+      ],
+      [
+        "RA"
+      ],
+      [
+        "RA"
+      ],
+      [
+        "RA"
+      ],
+      [
+        "RA"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "PSS, RA susp"
+      ],
+      [
+        "PNc"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "MRA, SJS"
+      ],
+      [
+        "SJS"
+      ],
+      [
+        "SJS"
+      ],
+      [
+        "RA, UC"
+      ],
+      [
+        "RA, UC"
+      ],
+      [
+        "RA, UC"
+      ],
+      [
+        "RA, UC"
+      ],
+      [
+        "RA, UC"
+      ],
+      [
+        "PSS"
+      ],
+      [
+        "PSS"
+      ],
+      [
+        "PSS"
+      ],
+      [
+        "PSS"
+      ],
+      [
+        "PSS"
+      ],
+      [
+        "PSS"
+      ],
+      [
+        "PSS"
+      ],
+      [
+        "PSS"
+      ],
+      [
+        "PSS"
+      ],
+      [
+        "PSS"
+      ],
+      [
+        "PSS"
+      ],
+      [
+        "PSS"
+      ],
+      [
+        "PSS"
+      ],
+      [
+        "PSS"
+      ],
+      [
+        "PSS"
+      ],
+      [
+        "PSS"
+      ],
+      [
+        "PSS"
+      ],
+      [
+        "PSS"
+      ],
+      [
+        "PSS"
+      ],
+      [
+        "PSS"
+      ],
+      [
+        "PSS"
+      ],
+      [
+        "PSS"
+      ],
+      [
+        "PSS"
+      ],
+      [
+        "PSS"
+      ],
+      [
+        "PSS"
+      ],
+      [
+        "PSS"
+      ],
+      [
+        "PSS"
+      ],
+      [
+        "PSS"
+      ],
+      [
+        "RA"
+      ],
+      [
+        "RA"
+      ],
+      [
+        "RA"
+      ],
+      [
+        "RA"
+      ],
+      [
+        "RA"
+      ],
+      [
+        "RA"
+      ],
+      [
+        "RA"
+      ],
+      [
+        "RA"
+      ],
+      [
+        "RA"
+      ],
+      [
+        "AORTITIS"
+      ],
+      [
+        "PSS, PM"
+      ],
+      [
+        "PN"
+      ],
+      [
+        "PN"
+      ],
+      [
+        "PN"
+      ],
+      [
+        "PN"
+      ],
+      [
+        "PN"
+      ],
+      [
+        "PN"
+      ],
+      [
+        "PN"
+      ],
+      [
+        "PN"
+      ],
+      [
+        "PN"
+      ],
+      [
+        "PN"
+      ],
+      [
+        "PN"
+      ],
+      [
+        "PN"
+      ],
+      [
+        "PN"
+      ],
+      [
+        "PN"
+      ],
+      [
+        "PN"
+      ],
+      [
+        "PN"
+      ],
+      [
+        "PN"
+      ],
+      [
+        "PN"
+      ],
+      [
+        "PN"
+      ],
+      [
+        "PN"
+      ],
+      [
+        "PN"
+      ],
+      [
+        "PN"
+      ],
+      [
+        "PN"
+      ],
+      [
+        "BEHCET"
+      ],
+      [
+        "BEHCET"
+      ],
+      [
+        ""
+      ],
+      [
+        ""
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE, APS"
+      ],
+      [
+        "Vasculitis"
+      ],
+      [
+        "SJS"
+      ],
+      [
+        "SJS"
+      ],
+      [
+        "SJS"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "BEHCET"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "PM/DM"
+      ],
+      [
+        "PM/DM"
+      ],
+      [
+        "PM/DM"
+      ],
+      [
+        "PM/DM"
+      ],
+      [
+        "PM/DM"
+      ],
+      [
+        "PM/DM"
+      ],
+      [
+        "PM/DM"
+      ],
+      [
+        "PM/DM"
+      ],
+      [
+        "PM/DM"
+      ],
+      [
+        "PM/DM"
+      ],
+      [
+        "PM/DM"
+      ],
+      [
+        "PM/DM"
+      ],
+      [
+        "PM/DM"
+      ],
+      [
+        "PM/DM"
+      ],
+      [
+        "PM/DM"
+      ],
+      [
+        "PM/DM"
+      ],
+      [
+        "PM/DM"
+      ],
+      [
+        "PM/DM"
+      ],
+      [
+        "PM/DM"
+      ],
+      [
+        "PM/DM"
+      ],
+      [
+        "PM/DM"
+      ],
+      [
+        "PM/DM"
+      ],
+      [
+        "PM/DM"
+      ],
+      [
+        "PM/DM"
+      ],
+      [
+        "PM/DM"
+      ],
+      [
+        "PM/DM"
+      ],
+      [
+        "PM/DM"
+      ],
+      [
+        "PM/DM"
+      ],
+      [
+        "PM/DM"
+      ],
+      [
+        "BEHCET"
+      ],
+      [
+        "BEHCET"
+      ],
+      [
+        "BEHCET"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "RA"
+      ],
+      [
+        "RA"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "ITP"
+      ],
+      [
+        "RA"
+      ],
+      [
+        "MRA"
+      ],
+      [
+        "MRA"
+      ],
+      [
+        "MRA"
+      ],
+      [
+        "Sweet"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SJS"
+      ],
+      [
+        "SJS"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE, APS"
+      ],
+      [
+        "SLE, APS"
+      ],
+      [
+        "SLE, APS"
+      ],
+      [
+        "SLE, APS"
+      ],
+      [
+        "SLE, APS"
+      ],
+      [
+        "SLE, APS"
+      ],
+      [
+        "RA, SJS, PM"
+      ],
+      [
+        "RA, SJS, PM"
+      ],
+      [
+        "RA, SJS, PM"
+      ],
+      [
+        "RA, SJS, PM"
+      ],
+      [
+        "RA, SJS, PM"
+      ],
+      [
+        "RA, SJS, PM"
+      ],
+      [
+        "RA, SJS, PM"
+      ],
+      [
+        "RA, SJS, PM"
+      ],
+      [
+        "RA, SJS, PM"
+      ],
+      [
+        "RA, SJS, PM"
+      ],
+      [
+        "RA, SJS, PM"
+      ],
+      [
+        "PM\u001dPSS\u001dRA"
+      ],
+      [
+        "BEHCET"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "BEHCET"
+      ],
+      [
+        "SLE, APS"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "PNc"
+      ],
+      [
+        "PNc"
+      ],
+      [
+        "PNc"
+      ],
+      [
+        "PNc"
+      ],
+      [
+        "PNc"
+      ],
+      [
+        "PNc"
+      ],
+      [
+        "PNc"
+      ],
+      [
+        "PNc"
+      ],
+      [
+        "PNc"
+      ],
+      [
+        "PNc"
+      ],
+      [
+        "PNc"
+      ],
+      [
+        "PNc"
+      ],
+      [
+        "PNc"
+      ],
+      [
+        "PNc"
+      ],
+      [
+        "Adult STILL"
+      ],
+      [
+        "Adult STILL"
+      ],
+      [
+        "Adult STILL"
+      ],
+      [
+        "Adult STILL"
+      ],
+      [
+        "Adult STILL"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "PSS, SJS, PBC"
+      ],
+      [
+        "RA"
+      ],
+      [
+        "RA"
+      ],
+      [
+        "RA"
+      ],
+      [
+        "RA"
+      ],
+      [
+        "RA"
+      ],
+      [
+        "RA"
+      ],
+      [
+        "RA"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "SLE, ITP"
+      ],
+      [
+        "SLE, ITP"
+      ],
+      [
+        "SLE, ITP"
+      ],
+      [
+        "SLE, ITP"
+      ],
+      [
+        "SLE, ITP"
+      ],
+      [
+        "SLE, ITP"
+      ],
+      [
+        "SLE, ITP"
+      ],
+      [
+        "SLE, ITP"
+      ],
+      [
+        "SLE, ITP"
+      ],
+      [
+        "SLE susp"
+      ],
+      [
+        "MCTD"
+      ],
+      [
+        "MCTD"
+      ],
+      [
+        "MCTD"
+      ],
+      [
+        "MCTD"
+      ],
+      [
+        "MCTD"
+      ],
+      [
+        "MCTD"
+      ],
+      [
+        "MCTD"
+      ],
+      [
+        "MCTD"
+      ],
+      [
+        "MCTD"
+      ],
+      [
+        "MCTD"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PN, AGA"
+      ],
+      [
+        "PN, AGA"
+      ],
+      [
+        "PN, AGA"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "DM"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "Psoriatic Arthritis"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE, PM"
+      ],
+      [
+        "SLE, PM"
+      ],
+      [
+        "SLE, PM"
+      ],
+      [
+        "SLE, PM"
+      ],
+      [
+        "SLE, PM"
+      ],
+      [
+        "AORTITIS"
+      ],
+      [
+        "AORTITIS"
+      ],
+      [
+        "AORTITIS"
+      ],
+      [
+        "AORTITIS"
+      ],
+      [
+        "AORTITIS"
+      ],
+      [
+        "AORTITIS"
+      ],
+      [
+        "AORTITIS"
+      ],
+      [
+        "AORTITIS"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "PM"
+      ],
+      [
+        "collagen susp"
+      ],
+      [
+        "relapsing polychondritis"
+      ],
+      [
+        "DM, SJS, RA"
+      ],
+      [
+        "DM, SJS, RA"
+      ],
+      [
+        "DM, SJS, RA"
+      ],
+      [
+        "DM, SJS, RA"
+      ],
+      [
+        "DM, SJS, RA"
+      ],
+      [
+        "DM, SJS, RA"
+      ],
+      [
+        "DM, SJS, RA"
+      ],
+      [
+        "DM, SJS, RA"
+      ],
+      [
+        "DM, SJS, RA"
+      ],
+      [
+        "DM, SJS, RA"
+      ],
+      [
+        "DM, SJS, RA"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SJS"
+      ],
+      [
+        "SJS"
+      ],
+      [
+        "SJS"
+      ],
+      [
+        "SJS"
+      ],
+      [
+        "SJS"
+      ],
+      [
+        "SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "RA"
+      ],
+      [
+        "RA"
+      ],
+      [
+        "RA"
+      ],
+      [
+        "RA,SJS"
+      ],
+      [
+        "RA,SJS"
+      ],
+      [
+        "RA,SJS"
+      ],
+      [
+        "RA,SJS"
+      ],
+      [
+        "RA,SJS"
+      ],
+      [
+        "RA,SJS"
+      ],
+      [
+        "RA,SJS"
+      ],
+      [
+        "RA,SJS"
+      ],
+      [
+        "MCTD, SJS"
+      ],
+      [
+        "MCTD, SJS"
+      ],
+      [
+        "MCTD, SJS"
+      ],
+      [
+        "MCTD, SJS"
+      ],
+      [
+        "MCTD, SJS"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "SLE, SJS"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "DM (amyopathic)"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "RA"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ],
+      [
+        "SLE"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT p.Diagnosis\nFROM Patient p\nJOIN Laboratory l ON p.ID = l.ID\nWHERE l.GPT \u003e 60\nORDER BY p.Birthday ASC;",
+  "question": "Please provide the diagnosis of patients with ALT glutamic pylvic transaminase beyond the normal range by ascending order of their date of birth.",
+  "thinking": ""
+}

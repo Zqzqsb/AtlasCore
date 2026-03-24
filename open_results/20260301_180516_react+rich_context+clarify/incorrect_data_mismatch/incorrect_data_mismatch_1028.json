@@ -1,0 +1,92 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "player_name"
+      ],
+      [
+        "Emanuel Rivas"
+      ],
+      [
+        "Emanuel Sarki"
+      ],
+      [
+        "Emanuele Belardi"
+      ],
+      [
+        "Emanuele Calaio"
+      ],
+      [
+        "Jesus Datolo"
+      ],
+      [
+        "Jesus Fernandez"
+      ],
+      [
+        "Jesus Gamez"
+      ],
+      [
+        "Moritz Hartmann"
+      ],
+      [
+        "Moritz Leitner"
+      ],
+      [
+        "Manu Lanzarote"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT t2.player_name FROM Player_Attributes AS t1 INNER JOIN Player AS t2 ON t1.id = t2.id ORDER BY t1.penalties DESC LIMIT 10",
+  "id": 1028,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "player_name"
+      ],
+      [
+        "Rickie Lambert"
+      ],
+      [
+        "Paul Scholes"
+      ],
+      [
+        "Andrea Pirlo"
+      ],
+      [
+        "Xavi Hernandez"
+      ],
+      [
+        "Mario Balotelli"
+      ],
+      [
+        "Paolo Maldini"
+      ],
+      [
+        "Roy Makaay"
+      ],
+      [
+        "Cesc Fabregas"
+      ],
+      [
+        "Iker Casillas"
+      ],
+      [
+        "David Trezeguet"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT p.player_name\nFROM Player p\nJOIN Player_Attributes pa ON p.player_api_id = pa.player_api_id\nGROUP BY p.player_api_id, p.player_name\nORDER BY MAX(pa.penalties) DESC\nLIMIT 10;",
+  "question": "Indicate the full names of the top 10 players with the highest number of penalties.",
+  "thinking": ""
+}

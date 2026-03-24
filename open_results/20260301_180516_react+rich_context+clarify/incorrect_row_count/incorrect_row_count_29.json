@@ -1,0 +1,458 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "challenging",
+  "error_reason": "row count mismatch: gold=57, pred=49",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "School",
+        "DOC"
+      ],
+      [
+        "Mountain Oaks",
+        "00"
+      ],
+      [
+        "Castle Rock",
+        "00"
+      ],
+      [
+        "Charter Community School Home Study Academy",
+        "00"
+      ],
+      [
+        "Clovis Online Charter",
+        "54"
+      ],
+      [
+        "Washington Elementary",
+        "52"
+      ],
+      [
+        "West Park Charter Academy",
+        "52"
+      ],
+      [
+        "Mattole Valley Charter (#159)",
+        "54"
+      ],
+      [
+        "YouthBuild Charter School of California",
+        "00"
+      ],
+      [
+        "The Education Corps",
+        "00"
+      ],
+      [
+        "College Bridge Academy",
+        "00"
+      ],
+      [
+        "Kern Workforce 2000 Academy",
+        "56"
+      ],
+      [
+        "Kings River-Hardwick Elementary",
+        "52"
+      ],
+      [
+        "Soledad Enrichment Action Charter High",
+        "00"
+      ],
+      [
+        "Chatsworth Charter High",
+        "54"
+      ],
+      [
+        "Grover Cleveland Charter High",
+        "54"
+      ],
+      [
+        "Sylmar Charter High",
+        "54"
+      ],
+      [
+        "Taft Charter High",
+        "54"
+      ],
+      [
+        "Calahan Community Charter",
+        "54"
+      ],
+      [
+        "Carpenter Community Charter",
+        "54"
+      ],
+      [
+        "YES Academy",
+        "54"
+      ],
+      [
+        "Pomelo Community Charter",
+        "54"
+      ],
+      [
+        "Serrania Avenue Charter For Enriched Studies",
+        "54"
+      ],
+      [
+        "Westwood Charter Elementary",
+        "54"
+      ],
+      [
+        "Wilbur Charter For Enriched Academics",
+        "54"
+      ],
+      [
+        "Marlton",
+        "54"
+      ],
+      [
+        "School of Extended Educational Options",
+        "54"
+      ],
+      [
+        "Madera County Independent Academy",
+        "00"
+      ],
+      [
+        "Pioneer Technical Center",
+        "00"
+      ],
+      [
+        "Monterey County Home Charter",
+        "00"
+      ],
+      [
+        "Forest Charter",
+        "00"
+      ],
+      [
+        "Union Hill Elementary",
+        "52"
+      ],
+      [
+        "Come Back Kids",
+        "00"
+      ],
+      [
+        "George Washington Charter",
+        "54"
+      ],
+      [
+        "Elk Grove Charter",
+        "54"
+      ],
+      [
+        "Visions In Education",
+        "54"
+      ],
+      [
+        "San Juan Choices Charter",
+        "54"
+      ],
+      [
+        "Natomas Charter",
+        "54"
+      ],
+      [
+        "Riverside Preparatory",
+        "52"
+      ],
+      [
+        "Delta Home Charter",
+        "52"
+      ],
+      [
+        "Delta Charter Online",
+        "52"
+      ],
+      [
+        "Delta Charter",
+        "52"
+      ],
+      [
+        "Stockton High",
+        "54"
+      ],
+      [
+        "Grizzly ChalleNGe Charter",
+        "00"
+      ],
+      [
+        "Arundel Elementary",
+        "52"
+      ],
+      [
+        "Fammatre Elementary",
+        "52"
+      ],
+      [
+        "Castlemont Elementary",
+        "52"
+      ],
+      [
+        "Lynhaven Elementary",
+        "52"
+      ],
+      [
+        "Rosemary Elementary",
+        "52"
+      ],
+      [
+        "Pacific Coast Charter",
+        "54"
+      ],
+      [
+        "Fairmont Charter Elementary",
+        "54"
+      ],
+      [
+        "Gateway to College Academy",
+        "56"
+      ],
+      [
+        "Stanislaus Alternative Charter",
+        "00"
+      ],
+      [
+        "Denair Charter Academy",
+        "54"
+      ],
+      [
+        "Summit Charter Academy",
+        "52"
+      ],
+      [
+        "Visalia Charter Independent Study",
+        "54"
+      ],
+      [
+        "Butterfield Charter High",
+        "54"
+      ],
+      [
+        "Yuba County Career Preparatory Charter",
+        "00"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.School, T2.DOC FROM frpm AS T1 INNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode WHERE T2.FundingType = 'Locally funded' AND (T1.`Enrollment (K-12)` - T1.`Enrollment (Ages 5-17)`) \u003e (SELECT AVG(T3.`Enrollment (K-12)` - T3.`Enrollment (Ages 5-17)`) FROM frpm AS T3 INNER JOIN schools AS T4 ON T3.CDSCode = T4.CDSCode WHERE T4.FundingType = 'Locally funded')",
+  "id": 29,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "School",
+        "DOC"
+      ],
+      [
+        "Mountain Oaks",
+        "County Office of Education (COE)"
+      ],
+      [
+        "Castle Rock",
+        "County Office of Education (COE)"
+      ],
+      [
+        "Charter Community School Home Study Academy",
+        "County Office of Education (COE)"
+      ],
+      [
+        "Clovis Online Charter",
+        "Unified School District"
+      ],
+      [
+        "Washington Elementary",
+        "Elementary School District"
+      ],
+      [
+        "West Park Charter Academy",
+        "Elementary School District"
+      ],
+      [
+        "Mattole Valley Charter (#159)",
+        "Unified School District"
+      ],
+      [
+        "YouthBuild Charter School of California",
+        "County Office of Education (COE)"
+      ],
+      [
+        "The Education Corps",
+        "County Office of Education (COE)"
+      ],
+      [
+        "College Bridge Academy",
+        "County Office of Education (COE)"
+      ],
+      [
+        "Kern Workforce 2000 Academy",
+        "High School District"
+      ],
+      [
+        "Soledad Enrichment Action Charter High",
+        "County Office of Education (COE)"
+      ],
+      [
+        "Chatsworth Charter High",
+        "Unified School District"
+      ],
+      [
+        "Grover Cleveland Charter High",
+        "Unified School District"
+      ],
+      [
+        "Taft Charter High",
+        "Unified School District"
+      ],
+      [
+        "Calahan Community Charter",
+        "Unified School District"
+      ],
+      [
+        "Pomelo Community Charter",
+        "Unified School District"
+      ],
+      [
+        "Serrania Avenue Charter For Enriched Studies",
+        "Unified School District"
+      ],
+      [
+        "Westwood Charter Elementary",
+        "Unified School District"
+      ],
+      [
+        "School of Extended Educational Options",
+        "Unified School District"
+      ],
+      [
+        "Madera County Independent Academy",
+        "County Office of Education (COE)"
+      ],
+      [
+        "Pioneer Technical Center",
+        "County Office of Education (COE)"
+      ],
+      [
+        "Monterey County Home Charter",
+        "County Office of Education (COE)"
+      ],
+      [
+        "Forest Charter",
+        "County Office of Education (COE)"
+      ],
+      [
+        "Union Hill Elementary",
+        "Elementary School District"
+      ],
+      [
+        "Come Back Kids",
+        "County Office of Education (COE)"
+      ],
+      [
+        "George Washington Charter",
+        "Unified School District"
+      ],
+      [
+        "Elk Grove Charter",
+        "Unified School District"
+      ],
+      [
+        "Visions In Education",
+        "Unified School District"
+      ],
+      [
+        "San Juan Choices Charter",
+        "Unified School District"
+      ],
+      [
+        "Natomas Charter",
+        "Unified School District"
+      ],
+      [
+        "Riverside Preparatory",
+        "Elementary School District"
+      ],
+      [
+        "San Diego Virtual",
+        "Unified School District"
+      ],
+      [
+        "Delta Charter Online",
+        "Elementary School District"
+      ],
+      [
+        "Delta Charter",
+        "Elementary School District"
+      ],
+      [
+        "Stockton High",
+        "Unified School District"
+      ],
+      [
+        "Grizzly ChalleNGe Charter",
+        "County Office of Education (COE)"
+      ],
+      [
+        "Arundel Elementary",
+        "Elementary School District"
+      ],
+      [
+        "Fammatre Elementary",
+        "Elementary School District"
+      ],
+      [
+        "Castlemont Elementary",
+        "Elementary School District"
+      ],
+      [
+        "Rosemary Elementary",
+        "Elementary School District"
+      ],
+      [
+        "Fairmont Charter Elementary",
+        "Unified School District"
+      ],
+      [
+        "Gateway to College Academy",
+        "High School District"
+      ],
+      [
+        "Stanislaus Alternative Charter",
+        "County Office of Education (COE)"
+      ],
+      [
+        "Denair Charter Academy",
+        "Unified School District"
+      ],
+      [
+        "Summit Charter Academy",
+        "Elementary School District"
+      ],
+      [
+        "Visalia Charter Independent Study",
+        "Unified School District"
+      ],
+      [
+        "Butterfield Charter High",
+        "Unified School District"
+      ],
+      [
+        "Yuba County Career Preparatory Charter",
+        "County Office of Education (COE)"
+      ]
+    ]
+  },
+  "pred_sql": "WITH avg_diff AS (\n    SELECT AVG(CAST(\"Enrollment (K-12)\" AS REAL) - CAST(\"Enrollment (Ages 5-17)\" AS REAL)) AS avg_difference\n    FROM frpm\n    WHERE \"Charter Funding Type\" = 'Locally funded'\n)\nSELECT s.School, s.DOCType AS DOC\nFROM schools s\nJOIN frpm f ON CAST(s.CDSCode AS INTEGER) = CAST(f.CDSCode AS INTEGER)\nCROSS JOIN avg_diff\nWHERE f.\"Charter Funding Type\" = 'Locally funded'\n  AND (CAST(f.\"Enrollment (K-12)\" AS REAL) - CAST(f.\"Enrollment (Ages 5-17)\" AS REAL)) \u003e avg_diff.avg_difference;",
+  "question": "Consider the average difference between K-12 enrollment and 15-17 enrollment of schools that are locally funded, list the names and DOC type of schools which has a difference above this average.",
+  "thinking": ""
+}

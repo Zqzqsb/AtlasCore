@@ -1,0 +1,38 @@
+{
+  "db_id": "card_games",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "translation"
+      ],
+      [
+        "核心系列第八版"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.translation FROM sets AS T1 INNER JOIN set_translations AS T2 ON T2.setCode = T1.code WHERE T1.name = 'Eighth Edition' AND T2.language = 'Chinese Simplified'",
+  "id": 469,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "translation"
+      ],
+      [
+        "核心系列第八版"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT st.translation FROM sets s JOIN set_translations st ON s.code = st.setCode WHERE s.name = 'Eighth Edition' AND st.language = 'Chinese Simplified';",
+  "question": "What is the Simplified Chinese translation of the name of the set \"Eighth Edition\"?",
+  "thinking": ""
+}

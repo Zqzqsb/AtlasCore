@@ -1,0 +1,38 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "SEX"
+      ],
+      [
+        "F"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT SEX FROM Patient WHERE Diagnosis = 'AORTITIS' AND `First Date` IS NOT NULL ORDER BY `First Date` ASC LIMIT 1",
+  "id": 1179,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "SEX"
+      ],
+      [
+        "M"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT SEX FROM Patient WHERE Diagnosis = 'AORTITIS' ORDER BY \"First Date\" ASC LIMIT 1;",
+  "question": "What was the gender of the first AORTITIS diagnosed patient?",
+  "thinking": ""
+}

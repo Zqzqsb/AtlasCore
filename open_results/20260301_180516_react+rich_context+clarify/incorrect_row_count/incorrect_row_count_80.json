@@ -1,0 +1,46 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "moderate",
+  "error_reason": "row count mismatch: gold=1, pred=2",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "County",
+        "COUNT(Virtual)"
+      ],
+      [
+        "San Diego",
+        "8"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT County, COUNT(Virtual) FROM schools WHERE (County = 'San Diego' OR County = 'Santa Barbara') AND Virtual = 'F' GROUP BY County ORDER BY COUNT(Virtual) DESC LIMIT 1",
+  "id": 80,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "County",
+        "COUNT(Virtual)"
+      ],
+      [
+        "San Diego",
+        "8"
+      ],
+      [
+        "Santa Barbara",
+        "1"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT County, COUNT(Virtual) FROM schools WHERE County IN ('San Diego', 'Santa Barbara') AND Virtual = 'F' GROUP BY County;",
+  "question": "Between San Diego and Santa Barbara, which county offers the most number of schools that does not offer physical building? Indicate the amount.",
+  "thinking": ""
+}

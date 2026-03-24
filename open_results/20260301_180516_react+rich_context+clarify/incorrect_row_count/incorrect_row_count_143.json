@@ -1,0 +1,227 @@
+{
+  "db_id": "financial",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=32, pred=33",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "account_id"
+      ],
+      [
+        "1"
+      ],
+      [
+        "343"
+      ],
+      [
+        "413"
+      ],
+      [
+        "431"
+      ],
+      [
+        "945"
+      ],
+      [
+        "970"
+      ],
+      [
+        "1049"
+      ],
+      [
+        "1171"
+      ],
+      [
+        "1552"
+      ],
+      [
+        "1733"
+      ],
+      [
+        "1765"
+      ],
+      [
+        "1796"
+      ],
+      [
+        "1919"
+      ],
+      [
+        "2076"
+      ],
+      [
+        "2174"
+      ],
+      [
+        "2309"
+      ],
+      [
+        "2350"
+      ],
+      [
+        "2402"
+      ],
+      [
+        "2421"
+      ],
+      [
+        "2479"
+      ],
+      [
+        "2520"
+      ],
+      [
+        "2636"
+      ],
+      [
+        "2726"
+      ],
+      [
+        "2812"
+      ],
+      [
+        "2987"
+      ],
+      [
+        "3088"
+      ],
+      [
+        "3192"
+      ],
+      [
+        "3287"
+      ],
+      [
+        "3540"
+      ],
+      [
+        "3559"
+      ],
+      [
+        "3633"
+      ],
+      [
+        "3904"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T2.account_id FROM trans AS T1 INNER JOIN account AS T2 ON T1.account_id = T2.account_id INNER JOIN district AS T3 ON T2.district_id = T3.district_id WHERE T1.k_symbol = 'SIPO' AND T3.A2 = 'Pisek'",
+  "id": 143,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "account_id"
+      ],
+      [
+        "1"
+      ],
+      [
+        "343"
+      ],
+      [
+        "413"
+      ],
+      [
+        "431"
+      ],
+      [
+        "945"
+      ],
+      [
+        "970"
+      ],
+      [
+        "1049"
+      ],
+      [
+        "1171"
+      ],
+      [
+        "1552"
+      ],
+      [
+        "1733"
+      ],
+      [
+        "1765"
+      ],
+      [
+        "1796"
+      ],
+      [
+        "1919"
+      ],
+      [
+        "2076"
+      ],
+      [
+        "2174"
+      ],
+      [
+        "2309"
+      ],
+      [
+        "2350"
+      ],
+      [
+        "2402"
+      ],
+      [
+        "2421"
+      ],
+      [
+        "2479"
+      ],
+      [
+        "2520"
+      ],
+      [
+        "2636"
+      ],
+      [
+        "2726"
+      ],
+      [
+        "2812"
+      ],
+      [
+        "2987"
+      ],
+      [
+        "3079"
+      ],
+      [
+        "3088"
+      ],
+      [
+        "3192"
+      ],
+      [
+        "3287"
+      ],
+      [
+        "3540"
+      ],
+      [
+        "3559"
+      ],
+      [
+        "3633"
+      ],
+      [
+        "3904"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT a.account_id\nFROM account a\nJOIN \"order\" o ON a.account_id = o.account_id\nWHERE a.district_id = 18\n  AND o.k_symbol = 'SIPO';",
+  "question": "Which accounts placed orders for household payment in Pisek?",
+  "thinking": ""
+}

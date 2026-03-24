@@ -1,0 +1,92 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "data row count mismatch (strategy: exact_column_names)",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "ViewCount"
+      ],
+      [
+        "4949"
+      ],
+      [
+        "4949"
+      ],
+      [
+        "4949"
+      ],
+      [
+        "4949"
+      ],
+      [
+        "4949"
+      ],
+      [
+        "4949"
+      ],
+      [
+        "4949"
+      ],
+      [
+        "4949"
+      ],
+      [
+        "4949"
+      ],
+      [
+        "4949"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.ViewCount FROM posts AS T1 INNER JOIN postLinks AS T2 ON T1.Id = T2.PostId WHERE T2.PostId = 61217",
+  "id": 601,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "ViewCount"
+      ],
+      [
+        "1494"
+      ],
+      [
+        "4109"
+      ],
+      [
+        "1210"
+      ],
+      [
+        "421"
+      ],
+      [
+        "6618"
+      ],
+      [
+        "984"
+      ],
+      [
+        "5973"
+      ],
+      [
+        "2441"
+      ],
+      [
+        "2910"
+      ],
+      [
+        "3332"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT p.ViewCount\nFROM postLinks pl\nJOIN posts p ON pl.RelatedPostId = p.Id\nWHERE pl.PostId = 61217",
+  "question": "List out all post that are related to post ID 61217 and what is the popularity of this post?",
+  "thinking": ""
+}

@@ -1,0 +1,38 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Title"
+      ],
+      [
+        "Assessing the significance of differences in distributions"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.Title FROM posts AS T1 INNER JOIN postLinks AS T2 ON T2.PostId = T1.Id ORDER BY T1.CreaionDate LIMIT 1",
+  "id": 668,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Title"
+      ],
+      [
+        "How to tell if something happened in a data set which monitors a value over time"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT p.Title\nFROM postLinks pl\nJOIN posts p ON pl.PostId = p.Id\nORDER BY pl.CreationDate ASC\nLIMIT 1;",
+  "question": "What is the title of the post with the oldest post link?",
+  "thinking": ""
+}

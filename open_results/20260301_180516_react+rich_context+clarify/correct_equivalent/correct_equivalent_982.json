@@ -1,0 +1,50 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "year",
+        "name",
+        "date",
+        "time"
+      ],
+      [
+        "2017",
+        "Chinese Grand Prix",
+        "2017-04-09 00:00:00 +0000 UTC",
+        "06:00:00"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T3.year, T3.name, T3.date, T3.time FROM qualifying AS T1 INNER JOIN drivers AS T2 on T1.driverId = T2.driverId INNER JOIN races AS T3 on T1.raceId = T3.raceId WHERE T1.driverId = ( SELECT driverId FROM drivers ORDER BY dob DESC LIMIT 1 ) ORDER BY T3.date ASC LIMIT 1",
+  "id": 982,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "year",
+        "name",
+        "date",
+        "time"
+      ],
+      [
+        "2017",
+        "Chinese Grand Prix",
+        "2017-04-09 00:00:00 +0000 UTC",
+        "06:00:00"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT r.year, r.name, r.date, r.time\nFROM drivers d\nJOIN qualifying q ON d.driverId = q.driverId\nJOIN races r ON q.raceId = r.raceId\nWHERE d.dob = (SELECT MAX(dob) FROM drivers WHERE dob IS NOT NULL)\nORDER BY r.date\nLIMIT 1;",
+  "question": "On what year did the youngest driver had his first qualifying race? Also state the name, date and time of the race.",
+  "thinking": ""
+}

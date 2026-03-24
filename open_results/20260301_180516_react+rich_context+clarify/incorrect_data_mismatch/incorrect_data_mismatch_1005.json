@@ -1,0 +1,46 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "SUM(T1.wins)",
+        "forename",
+        "surname"
+      ],
+      [
+        "7890",
+        "Lewis",
+        "Hamilton"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT SUM(T1.wins),T2.forename, T2.surname FROM driverStandings AS T1 INNER JOIN drivers AS T2 on T1.driverId = T2.driverId ORDER BY T2.dob ASC LIMIT 1",
+  "id": 1005,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "SUM(T1.wins)",
+        "forename",
+        "surname"
+      ],
+      [
+        "0",
+        "Philippe",
+        "Étancelin"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT SUM(ds.wins) AS \"SUM(T1.wins)\", d.forename, d.surname\nFROM drivers d\nJOIN driverStandings ds ON d.driverId = ds.driverId\nWHERE d.dob = (SELECT MIN(dob) FROM drivers WHERE dob IS NOT NULL)\nGROUP BY d.forename, d.surname;",
+  "question": "How many wins was achieved by the oldest racer? Indicate his/her full name.",
+  "thinking": ""
+}

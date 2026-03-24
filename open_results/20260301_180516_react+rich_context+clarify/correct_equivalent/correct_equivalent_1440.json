@@ -1,0 +1,38 @@
+{
+  "db_id": "student_club",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "phone"
+      ],
+      [
+        "(651) 928-4507"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.phone FROM member AS T1 INNER JOIN major AS T2 ON T2.major_id = T1.link_to_major WHERE T2.major_name = 'Business' AND T2.college = 'College of Agriculture and Applied Sciences'",
+  "id": 1440,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "phone"
+      ],
+      [
+        "(651) 928-4507"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT member.phone FROM member JOIN major ON member.link_to_major = major.major_id WHERE major.college = 'College of Agriculture and Applied Sciences' AND major.major_name = 'Business';",
+  "question": "Please list the phone numbers of the members who majored in business at the College of Agriculture and Applied Sciences.",
+  "thinking": ""
+}

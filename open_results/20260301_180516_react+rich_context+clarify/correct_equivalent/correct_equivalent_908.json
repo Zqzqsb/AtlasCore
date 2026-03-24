@@ -1,0 +1,186 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name",
+        "country"
+      ],
+      [
+        "Chinese Grand Prix",
+        "China"
+      ],
+      [
+        "Bahrain Grand Prix",
+        "Bahrain"
+      ],
+      [
+        "Russian Grand Prix",
+        "Russia"
+      ],
+      [
+        "Spanish Grand Prix",
+        "Spain"
+      ],
+      [
+        "Monaco Grand Prix",
+        "Monaco"
+      ],
+      [
+        "Canadian Grand Prix",
+        "Canada"
+      ],
+      [
+        "Azerbaijan Grand Prix",
+        "Azerbaijan"
+      ],
+      [
+        "Austrian Grand Prix",
+        "Austria"
+      ],
+      [
+        "British Grand Prix",
+        "UK"
+      ],
+      [
+        "Hungarian Grand Prix",
+        "Hungary"
+      ],
+      [
+        "Belgian Grand Prix",
+        "Belgium"
+      ],
+      [
+        "Italian Grand Prix",
+        "Italy"
+      ],
+      [
+        "Singapore Grand Prix",
+        "Singapore"
+      ],
+      [
+        "Malaysian Grand Prix",
+        "Malaysia"
+      ],
+      [
+        "Japanese Grand Prix",
+        "Japan"
+      ],
+      [
+        "United States Grand Prix",
+        "USA"
+      ],
+      [
+        "Mexican Grand Prix",
+        "Mexico"
+      ],
+      [
+        "Brazilian Grand Prix",
+        "Brazil"
+      ],
+      [
+        "Abu Dhabi Grand Prix",
+        "UAE"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T2.name, T1.country FROM circuits AS T1 INNER JOIN races AS T2 ON T2.circuitID = T1.circuitId WHERE T2.year = 2017 ORDER BY T2.date ASC",
+  "id": 908,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name",
+        "country"
+      ],
+      [
+        "Chinese Grand Prix",
+        "China"
+      ],
+      [
+        "Bahrain Grand Prix",
+        "Bahrain"
+      ],
+      [
+        "Russian Grand Prix",
+        "Russia"
+      ],
+      [
+        "Spanish Grand Prix",
+        "Spain"
+      ],
+      [
+        "Monaco Grand Prix",
+        "Monaco"
+      ],
+      [
+        "Canadian Grand Prix",
+        "Canada"
+      ],
+      [
+        "Azerbaijan Grand Prix",
+        "Azerbaijan"
+      ],
+      [
+        "Austrian Grand Prix",
+        "Austria"
+      ],
+      [
+        "British Grand Prix",
+        "UK"
+      ],
+      [
+        "Hungarian Grand Prix",
+        "Hungary"
+      ],
+      [
+        "Belgian Grand Prix",
+        "Belgium"
+      ],
+      [
+        "Italian Grand Prix",
+        "Italy"
+      ],
+      [
+        "Singapore Grand Prix",
+        "Singapore"
+      ],
+      [
+        "Malaysian Grand Prix",
+        "Malaysia"
+      ],
+      [
+        "Japanese Grand Prix",
+        "Japan"
+      ],
+      [
+        "United States Grand Prix",
+        "USA"
+      ],
+      [
+        "Mexican Grand Prix",
+        "Mexico"
+      ],
+      [
+        "Brazilian Grand Prix",
+        "Brazil"
+      ],
+      [
+        "Abu Dhabi Grand Prix",
+        "UAE"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT r.name, c.country FROM races r JOIN circuits c ON r.circuitId = c.circuitId WHERE r.year = 2017 ORDER BY r.date;",
+  "question": "List all races in 2017 and the hosting country order by date of the event.",
+  "thinking": ""
+}

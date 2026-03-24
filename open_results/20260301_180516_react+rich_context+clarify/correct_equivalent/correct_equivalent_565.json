@@ -1,0 +1,38 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Text"
+      ],
+      [
+        "Yes, I think I can appreciate that any given point on a continuum is equally likely (or rather unlikely) to be the result of a single sample. Maybe that is all there is too it, I am the only thing that gives zero or one, or any integer, special meaning in a continuum. I think I needed some reinforcement to assert that giving zero and one any special meaning in a continuum of chance and that I shouldn't do so as they are all naturally as common."
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.Text FROM posts AS T1 INNER JOIN comments AS T2 ON T1.Id = T2.PostId WHERE T1.ParentId = 107829 AND T1.CommentCount = 1",
+  "id": 565,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Text"
+      ],
+      [
+        "Yes, I think I can appreciate that any given point on a continuum is equally likely (or rather unlikely) to be the result of a single sample. Maybe that is all there is too it, I am the only thing that gives zero or one, or any integer, special meaning in a continuum. I think I needed some reinforcement to assert that giving zero and one any special meaning in a continuum of chance and that I shouldn't do so as they are all naturally as common."
+      ]
+    ]
+  },
+  "pred_sql": "SELECT c.Text \nFROM comments c\nJOIN posts p ON c.PostId = p.Id\nWHERE p.ParentId = 107829;",
+  "question": "Give the only one comment text of the post with parent id 107829.",
+  "thinking": ""
+}

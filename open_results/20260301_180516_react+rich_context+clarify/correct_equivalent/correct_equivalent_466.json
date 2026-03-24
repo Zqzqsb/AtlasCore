@@ -1,0 +1,38 @@
+{
+  "db_id": "card_games",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "IIF(SUM(CASE WHEN T2.language = 'Korean' AND T2.translation IS NOT NULL THEN 1 ELSE 0 END) \u003e 0, 'YES', 'NO')"
+      ],
+      [
+        "YES"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT IIF(SUM(CASE WHEN T2.language = 'Korean' AND T2.translation IS NOT NULL THEN 1 ELSE 0 END) \u003e 0, 'YES', 'NO') FROM cards AS T1 INNER JOIN set_translations AS T2 ON T2.setCode = T1.setCode WHERE T1.name = 'Ancestor''s Chosen'",
+  "id": 466,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "IIF(SUM(CASE WHEN T2.language = 'Korean' AND T2.translation IS NOT NULL THEN 1 ELSE 0 END) \u003e 0, 'YES', 'NO')"
+      ],
+      [
+        "YES"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT IIF(SUM(CASE WHEN T2.language = 'Korean' AND T2.translation IS NOT NULL THEN 1 ELSE 0 END) \u003e 0, 'YES', 'NO') \nFROM cards T1\nLEFT JOIN set_translations T2 ON T1.setCode = T2.setCode\nWHERE T1.name = 'Ancestor''s Chosen'",
+  "question": "For the set of cards with \"Ancestor's Chosen\" in it, is there a Korean version of it?",
+  "thinking": ""
+}

@@ -1,0 +1,38 @@
+{
+  "db_id": "toxicology",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T.bond_id)"
+      ],
+      [
+        "377"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T.bond_id) FROM connected AS T WHERE SUBSTR(T.atom_id, -2) = '19'",
+  "id": 240,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T.bond_id)"
+      ],
+      [
+        "377"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(T.bond_id) FROM connected AS T WHERE T.atom_id LIKE 'TR%_19';",
+  "question": "How many connections does the atom 19 have?",
+  "thinking": ""
+}

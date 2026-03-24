@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name"
+      ],
+      [
+        "Austrian Grand Prix"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.name FROM races AS T1 INNER JOIN results AS T2 ON T1.raceId = T2.raceId WHERE T2.fastestLapTime IS NOT NULL ORDER BY T2.fastestLapTime ASC LIMIT 1",
+  "id": 1000,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name"
+      ],
+      [
+        "Australian Grand Prix"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT r.\"name\"\nFROM results res\nJOIN races r ON res.\"raceId\" = r.\"raceId\"\nWHERE res.\"milliseconds\" IS NOT NULL\nORDER BY res.\"milliseconds\" ASC\nLIMIT 1;",
+  "question": "In terms of the fastest lap time, what is the name of the race which recorded the fastest lap speed by a racer?",
+  "thinking": ""
+}

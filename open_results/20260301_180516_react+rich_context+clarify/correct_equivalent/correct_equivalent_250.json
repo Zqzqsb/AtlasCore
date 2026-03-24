@@ -1,0 +1,44 @@
+{
+  "db_id": "toxicology",
+  "difficulty": "challenging",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "element"
+      ],
+      [
+        "h"
+      ],
+      [
+        "c"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.element FROM connected AS T1 INNER JOIN atom AS T2 ON T1.atom_id = T2.atom_id WHERE T1.bond_id = 'TR144_8_19'",
+  "id": 250,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "element"
+      ],
+      [
+        "h"
+      ],
+      [
+        "c"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT element FROM atom WHERE atom_id IN (SELECT atom_id FROM connected WHERE bond_id = 'TR144_8_19' UNION SELECT atom_id2 FROM connected WHERE bond_id = 'TR144_8_19')",
+  "question": "What are the elements of the atoms of TR144_8_19?",
+  "thinking": ""
+}

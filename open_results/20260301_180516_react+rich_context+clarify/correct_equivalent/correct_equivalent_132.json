@@ -1,0 +1,38 @@
+{
+  "db_id": "financial",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "A3"
+      ],
+      [
+        "south Moravia"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.A3 FROM account AS T1 INNER JOIN district AS T2 ON T1.district_id = T2.district_id INNER JOIN loan AS T3 ON T1.account_id = T3.account_id WHERE T3.status IN ('C', 'D') GROUP BY T2.A3 ORDER BY SUM(T3.amount) DESC LIMIT 1",
+  "id": 132,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "A3"
+      ],
+      [
+        "south Moravia"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT d.A3\nFROM loan l\nJOIN account a ON l.account_id = a.account_id\nJOIN district d ON a.district_id = d.district_id\nWHERE l.status IN ('C', 'D')\nGROUP BY d.A3\nORDER BY SUM(l.amount) DESC\nLIMIT 1",
+  "question": "Which district has highest active loan?",
+  "thinking": ""
+}

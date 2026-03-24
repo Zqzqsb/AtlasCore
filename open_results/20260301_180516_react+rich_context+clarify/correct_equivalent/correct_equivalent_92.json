@@ -1,0 +1,38 @@
+{
+  "db_id": "financial",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "IIF(AVG(A13) \u003e AVG(A12), '1996', '1995')"
+      ],
+      [
+        "1996"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT IIF(AVG(A13) \u003e AVG(A12), '1996', '1995') FROM district",
+  "id": 92,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "IIF(AVG(A13) \u003e AVG(A12), '1996', '1995')"
+      ],
+      [
+        "1996"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT IIF(AVG(A13) \u003e AVG(A12), '1996', '1995') FROM district;",
+  "question": "The average unemployment ratio of 1995 and 1996, which one has higher percentage?",
+  "thinking": ""
+}

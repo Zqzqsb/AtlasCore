@@ -1,0 +1,38 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.ID)"
+      ],
+      [
+        "641"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.WBC \u003c 3.5 AND T1.SEX = 'F'",
+  "id": 1204,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.ID)"
+      ],
+      [
+        "641"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T1.SEX = 'F' AND T2.WBC \u003c 3.5",
+  "question": "How many patients who were female got white blood cells that were below 3.5?",
+  "thinking": ""
+}

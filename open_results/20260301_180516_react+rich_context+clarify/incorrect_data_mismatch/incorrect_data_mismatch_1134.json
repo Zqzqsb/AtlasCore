@@ -1,0 +1,38 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(id)"
+      ],
+      [
+        "9"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(id) FROM Player WHERE birthday \u003e '1990' AND player_name LIKE 'Aaron%'",
+  "id": 1134,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(id)"
+      ],
+      [
+        "6"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(id) FROM Player WHERE player_name LIKE 'Aaron%' AND CAST(SUBSTR(birthday, 1, 4) AS INTEGER) \u003e 1990",
+  "question": "How many football players born after the 1990s have the first name \"Aaron\"?",
+  "thinking": ""
+}

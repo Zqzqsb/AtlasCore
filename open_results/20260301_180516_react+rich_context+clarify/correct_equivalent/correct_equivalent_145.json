@@ -1,0 +1,38 @@
+{
+  "db_id": "financial",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AVG(T4.amount)"
+      ],
+      [
+        "2270.9429824561403"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT AVG(T4.amount) FROM card AS T1 INNER JOIN disp AS T2 ON T1.disp_id = T2.disp_id INNER JOIN account AS T3 ON T2.account_id = T3.account_id INNER JOIN trans AS T4 ON T3.account_id = T4.account_id WHERE STRFTIME('%Y', T4.date) = '1998' AND T4.operation = 'VYBER KARTOU'",
+  "id": 145,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AVG(T4.amount)"
+      ],
+      [
+        "2270.9429824561403"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT AVG(T4.amount) FROM trans AS T4 WHERE T4.operation = 'VYBER KARTOU' AND STRFTIME('%Y', T4.date) = '1998';",
+  "question": "How much is the average amount in credit card made by account holders in a month, in year 2021?",
+  "thinking": ""
+}

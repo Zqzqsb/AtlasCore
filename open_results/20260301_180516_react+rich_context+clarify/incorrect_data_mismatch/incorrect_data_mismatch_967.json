@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(driverId)"
+      ],
+      [
+        "8"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(driverId) FROM driverStandings WHERE raceId = 18",
+  "id": 967,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(driverId)"
+      ],
+      [
+        "0"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(driverId) FROM results WHERE raceId = 18;",
+  "question": "How many driver participated in race ID number 18?",
+  "thinking": ""
+}

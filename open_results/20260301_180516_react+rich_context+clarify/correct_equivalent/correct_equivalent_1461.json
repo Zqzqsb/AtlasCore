@@ -1,0 +1,46 @@
+{
+  "db_id": "student_club",
+  "difficulty": "challenging",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "first_name",
+        "last_name",
+        "cost"
+      ],
+      [
+        "Elijah",
+        "Allen",
+        "28.15"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.first_name, T2.last_name, T1.cost FROM expense AS T1 INNER JOIN member AS T2 ON T1.link_to_member = T2.member_id WHERE T1.expense_description = 'Water, Veggie tray, supplies'",
+  "id": 1461,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "first_name",
+        "last_name",
+        "cost"
+      ],
+      [
+        "Elijah",
+        "Allen",
+        "28.15"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT m.first_name, m.last_name, e.cost\nFROM expense e\nJOIN member m ON e.link_to_member = m.member_id\nWHERE e.expense_description = 'Water, Veggie tray, supplies';",
+  "question": "Write the full name of the member who spent money for water, veggie tray and supplies and include the cost of it.",
+  "thinking": ""
+}

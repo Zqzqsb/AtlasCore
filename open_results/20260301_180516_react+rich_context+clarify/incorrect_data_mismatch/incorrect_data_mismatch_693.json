@@ -1,0 +1,38 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "moderate",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "T1.Date - T2.CreationDate"
+      ],
+      [
+        "1"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.Date - T2.CreationDate FROM badges AS T1 INNER JOIN users AS T2 ON T1.UserId = T2.Id WHERE T2.DisplayName = 'Zolomon'",
+  "id": 693,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "T1.Date - T2.CreationDate"
+      ],
+      [
+        "83.04526620404795"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT JULIANDAY(T1.Date) - JULIANDAY(T2.CreationDate) AS \"T1.Date - T2.CreationDate\" FROM badges AS T1 JOIN users AS T2 ON T1.UserId = T2.Id WHERE TRIM(T2.DisplayName) = 'Zolomon';",
+  "question": "How long did it take the user, known by his or her display name 'Zolomon' to get the badge? Count from the date the user's account was created.",
+  "thinking": ""
+}

@@ -1,0 +1,38 @@
+{
+  "db_id": "debit_card_specializing",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Segment"
+      ],
+      [
+        "KAM"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.Segment FROM transactions_1k AS T1 INNER JOIN customers AS T2 ON T1.CustomerID = T2.CustomerID WHERE T1.date = '2012-08-23' AND T1.time = '21:20:00'",
+  "id": 1516,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Segment"
+      ],
+      [
+        "KAM"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT c.Segment\nFROM transactions_1k t\nJOIN customers c ON t.CustomerID = c.CustomerID\nWHERE t.Date = '2012-08-23' AND t.Time = '21:20:00';",
+  "question": "What segment did the customer have at 2012/8/23 21:20:00?",
+  "thinking": ""
+}

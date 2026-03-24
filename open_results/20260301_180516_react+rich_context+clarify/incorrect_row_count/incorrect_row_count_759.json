@@ -1,0 +1,80 @@
+{
+  "db_id": "superhero",
+  "difficulty": "moderate",
+  "error_reason": "row count mismatch: gold=5, pred=11",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "colour"
+      ],
+      [
+        "Blond"
+      ],
+      [
+        "Brown"
+      ],
+      [
+        "Black"
+      ],
+      [
+        "Brown/White"
+      ],
+      [
+        "No Colour"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T3.colour FROM superhero AS T1 INNER JOIN race AS T2 ON T1.race_id = T2.id INNER JOIN colour AS T3 ON T1.hair_colour_id = T3.id WHERE T1.height_cm = 185 AND T2.race = 'Human'",
+  "id": 759,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "colour"
+      ],
+      [
+        "Blond"
+      ],
+      [
+        "Brown"
+      ],
+      [
+        "Brown"
+      ],
+      [
+        "Black"
+      ],
+      [
+        "Black"
+      ],
+      [
+        "Brown/White"
+      ],
+      [
+        "Brown"
+      ],
+      [
+        "Black"
+      ],
+      [
+        "Brown"
+      ],
+      [
+        "No Colour"
+      ],
+      [
+        "Brown"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT c.colour\nFROM superhero s\nJOIN race r ON s.race_id = r.id\nJOIN colour c ON s.hair_colour_id = c.id\nWHERE s.height_cm = 185\n  AND r.race = 'Human';",
+  "question": "Provide the hair colour of the human superhero who is 185 cm tall.",
+  "thinking": ""
+}

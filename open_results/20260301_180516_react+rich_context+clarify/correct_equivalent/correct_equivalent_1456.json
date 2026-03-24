@@ -1,0 +1,38 @@
+{
+  "db_id": "student_club",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "budget_id"
+      ],
+      [
+        "rec1bG6HSft7XIvTP"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.budget_id FROM expense AS T1 INNER JOIN budget AS T2 ON T1.link_to_budget = T2.budget_id WHERE T1.expense_description = 'Water, chips, cookies' ORDER BY T1.cost DESC LIMIT 1",
+  "id": 1456,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "budget_id"
+      ],
+      [
+        "rec1bG6HSft7XIvTP"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT e.link_to_budget AS budget_id\nFROM expense e\nWHERE e.expense_description = 'Water, chips, cookies'\nORDER BY e.cost DESC\nLIMIT 1",
+  "question": "Which budget allowed the most money for water, chips, and cookies?",
+  "thinking": ""
+}

@@ -1,0 +1,38 @@
+{
+  "db_id": "toxicology",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "molecule_id"
+      ],
+      [
+        "TR377"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T2.molecule_id FROM atom AS T1 INNER JOIN molecule AS T2 ON T1.molecule_id = T2.molecule_id INNER JOIN bond AS T3 ON T2.molecule_id = T3.molecule_id WHERE T3.bond_type = '#' AND T1.element = 'c' AND T2.label = '-'",
+  "id": 273,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "molecule_id"
+      ],
+      [
+        "TR377"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT m.molecule_id\nFROM molecule m\nJOIN atom a ON m.molecule_id = a.molecule_id\nJOIN bond b ON m.molecule_id = b.molecule_id\nWHERE m.label = '-'\n  AND a.element = 'c'\n  AND b.bond_type = '#'\nLIMIT 2;",
+  "question": "List down two molecule id of triple bond non carcinogenic molecules with element carbon.",
+  "thinking": ""
+}

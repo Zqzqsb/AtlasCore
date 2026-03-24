@@ -1,0 +1,42 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "challenging",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "constructorRef",
+        "url"
+      ],
+      [
+        "mclaren",
+        "http://en.wikipedia.org/wiki/McLaren"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T3.constructorRef, T3.url FROM results AS T1 INNER JOIN races AS T2 on T1.raceId = T2.raceId INNER JOIN constructors AS T3 on T1.constructorId = T3.constructorId WHERE T2.name = 'Singapore Grand Prix' AND T2.year = 2009 AND T1.time LIKE '_:%:__.___'",
+  "id": 991,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "constructorRef",
+        "url"
+      ],
+      [
+        "mclaren",
+        "http://en.wikipedia.org/wiki/McLaren"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT c.constructorRef, c.url \nFROM results r\nJOIN constructors c ON r.constructorId = c.constructorId\nWHERE r.raceId = 14 AND r.position = 1",
+  "question": "What is the constructor reference name of the champion in the 2009 Singapore Grand Prix? Please give its website.",
+  "thinking": ""
+}

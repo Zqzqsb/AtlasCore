@@ -1,0 +1,38 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "moderate",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Phone"
+      ],
+      [
+        "(559) 248-5100"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.Phone FROM satscores AS T1 INNER JOIN schools AS T2 ON T1.cds = T2.CDSCode WHERE T2.District = 'Fresno Unified' AND T1.AvgScrRead IS NOT NULL ORDER BY T1.AvgScrRead ASC LIMIT 1",
+  "id": 41,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Phone"
+      ],
+      [
+        "(559) 490-4290"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT s.Phone\nFROM satscores sat\nJOIN schools s ON CAST(sat.cds AS INTEGER) = CAST(s.CDSCode AS INTEGER)\nWHERE sat.dname = 'Fresno Unified'\nORDER BY sat.AvgScrRead ASC\nLIMIT 1;",
+  "question": "What is the telephone number for the school with the lowest average score in reading in Fresno Unified?",
+  "thinking": ""
+}

@@ -1,0 +1,50 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "`Free Meal Count (Ages 5-17)` / `Enrollment (Ages 5-17)`"
+      ],
+      [
+        "0.043478260869565216"
+      ],
+      [
+        "0.07042253521126761"
+      ],
+      [
+        "0.11363636363636363"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT `Free Meal Count (Ages 5-17)` / `Enrollment (Ages 5-17)` FROM frpm WHERE `Educational Option Type` = 'Continuation School' AND `Free Meal Count (Ages 5-17)` / `Enrollment (Ages 5-17)` IS NOT NULL ORDER BY `Free Meal Count (Ages 5-17)` / `Enrollment (Ages 5-17)` ASC LIMIT 3",
+  "id": 2,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Free Meal Count (Ages 5-17) / Enrollment (Ages 5-17)"
+      ],
+      [
+        "0.043478260869565216"
+      ],
+      [
+        "0.07042253521126761"
+      ],
+      [
+        "0.11363636363636363"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT CAST(\"Free Meal Count (Ages 5-17)\" AS REAL) / CAST(\"Enrollment (Ages 5-17)\" AS REAL) AS \"Free Meal Count (Ages 5-17) / Enrollment (Ages 5-17)\"\nFROM frpm\nWHERE \"Educational Option Type\" = 'Continuation School'\n  AND \"Free Meal Count (Ages 5-17)\" IS NOT NULL\n  AND \"Enrollment (Ages 5-17)\" IS NOT NULL\n  AND \"Enrollment (Ages 5-17)\" \u003e 0\nORDER BY CAST(\"Free Meal Count (Ages 5-17)\" AS REAL) / CAST(\"Enrollment (Ages 5-17)\" AS REAL) ASC\nLIMIT 3;",
+  "question": "Please list the lowest three eligible free rates for students aged 5-17 in continuation schools.",
+  "thinking": ""
+}

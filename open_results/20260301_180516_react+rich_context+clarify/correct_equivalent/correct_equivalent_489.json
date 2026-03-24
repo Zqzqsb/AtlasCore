@@ -1,0 +1,44 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "code"
+      ],
+      [
+        "HOU"
+      ],
+      [
+        "PHOU"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT code FROM sets WHERE releaseDate = '2017-07-14' GROUP BY releaseDate, code",
+  "id": 489,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "code"
+      ],
+      [
+        "HOU"
+      ],
+      [
+        "PHOU"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT code FROM sets WHERE releaseDate = '2017-07-14';",
+  "question": "What's the code for the set which was released on 2017/7/14?",
+  "thinking": ""
+}

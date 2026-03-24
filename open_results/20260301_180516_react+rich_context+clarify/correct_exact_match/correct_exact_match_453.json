@@ -1,0 +1,16 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT DISTINCT name FROM cards WHERE isTextless = 0",
+  "id": 453,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT DISTINCT name FROM cards WHERE isTextless = 0;",
+  "question": "Please list the names of the cards that have a text box.",
+  "thinking": ""
+}

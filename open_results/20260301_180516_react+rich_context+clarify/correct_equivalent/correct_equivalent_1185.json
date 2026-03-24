@@ -1,0 +1,38 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Symptoms"
+      ],
+      [
+        "thrombophlebitis"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.Symptoms FROM Patient AS T1 INNER JOIN Examination AS T2 ON T1.ID = T2.ID WHERE T1.Birthday = '1959-03-01' AND T2.`Examination Date` = '1993-09-27'",
+  "id": 1185,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Symptoms"
+      ],
+      [
+        "thrombophlebitis"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT e.\"Symptoms\" FROM Patient p JOIN Examination e ON p.ID = e.ID WHERE p.Birthday = '1959-03-01' AND e.\"Examination Date\" = '1993-09-27';",
+  "question": "For the patient whose birthday was 1959/3/1, what symptoms did he/she have during the examination on 1993/9/27?",
+  "thinking": ""
+}

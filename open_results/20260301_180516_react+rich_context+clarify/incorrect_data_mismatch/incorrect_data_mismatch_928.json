@@ -1,0 +1,42 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "forename",
+        "surname"
+      ],
+      [
+        "Vitantonio",
+        "Liuzzi"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.forename, T1.surname FROM drivers AS T1 INNER JOIN results AS T2 ON T2.driverId = T1.driverId WHERE T2.fastestLapTime IS NOT NULL ORDER BY T2.fastestLapSpeed DESC LIMIT 1",
+  "id": 928,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "forename",
+        "surname"
+      ],
+      [
+        "Rubens",
+        "Barrichello"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT d.forename, d.surname \nFROM results r\nJOIN drivers d ON r.driverId = d.driverId\nWHERE r.fastestLapSpeed IS NOT NULL \nORDER BY CAST(r.fastestLapSpeed AS REAL) DESC\nLIMIT 1",
+  "question": "Which driver created the fastest lap speed in a Formula_1 race? Please give both his forename and surname.",
+  "thinking": ""
+}

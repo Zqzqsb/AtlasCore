@@ -1,0 +1,38 @@
+{
+  "db_id": "student_club",
+  "difficulty": "challenging",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "event_name"
+      ],
+      [
+        "Laugh Out Loud"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.event_name FROM attendance AS T1 INNER JOIN event AS T2 ON T2.event_id = T1.link_to_event INNER JOIN member AS T3 ON T1.link_to_member = T3.member_id WHERE T3.position = 'Vice President' AND T2.location = '900 E. Washington St.' AND T2.type = 'Social'",
+  "id": 1430,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "event_name"
+      ],
+      [
+        "Laugh Out Loud"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT e.event_name\nFROM event e\nJOIN attendance a ON e.event_id = a.link_to_event\nJOIN member m ON a.link_to_member = m.member_id\nWHERE e.type = 'Social'\n  AND m.position = 'Vice President'\n  AND e.location = '900 E. Washington St.';",
+  "question": "What is the name of the social event that was attended by the vice president of the Student_Club located at 900 E. Washington St.?",
+  "thinking": ""
+}

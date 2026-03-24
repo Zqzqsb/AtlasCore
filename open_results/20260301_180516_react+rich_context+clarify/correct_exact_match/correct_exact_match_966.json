@@ -1,0 +1,16 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT raceId FROM races WHERE year = 2009",
+  "id": 966,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT raceId FROM races WHERE year = 2009;",
+  "question": "List out the Id number of races which were hold in 2009.",
+  "thinking": ""
+}

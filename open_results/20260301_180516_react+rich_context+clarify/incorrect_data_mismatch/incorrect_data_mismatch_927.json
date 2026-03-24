@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "fastestLapTime"
+      ],
+      [
+        "1:07.411"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.fastestLapTime FROM drivers AS T1 INNER JOIN results AS T2 ON T2.driverId = T1.driverId WHERE T1.forename = 'Lewis' AND T1.surname = 'Hamilton' AND T2.fastestLapTime IS NOT NULL ORDER BY T2.fastestLapTime ASC LIMIT 1",
+  "id": 927,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "fastestLapTime"
+      ],
+      [
+        "1"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT MIN(CAST(r.fastestLapTime AS INTEGER)) AS fastestLapTime\nFROM results r\nJOIN drivers d ON r.driverId = d.driverId\nWHERE d.forename = 'Lewis' \n  AND d.surname = 'Hamilton'\n  AND r.fastestLapTime IS NOT NULL",
+  "question": "What's the fastest lap time ever in a race for Lewis Hamilton?",
+  "thinking": ""
+}

@@ -1,0 +1,42 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CommentCount",
+        "AnswerCount"
+      ],
+      [
+        "6",
+        "4"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT CommentCount, AnswerCount FROM posts WHERE Title = 'Clustering 1D data'",
+  "id": 699,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CommentCount",
+        "AnswerCount"
+      ],
+      [
+        "6",
+        "4"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT \n    (SELECT COUNT(*) FROM comments WHERE PostId = p.Id) AS CommentCount,\n    (SELECT COUNT(*) FROM posts WHERE ParentId = p.Id AND PostTypeId = 2) AS AnswerCount\nFROM posts p\nWHERE TRIM(Title) = 'Clustering 1D data'\nLIMIT 1;",
+  "question": "How many comments and answers were left by the users on the post with the title 'Clustering 1D data'?",
+  "thinking": ""
+}

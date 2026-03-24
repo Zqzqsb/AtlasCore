@@ -1,0 +1,83 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=16, pred=1",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "fastestLap"
+      ],
+      [
+        "18"
+      ],
+      [
+        "42"
+      ],
+      [
+        "11"
+      ],
+      [
+        "17"
+      ],
+      [
+        "49"
+      ],
+      [
+        "40"
+      ],
+      [
+        "16"
+      ],
+      [
+        "37"
+      ],
+      [
+        "16"
+      ],
+      [
+        "39"
+      ],
+      [
+        "42"
+      ],
+      [
+        "48"
+      ],
+      [
+        "36"
+      ],
+      [
+        "43"
+      ],
+      [
+        "25"
+      ],
+      [
+        "54"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.fastestLap FROM results AS T1 INNER JOIN races AS T2 on T1.raceId = T2.raceId WHERE T2.year = 2009 AND T1.time LIKE '_:%:__.___'",
+  "id": 960,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "fastestLap"
+      ],
+      [
+        "18"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT r.fastestLap\nFROM driverStandings ds\nJOIN races ra ON ds.raceId = ra.raceId\nJOIN results r ON ds.driverId = r.driverId AND ds.raceId = r.raceId\nWHERE ra.year = 2009 \n  AND ds.position = 1\n  AND r.fastestLap IS NOT NULL\nLIMIT 1;",
+  "question": "What is the fastest lap number of the champion in 2009?",
+  "thinking": ""
+}

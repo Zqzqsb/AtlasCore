@@ -1,0 +1,101 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=15, pred=8",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "language"
+      ],
+      [
+        "German"
+      ],
+      [
+        "Spanish"
+      ],
+      [
+        "French"
+      ],
+      [
+        "Italian"
+      ],
+      [
+        "Japanese"
+      ],
+      [
+        "Portuguese (Brazil)"
+      ],
+      [
+        "Russian"
+      ],
+      [
+        "Chinese Simplified"
+      ],
+      [
+        "German"
+      ],
+      [
+        "Spanish"
+      ],
+      [
+        "French"
+      ],
+      [
+        "Italian"
+      ],
+      [
+        "Japanese"
+      ],
+      [
+        "Portuguese (Brazil)"
+      ],
+      [
+        "Japanese"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.language FROM cards AS T1 INNER JOIN foreign_data AS T2 ON T2.uuid = T1.uuid WHERE T1.name = 'Ancestor''s Chosen' AND T2.flavorText IS NOT NULL",
+  "id": 482,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "language"
+      ],
+      [
+        "German"
+      ],
+      [
+        "Spanish"
+      ],
+      [
+        "French"
+      ],
+      [
+        "Italian"
+      ],
+      [
+        "Japanese"
+      ],
+      [
+        "Portuguese (Brazil)"
+      ],
+      [
+        "Russian"
+      ],
+      [
+        "Chinese Simplified"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT language FROM foreign_data fd JOIN cards c ON fd.uuid = c.uuid WHERE c.name = 'Ancestor''s Chosen' AND fd.flavorText IS NOT NULL AND fd.flavorText != ''",
+  "question": "Please list all the foreign languages in which the card \"Ancestor's Chosen\" has a flavor text.",
+  "thinking": ""
+}
