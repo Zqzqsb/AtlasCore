@@ -662,64 +662,73 @@ func (p *Pipeline) buildBirdBestPractices() string {
    - NEVER ignore or reinterpret evidence constraints
 
 2. DO NOT ADD EXTRA CONDITIONS: Only add WHERE/HAVING conditions that are explicitly stated in the question or evidence.
-   - Do NOT infer filters from domain knowledge (e.g., do NOT add "status = 'A'" just because the question mentions "approved")
-   - Do NOT add conditions to "clean" data (e.g., "IS NOT NULL", "!= ''") unless the question specifically asks for it
-   - If the question says "list all X of Y", only filter by Y — do NOT add extra constraints on X
+   - Do NOT infer filters from domain knowledge
+   - Do NOT add "IS NOT NULL", "!= ''", or TRIM() to clean data unless explicitly asked
+   - "list all X of Y" → only filter by Y, no extra constraints on X
 
 3. Projection (SELECT columns):
-   - Return ONLY the columns the question asks for — no extra columns, no concatenation
-   - Do NOT concatenate columns (e.g., location || ', ' || country) unless evidence explicitly requires it
-   - If question asks "what is the time/name/value" → return that exact column, not a computed equivalent
+   - Return ONLY the columns the question asks for — no extra columns
    - When question asks for a name/description, JOIN to get the text — do NOT return IDs
+   - Do NOT concatenate columns unless evidence explicitly requires it
 
-4. DISTINCT — decide based on context:
+4. DISTINCT — THIS IS CRITICAL, follow these rules precisely:
+   ★ DEFAULT: Do NOT add DISTINCT unless you have a specific reason below.
    USE DISTINCT when:
-   - Question says "different", "unique", "distinct", "how many types/kinds"
-   - Listing entity attributes after JOINs (e.g., "what colors", "which cities")
-   - Counting entities after JOIN: use COUNT(DISTINCT entity.id) not COUNT(*)
+   - Question explicitly says "different", "unique", "distinct", "how many types/kinds"
+   - JOIN creates duplicates and question asks for unique entities:
+     e.g., "list patient diagnoses" after JOIN Patient→Laboratory (1:many) → SELECT DISTINCT Diagnosis
+     e.g., COUNT patients → COUNT(DISTINCT Patient.ID) after JOIN
+   - Question asks "what are the X" (implying unique values): "what colors exist", "which cities"
    DO NOT use DISTINCT when:
-   - Question says "list all", "list the records/entries"
+   - Question says "list all", "list the records", "list entries" (wants all rows including repeats)
+   - Query on a single table with no JOIN (no duplicates possible)
    - Already using GROUP BY (GROUP BY implies uniqueness)
-   - Question asks for all occurrences (e.g., "list badges obtained" includes repeats)
+   - Question asks about occurrences/instances: "list badges obtained", "show all transactions"
+   - Aggregation queries (SUM, AVG, MAX, MIN) — DISTINCT inside aggregation changes the result
+   ★ WHEN IN DOUBT: Omit DISTINCT. It is safer to return extra rows than to lose valid rows.
+   ★ VERIFY: After writing SQL, check — does this JOIN create 1:many expansion? If yes AND question wants unique entities, add DISTINCT. Otherwise, remove it.
 
-5. Type Mismatch — ONLY when Rich Context or QualityIssues explicitly flags a column:
-   - Only CAST when you KNOW the column stores pure numeric strings as TEXT
-   - NEVER CAST time strings (like "1:23.456"), duration strings (like "59.555"), or dates
-   - If CAST is needed, prefer CAST(... AS REAL) over CAST(... AS INTEGER) to preserve decimals
-   - When unsure about data format, use execute_sql to check: SELECT col FROM table LIMIT 5
+5. JOIN — use the minimum JOINs needed:
+   - Before writing SQL, trace which tables are needed: question mentions X → column is in table A → filter needs table B → JOIN A to B
+   - If question needs data from table A but filters on a concept in table B, you MUST JOIN both tables
+   - Do NOT skip JOINs by querying a single table when the answer requires cross-table data
+   - Do NOT add extra JOINs "just in case" — each unnecessary JOIN can multiply rows and change results
+   - After JOIN, check: does the JOIN create row multiplication? If so, consider DISTINCT or aggregation
 
-6. Percentage/Rate: Always use CAST(... AS REAL) to avoid integer division truncation
+6. CAST/Type — be extremely conservative:
+   - ONLY CAST when Rich Context or QualityIssues explicitly flags a type mismatch for that column
+   - NEVER CAST date/time columns: compare dates as strings (birthday > '1990', date < '2021-01-01')
+   - NEVER CAST time strings (like "1:23.456") or duration strings — compare them as-is
+   - For numeric comparison on a TEXT column, prefer direct string comparison when possible
+   - When doing division for percentages/rates: use CAST(numerator AS REAL) to avoid integer truncation
+   - ★ If unsure whether CAST is needed, DON'T CAST — just use the column directly
 
-7. IIF/CASE patterns: For yes/no or conditional results, use IIF(condition, 'YES', 'NO') or CASE WHEN
-
-8. Aggregation:
+7. Aggregation:
    - "Highest/Lowest/Top N/Bottom N": Always use ORDER BY col DESC/ASC LIMIT N
-   - Do NOT use WHERE col = (SELECT MAX/MIN(...)) — this returns ties and may not match expected results
+   - Do NOT use WHERE col = (SELECT MAX/MIN(...)) — this returns ties
    - "Rate/Percentage": CAST(numerator AS REAL) * 100 / denominator
-   - "Average count of X per Y": MUST use subquery — first GROUP BY Y to get counts, then AVG over counts
-   - After JOIN, if counting entities (cards, users, etc.), use COUNT(DISTINCT entity.id)
+   - "Average count of X per Y": subquery first — GROUP BY Y to get counts, then AVG
+   - After JOIN, if counting entities, use COUNT(DISTINCT entity.id)
    - "between X and/to Y" → use SQL BETWEEN (includes BOTH endpoints)
 
-9. NULL/Empty handling — ONLY for WHERE-clause matching:
+8. NULL/Empty handling:
    - Use IS NOT NULL only when filtering JOIN keys or matching specific values
-   - Do NOT add IS NOT NULL or != '' to filter result rows — return whatever the database gives
-   - Do NOT add TRIM() unless QualityIssues specifically flags whitespace for that column
+   - Do NOT add IS NOT NULL or != '' to filter result rows unless the question asks for it
 
-10. Date handling:
-   - Use date(column) for date comparisons to strip time components
-   - "after date D" → date(column) > 'D' (excludes D itself)
-   - "before date D" → date(column) < 'D'
+9. Date handling:
+   - Compare date columns as strings: column > '1990' or column < '2021-01-01' (SQLite stores dates as text)
+   - Do NOT CAST date columns to INTEGER for comparison — this breaks date format
    - For year extraction: STRFTIME('%%Y', column) = 'YYYY'
+   - "after date D" → column > 'D'; "before date D" → column < 'D'
 
-11. Table and Column names:
-   - Use EXACT table and column names as shown in the schema — do NOT change capitalization or pluralization
-   - If the schema shows 'Patient', write 'Patient', NOT 'patients'
+10. Table and Column names:
+   - Use EXACT names as shown in the schema — preserve capitalization and pluralization
+   - If schema shows 'Patient', write 'Patient', NOT 'patients'
 
-12. ABSOLUTE RULES:
+11. ABSOLUTE RULES:
    - You MUST always output a valid executable SQL query
-   - NEVER output empty strings, SQL comments (-- ...), or placeholder values (SELECT 0, SELECT 1)
-   - NEVER hardcode result values — always let the database compute the answer
-   - If unsure about schema, write your best-guess query and let the database validate it
+   - NEVER output empty strings, SQL comments, or placeholder values (SELECT 0/1)
+   - NEVER hardcode result values — let the database compute the answer
 
 `
 }
