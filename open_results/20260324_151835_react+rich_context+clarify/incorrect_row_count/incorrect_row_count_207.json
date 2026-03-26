@@ -1,0 +1,47 @@
+{
+  "db_id": "toxicology",
+  "difficulty": "challenging",
+  "error_reason": "row count mismatch: gold=1, pred=4",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "element"
+      ],
+      [
+        "c"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T1.element FROM atom AS T1 INNER JOIN connected AS T2 ON T1.atom_id = T2.atom_id WHERE T2.bond_id = 'TR004_8_9'",
+  "id": 207,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "element"
+      ],
+      [
+        "c"
+      ],
+      [
+        "c"
+      ],
+      [
+        "c"
+      ],
+      [
+        "c"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT a.element\nFROM connected c\nJOIN atom a ON a.atom_id IN (c.atom_id, c.atom_id2)\nWHERE c.bond_id = 'TR004_8_9';",
+  "question": "What elements are in the TR004_8_9 bond atoms?",
+  "thinking": ""
+}

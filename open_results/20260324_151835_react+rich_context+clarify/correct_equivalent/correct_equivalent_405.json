@@ -1,0 +1,92 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "language"
+      ],
+      [
+        "Chinese Simplified"
+      ],
+      [
+        "Chinese Traditional"
+      ],
+      [
+        "French"
+      ],
+      [
+        "German"
+      ],
+      [
+        "Italian"
+      ],
+      [
+        "Japanese"
+      ],
+      [
+        "Korean"
+      ],
+      [
+        "Portuguese (Brazil)"
+      ],
+      [
+        "Russian"
+      ],
+      [
+        "Spanish"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.language FROM sets AS T1 INNER JOIN set_translations AS T2 ON T1.code = T2.setCode WHERE T1.baseSetSize = 309",
+  "id": 405,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "language"
+      ],
+      [
+        "Chinese Simplified"
+      ],
+      [
+        "Chinese Traditional"
+      ],
+      [
+        "French"
+      ],
+      [
+        "German"
+      ],
+      [
+        "Italian"
+      ],
+      [
+        "Japanese"
+      ],
+      [
+        "Korean"
+      ],
+      [
+        "Portuguese (Brazil)"
+      ],
+      [
+        "Russian"
+      ],
+      [
+        "Spanish"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT st.language FROM sets s JOIN set_translations st ON s.code = st.setCode WHERE s.baseSetSize = 309;",
+  "question": "Indicates the name of all the languages into which the set whose number of cards is 309 is translated.",
+  "thinking": ""
+}

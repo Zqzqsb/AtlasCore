@@ -1,0 +1,16 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT COUNT(Id) FROM comments WHERE UserId = 13",
+  "id": 589,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT COUNT(Id) FROM comments WHERE UserId = 13;",
+  "question": "Give the total number of comments posted by user ID 13.",
+  "thinking": ""
+}

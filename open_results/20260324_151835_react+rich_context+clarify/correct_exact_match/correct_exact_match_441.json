@@ -1,0 +1,16 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT DISTINCT language FROM foreign_data WHERE name = 'A Pedra Fellwar'",
+  "id": 441,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT DISTINCT language FROM foreign_data WHERE name = 'A Pedra Fellwar';",
+  "question": "Which foreign language used by \"A Pedra Fellwar\"?",
+  "thinking": ""
+}

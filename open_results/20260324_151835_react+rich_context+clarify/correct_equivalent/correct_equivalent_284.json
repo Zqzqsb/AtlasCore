@@ -1,0 +1,38 @@
+{
+  "db_id": "toxicology",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "flag_carcinogenic"
+      ],
+      [
+        "-"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.label AS flag_carcinogenic FROM atom AS T1 INNER JOIN molecule AS T2 ON T1.molecule_id = T2.molecule_id WHERE T1.element = 'ca'",
+  "id": 284,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "flag_carcinogenic"
+      ],
+      [
+        "-"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT m.label AS flag_carcinogenic\nFROM atom a\nJOIN molecule m ON a.molecule_id = m.molecule_id\nWHERE a.element = 'ca';",
+  "question": "Identify whether the chemical compound that contains Calcium is carcinogenic.",
+  "thinking": ""
+}

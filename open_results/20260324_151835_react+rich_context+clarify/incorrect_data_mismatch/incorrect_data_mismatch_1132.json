@@ -1,0 +1,38 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(SUM(T1.height) AS REAL) / COUNT(T1.id)"
+      ],
+      [
+        "181.13797313797315"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT CAST(SUM(T1.height) AS REAL) / COUNT(T1.id) FROM Player AS T1 INNER JOIN Match AS T2 ON T1.id = T2.id INNER JOIN Country AS T3 ON T2.country_id = T3.ID WHERE T3.NAME = 'Italy'",
+  "id": 1132,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(SUM(T1.height) AS REAL) / COUNT(T1.id)"
+      ],
+      [
+        "181.84969891366842"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT CAST(SUM(T1.height) AS REAL) / COUNT(T1.id) \nFROM Player AS T1\nJOIN Match AS T2 ON T1.player_api_id IN (\n    T2.home_player_1, T2.home_player_2, T2.home_player_3, T2.home_player_4, T2.home_player_5,\n    T2.home_player_6, T2.home_player_7, T2.home_player_8, T2.home_player_9, T2.home_player_10, T2.home_player_11,\n    T2.away_player_1, T2.away_player_2, T2.away_player_3, T2.away_player_4, T2.away_player_5,\n    T2.away_player_6, T2.away_player_7, T2.away_player_8, T2.away_player_9, T2.away_player_10, T2.away_player_11\n)\nJOIN League AS T3 ON T2.league_id = T3.id\nJOIN Country AS T4 ON T3.country_id = T4.id\nWHERE T4.name = 'Italy';",
+  "question": "What is the average heights of Italy players?",
+  "thinking": ""
+}

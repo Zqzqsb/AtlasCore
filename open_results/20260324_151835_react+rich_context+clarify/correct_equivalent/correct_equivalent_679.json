@@ -1,0 +1,42 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Id",
+        "Title"
+      ],
+      [
+        "109",
+        "Power of Holm's multiple comparison testing compared to others"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.Id, T2.Title FROM users AS T1 INNER JOIN posts AS T2 ON T1.Id = T2.OwnerUserId WHERE T1.DisplayName = 'Harvey Motulsky' ORDER BY T2.ViewCount DESC LIMIT 1",
+  "id": 679,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Id",
+        "Title"
+      ],
+      [
+        "109",
+        "Power of Holm's multiple comparison testing compared to others"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT p.Id, p.Title\nFROM posts p\nJOIN users u ON p.OwnerUserId = u.Id\nWHERE TRIM(u.DisplayName) = 'Harvey Motulsky'\nORDER BY p.ViewCount DESC\nLIMIT 1;",
+  "question": "Which post by Harvey Motulsky has the most views? Please give the id and title of this post.",
+  "thinking": ""
+}

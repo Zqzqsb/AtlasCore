@@ -1,0 +1,38 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(t2.id)"
+      ],
+      [
+        "306"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(t2.id) FROM Country AS t1 INNER JOIN Match AS t2 ON t1.id = t2.country_id WHERE t1.name = 'Belgium' AND t2.season = '2008/2009'",
+  "id": 1090,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(t2.id)"
+      ],
+      [
+        "306"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(t2.id) FROM Match AS t2 JOIN Country AS t1 ON t2.country_id = t1.id WHERE t1.name = 'Belgium' AND t2.season = '2008/2009';",
+  "question": "How many matches in the 2008/2009 season were held in Belgium?",
+  "thinking": ""
+}

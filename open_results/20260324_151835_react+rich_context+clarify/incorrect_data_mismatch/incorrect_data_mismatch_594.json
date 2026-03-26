@@ -1,0 +1,38 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(DISTINCT T1.Id)"
+      ],
+      [
+        "9"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(DISTINCT T1.Id) FROM badges AS T1 INNER JOIN users AS T2 ON T1.UserId = T2.Id WHERE T1.Name IN ('Supporter', 'Teacher') AND T2.Location = 'New York'",
+  "id": 594,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(DISTINCT T1.Id)"
+      ],
+      [
+        "3"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(DISTINCT T1.Id)\nFROM users AS T1\nWHERE TRIM(T1.Location) = 'New York'\n  AND EXISTS (\n    SELECT 1 FROM badges b1 WHERE b1.UserId = T1.Id AND b1.Name = 'Supporter'\n  )\n  AND EXISTS (\n    SELECT 1 FROM badges b2 WHERE b2.UserId = T1.Id AND b2.Name = 'Teacher'\n  )",
+  "question": "How many users from New York have a teacher and supporter badge?",
+  "thinking": ""
+}

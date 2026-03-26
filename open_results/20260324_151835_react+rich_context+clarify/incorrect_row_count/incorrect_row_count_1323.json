@@ -1,0 +1,89 @@
+{
+  "db_id": "student_club",
+  "difficulty": "moderate",
+  "error_reason": "row count mismatch: gold=9, pred=10",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "event_name"
+      ],
+      [
+        "Community Theater"
+      ],
+      [
+        "Food Bank"
+      ],
+      [
+        "Football game"
+      ],
+      [
+        "Laugh Out Loud"
+      ],
+      [
+        "November Speaker"
+      ],
+      [
+        "October Speaker"
+      ],
+      [
+        "Registration"
+      ],
+      [
+        "September Speaker"
+      ],
+      [
+        "Women's Soccer"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.event_name FROM event AS T1  INNER JOIN attendance AS T2 ON T1.event_id = T2.link_to_event GROUP BY T1.event_id  HAVING COUNT(T2.link_to_event) \u003e 10 EXCEPT SELECT T1.event_name  FROM event AS T1  WHERE T1.type = 'Meeting'",
+  "id": 1323,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "event_name"
+      ],
+      [
+        "Women's Soccer"
+      ],
+      [
+        "Laugh Out Loud"
+      ],
+      [
+        "October Speaker"
+      ],
+      [
+        "Football game"
+      ],
+      [
+        "September Speaker"
+      ],
+      [
+        "Football game"
+      ],
+      [
+        "Registration"
+      ],
+      [
+        "November Speaker"
+      ],
+      [
+        "Food Bank"
+      ],
+      [
+        "Community Theater"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT e.event_name\nFROM event e\nJOIN (\n    SELECT link_to_event, COUNT(*) as attendee_count\n    FROM attendance\n    GROUP BY link_to_event\n    HAVING COUNT(*) \u003e 10\n) a ON e.event_id = a.link_to_event\nWHERE e.type != 'Meeting';",
+  "question": "Among the events attended by more than 10 members of the Student_Club, how many of them are meetings?",
+  "thinking": ""
+}

@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "year"
+      ],
+      [
+        "2008"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT year FROM races WHERE name = 'Singapore Grand Prix' ORDER BY year ASC LIMIT 1",
+  "id": 883,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "year"
+      ],
+      [
+        "2008"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT MIN(year) AS year FROM races WHERE name = 'Singapore Grand Prix';",
+  "question": "Which year was the first Singapore Grand Prix?",
+  "thinking": ""
+}

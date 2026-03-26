@@ -1,0 +1,42 @@
+{
+  "db_id": "student_club",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "major_name",
+        "department"
+      ],
+      [
+        "Human Development and Family Studies",
+        "Human Development and Family Studies Department"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.major_name, T2.department FROM member AS T1 INNER JOIN major AS T2 ON T2.major_id = T1.link_to_major WHERE T1.first_name = 'Garrett' AND T1.last_name = 'Gerke'",
+  "id": 1460,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "major_name",
+        "department"
+      ],
+      [
+        "Human Development and Family Studies",
+        "Human Development and Family Studies Department"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT m.major_name, m.department FROM member mem JOIN major m ON mem.link_to_major = m.major_id WHERE mem.first_name = 'Garrett' AND mem.last_name = 'Gerke';",
+  "question": "What is the major of Garrett Gerke and which department does it belong to?",
+  "thinking": ""
+}

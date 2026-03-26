@@ -1,0 +1,38 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "preferred_foot"
+      ],
+      [
+        "right"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT t2.preferred_foot FROM Player AS t1 INNER JOIN Player_Attributes AS t2 ON t1.player_api_id = t2.player_api_id ORDER BY t1.birthday DESC LIMIT 1",
+  "id": 1051,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "preferred_foot"
+      ],
+      [
+        "right"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT pa.preferred_foot\nFROM Player p\nJOIN Player_Attributes pa ON p.player_fifa_api_id = pa.player_fifa_api_id\nWHERE CAST(p.birthday AS INTEGER) = (SELECT MAX(CAST(birthday AS INTEGER)) FROM Player)\nLIMIT 1;",
+  "question": "What is the preferred foot when attacking of the youngest football player?",
+  "thinking": ""
+}

@@ -1,0 +1,38 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(CDSCode)"
+      ],
+      [
+        "2"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(CDSCode) FROM schools WHERE City = 'San Joaquin' AND MailState = 'CA' AND StatusType = 'Active'",
+  "id": 57,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(CDSCode)"
+      ],
+      [
+        "6"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(CDSCode) FROM schools WHERE MailCity = 'San Joaquin' AND MailState = 'CA' AND StatusType = 'Active';",
+  "question": "Of all the schools with a mailing state address in California, how many are active in San Joaquin city?",
+  "thinking": ""
+}

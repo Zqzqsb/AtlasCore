@@ -1,0 +1,16 @@
+{
+  "db_id": "student_club",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT SUM(spent) FROM budget WHERE category = 'Food'",
+  "id": 1381,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT SUM(spent) FROM budget WHERE category = 'Food';",
+  "question": "What is the total amount of money spent for food?",
+  "thinking": ""
+}

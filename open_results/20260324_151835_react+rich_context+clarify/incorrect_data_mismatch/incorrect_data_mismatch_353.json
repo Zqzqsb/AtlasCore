@@ -1,0 +1,38 @@
+{
+  "db_id": "card_games",
+  "difficulty": "moderate",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(SUM(CASE WHEN T2.language = 'Chinese Simplified' THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(T1.id)"
+      ],
+      [
+        "8.773399659641314"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT CAST(SUM(CASE WHEN T2.language = 'Chinese Simplified' THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(T1.id) FROM cards AS T1 INNER JOIN foreign_data AS T2 ON T1.uuid = T2.uuid",
+  "id": 353,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(SUM(CASE WHEN T2.language = 'Chinese Simplified' THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(T1.id)"
+      ],
+      [
+        "7.980503217048572"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT CAST(SUM(CASE WHEN T2.language = 'Chinese Simplified' THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(T1.id) FROM cards AS T1 LEFT JOIN foreign_data AS T2 ON T1.uuid = T2.uuid;",
+  "question": "Calculate the percentage of the cards availabe in Chinese Simplified.",
+  "thinking": ""
+}

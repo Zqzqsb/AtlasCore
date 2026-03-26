@@ -1,0 +1,42 @@
+{
+  "db_id": "superhero",
+  "difficulty": "challenging",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "(CAST(COUNT(*) AS REAL) * 100 / (SELECT COUNT(*) FROM superhero))",
+        "CAST(SUM(CASE WHEN T2.publisher_name = 'Marvel Comics' THEN 1 ELSE 0 END) AS REAL)"
+      ],
+      [
+        "28.266666666666666",
+        "118"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT (CAST(COUNT(*) AS REAL) * 100 / (SELECT COUNT(*) FROM superhero)), CAST(SUM(CASE WHEN T2.publisher_name = 'Marvel Comics' THEN 1 ELSE 0 END) AS REAL) FROM superhero AS T1 INNER JOIN publisher AS T2 ON T1.publisher_id = T2.id INNER JOIN alignment AS T3 ON T3.id = T1.alignment_id WHERE T3.alignment = 'Bad'",
+  "id": 744,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "(CAST(COUNT(*) AS REAL) * 100 / (SELECT COUNT(*) FROM superhero))",
+        "CAST(SUM(CASE WHEN p.publisher_name = 'Marvel Comics' THEN 1 ELSE 0 END) AS REAL)"
+      ],
+      [
+        "28.266666666666666",
+        "118"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT (CAST(COUNT(*) AS REAL) * 100 / (SELECT COUNT(*) FROM superhero)), CAST(SUM(CASE WHEN p.publisher_name = 'Marvel Comics' THEN 1 ELSE 0 END) AS REAL)\nFROM superhero s\nJOIN alignment a ON s.alignment_id = a.id\nJOIN publisher p ON s.publisher_id = p.id\nWHERE a.alignment = 'Bad';",
+  "question": "What is the percentage of superheroes who act in their own self-interest or make decisions based on their own moral code? Indicate how many of the said superheroes were published by Marvel Comics.",
+  "thinking": ""
+}

@@ -1,0 +1,38 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "GSserved"
+      ],
+      [
+        "K-6"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT GSserved FROM schools WHERE City = 'Adelanto' GROUP BY GSserved ORDER BY COUNT(GSserved) DESC LIMIT 1",
+  "id": 79,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "GSserved"
+      ],
+      [
+        "K-6"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT GSserved\nFROM schools\nWHERE City = 'Adelanto'\nGROUP BY GSserved\nORDER BY COUNT(*) DESC\nLIMIT 1",
+  "question": "What is the most common type of grade span served in the city of Adelanto?",
+  "thinking": ""
+}

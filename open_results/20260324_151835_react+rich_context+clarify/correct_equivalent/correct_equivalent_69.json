@@ -1,0 +1,38 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "County"
+      ],
+      [
+        "Sacramento"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT County FROM schools WHERE strftime('%Y', ClosedDate) BETWEEN '1980' AND '1989' AND StatusType = 'Closed' AND SOC = 11 GROUP BY County ORDER BY COUNT(School) DESC LIMIT 1",
+  "id": 69,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "County"
+      ],
+      [
+        "Sacramento"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT \"County\"\nFROM schools\nWHERE \"SOC\" = '11'\n  AND \"ClosedDate\" IS NOT NULL\n  AND CAST(STRFTIME('%Y', \"ClosedDate\") AS INTEGER) BETWEEN 1980 AND 1989\nGROUP BY \"County\"\nORDER BY COUNT(*) DESC\nLIMIT 1",
+  "question": "Which county reported the most number of school closure in the 1980s with school wonership code belonging to Youth Authority Facilities (CEA)?",
+  "thinking": ""
+}

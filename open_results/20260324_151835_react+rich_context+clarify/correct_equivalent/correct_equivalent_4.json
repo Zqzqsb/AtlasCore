@@ -1,0 +1,38 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "MailStreet"
+      ],
+      [
+        "14429 South Downey Avenue"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.MailStreet FROM frpm AS T1 INNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode ORDER BY T1.`FRPM Count (K-12)` DESC LIMIT 1",
+  "id": 4,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "MailStreet"
+      ],
+      [
+        "14429 South Downey Avenue"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT s.MailStreet\nFROM schools s\nJOIN frpm f ON CAST(s.CDSCode AS INTEGER) = CAST(f.CDSCode AS INTEGER)\nORDER BY f.\"FRPM Count (K-12)\" DESC\nLIMIT 1;",
+  "question": "What is the unabbreviated mailing street address of the school with the highest FRPM count for K-12 students?",
+  "thinking": ""
+}

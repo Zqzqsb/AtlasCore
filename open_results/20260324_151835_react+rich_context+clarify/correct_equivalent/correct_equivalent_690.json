@@ -1,0 +1,42 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "DisplayName",
+        "Location"
+      ],
+      [
+        "Vitor De Mario",
+        "Rio de Janeiro"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.DisplayName, T2.Location FROM posts AS T1 INNER JOIN users AS T2 ON T1.OwnerUserId = T2.Id WHERE T1.Id = 183 ORDER BY T1.LastEditDate DESC LIMIT 1",
+  "id": 690,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "DisplayName",
+        "Location"
+      ],
+      [
+        "Vitor De Mario",
+        "Rio de Janeiro"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT u.DisplayName, u.Location FROM postHistory ph JOIN users u ON ph.UserId = u.Id WHERE ph.PostId = 183 ORDER BY ph.CreationDate DESC LIMIT 1;",
+  "question": "Identify the display name and location of the user, who was the last to edit the post with ID 183.",
+  "thinking": ""
+}

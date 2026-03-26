@@ -1,0 +1,42 @@
+{
+  "db_id": "financial",
+  "difficulty": "challenging",
+  "error_reason": "column name mismatch and positional data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "account_id",
+        "( SELECT MAX(A11) - MIN(A11) FROM district )"
+      ],
+      [
+        "6",
+        "4431"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.account_id , ( SELECT MAX(A11) - MIN(A11) FROM district ) FROM account AS T1 INNER JOIN district AS T2 ON T1.district_id = T2.district_id INNER JOIN disp AS T3 ON T1.account_id = T3.account_id INNER JOIN client AS T4 ON T3.client_id = T4.client_id WHERE T2.district_id = ( SELECT district_id FROM client WHERE gender = 'F' ORDER BY birth_date ASC LIMIT 1 ) ORDER BY T2.A11 DESC LIMIT 1",
+  "id": 95,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "account_id",
+        "gap"
+      ],
+      [
+        "1743",
+        "4431"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT \n    a.account_id,\n    (SELECT MAX(A11) - MIN(A11) FROM district) AS gap\nFROM client c\nJOIN disp d ON c.client_id = d.client_id\nJOIN account a ON d.account_id = a.account_id\nJOIN district dist ON c.district_id = dist.district_id\nWHERE c.gender = 'F'\nORDER BY c.birth_date ASC, dist.A11 ASC\nLIMIT 1;",
+  "question": "List out the account numbers of female clients who are oldest and has lowest average salary, calculate the gap between this lowest average salary with the highest average salary?",
+  "thinking": ""
+}

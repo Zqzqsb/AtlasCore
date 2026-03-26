@@ -1,0 +1,4402 @@
+{
+  "db_id": "card_games",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "format",
+        "name"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Crusade"
+      ],
+      [
+        "legacy",
+        "Ancestral Recall"
+      ],
+      [
+        "legacy",
+        "Time Walk"
+      ],
+      [
+        "legacy",
+        "Timetwister"
+      ],
+      [
+        "legacy",
+        "Contract from Below"
+      ],
+      [
+        "legacy",
+        "Darkpact"
+      ],
+      [
+        "legacy",
+        "Demonic Attorney"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Mind Twist"
+      ],
+      [
+        "legacy",
+        "Wheel of Fortune"
+      ],
+      [
+        "legacy",
+        "Channel"
+      ],
+      [
+        "legacy",
+        "Fastbond"
+      ],
+      [
+        "legacy",
+        "Black Lotus"
+      ],
+      [
+        "legacy",
+        "Chaos Orb"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Mox Emerald"
+      ],
+      [
+        "legacy",
+        "Mox Jet"
+      ],
+      [
+        "legacy",
+        "Mox Pearl"
+      ],
+      [
+        "legacy",
+        "Mox Ruby"
+      ],
+      [
+        "legacy",
+        "Mox Sapphire"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Time Vault"
+      ],
+      [
+        "legacy",
+        "Mana Crypt"
+      ],
+      [
+        "legacy",
+        "Mana Crypt"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Crusade"
+      ],
+      [
+        "legacy",
+        "Contract from Below"
+      ],
+      [
+        "legacy",
+        "Darkpact"
+      ],
+      [
+        "legacy",
+        "Demonic Attorney"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Mind Twist"
+      ],
+      [
+        "legacy",
+        "Wheel of Fortune"
+      ],
+      [
+        "legacy",
+        "Channel"
+      ],
+      [
+        "legacy",
+        "Fastbond"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Crusade"
+      ],
+      [
+        "legacy",
+        "Mind Twist"
+      ],
+      [
+        "legacy",
+        "Tempest Efreet"
+      ],
+      [
+        "legacy",
+        "Channel"
+      ],
+      [
+        "legacy",
+        "Pradesh Gypsies"
+      ],
+      [
+        "legacy",
+        "Rebirth"
+      ],
+      [
+        "legacy",
+        "Bronze Tablet"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Crusade"
+      ],
+      [
+        "legacy",
+        "Mind Twist"
+      ],
+      [
+        "legacy",
+        "Tempest Efreet"
+      ],
+      [
+        "legacy",
+        "Channel"
+      ],
+      [
+        "legacy",
+        "Pradesh Gypsies"
+      ],
+      [
+        "legacy",
+        "Rebirth"
+      ],
+      [
+        "legacy",
+        "Bronze Tablet"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Crusade"
+      ],
+      [
+        "legacy",
+        "Necropotence"
+      ],
+      [
+        "legacy",
+        "Pradesh Gypsies"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Crusade"
+      ],
+      [
+        "legacy",
+        "Flash"
+      ],
+      [
+        "legacy",
+        "Mystical Tutor"
+      ],
+      [
+        "legacy",
+        "Vampiric Tutor"
+      ],
+      [
+        "legacy",
+        "Goblin Recruiter"
+      ],
+      [
+        "legacy",
+        "Pradesh Gypsies"
+      ],
+      [
+        "legacy",
+        "Flash"
+      ],
+      [
+        "legacy",
+        "Jihad"
+      ],
+      [
+        "legacy",
+        "Shahrazad"
+      ],
+      [
+        "legacy",
+        "Stone-Throwing Devils"
+      ],
+      [
+        "legacy",
+        "Stone-Throwing Devils"
+      ],
+      [
+        "legacy",
+        "Jeweled Bird"
+      ],
+      [
+        "legacy",
+        "Bazaar of Baghdad"
+      ],
+      [
+        "legacy",
+        "Library of Alexandria"
+      ],
+      [
+        "legacy",
+        "Goblin Recruiter"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Bronze Tablet"
+      ],
+      [
+        "legacy",
+        "Mishra's Workshop"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Windfall"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Skullclamp"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Windfall"
+      ],
+      [
+        "legacy",
+        "Skullclamp"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Treasure Cruise"
+      ],
+      [
+        "legacy",
+        "Windfall"
+      ],
+      [
+        "legacy",
+        "Oath of Druids"
+      ],
+      [
+        "legacy",
+        "Skullclamp"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Skullclamp"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Frantic Search"
+      ],
+      [
+        "legacy",
+        "Windfall"
+      ],
+      [
+        "legacy",
+        "Skullclamp"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Crusade"
+      ],
+      [
+        "legacy",
+        "Ancestral Recall"
+      ],
+      [
+        "legacy",
+        "Time Walk"
+      ],
+      [
+        "legacy",
+        "Timetwister"
+      ],
+      [
+        "legacy",
+        "Contract from Below"
+      ],
+      [
+        "legacy",
+        "Darkpact"
+      ],
+      [
+        "legacy",
+        "Demonic Attorney"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Mind Twist"
+      ],
+      [
+        "legacy",
+        "Wheel of Fortune"
+      ],
+      [
+        "legacy",
+        "Channel"
+      ],
+      [
+        "legacy",
+        "Fastbond"
+      ],
+      [
+        "legacy",
+        "Black Lotus"
+      ],
+      [
+        "legacy",
+        "Chaos Orb"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Mox Emerald"
+      ],
+      [
+        "legacy",
+        "Mox Jet"
+      ],
+      [
+        "legacy",
+        "Mox Pearl"
+      ],
+      [
+        "legacy",
+        "Mox Ruby"
+      ],
+      [
+        "legacy",
+        "Mox Sapphire"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Time Vault"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Crusade"
+      ],
+      [
+        "legacy",
+        "Ancestral Recall"
+      ],
+      [
+        "legacy",
+        "Time Walk"
+      ],
+      [
+        "legacy",
+        "Timetwister"
+      ],
+      [
+        "legacy",
+        "Contract from Below"
+      ],
+      [
+        "legacy",
+        "Darkpact"
+      ],
+      [
+        "legacy",
+        "Demonic Attorney"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Mind Twist"
+      ],
+      [
+        "legacy",
+        "Wheel of Fortune"
+      ],
+      [
+        "legacy",
+        "Channel"
+      ],
+      [
+        "legacy",
+        "Fastbond"
+      ],
+      [
+        "legacy",
+        "Black Lotus"
+      ],
+      [
+        "legacy",
+        "Chaos Orb"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Mox Emerald"
+      ],
+      [
+        "legacy",
+        "Mox Jet"
+      ],
+      [
+        "legacy",
+        "Mox Pearl"
+      ],
+      [
+        "legacy",
+        "Mox Ruby"
+      ],
+      [
+        "legacy",
+        "Mox Sapphire"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Time Vault"
+      ],
+      [
+        "legacy",
+        "Sensei's Divining Top"
+      ],
+      [
+        "legacy",
+        "Jeweled Bird"
+      ],
+      [
+        "legacy",
+        "Treasure Cruise"
+      ],
+      [
+        "legacy",
+        "Windfall"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Skullclamp"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Windfall"
+      ],
+      [
+        "legacy",
+        "Skullclamp"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Mana Drain"
+      ],
+      [
+        "legacy",
+        "Vampiric Tutor"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Mana Drain"
+      ],
+      [
+        "legacy",
+        "Vampiric Tutor"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Adriana's Valor"
+      ],
+      [
+        "legacy",
+        "Assemble the Rank and Vile"
+      ],
+      [
+        "legacy",
+        "Echoing Boon"
+      ],
+      [
+        "legacy",
+        "Emissary's Ploy"
+      ],
+      [
+        "legacy",
+        "Hired Heist"
+      ],
+      [
+        "legacy",
+        "Hold the Perimeter"
+      ],
+      [
+        "legacy",
+        "Hymn of the Wilds"
+      ],
+      [
+        "legacy",
+        "Incendiary Dissent"
+      ],
+      [
+        "legacy",
+        "Natural Unity"
+      ],
+      [
+        "legacy",
+        "Sovereign's Realm"
+      ],
+      [
+        "legacy",
+        "Summoner's Bond"
+      ],
+      [
+        "legacy",
+        "Weight Advantage"
+      ],
+      [
+        "legacy",
+        "Advantageous Proclamation"
+      ],
+      [
+        "legacy",
+        "Backup Plan"
+      ],
+      [
+        "legacy",
+        "Brago's Favor"
+      ],
+      [
+        "legacy",
+        "Double Stroke"
+      ],
+      [
+        "legacy",
+        "Immediate Action"
+      ],
+      [
+        "legacy",
+        "Iterative Analysis"
+      ],
+      [
+        "legacy",
+        "Muzzio's Preparations"
+      ],
+      [
+        "legacy",
+        "Power Play"
+      ],
+      [
+        "legacy",
+        "Secret Summoning"
+      ],
+      [
+        "legacy",
+        "Secrets of Paradise"
+      ],
+      [
+        "legacy",
+        "Sentinel Dispatch"
+      ],
+      [
+        "legacy",
+        "Unexpected Potential"
+      ],
+      [
+        "legacy",
+        "Worldknit"
+      ],
+      [
+        "legacy",
+        "Gush"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Crusade"
+      ],
+      [
+        "legacy",
+        "Mind's Desire"
+      ],
+      [
+        "legacy",
+        "Necropotence"
+      ],
+      [
+        "legacy",
+        "Skullclamp"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Oko, Thief of Crowns"
+      ],
+      [
+        "legacy",
+        "Oko, Thief of Crowns"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Mystical Tutor"
+      ],
+      [
+        "legacy",
+        "Necropotence"
+      ],
+      [
+        "legacy",
+        "Vampiric Tutor"
+      ],
+      [
+        "legacy",
+        "Deathrite Shaman"
+      ],
+      [
+        "legacy",
+        "Mana Crypt"
+      ],
+      [
+        "legacy",
+        "Sensei's Divining Top"
+      ],
+      [
+        "legacy",
+        "Oath of Druids"
+      ],
+      [
+        "legacy",
+        "Survival of the Fittest"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Gitaxian Probe"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Crusade"
+      ],
+      [
+        "legacy",
+        "Contract from Below"
+      ],
+      [
+        "legacy",
+        "Darkpact"
+      ],
+      [
+        "legacy",
+        "Demonic Attorney"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Mind Twist"
+      ],
+      [
+        "legacy",
+        "Wheel of Fortune"
+      ],
+      [
+        "legacy",
+        "Channel"
+      ],
+      [
+        "legacy",
+        "Fastbond"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Vampiric Tutor"
+      ],
+      [
+        "legacy",
+        "Oath of Druids"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Hermit Druid"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Yawgmoth's Will"
+      ],
+      [
+        "legacy",
+        "Mind's Desire"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Survival of the Fittest"
+      ],
+      [
+        "legacy",
+        "Wheel of Fortune"
+      ],
+      [
+        "legacy",
+        "Mana Crypt"
+      ],
+      [
+        "legacy",
+        "Deathrite Shaman"
+      ],
+      [
+        "legacy",
+        "Timmerian Fiends"
+      ],
+      [
+        "legacy",
+        "Demonic Consultation"
+      ],
+      [
+        "legacy",
+        "Necropotence"
+      ],
+      [
+        "legacy",
+        "Amulet of Quoz"
+      ],
+      [
+        "legacy",
+        "Lurrus of the Dream-Den"
+      ],
+      [
+        "legacy",
+        "Zirda, the Dawnwaker"
+      ],
+      [
+        "legacy",
+        "Lurrus of the Dream-Den"
+      ],
+      [
+        "legacy",
+        "Zirda, the Dawnwaker"
+      ],
+      [
+        "legacy",
+        "Mana Drain"
+      ],
+      [
+        "legacy",
+        "Windfall"
+      ],
+      [
+        "legacy",
+        "Necropotence"
+      ],
+      [
+        "legacy",
+        "Channel"
+      ],
+      [
+        "legacy",
+        "Mana Drain"
+      ],
+      [
+        "legacy",
+        "Imperial Seal"
+      ],
+      [
+        "legacy",
+        "Vampiric Tutor"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Gush"
+      ],
+      [
+        "legacy",
+        "Windfall"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Dig Through Time"
+      ],
+      [
+        "legacy",
+        "Treasure Cruise"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Crusade"
+      ],
+      [
+        "legacy",
+        "Ancestral Recall"
+      ],
+      [
+        "legacy",
+        "Time Walk"
+      ],
+      [
+        "legacy",
+        "Timetwister"
+      ],
+      [
+        "legacy",
+        "Contract from Below"
+      ],
+      [
+        "legacy",
+        "Darkpact"
+      ],
+      [
+        "legacy",
+        "Demonic Attorney"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Mind Twist"
+      ],
+      [
+        "legacy",
+        "Wheel of Fortune"
+      ],
+      [
+        "legacy",
+        "Channel"
+      ],
+      [
+        "legacy",
+        "Fastbond"
+      ],
+      [
+        "legacy",
+        "Black Lotus"
+      ],
+      [
+        "legacy",
+        "Chaos Orb"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Mox Emerald"
+      ],
+      [
+        "legacy",
+        "Mox Jet"
+      ],
+      [
+        "legacy",
+        "Mox Pearl"
+      ],
+      [
+        "legacy",
+        "Mox Ruby"
+      ],
+      [
+        "legacy",
+        "Mox Sapphire"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Time Vault"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Crusade"
+      ],
+      [
+        "legacy",
+        "Ancestral Recall"
+      ],
+      [
+        "legacy",
+        "Time Walk"
+      ],
+      [
+        "legacy",
+        "Timetwister"
+      ],
+      [
+        "legacy",
+        "Contract from Below"
+      ],
+      [
+        "legacy",
+        "Darkpact"
+      ],
+      [
+        "legacy",
+        "Demonic Attorney"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Mind Twist"
+      ],
+      [
+        "legacy",
+        "Wheel of Fortune"
+      ],
+      [
+        "legacy",
+        "Channel"
+      ],
+      [
+        "legacy",
+        "Fastbond"
+      ],
+      [
+        "legacy",
+        "Black Lotus"
+      ],
+      [
+        "legacy",
+        "Chaos Orb"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Mox Emerald"
+      ],
+      [
+        "legacy",
+        "Mox Jet"
+      ],
+      [
+        "legacy",
+        "Mox Pearl"
+      ],
+      [
+        "legacy",
+        "Mox Ruby"
+      ],
+      [
+        "legacy",
+        "Mox Sapphire"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Time Vault"
+      ],
+      [
+        "legacy",
+        "Cleanse"
+      ],
+      [
+        "legacy",
+        "Invoke Prejudice"
+      ],
+      [
+        "legacy",
+        "Mana Drain"
+      ],
+      [
+        "legacy",
+        "Imprison"
+      ],
+      [
+        "legacy",
+        "Falling Star"
+      ],
+      [
+        "legacy",
+        "Tempest Efreet"
+      ],
+      [
+        "legacy",
+        "Pradesh Gypsies"
+      ],
+      [
+        "legacy",
+        "Rebirth"
+      ],
+      [
+        "legacy",
+        "Frantic Search"
+      ],
+      [
+        "legacy",
+        "Gush"
+      ],
+      [
+        "legacy",
+        "Tinker"
+      ],
+      [
+        "legacy",
+        "Treasure Cruise"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Mana Crypt"
+      ],
+      [
+        "legacy",
+        "Skullclamp"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Crusade"
+      ],
+      [
+        "legacy",
+        "Demonic Consultation"
+      ],
+      [
+        "legacy",
+        "Imperial Seal"
+      ],
+      [
+        "legacy",
+        "Necropotence"
+      ],
+      [
+        "legacy",
+        "Mana Crypt"
+      ],
+      [
+        "legacy",
+        "Cleanse"
+      ],
+      [
+        "legacy",
+        "Mana Drain"
+      ],
+      [
+        "legacy",
+        "Mind Twist"
+      ],
+      [
+        "legacy",
+        "Bazaar of Baghdad"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Wheel of Fortune"
+      ],
+      [
+        "legacy",
+        "Channel"
+      ],
+      [
+        "legacy",
+        "Fastbond"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Time Vault"
+      ],
+      [
+        "legacy",
+        "Library of Alexandria"
+      ],
+      [
+        "legacy",
+        "Mishra's Workshop"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Wrenn and Six"
+      ],
+      [
+        "legacy",
+        "Arcum's Astrolabe"
+      ],
+      [
+        "legacy",
+        "Flash"
+      ],
+      [
+        "legacy",
+        "Mystical Tutor"
+      ],
+      [
+        "legacy",
+        "Gush"
+      ],
+      [
+        "legacy",
+        "Mind Twist"
+      ],
+      [
+        "legacy",
+        "Mana Crypt"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Gitaxian Probe"
+      ],
+      [
+        "legacy",
+        "Mental Misstep"
+      ],
+      [
+        "legacy",
+        "Black Lotus"
+      ],
+      [
+        "legacy",
+        "Timetwister"
+      ],
+      [
+        "legacy",
+        "Ancestral Recall"
+      ],
+      [
+        "legacy",
+        "Mox Pearl"
+      ],
+      [
+        "legacy",
+        "Mox Jet"
+      ],
+      [
+        "legacy",
+        "Mox Ruby"
+      ],
+      [
+        "legacy",
+        "Mox Emerald"
+      ],
+      [
+        "legacy",
+        "Mox Sapphire"
+      ],
+      [
+        "legacy",
+        "Time Walk"
+      ],
+      [
+        "legacy",
+        "Timetwister"
+      ],
+      [
+        "legacy",
+        "Ancestral Recall"
+      ],
+      [
+        "legacy",
+        "Mox Pearl"
+      ],
+      [
+        "legacy",
+        "Mox Emerald"
+      ],
+      [
+        "legacy",
+        "Mox Jet"
+      ],
+      [
+        "legacy",
+        "Mox Sapphire"
+      ],
+      [
+        "legacy",
+        "Mox Ruby"
+      ],
+      [
+        "legacy",
+        "Black Lotus"
+      ],
+      [
+        "legacy",
+        "Ancestral Recall"
+      ],
+      [
+        "legacy",
+        "Timetwister"
+      ],
+      [
+        "legacy",
+        "Time Walk"
+      ],
+      [
+        "legacy",
+        "Mox Pearl"
+      ],
+      [
+        "legacy",
+        "Mox Sapphire"
+      ],
+      [
+        "legacy",
+        "Mox Jet"
+      ],
+      [
+        "legacy",
+        "Oko, Thief of Crowns"
+      ],
+      [
+        "legacy",
+        "Oko, Thief of Crowns"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Mana Crypt"
+      ],
+      [
+        "legacy",
+        "Lurrus of the Dream-Den"
+      ],
+      [
+        "legacy",
+        "Lurrus of the Dream-Den"
+      ],
+      [
+        "legacy",
+        "Zirda, the Dawnwaker"
+      ],
+      [
+        "legacy",
+        "Zirda, the Dawnwaker"
+      ],
+      [
+        "legacy",
+        "Dig Through Time"
+      ],
+      [
+        "legacy",
+        "Dig Through Time"
+      ],
+      [
+        "legacy",
+        "Iterative Analysis"
+      ],
+      [
+        "legacy",
+        "Wrenn and Six"
+      ],
+      [
+        "legacy",
+        "Arcum's Astrolabe"
+      ],
+      [
+        "legacy",
+        "Skullclamp"
+      ],
+      [
+        "legacy",
+        "Mystical Tutor"
+      ],
+      [
+        "legacy",
+        "Mind's Desire"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Yawgmoth's Will"
+      ],
+      [
+        "legacy",
+        "Crusade"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Mana Crypt"
+      ],
+      [
+        "legacy",
+        "Vampiric Tutor"
+      ],
+      [
+        "legacy",
+        "Hermit Druid"
+      ],
+      [
+        "legacy",
+        "Oath of Druids"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Wheel of Fortune"
+      ],
+      [
+        "legacy",
+        "Survival of the Fittest"
+      ],
+      [
+        "legacy",
+        "Gitaxian Probe"
+      ],
+      [
+        "legacy",
+        "Mox Pearl"
+      ],
+      [
+        "legacy",
+        "Mox Jet"
+      ],
+      [
+        "legacy",
+        "Mox Emerald"
+      ],
+      [
+        "legacy",
+        "Mox Sapphire"
+      ],
+      [
+        "legacy",
+        "Mana Crypt"
+      ],
+      [
+        "legacy",
+        "Time Walk"
+      ],
+      [
+        "legacy",
+        "Timetwister"
+      ],
+      [
+        "legacy",
+        "Mind Twist"
+      ],
+      [
+        "legacy",
+        "Black Lotus"
+      ],
+      [
+        "legacy",
+        "Mana Drain"
+      ],
+      [
+        "legacy",
+        "Library of Alexandria"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Mishra's Workshop"
+      ],
+      [
+        "legacy",
+        "Mox Ruby"
+      ],
+      [
+        "legacy",
+        "Ancestral Recall"
+      ],
+      [
+        "legacy",
+        "Gush"
+      ],
+      [
+        "legacy",
+        "Mind Twist"
+      ],
+      [
+        "legacy",
+        "Windfall"
+      ],
+      [
+        "legacy",
+        "Vampiric Tutor"
+      ],
+      [
+        "legacy",
+        "Mystical Tutor"
+      ],
+      [
+        "legacy",
+        "Oko, Thief of Crowns"
+      ],
+      [
+        "legacy",
+        "Crusade"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Necropotence"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Underworld Breach"
+      ],
+      [
+        "legacy",
+        "Underworld Breach"
+      ],
+      [
+        "legacy",
+        "Imperial Seal"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Dreadhorde Arcanist"
+      ],
+      [
+        "legacy",
+        "Dreadhorde Arcanist"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Tempest Efreet"
+      ],
+      [
+        "legacy",
+        "Bronze Tablet"
+      ],
+      [
+        "legacy",
+        "Pradesh Gypsies"
+      ],
+      [
+        "legacy",
+        "Rebirth"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Bronze Tablet"
+      ],
+      [
+        "legacy",
+        "Jeweled Bird"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Deathrite Shaman"
+      ],
+      [
+        "legacy",
+        "Mind's Desire"
+      ],
+      [
+        "legacy",
+        "Dig Through Time"
+      ],
+      [
+        "legacy",
+        "Mystical Tutor"
+      ],
+      [
+        "legacy",
+        "Hermit Druid"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Crusade"
+      ],
+      [
+        "legacy",
+        "Contract from Below"
+      ],
+      [
+        "legacy",
+        "Darkpact"
+      ],
+      [
+        "legacy",
+        "Demonic Attorney"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Mind Twist"
+      ],
+      [
+        "legacy",
+        "Wheel of Fortune"
+      ],
+      [
+        "legacy",
+        "Channel"
+      ],
+      [
+        "legacy",
+        "Fastbond"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Skullclamp"
+      ],
+      [
+        "legacy",
+        "Underworld Breach"
+      ],
+      [
+        "legacy",
+        "Underworld Breach"
+      ],
+      [
+        "legacy",
+        "Earthcraft"
+      ],
+      [
+        "legacy",
+        "Hermit Druid"
+      ],
+      [
+        "legacy",
+        "Oath of Druids"
+      ],
+      [
+        "legacy",
+        "Survival of the Fittest"
+      ],
+      [
+        "legacy",
+        "Yawgmoth's Bargain"
+      ],
+      [
+        "legacy",
+        "Frantic Search"
+      ],
+      [
+        "legacy",
+        "Tinker"
+      ],
+      [
+        "legacy",
+        "Memory Jar"
+      ],
+      [
+        "legacy",
+        "Dig Through Time"
+      ],
+      [
+        "legacy",
+        "Frantic Search"
+      ],
+      [
+        "legacy",
+        "Treasure Cruise"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Windfall"
+      ],
+      [
+        "legacy",
+        "Yawgmoth's Will"
+      ],
+      [
+        "legacy",
+        "Tolarian Academy"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Channel"
+      ],
+      [
+        "legacy",
+        "Mystical Tutor"
+      ],
+      [
+        "legacy",
+        "Necropotence"
+      ],
+      [
+        "legacy",
+        "Sensei's Divining Top"
+      ],
+      [
+        "legacy",
+        "Skullclamp"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Tinker"
+      ],
+      [
+        "legacy",
+        "Memory Jar"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Mind's Desire"
+      ],
+      [
+        "legacy",
+        "Vampiric Tutor"
+      ],
+      [
+        "legacy",
+        "Goblin Recruiter"
+      ],
+      [
+        "legacy",
+        "Ancestral Recall"
+      ],
+      [
+        "legacy",
+        "Time Walk"
+      ],
+      [
+        "legacy",
+        "Timetwister"
+      ],
+      [
+        "legacy",
+        "Black Lotus"
+      ],
+      [
+        "legacy",
+        "Mox Emerald"
+      ],
+      [
+        "legacy",
+        "Mox Jet"
+      ],
+      [
+        "legacy",
+        "Mox Pearl"
+      ],
+      [
+        "legacy",
+        "Mox Ruby"
+      ],
+      [
+        "legacy",
+        "Mox Sapphire"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Frantic Search"
+      ],
+      [
+        "legacy",
+        "Gush"
+      ],
+      [
+        "legacy",
+        "Mana Drain"
+      ],
+      [
+        "legacy",
+        "Mind's Desire"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Necropotence"
+      ],
+      [
+        "legacy",
+        "Vampiric Tutor"
+      ],
+      [
+        "legacy",
+        "Yawgmoth's Bargain"
+      ],
+      [
+        "legacy",
+        "Yawgmoth's Will"
+      ],
+      [
+        "legacy",
+        "Wheel of Fortune"
+      ],
+      [
+        "legacy",
+        "Channel"
+      ],
+      [
+        "legacy",
+        "Fastbond"
+      ],
+      [
+        "legacy",
+        "Hermit Druid"
+      ],
+      [
+        "legacy",
+        "Oath of Druids"
+      ],
+      [
+        "legacy",
+        "Survival of the Fittest"
+      ],
+      [
+        "legacy",
+        "Mana Crypt"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Memory Jar"
+      ],
+      [
+        "legacy",
+        "Skullclamp"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Time Vault"
+      ],
+      [
+        "legacy",
+        "Bazaar of Baghdad"
+      ],
+      [
+        "legacy",
+        "Library of Alexandria"
+      ],
+      [
+        "legacy",
+        "Mishra's Workshop"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Tolarian Academy"
+      ],
+      [
+        "legacy",
+        "Dreadhorde Arcanist"
+      ],
+      [
+        "legacy",
+        "Tinker"
+      ],
+      [
+        "legacy",
+        "Yawgmoth's Will"
+      ],
+      [
+        "legacy",
+        "Yawgmoth's Bargain"
+      ],
+      [
+        "legacy",
+        "Frantic Search"
+      ],
+      [
+        "legacy",
+        "Mystical Tutor"
+      ],
+      [
+        "legacy",
+        "Gush"
+      ],
+      [
+        "legacy",
+        "Survival of the Fittest"
+      ],
+      [
+        "legacy",
+        "Vampiric Tutor"
+      ],
+      [
+        "legacy",
+        "Yawgmoth's Will"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ]
+    ]
+  },
+  "gt_sql": "WITH MaxBanned AS (SELECT format, COUNT(*) AS count_banned FROM legalities WHERE status = 'Banned' GROUP BY format ORDER BY COUNT(*) DESC LIMIT 1) SELECT T2.format, T1.name FROM cards AS T1 INNER JOIN legalities AS T2 ON T2.uuid = T1.uuid INNER JOIN MaxBanned MB ON MB.format = T2.format WHERE T2.status = 'Banned'",
+  "id": 519,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "format",
+        "name"
+      ],
+      [
+        "legacy",
+        "Adriana's Valor"
+      ],
+      [
+        "legacy",
+        "Advantageous Proclamation"
+      ],
+      [
+        "legacy",
+        "Amulet of Quoz"
+      ],
+      [
+        "legacy",
+        "Ancestral Recall"
+      ],
+      [
+        "legacy",
+        "Ancestral Recall"
+      ],
+      [
+        "legacy",
+        "Ancestral Recall"
+      ],
+      [
+        "legacy",
+        "Ancestral Recall"
+      ],
+      [
+        "legacy",
+        "Ancestral Recall"
+      ],
+      [
+        "legacy",
+        "Ancestral Recall"
+      ],
+      [
+        "legacy",
+        "Ancestral Recall"
+      ],
+      [
+        "legacy",
+        "Ancestral Recall"
+      ],
+      [
+        "legacy",
+        "Ancestral Recall"
+      ],
+      [
+        "legacy",
+        "Ancestral Recall"
+      ],
+      [
+        "legacy",
+        "Arcum's Astrolabe"
+      ],
+      [
+        "legacy",
+        "Arcum's Astrolabe"
+      ],
+      [
+        "legacy",
+        "Assemble the Rank and Vile"
+      ],
+      [
+        "legacy",
+        "Backup Plan"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Balance"
+      ],
+      [
+        "legacy",
+        "Bazaar of Baghdad"
+      ],
+      [
+        "legacy",
+        "Bazaar of Baghdad"
+      ],
+      [
+        "legacy",
+        "Bazaar of Baghdad"
+      ],
+      [
+        "legacy",
+        "Black Lotus"
+      ],
+      [
+        "legacy",
+        "Black Lotus"
+      ],
+      [
+        "legacy",
+        "Black Lotus"
+      ],
+      [
+        "legacy",
+        "Black Lotus"
+      ],
+      [
+        "legacy",
+        "Black Lotus"
+      ],
+      [
+        "legacy",
+        "Black Lotus"
+      ],
+      [
+        "legacy",
+        "Black Lotus"
+      ],
+      [
+        "legacy",
+        "Black Lotus"
+      ],
+      [
+        "legacy",
+        "Black Lotus"
+      ],
+      [
+        "legacy",
+        "Brago's Favor"
+      ],
+      [
+        "legacy",
+        "Bronze Tablet"
+      ],
+      [
+        "legacy",
+        "Bronze Tablet"
+      ],
+      [
+        "legacy",
+        "Bronze Tablet"
+      ],
+      [
+        "legacy",
+        "Bronze Tablet"
+      ],
+      [
+        "legacy",
+        "Bronze Tablet"
+      ],
+      [
+        "legacy",
+        "Channel"
+      ],
+      [
+        "legacy",
+        "Channel"
+      ],
+      [
+        "legacy",
+        "Channel"
+      ],
+      [
+        "legacy",
+        "Channel"
+      ],
+      [
+        "legacy",
+        "Channel"
+      ],
+      [
+        "legacy",
+        "Channel"
+      ],
+      [
+        "legacy",
+        "Channel"
+      ],
+      [
+        "legacy",
+        "Channel"
+      ],
+      [
+        "legacy",
+        "Channel"
+      ],
+      [
+        "legacy",
+        "Channel"
+      ],
+      [
+        "legacy",
+        "Channel"
+      ],
+      [
+        "legacy",
+        "Channel"
+      ],
+      [
+        "legacy",
+        "Channel"
+      ],
+      [
+        "legacy",
+        "Channel"
+      ],
+      [
+        "legacy",
+        "Chaos Orb"
+      ],
+      [
+        "legacy",
+        "Chaos Orb"
+      ],
+      [
+        "legacy",
+        "Chaos Orb"
+      ],
+      [
+        "legacy",
+        "Chaos Orb"
+      ],
+      [
+        "legacy",
+        "Chaos Orb"
+      ],
+      [
+        "legacy",
+        "Cleanse"
+      ],
+      [
+        "legacy",
+        "Cleanse"
+      ],
+      [
+        "legacy",
+        "Contract from Below"
+      ],
+      [
+        "legacy",
+        "Contract from Below"
+      ],
+      [
+        "legacy",
+        "Contract from Below"
+      ],
+      [
+        "legacy",
+        "Contract from Below"
+      ],
+      [
+        "legacy",
+        "Contract from Below"
+      ],
+      [
+        "legacy",
+        "Contract from Below"
+      ],
+      [
+        "legacy",
+        "Contract from Below"
+      ],
+      [
+        "legacy",
+        "Contract from Below"
+      ],
+      [
+        "legacy",
+        "Crusade"
+      ],
+      [
+        "legacy",
+        "Crusade"
+      ],
+      [
+        "legacy",
+        "Crusade"
+      ],
+      [
+        "legacy",
+        "Crusade"
+      ],
+      [
+        "legacy",
+        "Crusade"
+      ],
+      [
+        "legacy",
+        "Crusade"
+      ],
+      [
+        "legacy",
+        "Crusade"
+      ],
+      [
+        "legacy",
+        "Crusade"
+      ],
+      [
+        "legacy",
+        "Crusade"
+      ],
+      [
+        "legacy",
+        "Crusade"
+      ],
+      [
+        "legacy",
+        "Crusade"
+      ],
+      [
+        "legacy",
+        "Crusade"
+      ],
+      [
+        "legacy",
+        "Crusade"
+      ],
+      [
+        "legacy",
+        "Crusade"
+      ],
+      [
+        "legacy",
+        "Crusade"
+      ],
+      [
+        "legacy",
+        "Crusade"
+      ],
+      [
+        "legacy",
+        "Darkpact"
+      ],
+      [
+        "legacy",
+        "Darkpact"
+      ],
+      [
+        "legacy",
+        "Darkpact"
+      ],
+      [
+        "legacy",
+        "Darkpact"
+      ],
+      [
+        "legacy",
+        "Darkpact"
+      ],
+      [
+        "legacy",
+        "Darkpact"
+      ],
+      [
+        "legacy",
+        "Darkpact"
+      ],
+      [
+        "legacy",
+        "Darkpact"
+      ],
+      [
+        "legacy",
+        "Deathrite Shaman"
+      ],
+      [
+        "legacy",
+        "Deathrite Shaman"
+      ],
+      [
+        "legacy",
+        "Deathrite Shaman"
+      ],
+      [
+        "legacy",
+        "Demonic Attorney"
+      ],
+      [
+        "legacy",
+        "Demonic Attorney"
+      ],
+      [
+        "legacy",
+        "Demonic Attorney"
+      ],
+      [
+        "legacy",
+        "Demonic Attorney"
+      ],
+      [
+        "legacy",
+        "Demonic Attorney"
+      ],
+      [
+        "legacy",
+        "Demonic Attorney"
+      ],
+      [
+        "legacy",
+        "Demonic Attorney"
+      ],
+      [
+        "legacy",
+        "Demonic Attorney"
+      ],
+      [
+        "legacy",
+        "Demonic Consultation"
+      ],
+      [
+        "legacy",
+        "Demonic Consultation"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Demonic Tutor"
+      ],
+      [
+        "legacy",
+        "Dig Through Time"
+      ],
+      [
+        "legacy",
+        "Dig Through Time"
+      ],
+      [
+        "legacy",
+        "Dig Through Time"
+      ],
+      [
+        "legacy",
+        "Dig Through Time"
+      ],
+      [
+        "legacy",
+        "Dig Through Time"
+      ],
+      [
+        "legacy",
+        "Double Stroke"
+      ],
+      [
+        "legacy",
+        "Dreadhorde Arcanist"
+      ],
+      [
+        "legacy",
+        "Dreadhorde Arcanist"
+      ],
+      [
+        "legacy",
+        "Dreadhorde Arcanist"
+      ],
+      [
+        "legacy",
+        "Earthcraft"
+      ],
+      [
+        "legacy",
+        "Echoing Boon"
+      ],
+      [
+        "legacy",
+        "Emissary's Ploy"
+      ],
+      [
+        "legacy",
+        "Falling Star"
+      ],
+      [
+        "legacy",
+        "Fastbond"
+      ],
+      [
+        "legacy",
+        "Fastbond"
+      ],
+      [
+        "legacy",
+        "Fastbond"
+      ],
+      [
+        "legacy",
+        "Fastbond"
+      ],
+      [
+        "legacy",
+        "Fastbond"
+      ],
+      [
+        "legacy",
+        "Fastbond"
+      ],
+      [
+        "legacy",
+        "Fastbond"
+      ],
+      [
+        "legacy",
+        "Fastbond"
+      ],
+      [
+        "legacy",
+        "Fastbond"
+      ],
+      [
+        "legacy",
+        "Fastbond"
+      ],
+      [
+        "legacy",
+        "Flash"
+      ],
+      [
+        "legacy",
+        "Flash"
+      ],
+      [
+        "legacy",
+        "Flash"
+      ],
+      [
+        "legacy",
+        "Frantic Search"
+      ],
+      [
+        "legacy",
+        "Frantic Search"
+      ],
+      [
+        "legacy",
+        "Frantic Search"
+      ],
+      [
+        "legacy",
+        "Frantic Search"
+      ],
+      [
+        "legacy",
+        "Frantic Search"
+      ],
+      [
+        "legacy",
+        "Frantic Search"
+      ],
+      [
+        "legacy",
+        "Gitaxian Probe"
+      ],
+      [
+        "legacy",
+        "Gitaxian Probe"
+      ],
+      [
+        "legacy",
+        "Gitaxian Probe"
+      ],
+      [
+        "legacy",
+        "Goblin Recruiter"
+      ],
+      [
+        "legacy",
+        "Goblin Recruiter"
+      ],
+      [
+        "legacy",
+        "Goblin Recruiter"
+      ],
+      [
+        "legacy",
+        "Gush"
+      ],
+      [
+        "legacy",
+        "Gush"
+      ],
+      [
+        "legacy",
+        "Gush"
+      ],
+      [
+        "legacy",
+        "Gush"
+      ],
+      [
+        "legacy",
+        "Gush"
+      ],
+      [
+        "legacy",
+        "Gush"
+      ],
+      [
+        "legacy",
+        "Gush"
+      ],
+      [
+        "legacy",
+        "Hermit Druid"
+      ],
+      [
+        "legacy",
+        "Hermit Druid"
+      ],
+      [
+        "legacy",
+        "Hermit Druid"
+      ],
+      [
+        "legacy",
+        "Hermit Druid"
+      ],
+      [
+        "legacy",
+        "Hermit Druid"
+      ],
+      [
+        "legacy",
+        "Hired Heist"
+      ],
+      [
+        "legacy",
+        "Hold the Perimeter"
+      ],
+      [
+        "legacy",
+        "Hymn of the Wilds"
+      ],
+      [
+        "legacy",
+        "Immediate Action"
+      ],
+      [
+        "legacy",
+        "Imperial Seal"
+      ],
+      [
+        "legacy",
+        "Imperial Seal"
+      ],
+      [
+        "legacy",
+        "Imperial Seal"
+      ],
+      [
+        "legacy",
+        "Imprison"
+      ],
+      [
+        "legacy",
+        "Incendiary Dissent"
+      ],
+      [
+        "legacy",
+        "Invoke Prejudice"
+      ],
+      [
+        "legacy",
+        "Iterative Analysis"
+      ],
+      [
+        "legacy",
+        "Iterative Analysis"
+      ],
+      [
+        "legacy",
+        "Jeweled Bird"
+      ],
+      [
+        "legacy",
+        "Jeweled Bird"
+      ],
+      [
+        "legacy",
+        "Jeweled Bird"
+      ],
+      [
+        "legacy",
+        "Jihad"
+      ],
+      [
+        "legacy",
+        "Library of Alexandria"
+      ],
+      [
+        "legacy",
+        "Library of Alexandria"
+      ],
+      [
+        "legacy",
+        "Library of Alexandria"
+      ],
+      [
+        "legacy",
+        "Library of Alexandria"
+      ],
+      [
+        "legacy",
+        "Lurrus of the Dream-Den"
+      ],
+      [
+        "legacy",
+        "Lurrus of the Dream-Den"
+      ],
+      [
+        "legacy",
+        "Lurrus of the Dream-Den"
+      ],
+      [
+        "legacy",
+        "Lurrus of the Dream-Den"
+      ],
+      [
+        "legacy",
+        "Mana Crypt"
+      ],
+      [
+        "legacy",
+        "Mana Crypt"
+      ],
+      [
+        "legacy",
+        "Mana Crypt"
+      ],
+      [
+        "legacy",
+        "Mana Crypt"
+      ],
+      [
+        "legacy",
+        "Mana Crypt"
+      ],
+      [
+        "legacy",
+        "Mana Crypt"
+      ],
+      [
+        "legacy",
+        "Mana Crypt"
+      ],
+      [
+        "legacy",
+        "Mana Crypt"
+      ],
+      [
+        "legacy",
+        "Mana Crypt"
+      ],
+      [
+        "legacy",
+        "Mana Crypt"
+      ],
+      [
+        "legacy",
+        "Mana Crypt"
+      ],
+      [
+        "legacy",
+        "Mana Drain"
+      ],
+      [
+        "legacy",
+        "Mana Drain"
+      ],
+      [
+        "legacy",
+        "Mana Drain"
+      ],
+      [
+        "legacy",
+        "Mana Drain"
+      ],
+      [
+        "legacy",
+        "Mana Drain"
+      ],
+      [
+        "legacy",
+        "Mana Drain"
+      ],
+      [
+        "legacy",
+        "Mana Drain"
+      ],
+      [
+        "legacy",
+        "Mana Drain"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Mana Vault"
+      ],
+      [
+        "legacy",
+        "Memory Jar"
+      ],
+      [
+        "legacy",
+        "Memory Jar"
+      ],
+      [
+        "legacy",
+        "Memory Jar"
+      ],
+      [
+        "legacy",
+        "Mental Misstep"
+      ],
+      [
+        "legacy",
+        "Mind Twist"
+      ],
+      [
+        "legacy",
+        "Mind Twist"
+      ],
+      [
+        "legacy",
+        "Mind Twist"
+      ],
+      [
+        "legacy",
+        "Mind Twist"
+      ],
+      [
+        "legacy",
+        "Mind Twist"
+      ],
+      [
+        "legacy",
+        "Mind Twist"
+      ],
+      [
+        "legacy",
+        "Mind Twist"
+      ],
+      [
+        "legacy",
+        "Mind Twist"
+      ],
+      [
+        "legacy",
+        "Mind Twist"
+      ],
+      [
+        "legacy",
+        "Mind Twist"
+      ],
+      [
+        "legacy",
+        "Mind Twist"
+      ],
+      [
+        "legacy",
+        "Mind Twist"
+      ],
+      [
+        "legacy",
+        "Mind Twist"
+      ],
+      [
+        "legacy",
+        "Mind Twist"
+      ],
+      [
+        "legacy",
+        "Mind's Desire"
+      ],
+      [
+        "legacy",
+        "Mind's Desire"
+      ],
+      [
+        "legacy",
+        "Mind's Desire"
+      ],
+      [
+        "legacy",
+        "Mind's Desire"
+      ],
+      [
+        "legacy",
+        "Mind's Desire"
+      ],
+      [
+        "legacy",
+        "Mind's Desire"
+      ],
+      [
+        "legacy",
+        "Mishra's Workshop"
+      ],
+      [
+        "legacy",
+        "Mishra's Workshop"
+      ],
+      [
+        "legacy",
+        "Mishra's Workshop"
+      ],
+      [
+        "legacy",
+        "Mishra's Workshop"
+      ],
+      [
+        "legacy",
+        "Mox Emerald"
+      ],
+      [
+        "legacy",
+        "Mox Emerald"
+      ],
+      [
+        "legacy",
+        "Mox Emerald"
+      ],
+      [
+        "legacy",
+        "Mox Emerald"
+      ],
+      [
+        "legacy",
+        "Mox Emerald"
+      ],
+      [
+        "legacy",
+        "Mox Emerald"
+      ],
+      [
+        "legacy",
+        "Mox Emerald"
+      ],
+      [
+        "legacy",
+        "Mox Emerald"
+      ],
+      [
+        "legacy",
+        "Mox Emerald"
+      ],
+      [
+        "legacy",
+        "Mox Jet"
+      ],
+      [
+        "legacy",
+        "Mox Jet"
+      ],
+      [
+        "legacy",
+        "Mox Jet"
+      ],
+      [
+        "legacy",
+        "Mox Jet"
+      ],
+      [
+        "legacy",
+        "Mox Jet"
+      ],
+      [
+        "legacy",
+        "Mox Jet"
+      ],
+      [
+        "legacy",
+        "Mox Jet"
+      ],
+      [
+        "legacy",
+        "Mox Jet"
+      ],
+      [
+        "legacy",
+        "Mox Jet"
+      ],
+      [
+        "legacy",
+        "Mox Jet"
+      ],
+      [
+        "legacy",
+        "Mox Pearl"
+      ],
+      [
+        "legacy",
+        "Mox Pearl"
+      ],
+      [
+        "legacy",
+        "Mox Pearl"
+      ],
+      [
+        "legacy",
+        "Mox Pearl"
+      ],
+      [
+        "legacy",
+        "Mox Pearl"
+      ],
+      [
+        "legacy",
+        "Mox Pearl"
+      ],
+      [
+        "legacy",
+        "Mox Pearl"
+      ],
+      [
+        "legacy",
+        "Mox Pearl"
+      ],
+      [
+        "legacy",
+        "Mox Pearl"
+      ],
+      [
+        "legacy",
+        "Mox Pearl"
+      ],
+      [
+        "legacy",
+        "Mox Ruby"
+      ],
+      [
+        "legacy",
+        "Mox Ruby"
+      ],
+      [
+        "legacy",
+        "Mox Ruby"
+      ],
+      [
+        "legacy",
+        "Mox Ruby"
+      ],
+      [
+        "legacy",
+        "Mox Ruby"
+      ],
+      [
+        "legacy",
+        "Mox Ruby"
+      ],
+      [
+        "legacy",
+        "Mox Ruby"
+      ],
+      [
+        "legacy",
+        "Mox Ruby"
+      ],
+      [
+        "legacy",
+        "Mox Ruby"
+      ],
+      [
+        "legacy",
+        "Mox Sapphire"
+      ],
+      [
+        "legacy",
+        "Mox Sapphire"
+      ],
+      [
+        "legacy",
+        "Mox Sapphire"
+      ],
+      [
+        "legacy",
+        "Mox Sapphire"
+      ],
+      [
+        "legacy",
+        "Mox Sapphire"
+      ],
+      [
+        "legacy",
+        "Mox Sapphire"
+      ],
+      [
+        "legacy",
+        "Mox Sapphire"
+      ],
+      [
+        "legacy",
+        "Mox Sapphire"
+      ],
+      [
+        "legacy",
+        "Mox Sapphire"
+      ],
+      [
+        "legacy",
+        "Mox Sapphire"
+      ],
+      [
+        "legacy",
+        "Muzzio's Preparations"
+      ],
+      [
+        "legacy",
+        "Mystical Tutor"
+      ],
+      [
+        "legacy",
+        "Mystical Tutor"
+      ],
+      [
+        "legacy",
+        "Mystical Tutor"
+      ],
+      [
+        "legacy",
+        "Mystical Tutor"
+      ],
+      [
+        "legacy",
+        "Mystical Tutor"
+      ],
+      [
+        "legacy",
+        "Mystical Tutor"
+      ],
+      [
+        "legacy",
+        "Mystical Tutor"
+      ],
+      [
+        "legacy",
+        "Mystical Tutor"
+      ],
+      [
+        "legacy",
+        "Natural Unity"
+      ],
+      [
+        "legacy",
+        "Necropotence"
+      ],
+      [
+        "legacy",
+        "Necropotence"
+      ],
+      [
+        "legacy",
+        "Necropotence"
+      ],
+      [
+        "legacy",
+        "Necropotence"
+      ],
+      [
+        "legacy",
+        "Necropotence"
+      ],
+      [
+        "legacy",
+        "Necropotence"
+      ],
+      [
+        "legacy",
+        "Necropotence"
+      ],
+      [
+        "legacy",
+        "Necropotence"
+      ],
+      [
+        "legacy",
+        "Necropotence"
+      ],
+      [
+        "legacy",
+        "Oath of Druids"
+      ],
+      [
+        "legacy",
+        "Oath of Druids"
+      ],
+      [
+        "legacy",
+        "Oath of Druids"
+      ],
+      [
+        "legacy",
+        "Oath of Druids"
+      ],
+      [
+        "legacy",
+        "Oath of Druids"
+      ],
+      [
+        "legacy",
+        "Oath of Druids"
+      ],
+      [
+        "legacy",
+        "Oko, Thief of Crowns"
+      ],
+      [
+        "legacy",
+        "Oko, Thief of Crowns"
+      ],
+      [
+        "legacy",
+        "Oko, Thief of Crowns"
+      ],
+      [
+        "legacy",
+        "Oko, Thief of Crowns"
+      ],
+      [
+        "legacy",
+        "Oko, Thief of Crowns"
+      ],
+      [
+        "legacy",
+        "Power Play"
+      ],
+      [
+        "legacy",
+        "Pradesh Gypsies"
+      ],
+      [
+        "legacy",
+        "Pradesh Gypsies"
+      ],
+      [
+        "legacy",
+        "Pradesh Gypsies"
+      ],
+      [
+        "legacy",
+        "Pradesh Gypsies"
+      ],
+      [
+        "legacy",
+        "Pradesh Gypsies"
+      ],
+      [
+        "legacy",
+        "Pradesh Gypsies"
+      ],
+      [
+        "legacy",
+        "Rebirth"
+      ],
+      [
+        "legacy",
+        "Rebirth"
+      ],
+      [
+        "legacy",
+        "Rebirth"
+      ],
+      [
+        "legacy",
+        "Rebirth"
+      ],
+      [
+        "legacy",
+        "Secret Summoning"
+      ],
+      [
+        "legacy",
+        "Secrets of Paradise"
+      ],
+      [
+        "legacy",
+        "Sensei's Divining Top"
+      ],
+      [
+        "legacy",
+        "Sensei's Divining Top"
+      ],
+      [
+        "legacy",
+        "Sensei's Divining Top"
+      ],
+      [
+        "legacy",
+        "Sentinel Dispatch"
+      ],
+      [
+        "legacy",
+        "Shahrazad"
+      ],
+      [
+        "legacy",
+        "Skullclamp"
+      ],
+      [
+        "legacy",
+        "Skullclamp"
+      ],
+      [
+        "legacy",
+        "Skullclamp"
+      ],
+      [
+        "legacy",
+        "Skullclamp"
+      ],
+      [
+        "legacy",
+        "Skullclamp"
+      ],
+      [
+        "legacy",
+        "Skullclamp"
+      ],
+      [
+        "legacy",
+        "Skullclamp"
+      ],
+      [
+        "legacy",
+        "Skullclamp"
+      ],
+      [
+        "legacy",
+        "Skullclamp"
+      ],
+      [
+        "legacy",
+        "Skullclamp"
+      ],
+      [
+        "legacy",
+        "Skullclamp"
+      ],
+      [
+        "legacy",
+        "Skullclamp"
+      ],
+      [
+        "legacy",
+        "Skullclamp"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sol Ring"
+      ],
+      [
+        "legacy",
+        "Sovereign's Realm"
+      ],
+      [
+        "legacy",
+        "Stone-Throwing Devils"
+      ],
+      [
+        "legacy",
+        "Stone-Throwing Devils"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Strip Mine"
+      ],
+      [
+        "legacy",
+        "Summoner's Bond"
+      ],
+      [
+        "legacy",
+        "Survival of the Fittest"
+      ],
+      [
+        "legacy",
+        "Survival of the Fittest"
+      ],
+      [
+        "legacy",
+        "Survival of the Fittest"
+      ],
+      [
+        "legacy",
+        "Survival of the Fittest"
+      ],
+      [
+        "legacy",
+        "Survival of the Fittest"
+      ],
+      [
+        "legacy",
+        "Survival of the Fittest"
+      ],
+      [
+        "legacy",
+        "Tempest Efreet"
+      ],
+      [
+        "legacy",
+        "Tempest Efreet"
+      ],
+      [
+        "legacy",
+        "Tempest Efreet"
+      ],
+      [
+        "legacy",
+        "Tempest Efreet"
+      ],
+      [
+        "legacy",
+        "Time Vault"
+      ],
+      [
+        "legacy",
+        "Time Vault"
+      ],
+      [
+        "legacy",
+        "Time Vault"
+      ],
+      [
+        "legacy",
+        "Time Vault"
+      ],
+      [
+        "legacy",
+        "Time Vault"
+      ],
+      [
+        "legacy",
+        "Time Vault"
+      ],
+      [
+        "legacy",
+        "Time Vault"
+      ],
+      [
+        "legacy",
+        "Time Walk"
+      ],
+      [
+        "legacy",
+        "Time Walk"
+      ],
+      [
+        "legacy",
+        "Time Walk"
+      ],
+      [
+        "legacy",
+        "Time Walk"
+      ],
+      [
+        "legacy",
+        "Time Walk"
+      ],
+      [
+        "legacy",
+        "Time Walk"
+      ],
+      [
+        "legacy",
+        "Time Walk"
+      ],
+      [
+        "legacy",
+        "Time Walk"
+      ],
+      [
+        "legacy",
+        "Time Walk"
+      ],
+      [
+        "legacy",
+        "Timetwister"
+      ],
+      [
+        "legacy",
+        "Timetwister"
+      ],
+      [
+        "legacy",
+        "Timetwister"
+      ],
+      [
+        "legacy",
+        "Timetwister"
+      ],
+      [
+        "legacy",
+        "Timetwister"
+      ],
+      [
+        "legacy",
+        "Timetwister"
+      ],
+      [
+        "legacy",
+        "Timetwister"
+      ],
+      [
+        "legacy",
+        "Timetwister"
+      ],
+      [
+        "legacy",
+        "Timetwister"
+      ],
+      [
+        "legacy",
+        "Timetwister"
+      ],
+      [
+        "legacy",
+        "Timmerian Fiends"
+      ],
+      [
+        "legacy",
+        "Tinker"
+      ],
+      [
+        "legacy",
+        "Tinker"
+      ],
+      [
+        "legacy",
+        "Tinker"
+      ],
+      [
+        "legacy",
+        "Tinker"
+      ],
+      [
+        "legacy",
+        "Tolarian Academy"
+      ],
+      [
+        "legacy",
+        "Tolarian Academy"
+      ],
+      [
+        "legacy",
+        "Treasure Cruise"
+      ],
+      [
+        "legacy",
+        "Treasure Cruise"
+      ],
+      [
+        "legacy",
+        "Treasure Cruise"
+      ],
+      [
+        "legacy",
+        "Treasure Cruise"
+      ],
+      [
+        "legacy",
+        "Treasure Cruise"
+      ],
+      [
+        "legacy",
+        "Underworld Breach"
+      ],
+      [
+        "legacy",
+        "Underworld Breach"
+      ],
+      [
+        "legacy",
+        "Underworld Breach"
+      ],
+      [
+        "legacy",
+        "Underworld Breach"
+      ],
+      [
+        "legacy",
+        "Unexpected Potential"
+      ],
+      [
+        "legacy",
+        "Vampiric Tutor"
+      ],
+      [
+        "legacy",
+        "Vampiric Tutor"
+      ],
+      [
+        "legacy",
+        "Vampiric Tutor"
+      ],
+      [
+        "legacy",
+        "Vampiric Tutor"
+      ],
+      [
+        "legacy",
+        "Vampiric Tutor"
+      ],
+      [
+        "legacy",
+        "Vampiric Tutor"
+      ],
+      [
+        "legacy",
+        "Vampiric Tutor"
+      ],
+      [
+        "legacy",
+        "Vampiric Tutor"
+      ],
+      [
+        "legacy",
+        "Vampiric Tutor"
+      ],
+      [
+        "legacy",
+        "Vampiric Tutor"
+      ],
+      [
+        "legacy",
+        "Vampiric Tutor"
+      ],
+      [
+        "legacy",
+        "Weight Advantage"
+      ],
+      [
+        "legacy",
+        "Wheel of Fortune"
+      ],
+      [
+        "legacy",
+        "Wheel of Fortune"
+      ],
+      [
+        "legacy",
+        "Wheel of Fortune"
+      ],
+      [
+        "legacy",
+        "Wheel of Fortune"
+      ],
+      [
+        "legacy",
+        "Wheel of Fortune"
+      ],
+      [
+        "legacy",
+        "Wheel of Fortune"
+      ],
+      [
+        "legacy",
+        "Wheel of Fortune"
+      ],
+      [
+        "legacy",
+        "Wheel of Fortune"
+      ],
+      [
+        "legacy",
+        "Wheel of Fortune"
+      ],
+      [
+        "legacy",
+        "Wheel of Fortune"
+      ],
+      [
+        "legacy",
+        "Wheel of Fortune"
+      ],
+      [
+        "legacy",
+        "Wheel of Fortune"
+      ],
+      [
+        "legacy",
+        "Windfall"
+      ],
+      [
+        "legacy",
+        "Windfall"
+      ],
+      [
+        "legacy",
+        "Windfall"
+      ],
+      [
+        "legacy",
+        "Windfall"
+      ],
+      [
+        "legacy",
+        "Windfall"
+      ],
+      [
+        "legacy",
+        "Windfall"
+      ],
+      [
+        "legacy",
+        "Windfall"
+      ],
+      [
+        "legacy",
+        "Windfall"
+      ],
+      [
+        "legacy",
+        "Windfall"
+      ],
+      [
+        "legacy",
+        "Windfall"
+      ],
+      [
+        "legacy",
+        "Worldknit"
+      ],
+      [
+        "legacy",
+        "Wrenn and Six"
+      ],
+      [
+        "legacy",
+        "Wrenn and Six"
+      ],
+      [
+        "legacy",
+        "Yawgmoth's Bargain"
+      ],
+      [
+        "legacy",
+        "Yawgmoth's Bargain"
+      ],
+      [
+        "legacy",
+        "Yawgmoth's Bargain"
+      ],
+      [
+        "legacy",
+        "Yawgmoth's Will"
+      ],
+      [
+        "legacy",
+        "Yawgmoth's Will"
+      ],
+      [
+        "legacy",
+        "Yawgmoth's Will"
+      ],
+      [
+        "legacy",
+        "Yawgmoth's Will"
+      ],
+      [
+        "legacy",
+        "Yawgmoth's Will"
+      ],
+      [
+        "legacy",
+        "Yawgmoth's Will"
+      ],
+      [
+        "legacy",
+        "Zirda, the Dawnwaker"
+      ],
+      [
+        "legacy",
+        "Zirda, the Dawnwaker"
+      ],
+      [
+        "legacy",
+        "Zirda, the Dawnwaker"
+      ],
+      [
+        "legacy",
+        "Zirda, the Dawnwaker"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT l.format, c.name FROM legalities l JOIN cards c ON l.uuid = c.uuid WHERE l.status = 'Banned' AND l.format = 'legacy' ORDER BY c.name;",
+  "question": "Which of the play format has the highest number of banned status? Indicate the play format and the names of all the card meet the condition.",
+  "thinking": ""
+}

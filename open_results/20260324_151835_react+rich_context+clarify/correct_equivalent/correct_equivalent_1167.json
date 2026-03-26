@@ -1,0 +1,42 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Symptoms",
+        "Diagnosis"
+      ],
+      [
+        "CNS susp",
+        "SLE"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.Symptoms, T1.Diagnosis FROM Patient AS T1 INNER JOIN Examination AS T2 ON T1.ID = T2.ID WHERE T2.Symptoms IS NOT NULL ORDER BY T1.Birthday DESC LIMIT 1",
+  "id": 1167,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Symptoms",
+        "Diagnosis"
+      ],
+      [
+        "CNS susp",
+        "SLE"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT e.\"Symptoms\", p.\"Diagnosis\"\nFROM Examination e\nJOIN Patient p ON e.\"ID\" = p.\"ID\"\nWHERE e.\"Symptoms\" IS NOT NULL\nORDER BY p.\"Birthday\" DESC\nLIMIT 1",
+  "question": "What are the symptoms observed by the youngest patient to ever did a medical examination? Identify their diagnosis.",
+  "thinking": ""
+}

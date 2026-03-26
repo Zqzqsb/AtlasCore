@@ -1,0 +1,42 @@
+{
+  "db_id": "student_club",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "first_name",
+        "last_name"
+      ],
+      [
+        "Amy",
+        "Firth"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.first_name, T2.last_name FROM major AS T1 INNER JOIN member AS T2 ON T1.major_id = T2.link_to_major INNER JOIN attendance AS T3 ON T2.member_id = T3.link_to_member INNER JOIN event AS T4 ON T3.link_to_event = T4.event_id WHERE T4.event_name = 'Community Theater' AND T1.major_name = 'Interior Design'",
+  "id": 1383,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "first_name",
+        "last_name"
+      ],
+      [
+        "Amy",
+        "Firth"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT m.first_name, m.last_name\nFROM member m\nJOIN major ma ON m.link_to_major = ma.major_id\nJOIN attendance a ON m.member_id = a.link_to_member\nJOIN event e ON a.link_to_event = e.event_id\nWHERE ma.major_name = 'Interior Design'\n  AND e.event_name = 'Community Theater';",
+  "question": "Among the students majored in interior design, who have attended the Community Theater event?",
+  "thinking": ""
+}

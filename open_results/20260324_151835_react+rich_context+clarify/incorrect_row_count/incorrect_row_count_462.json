@@ -1,0 +1,50 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "data row count mismatch (strategy: exact_column_names)",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name"
+      ],
+      [
+        "Gleemax"
+      ],
+      [
+        "Gleemax"
+      ],
+      [
+        "Draco"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT name FROM cards WHERE frameVersion = 2003 ORDER BY convertedManaCost DESC LIMIT 3",
+  "id": 462,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name"
+      ],
+      [
+        "Gleemax"
+      ],
+      [
+        "Draco"
+      ],
+      [
+        "Emrakul, the Aeons Torn"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT name FROM cards WHERE frameVersion = '2003' ORDER BY convertedManaCost DESC LIMIT 3",
+  "question": "Please list the names of the top 3 cards with the highest converted mana cost and have a 2003 card frame style.",
+  "thinking": ""
+}

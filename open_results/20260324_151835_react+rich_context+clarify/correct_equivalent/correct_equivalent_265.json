@@ -1,0 +1,58 @@
+{
+  "db_id": "toxicology",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "molecule_id",
+        "label"
+      ],
+      [
+        "TR000",
+        "+"
+      ],
+      [
+        "TR001",
+        "+"
+      ],
+      [
+        "TR002",
+        "-"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT molecule_id, T.label FROM molecule AS T WHERE T.molecule_id IN ('TR000', 'TR001', 'TR002')",
+  "id": 265,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "molecule_id",
+        "label"
+      ],
+      [
+        "TR000",
+        "+"
+      ],
+      [
+        "TR001",
+        "+"
+      ],
+      [
+        "TR002",
+        "-"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT molecule_id, label FROM molecule WHERE molecule_id IN ('TR000', 'TR001', 'TR002');",
+  "question": "What are the labels for TR000, TR001 and TR002?",
+  "thinking": ""
+}

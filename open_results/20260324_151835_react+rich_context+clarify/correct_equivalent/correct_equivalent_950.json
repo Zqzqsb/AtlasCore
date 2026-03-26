@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name"
+      ],
+      [
+        "Mercedes"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.name FROM constructorStandings AS T1 INNER JOIN constructors AS T2 on T1.constructorId = T2.constructorId ORDER BY T1.points DESC LIMIT 1",
+  "id": 950,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name"
+      ],
+      [
+        "Mercedes"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT c.name FROM constructorStandings cs JOIN constructors c ON cs.constructorId = c.constructorId ORDER BY cs.points DESC LIMIT 1;",
+  "question": "Which constructor has the highest point?",
+  "thinking": ""
+}

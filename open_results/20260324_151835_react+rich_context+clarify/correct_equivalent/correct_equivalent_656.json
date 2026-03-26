@@ -1,0 +1,50 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Title",
+        "LinkTypeId"
+      ],
+      [
+        "What is the best way to identify outliers in multivariate data?",
+        "1"
+      ],
+      [
+        "PCA scores in multiple regression",
+        "1"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T3.Title, T2.LinkTypeId FROM posts AS T1 INNER JOIN postLinks AS T2 ON T1.Id = T2.PostId INNER JOIN posts AS T3 ON T2.RelatedPostId = T3.Id WHERE T1.Title = 'What are principal component scores?'",
+  "id": 656,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Title",
+        "LinkTypeId"
+      ],
+      [
+        "What is the best way to identify outliers in multivariate data?",
+        "1"
+      ],
+      [
+        "PCA scores in multiple regression",
+        "1"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT p2.Title, pl.LinkTypeId\nFROM posts p1\nJOIN postLinks pl ON p1.Id = pl.PostId\nJOIN posts p2 ON pl.RelatedPostId = p2.Id\nWHERE p1.Title = 'What are principal component scores?';",
+  "question": "Write down the related posts titles and link type IDs of the post \"What are principal component scores?\".",
+  "thinking": ""
+}

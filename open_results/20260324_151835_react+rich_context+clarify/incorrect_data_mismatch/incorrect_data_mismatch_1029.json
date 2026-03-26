@@ -1,0 +1,38 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "challenging",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "team_long_name"
+      ],
+      [
+        "Celtic"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT teamInfo.team_long_name FROM League AS leagueData INNER JOIN Match AS matchData ON leagueData.id = matchData.league_id INNER JOIN Team AS teamInfo ON matchData.away_team_api_id = teamInfo.team_api_id WHERE leagueData.name = 'Scotland Premier League' AND matchData.season = '2009/2010' AND matchData.away_team_goal - matchData.home_team_goal \u003e 0 GROUP BY matchData.away_team_api_id ORDER BY COUNT(*) DESC LIMIT 1",
+  "id": 1029,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "team_long_name"
+      ],
+      [
+        "Rangers"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT t.team_long_name\nFROM Match m\nJOIN League l ON m.league_id = l.id\nJOIN Team t ON m.away_team_api_id = t.team_api_id\nWHERE l.name = 'Scotland Premier League'\n  AND m.season = '2009/2010'\n  AND m.away_team_goal \u003e m.home_team_goal\nGROUP BY t.team_api_id, t.team_long_name\nORDER BY COUNT(*) DESC\nLIMIT 1;",
+  "question": "In Scotland Premier League, which away team won the most during the 2010 season?",
+  "thinking": ""
+}

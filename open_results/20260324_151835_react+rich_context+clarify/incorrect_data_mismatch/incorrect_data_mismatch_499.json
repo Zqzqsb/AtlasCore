@@ -1,0 +1,38 @@
+{
+  "db_id": "card_games",
+  "difficulty": "moderate",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "translation"
+      ],
+      [
+        "Traîtres de Kamigawa"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.translation FROM cards AS T1 INNER JOIN set_translations AS T2 ON T2.setCode = T1.setCode WHERE T1.name = 'Tendo Ice Bridge' AND T2.language = 'French' AND T2.translation IS NOT NULL",
+  "id": 499,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "translation"
+      ],
+      [
+        "Betrayers of Kamigawa"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT s.name AS translation\nFROM cards c\nJOIN sets s ON c.setCode = s.code\nWHERE c.name = 'Tendo Ice Bridge'\nLIMIT 1",
+  "question": "What's the French name of the set of cards with \"Tendo Ice Bridge\" is in?",
+  "thinking": ""
+}

@@ -1,0 +1,38 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "language"
+      ],
+      [
+        "German"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT language FROM set_translations WHERE id = 174",
+  "id": 439,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "language"
+      ],
+      [
+        "\u003cnil\u003e"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT st.language FROM sets s LEFT JOIN set_translations st ON s.code = st.setCode WHERE s.id = 174;",
+  "question": "Point out the language of set id \"174\"?",
+  "thinking": ""
+}

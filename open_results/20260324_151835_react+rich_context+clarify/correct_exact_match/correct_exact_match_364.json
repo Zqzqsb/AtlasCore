@@ -1,0 +1,16 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT COUNT(DISTINCT T1.id) FROM cards AS T1 INNER JOIN legalities AS T2 ON T1.uuid = T2.uuid WHERE T2.status = 'Restricted' AND T1.isStarter = 1",
+  "id": 364,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT COUNT(DISTINCT T1.id) FROM cards AS T1 INNER JOIN legalities AS T2 ON T1.uuid = T2.uuid WHERE T2.status = 'Restricted' AND T1.isStarter = 1;",
+  "question": "How many cards of legalities whose status is restricted are found in a starter deck?",
+  "thinking": ""
+}

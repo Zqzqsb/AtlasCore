@@ -1,0 +1,53 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=3, pred=4",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "originalType"
+      ],
+      [
+        "Creature - Human Cleric"
+      ],
+      [
+        "Creature - Cleric"
+      ],
+      [
+        "Creature — Human Cleric"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT originalType FROM cards WHERE name = 'Ancestor''s Chosen' AND originalType IS NOT NULL",
+  "id": 360,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "originalType"
+      ],
+      [
+        "Creature - Human Cleric"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Creature - Cleric"
+      ],
+      [
+        "Creature — Human Cleric"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT originalType FROM cards WHERE name = 'Ancestor''s Chosen';",
+  "question": "What is the type of the card \"Ancestor's Chosen\" as originally printed?",
+  "thinking": ""
+}

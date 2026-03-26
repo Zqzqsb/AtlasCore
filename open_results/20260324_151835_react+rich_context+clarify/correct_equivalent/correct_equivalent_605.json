@@ -1,0 +1,42 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AVG(T1.UpVotes)",
+        "AVG(T1.Age)"
+      ],
+      [
+        "182.2832618025751",
+        "34.083333333333336"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT AVG(T1.UpVotes), AVG(T1.Age) FROM users AS T1 INNER JOIN ( SELECT OwnerUserId, COUNT(*) AS post_count FROM posts GROUP BY OwnerUserId HAVING post_count \u003e 10) AS T2 ON T1.Id = T2.OwnerUserId",
+  "id": 605,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AVG(T1.UpVotes)",
+        "AVG(T1.Age)"
+      ],
+      [
+        "182.2832618025751",
+        "34.083333333333336"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT AVG(T1.UpVotes), AVG(T1.Age)\nFROM users AS T1\nWHERE T1.Id IN (\n    SELECT T2.OwnerUserId\n    FROM posts AS T2\n    WHERE T2.OwnerUserId IS NOT NULL\n    GROUP BY T2.OwnerUserId\n    HAVING COUNT(T2.Id) \u003e 10\n)",
+  "question": "What is the average of the up votes and the average user age for users creating more than 10 posts?",
+  "thinking": ""
+}

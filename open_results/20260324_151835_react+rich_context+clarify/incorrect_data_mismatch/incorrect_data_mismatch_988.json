@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AVG(T1.fastestLapTime)"
+      ],
+      [
+        "1"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT AVG(T1.fastestLapTime) FROM results AS T1 INNER JOIN races AS T2 on T1.raceId = T2.raceId WHERE T1.rank \u003c 11 AND T2.year = 2006 AND T2.name = 'United States Grand Prix'",
+  "id": 988,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AVG(T1.fastestLapTime)"
+      ],
+      [
+        "73.51520000000001"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT AVG(\n    CAST(SUBSTR(T1.fastestLapTime, 1, INSTR(T1.fastestLapTime, ':') - 1) AS REAL) * 60 +\n    CAST(SUBSTR(T1.fastestLapTime, INSTR(T1.fastestLapTime, ':') + 1) AS REAL)\n) AS \"AVG(T1.fastestLapTime)\"\nFROM results AS T1 \nWHERE T1.raceId = 62 AND T1.rank \u003c 11;",
+  "question": "What is the average fastest lap time of the top 10 drivers in the 2006 United States Grand Prix?",
+  "thinking": ""
+}

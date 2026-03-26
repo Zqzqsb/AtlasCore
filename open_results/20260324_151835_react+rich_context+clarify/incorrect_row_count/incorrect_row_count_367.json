@@ -1,0 +1,152 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=32, pred=8",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "format"
+      ],
+      [
+        "commander"
+      ],
+      [
+        "duel"
+      ],
+      [
+        "legacy"
+      ],
+      [
+        "modern"
+      ],
+      [
+        "pauper"
+      ],
+      [
+        "penny"
+      ],
+      [
+        "premodern"
+      ],
+      [
+        "vintage"
+      ],
+      [
+        "commander"
+      ],
+      [
+        "duel"
+      ],
+      [
+        "legacy"
+      ],
+      [
+        "modern"
+      ],
+      [
+        "pauper"
+      ],
+      [
+        "penny"
+      ],
+      [
+        "premodern"
+      ],
+      [
+        "vintage"
+      ],
+      [
+        "commander"
+      ],
+      [
+        "duel"
+      ],
+      [
+        "legacy"
+      ],
+      [
+        "modern"
+      ],
+      [
+        "pauper"
+      ],
+      [
+        "penny"
+      ],
+      [
+        "premodern"
+      ],
+      [
+        "vintage"
+      ],
+      [
+        "commander"
+      ],
+      [
+        "duel"
+      ],
+      [
+        "legacy"
+      ],
+      [
+        "modern"
+      ],
+      [
+        "pauper"
+      ],
+      [
+        "penny"
+      ],
+      [
+        "premodern"
+      ],
+      [
+        "vintage"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.format FROM cards AS T1 INNER JOIN legalities AS T2 ON T1.uuid = T2.uuid WHERE T1.name = 'Benalish Knight'",
+  "id": 367,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "format"
+      ],
+      [
+        "commander"
+      ],
+      [
+        "duel"
+      ],
+      [
+        "legacy"
+      ],
+      [
+        "modern"
+      ],
+      [
+        "pauper"
+      ],
+      [
+        "penny"
+      ],
+      [
+        "premodern"
+      ],
+      [
+        "vintage"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT l.format\nFROM cards c\nJOIN legalities l ON c.uuid = l.uuid\nWHERE c.name = 'Benalish Knight';",
+  "question": "What is the rule of playing card \"Benalish Knight\"?",
+  "thinking": ""
+}

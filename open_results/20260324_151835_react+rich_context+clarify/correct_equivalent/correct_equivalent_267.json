@@ -1,0 +1,38 @@
+{
+  "db_id": "toxicology",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T.molecule_id)"
+      ],
+      [
+        "7"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T.molecule_id) FROM molecule AS T WHERE T.molecule_id BETWEEN 'TR000' AND 'TR030' AND T.label = '+'",
+  "id": 267,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(molecule_id)"
+      ],
+      [
+        "7"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(molecule_id) FROM molecule WHERE label = '+' AND molecule_id BETWEEN 'TR000' AND 'TR030';",
+  "question": "Calculate the total carcinogenic molecules for molecule id from TR000 to TR030.",
+  "thinking": ""
+}

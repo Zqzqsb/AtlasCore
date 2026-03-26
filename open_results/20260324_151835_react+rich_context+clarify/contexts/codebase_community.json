@@ -1,0 +1,1919 @@
+{
+  "database_name": "codebase_community",
+  "database_type": "sqlite",
+  "collected_at": "2026-03-24T14:57:21.18554376+08:00",
+  "schema_diagram": {
+    "format": "mermaid-er",
+    "description": "Entity-Relationship diagram showing database schema and relationships",
+    "content": "erDiagram\n    USERS ||--o{ POSTHISTORY : \"has\"\n    POSTS ||--o{ POSTHISTORY : \"has\"\n    USERS ||--o{ COMMENTS : \"has\"\n    POSTS ||--o{ COMMENTS : \"has\"\n    POSTS ||--o{ POSTLINKS : \"has\"\n    POSTS ||--o{ POSTLINKS : \"has\"\n    POSTS ||--o{ TAGS : \"has\"\n    USERS ||--o{ VOTES : \"has\"\n    POSTS ||--o{ VOTES : \"has\"\n    POSTS ||--o{ POSTS : \"has\"\n    USERS ||--o{ POSTS : \"has\"\n    USERS ||--o{ POSTS : \"has\"\n    USERS ||--o{ BADGES : \"has\"\n\n    BADGES {\n        int Id PK\n        int UserId FK\n        text Name\n        datetime Date\n    }\n    POSTHISTORY {\n        int Id PK\n        int PostHistoryTypeId\n        int PostId FK\n        text RevisionGUID\n        datetime CreationDate\n        int UserId FK\n        text Text\n        text Comment\n        text UserDisplayName\n    }\n    COMMENTS {\n        int Id PK\n        int PostId FK\n        int Score\n        text Text\n        datetime CreationDate\n        int UserId FK\n        text UserDisplayName\n    }\n    USERS {\n        int Id PK\n        int Reputation\n        datetime CreationDate\n        text DisplayName\n        datetime LastAccessDate\n        text WebsiteUrl\n        text Location\n        text AboutMe\n        int Views\n        int UpVotes\n        int DownVotes\n        int AccountId\n        int Age\n        text ProfileImageUrl\n    }\n    POSTLINKS {\n        int Id PK\n        datetime CreationDate\n        int PostId FK\n        int RelatedPostId FK\n        int LinkTypeId\n    }\n    TAGS {\n        int Id PK\n        text TagName\n        int Count\n        int ExcerptPostId FK\n        int WikiPostId\n    }\n    VOTES {\n        int Id PK\n        int PostId FK\n        int VoteTypeId\n        datetime CreationDate\n        int UserId FK\n        int BountyAmount\n    }\n    POSTS {\n        int Id PK\n        int PostTypeId\n        int AcceptedAnswerId\n        datetime CreaionDate\n        int Score\n        int ViewCount\n        text Body\n        int OwnerUserId FK\n        datetime LasActivityDate\n        text Title\n        text Tags\n        int AnswerCount\n        int CommentCount\n        int FavoriteCount\n        int LastEditorUserId FK\n        datetime LastEditDate\n        datetime CommunityOwnedDate\n        int ParentId FK\n        datetime ClosedDate\n        text OwnerDisplayName\n        text LastEditorDisplayName\n    }\n"
+  },
+  "tables": {
+    "badges": {
+      "name": "badges",
+      "description": "The badges table stores records of user-earned badges, capturing recognition or achievements within the system.",
+      "row_count": 79851,
+      "columns": [
+        {
+          "name": "Id",
+          "type": "INTEGER",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 79851,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 92240,
+              "avg": 45430.05450150906
+            }
+          }
+        },
+        {
+          "name": "UserId",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 25078,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 2,
+              "max": 55746,
+              "avg": 18638.277792388322
+            }
+          }
+        },
+        {
+          "name": "Name",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 153,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "Date",
+          "type": "DATETIME",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 65586,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "UserId",
+          "referenced_table": "users",
+          "referenced_column": "Id"
+        }
+      ]
+    },
+    "comments": {
+      "name": "comments",
+      "description": "The comments table stores user-submitted feedback with associated scores, primarily reflecting neutral or low-scoring interactions based on the distribution where 77.4% of entries have a score of 0.",
+      "row_count": 174285,
+      "columns": [
+        {
+          "name": "Id",
+          "type": "INTEGER",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 174285,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 221292,
+              "avg": 107697.74642109188
+            }
+          }
+        },
+        {
+          "name": "PostId",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 53416,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 115376,
+              "avg": 54245.14176779413
+            }
+          }
+        },
+        {
+          "name": "Score",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 36,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 0,
+              "max": 90,
+              "avg": 0.3883983131078406
+            }
+          }
+        },
+        {
+          "name": "Text",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 173644,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "CreationDate",
+          "type": "DATETIME",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 174100,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "UserId",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 13647,
+            "null_count": 2835,
+            "null_percent": 1.6266460108443066,
+            "range": {
+              "min": 3,
+              "max": 55746,
+              "avg": 12443.320571595217
+            }
+          }
+        },
+        {
+          "name": "UserDisplayName",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 926,
+            "null_count": 171454,
+            "null_percent": 98.37564908052902
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "UserId",
+          "referenced_table": "users",
+          "referenced_column": "Id"
+        },
+        {
+          "column_name": "PostId",
+          "referenced_table": "posts",
+          "referenced_column": "Id"
+        }
+      ],
+      "rich_context": {
+        "Score_values": {
+          "content": "0=134873(77.4%), 1=25002(14.3%), 2=8360(4.8%), 3=3195(1.8%), 4=1311(0.8%), 5=619(0.4%), 6=325(0.2%), 7=211(0.1%), 8=125(0.1%), 9=61(0.0%), 10=49(0.0%), 11=28(0.0%), 12=26(0.0%), 13=19(0.0%), 14=15(0.0%)",
+          "expires_at": "2026-03-31T14:57:47+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "comments",
+          "column": "Text",
+          "type": "whitespace",
+          "severity": "critical",
+          "description": "Contains leading/trailing whitespace (5+ rows)",
+          "sql_fix": "TRIM(\"Text\")",
+          "affected_ops": [
+            "JOIN",
+            "WHERE",
+            "GROUP BY"
+          ],
+          "examples": [
+            "'This question appears to be off-topic because it is has no statistical content other than finding a function/specific R package. You can try http:/www.rseek.org '",
+            "'This question appears to be only about data minapulation in R and thus belongs on StackOverflow (where it's been asked numerous times already). '",
+            "'This question appears to be off-topic because it is solely about software. It's not suitable for Stack Overflow either. '",
+            "'This question appears to be off-topic because it is about Stata. It should probably be asked on a list devoted to Stata. '",
+            "'This question appears to be off-topic because it is entirely about which software syntax is appropriate. See the help for more advice if unclear. '"
+          ]
+        },
+        {
+          "table": "comments",
+          "column": "UserDisplayName",
+          "type": "whitespace",
+          "severity": "critical",
+          "description": "Contains leading/trailing whitespace (1+ rows)",
+          "sql_fix": "TRIM(\"UserDisplayName\")",
+          "affected_ops": [
+            "JOIN",
+            "WHERE",
+            "GROUP BY"
+          ],
+          "examples": [
+            "'John '"
+          ]
+        },
+        {
+          "table": "comments",
+          "column": "UserDisplayName",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "98% NULL values (171454/174285)",
+          "sql_fix": "WHERE \"UserDisplayName\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "comments",
+          "column": "PostId",
+          "type": "orphan",
+          "severity": "warning",
+          "description": "36 orphan records (PostId not in posts.Id)",
+          "sql_fix": "LEFT JOIN \"posts\" ON \"comments\".\"PostId\" = \"posts\".\"Id\"",
+          "affected_ops": [
+            "JOIN"
+          ]
+        }
+      ]
+    },
+    "postHistory": {
+      "name": "postHistory",
+      "description": "The postHistory table tracks the complete revision history of posts, including initial creations, edits, deletions, undeletions, migrations, and other moderation actions, with support for both user-identified and anonymous/system-generated changes.",
+      "row_count": 303155,
+      "columns": [
+        {
+          "name": "Id",
+          "type": "INTEGER",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 303155,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 386848,
+              "avg": 188489.60806518118
+            }
+          }
+        },
+        {
+          "name": "PostHistoryTypeId",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 25,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "2",
+                "count": 91974,
+                "percent": 30.338935528030213
+              },
+              {
+                "value": "5",
+                "count": 69413,
+                "percent": 22.896867938843165
+              },
+              {
+                "value": "3",
+                "count": 42921,
+                "percent": 14.158103940228594
+              },
+              {
+                "value": "1",
+                "count": 42909,
+                "percent": 14.154145569098317
+              },
+              {
+                "value": "4",
+                "count": 16008,
+                "percent": 5.280467087793373
+              },
+              {
+                "value": "6",
+                "count": 12731,
+                "percent": 4.199501904966106
+              },
+              {
+                "value": "25",
+                "count": 10320,
+                "percent": 3.4041991720407054
+              },
+              {
+                "value": "24",
+                "count": 7017,
+                "percent": 2.3146575184311655
+              },
+              {
+                "value": "16",
+                "count": 2193,
+                "percent": 0.7233923240586498
+              },
+              {
+                "value": "10",
+                "count": 1798,
+                "percent": 0.5930959410202701
+              },
+              {
+                "value": "36",
+                "count": 1476,
+                "percent": 0.48687964902442643
+              },
+              {
+                "value": "33",
+                "count": 1215,
+                "percent": 0.40078507694083887
+              },
+              {
+                "value": "34",
+                "count": 1043,
+                "percent": 0.34404842407349373
+              },
+              {
+                "value": "13",
+                "count": 470,
+                "percent": 0.15503620260262904
+              },
+              {
+                "value": "12",
+                "count": 467,
+                "percent": 0.15404660982005905
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 38,
+              "avg": 4.908653988883574
+            }
+          }
+        },
+        {
+          "name": "PostId",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 91976,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 115378,
+              "avg": 56538.537312595865
+            }
+          }
+        },
+        {
+          "name": "RevisionGUID",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 193951,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "CreationDate",
+          "type": "DATETIME",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 189959,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "UserId",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 22107,
+            "null_count": 21326,
+            "null_percent": 7.034685227029078,
+            "range": {
+              "min": -1,
+              "max": 55746,
+              "avg": 16035.049540678923
+            }
+          }
+        },
+        {
+          "name": "Text",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 254564,
+            "null_count": 0,
+            "null_percent": 0,
+            "empty_count": 24482
+          }
+        },
+        {
+          "name": "Comment",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 43353,
+            "null_count": 0,
+            "null_percent": 0,
+            "empty_count": 181184
+          }
+        },
+        {
+          "name": "UserDisplayName",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1161,
+            "null_count": 0,
+            "null_percent": 0,
+            "empty_count": 298316
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "UserId",
+          "referenced_table": "users",
+          "referenced_column": "Id"
+        },
+        {
+          "column_name": "PostId",
+          "referenced_table": "posts",
+          "referenced_column": "Id"
+        }
+      ],
+      "rich_context": {
+        "PostHistoryTypeId_values": {
+          "content": "2=Initial Body(30.34%), 5=Edit Body(22.90%), 3=Initial Title(14.16%), 1=Initial Title(14.16%), 4=Edit Title(5.28%), 6=Rollback Body(4.20%), 25=Post Undeleted(3.40%), 24=Post Deleted(2.32%), 16=Community Owned(0.72%), 10=Post Locked(0.59%), 36=Post Migrated In(0.49%), 33=Post Reopened(0.40%), 34=Post Merged Away(0.34%), 13=Post Unprotected(0.15%), 12=Post Protected(0.15%)",
+          "expires_at": "2026-03-31T14:58:03+08:00"
+        },
+        "business_rules": {
+          "content": "When UserId is NULL but UserDisplayName is present, it represents an anonymous or system-generated edit (e.g., community wiki or migration events)",
+          "expires_at": "2026-03-31T14:58:13+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "postHistory",
+          "column": "Text",
+          "type": "whitespace",
+          "severity": "critical",
+          "description": "Contains leading/trailing whitespace (5+ rows)",
+          "sql_fix": "TRIM(\"Text\")",
+          "affected_ops": [
+            "JOIN",
+            "WHERE",
+            "GROUP BY"
+          ],
+          "examples": [
+            "'Contingency table (chi-square). Also Logistic Regression is your friend - use dummy variables. '",
+            "'I'm looking for worked out solutions using Bayesian and/or logit analysis similar to a workbook or an annal. \\\\n\\\\nThe worked out problems could be of any field; however, I'm interested in urban planning / transportation related fields. '",
+            "'What algorithms are used in modern and good-quality random number generators? '",
+            "'[Weka][1] for data mining - contains many classification and clustering algorithms in Java.\\\\n\\\\n [1]: http://www.cs.waikato.ac.nz/ml/weka  '",
+            "'I wouldn't really call R \"windows based\" :) That's like saying the cmd prompt is windows based. \\\\n\\\\nRapidMiner is far better [1]. It's a free, open-source, multi-platform, GUI. Here's a video on time series forecasting:\\\\n\\\\nhttp://rapidminerresources.com/index.php?page=financial-time-series-modelling---part-1\\\\n\\\\nAlso, don't forget to read:\\\\n\\\\nhttp://www.forecastingprinciples.com/\\\\n\\\\n\\\\n[1] No, I don't work for them. '"
+          ]
+        },
+        {
+          "table": "postHistory",
+          "column": "Text",
+          "type": "empty_string",
+          "severity": "warning",
+          "description": "Contains 24482 empty string values in addition to NULLs",
+          "sql_fix": "WHERE \"Text\" IS NOT NULL AND \"Text\" != ''",
+          "affected_ops": [
+            "WHERE",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "postHistory",
+          "column": "Comment",
+          "type": "whitespace",
+          "severity": "critical",
+          "description": "Contains leading/trailing whitespace (5+ rows)",
+          "sql_fix": "TRIM(\"Comment\")",
+          "affected_ops": [
+            "JOIN",
+            "WHERE",
+            "GROUP BY"
+          ],
+          "examples": [
+            "'fixed punctuation '",
+            "'Edited out the dis-incentive to pay for physical book. '",
+            "'Fixed due to Baltimark suggestion. '",
+            "'tried to make a short intuitive answer first and then develop... easier to read ? '",
+            "'added more info '"
+          ]
+        },
+        {
+          "table": "postHistory",
+          "column": "Comment",
+          "type": "empty_string",
+          "severity": "warning",
+          "description": "Contains 181184 empty string values in addition to NULLs",
+          "sql_fix": "WHERE \"Comment\" IS NOT NULL AND \"Comment\" != ''",
+          "affected_ops": [
+            "WHERE",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "postHistory",
+          "column": "UserDisplayName",
+          "type": "whitespace",
+          "severity": "critical",
+          "description": "Contains leading/trailing whitespace (5+ rows)",
+          "sql_fix": "TRIM(\"UserDisplayName\")",
+          "affected_ops": [
+            "JOIN",
+            "WHERE",
+            "GROUP BY"
+          ],
+          "examples": [
+            "'Natasha '",
+            "'Natasha '",
+            "'Natasha '",
+            "'Kip '",
+            "'Kip '"
+          ]
+        },
+        {
+          "table": "postHistory",
+          "column": "UserDisplayName",
+          "type": "empty_string",
+          "severity": "warning",
+          "description": "Contains 298316 empty string values in addition to NULLs",
+          "sql_fix": "WHERE \"UserDisplayName\" IS NOT NULL AND \"UserDisplayName\" != ''",
+          "affected_ops": [
+            "WHERE",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "postHistory",
+          "column": "PostId",
+          "type": "orphan",
+          "severity": "warning",
+          "description": "41 orphan records (PostId not in posts.Id)",
+          "sql_fix": "LEFT JOIN \"posts\" ON \"postHistory\".\"PostId\" = \"posts\".\"Id\"",
+          "affected_ops": [
+            "JOIN"
+          ]
+        }
+      ]
+    },
+    "postLinks": {
+      "name": "postLinks",
+      "description": "The postLinks table captures relationships between posts, primarily indicating linked references (91.7%) and duplicate posts (8.3%).",
+      "row_count": 11102,
+      "columns": [
+        {
+          "name": "Id",
+          "type": "INTEGER",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 11102,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 108,
+              "max": 3356789,
+              "avg": 2326833.6103404793
+            }
+          }
+        },
+        {
+          "name": "CreationDate",
+          "type": "DATETIME",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 9450,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "PostId",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 7604,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 4,
+              "max": 115360,
+              "avg": 60227.767879661325
+            }
+          }
+        },
+        {
+          "name": "RelatedPostId",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 5177,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 115163,
+              "avg": 32982.605386416864
+            }
+          }
+        },
+        {
+          "name": "LinkTypeId",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "1",
+                "count": 10186,
+                "percent": 91.7492343721852
+              },
+              {
+                "value": "3",
+                "count": 916,
+                "percent": 8.25076562781481
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 3,
+              "avg": 1.165015312556296
+            }
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "RelatedPostId",
+          "referenced_table": "posts",
+          "referenced_column": "Id"
+        },
+        {
+          "column_name": "PostId",
+          "referenced_table": "posts",
+          "referenced_column": "Id"
+        }
+      ],
+      "rich_context": {
+        "LinkTypeId_meaning": {
+          "content": "1 indicates a linked post (reference), 3 indicates a duplicate post (the RelatedPostId is a duplicate of PostId)",
+          "expires_at": "2026-03-31T14:57:37+08:00"
+        },
+        "LinkTypeId_values": {
+          "content": "1=Linked(91.7%), 3=Duplicate(8.3%)",
+          "expires_at": "2026-03-31T14:57:31+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "postLinks",
+          "column": "RelatedPostId",
+          "type": "orphan",
+          "severity": "warning",
+          "description": "3 orphan records (RelatedPostId not in posts.Id)",
+          "sql_fix": "LEFT JOIN \"posts\" ON \"postLinks\".\"RelatedPostId\" = \"posts\".\"Id\"",
+          "affected_ops": [
+            "JOIN"
+          ]
+        },
+        {
+          "table": "postLinks",
+          "column": "PostId",
+          "type": "orphan",
+          "severity": "warning",
+          "description": "1 orphan records (PostId not in posts.Id)",
+          "sql_fix": "LEFT JOIN \"posts\" ON \"postLinks\".\"PostId\" = \"posts\".\"Id\"",
+          "affected_ops": [
+            "JOIN"
+          ]
+        }
+      ]
+    },
+    "posts": {
+      "name": "posts",
+      "description": "The posts table stores user-generated content including questions, answers, and wiki entries from a Q\u0026A platform, with the majority being answers (52.6%) and questions (47.4%).",
+      "row_count": 91966,
+      "columns": [
+        {
+          "name": "Id",
+          "type": "INTEGER",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 91966,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 115378,
+              "avg": 56144.922645325445
+            }
+          }
+        },
+        {
+          "name": "PostTypeId",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 7,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "2",
+                "count": 47755,
+                "percent": 51.92679903442576
+              },
+              {
+                "value": "1",
+                "count": 42912,
+                "percent": 46.66072244090208
+              },
+              {
+                "value": "5",
+                "count": 640,
+                "percent": 0.6959093578061457
+              },
+              {
+                "value": "4",
+                "count": 639,
+                "percent": 0.6948219994345737
+              },
+              {
+                "value": "6",
+                "count": 9,
+                "percent": 0.009786225344148925
+              },
+              {
+                "value": "3",
+                "count": 6,
+                "percent": 0.006524150229432616
+              },
+              {
+                "value": "7",
+                "count": 5,
+                "percent": 0.005436791857860513
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 7,
+              "avg": 1.5688950264228085
+            }
+          }
+        },
+        {
+          "name": "AcceptedAnswerId",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 14697,
+            "null_count": 77269,
+            "null_percent": 84.0190940130048,
+            "range": {
+              "min": 5,
+              "max": 115345,
+              "avg": 52239.72361706471
+            }
+          }
+        },
+        {
+          "name": "CreaionDate",
+          "type": "DATETIME",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 91255,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "Score",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 130,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": -19,
+              "max": 192,
+              "avg": 2.792086205771698
+            }
+          }
+        },
+        {
+          "name": "ViewCount",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3714,
+            "null_count": 49054,
+            "null_percent": 53.33927755909793,
+            "range": {
+              "min": 1,
+              "max": 175495,
+              "avg": 565.8349645786726
+            }
+          }
+        },
+        {
+          "name": "Body",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 91732,
+            "null_count": 220,
+            "null_percent": 0.2392188417458626
+          }
+        },
+        {
+          "name": "OwnerUserId",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 21979,
+            "null_count": 1392,
+            "null_percent": 1.513602853228367,
+            "range": {
+              "min": -1,
+              "max": 55746,
+              "avg": 16544.90068893943
+            }
+          }
+        },
+        {
+          "name": "LasActivityDate",
+          "type": "DATETIME",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 72647,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "Title",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 42877,
+            "null_count": 49054,
+            "null_percent": 53.33927755909793
+          }
+        },
+        {
+          "name": "Tags",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 28528,
+            "null_count": 49054,
+            "null_percent": 53.33927755909793
+          }
+        },
+        {
+          "name": "AnswerCount",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 31,
+            "null_count": 49054,
+            "null_percent": 53.33927755909793,
+            "range": {
+              "min": 0,
+              "max": 136,
+              "avg": 1.112719052945563
+            }
+          }
+        },
+        {
+          "name": "CommentCount",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 39,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 0,
+              "max": 45,
+              "avg": 1.8949285605549877
+            }
+          }
+        },
+        {
+          "name": "FavoriteCount",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 77,
+            "null_count": 78723,
+            "null_percent": 85.60011308527065,
+            "range": {
+              "min": 0,
+              "max": 233,
+              "avg": 2.543834478592464
+            }
+          }
+        },
+        {
+          "name": "LastEditorUserId",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 6578,
+            "null_count": 47361,
+            "null_percent": 51.49837983602635,
+            "range": {
+              "min": -1,
+              "max": 55733,
+              "avg": 11923.167806299742
+            }
+          }
+        },
+        {
+          "name": "LastEditDate",
+          "type": "DATETIME",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 44925,
+            "null_count": 46934,
+            "null_percent": 51.03407781136507
+          }
+        },
+        {
+          "name": "CommunityOwnedDate",
+          "type": "DATETIME",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1938,
+            "null_count": 89499,
+            "null_percent": 97.31748689733162
+          }
+        },
+        {
+          "name": "ParentId",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 29006,
+            "null_count": 44211,
+            "null_percent": 48.07320096557424,
+            "range": {
+              "min": 1,
+              "max": 115375,
+              "avg": 48358.278400167525
+            }
+          }
+        },
+        {
+          "name": "ClosedDate",
+          "type": "DATETIME",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1610,
+            "null_count": 90356,
+            "null_percent": 98.24935302176891
+          }
+        },
+        {
+          "name": "OwnerDisplayName",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1613,
+            "null_count": 89457,
+            "null_percent": 97.2718178457256
+          }
+        },
+        {
+          "name": "LastEditorDisplayName",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 59,
+            "null_count": 91501,
+            "null_percent": 99.49437835721898
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "ParentId",
+          "referenced_table": "posts",
+          "referenced_column": "Id"
+        },
+        {
+          "column_name": "OwnerUserId",
+          "referenced_table": "users",
+          "referenced_column": "Id"
+        },
+        {
+          "column_name": "LastEditorUserId",
+          "referenced_table": "users",
+          "referenced_column": "Id"
+        }
+      ],
+      "rich_context": {
+        "PostTypeId_values": {
+          "content": "2=Answer(52.6%), 1=Question(47.4%), 5=Wiki(0.7%), 4=TagWikiExcerpt(0.7%), 6=TagWiki(0.01%), 3=OrphanedAnswer(0.01%), 7=CommunityWiki(0.01%)",
+          "expires_at": "2026-03-31T14:57:52+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "posts",
+          "column": "AcceptedAnswerId",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "84% NULL values (77269/91966)",
+          "sql_fix": "WHERE \"AcceptedAnswerId\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "posts",
+          "column": "ViewCount",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "53% NULL values (49054/91966)",
+          "sql_fix": "WHERE \"ViewCount\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "posts",
+          "column": "Body",
+          "type": "whitespace",
+          "severity": "critical",
+          "description": "Contains leading/trailing whitespace (5+ rows)",
+          "sql_fix": "TRIM(\"Body\")",
+          "affected_ops": [
+            "JOIN",
+            "WHERE",
+            "GROUP BY"
+          ],
+          "examples": [
+            "'Model selection is a problem of judging which model from some set performs best. Popular methods include $R^2$, AIC and BIC criteria, test sets, and cross-validation. To some extent, feature selection is a subproblem of model selection. '",
+            "'Forecasting involves estimating the value or distribution of a random variable which has not yet been observed. '",
+            "'SPSS (Statistical Package for the Social Sciences) is a proprietary cross-platform general-purpose statistical software package. '",
+            "'Mathematica is a software package for symbolic mathematical computations. '",
+            "'The probability of receiving a treatment given a set of observed covariates. '"
+          ]
+        },
+        {
+          "table": "posts",
+          "column": "Title",
+          "type": "whitespace",
+          "severity": "critical",
+          "description": "Contains leading/trailing whitespace (5+ rows)",
+          "sql_fix": "TRIM(\"Title\")",
+          "affected_ops": [
+            "JOIN",
+            "WHERE",
+            "GROUP BY"
+          ],
+          "examples": [
+            "'Robust t-test for mean '",
+            "'Difference between Excel's RAND(), RAND()*RAND(), etc '",
+            "'Classical measurement error model in R '",
+            "'How do I fit a multilevel model for over-dispersed poisson outcomes? '",
+            "'What are the software limitations in all possible subsets selection in regression? '"
+          ]
+        },
+        {
+          "table": "posts",
+          "column": "Title",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "53% NULL values (49054/91966)",
+          "sql_fix": "WHERE \"Title\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "posts",
+          "column": "Tags",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "53% NULL values (49054/91966)",
+          "sql_fix": "WHERE \"Tags\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "posts",
+          "column": "AnswerCount",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "53% NULL values (49054/91966)",
+          "sql_fix": "WHERE \"AnswerCount\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "posts",
+          "column": "FavoriteCount",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "86% NULL values (78723/91966)",
+          "sql_fix": "WHERE \"FavoriteCount\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "posts",
+          "column": "LastEditorUserId",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "51% NULL values (47361/91966)",
+          "sql_fix": "WHERE \"LastEditorUserId\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "posts",
+          "column": "LastEditDate",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "51% NULL values (46934/91966)",
+          "sql_fix": "WHERE \"LastEditDate\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "posts",
+          "column": "CommunityOwnedDate",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "97% NULL values (89499/91966)",
+          "sql_fix": "WHERE \"CommunityOwnedDate\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "posts",
+          "column": "ClosedDate",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "98% NULL values (90356/91966)",
+          "sql_fix": "WHERE \"ClosedDate\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "posts",
+          "column": "OwnerDisplayName",
+          "type": "whitespace",
+          "severity": "critical",
+          "description": "Contains leading/trailing whitespace (5+ rows)",
+          "sql_fix": "TRIM(\"OwnerDisplayName\")",
+          "affected_ops": [
+            "JOIN",
+            "WHERE",
+            "GROUP BY"
+          ],
+          "examples": [
+            "'Natasha '",
+            "'Kip '",
+            "'Agnese Marino '",
+            "'Mahmoud Ghandi '",
+            "'Sriram '"
+          ]
+        },
+        {
+          "table": "posts",
+          "column": "OwnerDisplayName",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "97% NULL values (89457/91966)",
+          "sql_fix": "WHERE \"OwnerDisplayName\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "posts",
+          "column": "LastEditorDisplayName",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "99% NULL values (91501/91966)",
+          "sql_fix": "WHERE \"LastEditorDisplayName\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "posts",
+          "column": "ParentId",
+          "type": "orphan",
+          "severity": "warning",
+          "description": "6 orphan records (ParentId not in posts.Id)",
+          "sql_fix": "LEFT JOIN \"posts\" ON \"posts\".\"ParentId\" = \"posts\".\"Id\"",
+          "affected_ops": [
+            "JOIN"
+          ]
+        }
+      ]
+    },
+    "tags": {
+      "name": "tags",
+      "description": "The tags table stores metadata labels used to categorize or annotate other entities within the system.",
+      "row_count": 1032,
+      "columns": [
+        {
+          "name": "Id",
+          "type": "INTEGER",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 1032,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 1869,
+              "avg": 952.3672480620155
+            }
+          }
+        },
+        {
+          "name": "TagName",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1032,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "Count",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 272,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 7244,
+              "avg": 114.0077519379845
+            }
+          }
+        },
+        {
+          "name": "ExcerptPostId",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 596,
+            "null_count": 436,
+            "null_percent": 42.248062015503876,
+            "range": {
+              "min": 2331,
+              "max": 114058,
+              "avg": 54505.44295302014
+            }
+          }
+        },
+        {
+          "name": "WikiPostId",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 596,
+            "null_count": 436,
+            "null_percent": 42.248062015503876,
+            "range": {
+              "min": 2254,
+              "max": 114057,
+              "avg": 54504.31543624161
+            }
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "ExcerptPostId",
+          "referenced_table": "posts",
+          "referenced_column": "Id"
+        }
+      ],
+      "quality_issues": [
+        {
+          "table": "tags",
+          "column": "ExcerptPostId",
+          "type": "orphan",
+          "severity": "warning",
+          "description": "1 orphan records (ExcerptPostId not in posts.Id)",
+          "sql_fix": "LEFT JOIN \"posts\" ON \"tags\".\"ExcerptPostId\" = \"posts\".\"Id\"",
+          "affected_ops": [
+            "JOIN"
+          ]
+        }
+      ]
+    },
+    "users": {
+      "name": "users",
+      "description": "The users table stores core information about registered individuals in the system, including their identities, contact details, and account metadata.",
+      "row_count": 40325,
+      "columns": [
+        {
+          "name": "Id",
+          "type": "INTEGER",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 40325,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": -1,
+              "max": 55747,
+              "avg": 28037.39972721637
+            }
+          }
+        },
+        {
+          "name": "Reputation",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 965,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 87393,
+              "avg": 84.07873527588345
+            }
+          }
+        },
+        {
+          "name": "CreationDate",
+          "type": "DATETIME",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 40315,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "DisplayName",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 35644,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "LastAccessDate",
+          "type": "DATETIME",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 40287,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "WebsiteUrl",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 7787,
+            "null_count": 32204,
+            "null_percent": 79.86112833230005
+          }
+        },
+        {
+          "name": "Location",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2464,
+            "null_count": 28634,
+            "null_percent": 71.00805951642901
+          }
+        },
+        {
+          "name": "AboutMe",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 9140,
+            "null_count": 30946,
+            "null_percent": 76.74147551146932
+          }
+        },
+        {
+          "name": "Views",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 362,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 0,
+              "max": 20932,
+              "avg": 8.909634221946684
+            }
+          }
+        },
+        {
+          "name": "UpVotes",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 332,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 0,
+              "max": 11442,
+              "avg": 6.587451952882827
+            }
+          }
+        },
+        {
+          "name": "DownVotes",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 76,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 0,
+              "max": 1920,
+              "avg": 0.2609051456912585
+            }
+          }
+        },
+        {
+          "name": "AccountId",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 40325,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": -1,
+              "max": 5027354,
+              "avg": 2032547.1615375078
+            }
+          }
+        },
+        {
+          "name": "Age",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 70,
+            "null_count": 32007,
+            "null_percent": 79.37259764414135,
+            "range": {
+              "min": 13,
+              "max": 94,
+              "avg": 31.64258235152681
+            }
+          }
+        },
+        {
+          "name": "ProfileImageUrl",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 13115,
+            "null_count": 23846,
+            "null_percent": 59.134531928084314
+          }
+        }
+      ],
+      "indexes": [],
+      "quality_issues": [
+        {
+          "table": "users",
+          "column": "DisplayName",
+          "type": "whitespace",
+          "severity": "critical",
+          "description": "Contains leading/trailing whitespace (5+ rows)",
+          "sql_fix": "TRIM(\"DisplayName\")",
+          "affected_ops": [
+            "JOIN",
+            "WHERE",
+            "GROUP BY"
+          ],
+          "examples": [
+            "'adolf garlic '",
+            "'Sarah  '",
+            "'Tormod '",
+            "'Mithun P '",
+            "'Alos '"
+          ]
+        },
+        {
+          "table": "users",
+          "column": "WebsiteUrl",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "80% NULL values (32204/40325)",
+          "sql_fix": "WHERE \"WebsiteUrl\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "users",
+          "column": "Location",
+          "type": "whitespace",
+          "severity": "critical",
+          "description": "Contains leading/trailing whitespace (1+ rows)",
+          "sql_fix": "TRIM(\"Location\")",
+          "affected_ops": [
+            "JOIN",
+            "WHERE",
+            "GROUP BY"
+          ],
+          "examples": [
+            "' '"
+          ]
+        },
+        {
+          "table": "users",
+          "column": "Location",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "71% NULL values (28634/40325)",
+          "sql_fix": "WHERE \"Location\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "users",
+          "column": "AboutMe",
+          "type": "whitespace",
+          "severity": "critical",
+          "description": "Contains leading/trailing whitespace (5+ rows)",
+          "sql_fix": "TRIM(\"AboutMe\")",
+          "affected_ops": [
+            "JOIN",
+            "WHERE",
+            "GROUP BY"
+          ],
+          "examples": [
+            "'C# ASP.NET developer for a couple of years. Posessed with an active programming spirit and with a never-ending desire to learn more. '",
+            "'\u003cb\u003eMSc Student / Assistant Researcher\u003c/b\u003e\u003cbr\u003e\\\\\\\\nData Mining \u0026 Quantitative Finance '",
+            "'Quantitative ecologist using Bayesian methods to build models that improve decision making for environmental management.  '",
+            "'I'm a graduate student in computational biology working in the lab of Dr. David Baker. I develop code for \u003ca href=\"http://boinc.bakerlab.org/\" rel=\"nofollow\"\u003eRosetta@Home\u003c/a\u003e, and I am interested in using computers to learn about the world. '",
+            "' - I love Algorithms, Programming, AI and machine learning\\\\\\\\n\u003cbr/\u003e\\\\\\\\n - In my spare time, I like playing real time strategy games, chess, watching movies.'"
+          ]
+        },
+        {
+          "table": "users",
+          "column": "AboutMe",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "77% NULL values (30946/40325)",
+          "sql_fix": "WHERE \"AboutMe\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "users",
+          "column": "Age",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "79% NULL values (32007/40325)",
+          "sql_fix": "WHERE \"Age\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "users",
+          "column": "ProfileImageUrl",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "59% NULL values (23846/40325)",
+          "sql_fix": "WHERE \"ProfileImageUrl\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        }
+      ]
+    },
+    "votes": {
+      "name": "votes",
+      "description": "The votes table records user interactions on content, primarily capturing upvotes (89.5%), favorites (9.0%), and accepted answers (3.9%), along with rarer moderation actions like downvotes, spam flags, and post closures.",
+      "row_count": 38930,
+      "columns": [
+        {
+          "name": "Id",
+          "type": "INTEGER",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 38930,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 43538,
+              "avg": 21984.174775237607
+            }
+          }
+        },
+        {
+          "name": "PostId",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8584,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 16921,
+              "avg": 4568.109992293861
+            }
+          }
+        },
+        {
+          "name": "VoteTypeId",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 10,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "2",
+                "count": 33323,
+                "percent": 85.59722578987927
+              },
+              {
+                "value": "5",
+                "count": 3365,
+                "percent": 8.643719496532237
+              },
+              {
+                "value": "1",
+                "count": 1451,
+                "percent": 3.7272026714615976
+              },
+              {
+                "value": "3",
+                "count": 444,
+                "percent": 1.1405086051888005
+              },
+              {
+                "value": "16",
+                "count": 111,
+                "percent": 0.2851271512972001
+              },
+              {
+                "value": "15",
+                "count": 72,
+                "percent": 0.18494734138196764
+              },
+              {
+                "value": "8",
+                "count": 60,
+                "percent": 0.15412278448497305
+              },
+              {
+                "value": "9",
+                "count": 59,
+                "percent": 0.15155407141022348
+              },
+              {
+                "value": "11",
+                "count": 44,
+                "percent": 0.11302337528898021
+              },
+              {
+                "value": "10",
+                "count": 1,
+                "percent": 0.0025687130747495505
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 16,
+              "avg": 2.3276393526843053
+            }
+          }
+        },
+        {
+          "name": "CreationDate",
+          "type": "DATE",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 287,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "UserId",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 509,
+            "null_count": 35505,
+            "null_percent": 91.20215771898279,
+            "range": {
+              "min": 5,
+              "max": 11954,
+              "avg": 1433.2417518248176
+            }
+          }
+        },
+        {
+          "name": "BountyAmount",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 6,
+            "null_count": 38829,
+            "null_percent": 99.7405599794503,
+            "top_values": [
+              {
+                "value": "50",
+                "count": 53,
+                "percent": 0.13614179296172618
+              },
+              {
+                "value": "100",
+                "count": 30,
+                "percent": 0.07706139224248652
+              },
+              {
+                "value": "25",
+                "count": 12,
+                "percent": 0.030824556896994603
+              },
+              {
+                "value": "150",
+                "count": 3,
+                "percent": 0.007706139224248651
+              },
+              {
+                "value": "0",
+                "count": 2,
+                "percent": 0.005137426149499101
+              },
+              {
+                "value": "200",
+                "count": 1,
+                "percent": 0.0025687130747495505
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 200,
+              "avg": 65.34653465346534
+            }
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "UserId",
+          "referenced_table": "users",
+          "referenced_column": "Id"
+        },
+        {
+          "column_name": "PostId",
+          "referenced_table": "posts",
+          "referenced_column": "Id"
+        }
+      ],
+      "rich_context": {
+        "VoteTypeId_values": {
+          "content": "2=UpMod(89.5%), 5=Favorite(9.0%), 1=AcceptedByOriginator(3.9%), 3=DownMod(1.2%), 16=CommunityOwned(0.3%), 15=Spam(0.2%), 8=Close(0.2%), 9=Reopen(0.2%), 11=Deletion(0.1%), 10=Undeletion(0.0%)",
+          "expires_at": "2026-03-31T14:57:39+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "votes",
+          "column": "UserId",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "91% NULL values (35505/38930)",
+          "sql_fix": "WHERE \"UserId\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "votes",
+          "column": "BountyAmount",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "100% NULL values (38829/38930)",
+          "sql_fix": "WHERE \"BountyAmount\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        }
+      ]
+    }
+  },
+  "total_tables": 0,
+  "total_rows": 0
+}

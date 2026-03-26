@@ -1,0 +1,42 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "lat",
+        "lng"
+      ],
+      [
+        "2.76083",
+        "101.738"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T1.lat, T1.lng FROM circuits AS T1 INNER JOIN races AS T2 ON T2.circuitID = T1.circuitId WHERE T2.name = 'Malaysian Grand Prix'",
+  "id": 869,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "lat",
+        "lng"
+      ],
+      [
+        "2.76083",
+        "101.738"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT circuits.lat, circuits.lng FROM races JOIN circuits ON races.circuitId = circuits.circuitId WHERE races.name = 'Malaysian Grand Prix';",
+  "question": "Where is Malaysian Grand Prix held? Give the location coordinates.",
+  "thinking": ""
+}

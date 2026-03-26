@@ -1,0 +1,38 @@
+{
+  "db_id": "superhero",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "colour"
+      ],
+      [
+        "No Colour"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.colour FROM superhero AS T1 INNER JOIN colour AS T2 ON T1.eye_colour_id = T2.id ORDER BY T1.weight_kg DESC LIMIT 1",
+  "id": 760,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "colour"
+      ],
+      [
+        "No Colour"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT c.colour\nFROM superhero s\nJOIN colour c ON s.eye_colour_id = c.id\nORDER BY s.weight_kg DESC\nLIMIT 1;",
+  "question": "What is the eye clolour of the heaviest superhero?",
+  "thinking": ""
+}

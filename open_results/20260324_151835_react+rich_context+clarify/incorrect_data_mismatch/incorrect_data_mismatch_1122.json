@@ -1,0 +1,38 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "moderate",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "SUM(t2.home_team_goal)"
+      ],
+      [
+        "183"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT SUM(t2.home_team_goal) FROM Player AS t1 INNER JOIN match AS t2 ON t1.player_api_id = t2.away_player_1 WHERE datetime(CURRENT_TIMESTAMP, 'localtime') - datetime(T1.birthday) \u003c 31",
+  "id": 1122,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "SUM(t2.home_team_goal)"
+      ],
+      [
+        "2199"
+      ]
+    ]
+  },
+  "pred_sql": "WITH young_players AS (\n  SELECT player_api_id\n  FROM Player\n  WHERE CAST(strftime('%Y', 'now') AS INTEGER) - CAST(SUBSTR(birthday, 1, 4) AS INTEGER) \u003c= 30\n)\nSELECT SUM(home_team_goal) AS \"SUM(t2.home_team_goal)\"\nFROM Match\nWHERE home_player_1 IN (SELECT player_api_id FROM young_players)\n   OR home_player_2 IN (SELECT player_api_id FROM young_players)\n   OR home_player_3 IN (SELECT player_api_id FROM young_players)\n   OR home_player_4 IN (SELECT player_api_id FROM young_players)\n   OR home_player_5 IN (SELECT player_api_id FROM young_players)\n   OR home_player_6 IN (SELECT player_api_id FROM young_players)\n   OR home_player_7 IN (SELECT player_api_id FROM young_players)\n   OR home_player_8 IN (SELECT player_api_id FROM young_players)\n   OR home_player_9 IN (SELECT player_api_id FROM young_players)\n   OR home_player_10 IN (SELECT player_api_id FROM young_players)\n   OR home_player_11 IN (SELECT player_api_id FROM young_players);",
+  "question": "Calculate the total home team goal scored by players whose age are 30 years old and below.",
+  "thinking": ""
+}

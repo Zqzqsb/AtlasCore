@@ -1,0 +1,44 @@
+{
+  "db_id": "debit_card_specializing",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Time"
+      ],
+      [
+        "14:29:00"
+      ],
+      [
+        "11:55:00"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T1.Time FROM transactions_1k AS T1 INNER JOIN gasstations AS T2 ON T1.GasStationID = T2.GasStationID WHERE T2.ChainID = 11",
+  "id": 1508,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Time"
+      ],
+      [
+        "14:29:00"
+      ],
+      [
+        "11:55:00"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT t.Time\nFROM transactions_1k t\nJOIN gasstations g ON t.GasStationID = g.GasStationID\nWHERE g.ChainID = 11;",
+  "question": "Please list the disparate time of the transactions taken place in the gas stations from chain no. 11.",
+  "thinking": ""
+}

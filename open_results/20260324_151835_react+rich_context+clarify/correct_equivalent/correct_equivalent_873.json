@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "code"
+      ],
+      [
+        "HAM"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.code FROM qualifying AS T1 INNER JOIN drivers AS T2 ON T2.driverId = T1.driverId WHERE T1.raceId = 45 AND T1.q3 LIKE '1:33%'",
+  "id": 873,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "code"
+      ],
+      [
+        "HAM"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT d.code \nFROM qualifying q\nJOIN drivers d ON q.driverId = d.driverId\nWHERE q.raceId = 45 \n  AND q.q3 LIKE '1:33%';",
+  "question": "In the race No. 45, for the driver who had the Q3 time as 0:01:33, what is his abbreviated code?",
+  "thinking": ""
+}

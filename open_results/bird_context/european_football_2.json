@@ -1,0 +1,5715 @@
+{
+  "database_name": "european_football_2",
+  "database_type": "sqlite",
+  "collected_at": "2026-03-24T14:58:13.710558821+08:00",
+  "schema_diagram": {
+    "format": "mermaid-er",
+    "description": "Entity-Relationship diagram showing database schema and relationships",
+    "content": "erDiagram\n    PLAYER ||--o{ PLAYER_ATTRIBUTES : \"has\"\n    PLAYER ||--o{ PLAYER_ATTRIBUTES : \"has\"\n    PLAYER ||--o{ MATCH : \"has\"\n    PLAYER ||--o{ MATCH : \"has\"\n    PLAYER ||--o{ MATCH : \"has\"\n    PLAYER ||--o{ MATCH : \"has\"\n    PLAYER ||--o{ MATCH : \"has\"\n    PLAYER ||--o{ MATCH : \"has\"\n    PLAYER ||--o{ MATCH : \"has\"\n    PLAYER ||--o{ MATCH : \"has\"\n    PLAYER ||--o{ MATCH : \"has\"\n    PLAYER ||--o{ MATCH : \"has\"\n    PLAYER ||--o{ MATCH : \"has\"\n    PLAYER ||--o{ MATCH : \"has\"\n    PLAYER ||--o{ MATCH : \"has\"\n    PLAYER ||--o{ MATCH : \"has\"\n    PLAYER ||--o{ MATCH : \"has\"\n    PLAYER ||--o{ MATCH : \"has\"\n    PLAYER ||--o{ MATCH : \"has\"\n    PLAYER ||--o{ MATCH : \"has\"\n    PLAYER ||--o{ MATCH : \"has\"\n    PLAYER ||--o{ MATCH : \"has\"\n    PLAYER ||--o{ MATCH : \"has\"\n    PLAYER ||--o{ MATCH : \"has\"\n    TEAM ||--o{ MATCH : \"has\"\n    TEAM ||--o{ MATCH : \"has\"\n    LEAGUE ||--o{ MATCH : \"has\"\n    COUNTRY ||--o{ MATCH : \"has\"\n    COUNTRY ||--o{ LEAGUE : \"has\"\n    TEAM ||--o{ TEAM_ATTRIBUTES : \"has\"\n    TEAM ||--o{ TEAM_ATTRIBUTES : \"has\"\n\n    MATCH {\n        int id PK\n        int country_id FK\n        int league_id FK\n        text season\n        int stage\n        text date\n        int match_api_id\n        int home_team_api_id FK\n        int away_team_api_id FK\n        int home_team_goal\n        int away_team_goal\n        int home_player_X1\n        int home_player_X2\n        int home_player_X3\n        int home_player_X4\n        int home_player_X5\n        int home_player_X6\n        int home_player_X7\n        int home_player_X8\n        int home_player_X9\n        int home_player_X10\n        int home_player_X11\n        int away_player_X1\n        int away_player_X2\n        int away_player_X3\n        int away_player_X4\n        int away_player_X5\n        int away_player_X6\n        int away_player_X7\n        int away_player_X8\n        int away_player_X9\n        int away_player_X10\n        int away_player_X11\n        int home_player_Y1\n        int home_player_Y2\n        int home_player_Y3\n        int home_player_Y4\n        int home_player_Y5\n        int home_player_Y6\n        int home_player_Y7\n        int home_player_Y8\n        int home_player_Y9\n        int home_player_Y10\n        int home_player_Y11\n        int away_player_Y1\n        int away_player_Y2\n        int away_player_Y3\n        int away_player_Y4\n        int away_player_Y5\n        int away_player_Y6\n        int away_player_Y7\n        int away_player_Y8\n        int away_player_Y9\n        int away_player_Y10\n        int away_player_Y11\n        int home_player_1 FK\n        int home_player_2 FK\n        int home_player_3 FK\n        int home_player_4 FK\n        int home_player_5 FK\n        int home_player_6 FK\n        int home_player_7 FK\n        int home_player_8 FK\n        int home_player_9 FK\n        int home_player_10 FK\n        int home_player_11 FK\n        int away_player_1 FK\n        int away_player_2 FK\n        int away_player_3 FK\n        int away_player_4 FK\n        int away_player_5 FK\n        int away_player_6 FK\n        int away_player_7 FK\n        int away_player_8 FK\n        int away_player_9 FK\n        int away_player_10 FK\n        int away_player_11 FK\n        text goal\n        text shoton\n        text shotoff\n        text foulcommit\n        text card\n        text cross\n        text corner\n        text possession\n        float B365H\n        float B365D\n        float B365A\n        float BWH\n        float BWD\n        float BWA\n        float IWH\n        float IWD\n        float IWA\n        float LBH\n        float LBD\n        float LBA\n        float PSH\n        float PSD\n        float PSA\n        float WHH\n        float WHD\n        float WHA\n        float SJH\n        float SJD\n        float SJA\n        float VCH\n        float VCD\n        float VCA\n        float GBH\n        float GBD\n        float GBA\n        float BSH\n        float BSD\n        float BSA\n    }\n    LEAGUE {\n        int id PK\n        int country_id FK\n        text name\n    }\n    COUNTRY {\n        int id PK\n        text name\n    }\n    TEAM_ATTRIBUTES {\n        int id PK\n        int team_fifa_api_id FK\n        int team_api_id FK\n        text date\n        int buildUpPlaySpeed\n        text buildUpPlaySpeedClass\n        int buildUpPlayDribbling\n        text buildUpPlayDribblingClass\n        int buildUpPlayPassing\n        text buildUpPlayPassingClass\n        text buildUpPlayPositioningClass\n        int chanceCreationPassing\n        text chanceCreationPassingClass\n        int chanceCreationCrossing\n        text chanceCreationCrossingClass\n        int chanceCreationShooting\n        text chanceCreationShootingClass\n        text chanceCreationPositioningClass\n        int defencePressure\n        text defencePressureClass\n        int defenceAggression\n        text defenceAggressionClass\n        int defenceTeamWidth\n        text defenceTeamWidthClass\n        text defenceDefenderLineClass\n    }\n    PLAYER_ATTRIBUTES {\n        int id PK\n        int player_fifa_api_id FK\n        int player_api_id FK\n        text date\n        int overall_rating\n        int potential\n        text preferred_foot\n        text attacking_work_rate\n        text defensive_work_rate\n        int crossing\n        int finishing\n        int heading_accuracy\n        int short_passing\n        int volleys\n        int dribbling\n        int curve\n        int free_kick_accuracy\n        int long_passing\n        int ball_control\n        int acceleration\n        int sprint_speed\n        int agility\n        int reactions\n        int balance\n        int shot_power\n        int jumping\n        int stamina\n        int strength\n        int long_shots\n        int aggression\n        int interceptions\n        int positioning\n        int vision\n        int penalties\n        int marking\n        int standing_tackle\n        int sliding_tackle\n        int gk_diving\n        int gk_handling\n        int gk_kicking\n        int gk_positioning\n        int gk_reflexes\n    }\n    TEAM {\n        int id PK\n        int team_api_id\n        int team_fifa_api_id\n        text team_long_name\n        text team_short_name\n    }\n    PLAYER {\n        int id PK\n        int player_api_id\n        text player_name\n        int player_fifa_api_id\n        text birthday\n        int height\n        int weight\n    }\n"
+  },
+  "tables": {
+    "Country": {
+      "name": "Country",
+      "description": "The Country table stores a list of countries used for reference or categorization within the system.",
+      "row_count": 11,
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": true,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 11,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "1",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "1729",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "4769",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "7809",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "10257",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "13274",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "15722",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "17642",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "19694",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "21518",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "24558",
+                "count": 1,
+                "percent": 9.090909090909092
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 24558,
+              "avg": 12452.09090909091
+            }
+          }
+        },
+        {
+          "name": "name",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 11,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Belgium",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "England",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "France",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "Germany",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "Italy",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "Netherlands",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "Poland",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "Portugal",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "Scotland",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "Spain",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "Switzerland",
+                "count": 1,
+                "percent": 9.090909090909092
+              }
+            ]
+          }
+        }
+      ],
+      "indexes": []
+    },
+    "League": {
+      "name": "League",
+      "description": "The League table contains a standardized list of top-tier professional football leagues from 11 European countries, used to categorize and reference competitions within the sports data system.",
+      "row_count": 11,
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": true,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 11,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "1",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "1729",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "4769",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "7809",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "10257",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "13274",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "15722",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "17642",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "19694",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "21518",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "24558",
+                "count": 1,
+                "percent": 9.090909090909092
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 24558,
+              "avg": 12452.09090909091
+            }
+          }
+        },
+        {
+          "name": "country_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 11,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "24558",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "21518",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "19694",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "17642",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "15722",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "13274",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "10257",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "7809",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "4769",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "1729",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "1",
+                "count": 1,
+                "percent": 9.090909090909092
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 24558,
+              "avg": 12452.09090909091
+            }
+          }
+        },
+        {
+          "name": "name",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 11,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Belgium Jupiler League",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "England Premier League",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "France Ligue 1",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "Germany 1. Bundesliga",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "Italy Serie A",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "Netherlands Eredivisie",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "Poland Ekstraklasa",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "Portugal Liga ZON Sagres",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "Scotland Premier League",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "Spain LIGA BBVA",
+                "count": 1,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "Switzerland Super League",
+                "count": 1,
+                "percent": 9.090909090909092
+              }
+            ]
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "country_id",
+          "referenced_table": "country",
+          "referenced_column": "id"
+        }
+      ],
+      "rich_context": {
+        "name_values": {
+          "content": "Belgium Jupiler League(9.1%), England Premier League(9.1%), France Ligue 1(9.1%), Germany 1. Bundesliga(9.1%), Italy Serie A(9.1%), Netherlands Eredivisie(9.1%), Poland Ekstraklasa(9.1%), Portugal Liga ZON Sagres(9.1%), Scotland Premier League(9.1%), Spain LIGA BBVA(9.1%), Switzerland Super League(9.1%)",
+          "expires_at": "2026-03-31T14:58:27+08:00"
+        }
+      }
+    },
+    "Match": {
+      "name": "Match",
+      "description": "The Match table stores detailed records of football (soccer) matches, including season information and home team goal outcomes, supporting analysis of match results and team performance across multiple seasons.",
+      "row_count": 25979,
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": true,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 25979,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 25979,
+              "avg": 12990
+            }
+          }
+        },
+        {
+          "name": "country_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 11,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "21518",
+                "count": 3040,
+                "percent": 11.701759113129835
+              },
+              {
+                "value": "4769",
+                "count": 3040,
+                "percent": 11.701759113129835
+              },
+              {
+                "value": "1729",
+                "count": 3040,
+                "percent": 11.701759113129835
+              },
+              {
+                "value": "10257",
+                "count": 3017,
+                "percent": 11.61322606720813
+              },
+              {
+                "value": "13274",
+                "count": 2448,
+                "percent": 9.422995496362446
+              },
+              {
+                "value": "7809",
+                "count": 2448,
+                "percent": 9.422995496362446
+              },
+              {
+                "value": "17642",
+                "count": 2052,
+                "percent": 7.898687401362639
+              },
+              {
+                "value": "15722",
+                "count": 1920,
+                "percent": 7.390584703029369
+              },
+              {
+                "value": "19694",
+                "count": 1824,
+                "percent": 7.021055467877901
+              },
+              {
+                "value": "1",
+                "count": 1728,
+                "percent": 6.651526232726433
+              },
+              {
+                "value": "24558",
+                "count": 1422,
+                "percent": 5.473651795681127
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 24558,
+              "avg": 11738.630316794333
+            }
+          }
+        },
+        {
+          "name": "league_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 11,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "21518",
+                "count": 3040,
+                "percent": 11.701759113129835
+              },
+              {
+                "value": "4769",
+                "count": 3040,
+                "percent": 11.701759113129835
+              },
+              {
+                "value": "1729",
+                "count": 3040,
+                "percent": 11.701759113129835
+              },
+              {
+                "value": "10257",
+                "count": 3017,
+                "percent": 11.61322606720813
+              },
+              {
+                "value": "13274",
+                "count": 2448,
+                "percent": 9.422995496362446
+              },
+              {
+                "value": "7809",
+                "count": 2448,
+                "percent": 9.422995496362446
+              },
+              {
+                "value": "17642",
+                "count": 2052,
+                "percent": 7.898687401362639
+              },
+              {
+                "value": "15722",
+                "count": 1920,
+                "percent": 7.390584703029369
+              },
+              {
+                "value": "19694",
+                "count": 1824,
+                "percent": 7.021055467877901
+              },
+              {
+                "value": "1",
+                "count": 1728,
+                "percent": 6.651526232726433
+              },
+              {
+                "value": "24558",
+                "count": 1422,
+                "percent": 5.473651795681127
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 24558,
+              "avg": 11738.630316794333
+            }
+          }
+        },
+        {
+          "name": "season",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "2015/2016",
+                "count": 3326,
+                "percent": 12.802648292851918
+              },
+              {
+                "value": "2008/2009",
+                "count": 3326,
+                "percent": 12.802648292851918
+              },
+              {
+                "value": "2014/2015",
+                "count": 3325,
+                "percent": 12.798799029985759
+              },
+              {
+                "value": "2012/2013",
+                "count": 3260,
+                "percent": 12.548596943685283
+              },
+              {
+                "value": "2010/2011",
+                "count": 3260,
+                "percent": 12.548596943685283
+              },
+              {
+                "value": "2009/2010",
+                "count": 3230,
+                "percent": 12.43311905770045
+              },
+              {
+                "value": "2011/2012",
+                "count": 3220,
+                "percent": 12.394626429038839
+              },
+              {
+                "value": "2013/2014",
+                "count": 3032,
+                "percent": 11.670965010200547
+              }
+            ]
+          }
+        },
+        {
+          "name": "stage",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 38,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 38,
+              "avg": 18.242773008968783
+            }
+          }
+        },
+        {
+          "name": "date",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1694,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "match_api_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 25979,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 483129,
+              "max": 2216672,
+              "avg": 1195429.1599753648
+            }
+          }
+        },
+        {
+          "name": "home_team_api_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 299,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1601,
+              "max": 274581,
+              "avg": 9984.371992763387
+            }
+          }
+        },
+        {
+          "name": "away_team_api_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 299,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1601,
+              "max": 274581,
+              "avg": 9984.47511451557
+            }
+          }
+        },
+        {
+          "name": "home_team_goal",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 11,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "1",
+                "count": 8400,
+                "percent": 32.333808075753495
+              },
+              {
+                "value": "2",
+                "count": 6339,
+                "percent": 24.400477308595402
+              },
+              {
+                "value": "0",
+                "count": 5896,
+                "percent": 22.695253858886023
+              },
+              {
+                "value": "3",
+                "count": 3288,
+                "percent": 12.656376303937797
+              },
+              {
+                "value": "4",
+                "count": 1385,
+                "percent": 5.3312290696331655
+              },
+              {
+                "value": "5",
+                "count": 457,
+                "percent": 1.7591131298356364
+              },
+              {
+                "value": "6",
+                "count": 161,
+                "percent": 0.619731321451942
+              },
+              {
+                "value": "7",
+                "count": 38,
+                "percent": 0.14627198891412296
+              },
+              {
+                "value": "8",
+                "count": 9,
+                "percent": 0.034643365795450166
+              },
+              {
+                "value": "9",
+                "count": 4,
+                "percent": 0.015397051464644521
+              },
+              {
+                "value": "10",
+                "count": 2,
+                "percent": 0.0076985257323222605
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 10,
+              "avg": 1.5445937103044767
+            }
+          }
+        },
+        {
+          "name": "away_team_goal",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 10,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "1",
+                "count": 8989,
+                "percent": 34.6010239039224
+              },
+              {
+                "value": "0",
+                "count": 8687,
+                "percent": 33.43854651834174
+              },
+              {
+                "value": "2",
+                "count": 5146,
+                "percent": 19.808306709265175
+              },
+              {
+                "value": "3",
+                "count": 2145,
+                "percent": 8.256668847915623
+              },
+              {
+                "value": "4",
+                "count": 718,
+                "percent": 2.7637707379036915
+              },
+              {
+                "value": "5",
+                "count": 215,
+                "percent": 0.827591516224643
+              },
+              {
+                "value": "6",
+                "count": 63,
+                "percent": 0.24250356056815123
+              },
+              {
+                "value": "7",
+                "count": 10,
+                "percent": 0.0384926286616113
+              },
+              {
+                "value": "8",
+                "count": 5,
+                "percent": 0.01924631433080565
+              },
+              {
+                "value": "9",
+                "count": 1,
+                "percent": 0.0038492628661611302
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 9,
+              "avg": 1.1609376804341969
+            }
+          }
+        },
+        {
+          "name": "home_player_X1",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3,
+            "null_count": 1821,
+            "null_percent": 7.009507679279419,
+            "top_values": [
+              {
+                "value": "1",
+                "count": 24146,
+                "percent": 92.94430116632665
+              },
+              {
+                "value": "0",
+                "count": 11,
+                "percent": 0.04234189152777243
+              },
+              {
+                "value": "2",
+                "count": 1,
+                "percent": 0.0038492628661611302
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 2,
+              "avg": 0.9995860584485471
+            }
+          }
+        },
+        {
+          "name": "home_player_X2",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 9,
+            "null_count": 1821,
+            "null_percent": 7.009507679279419,
+            "top_values": [
+              {
+                "value": "2",
+                "count": 22229,
+                "percent": 85.56526425189577
+              },
+              {
+                "value": "3",
+                "count": 1414,
+                "percent": 5.442857692751838
+              },
+              {
+                "value": "1",
+                "count": 258,
+                "percent": 0.9931098194695716
+              },
+              {
+                "value": "4",
+                "count": 188,
+                "percent": 0.7236614188382925
+              },
+              {
+                "value": "6",
+                "count": 31,
+                "percent": 0.11932714885099502
+              },
+              {
+                "value": "8",
+                "count": 19,
+                "percent": 0.07313599445706148
+              },
+              {
+                "value": "0",
+                "count": 11,
+                "percent": 0.04234189152777243
+              },
+              {
+                "value": "5",
+                "count": 6,
+                "percent": 0.02309557719696678
+              },
+              {
+                "value": "7",
+                "count": 2,
+                "percent": 0.0076985257323222605
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 8,
+              "avg": 2.073516019538041
+            }
+          }
+        },
+        {
+          "name": "home_player_X3",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "4",
+                "count": 22575,
+                "percent": 86.8971092035875
+              },
+              {
+                "value": "5",
+                "count": 920,
+                "percent": 3.54132183686824
+              },
+              {
+                "value": "6",
+                "count": 274,
+                "percent": 1.0546980253281497
+              },
+              {
+                "value": "3",
+                "count": 257,
+                "percent": 0.9892605566034104
+              },
+              {
+                "value": "8",
+                "count": 70,
+                "percent": 0.2694484006312791
+              },
+              {
+                "value": "2",
+                "count": 33,
+                "percent": 0.1270256745833173
+              },
+              {
+                "value": "7",
+                "count": 17,
+                "percent": 0.06543746872473921
+              },
+              {
+                "value": "1",
+                "count": 1,
+                "percent": 0.0038492628661611302
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 8,
+              "avg": 4.061001366629395
+            }
+          }
+        },
+        {
+          "name": "home_player_X4",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 7,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "6",
+                "count": 21967,
+                "percent": 84.55675738096154
+              },
+              {
+                "value": "7",
+                "count": 1409,
+                "percent": 5.4236113784210325
+              },
+              {
+                "value": "8",
+                "count": 313,
+                "percent": 1.2048192771084338
+              },
+              {
+                "value": "5",
+                "count": 264,
+                "percent": 1.0162053966665383
+              },
+              {
+                "value": "2",
+                "count": 93,
+                "percent": 0.3579814465529851
+              },
+              {
+                "value": "4",
+                "count": 92,
+                "percent": 0.354132183686824
+              },
+              {
+                "value": "3",
+                "count": 9,
+                "percent": 0.034643365795450166
+              }
+            ],
+            "range": {
+              "min": 2,
+              "max": 8,
+              "avg": 6.049198658218412
+            }
+          }
+        },
+        {
+          "name": "home_player_X5",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 9,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "8",
+                "count": 22056,
+                "percent": 84.89934177604988
+              },
+              {
+                "value": "1",
+                "count": 796,
+                "percent": 3.0640132414642594
+              },
+              {
+                "value": "2",
+                "count": 690,
+                "percent": 2.65599137765118
+              },
+              {
+                "value": "7",
+                "count": 253,
+                "percent": 0.9738635051387659
+              },
+              {
+                "value": "6",
+                "count": 175,
+                "percent": 0.6736210015781977
+              },
+              {
+                "value": "4",
+                "count": 120,
+                "percent": 0.4619115439393356
+              },
+              {
+                "value": "5",
+                "count": 27,
+                "percent": 0.10393009738635052
+              },
+              {
+                "value": "3",
+                "count": 24,
+                "percent": 0.09238230878786712
+              },
+              {
+                "value": "9",
+                "count": 6,
+                "percent": 0.02309557719696678
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 9,
+              "avg": 7.544870998467719
+            }
+          }
+        },
+        {
+          "name": "home_player_X6",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 9,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "4",
+                "count": 7549,
+                "percent": 29.05808537665037
+              },
+              {
+                "value": "2",
+                "count": 7245,
+                "percent": 27.88790946533739
+              },
+              {
+                "value": "3",
+                "count": 6034,
+                "percent": 23.22645213441626
+              },
+              {
+                "value": "5",
+                "count": 1960,
+                "percent": 7.544555217675815
+              },
+              {
+                "value": "1",
+                "count": 932,
+                "percent": 3.5875129912621735
+              },
+              {
+                "value": "9",
+                "count": 255,
+                "percent": 0.9815620308710882
+              },
+              {
+                "value": "6",
+                "count": 121,
+                "percent": 0.46576080680549675
+              },
+              {
+                "value": "7",
+                "count": 37,
+                "percent": 0.14242272604796183
+              },
+              {
+                "value": "8",
+                "count": 14,
+                "percent": 0.05388968012625582
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 9,
+              "avg": 3.1851575765105395
+            }
+          }
+        },
+        {
+          "name": "home_player_X7",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 9,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "4",
+                "count": 8073,
+                "percent": 31.075099118518807
+              },
+              {
+                "value": "6",
+                "count": 7526,
+                "percent": 28.969552330728664
+              },
+              {
+                "value": "5",
+                "count": 5998,
+                "percent": 23.087878671234456
+              },
+              {
+                "value": "3",
+                "count": 1543,
+                "percent": 5.939412602486624
+              },
+              {
+                "value": "2",
+                "count": 796,
+                "percent": 3.0640132414642594
+              },
+              {
+                "value": "7",
+                "count": 161,
+                "percent": 0.619731321451942
+              },
+              {
+                "value": "8",
+                "count": 41,
+                "percent": 0.15781977751260634
+              },
+              {
+                "value": "9",
+                "count": 7,
+                "percent": 0.02694484006312791
+              },
+              {
+                "value": "1",
+                "count": 2,
+                "percent": 0.0076985257323222605
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 9,
+              "avg": 4.7699093055037896
+            }
+          }
+        },
+        {
+          "name": "home_player_X8",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 9,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "6",
+                "count": 8069,
+                "percent": 31.059702067054157
+              },
+              {
+                "value": "3",
+                "count": 6302,
+                "percent": 24.25805458254744
+              },
+              {
+                "value": "7",
+                "count": 5991,
+                "percent": 23.060933831171333
+              },
+              {
+                "value": "5",
+                "count": 1603,
+                "percent": 6.170368374456292
+              },
+              {
+                "value": "8",
+                "count": 828,
+                "percent": 3.1871896531814157
+              },
+              {
+                "value": "4",
+                "count": 747,
+                "percent": 2.8753993610223643
+              },
+              {
+                "value": "2",
+                "count": 584,
+                "percent": 2.2479695138381
+              },
+              {
+                "value": "9",
+                "count": 17,
+                "percent": 0.06543746872473921
+              },
+              {
+                "value": "1",
+                "count": 6,
+                "percent": 0.02309557719696678
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 9,
+              "avg": 5.3096036774754625
+            }
+          }
+        },
+        {
+          "name": "home_player_X9",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 9,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "8",
+                "count": 7757,
+                "percent": 29.858732052811888
+              },
+              {
+                "value": "5",
+                "count": 7686,
+                "percent": 29.585434389314447
+              },
+              {
+                "value": "3",
+                "count": 4738,
+                "percent": 18.237807459871437
+              },
+              {
+                "value": "7",
+                "count": 1524,
+                "percent": 5.866276608029562
+              },
+              {
+                "value": "4",
+                "count": 826,
+                "percent": 3.179491127449093
+              },
+              {
+                "value": "9",
+                "count": 809,
+                "percent": 3.1140536587243544
+              },
+              {
+                "value": "6",
+                "count": 756,
+                "percent": 2.9100427268178146
+              },
+              {
+                "value": "2",
+                "count": 45,
+                "percent": 0.17321682897725085
+              },
+              {
+                "value": "1",
+                "count": 6,
+                "percent": 0.02309557719696678
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 9,
+              "avg": 5.822048287571955
+            }
+          }
+        },
+        {
+          "name": "home_player_X10",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 9,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "4",
+                "count": 9696,
+                "percent": 37.32245275029832
+              },
+              {
+                "value": "7",
+                "count": 6357,
+                "percent": 24.469764040186305
+              },
+              {
+                "value": "5",
+                "count": 5522,
+                "percent": 21.25562954694176
+              },
+              {
+                "value": "9",
+                "count": 921,
+                "percent": 3.545171099734401
+              },
+              {
+                "value": "6",
+                "count": 874,
+                "percent": 3.364255745024828
+              },
+              {
+                "value": "8",
+                "count": 682,
+                "percent": 2.6251972747218906
+              },
+              {
+                "value": "3",
+                "count": 76,
+                "percent": 0.2925439778282459
+              },
+              {
+                "value": "1",
+                "count": 10,
+                "percent": 0.0384926286616113
+              },
+              {
+                "value": "2",
+                "count": 9,
+                "percent": 0.034643365795450166
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 9,
+              "avg": 5.389406551538493
+            }
+          }
+        },
+        {
+          "name": "home_player_X11",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 6,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "6",
+                "count": 9796,
+                "percent": 37.70737903691443
+              },
+              {
+                "value": "5",
+                "count": 9571,
+                "percent": 36.84129489202817
+              },
+              {
+                "value": "7",
+                "count": 4654,
+                "percent": 17.9144693791139
+              },
+              {
+                "value": "4",
+                "count": 65,
+                "percent": 0.25020208630047347
+              },
+              {
+                "value": "3",
+                "count": 59,
+                "percent": 0.22710650910350666
+              },
+              {
+                "value": "1",
+                "count": 2,
+                "percent": 0.0076985257323222605
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 7,
+              "avg": 5.783244295357601
+            }
+          }
+        },
+        {
+          "name": "away_player_X1",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "1",
+                "count": 24144,
+                "percent": 92.93660264059433
+              },
+              {
+                "value": "2",
+                "count": 2,
+                "percent": 0.0076985257323222605
+              },
+              {
+                "value": "6",
+                "count": 1,
+                "percent": 0.0038492628661611302
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 6,
+              "avg": 1.0002898910837785
+            }
+          }
+        },
+        {
+          "name": "away_player_X2",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "2",
+                "count": 22109,
+                "percent": 85.10335270795643
+              },
+              {
+                "value": "3",
+                "count": 1469,
+                "percent": 5.654567150390701
+              },
+              {
+                "value": "1",
+                "count": 329,
+                "percent": 1.2664074829670118
+              },
+              {
+                "value": "4",
+                "count": 175,
+                "percent": 0.6736210015781977
+              },
+              {
+                "value": "8",
+                "count": 28,
+                "percent": 0.10777936025251164
+              },
+              {
+                "value": "6",
+                "count": 28,
+                "percent": 0.10777936025251164
+              },
+              {
+                "value": "5",
+                "count": 7,
+                "percent": 0.02694484006312791
+              },
+              {
+                "value": "7",
+                "count": 2,
+                "percent": 0.0076985257323222605
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 8,
+              "avg": 2.0745848345550173
+            }
+          }
+        },
+        {
+          "name": "away_player_X3",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "4",
+                "count": 22465,
+                "percent": 86.4736902883098
+              },
+              {
+                "value": "5",
+                "count": 967,
+                "percent": 3.722237191577813
+              },
+              {
+                "value": "3",
+                "count": 331,
+                "percent": 1.274106008699334
+              },
+              {
+                "value": "6",
+                "count": 271,
+                "percent": 1.0431502367296663
+              },
+              {
+                "value": "8",
+                "count": 65,
+                "percent": 0.25020208630047347
+              },
+              {
+                "value": "2",
+                "count": 34,
+                "percent": 0.13087493744947842
+              },
+              {
+                "value": "7",
+                "count": 13,
+                "percent": 0.0500404172600947
+              },
+              {
+                "value": "9",
+                "count": 1,
+                "percent": 0.0038492628661611302
+              }
+            ],
+            "range": {
+              "min": 2,
+              "max": 9,
+              "avg": 4.058557998923262
+            }
+          }
+        },
+        {
+          "name": "away_player_X4",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "6",
+                "count": 21856,
+                "percent": 84.12948920281767
+              },
+              {
+                "value": "7",
+                "count": 1468,
+                "percent": 5.6507178875245385
+              },
+              {
+                "value": "5",
+                "count": 331,
+                "percent": 1.274106008699334
+              },
+              {
+                "value": "8",
+                "count": 325,
+                "percent": 1.2510104315023673
+              },
+              {
+                "value": "2",
+                "count": 88,
+                "percent": 0.33873513222217944
+              },
+              {
+                "value": "4",
+                "count": 69,
+                "percent": 0.26559913776511795
+              },
+              {
+                "value": "3",
+                "count": 7,
+                "percent": 0.02694484006312791
+              },
+              {
+                "value": "1",
+                "count": 3,
+                "percent": 0.01154778859848339
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 8,
+              "avg": 6.052221808092103
+            }
+          }
+        },
+        {
+          "name": "away_player_X5",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 9,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "8",
+                "count": 21915,
+                "percent": 84.35659571192117
+              },
+              {
+                "value": "1",
+                "count": 837,
+                "percent": 3.2218330189768665
+              },
+              {
+                "value": "2",
+                "count": 695,
+                "percent": 2.6752376919819856
+              },
+              {
+                "value": "7",
+                "count": 321,
+                "percent": 1.235613380037723
+              },
+              {
+                "value": "6",
+                "count": 175,
+                "percent": 0.6736210015781977
+              },
+              {
+                "value": "4",
+                "count": 152,
+                "percent": 0.5850879556564919
+              },
+              {
+                "value": "3",
+                "count": 21,
+                "percent": 0.08083452018938372
+              },
+              {
+                "value": "5",
+                "count": 19,
+                "percent": 0.07313599445706148
+              },
+              {
+                "value": "9",
+                "count": 12,
+                "percent": 0.04619115439393356
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 9,
+              "avg": 7.525489708866526
+            }
+          }
+        },
+        {
+          "name": "away_player_X6",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 9,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "4",
+                "count": 7564,
+                "percent": 29.115824319642787
+              },
+              {
+                "value": "2",
+                "count": 6865,
+                "percent": 26.425189576196157
+              },
+              {
+                "value": "3",
+                "count": 6038,
+                "percent": 23.241849185880902
+              },
+              {
+                "value": "5",
+                "count": 1978,
+                "percent": 7.613841949266716
+              },
+              {
+                "value": "1",
+                "count": 1214,
+                "percent": 4.673005119519612
+              },
+              {
+                "value": "9",
+                "count": 322,
+                "percent": 1.239462642903884
+              },
+              {
+                "value": "6",
+                "count": 117,
+                "percent": 0.45036375534085227
+              },
+              {
+                "value": "7",
+                "count": 37,
+                "percent": 0.14242272604796183
+              },
+              {
+                "value": "8",
+                "count": 12,
+                "percent": 0.04619115439393356
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 9,
+              "avg": 3.1953865904667245
+            }
+          }
+        },
+        {
+          "name": "away_player_X7",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 9,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "4",
+                "count": 7637,
+                "percent": 29.39682050887255
+              },
+              {
+                "value": "6",
+                "count": 7530,
+                "percent": 28.98494938219331
+              },
+              {
+                "value": "5",
+                "count": 6022,
+                "percent": 23.180260980022325
+              },
+              {
+                "value": "3",
+                "count": 1868,
+                "percent": 7.19042303398899
+              },
+              {
+                "value": "2",
+                "count": 914,
+                "percent": 3.518226259671273
+              },
+              {
+                "value": "7",
+                "count": 137,
+                "percent": 0.5273490126640749
+              },
+              {
+                "value": "8",
+                "count": 35,
+                "percent": 0.13472420031563956
+              },
+              {
+                "value": "1",
+                "count": 3,
+                "percent": 0.01154778859848339
+              },
+              {
+                "value": "9",
+                "count": 1,
+                "percent": 0.0038492628661611302
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 9,
+              "avg": 4.7426595436286085
+            }
+          }
+        },
+        {
+          "name": "away_player_X8",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 9,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "6",
+                "count": 7621,
+                "percent": 29.335232303013974
+              },
+              {
+                "value": "3",
+                "count": 6268,
+                "percent": 24.12717964509796
+              },
+              {
+                "value": "7",
+                "count": 6007,
+                "percent": 23.122522037029906
+              },
+              {
+                "value": "5",
+                "count": 1894,
+                "percent": 7.290503868509181
+              },
+              {
+                "value": "4",
+                "count": 905,
+                "percent": 3.483582893875823
+              },
+              {
+                "value": "8",
+                "count": 858,
+                "percent": 3.30266753916625
+              },
+              {
+                "value": "2",
+                "count": 574,
+                "percent": 2.209476885176489
+              },
+              {
+                "value": "9",
+                "count": 17,
+                "percent": 0.06543746872473921
+              },
+              {
+                "value": "1",
+                "count": 3,
+                "percent": 0.01154778859848339
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 9,
+              "avg": 5.294115210999296
+            }
+          }
+        },
+        {
+          "name": "away_player_X9",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 9,
+            "null_count": 1833,
+            "null_percent": 7.055698833673352,
+            "top_values": [
+              {
+                "value": "5",
+                "count": 7525,
+                "percent": 28.965703067862503
+              },
+              {
+                "value": "8",
+                "count": 7350,
+                "percent": 28.29208206628431
+              },
+              {
+                "value": "3",
+                "count": 4749,
+                "percent": 18.280149351399206
+              },
+              {
+                "value": "7",
+                "count": 1823,
+                "percent": 7.017206205011741
+              },
+              {
+                "value": "6",
+                "count": 929,
+                "percent": 3.57596520266369
+              },
+              {
+                "value": "4",
+                "count": 879,
+                "percent": 3.3835020593556338
+              },
+              {
+                "value": "9",
+                "count": 847,
+                "percent": 3.260325647638477
+              },
+              {
+                "value": "2",
+                "count": 39,
+                "percent": 0.15012125178028407
+              },
+              {
+                "value": "1",
+                "count": 5,
+                "percent": 0.01924631433080565
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 9,
+              "avg": 5.80754576327342
+            }
+          }
+        },
+        {
+          "name": "away_player_X10",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 9,
+            "null_count": 1833,
+            "null_percent": 7.055698833673352,
+            "top_values": [
+              {
+                "value": "4",
+                "count": 9193,
+                "percent": 35.38627352861927
+              },
+              {
+                "value": "7",
+                "count": 6332,
+                "percent": 24.37353246853228
+              },
+              {
+                "value": "5",
+                "count": 5544,
+                "percent": 21.340313329997308
+              },
+              {
+                "value": "9",
+                "count": 1206,
+                "percent": 4.642211016590323
+              },
+              {
+                "value": "6",
+                "count": 921,
+                "percent": 3.545171099734401
+              },
+              {
+                "value": "8",
+                "count": 840,
+                "percent": 3.233380807575349
+              },
+              {
+                "value": "3",
+                "count": 97,
+                "percent": 0.3733784980176296
+              },
+              {
+                "value": "2",
+                "count": 8,
+                "percent": 0.030794102929289042
+              },
+              {
+                "value": "1",
+                "count": 5,
+                "percent": 0.01924631433080565
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 9,
+              "avg": 5.476186531930755
+            }
+          }
+        },
+        {
+          "name": "away_player_X11",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 6,
+            "null_count": 1839,
+            "null_percent": 7.078794410870318,
+            "top_values": [
+              {
+                "value": "5",
+                "count": 10043,
+                "percent": 38.65814696485623
+              },
+              {
+                "value": "6",
+                "count": 9322,
+                "percent": 35.88282843835405
+              },
+              {
+                "value": "7",
+                "count": 4664,
+                "percent": 17.95296200777551
+              },
+              {
+                "value": "4",
+                "count": 61,
+                "percent": 0.23480503483582893
+              },
+              {
+                "value": "3",
+                "count": 49,
+                "percent": 0.1886138804418954
+              },
+              {
+                "value": "8",
+                "count": 1,
+                "percent": 0.0038492628661611302
+              }
+            ],
+            "range": {
+              "min": 3,
+              "max": 8,
+              "avg": 5.766114333057167
+            }
+          }
+        },
+        {
+          "name": "home_player_Y1",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3,
+            "null_count": 1821,
+            "null_percent": 7.009507679279419,
+            "top_values": [
+              {
+                "value": "1",
+                "count": 24146,
+                "percent": 92.94430116632665
+              },
+              {
+                "value": "0",
+                "count": 11,
+                "percent": 0.04234189152777243
+              },
+              {
+                "value": "3",
+                "count": 1,
+                "percent": 0.0038492628661611302
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 3,
+              "avg": 0.9996274526036923
+            }
+          }
+        },
+        {
+          "name": "home_player_Y2",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 1821,
+            "null_percent": 7.009507679279419,
+            "top_values": [
+              {
+                "value": "3",
+                "count": 24147,
+                "percent": 92.94815042919281
+              },
+              {
+                "value": "0",
+                "count": 11,
+                "percent": 0.04234189152777243
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 3,
+              "avg": 2.9986339928802055
+            }
+          }
+        },
+        {
+          "name": "home_player_Y3",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "3",
+                "count": 24146,
+                "percent": 92.94430116632665
+              },
+              {
+                "value": "5",
+                "count": 1,
+                "percent": 0.0038492628661611302
+              }
+            ],
+            "range": {
+              "min": 3,
+              "max": 5,
+              "avg": 3.0000828260239367
+            }
+          }
+        },
+        {
+          "name": "home_player_Y4",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "3",
+                "count": 24142,
+                "percent": 92.928904114862
+              },
+              {
+                "value": "5",
+                "count": 5,
+                "percent": 0.01924631433080565
+              }
+            ],
+            "range": {
+              "min": 3,
+              "max": 5,
+              "avg": 3.0004141301196836
+            }
+          }
+        },
+        {
+          "name": "home_player_Y5",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 5,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "3",
+                "count": 22691,
+                "percent": 87.3436236960622
+              },
+              {
+                "value": "7",
+                "count": 1403,
+                "percent": 5.400515801224066
+              },
+              {
+                "value": "5",
+                "count": 45,
+                "percent": 0.17321682897725085
+              },
+              {
+                "value": "6",
+                "count": 7,
+                "percent": 0.02694484006312791
+              },
+              {
+                "value": "8",
+                "count": 1,
+                "percent": 0.0038492628661611302
+              }
+            ],
+            "range": {
+              "min": 3,
+              "max": 8,
+              "avg": 3.2372137325547685
+            }
+          }
+        },
+        {
+          "name": "home_player_Y6",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 6,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "7",
+                "count": 14027,
+                "percent": 53.99361022364217
+              },
+              {
+                "value": "6",
+                "count": 7967,
+                "percent": 30.66707725470572
+              },
+              {
+                "value": "5",
+                "count": 1793,
+                "percent": 6.9017283190269065
+              },
+              {
+                "value": "3",
+                "count": 288,
+                "percent": 1.1085877054544053
+              },
+              {
+                "value": "8",
+                "count": 69,
+                "percent": 0.26559913776511795
+              },
+              {
+                "value": "9",
+                "count": 3,
+                "percent": 0.01154778859848339
+              }
+            ],
+            "range": {
+              "min": 3,
+              "max": 9,
+              "avg": 6.476953658839608
+            }
+          }
+        },
+        {
+          "name": "home_player_Y7",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 6,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "7",
+                "count": 15634,
+                "percent": 60.179375649563106
+              },
+              {
+                "value": "6",
+                "count": 7016,
+                "percent": 27.006428268986486
+              },
+              {
+                "value": "5",
+                "count": 795,
+                "percent": 3.0601639785980983
+              },
+              {
+                "value": "8",
+                "count": 694,
+                "percent": 2.6713884291158245
+              },
+              {
+                "value": "9",
+                "count": 5,
+                "percent": 0.01924631433080565
+              },
+              {
+                "value": "3",
+                "count": 3,
+                "percent": 0.01154778859848339
+              }
+            ],
+            "range": {
+              "min": 3,
+              "max": 9,
+              "avg": 6.672257423282395
+            }
+          }
+        },
+        {
+          "name": "home_player_Y8",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 7,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "7",
+                "count": 15943,
+                "percent": 61.368797875206894
+              },
+              {
+                "value": "8",
+                "count": 7194,
+                "percent": 27.69159705916317
+              },
+              {
+                "value": "6",
+                "count": 519,
+                "percent": 1.9977674275376265
+              },
+              {
+                "value": "5",
+                "count": 463,
+                "percent": 1.7822087070326034
+              },
+              {
+                "value": "9",
+                "count": 21,
+                "percent": 0.08083452018938372
+              },
+              {
+                "value": "3",
+                "count": 6,
+                "percent": 0.02309557719696678
+              },
+              {
+                "value": "10",
+                "count": 1,
+                "percent": 0.0038492628661611302
+              }
+            ],
+            "range": {
+              "min": 3,
+              "max": 10,
+              "avg": 7.23895307905744
+            }
+          }
+        },
+        {
+          "name": "home_player_Y9",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 6,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "7",
+                "count": 10024,
+                "percent": 38.58501097039917
+              },
+              {
+                "value": "8",
+                "count": 8041,
+                "percent": 30.95192270680165
+              },
+              {
+                "value": "10",
+                "count": 4772,
+                "percent": 18.368682397320914
+              },
+              {
+                "value": "9",
+                "count": 1247,
+                "percent": 4.80003079410293
+              },
+              {
+                "value": "6",
+                "count": 62,
+                "percent": 0.23865429770199004
+              },
+              {
+                "value": "1",
+                "count": 1,
+                "percent": 0.0038492628661611302
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 10,
+              "avg": 8.026338675611877
+            }
+          }
+        },
+        {
+          "name": "home_player_Y10",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 7,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "10",
+                "count": 13568,
+                "percent": 52.226798568074216
+              },
+              {
+                "value": "8",
+                "count": 7083,
+                "percent": 27.264328881019285
+              },
+              {
+                "value": "9",
+                "count": 1516,
+                "percent": 5.835482505100273
+              },
+              {
+                "value": "7",
+                "count": 1188,
+                "percent": 4.572924284999423
+              },
+              {
+                "value": "11",
+                "count": 711,
+                "percent": 2.7368258978405633
+              },
+              {
+                "value": "6",
+                "count": 80,
+                "percent": 0.3079410292928904
+              },
+              {
+                "value": "3",
+                "count": 1,
+                "percent": 0.0038492628661611302
+              }
+            ],
+            "range": {
+              "min": 3,
+              "max": 11,
+              "avg": 9.218867768252785
+            }
+          }
+        },
+        {
+          "name": "home_player_Y11",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 4,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "10",
+                "count": 13567,
+                "percent": 52.222949305208054
+              },
+              {
+                "value": "11",
+                "count": 10577,
+                "percent": 40.713653335386276
+              },
+              {
+                "value": "1",
+                "count": 2,
+                "percent": 0.0076985257323222605
+              },
+              {
+                "value": "3",
+                "count": 1,
+                "percent": 0.0038492628661611302
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 11,
+              "avg": 10.436990102290139
+            }
+          }
+        },
+        {
+          "name": "away_player_Y1",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "1",
+                "count": 24144,
+                "percent": 92.93660264059433
+              },
+              {
+                "value": "3",
+                "count": 3,
+                "percent": 0.01154778859848339
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 3,
+              "avg": 1.0002484780718102
+            }
+          }
+        },
+        {
+          "name": "away_player_Y2",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "3",
+                "count": 24147,
+                "percent": 92.94815042919281
+              }
+            ],
+            "range": {
+              "min": 3,
+              "max": 3,
+              "avg": 3
+            }
+          }
+        },
+        {
+          "name": "away_player_Y3",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "3",
+                "count": 24146,
+                "percent": 92.94430116632665
+              },
+              {
+                "value": "7",
+                "count": 1,
+                "percent": 0.0038492628661611302
+              }
+            ],
+            "range": {
+              "min": 3,
+              "max": 7,
+              "avg": 3.0001656520478734
+            }
+          }
+        },
+        {
+          "name": "away_player_Y4",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "3",
+                "count": 24145,
+                "percent": 92.94045190346048
+              },
+              {
+                "value": "7",
+                "count": 1,
+                "percent": 0.0038492628661611302
+              },
+              {
+                "value": "5",
+                "count": 1,
+                "percent": 0.0038492628661611302
+              }
+            ],
+            "range": {
+              "min": 3,
+              "max": 7,
+              "avg": 3.00024847807181
+            }
+          }
+        },
+        {
+          "name": "away_player_Y5",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 5,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "3",
+                "count": 22645,
+                "percent": 87.1665576042188
+              },
+              {
+                "value": "7",
+                "count": 1448,
+                "percent": 5.573732630201316
+              },
+              {
+                "value": "5",
+                "count": 38,
+                "percent": 0.14627198891412296
+              },
+              {
+                "value": "6",
+                "count": 15,
+                "percent": 0.05773894299241695
+              },
+              {
+                "value": "9",
+                "count": 1,
+                "percent": 0.0038492628661611302
+              }
+            ],
+            "range": {
+              "min": 3,
+              "max": 9,
+              "avg": 3.2451236178407257
+            }
+          }
+        },
+        {
+          "name": "away_player_Y6",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 7,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "7",
+                "count": 13954,
+                "percent": 53.71261403441241
+              },
+              {
+                "value": "6",
+                "count": 8054,
+                "percent": 31.001963124061742
+              },
+              {
+                "value": "5",
+                "count": 1715,
+                "percent": 6.601485815466337
+              },
+              {
+                "value": "3",
+                "count": 350,
+                "percent": 1.3472420031563954
+              },
+              {
+                "value": "8",
+                "count": 70,
+                "percent": 0.2694484006312791
+              },
+              {
+                "value": "9",
+                "count": 3,
+                "percent": 0.01154778859848339
+              },
+              {
+                "value": "10",
+                "count": 1,
+                "percent": 0.0038492628661611302
+              }
+            ],
+            "range": {
+              "min": 3,
+              "max": 10,
+              "avg": 6.469706381745144
+            }
+          }
+        },
+        {
+          "name": "away_player_Y7",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 7,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "7",
+                "count": 15607,
+                "percent": 60.07544555217675
+              },
+              {
+                "value": "6",
+                "count": 7037,
+                "percent": 27.087262789175874
+              },
+              {
+                "value": "8",
+                "count": 772,
+                "percent": 2.9716309326763923
+              },
+              {
+                "value": "5",
+                "count": 725,
+                "percent": 2.7907155779668193
+              },
+              {
+                "value": "3",
+                "count": 3,
+                "percent": 0.01154778859848339
+              },
+              {
+                "value": "9",
+                "count": 2,
+                "percent": 0.0076985257323222605
+              },
+              {
+                "value": "10",
+                "count": 1,
+                "percent": 0.0038492628661611302
+              }
+            ],
+            "range": {
+              "min": 3,
+              "max": 10,
+              "avg": 6.6802915476042575
+            }
+          }
+        },
+        {
+          "name": "away_player_Y8",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 7,
+            "null_count": 1832,
+            "null_percent": 7.051849570807191,
+            "top_values": [
+              {
+                "value": "7",
+                "count": 15903,
+                "percent": 61.214827360560456
+              },
+              {
+                "value": "8",
+                "count": 7265,
+                "percent": 27.96489472266061
+              },
+              {
+                "value": "6",
+                "count": 541,
+                "percent": 2.0824512105931716
+              },
+              {
+                "value": "5",
+                "count": 412,
+                "percent": 1.5858963008583855
+              },
+              {
+                "value": "9",
+                "count": 22,
+                "percent": 0.08468378305554486
+              },
+              {
+                "value": "10",
+                "count": 3,
+                "percent": 0.01154778859848339
+              },
+              {
+                "value": "3",
+                "count": 1,
+                "percent": 0.0038492628661611302
+              }
+            ],
+            "range": {
+              "min": 3,
+              "max": 10,
+              "avg": 7.246366008199776
+            }
+          }
+        },
+        {
+          "name": "away_player_Y9",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 7,
+            "null_count": 1833,
+            "null_percent": 7.055698833673352,
+            "top_values": [
+              {
+                "value": "7",
+                "count": 10043,
+                "percent": 38.65814696485623
+              },
+              {
+                "value": "8",
+                "count": 8057,
+                "percent": 31.013510912660223
+              },
+              {
+                "value": "10",
+                "count": 4767,
+                "percent": 18.34943608299011
+              },
+              {
+                "value": "9",
+                "count": 1199,
+                "percent": 4.615266176527195
+              },
+              {
+                "value": "6",
+                "count": 78,
+                "percent": 0.30024250356056814
+              },
+              {
+                "value": "11",
+                "count": 1,
+                "percent": 0.0038492628661611302
+              },
+              {
+                "value": "5",
+                "count": 1,
+                "percent": 0.0038492628661611302
+              }
+            ],
+            "range": {
+              "min": 5,
+              "max": 11,
+              "avg": 8.022115464259091
+            }
+          }
+        },
+        {
+          "name": "away_player_Y10",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 6,
+            "null_count": 1833,
+            "null_percent": 7.055698833673352,
+            "top_values": [
+              {
+                "value": "10",
+                "count": 13145,
+                "percent": 50.59856037568805
+              },
+              {
+                "value": "8",
+                "count": 7173,
+                "percent": 27.610762538973788
+              },
+              {
+                "value": "7",
+                "count": 1575,
+                "percent": 6.06258901420378
+              },
+              {
+                "value": "9",
+                "count": 1518,
+                "percent": 5.8431810308325955
+              },
+              {
+                "value": "11",
+                "count": 655,
+                "percent": 2.5212671773355404
+              },
+              {
+                "value": "6",
+                "count": 80,
+                "percent": 0.3079410292928904
+              }
+            ],
+            "range": {
+              "min": 6,
+              "max": 11,
+              "avg": 9.161186117783483
+            }
+          }
+        },
+        {
+          "name": "away_player_Y11",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 4,
+            "null_count": 1839,
+            "null_percent": 7.078794410870318,
+            "top_values": [
+              {
+                "value": "10",
+                "count": 13145,
+                "percent": 50.59856037568805
+              },
+              {
+                "value": "11",
+                "count": 10993,
+                "percent": 42.3149466877093
+              },
+              {
+                "value": "8",
+                "count": 1,
+                "percent": 0.0038492628661611302
+              },
+              {
+                "value": "7",
+                "count": 1,
+                "percent": 0.0038492628661611302
+              }
+            ],
+            "range": {
+              "min": 7,
+              "max": 11,
+              "avg": 10.455178127589063
+            }
+          }
+        },
+        {
+          "name": "home_player_1",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 906,
+            "null_count": 1224,
+            "null_percent": 4.711497748181223,
+            "range": {
+              "min": 2984,
+              "max": 698273,
+              "avg": 76638.36243183195
+            }
+          }
+        },
+        {
+          "name": "home_player_2",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2414,
+            "null_count": 1315,
+            "null_percent": 5.0617806690018865,
+            "range": {
+              "min": 2802,
+              "max": 748432,
+              "avg": 106854.09199643205
+            }
+          }
+        },
+        {
+          "name": "home_player_3",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2375,
+            "null_count": 1281,
+            "null_percent": 4.930905731552407,
+            "range": {
+              "min": 2752,
+              "max": 705484,
+              "avg": 91601.28945663616
+            }
+          }
+        },
+        {
+          "name": "home_player_4",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2606,
+            "null_count": 1323,
+            "null_percent": 5.092574771931175,
+            "range": {
+              "min": 2752,
+              "max": 723037,
+              "avg": 94540.20449383518
+            }
+          }
+        },
+        {
+          "name": "home_player_5",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2769,
+            "null_count": 1316,
+            "null_percent": 5.065629931868047,
+            "range": {
+              "min": 2752,
+              "max": 733787,
+              "avg": 109527.84207111868
+            }
+          }
+        },
+        {
+          "name": "home_player_6",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3798,
+            "null_count": 1325,
+            "null_percent": 5.100273297663498,
+            "range": {
+              "min": 2625,
+              "max": 750584,
+              "avg": 102308.7685162651
+            }
+          }
+        },
+        {
+          "name": "home_player_7",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3422,
+            "null_count": 1227,
+            "null_percent": 4.723045536779707,
+            "range": {
+              "min": 2625,
+              "max": 692984,
+              "avg": 97287.63691822883
+            }
+          }
+        },
+        {
+          "name": "home_player_8",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 4076,
+            "null_count": 1309,
+            "null_percent": 5.038685091804919,
+            "range": {
+              "min": 2625,
+              "max": 693171,
+              "avg": 107290.99294689907
+            }
+          }
+        },
+        {
+          "name": "home_player_9",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 4114,
+            "null_count": 1273,
+            "null_percent": 4.900111628623119,
+            "range": {
+              "min": 2625,
+              "max": 730065,
+              "avg": 111131.53691410994
+            }
+          }
+        },
+        {
+          "name": "home_player_10",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3642,
+            "null_count": 1436,
+            "null_percent": 5.527541475807383,
+            "range": {
+              "min": 2625,
+              "max": 742405,
+              "avg": 105612.50837305952
+            }
+          }
+        },
+        {
+          "name": "home_player_11",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2890,
+            "null_count": 1555,
+            "null_percent": 5.985603756880558,
+            "range": {
+              "min": 2802,
+              "max": 726956,
+              "avg": 103413.87066000655
+            }
+          }
+        },
+        {
+          "name": "away_player_1",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 926,
+            "null_count": 1234,
+            "null_percent": 4.749990376842835,
+            "range": {
+              "min": 2796,
+              "max": 698273,
+              "avg": 76628.1998787634
+            }
+          }
+        },
+        {
+          "name": "away_player_2",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2504,
+            "null_count": 1278,
+            "null_percent": 4.9193579429539245,
+            "range": {
+              "min": 2790,
+              "max": 748432,
+              "avg": 107614.61742439578
+            }
+          }
+        },
+        {
+          "name": "away_player_3",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2470,
+            "null_count": 1293,
+            "null_percent": 4.977096885946342,
+            "range": {
+              "min": 2752,
+              "max": 705484,
+              "avg": 91126.78129304059
+            }
+          }
+        },
+        {
+          "name": "away_player_4",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2657,
+            "null_count": 1321,
+            "null_percent": 5.084876246198853,
+            "range": {
+              "min": 2752,
+              "max": 728414,
+              "avg": 95083.91061724389
+            }
+          }
+        },
+        {
+          "name": "away_player_5",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2884,
+            "null_count": 1335,
+            "null_percent": 5.138765926325109,
+            "range": {
+              "min": 2790,
+              "max": 746419,
+              "avg": 109800.93690147703
+            }
+          }
+        },
+        {
+          "name": "away_player_6",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3930,
+            "null_count": 1313,
+            "null_percent": 5.0540821432695635,
+            "range": {
+              "min": 2625,
+              "max": 722766,
+              "avg": 102308.26258817806
+            }
+          }
+        },
+        {
+          "name": "away_player_7",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3620,
+            "null_count": 1235,
+            "null_percent": 4.753839639708995,
+            "range": {
+              "min": 2625,
+              "max": 750435,
+              "avg": 97898.05601357904
+            }
+          }
+        },
+        {
+          "name": "away_player_8",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 4249,
+            "null_count": 1341,
+            "null_percent": 5.161861503522076,
+            "range": {
+              "min": 2625,
+              "max": 717248,
+              "avg": 109265.11421381605
+            }
+          }
+        },
+        {
+          "name": "away_player_9",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 4319,
+            "null_count": 1328,
+            "null_percent": 5.111821086261981,
+            "range": {
+              "min": 2625,
+              "max": 722766,
+              "avg": 111087.00344813598
+            }
+          }
+        },
+        {
+          "name": "away_player_10",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3891,
+            "null_count": 1441,
+            "null_percent": 5.546787790138189,
+            "range": {
+              "min": 2770,
+              "max": 722766,
+              "avg": 107149.11594261961
+            }
+          }
+        },
+        {
+          "name": "away_player_11",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3040,
+            "null_count": 1554,
+            "null_percent": 5.981754494014396,
+            "range": {
+              "min": 2802,
+              "max": 726956,
+              "avg": 104932.8769703173
+            }
+          }
+        },
+        {
+          "name": "goal",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 13225,
+            "null_count": 11762,
+            "null_percent": 45.27502983178721
+          }
+        },
+        {
+          "name": "shoton",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8464,
+            "null_count": 11762,
+            "null_percent": 45.27502983178721
+          }
+        },
+        {
+          "name": "shotoff",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8464,
+            "null_count": 11762,
+            "null_percent": 45.27502983178721
+          }
+        },
+        {
+          "name": "foulcommit",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8466,
+            "null_count": 11762,
+            "null_percent": 45.27502983178721
+          }
+        },
+        {
+          "name": "card",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 13777,
+            "null_count": 11762,
+            "null_percent": 45.27502983178721
+          }
+        },
+        {
+          "name": "cross",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8466,
+            "null_count": 11762,
+            "null_percent": 45.27502983178721
+          }
+        },
+        {
+          "name": "corner",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8465,
+            "null_count": 11762,
+            "null_percent": 45.27502983178721
+          }
+        },
+        {
+          "name": "possession",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8420,
+            "null_count": 11762,
+            "null_percent": 45.27502983178721
+          }
+        },
+        {
+          "name": "B365H",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 121,
+            "null_count": 3387,
+            "null_percent": 13.037453327687748,
+            "range": {
+              "min": 1.04,
+              "max": 26,
+              "avg": 2.6288177230878187
+            }
+          }
+        },
+        {
+          "name": "B365D",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 72,
+            "null_count": 3387,
+            "null_percent": 13.037453327687748,
+            "range": {
+              "min": 1.4,
+              "max": 17,
+              "avg": 3.8396839589235126
+            }
+          }
+        },
+        {
+          "name": "B365A",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 115,
+            "null_count": 3387,
+            "null_percent": 13.037453327687748,
+            "range": {
+              "min": 1.08,
+              "max": 51,
+              "avg": 4.66222202549575
+            }
+          }
+        },
+        {
+          "name": "BWH",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 237,
+            "null_count": 3404,
+            "null_percent": 13.102890796412487,
+            "range": {
+              "min": 1.03,
+              "max": 34,
+              "avg": 2.5592447397563673
+            }
+          }
+        },
+        {
+          "name": "BWD",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 133,
+            "null_count": 3404,
+            "null_percent": 13.102890796412487,
+            "range": {
+              "min": 1.65,
+              "max": 19.5,
+              "avg": 3.7475968992248063
+            }
+          }
+        },
+        {
+          "name": "BWA",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 261,
+            "null_count": 3404,
+            "null_percent": 13.102890796412487,
+            "range": {
+              "min": 1.1,
+              "max": 51,
+              "avg": 4.396948837209302
+            }
+          }
+        },
+        {
+          "name": "IWH",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 147,
+            "null_count": 3459,
+            "null_percent": 13.314600254051348,
+            "range": {
+              "min": 1.03,
+              "max": 20,
+              "avg": 2.4676132326820603
+            }
+          }
+        },
+        {
+          "name": "IWD",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 73,
+            "null_count": 3459,
+            "null_percent": 13.314600254051348,
+            "range": {
+              "min": 1.5,
+              "max": 11,
+              "avg": 3.6089320603907633
+            }
+          }
+        },
+        {
+          "name": "IWA",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 159,
+            "null_count": 3459,
+            "null_percent": 13.314600254051348,
+            "range": {
+              "min": 1.1,
+              "max": 25,
+              "avg": 4.150575044404973
+            }
+          }
+        },
+        {
+          "name": "LBH",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 129,
+            "null_count": 3423,
+            "null_percent": 13.17602679086955,
+            "range": {
+              "min": 1.04,
+              "max": 26,
+              "avg": 2.5362023408405747
+            }
+          }
+        },
+        {
+          "name": "LBD",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 72,
+            "null_count": 3423,
+            "null_percent": 13.17602679086955,
+            "range": {
+              "min": 1.4,
+              "max": 19,
+              "avg": 3.711739670154283
+            }
+          }
+        },
+        {
+          "name": "LBA",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 128,
+            "null_count": 3423,
+            "null_percent": 13.17602679086955,
+            "range": {
+              "min": 1.1,
+              "max": 51,
+              "avg": 4.385350682745168
+            }
+          }
+        },
+        {
+          "name": "PSH",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 948,
+            "null_count": 14811,
+            "null_percent": 57.01143231071249,
+            "range": {
+              "min": 1.04,
+              "max": 36,
+              "avg": 2.816447260028653
+            }
+          }
+        },
+        {
+          "name": "PSD",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 665,
+            "null_count": 14811,
+            "null_percent": 57.01143231071249,
+            "range": {
+              "min": 2.2,
+              "max": 29,
+              "avg": 4.1323244985673355
+            }
+          }
+        },
+        {
+          "name": "PSA",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1475,
+            "null_count": 14811,
+            "null_percent": 57.01143231071249,
+            "range": {
+              "min": 1.09,
+              "max": 47.5,
+              "avg": 4.9727443588825215
+            }
+          }
+        },
+        {
+          "name": "WHH",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 125,
+            "null_count": 3408,
+            "null_percent": 13.11828784787713,
+            "range": {
+              "min": 1.02,
+              "max": 26,
+              "avg": 2.578736874750786
+            }
+          }
+        },
+        {
+          "name": "WHD",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 78,
+            "null_count": 3408,
+            "null_percent": 13.11828784787713,
+            "range": {
+              "min": 1.02,
+              "max": 17,
+              "avg": 3.665295290416907
+            }
+          }
+        },
+        {
+          "name": "WHA",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 136,
+            "null_count": 3408,
+            "null_percent": 13.11828784787713,
+            "range": {
+              "min": 1.08,
+              "max": 51,
+              "avg": 4.482585175667892
+            }
+          }
+        },
+        {
+          "name": "SJH",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 137,
+            "null_count": 8882,
+            "null_percent": 34.18915277724316,
+            "range": {
+              "min": 1.04,
+              "max": 23,
+              "avg": 2.566061004854653
+            }
+          }
+        },
+        {
+          "name": "SJD",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 79,
+            "null_count": 8882,
+            "null_percent": 34.18915277724316,
+            "range": {
+              "min": 1.4,
+              "max": 15,
+              "avg": 3.755879101596771
+            }
+          }
+        },
+        {
+          "name": "SJA",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 132,
+            "null_count": 8882,
+            "null_percent": 34.18915277724316,
+            "range": {
+              "min": 1.1,
+              "max": 41,
+              "avg": 4.622343393577821
+            }
+          }
+        },
+        {
+          "name": "VCH",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 160,
+            "null_count": 3411,
+            "null_percent": 13.129835636475615,
+            "range": {
+              "min": 1.03,
+              "max": 36,
+              "avg": 2.668107098546615
+            }
+          }
+        },
+        {
+          "name": "VCD",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 82,
+            "null_count": 3411,
+            "null_percent": 13.129835636475615,
+            "range": {
+              "min": 1.62,
+              "max": 26,
+              "avg": 3.899048342786246
+            }
+          }
+        },
+        {
+          "name": "VCA",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 151,
+            "null_count": 3411,
+            "null_percent": 13.129835636475615,
+            "range": {
+              "min": 1.08,
+              "max": 67,
+              "avg": 4.840281017369727
+            }
+          }
+        },
+        {
+          "name": "GBH",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 159,
+            "null_count": 11817,
+            "null_percent": 45.486739289426076,
+            "range": {
+              "min": 1.05,
+              "max": 21,
+              "avg": 2.4987635927128937
+            }
+          }
+        },
+        {
+          "name": "GBD",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 84,
+            "null_count": 11817,
+            "null_percent": 45.486739289426076,
+            "range": {
+              "min": 1.45,
+              "max": 11,
+              "avg": 3.648188815139105
+            }
+          }
+        },
+        {
+          "name": "GBA",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 172,
+            "null_count": 11817,
+            "null_percent": 45.486739289426076,
+            "range": {
+              "min": 1.12,
+              "max": 34,
+              "avg": 4.3530970201948875
+            }
+          }
+        },
+        {
+          "name": "BSH",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 101,
+            "null_count": 11818,
+            "null_percent": 45.49058855229224,
+            "range": {
+              "min": 1.04,
+              "max": 17,
+              "avg": 2.4978942165101334
+            }
+          }
+        },
+        {
+          "name": "BSD",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 59,
+            "null_count": 11818,
+            "null_percent": 45.49058855229224,
+            "range": {
+              "min": 1.33,
+              "max": 13,
+              "avg": 3.6607421792246306
+            }
+          }
+        },
+        {
+          "name": "BSA",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 96,
+            "null_count": 11818,
+            "null_percent": 45.49058855229224,
+            "range": {
+              "min": 1.12,
+              "max": 34,
+              "avg": 4.405662735682508
+            }
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "away_player_11",
+          "referenced_table": "Player",
+          "referenced_column": "player_api_id"
+        },
+        {
+          "column_name": "away_player_10",
+          "referenced_table": "Player",
+          "referenced_column": "player_api_id"
+        },
+        {
+          "column_name": "away_player_9",
+          "referenced_table": "Player",
+          "referenced_column": "player_api_id"
+        },
+        {
+          "column_name": "away_player_8",
+          "referenced_table": "Player",
+          "referenced_column": "player_api_id"
+        },
+        {
+          "column_name": "away_player_7",
+          "referenced_table": "Player",
+          "referenced_column": "player_api_id"
+        },
+        {
+          "column_name": "away_player_6",
+          "referenced_table": "Player",
+          "referenced_column": "player_api_id"
+        },
+        {
+          "column_name": "away_player_5",
+          "referenced_table": "Player",
+          "referenced_column": "player_api_id"
+        },
+        {
+          "column_name": "away_player_4",
+          "referenced_table": "Player",
+          "referenced_column": "player_api_id"
+        },
+        {
+          "column_name": "away_player_3",
+          "referenced_table": "Player",
+          "referenced_column": "player_api_id"
+        },
+        {
+          "column_name": "away_player_2",
+          "referenced_table": "Player",
+          "referenced_column": "player_api_id"
+        },
+        {
+          "column_name": "away_player_1",
+          "referenced_table": "Player",
+          "referenced_column": "player_api_id"
+        },
+        {
+          "column_name": "home_player_11",
+          "referenced_table": "Player",
+          "referenced_column": "player_api_id"
+        },
+        {
+          "column_name": "home_player_10",
+          "referenced_table": "Player",
+          "referenced_column": "player_api_id"
+        },
+        {
+          "column_name": "home_player_9",
+          "referenced_table": "Player",
+          "referenced_column": "player_api_id"
+        },
+        {
+          "column_name": "home_player_8",
+          "referenced_table": "Player",
+          "referenced_column": "player_api_id"
+        },
+        {
+          "column_name": "home_player_7",
+          "referenced_table": "Player",
+          "referenced_column": "player_api_id"
+        },
+        {
+          "column_name": "home_player_6",
+          "referenced_table": "Player",
+          "referenced_column": "player_api_id"
+        },
+        {
+          "column_name": "home_player_5",
+          "referenced_table": "Player",
+          "referenced_column": "player_api_id"
+        },
+        {
+          "column_name": "home_player_4",
+          "referenced_table": "Player",
+          "referenced_column": "player_api_id"
+        },
+        {
+          "column_name": "home_player_3",
+          "referenced_table": "Player",
+          "referenced_column": "player_api_id"
+        },
+        {
+          "column_name": "home_player_2",
+          "referenced_table": "Player",
+          "referenced_column": "player_api_id"
+        },
+        {
+          "column_name": "home_player_1",
+          "referenced_table": "Player",
+          "referenced_column": "player_api_id"
+        },
+        {
+          "column_name": "away_team_api_id",
+          "referenced_table": "Team",
+          "referenced_column": "team_api_id"
+        },
+        {
+          "column_name": "home_team_api_id",
+          "referenced_table": "Team",
+          "referenced_column": "team_api_id"
+        },
+        {
+          "column_name": "league_id",
+          "referenced_table": "League",
+          "referenced_column": "\u003cnil\u003e"
+        },
+        {
+          "column_name": "country_id",
+          "referenced_table": "Country",
+          "referenced_column": "\u003cnil\u003e"
+        }
+      ],
+      "rich_context": {
+        "home_team_goal_values": {
+          "content": "1=8400(52.6%), 2=6339(39.7%), 0=5896(37.0%), 3=3288(20.6%), 4=1385(8.7%), 5=457(2.9%), 6=161(1.0%), 7=38(0.2%), 8=9(0.1%), 9=4(0.0%), 10=2(0.0%)",
+          "expires_at": "2026-03-31T14:59:11+08:00"
+        },
+        "season_values": {
+          "content": "2015/2016=3326(20.8%), 2008/2009=3326(20.8%), 2014/2015=3325(20.8%), 2012/2013=3260(20.4%), 2010/2011=3260(20.4%), 2009/2010=3230(20.2%), 2011/2012=3220(20.1%), 2013/2014=3032(19.0%)",
+          "expires_at": "2026-03-31T14:58:58+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "Match",
+          "column": "season",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 25979/25979 non-empty)",
+          "sql_fix": "CAST(\"season\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "Match",
+          "column": "date",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 25979/25979 non-empty)",
+          "sql_fix": "CAST(\"date\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "Match",
+          "column": "PSH",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "57% NULL values (14811/25979)",
+          "sql_fix": "WHERE \"PSH\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "Match",
+          "column": "PSD",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "57% NULL values (14811/25979)",
+          "sql_fix": "WHERE \"PSD\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "Match",
+          "column": "PSA",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "57% NULL values (14811/25979)",
+          "sql_fix": "WHERE \"PSA\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        }
+      ]
+    },
+    "Player": {
+      "name": "Player",
+      "description": "The Player table stores core information about individual players, including their unique identifiers and associated attributes.",
+      "row_count": 11060,
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": true,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 11060,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 11075,
+              "avg": 5537.511392405063
+            }
+          }
+        },
+        {
+          "name": "player_api_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 11060,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 2625,
+              "max": 750584,
+              "avg": 156582.42721518988
+            }
+          }
+        },
+        {
+          "name": "player_name",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 10848,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "player_fifa_api_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 11060,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 2,
+              "max": 234141,
+              "avg": 165664.91048824592
+            }
+          }
+        },
+        {
+          "name": "birthday",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 5762,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "height",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 20,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "182",
+                "count": 1954,
+                "percent": 17.667269439421336
+              },
+              {
+                "value": "177",
+                "count": 1489,
+                "percent": 13.462929475587703
+              },
+              {
+                "value": "180",
+                "count": 1388,
+                "percent": 12.549728752260398
+              },
+              {
+                "value": "187",
+                "count": 1305,
+                "percent": 11.799276672694395
+              },
+              {
+                "value": "185",
+                "count": 1278,
+                "percent": 11.555153707052442
+              },
+              {
+                "value": "175",
+                "count": 1188,
+                "percent": 10.741410488245931
+              },
+              {
+                "value": "190",
+                "count": 652,
+                "percent": 5.895117540687161
+              },
+              {
+                "value": "172",
+                "count": 530,
+                "percent": 4.792043399638336
+              },
+              {
+                "value": "193",
+                "count": 470,
+                "percent": 4.249547920433996
+              },
+              {
+                "value": "170",
+                "count": 403,
+                "percent": 3.6437613019891497
+              },
+              {
+                "value": "195",
+                "count": 129,
+                "percent": 1.166365280289331
+              },
+              {
+                "value": "167",
+                "count": 118,
+                "percent": 1.0669077757685352
+              },
+              {
+                "value": "165",
+                "count": 62,
+                "percent": 0.5605786618444847
+              },
+              {
+                "value": "198",
+                "count": 60,
+                "percent": 0.5424954792043399
+              },
+              {
+                "value": "203",
+                "count": 12,
+                "percent": 0.108499095840868
+              }
+            ],
+            "range": {
+              "min": 157,
+              "max": 208,
+              "avg": 181.28354430379747
+            }
+          }
+        },
+        {
+          "name": "weight",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 50,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 117,
+              "max": 243,
+              "avg": 168.38028933092224
+            }
+          }
+        }
+      ],
+      "indexes": [],
+      "quality_issues": [
+        {
+          "table": "Player",
+          "column": "birthday",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 11060/11060 non-empty)",
+          "sql_fix": "CAST(\"birthday\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        }
+      ]
+    },
+    "Player_Attributes": {
+      "name": "Player_Attributes",
+      "description": "The Player_Attributes table stores detailed performance and behavioral characteristics of football players, including preferred foot and work rates, to support player evaluation and tactical analysis.",
+      "row_count": 183978,
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": true,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 183978,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 183978,
+              "avg": 91989.5
+            }
+          }
+        },
+        {
+          "name": "player_fifa_api_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 11062,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 2,
+              "max": 234141,
+              "avg": 165671.52429094783
+            }
+          }
+        },
+        {
+          "name": "player_api_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 11060,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 2625,
+              "max": 750584,
+              "avg": 135900.61732381047
+            }
+          }
+        },
+        {
+          "name": "date",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 197,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "overall_rating",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 61,
+            "null_count": 836,
+            "null_percent": 0.45440215677961493,
+            "range": {
+              "min": 33,
+              "max": 94,
+              "avg": 68.6000152886831
+            }
+          }
+        },
+        {
+          "name": "potential",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 56,
+            "null_count": 836,
+            "null_percent": 0.45440215677961493,
+            "range": {
+              "min": 39,
+              "max": 97,
+              "avg": 73.46035316857957
+            }
+          }
+        },
+        {
+          "name": "preferred_foot",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 836,
+            "null_percent": 0.45440215677961493,
+            "top_values": [
+              {
+                "value": "right",
+                "count": 138409,
+                "percent": 75.23127765276283
+              },
+              {
+                "value": "left",
+                "count": 44733,
+                "percent": 24.314320190457554
+              }
+            ]
+          }
+        },
+        {
+          "name": "attacking_work_rate",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8,
+            "null_count": 3230,
+            "null_percent": 1.7556446966485124,
+            "top_values": [
+              {
+                "value": "medium",
+                "count": 125070,
+                "percent": 67.98095424452923
+              },
+              {
+                "value": "high",
+                "count": 42823,
+                "percent": 23.276152583461066
+              },
+              {
+                "value": "low",
+                "count": 8569,
+                "percent": 4.657622106991053
+              },
+              {
+                "value": "None",
+                "count": 3639,
+                "percent": 1.9779538857906926
+              },
+              {
+                "value": "norm",
+                "count": 348,
+                "percent": 0.18915305090826076
+              },
+              {
+                "value": "y",
+                "count": 106,
+                "percent": 0.05761558447205644
+              },
+              {
+                "value": "le",
+                "count": 104,
+                "percent": 0.05652849797258368
+              },
+              {
+                "value": "stoc",
+                "count": 89,
+                "percent": 0.04837534922653796
+              }
+            ]
+          }
+        },
+        {
+          "name": "defensive_work_rate",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 19,
+            "null_count": 836,
+            "null_percent": 0.45440215677961493,
+            "top_values": [
+              {
+                "value": "medium",
+                "count": 130846,
+                "percent": 71.12046005500657
+              },
+              {
+                "value": "high",
+                "count": 27041,
+                "percent": 14.697953016121494
+              },
+              {
+                "value": "low",
+                "count": 18432,
+                "percent": 10.018589179140983
+              },
+              {
+                "value": "_0",
+                "count": 2394,
+                "percent": 1.3012425398688974
+              },
+              {
+                "value": "o",
+                "count": 1550,
+                "percent": 0.8424920370913913
+              },
+              {
+                "value": "1",
+                "count": 441,
+                "percent": 0.23970257313374427
+              },
+              {
+                "value": "ormal",
+                "count": 348,
+                "percent": 0.18915305090826076
+              },
+              {
+                "value": "2",
+                "count": 342,
+                "percent": 0.1858917914098425
+              },
+              {
+                "value": "3",
+                "count": 258,
+                "percent": 0.14023415843198642
+              },
+              {
+                "value": "5",
+                "count": 234,
+                "percent": 0.1271891204383133
+              },
+              {
+                "value": "7",
+                "count": 217,
+                "percent": 0.1179488851927948
+              },
+              {
+                "value": "6",
+                "count": 197,
+                "percent": 0.10707802019806717
+              },
+              {
+                "value": "0",
+                "count": 197,
+                "percent": 0.10707802019806717
+              },
+              {
+                "value": "9",
+                "count": 152,
+                "percent": 0.08261857395992998
+              },
+              {
+                "value": "4",
+                "count": 116,
+                "percent": 0.06305101696942025
+              }
+            ]
+          }
+        },
+        {
+          "name": "crossing",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 95,
+            "null_count": 836,
+            "null_percent": 0.45440215677961493,
+            "range": {
+              "min": 1,
+              "max": 95,
+              "avg": 55.0868834019504
+            }
+          }
+        },
+        {
+          "name": "finishing",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 97,
+            "null_count": 836,
+            "null_percent": 0.45440215677961493,
+            "range": {
+              "min": 1,
+              "max": 97,
+              "avg": 49.92107763374867
+            }
+          }
+        },
+        {
+          "name": "heading_accuracy",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 96,
+            "null_count": 836,
+            "null_percent": 0.45440215677961493,
+            "range": {
+              "min": 1,
+              "max": 98,
+              "avg": 57.26602308591148
+            }
+          }
+        },
+        {
+          "name": "short_passing",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 95,
+            "null_count": 836,
+            "null_percent": 0.45440215677961493,
+            "range": {
+              "min": 3,
+              "max": 97,
+              "avg": 62.42967205774754
+            }
+          }
+        },
+        {
+          "name": "volleys",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 93,
+            "null_count": 2713,
+            "null_percent": 1.4746328365348031,
+            "range": {
+              "min": 1,
+              "max": 93,
+              "avg": 49.46843571566491
+            }
+          }
+        },
+        {
+          "name": "dribbling",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 97,
+            "null_count": 836,
+            "null_percent": 0.45440215677961493,
+            "range": {
+              "min": 1,
+              "max": 97,
+              "avg": 59.17515370586758
+            }
+          }
+        },
+        {
+          "name": "curve",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 92,
+            "null_count": 2713,
+            "null_percent": 1.4746328365348031,
+            "range": {
+              "min": 2,
+              "max": 94,
+              "avg": 52.9656745648636
+            }
+          }
+        },
+        {
+          "name": "free_kick_accuracy",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 97,
+            "null_count": 836,
+            "null_percent": 0.45440215677961493,
+            "range": {
+              "min": 1,
+              "max": 97,
+              "avg": 49.38095030085944
+            }
+          }
+        },
+        {
+          "name": "long_passing",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 95,
+            "null_count": 836,
+            "null_percent": 0.45440215677961493,
+            "range": {
+              "min": 3,
+              "max": 97,
+              "avg": 57.06988020224744
+            }
+          }
+        },
+        {
+          "name": "ball_control",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 93,
+            "null_count": 836,
+            "null_percent": 0.45440215677961493,
+            "range": {
+              "min": 5,
+              "max": 97,
+              "avg": 63.388878575094736
+            }
+          }
+        },
+        {
+          "name": "acceleration",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 86,
+            "null_count": 836,
+            "null_percent": 0.45440215677961493,
+            "range": {
+              "min": 10,
+              "max": 97,
+              "avg": 67.6593572200806
+            }
+          }
+        },
+        {
+          "name": "sprint_speed",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 85,
+            "null_count": 836,
+            "null_percent": 0.45440215677961493,
+            "range": {
+              "min": 12,
+              "max": 97,
+              "avg": 68.05124438959933
+            }
+          }
+        },
+        {
+          "name": "agility",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 81,
+            "null_count": 2713,
+            "null_percent": 1.4746328365348031,
+            "range": {
+              "min": 11,
+              "max": 96,
+              "avg": 65.9709099936557
+            }
+          }
+        },
+        {
+          "name": "reactions",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 78,
+            "null_count": 836,
+            "null_percent": 0.45440215677961493,
+            "range": {
+              "min": 17,
+              "max": 96,
+              "avg": 66.10370641360257
+            }
+          }
+        },
+        {
+          "name": "balance",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 81,
+            "null_count": 2713,
+            "null_percent": 1.4746328365348031,
+            "range": {
+              "min": 12,
+              "max": 96,
+              "avg": 65.18949604170689
+            }
+          }
+        },
+        {
+          "name": "shot_power",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 96,
+            "null_count": 836,
+            "null_percent": 0.45440215677961493,
+            "range": {
+              "min": 2,
+              "max": 97,
+              "avg": 61.80842734053358
+            }
+          }
+        },
+        {
+          "name": "jumping",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 79,
+            "null_count": 2713,
+            "null_percent": 1.4746328365348031,
+            "range": {
+              "min": 14,
+              "max": 96,
+              "avg": 66.96904532038728
+            }
+          }
+        },
+        {
+          "name": "stamina",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 84,
+            "null_count": 836,
+            "null_percent": 0.45440215677961493,
+            "range": {
+              "min": 10,
+              "max": 96,
+              "avg": 67.03854386213976
+            }
+          }
+        },
+        {
+          "name": "strength",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 82,
+            "null_count": 836,
+            "null_percent": 0.45440215677961493,
+            "range": {
+              "min": 10,
+              "max": 96,
+              "avg": 67.42452850793373
+            }
+          }
+        },
+        {
+          "name": "long_shots",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 96,
+            "null_count": 836,
+            "null_percent": 0.45440215677961493,
+            "range": {
+              "min": 1,
+              "max": 96,
+              "avg": 53.33943060575947
+            }
+          }
+        },
+        {
+          "name": "aggression",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 91,
+            "null_count": 836,
+            "null_percent": 0.45440215677961493,
+            "range": {
+              "min": 6,
+              "max": 97,
+              "avg": 60.94804577868539
+            }
+          }
+        },
+        {
+          "name": "interceptions",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 96,
+            "null_count": 836,
+            "null_percent": 0.45440215677961493,
+            "range": {
+              "min": 1,
+              "max": 96,
+              "avg": 52.00927149425036
+            }
+          }
+        },
+        {
+          "name": "positioning",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 95,
+            "null_count": 836,
+            "null_percent": 0.45440215677961493,
+            "range": {
+              "min": 2,
+              "max": 96,
+              "avg": 55.78650446101932
+            }
+          }
+        },
+        {
+          "name": "vision",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 97,
+            "null_count": 2713,
+            "null_percent": 1.4746328365348031,
+            "range": {
+              "min": 1,
+              "max": 97,
+              "avg": 57.873549775191016
+            }
+          }
+        },
+        {
+          "name": "penalties",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 94,
+            "null_count": 836,
+            "null_percent": 0.45440215677961493,
+            "range": {
+              "min": 2,
+              "max": 96,
+              "avg": 55.0039859780935
+            }
+          }
+        },
+        {
+          "name": "marking",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 95,
+            "null_count": 836,
+            "null_percent": 0.45440215677961493,
+            "range": {
+              "min": 1,
+              "max": 96,
+              "avg": 46.772242303786136
+            }
+          }
+        },
+        {
+          "name": "standing_tackle",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 95,
+            "null_count": 836,
+            "null_percent": 0.45440215677961493,
+            "range": {
+              "min": 1,
+              "max": 95,
+              "avg": 50.35125749418484
+            }
+          }
+        },
+        {
+          "name": "sliding_tackle",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 94,
+            "null_count": 2713,
+            "null_percent": 1.4746328365348031,
+            "range": {
+              "min": 2,
+              "max": 95,
+              "avg": 48.00146194797672
+            }
+          }
+        },
+        {
+          "name": "gk_diving",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 93,
+            "null_count": 836,
+            "null_percent": 0.45440215677961493,
+            "range": {
+              "min": 1,
+              "max": 94,
+              "avg": 14.704393312293194
+            }
+          }
+        },
+        {
+          "name": "gk_handling",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 90,
+            "null_count": 836,
+            "null_percent": 0.45440215677961493,
+            "range": {
+              "min": 1,
+              "max": 93,
+              "avg": 16.06361184217711
+            }
+          }
+        },
+        {
+          "name": "gk_kicking",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 97,
+            "null_count": 836,
+            "null_percent": 0.45440215677961493,
+            "range": {
+              "min": 1,
+              "max": 97,
+              "avg": 20.99836192681089
+            }
+          }
+        },
+        {
+          "name": "gk_positioning",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 94,
+            "null_count": 836,
+            "null_percent": 0.45440215677961493,
+            "range": {
+              "min": 1,
+              "max": 96,
+              "avg": 16.13215428465344
+            }
+          }
+        },
+        {
+          "name": "gk_reflexes",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 92,
+            "null_count": 836,
+            "null_percent": 0.45440215677961493,
+            "range": {
+              "min": 1,
+              "max": 96,
+              "avg": 16.441438883489315
+            }
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "player_api_id",
+          "referenced_table": "Player",
+          "referenced_column": "player_api_id"
+        },
+        {
+          "column_name": "player_fifa_api_id",
+          "referenced_table": "Player",
+          "referenced_column": "player_fifa_api_id"
+        }
+      ],
+      "rich_context": {
+        "attacking_work_rate_values": {
+          "content": "medium=113589(61.9%), high=47031(25.6%), low=18792(10.2%), leisure=173(\u003c1%), norm=120(\u003c1%), null=873(\u003c1%)",
+          "expires_at": "2026-03-31T14:58:43+08:00"
+        },
+        "defensive_work_rate_values": {
+          "content": "medium=112340(61.2%), high=45782(25.0%), low=21290(11.6%), leisure=173(\u003c1%), norm=120(\u003c1%), null=873(\u003c1%)",
+          "expires_at": "2026-03-31T14:58:55+08:00"
+        },
+        "preferred_foot_values": {
+          "content": "right=138409(75.6%), left=44733(24.4%), null=836(\u003c1%)",
+          "expires_at": "2026-03-31T14:58:31+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "Player_Attributes",
+          "column": "date",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 183978/183978 non-empty)",
+          "sql_fix": "CAST(\"date\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "Player_Attributes",
+          "column": "player_fifa_api_id",
+          "type": "orphan",
+          "severity": "warning",
+          "description": "49 orphan records (player_fifa_api_id not in Player.player_fifa_api_id)",
+          "sql_fix": "LEFT JOIN \"Player\" ON \"Player_Attributes\".\"player_fifa_api_id\" = \"Player\".\"player_fifa_api_id\"",
+          "affected_ops": [
+            "JOIN"
+          ]
+        }
+      ]
+    },
+    "Team": {
+      "name": "Team",
+      "description": "The Team table stores core information about organizational teams, including their identifiers, names, and associated attributes.",
+      "row_count": 299,
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": true,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 299,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 51606,
+              "avg": 23735.30100334448
+            }
+          }
+        },
+        {
+          "name": "team_api_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 299,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1601,
+              "max": 274581,
+              "avg": 12340.521739130434
+            }
+          }
+        },
+        {
+          "name": "team_fifa_api_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 285,
+            "null_count": 11,
+            "null_percent": 3.678929765886288,
+            "range": {
+              "min": 1,
+              "max": 112513,
+              "avg": 21534.305555555555
+            }
+          }
+        },
+        {
+          "name": "team_long_name",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 296,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "team_short_name",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 259,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        }
+      ],
+      "indexes": []
+    },
+    "Team_Attributes": {
+      "name": "Team_Attributes",
+      "description": "The Team_Attributes table captures detailed tactical and stylistic characteristics of football teams, including build-up play, chance creation, and defensive strategies, to support performance analysis and strategic decision-making.",
+      "row_count": 1458,
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": true,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 1458,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 1458,
+              "avg": 729.5
+            }
+          }
+        },
+        {
+          "name": "team_fifa_api_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 285,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 112513,
+              "avg": 17706.982167352537
+            }
+          }
+        },
+        {
+          "name": "team_api_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 288,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1601,
+              "max": 274581,
+              "avg": 9995.727023319616
+            }
+          }
+        },
+        {
+          "name": "date",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 6,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "2015-09-10 00:00:00",
+                "count": 245,
+                "percent": 16.80384087791495
+              },
+              {
+                "value": "2014-09-19 00:00:00",
+                "count": 244,
+                "percent": 16.735253772290807
+              },
+              {
+                "value": "2011-02-22 00:00:00",
+                "count": 244,
+                "percent": 16.735253772290807
+              },
+              {
+                "value": "2013-09-20 00:00:00",
+                "count": 242,
+                "percent": 16.598079561042525
+              },
+              {
+                "value": "2012-02-22 00:00:00",
+                "count": 242,
+                "percent": 16.598079561042525
+              },
+              {
+                "value": "2010-02-22 00:00:00",
+                "count": 241,
+                "percent": 16.52949245541838
+              }
+            ]
+          }
+        },
+        {
+          "name": "buildUpPlaySpeed",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 57,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 20,
+              "max": 80,
+              "avg": 52.46227709190672
+            }
+          }
+        },
+        {
+          "name": "buildUpPlaySpeedClass",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Balanced",
+                "count": 1184,
+                "percent": 81.20713305898491
+              },
+              {
+                "value": "Fast",
+                "count": 172,
+                "percent": 11.796982167352537
+              },
+              {
+                "value": "Slow",
+                "count": 102,
+                "percent": 6.995884773662551
+              }
+            ]
+          }
+        },
+        {
+          "name": "buildUpPlayDribbling",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 49,
+            "null_count": 969,
+            "null_percent": 66.46090534979425,
+            "range": {
+              "min": 24,
+              "max": 77,
+              "avg": 48.607361963190186
+            }
+          }
+        },
+        {
+          "name": "buildUpPlayDribblingClass",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Little",
+                "count": 1004,
+                "percent": 68.86145404663924
+              },
+              {
+                "value": "Normal",
+                "count": 433,
+                "percent": 29.698216735253773
+              },
+              {
+                "value": "Lots",
+                "count": 21,
+                "percent": 1.440329218106996
+              }
+            ]
+          }
+        },
+        {
+          "name": "buildUpPlayPassing",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 58,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 20,
+              "max": 80,
+              "avg": 48.49039780521262
+            }
+          }
+        },
+        {
+          "name": "buildUpPlayPassingClass",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Mixed",
+                "count": 1236,
+                "percent": 84.77366255144034
+              },
+              {
+                "value": "Short",
+                "count": 128,
+                "percent": 8.77914951989026
+              },
+              {
+                "value": "Long",
+                "count": 94,
+                "percent": 6.447187928669409
+              }
+            ]
+          }
+        },
+        {
+          "name": "buildUpPlayPositioningClass",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Organised",
+                "count": 1386,
+                "percent": 95.06172839506173
+              },
+              {
+                "value": "Free Form",
+                "count": 72,
+                "percent": 4.938271604938271
+              }
+            ]
+          }
+        },
+        {
+          "name": "chanceCreationPassing",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 50,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 21,
+              "max": 80,
+              "avg": 52.16529492455418
+            }
+          }
+        },
+        {
+          "name": "chanceCreationPassingClass",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Normal",
+                "count": 1231,
+                "percent": 84.43072702331962
+              },
+              {
+                "value": "Risky",
+                "count": 171,
+                "percent": 11.728395061728394
+              },
+              {
+                "value": "Safe",
+                "count": 56,
+                "percent": 3.840877914951989
+              }
+            ]
+          }
+        },
+        {
+          "name": "chanceCreationCrossing",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 56,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 20,
+              "max": 80,
+              "avg": 53.731824417009605
+            }
+          }
+        },
+        {
+          "name": "chanceCreationCrossingClass",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Normal",
+                "count": 1195,
+                "percent": 81.96159122085048
+              },
+              {
+                "value": "Lots",
+                "count": 211,
+                "percent": 14.4718792866941
+              },
+              {
+                "value": "Little",
+                "count": 52,
+                "percent": 3.5665294924554183
+              }
+            ]
+          }
+        },
+        {
+          "name": "chanceCreationShooting",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 57,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 22,
+              "max": 80,
+              "avg": 53.96913580246913
+            }
+          }
+        },
+        {
+          "name": "chanceCreationShootingClass",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Normal",
+                "count": 1224,
+                "percent": 83.9506172839506
+              },
+              {
+                "value": "Lots",
+                "count": 197,
+                "percent": 13.511659807956104
+              },
+              {
+                "value": "Little",
+                "count": 37,
+                "percent": 2.5377229080932784
+              }
+            ]
+          }
+        },
+        {
+          "name": "chanceCreationPositioningClass",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Organised",
+                "count": 1309,
+                "percent": 89.78052126200275
+              },
+              {
+                "value": "Free Form",
+                "count": 149,
+                "percent": 10.219478737997257
+              }
+            ]
+          }
+        },
+        {
+          "name": "defencePressure",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 48,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 23,
+              "max": 72,
+              "avg": 46.01714677640604
+            }
+          }
+        },
+        {
+          "name": "defencePressureClass",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Medium",
+                "count": 1243,
+                "percent": 85.25377229080932
+              },
+              {
+                "value": "Deep",
+                "count": 154,
+                "percent": 10.562414266117969
+              },
+              {
+                "value": "High",
+                "count": 61,
+                "percent": 4.183813443072702
+              }
+            ]
+          }
+        },
+        {
+          "name": "defenceAggression",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 47,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 24,
+              "max": 72,
+              "avg": 49.251028806584365
+            }
+          }
+        },
+        {
+          "name": "defenceAggressionClass",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Press",
+                "count": 1274,
+                "percent": 87.37997256515774
+              },
+              {
+                "value": "Double",
+                "count": 99,
+                "percent": 6.790123456790123
+              },
+              {
+                "value": "Contain",
+                "count": 85,
+                "percent": 5.829903978052126
+              }
+            ]
+          }
+        },
+        {
+          "name": "defenceTeamWidth",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 43,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 29,
+              "max": 73,
+              "avg": 52.185871056241425
+            }
+          }
+        },
+        {
+          "name": "defenceTeamWidthClass",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Normal",
+                "count": 1286,
+                "percent": 88.20301783264746
+              },
+              {
+                "value": "Wide",
+                "count": 111,
+                "percent": 7.613168724279835
+              },
+              {
+                "value": "Narrow",
+                "count": 61,
+                "percent": 4.183813443072702
+              }
+            ]
+          }
+        },
+        {
+          "name": "defenceDefenderLineClass",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Cover",
+                "count": 1362,
+                "percent": 93.4156378600823
+              },
+              {
+                "value": "Offside Trap",
+                "count": 96,
+                "percent": 6.584362139917696
+              }
+            ]
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "team_api_id",
+          "referenced_table": "Team",
+          "referenced_column": "team_api_id"
+        },
+        {
+          "column_name": "team_fifa_api_id",
+          "referenced_table": "Team",
+          "referenced_column": "team_fifa_api_id"
+        }
+      ],
+      "rich_context": {
+        "buildUpPlayPassingClass_values": {
+          "content": "Mixed=1236(84.2%), Short=128(8.7%), Long=94(6.4%)",
+          "expires_at": "2026-03-31T14:58:30+08:00"
+        },
+        "buildUpPlayPositioningClass_values": {
+          "content": "Organised=1354(92.9%), Free Form=104(7.1%)",
+          "expires_at": "2026-03-31T14:58:37+08:00"
+        },
+        "buildUpPlaySpeedClass_values": {
+          "content": "Balanced=1184(80.7%), Fast=172(11.7%), Slow=102(6.9%)",
+          "expires_at": "2026-03-31T14:58:24+08:00"
+        },
+        "chanceCreationCrossingClass_values": {
+          "content": "Normal=1254(85.4%), Lots=128(8.7%), Little=76(5.2%)",
+          "expires_at": "2026-03-31T14:58:53+08:00"
+        },
+        "chanceCreationPassingClass_values": {
+          "content": "Normal=1248(85.0%), Risky=130(8.9%), Safe=80(5.5%)",
+          "expires_at": "2026-03-31T14:58:46+08:00"
+        },
+        "chanceCreationPositioningClass_values": {
+          "content": "Organised=1362(93.4%), Free Form=96(6.6%)",
+          "expires_at": "2026-03-31T14:59:07+08:00"
+        },
+        "chanceCreationShootingClass_values": {
+          "content": "Normal=1268(86.4%), Lots=112(7.6%), Little=78(5.3%)",
+          "expires_at": "2026-03-31T14:59:00+08:00"
+        },
+        "defenceAggressionClass_values": {
+          "content": "Press=1204(82.0%), Double=158(10.8%), Contain=96(6.5%)",
+          "expires_at": "2026-03-31T14:59:18+08:00"
+        },
+        "defencePressureClass_values": {
+          "content": "Medium=1198(81.6%), High=162(11.0%), Deep=98(6.7%)",
+          "expires_at": "2026-03-31T14:59:11+08:00"
+        },
+        "defenceTeamWidthClass_values": {
+          "content": "Normal=1256(85.6%), Wide=124(8.5%), Narrow=78(5.3%)",
+          "expires_at": "2026-03-31T14:59:31+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "Team_Attributes",
+          "column": "date",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 1458/1458 non-empty)",
+          "sql_fix": "CAST(\"date\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "Team_Attributes",
+          "column": "buildUpPlayDribbling",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "66% NULL values (969/1458)",
+          "sql_fix": "WHERE \"buildUpPlayDribbling\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        }
+      ]
+    }
+  },
+  "total_tables": 0,
+  "total_rows": 0
+}

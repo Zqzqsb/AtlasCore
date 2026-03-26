@@ -1,0 +1,170 @@
+{
+  "db_id": "student_club",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "member_id"
+      ],
+      [
+        "recD078PnS3x2doBe"
+      ],
+      [
+        "recP6DJPyi5donvXL"
+      ],
+      [
+        "recEFd8s6pkrTt4Pz"
+      ],
+      [
+        "rec28ORZgcm1dtqBZ"
+      ],
+      [
+        "recf4UKTfipCzgcSA"
+      ],
+      [
+        "recZ4PkGERzl9ziHO"
+      ],
+      [
+        "recTjHY5xXhvkCdVT"
+      ],
+      [
+        "recT92PyyZCGq1R68"
+      ],
+      [
+        "recL94zpn6Xh6kQii"
+      ],
+      [
+        "recJMazpPVexyFYTc"
+      ],
+      [
+        "recro8T1MPMwRadVH"
+      ],
+      [
+        "reco0mr8dXTgs5wWA"
+      ],
+      [
+        "recEymrwCUKxiiosI"
+      ],
+      [
+        "recsTO4OZIF9rbubk"
+      ],
+      [
+        "rec4BLdZHS2Blfp4v"
+      ],
+      [
+        "recxBj3tjKTGHqucS"
+      ],
+      [
+        "recUdRhbhcEO1Hk5r"
+      ],
+      [
+        "recuSfhAZIlKba4s2"
+      ],
+      [
+        "recWh2lJVOT6HjChK"
+      ],
+      [
+        "rec280Sk7o31iG0Tx"
+      ],
+      [
+        "recQaxyXBQG5BBtD0"
+      ],
+      [
+        "rec3pH4DxMcWHMRB7"
+      ],
+      [
+        "reccW7q1KkhSKZsea"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T3.member_id FROM event AS T1 INNER JOIN attendance AS T2 ON T1.event_id = T2.link_to_event INNER JOIN member AS T3 ON T2.link_to_member = T3.member_id WHERE T1.event_name = 'October Meeting'",
+  "id": 1367,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "member_id"
+      ],
+      [
+        "rec280Sk7o31iG0Tx"
+      ],
+      [
+        "rec28ORZgcm1dtqBZ"
+      ],
+      [
+        "rec3pH4DxMcWHMRB7"
+      ],
+      [
+        "rec4BLdZHS2Blfp4v"
+      ],
+      [
+        "recD078PnS3x2doBe"
+      ],
+      [
+        "recEFd8s6pkrTt4Pz"
+      ],
+      [
+        "recEymrwCUKxiiosI"
+      ],
+      [
+        "recJMazpPVexyFYTc"
+      ],
+      [
+        "recL94zpn6Xh6kQii"
+      ],
+      [
+        "recP6DJPyi5donvXL"
+      ],
+      [
+        "recQaxyXBQG5BBtD0"
+      ],
+      [
+        "recT92PyyZCGq1R68"
+      ],
+      [
+        "recTjHY5xXhvkCdVT"
+      ],
+      [
+        "recUdRhbhcEO1Hk5r"
+      ],
+      [
+        "recWh2lJVOT6HjChK"
+      ],
+      [
+        "recZ4PkGERzl9ziHO"
+      ],
+      [
+        "reccW7q1KkhSKZsea"
+      ],
+      [
+        "recf4UKTfipCzgcSA"
+      ],
+      [
+        "reco0mr8dXTgs5wWA"
+      ],
+      [
+        "recro8T1MPMwRadVH"
+      ],
+      [
+        "recsTO4OZIF9rbubk"
+      ],
+      [
+        "recuSfhAZIlKba4s2"
+      ],
+      [
+        "recxBj3tjKTGHqucS"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT a.link_to_member AS member_id\nFROM attendance a\nJOIN event e ON a.link_to_event = e.event_id\nWHERE e.event_name = 'October Meeting';",
+  "question": "List all the members who attended the event \"October Meeting\".",
+  "thinking": ""
+}

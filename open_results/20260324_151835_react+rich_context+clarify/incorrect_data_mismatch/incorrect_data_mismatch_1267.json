@@ -1,0 +1,38 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "moderate",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Birthday"
+      ],
+      [
+        "1989-08-28 00:00:00 +0000 UTC"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.Birthday FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.RNP != '-' OR '+-' ORDER BY T1.Birthday DESC LIMIT 1",
+  "id": 1267,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Birthday"
+      ],
+      [
+        "1989-08-28"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT MAX(Patient.Birthday) AS Birthday FROM Patient JOIN Laboratory ON Patient.ID = Laboratory.ID WHERE Laboratory.RNP NOT IN ('-', '+-');",
+  "question": "Which is the youngest patient with an abnormal anti-ribonuclear protein level? Please list his or her date of birth.",
+  "thinking": ""
+}

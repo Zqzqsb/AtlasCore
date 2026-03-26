@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.driverId)"
+      ],
+      [
+        "2880"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T1.driverId) FROM results AS T1 INNER JOIN drivers AS T2 on T1.driverId = T2.driverId WHERE T2.nationality = 'Italian' AND T1.time IS NULL",
+  "id": 958,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.driverId)"
+      ],
+      [
+        "2880"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(T1.driverId) \nFROM drivers AS T1 \nINNER JOIN results AS T2 ON T1.driverId = T2.driverId \nWHERE T1.nationality = 'Italian' AND T2.time IS NULL",
+  "question": "How many Italian drivers haven't finished the race?",
+  "thinking": ""
+}

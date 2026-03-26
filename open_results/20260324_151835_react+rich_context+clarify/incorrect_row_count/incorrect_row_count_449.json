@@ -1,0 +1,2142 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=47, pred=480",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name",
+        "type"
+      ],
+      [
+        "Abzan Advantage",
+        "Instant"
+      ],
+      [
+        "Abzan Runemark",
+        "Enchantment — Aura"
+      ],
+      [
+        "Abzan Skycaptain",
+        "Creature — Bird Soldier"
+      ],
+      [
+        "Arashin Cleric",
+        "Creature — Human Cleric"
+      ],
+      [
+        "Daghatar the Adamant",
+        "Legendary Creature — Human Warrior"
+      ],
+      [
+        "Dragonscale General",
+        "Creature — Human Warrior"
+      ],
+      [
+        "Elite Scaleguard",
+        "Creature — Human Soldier"
+      ],
+      [
+        "Honor's Reward",
+        "Instant"
+      ],
+      [
+        "Merciless Executioner",
+        "Creature — Orc Warrior"
+      ],
+      [
+        "Abzan Beastmaster",
+        "Creature — Dog Shaman"
+      ],
+      [
+        "Abzan Kin-Guard",
+        "Creature — Human Warrior"
+      ],
+      [
+        "Arashin War Beast",
+        "Creature — Beast"
+      ],
+      [
+        "Battlefront Krushok",
+        "Creature — Beast"
+      ],
+      [
+        "Cached Defenses",
+        "Sorcery"
+      ],
+      [
+        "Map the Wastes",
+        "Sorcery"
+      ],
+      [
+        "Sandsteppe Mastodon",
+        "Creature — Elephant"
+      ],
+      [
+        "Warden of the First Tree",
+        "Creature — Human"
+      ],
+      [
+        "Abzan Battle Priest",
+        "Creature — Human Cleric"
+      ],
+      [
+        "Abzan Falconer",
+        "Creature — Human Soldier"
+      ],
+      [
+        "Ainok Bond-Kin",
+        "Creature — Dog Soldier"
+      ],
+      [
+        "Dazzling Ramparts",
+        "Creature — Wall"
+      ],
+      [
+        "Herald of Anafenza",
+        "Creature — Human Soldier"
+      ],
+      [
+        "High Sentinels of Arashin",
+        "Creature — Bird Soldier"
+      ],
+      [
+        "Salt Road Patrol",
+        "Creature — Human Scout"
+      ],
+      [
+        "War Behemoth",
+        "Creature — Beast"
+      ],
+      [
+        "Watcher of the Roost",
+        "Creature — Bird Soldier"
+      ],
+      [
+        "Disowned Ancestor",
+        "Creature — Spirit Warrior"
+      ],
+      [
+        "Krumar Bond-Kin",
+        "Creature — Orc Warrior"
+      ],
+      [
+        "Mer-Ek Nightblade",
+        "Creature — Orc Assassin"
+      ],
+      [
+        "Retribution of the Ancients",
+        "Enchantment"
+      ],
+      [
+        "Unyielding Krumar",
+        "Creature — Orc Warrior"
+      ],
+      [
+        "Archers' Parapet",
+        "Creature — Wall"
+      ],
+      [
+        "Hardened Scales",
+        "Enchantment"
+      ],
+      [
+        "Kin-Tree Warden",
+        "Creature — Human Warrior"
+      ],
+      [
+        "Longshot Squad",
+        "Creature — Dog Archer"
+      ],
+      [
+        "Tuskguard Captain",
+        "Creature — Human Warrior"
+      ],
+      [
+        "Abzan Ascendancy",
+        "Enchantment"
+      ],
+      [
+        "Abzan Charm",
+        "Instant"
+      ],
+      [
+        "Abzan Guide",
+        "Creature — Human Warrior"
+      ],
+      [
+        "Anafenza, the Foremost",
+        "Legendary Creature — Human Soldier"
+      ],
+      [
+        "Armament Corps",
+        "Creature — Human Soldier"
+      ],
+      [
+        "Chief of the Scale",
+        "Creature — Human Warrior"
+      ],
+      [
+        "Duneblast",
+        "Sorcery"
+      ],
+      [
+        "Ivorytusk Fortress",
+        "Creature — Elephant"
+      ],
+      [
+        "Siege Rhino",
+        "Creature — Rhino"
+      ],
+      [
+        "Abzan Banner",
+        "Artifact"
+      ],
+      [
+        "Sandsteppe Citadel",
+        "Land"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T1.name, T1.type FROM cards AS T1 INNER JOIN foreign_data AS T2 ON T2.uuid = T1.uuid WHERE T1.watermark = 'abzan'",
+  "id": 449,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name",
+        "type"
+      ],
+      [
+        "Abzan-Vorteil",
+        "Spontanzauber"
+      ],
+      [
+        "Ventaja abzana",
+        "Instantáneo"
+      ],
+      [
+        "Avantage abzan",
+        "Éphémère"
+      ],
+      [
+        "Vantaggio Abzan",
+        "Istantaneo"
+      ],
+      [
+        "アブザンの優位",
+        "インスタント"
+      ],
+      [
+        "아브잔의 이점",
+        "순간마법"
+      ],
+      [
+        "Vantagem Abzan",
+        "Mágica Instantânea"
+      ],
+      [
+        "Преимущество Абзана",
+        "Мгновенное заклинание"
+      ],
+      [
+        "阿布赞式强体",
+        "瞬间"
+      ],
+      [
+        "阿布贊式強體",
+        "瞬間"
+      ],
+      [
+        "Abzan-Runenzeichen",
+        "Verzauberung — Aura"
+      ],
+      [
+        "Marca rúnica abzana",
+        "Encantamiento — Aura"
+      ],
+      [
+        "Marquerune d'Abzan",
+        "Enchantement : aura"
+      ],
+      [
+        "Marchio Runico Abzan",
+        "Incantesimo — Aura"
+      ],
+      [
+        "アブザンの呪印",
+        "エンチャント — オーラ"
+      ],
+      [
+        "아브잔 룬표식",
+        "부여마법 — 마법진"
+      ],
+      [
+        "Marca Rúnica Abzan",
+        "Encantamento — Aura"
+      ],
+      [
+        "Рунная Метка Абзана",
+        "Чары — Аура"
+      ],
+      [
+        "阿布赞符印",
+        "结界～灵气"
+      ],
+      [
+        "阿布贊符印",
+        "結界～靈氣"
+      ],
+      [
+        "Abzan-Geschwaderführer",
+        "Kreatur — Vogel, Soldat"
+      ],
+      [
+        "Capitán celeste abzano",
+        "Criatura — Soldado ave"
+      ],
+      [
+        "Capitaine céleste abzane",
+        "Créature : oiseau et soldat"
+      ],
+      [
+        "Capitana dei Cieli Abzan",
+        "Creatura — Soldato Uccello"
+      ],
+      [
+        "アブザンの飛空隊長",
+        "クリーチャー — 鳥・兵士"
+      ],
+      [
+        "아브잔 창공지휘관",
+        "생물 — 조류 병사"
+      ],
+      [
+        "Capitão Celeste Abzan",
+        "Criatura — Ave Soldado"
+      ],
+      [
+        "Абзанский Небесный Капитан",
+        "Существо — Птица Солдат"
+      ],
+      [
+        "阿布赞空队长",
+        "生物～鸟／士兵"
+      ],
+      [
+        "阿布贊空隊長",
+        "生物～鳥／士兵"
+      ],
+      [
+        "Arashin-Kleriker",
+        "Kreatur — Mensch, Kleriker"
+      ],
+      [
+        "Clérigo de Arashin",
+        "Criatura — Clérigo humano"
+      ],
+      [
+        "Clerc d'Arashin",
+        "Créature : humain et clerc"
+      ],
+      [
+        "Chierico di Arashin",
+        "Creatura — Chierico Umano"
+      ],
+      [
+        "アラシンの僧侶",
+        "クリーチャー — 人間・クレリック"
+      ],
+      [
+        "아라신 성직자",
+        "생물 — 인간 성직자"
+      ],
+      [
+        "Clérigo Arashin",
+        "Criatura — Humano Clérigo"
+      ],
+      [
+        "Арашинский Священник",
+        "Существо — Человек Священник"
+      ],
+      [
+        "阿拉辛僧侣",
+        "生物～人类／僧侣"
+      ],
+      [
+        "阿拉辛僧侶",
+        "生物～人類／僧侶"
+      ],
+      [
+        "Daghatar der Unerbittliche",
+        "Legendäre Kreatur — Mensch, Krieger"
+      ],
+      [
+        "Dagatar, el Inflexible",
+        "Criatura legendaria — Guerrero humano"
+      ],
+      [
+        "Daghatar l'Inflexible",
+        "Créature légendaire : humain et guerrier"
+      ],
+      [
+        "Daghatar l'Irremovibile",
+        "Creatura Leggendaria — Guerriero Umano"
+      ],
+      [
+        "不屈のダガタール",
+        "伝説のクリーチャー — 人間・戦士"
+      ],
+      [
+        "단호한 다가타르",
+        "전설적 생물 — 인간 전사"
+      ],
+      [
+        "Daghatar, o Inflexível",
+        "Criatura Lendária — Humano Guerreiro"
+      ],
+      [
+        "Дагатар Непоколебимый",
+        "Легендарное Существо — Человек Воин"
+      ],
+      [
+        "坚毅的达哈塔",
+        "传奇生物～人类／战士"
+      ],
+      [
+        "堅毅的達哈塔",
+        "傳奇生物～人類／戰士"
+      ],
+      [
+        "Drachenschuppen-Generalin",
+        "Kreatur — Mensch, Krieger"
+      ],
+      [
+        "General escamadragón",
+        "Criatura — Guerrero humano"
+      ],
+      [
+        "Générale écailledragon",
+        "Créature : humain et guerrier"
+      ],
+      [
+        "Generale della Scaglia di Drago",
+        "Creatura — Guerriero Umano"
+      ],
+      [
+        "龍鱗隊の将軍",
+        "クリーチャー — 人間・戦士"
+      ],
+      [
+        "용비늘 장군",
+        "생물 — 인간 전사"
+      ],
+      [
+        "General Escama de Dragão",
+        "Criatura — Humano Guerreiro"
+      ],
+      [
+        "Генерал Чешуи Дракона",
+        "Существо — Человек Воин"
+      ],
+      [
+        "龙鳞将领",
+        "生物～人类／战士"
+      ],
+      [
+        "龍鱗將領",
+        "生物～人類／戰士"
+      ],
+      [
+        "Schuppenwächter-Elite",
+        "Kreatur — Mensch, Soldat"
+      ],
+      [
+        "Guardiascama de élite",
+        "Criatura — Soldado humano"
+      ],
+      [
+        "Garde d'écaille d'élite",
+        "Créature : humain et soldat"
+      ],
+      [
+        "Guardia Scaglia d'Elite",
+        "Creatura — Soldato Umano"
+      ],
+      [
+        "鱗衛兵の精鋭",
+        "クリーチャー — 人間・兵士"
+      ],
+      [
+        "정예 비늘경비병",
+        "생물 — 인간 병사"
+      ],
+      [
+        "Guarda Escamado de Elite",
+        "Criatura — Humano Soldado"
+      ],
+      [
+        "Элитный Чешуйчатый Страж",
+        "Существо — Человек Солдат"
+      ],
+      [
+        "精英鳞卫",
+        "生物～人类／士兵"
+      ],
+      [
+        "精英鱗衛",
+        "生物～人類／士兵"
+      ],
+      [
+        "Belohnung der Ehre",
+        "Spontanzauber"
+      ],
+      [
+        "Recompensa del honor",
+        "Instantáneo"
+      ],
+      [
+        "Récompense de l'honneur",
+        "Éphémère"
+      ],
+      [
+        "Ricompensa dell'Onore",
+        "Istantaneo"
+      ],
+      [
+        "名誉の報賞",
+        "インスタント"
+      ],
+      [
+        "명예의 보상",
+        "순간마법"
+      ],
+      [
+        "Recompensa da Honra",
+        "Mágica Instantânea"
+      ],
+      [
+        "Награда Чести",
+        "Мгновенное заклинание"
+      ],
+      [
+        "荣耀报偿",
+        "瞬间"
+      ],
+      [
+        "榮耀報償",
+        "瞬間"
+      ],
+      [
+        "Gnadenloser Scharfrichter",
+        "Kreatur — Ork, Krieger"
+      ],
+      [
+        "Verdugo despiadado",
+        "Criatura — Guerrero orco"
+      ],
+      [
+        "Exécuteur impitoyable",
+        "Créature : orque et guerrier"
+      ],
+      [
+        "Carnefice Spietato",
+        "Creatura — Guerriero Orco"
+      ],
+      [
+        "無慈悲な処刑人",
+        "クリーチャー — オーク・戦士"
+      ],
+      [
+        "무자비한 처형인",
+        "생물 — 오크 전사"
+      ],
+      [
+        "Executor Impiedoso",
+        "Criatura — Orc Guerreiro"
+      ],
+      [
+        "Безжалостный Палач",
+        "Существо — Орк Воин"
+      ],
+      [
+        "无情刽子手",
+        "生物～半兽人／战士"
+      ],
+      [
+        "無情劊子手",
+        "生物～半獸人／戰士"
+      ],
+      [
+        "Abzan-Bändiger",
+        "Kreatur — Hund, Schamane"
+      ],
+      [
+        "Domador abzano",
+        "Criatura — Chamán perro"
+      ],
+      [
+        "Maître des bêtes abzan",
+        "Créature : chien de chasse et shamane"
+      ],
+      [
+        "Domatore Abzan",
+        "Creatura — Sciamano Segugio"
+      ],
+      [
+        "アブザンの獣使い",
+        "クリーチャー — 猟犬・シャーマン"
+      ],
+      [
+        "아브잔 야수조련사",
+        "생물 — 사냥개 주술사"
+      ],
+      [
+        "Mestre das Feras Abzan",
+        "Criatura — Sabujo Xamã"
+      ],
+      [
+        "Абзанский Укротитель",
+        "Существо — Пес Шаман"
+      ],
+      [
+        "阿布赞驯兽师",
+        "生物～猎犬／祭师"
+      ],
+      [
+        "阿布贊馴獸師",
+        "生物～獵犬／祭師"
+      ],
+      [
+        "Abzan-Klangardist",
+        "Kreatur — Mensch, Krieger"
+      ],
+      [
+        "Guardián familiar abzano",
+        "Criatura — Guerrero humano"
+      ],
+      [
+        "Frère-garde abzan",
+        "Créature : humain et guerrier"
+      ],
+      [
+        "Guardia della Stirpe Abzan",
+        "Creatura — Guerriero Umano"
+      ],
+      [
+        "アブザンの族護衛",
+        "クリーチャー — 人間・戦士"
+      ],
+      [
+        "아브잔 부족지킴이",
+        "생물 — 인간 전사"
+      ],
+      [
+        "Protetor da Família Abzan",
+        "Criatura — Humano Guerreiro"
+      ],
+      [
+        "Абзанский Страж Рода",
+        "Существо — Человек Воин"
+      ],
+      [
+        "阿布赞族卫",
+        "生物～人类／战士"
+      ],
+      [
+        "阿布贊族衛",
+        "生物～人類／戰士"
+      ],
+      [
+        "Arashin-Kriegsbestie",
+        "Kreatur — Bestie"
+      ],
+      [
+        "Bestia de guerra de Arashin",
+        "Criatura — Bestia"
+      ],
+      [
+        "Bête de guerre d'Arashin",
+        "Créature : bête"
+      ],
+      [
+        "Bestia da Guerra di Arashin",
+        "Creatura — Bestia"
+      ],
+      [
+        "アラシンの軍獣",
+        "クリーチャー — ビースト"
+      ],
+      [
+        "아라신 전쟁 야수",
+        "생물 — 야수"
+      ],
+      [
+        "Fera de Guerra Arashin",
+        "Criatura — Besta"
+      ],
+      [
+        "Арашинский Боевой Зверь",
+        "Существо — Зверь"
+      ],
+      [
+        "阿拉辛战争兽",
+        "生物～野兽"
+      ],
+      [
+        "阿拉辛戰爭獸",
+        "生物～野獸"
+      ],
+      [
+        "Frontlinien-Krushok",
+        "Kreatur — Bestie"
+      ],
+      [
+        "Krushok del frente de batalla",
+        "Criatura — Bestia"
+      ],
+      [
+        "Krushok de première ligne",
+        "Créature : bête"
+      ],
+      [
+        "Krushok sul Fronte di Battaglia",
+        "Creatura — Bestia"
+      ],
+      [
+        "戦線クルショク",
+        "クリーチャー — ビースト"
+      ],
+      [
+        "최전방 크루쇽",
+        "생물 — 야수"
+      ],
+      [
+        "Krushok da Frente de Batalha",
+        "Criatura — Besta"
+      ],
+      [
+        "Авангардный Крушок",
+        "Существо — Зверь"
+      ],
+      [
+        "前线寇犀",
+        "生物～野兽"
+      ],
+      [
+        "前線寇犀",
+        "生物～野獸"
+      ],
+      [
+        "Gelagerte Verteidigung",
+        "Hexerei"
+      ],
+      [
+        "Defensas ocultas",
+        "Conjuro"
+      ],
+      [
+        "Défenses en réserve",
+        "Rituel"
+      ],
+      [
+        "Difese Occulte",
+        "Stregoneria"
+      ],
+      [
+        "隠匿物の防衛",
+        "ソーサリー"
+      ],
+      [
+        "숨겨진 방어구",
+        "집중마법"
+      ],
+      [
+        "Defesas Acumuladas",
+        "Feitiço"
+      ],
+      [
+        "Оборонительные Запасы",
+        "Волшебство"
+      ],
+      [
+        "密储防卫",
+        "法术"
+      ],
+      [
+        "密儲防衛",
+        "巫術"
+      ],
+      [
+        "Vermessung der Ödlande",
+        "Hexerei"
+      ],
+      [
+        "Explorar los yermos",
+        "Conjuro"
+      ],
+      [
+        "Cartographier les landes",
+        "Rituel"
+      ],
+      [
+        "Mappare le Distese",
+        "Stregoneria"
+      ],
+      [
+        "荒野の地図作成",
+        "ソーサリー"
+      ],
+      [
+        "황무지 탐사",
+        "집중마법"
+      ],
+      [
+        "Mapear os Ermos",
+        "Feitiço"
+      ],
+      [
+        "Изучение Пустошей",
+        "Волшебство"
+      ],
+      [
+        "勘查荒漠",
+        "法术"
+      ],
+      [
+        "勘查荒漠",
+        "巫術"
+      ],
+      [
+        "Sandsteppen-Mastodon",
+        "Kreatur — Elefant"
+      ],
+      [
+        "Mastodonte de esteparenosa",
+        "Criatura — Elefante"
+      ],
+      [
+        "Mastodonte de la steppe de sable",
+        "Créature : éléphant"
+      ],
+      [
+        "Mastodonte delle Steppe Sabbiose",
+        "Creatura — Elefante"
+      ],
+      [
+        "砂草原のマストドン",
+        "クリーチャー — 象"
+      ],
+      [
+        "모래초원 마스토돈",
+        "생물 — 코끼리"
+      ],
+      [
+        "Mastodonte da Estepe Arenosa",
+        "Criatura — Elefante"
+      ],
+      [
+        "Мастодонт Песчаной Степи",
+        "Существо — Слон"
+      ],
+      [
+        "沙原乳齿象",
+        "生物～象"
+      ],
+      [
+        "沙原乳齒象",
+        "生物～象"
+      ],
+      [
+        "Hüter des Ersten Baumes",
+        "Kreatur — Mensch"
+      ],
+      [
+        "Protector del Primer Árbol",
+        "Criatura — Humano"
+      ],
+      [
+        "Garde du Premier arbre",
+        "Créature : humain"
+      ],
+      [
+        "Guardiano del Primo Albero",
+        "Creatura — Umano"
+      ],
+      [
+        "始まりの木の管理人",
+        "クリーチャー — 人間"
+      ],
+      [
+        "태초나무의 수호자",
+        "생물 — 인간"
+      ],
+      [
+        "Guardião da Primeira Árvore",
+        "Criatura — Humano"
+      ],
+      [
+        "Хранитель Первого Древа",
+        "Существо — Человек"
+      ],
+      [
+        "族源树卫",
+        "生物～人类"
+      ],
+      [
+        "族源樹衛",
+        "生物～人類"
+      ],
+      [
+        "Abzan-Kampfpriester",
+        "Kreatur — Mensch, Kleriker"
+      ],
+      [
+        "Sacerdote guerrero abzano",
+        "Criatura — Clérigo humano"
+      ],
+      [
+        "Prêtre de bataille abzan",
+        "Créature : humain et clerc"
+      ],
+      [
+        "Sacerdote Guerriero Abzan",
+        "Creatura — Chierico Umano"
+      ],
+      [
+        "アブザンの戦僧侶",
+        "クリーチャー — 人間・クレリック"
+      ],
+      [
+        "아브잔 전투 사제",
+        "생물 — 인간 성직자"
+      ],
+      [
+        "Sacerdote de Batalha Abzan",
+        "Criatura — Humano Clérigo"
+      ],
+      [
+        "Абзанский Боевой Жрец",
+        "Существо — Человек Священник"
+      ],
+      [
+        "阿布赞战斗僧侣",
+        "生物～人类／僧侣"
+      ],
+      [
+        "阿布贊戰鬥僧侶",
+        "生物～人類／僧侶"
+      ],
+      [
+        "Abzan-Falkner",
+        "Kreatur — Mensch, Soldat"
+      ],
+      [
+        "Halconero abzano",
+        "Criatura — Soldado humano"
+      ],
+      [
+        "Fauconnier abzan",
+        "Créature : humain et soldat"
+      ],
+      [
+        "Falconiere Abzan",
+        "Creatura — Soldato Umano"
+      ],
+      [
+        "アブザンの鷹匠",
+        "クリーチャー — 人間・兵士"
+      ],
+      [
+        "아브잔 매 조련사",
+        "생물 — 인간 병사"
+      ],
+      [
+        "Falcoeiro Abzan",
+        "Criatura — Humano Soldado"
+      ],
+      [
+        "Абзанский Сокольничий",
+        "Существо — Человек Солдат"
+      ],
+      [
+        "阿布赞训隼兵",
+        "生物～人类／士兵"
+      ],
+      [
+        "阿布贊訓隼兵",
+        "生物～人類／士兵"
+      ],
+      [
+        "Ainok-Schwurbruder",
+        "Kreatur — Hund, Soldat"
+      ],
+      [
+        "Ainok unido por la fe",
+        "Criatura — Soldado perro"
+      ],
+      [
+        "Frère d'armes aïnok",
+        "Créature : chien de chasse et soldat"
+      ],
+      [
+        "Ainok Fratello d'Onore",
+        "Creatura — Soldato Segugio"
+      ],
+      [
+        "アイノクの盟族",
+        "クリーチャー — 猟犬・兵士"
+      ],
+      [
+        "아이녹 의형제",
+        "생물 — 사냥개 병사"
+      ],
+      [
+        "Ainok Laço-de-honra",
+        "Criatura — Sabujo Soldado"
+      ],
+      [
+        "Аинок-Побратим",
+        "Существо — Пес Солдат"
+      ],
+      [
+        "义缘犬人",
+        "生物～猎犬／士兵"
+      ],
+      [
+        "義緣犬人",
+        "生物～獵犬／士兵"
+      ],
+      [
+        "Blendendes Bollwerk",
+        "Kreatur — Mauer"
+      ],
+      [
+        "Murallas deslumbrantes",
+        "Criatura — Muro"
+      ],
+      [
+        "Remparts éblouissants",
+        "Créature : mur"
+      ],
+      [
+        "Bastioni Abbaglianti",
+        "Creatura — Muro"
+      ],
+      [
+        "まばゆい塁壁",
+        "クリーチャー — 壁"
+      ],
+      [
+        "눈부신 성곽",
+        "생물 — 벽"
+      ],
+      [
+        "Baluartes Resplandescentes",
+        "Criatura — Barreira"
+      ],
+      [
+        "Слепящий Оплот",
+        "Существо — Стена"
+      ],
+      [
+        "眩目壁垒",
+        "生物～墙"
+      ],
+      [
+        "眩目壁壘",
+        "生物～牆"
+      ],
+      [
+        "Heroldin der Anafenza",
+        "Kreatur — Mensch, Soldat"
+      ],
+      [
+        "Heraldo de Anafenza",
+        "Criatura — Soldado humano"
+      ],
+      [
+        "Héraut d'Anafenza",
+        "Créature : humain et soldat"
+      ],
+      [
+        "Messaggera di Anafenza",
+        "Creatura — Soldato Umano"
+      ],
+      [
+        "アナフェンザの伝令",
+        "クリーチャー — 人間・兵士"
+      ],
+      [
+        "아나펜자의 전령",
+        "생물 — 인간 병사"
+      ],
+      [
+        "Arauto de Anafenza",
+        "Criatura — Humano Soldado"
+      ],
+      [
+        "Глашатай Анафензы",
+        "Существо — Человек Солдат"
+      ],
+      [
+        "阿娜芬札传令使",
+        "生物～人类／士兵"
+      ],
+      [
+        "阿娜芬札傳令使",
+        "生物～人類／士兵"
+      ],
+      [
+        "Oberste Wache von Arashin",
+        "Kreatur — Vogel, Soldat"
+      ],
+      [
+        "Altos centinelas de Arashin",
+        "Criatura — Soldado ave"
+      ],
+      [
+        "Hautes sentinelles d'Arashin",
+        "Créature : oiseau et soldat"
+      ],
+      [
+        "Alte Sentinelle di Arashin",
+        "Creatura — Soldato Uccello"
+      ],
+      [
+        "アラシンの上級歩哨",
+        "クリーチャー — 鳥・兵士"
+      ],
+      [
+        "아라신 정예 보초",
+        "생물 — 조류 병사"
+      ],
+      [
+        "Altas Sentinelas de Arashin",
+        "Criatura — Ave Soldado"
+      ],
+      [
+        "Высшая Стража Арашина",
+        "Существо — Птица Солдат"
+      ],
+      [
+        "阿拉辛高等哨兵",
+        "生物～鸟／士兵"
+      ],
+      [
+        "阿拉辛高等哨兵",
+        "生物～鳥／士兵"
+      ],
+      [
+        "Salzstraßenpatrouille",
+        "Kreatur — Mensch, Späher"
+      ],
+      [
+        "Patrulla del sendero de sal",
+        "Criatura — Explorador humano"
+      ],
+      [
+        "Patrouille de la Route du sel",
+        "Créature : humain et éclaireur"
+      ],
+      [
+        "Pattuglia della Via del Sale",
+        "Creatura — Esploratore Umano"
+      ],
+      [
+        "塩路の巡回兵",
+        "クリーチャー — 人間・スカウト"
+      ],
+      [
+        "소금길 순찰조",
+        "생물 — 인간 정찰병"
+      ],
+      [
+        "Patrulha da Estrada de Sal",
+        "Criatura — Humano Batedor"
+      ],
+      [
+        "Патруль Соляного Пути",
+        "Существо — Человек Разведчик"
+      ],
+      [
+        "盐路巡卫",
+        "生物～人类／斥候"
+      ],
+      [
+        "鹽路巡衛",
+        "生物～人類／斥候"
+      ],
+      [
+        "Kriegsbehemoth",
+        "Kreatur — Bestie"
+      ],
+      [
+        "Behemot bélico",
+        "Criatura — Bestia"
+      ],
+      [
+        "Béhémoth de guerre",
+        "Créature : bête"
+      ],
+      [
+        "Behemoth da Guerra",
+        "Creatura — Bestia"
+      ],
+      [
+        "軍用ビヒモス",
+        "クリーチャー — ビースト"
+      ],
+      [
+        "전쟁 거대괴수",
+        "생물 — 야수"
+      ],
+      [
+        "Behemoth de Guerra",
+        "Criatura — Besta"
+      ],
+      [
+        "Боевой Исполин",
+        "Существо — Зверь"
+      ],
+      [
+        "战争贝西摩斯",
+        "生物～野兽"
+      ],
+      [
+        "戰爭貝西摩斯",
+        "生物～野獸"
+      ],
+      [
+        "Wächter des Spähnests",
+        "Kreatur — Vogel, Soldat"
+      ],
+      [
+        "Vigilante del nido",
+        "Criatura — Soldado ave"
+      ],
+      [
+        "Gardien du perchoir",
+        "Créature : oiseau et soldat"
+      ],
+      [
+        "Guardiano del Trespolo",
+        "Creatura — Soldato Uccello"
+      ],
+      [
+        "休息地の見張り",
+        "クリーチャー — 鳥・兵士"
+      ],
+      [
+        "둥지 파수꾼",
+        "생물 — 조류 병사"
+      ],
+      [
+        "Vigia do Poleiro",
+        "Criatura — Ave Soldado"
+      ],
+      [
+        "Дозорный Насеста",
+        "Существо — Птица Солдат"
+      ],
+      [
+        "眺巢看守",
+        "生物～鸟／士兵"
+      ],
+      [
+        "眺巢看守",
+        "生物～鳥／士兵"
+      ],
+      [
+        "Verleugneter Vorfahr",
+        "Kreatur — Geist, Krieger"
+      ],
+      [
+        "Ancestro repudiado",
+        "Criatura — Guerrero espíritu"
+      ],
+      [
+        "Ancêtre désavoué",
+        "Créature : esprit et guerrier"
+      ],
+      [
+        "Antenato Ripudiato",
+        "Creatura — Guerriero Spirito"
+      ],
+      [
+        "縁切られた先祖",
+        "クリーチャー — スピリット・戦士"
+      ],
+      [
+        "의절한 고대인",
+        "생물 — 신령 전사"
+      ],
+      [
+        "Ancestral Renegado",
+        "Criatura — Espírito Guerreiro"
+      ],
+      [
+        "Отрешенный Предок",
+        "Существо — Дух Воин"
+      ],
+      [
+        "离弃先祖",
+        "生物～精怪／战士"
+      ],
+      [
+        "離棄先祖",
+        "生物～精靈／戰士"
+      ],
+      [
+        "Krumar-Schwurbruder",
+        "Kreatur — Ork, Krieger"
+      ],
+      [
+        "Krumar unido por la fe",
+        "Criatura — Guerrero orco"
+      ],
+      [
+        "Frère d'armes krumar",
+        "Créature : orque et guerrier"
+      ],
+      [
+        "Krumar Fratello d'Onore",
+        "Creatura — Guerriero Orco"
+      ],
+      [
+        "クルーマの盟族",
+        "クリーチャー — オーク・戦士"
+      ],
+      [
+        "크루마 의형제",
+        "생물 — 오크 전사"
+      ],
+      [
+        "Krumar Laço-de-honra",
+        "Criatura — Orc Guerreiro"
+      ],
+      [
+        "Крумар-Побратим",
+        "Существо — Орк Воин"
+      ],
+      [
+        "义缘孑遗",
+        "生物～半兽人／战士"
+      ],
+      [
+        "義緣孑遺",
+        "生物～半獸人／戰士"
+      ],
+      [
+        "Nachtklinge von Mer-Ek",
+        "Kreatur — Ork, Assassine"
+      ],
+      [
+        "Filonocturno de Mer-Ek",
+        "Criatura — Asesino orco"
+      ],
+      [
+        "Lamenuit de Mer-Ek",
+        "Créature : orque et assassin"
+      ],
+      [
+        "Lama Notturna di Mer-Ek",
+        "Creatura — Assassino Orco"
+      ],
+      [
+        "マー＝エクの夜刃",
+        "クリーチャー — オーク・暗殺者"
+      ],
+      [
+        "메렉 은밀검",
+        "생물 — 오크 암살자"
+      ],
+      [
+        "Lâmina Noturna de Mer-Ek",
+        "Criatura — Orc Assassino"
+      ],
+      [
+        "Ночной Клинок из Мер-Эк",
+        "Существо — Орк Убийца"
+      ],
+      [
+        "莫克夜刃手",
+        "生物～半兽人／杀手"
+      ],
+      [
+        "莫克夜刃手",
+        "生物～半獸人／殺手"
+      ],
+      [
+        "Vergeltung der Ahnen",
+        "Verzauberung"
+      ],
+      [
+        "Retribución de los antiguos",
+        "Encantamiento"
+      ],
+      [
+        "Châtiment des ancêtres",
+        "Enchantement"
+      ],
+      [
+        "Castigo degli Antichi",
+        "Incantesimo"
+      ],
+      [
+        "古き者どもの報復",
+        "エンチャント"
+      ],
+      [
+        "고대인의 복수",
+        "부여마법"
+      ],
+      [
+        "Retribuição dos Ancestrais",
+        "Encantamento"
+      ],
+      [
+        "Возмездие Древних",
+        "Чары"
+      ],
+      [
+        "先人报偿",
+        "结界"
+      ],
+      [
+        "先人報償",
+        "結界"
+      ],
+      [
+        "Unbeugsamer Krumar",
+        "Kreatur — Ork, Krieger"
+      ],
+      [
+        "Krumar implacable",
+        "Criatura — Guerrero orco"
+      ],
+      [
+        "Krumar inflexible",
+        "Créature : orque et guerrier"
+      ],
+      [
+        "Krumar Inesorabile",
+        "Creatura — Guerriero Orco"
+      ],
+      [
+        "不撓のクルーマ",
+        "クリーチャー — オーク・戦士"
+      ],
+      [
+        "단호한 크루마",
+        "생물 — 오크 전사"
+      ],
+      [
+        "Krumar Inexorável",
+        "Criatura — Orc Guerreiro"
+      ],
+      [
+        "Несокрушимый Крумар",
+        "Существо — Орк Воин"
+      ],
+      [
+        "刚毅孑遗",
+        "生物～半兽人／战士"
+      ],
+      [
+        "剛毅孑遺",
+        "生物～半獸人／戰士"
+      ],
+      [
+        "Brüstung der Bogenschützen",
+        "Kreatur — Mauer"
+      ],
+      [
+        "Parapeto de los arqueros",
+        "Criatura — Muro"
+      ],
+      [
+        "Parapet des archers",
+        "Créature : mur"
+      ],
+      [
+        "Parapetto degli Arcieri",
+        "Creatura — Muro"
+      ],
+      [
+        "射手の胸壁",
+        "クリーチャー — 壁"
+      ],
+      [
+        "궁수용 흉벽",
+        "생물 — 벽"
+      ],
+      [
+        "Parapeito dos Arqueiros",
+        "Criatura — Barreira"
+      ],
+      [
+        "Башня Лучников",
+        "Существо — Стена"
+      ],
+      [
+        "箭手胸墙",
+        "生物～墙"
+      ],
+      [
+        "箭手胸牆",
+        "生物～牆"
+      ],
+      [
+        "Gehärtete Schuppen",
+        "Verzauberung"
+      ],
+      [
+        "Escamas endurecidas",
+        "Encantamiento"
+      ],
+      [
+        "Écailles renforcées",
+        "Enchantement"
+      ],
+      [
+        "Scaglie Indurite",
+        "Incantesimo"
+      ],
+      [
+        "硬化した鱗",
+        "エンチャント"
+      ],
+      [
+        "단단한 비늘",
+        "부여마법"
+      ],
+      [
+        "Escamas Endurecidas",
+        "Encantamento"
+      ],
+      [
+        "Укрепленная Чешуя",
+        "Чары"
+      ],
+      [
+        "坚固鳞甲",
+        "结界"
+      ],
+      [
+        "堅固鱗甲",
+        "結界"
+      ],
+      [
+        "Hüter des Sippenbaums",
+        "Kreatur — Mensch, Krieger"
+      ],
+      [
+        "Protector del árbol familiar",
+        "Criatura — Guerrero humano"
+      ],
+      [
+        "Gardien de l'arbre-parent",
+        "Créature : humain et guerrier"
+      ],
+      [
+        "Guardiano dell'Albero Atavico",
+        "Creatura — Guerriero Umano"
+      ],
+      [
+        "族樹の管理人",
+        "クリーチャー — 人間・戦士"
+      ],
+      [
+        "조상나무 관리인",
+        "생물 — 인간 전사"
+      ],
+      [
+        "Guardião da Árvore de Família",
+        "Criatura — Humano Guerreiro"
+      ],
+      [
+        "Страж Древа Родства",
+        "Существо — Человек Воин"
+      ],
+      [
+        "族树护卫",
+        "生物～人类／战士"
+      ],
+      [
+        "族樹護衛",
+        "生物～人類／戰士"
+      ],
+      [
+        "Weitschuss-Trupp",
+        "Kreatur — Hund, Bogenschütze"
+      ],
+      [
+        "Escuadra certera",
+        "Criatura — Arquero perro"
+      ],
+      [
+        "Escouade de tir à longue distance",
+        "Créature : chien de chasse et archer"
+      ],
+      [
+        "Squadra di Tiratori",
+        "Creatura — Arciere Segugio"
+      ],
+      [
+        "遠射兵団",
+        "クリーチャー — 猟犬・射手"
+      ],
+      [
+        "저격 부대",
+        "생물 — 사냥개 궁수"
+      ],
+      [
+        "Esquadrão Tiro-longo",
+        "Criatura — Sabujo Arqueiro"
+      ],
+      [
+        "Дальнобойный Отряд",
+        "Существо — Пес Лучник"
+      ],
+      [
+        "穿杨小队",
+        "生物～猎犬／弓箭手"
+      ],
+      [
+        "穿楊小隊",
+        "生物～獵犬／弓箭手"
+      ],
+      [
+        "Hauptmann der Stoßzahnwache",
+        "Kreatur — Mensch, Krieger"
+      ],
+      [
+        "Capitana del cargadermo",
+        "Criatura — Guerrero humano"
+      ],
+      [
+        "Capitaine de la garde d'ivoire",
+        "Créature : humain et guerrier"
+      ],
+      [
+        "Capitano della Guardia di Zanne",
+        "Creatura — Guerriero Umano"
+      ],
+      [
+        "牙守りの隊長",
+        "クリーチャー — 人間・戦士"
+      ],
+      [
+        "엄니지킴이 대장",
+        "생물 — 인간 전사"
+      ],
+      [
+        "Capitão do Marfim de Guarda",
+        "Criatura — Humano Guerreiro"
+      ],
+      [
+        "Капитан Стражи Бивня",
+        "Существо — Человек Воин"
+      ],
+      [
+        "牙卫队长",
+        "生物～人类／战士"
+      ],
+      [
+        "牙衛隊長",
+        "生物～人類／戰士"
+      ],
+      [
+        "Vormacht der Abzan",
+        "Verzauberung"
+      ],
+      [
+        "Supremacía abzana",
+        "Encantamiento"
+      ],
+      [
+        "Ascendance abzane",
+        "Enchantement"
+      ],
+      [
+        "Autorità Abzan",
+        "Incantesimo"
+      ],
+      [
+        "アブザンの隆盛",
+        "エンチャント"
+      ],
+      [
+        "아브잔의 지배력",
+        "부여마법"
+      ],
+      [
+        "Ascendência Abzan",
+        "Encantamento"
+      ],
+      [
+        "Возвышение Абзана",
+        "Чары"
+      ],
+      [
+        "阿布赞霸权",
+        "结界"
+      ],
+      [
+        "阿布贊霸權",
+        "結界"
+      ],
+      [
+        "Abzan-Amulett",
+        "Spontanzauber"
+      ],
+      [
+        "Sortilegio abzano",
+        "Instantáneo"
+      ],
+      [
+        "Charme d'Abzan",
+        "Éphémère"
+      ],
+      [
+        "Talismano Abzan",
+        "Istantaneo"
+      ],
+      [
+        "アブザンの魔除け",
+        "インスタント"
+      ],
+      [
+        "아브잔 부적",
+        "순간마법"
+      ],
+      [
+        "Amuleto Abzan",
+        "Mágica Instantânea"
+      ],
+      [
+        "Талисман Абзана",
+        "Мгновенное заклинание"
+      ],
+      [
+        "阿布赞护符",
+        "瞬间"
+      ],
+      [
+        "阿布贊護符",
+        "瞬間"
+      ],
+      [
+        "Abzan-Führerin",
+        "Kreatur — Mensch, Krieger"
+      ],
+      [
+        "Guía abzana",
+        "Criatura — Guerrero humano"
+      ],
+      [
+        "Guide abzane",
+        "Créature : humain et guerrier"
+      ],
+      [
+        "Guida Abzan",
+        "Creatura — Guerriero Umano"
+      ],
+      [
+        "アブザンの先達",
+        "クリーチャー — 人間・戦士"
+      ],
+      [
+        "아브잔 길잡이",
+        "생물 — 인간 전사"
+      ],
+      [
+        "Guia Azban",
+        "Criatura — Humano Guerreiro"
+      ],
+      [
+        "Абзанская Проводница",
+        "Существо — Человек Воин"
+      ],
+      [
+        "阿布赞向导",
+        "生物～人类／战士"
+      ],
+      [
+        "阿布贊嚮導",
+        "生物～人類／戰士"
+      ],
+      [
+        "Anafenza die Vorderste",
+        "Legendäre Kreatur — Mensch, Soldat"
+      ],
+      [
+        "Anafenza, la líder",
+        "Criatura legendaria — Soldado humano"
+      ],
+      [
+        "Anafenza, la Primordiale",
+        "Créature légendaire : humain et soldat"
+      ],
+      [
+        "Anafenza, la Preminente",
+        "Creatura Leggendaria — Soldato Umano"
+      ],
+      [
+        "先頭に立つもの、アナフェンザ",
+        "伝説のクリーチャー — 人間・兵士"
+      ],
+      [
+        "일인자 아나펜자",
+        "전설적 생물 — 인간 병사"
+      ],
+      [
+        "Anafenza, a Principal",
+        "Criatura Lendária — Humano Soldado"
+      ],
+      [
+        "Анафенза, Первейшая",
+        "Легендарное Существо — Человек Солдат"
+      ],
+      [
+        "首领阿娜芬札",
+        "传奇生物～人类／士兵"
+      ],
+      [
+        "首領阿娜芬札",
+        "傳奇生物～人類／士兵"
+      ],
+      [
+        "Rüstungskorps",
+        "Kreatur — Mensch, Soldat"
+      ],
+      [
+        "Cuerpo de infantería",
+        "Criatura — Soldado humano"
+      ],
+      [
+        "Corps de lanciers lourds",
+        "Créature : humain et soldat"
+      ],
+      [
+        "Corpo d'Armamenti",
+        "Creatura — Soldato Umano"
+      ],
+      [
+        "軍備部隊",
+        "クリーチャー — 人間・兵士"
+      ],
+      [
+        "중무장 부대",
+        "생물 — 인간 병사"
+      ],
+      [
+        "Tropas de Armamento",
+        "Criatura — Humano Soldado"
+      ],
+      [
+        "Вооруженный Корпус",
+        "Существо — Человек Солдат"
+      ],
+      [
+        "军备部队",
+        "生物～人类／士兵"
+      ],
+      [
+        "軍備部隊",
+        "生物～人類／士兵"
+      ],
+      [
+        "Anführer der Schuppe",
+        "Kreatur — Mensch, Krieger"
+      ],
+      [
+        "Jefe de la escama",
+        "Criatura — Guerrero humano"
+      ],
+      [
+        "Chef de l'Écaille",
+        "Créature : humain et guerrier"
+      ],
+      [
+        "Condottiero della Scaglia",
+        "Creatura — Guerriero Umano"
+      ],
+      [
+        "鱗の隊長",
+        "クリーチャー — 人間・戦士"
+      ],
+      [
+        "갑옷의 달인",
+        "생물 — 인간 전사"
+      ],
+      [
+        "Chefe da Escama",
+        "Criatura — Humano Guerreiro"
+      ],
+      [
+        "Вождь Чешуи",
+        "Существо — Человек Воин"
+      ],
+      [
+        "龙鳞族长",
+        "生物～人类／战士"
+      ],
+      [
+        "龍鱗族長",
+        "生物～人類／戰士"
+      ],
+      [
+        "Dünensturm",
+        "Hexerei"
+      ],
+      [
+        "Dunas estruendosas",
+        "Conjuro"
+      ],
+      [
+        "Salve des dunes",
+        "Rituel"
+      ],
+      [
+        "Spazzadune",
+        "Stregoneria"
+      ],
+      [
+        "砂塵破",
+        "ソーサリー"
+      ],
+      [
+        "모래폭발",
+        "집중마법"
+      ],
+      [
+        "Explosão de Duna",
+        "Feitiço"
+      ],
+      [
+        "Песчаный Взрыв",
+        "Волшебство"
+      ],
+      [
+        "尘沙暴",
+        "法术"
+      ],
+      [
+        "塵沙暴",
+        "巫術"
+      ],
+      [
+        "Stoßzahn-Festung",
+        "Kreatur — Elefant"
+      ],
+      [
+        "Fortaleza de eburno",
+        "Criatura — Elefante"
+      ],
+      [
+        "Ivoirin forteresse",
+        "Créature : éléphant"
+      ],
+      [
+        "Fortezza Zanna d'Avorio",
+        "Creatura — Elefante"
+      ],
+      [
+        "象牙牙の城塞",
+        "クリーチャー — 象"
+      ],
+      [
+        "상아엄니 요새",
+        "생물 — 코끼리"
+      ],
+      [
+        "Fortaleza da Presa de Marfim",
+        "Criatura — Elefante"
+      ],
+      [
+        "Слоновья Крепость",
+        "Существо — Слон"
+      ],
+      [
+        "要塞战象",
+        "生物～象"
+      ],
+      [
+        "要塞戰象",
+        "生物～象"
+      ],
+      [
+        "Belagerungsnashorn",
+        "Kreatur — Nashorn"
+      ],
+      [
+        "Rinoceronte de asedio",
+        "Criatura — Rinoceronte"
+      ],
+      [
+        "Rhinocéros de siège",
+        "Créature : rhinocéros"
+      ],
+      [
+        "Rinoceronte da Assedio",
+        "Creatura — Rinoceronte"
+      ],
+      [
+        "包囲サイ",
+        "クリーチャー — サイ"
+      ],
+      [
+        "공성 코뿔소",
+        "생물 — 코뿔소"
+      ],
+      [
+        "Rinoceronte de Cerco",
+        "Criatura — Rinoceronte"
+      ],
+      [
+        "Осадный Носорог",
+        "Существо — Носорог"
+      ],
+      [
+        "攻城犀牛",
+        "生物～犀牛"
+      ],
+      [
+        "攻城犀牛",
+        "生物～犀牛"
+      ],
+      [
+        "Banner der Abzan",
+        "Artefakt"
+      ],
+      [
+        "Estandarte abzano",
+        "Artefacto"
+      ],
+      [
+        "Étendard d'Abzan",
+        "Artefact"
+      ],
+      [
+        "Stendardo Abzan",
+        "Artefatto"
+      ],
+      [
+        "アブザンの戦旗",
+        "アーティファクト"
+      ],
+      [
+        "아브잔 깃발",
+        "마법물체"
+      ],
+      [
+        "Estandarte Abzan",
+        "Artefato"
+      ],
+      [
+        "Знамя Абзана",
+        "Артефакт"
+      ],
+      [
+        "阿布赞战旗",
+        "神器"
+      ],
+      [
+        "阿布贊戰旗",
+        "神器"
+      ],
+      [
+        "Sandsteppenzitadelle",
+        "Land"
+      ],
+      [
+        "Ciudadela esteparenosa",
+        "Tierra"
+      ],
+      [
+        "Citadelle de la steppe de sable",
+        "Terrain"
+      ],
+      [
+        "Roccaforte delle Steppe Sabbiose",
+        "Terra"
+      ],
+      [
+        "砂草原の城塞",
+        "土地"
+      ],
+      [
+        "모래초원 성채",
+        "대지"
+      ],
+      [
+        "Cidadela da Estepe Arenosa",
+        "Terreno"
+      ],
+      [
+        "Цитадель в Песчаной Степи",
+        "Земля"
+      ],
+      [
+        "沙原殿堂",
+        "地"
+      ],
+      [
+        "沙原殿堂",
+        "地"
+      ],
+      [
+        "Arashin-Kriegsbestie",
+        "Kreatur — Bestie"
+      ],
+      [
+        "Bestia de guerra de Arashin",
+        "Criatura — Bestia"
+      ],
+      [
+        "Bête de guerre d'Arashin",
+        "Créature : bête"
+      ],
+      [
+        "Bestia da Guerra di Arashin",
+        "Creatura — Bestia"
+      ],
+      [
+        "アラシンの軍獣",
+        "クリーチャー — ビースト"
+      ],
+      [
+        "아라신 전쟁 야수",
+        "생물 — 야수"
+      ],
+      [
+        "Fera de Guerra Arashin",
+        "Criatura — Besta"
+      ],
+      [
+        "Арашинский Боевой Зверь",
+        "Существо — Зверь"
+      ],
+      [
+        "阿拉辛战争兽",
+        "生物～野兽"
+      ],
+      [
+        "阿拉辛戰爭獸",
+        "生物～野獸"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT fd.name, fd.type FROM cards c JOIN foreign_data fd ON c.uuid = fd.uuid WHERE c.watermark = 'abzan';",
+  "question": "Name the foreign name of the card that has abzan watermark? List out the type of this card.",
+  "thinking": ""
+}

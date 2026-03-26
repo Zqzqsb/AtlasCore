@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "nationality"
+      ],
+      [
+        "German"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.nationality FROM drivers AS T1 INNER JOIN results AS T2 ON T2.driverId = T1.driverId WHERE T2.raceId = 933 AND T2.fastestLapTime IS NOT NULL ORDER BY T2.fastestLapSpeed DESC LIMIT 1",
+  "id": 868,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "nationality"
+      ],
+      [
+        "German"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT d.nationality\nFROM results r\nJOIN drivers d ON r.driverId = d.driverId\nWHERE r.raceId = 933\n  AND r.fastestLapSpeed IS NOT NULL\nORDER BY CAST(r.fastestLapSpeed AS REAL) DESC\nLIMIT 1;",
+  "question": "For the driver who set the fastest lap speed in race No.933, where does he come from?",
+  "thinking": ""
+}

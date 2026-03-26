@@ -1,0 +1,38 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "FRPM Count (Ages 5-17)"
+      ],
+      [
+        "69"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.`FRPM Count (Ages 5-17)` FROM satscores AS T1 INNER JOIN frpm AS T2 ON T1.cds = T2.CDSCode ORDER BY T1.AvgScrRead DESC LIMIT 1",
+  "id": 11,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "FRPM Count (Ages 5-17)"
+      ],
+      [
+        "69"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT \"FRPM Count (Ages 5-17)\" \nFROM satscores \nJOIN frpm ON CAST(satscores.cds AS INTEGER) = CAST(frpm.CDSCode AS INTEGER)\nORDER BY satscores.AvgScrRead DESC\nLIMIT 1;",
+  "question": "For the school with the highest average score in Reading in the SAT test, what is its FRPM count for students aged 5-17?",
+  "thinking": ""
+}

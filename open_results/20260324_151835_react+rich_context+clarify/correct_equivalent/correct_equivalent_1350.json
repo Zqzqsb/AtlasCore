@@ -1,0 +1,38 @@
+{
+  "db_id": "student_club",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "SUM(T1.amount)"
+      ],
+      [
+        "260"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT SUM(T1.amount) FROM budget AS T1 INNER JOIN event AS T2 ON T1.link_to_event = T2.event_id WHERE T2.event_name = 'September Speaker'",
+  "id": 1350,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "SUM(T1.amount)"
+      ],
+      [
+        "260"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT SUM(T1.amount) FROM budget AS T1 JOIN event AS T2 ON T1.link_to_event = T2.event_id WHERE T2.event_name = 'September Speaker';",
+  "question": "Provide the total number of the budget amount for \"September Speaker\" event.",
+  "thinking": ""
+}

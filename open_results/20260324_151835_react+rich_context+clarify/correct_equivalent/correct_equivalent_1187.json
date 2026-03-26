@@ -1,0 +1,50 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "ID"
+      ],
+      [
+        "3390870"
+      ],
+      [
+        "5661800"
+      ],
+      [
+        "5668410"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT ID FROM Examination WHERE `Examination Date` BETWEEN '1997-01-01' AND '1997-12-31' AND Diagnosis = 'Behcet'",
+  "id": 1187,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "ID"
+      ],
+      [
+        "3390870"
+      ],
+      [
+        "5661800"
+      ],
+      [
+        "5668410"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT p.ID\nFROM Patient p\nJOIN Examination e ON p.ID = e.ID\nWHERE TRIM(p.\"Diagnosis\") LIKE '%BEHCET%'\n  AND date(e.\"Examination Date\") \u003e= '1997-01-01'\n  AND date(e.\"Examination Date\") \u003c= '1997-12-31'",
+  "question": "Lists all patients by ID who were diagnosed with Behcet's and had their exams between 01/01/197 and 12/31/1997.",
+  "thinking": ""
+}

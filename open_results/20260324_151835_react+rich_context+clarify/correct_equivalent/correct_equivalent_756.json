@@ -1,0 +1,50 @@
+{
+  "db_id": "superhero",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "full_name"
+      ],
+      [
+        "Heracles"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Cassandra Elizabeth Sandsmark"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.full_name FROM superhero AS T1 INNER JOIN race AS T2 ON T1.race_id = T2.id WHERE T2.race = 'Demi-God'",
+  "id": 756,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "full_name"
+      ],
+      [
+        "Heracles"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Cassandra Elizabeth Sandsmark"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT s.full_name FROM superhero s JOIN race r ON s.race_id = r.id WHERE r.race = 'Demi-God' LIMIT 5;",
+  "question": "List down at least five full name of Demi-God superheroes.",
+  "thinking": ""
+}

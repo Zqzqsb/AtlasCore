@@ -1,0 +1,31 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "challenging",
+  "error_reason": "row count mismatch: gold=1, pred=-1",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "(CAST((SELECT time_seconds FROM last_driver_incremental) AS REAL) * 100) / (SELECT time_seconds + (SELECT time_seconds FROM last_driver_incremental) FROM champion_time)"
+      ],
+      [
+        "\u003cnil\u003e"
+      ]
+    ]
+  },
+  "gt_sql": "WITH time_in_seconds AS ( SELECT T1.positionOrder, CASE WHEN T1.positionOrder = 1 THEN (CAST(SUBSTR(T1.time, 1, 1) AS REAL) * 3600) + (CAST(SUBSTR(T1.time, 3, 2) AS REAL) * 60) + CAST(SUBSTR(T1.time, 6) AS REAL) ELSE CAST(SUBSTR(T1.time, 2) AS REAL) END AS time_seconds FROM results AS T1 INNER JOIN races AS T2 ON T1.raceId = T2.raceId WHERE T2.name = 'Australian Grand Prix' AND T1.time IS NOT NULL AND T2.year = 2008 ), champion_time AS ( SELECT time_seconds FROM time_in_seconds WHERE positionOrder = 1), last_driver_incremental AS ( SELECT time_seconds FROM time_in_seconds WHERE positionOrder = (SELECT MAX(positionOrder) FROM time_in_seconds) ) SELECT (CAST((SELECT time_seconds FROM last_driver_incremental) AS REAL) * 100) / (SELECT time_seconds + (SELECT time_seconds FROM last_driver_incremental) FROM champion_time)",
+  "id": 945,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": []
+  },
+  "pred_sql": "WITH race_info AS (\n    SELECT raceId \n    FROM races \n    WHERE year = 2008 AND name LIKE '%Australian%'\n),\nchampion_time AS (\n    SELECT milliseconds AS time_seconds\n    FROM results r\n    JOIN race_info ri ON r.raceId = ri.raceId\n    WHERE r.position = 1 AND r.time IS NOT NULL\n),\nlast_finisher AS (\n    SELECT milliseconds AS time_seconds\n    FROM results r\n    JOIN race_info ri ON r.raceId = ri.raceId\n    WHERE r.time IS NOT NULL\n    ORDER BY r.position DESC\n    LIMIT 1\n),\nlast_driver_incremental AS (\n    SELECT (lf.time_seconds - ct.time_seconds) AS time_seconds\n    FROM last_finisher lf, champion_time ct\n)\nSELECT (CAST((SELECT time_seconds FROM last_driver_incremental) AS REAL) * 100) / \n       (SELECT time_seconds + (SELECT time_seconds FROM last_driver_incremental) FROM champion_time) AS \"(CAST((SELECT time_seconds FROM last_driver_incremental) AS REAL) * 100) / (SELECT time_seconds + (SELECT time_seconds FROM last_driver_incremental) FROM champion_time)\"\nFROM champion_time\nLIMIT 1;",
+  "question": "How much faster in percentage is the champion than the driver who finished the race last in the 2008 Australian Grand Prix?",
+  "thinking": ""
+}

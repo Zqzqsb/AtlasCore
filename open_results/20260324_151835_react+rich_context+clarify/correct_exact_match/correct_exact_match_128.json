@@ -1,0 +1,16 @@
+{
+  "db_id": "financial",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT account_id FROM account WHERE Frequency = 'POPLATEK MESICNE'",
+  "id": 128,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT account_id FROM account WHERE frequency = 'POPLATEK MESICNE';",
+  "question": "List the account IDs with monthly issuance of statements.",
+  "thinking": ""
+}

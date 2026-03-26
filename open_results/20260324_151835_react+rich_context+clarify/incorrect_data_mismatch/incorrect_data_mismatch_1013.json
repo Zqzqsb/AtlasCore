@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "position"
+      ],
+      [
+        "5"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.position FROM lapTimes AS T1 INNER JOIN drivers AS T2 on T1.driverId = T2.driverId WHERE T2.forename = 'Lewis' AND T2.surname = 'Hamilton' ORDER BY T1.time ASC LIMIT 1",
+  "id": 1013,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "position"
+      ],
+      [
+        "10"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT lt.position\nFROM lapTimes lt\nJOIN drivers d ON lt.driverId = d.driverId\nWHERE d.forename = 'Lewis' AND d.surname = 'Hamilton'\nORDER BY CAST(lt.time AS REAL) ASC\nLIMIT 1",
+  "question": "What was the position of the circuits during Lewis Hamilton's fastest lap in a Formula_1 race?",
+  "thinking": ""
+}

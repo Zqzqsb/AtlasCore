@@ -1,0 +1,16 @@
+{
+  "db_id": "student_club",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT CAST(SUM(CASE WHEN remaining \u003c 0 THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(budget_id) FROM budget",
+  "id": 1443,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT CAST(SUM(CASE WHEN remaining \u003c 0 THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(budget_id) FROM budget;",
+  "question": "What is the percentage of the events that went over budget?",
+  "thinking": ""
+}

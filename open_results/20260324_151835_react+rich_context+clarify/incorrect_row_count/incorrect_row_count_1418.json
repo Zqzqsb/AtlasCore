@@ -1,0 +1,89 @@
+{
+  "db_id": "student_club",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=17, pred=2",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "type"
+      ],
+      [
+        "Guest Speaker"
+      ],
+      [
+        "Meeting"
+      ],
+      [
+        "Guest Speaker"
+      ],
+      [
+        "Meeting"
+      ],
+      [
+        "Meeting"
+      ],
+      [
+        "Guest Speaker"
+      ],
+      [
+        "Guest Speaker"
+      ],
+      [
+        "Meeting"
+      ],
+      [
+        "Guest Speaker"
+      ],
+      [
+        "Guest Speaker"
+      ],
+      [
+        "Guest Speaker"
+      ],
+      [
+        "Meeting"
+      ],
+      [
+        "Meeting"
+      ],
+      [
+        "Meeting"
+      ],
+      [
+        "Meeting"
+      ],
+      [
+        "Guest Speaker"
+      ],
+      [
+        "Meeting"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.type FROM event AS T1 INNER JOIN budget AS T2 ON T1.event_id = T2.link_to_event WHERE T2.remaining \u003e 30",
+  "id": 1418,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "type"
+      ],
+      [
+        "Guest Speaker"
+      ],
+      [
+        "Meeting"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT e.type FROM event e JOIN budget b ON e.event_id = b.link_to_event WHERE b.remaining \u003e 30;",
+  "question": "List out the type of events which have remaining budget more than 30 USD.",
+  "thinking": ""
+}

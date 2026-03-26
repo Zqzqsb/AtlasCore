@@ -1,0 +1,47 @@
+{
+  "db_id": "student_club",
+  "difficulty": "moderate",
+  "error_reason": "row count mismatch: gold=2, pred=3",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "event_name"
+      ],
+      [
+        "Women's Soccer"
+      ],
+      [
+        "Football game"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT event_name FROM event WHERE type = 'Game' AND date(SUBSTR(event_date, 1, 10)) BETWEEN '2019-03-15' AND '2020-03-20' AND status = 'Closed'",
+  "id": 1436,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "event_name"
+      ],
+      [
+        "Women's Soccer"
+      ],
+      [
+        "Football game"
+      ],
+      [
+        "Football game"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT event_name FROM event WHERE type = 'Game' AND status = 'Closed' AND event_date BETWEEN '2019-03-15' AND '2020-03-20';",
+  "question": "List the names of closed event as \"game\" that was closed from 3/15/2019 to 3/20/2020.",
+  "thinking": ""
+}

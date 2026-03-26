@@ -1,0 +1,53 @@
+{
+  "db_id": "student_club",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=4, pred=3",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "category"
+      ],
+      [
+        "Advertisement"
+      ],
+      [
+        "Food"
+      ],
+      [
+        "Speaker Gifts"
+      ],
+      [
+        "Parking"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T2.category FROM event AS T1 INNER JOIN budget AS T2 ON T1.event_id = T2.link_to_event WHERE T1.location = 'MU 215'",
+  "id": 1423,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "category"
+      ],
+      [
+        "Meeting"
+      ],
+      [
+        "Election"
+      ],
+      [
+        "Guest Speaker"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT type AS category FROM event WHERE location = 'MU 215';",
+  "question": "State the category of events were held at MU 215.",
+  "thinking": ""
+}

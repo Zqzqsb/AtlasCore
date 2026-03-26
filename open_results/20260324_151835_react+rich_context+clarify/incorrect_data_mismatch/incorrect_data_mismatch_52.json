@@ -1,0 +1,42 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "MailStreet",
+        "School"
+      ],
+      [
+        "4521 Webster Street",
+        "Oakland International High"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.MailStreet, T2.School FROM satscores AS T1 INNER JOIN schools AS T2 ON T1.cds = T2.CDSCode WHERE T1.AvgScrRead IS NOT NULL ORDER BY T1.AvgScrRead ASC LIMIT 1",
+  "id": 52,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "MailStreet",
+        "School"
+      ],
+      [
+        "1001 22nd Avenue, Suite 100",
+        "Aspire California College Preparatory Academy"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT s.MailStreet, s.School\nFROM schools s\nJOIN satscores sat ON CAST(s.CDSCode AS INTEGER) = CAST(sat.cds AS INTEGER)\nORDER BY sat.AvgScrRead ASC\nLIMIT 1;",
+  "question": "In which mailing street address can you find the school that has the lowest average score in reading? Also give the school's name.",
+  "thinking": ""
+}

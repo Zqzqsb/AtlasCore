@@ -1,0 +1,16 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT Date FROM Laboratory WHERE ID = 48473 AND GOT \u003e= 60",
+  "id": 1207,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT Date FROM Laboratory WHERE ID = 48473 AND GOT \u003e= 60;",
+  "question": "When is the laboratory examination of patient '48473' where his/her AST glutamic oxaloacetic transaminase (GOT) index is above the normal range.",
+  "thinking": ""
+}

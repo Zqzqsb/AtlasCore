@@ -1,0 +1,89 @@
+{
+  "db_id": "student_club",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=12, pred=7",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "expense_description"
+      ],
+      [
+        "Post Cards, Posters"
+      ],
+      [
+        "Posters"
+      ],
+      [
+        "Water, chips, cookies"
+      ],
+      [
+        "Posters"
+      ],
+      [
+        "Water, chips, cookies"
+      ],
+      [
+        "Pizza"
+      ],
+      [
+        "Water, chips, cookies"
+      ],
+      [
+        "Travel Mug"
+      ],
+      [
+        "Alumni Glass"
+      ],
+      [
+        "Posters"
+      ],
+      [
+        "Travel Mug"
+      ],
+      [
+        "Bakery - Donuts, muffins"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.expense_description FROM member AS T1 INNER JOIN expense AS T2 ON T1.member_id = T2.link_to_member WHERE T1.first_name = 'Sacha' AND T1.last_name = 'Harrison'",
+  "id": 1412,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "expense_description"
+      ],
+      [
+        "Post Cards, Posters"
+      ],
+      [
+        "Posters"
+      ],
+      [
+        "Water, chips, cookies"
+      ],
+      [
+        "Pizza"
+      ],
+      [
+        "Travel Mug"
+      ],
+      [
+        "Alumni Glass"
+      ],
+      [
+        "Bakery - Donuts, muffins"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT e.expense_description\nFROM expense e\nJOIN member m ON e.link_to_member = m.member_id\nWHERE m.first_name = 'Sacha' AND m.last_name = 'Harrison';",
+  "question": "State what kind of expenses that Sacha Harrison incurred?",
+  "thinking": ""
+}

@@ -1,0 +1,164 @@
+{
+  "db_id": "student_club",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "event_name"
+      ],
+      [
+        "October Meeting"
+      ],
+      [
+        "Officers meeting - November"
+      ],
+      [
+        "February Speaker"
+      ],
+      [
+        "September Speaker"
+      ],
+      [
+        "Officers meeting - March"
+      ],
+      [
+        "March Meeting"
+      ],
+      [
+        "April Speaker"
+      ],
+      [
+        "March Speaker"
+      ],
+      [
+        "Officers meeting - September"
+      ],
+      [
+        "Yearly Kickoff"
+      ],
+      [
+        "Officers meeting - January"
+      ],
+      [
+        "November Meeting"
+      ],
+      [
+        "Officers meeting - February"
+      ],
+      [
+        "January Speaker"
+      ],
+      [
+        "February Meeting"
+      ],
+      [
+        "January Meeting"
+      ],
+      [
+        "October Speaker"
+      ],
+      [
+        "April Meeting"
+      ],
+      [
+        "September Meeting"
+      ],
+      [
+        "Officers meeting - October"
+      ],
+      [
+        "Officers meeting - April"
+      ],
+      [
+        "November Speaker"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.event_name FROM event AS T1 INNER JOIN budget AS T2 ON T1.event_id = T2.link_to_event WHERE T2.category = 'Food'",
+  "id": 1464,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "event_name"
+      ],
+      [
+        "October Meeting"
+      ],
+      [
+        "Officers meeting - November"
+      ],
+      [
+        "February Speaker"
+      ],
+      [
+        "September Speaker"
+      ],
+      [
+        "Officers meeting - March"
+      ],
+      [
+        "March Meeting"
+      ],
+      [
+        "April Speaker"
+      ],
+      [
+        "March Speaker"
+      ],
+      [
+        "Officers meeting - September"
+      ],
+      [
+        "Yearly Kickoff"
+      ],
+      [
+        "Officers meeting - January"
+      ],
+      [
+        "November Meeting"
+      ],
+      [
+        "Officers meeting - February"
+      ],
+      [
+        "January Speaker"
+      ],
+      [
+        "February Meeting"
+      ],
+      [
+        "January Meeting"
+      ],
+      [
+        "October Speaker"
+      ],
+      [
+        "April Meeting"
+      ],
+      [
+        "September Meeting"
+      ],
+      [
+        "Officers meeting - October"
+      ],
+      [
+        "Officers meeting - April"
+      ],
+      [
+        "November Speaker"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT event.event_name\nFROM event\nJOIN budget ON event.event_id = budget.link_to_event\nWHERE budget.category = 'Food'",
+  "question": "List the event names which were budgeted for the food.",
+  "thinking": ""
+}

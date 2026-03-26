@@ -1,0 +1,16 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT Date FROM Laboratory WHERE ALB \u003e 3.5 AND ALB \u003c 5.5 ORDER BY ALB DESC LIMIT 1",
+  "id": 1291,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT Date FROM Laboratory WHERE ALB \u003e 3.5 AND ALB \u003c 5.5 ORDER BY ALB DESC LIMIT 1;",
+  "question": "What is the examination date of the patient whose albumin is the highest in the normal range?",
+  "thinking": ""
+}

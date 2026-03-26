@@ -1,0 +1,38 @@
+{
+  "db_id": "toxicology",
+  "difficulty": "challenging",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "element"
+      ],
+      [
+        "c"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T1.element FROM atom AS T1 INNER JOIN connected AS T2 ON T1.atom_id = T2.atom_id WHERE T2.bond_id = 'TR001_2_4'",
+  "id": 303,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "element"
+      ],
+      [
+        "c"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT a1.element FROM bond b JOIN connected c ON b.bond_id = c.bond_id JOIN atom a1 ON c.atom_id = a1.atom_id WHERE b.bond_id = 'TR001_2_4' UNION SELECT a2.element FROM bond b JOIN connected c ON b.bond_id = c.bond_id JOIN atom a2 ON c.atom_id2 = a2.atom_id WHERE b.bond_id = 'TR001_2_4';",
+  "question": "Name the elements that comprise the atoms of bond TR001_2_4.",
+  "thinking": ""
+}

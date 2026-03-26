@@ -1,0 +1,38 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "buildUpPlayPassingClass"
+      ],
+      [
+        "Long"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT t2.buildUpPlayPassingClass FROM Team AS t1 INNER JOIN Team_Attributes AS t2 ON t1.team_api_id = t2.team_api_id WHERE t1.team_long_name = 'FC Lorient' AND t2.`date` LIKE '2010-02-22%'",
+  "id": 1111,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "buildUpPlayPassingClass"
+      ],
+      [
+        "Long"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT ta.buildUpPlayPassingClass\nFROM Team t\nJOIN Team_Attributes ta ON t.team_api_id = ta.team_api_id\nWHERE t.team_long_name = 'FC Lorient'\n  AND ta.date LIKE '2010-02-22%';",
+  "question": "Tell the build Up play passing class for \"FC Lorient\" on 2010/2/22.",
+  "thinking": ""
+}

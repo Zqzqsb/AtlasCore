@@ -1,0 +1,551 @@
+{
+  "db_id": "superhero",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=71, pred=102",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "full_name"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Abraham Sapien"
+      ],
+      [
+        "Al Simmons"
+      ],
+      [
+        "Alexander J. Mercer"
+      ],
+      [
+        "Anakin Skywalker"
+      ],
+      [
+        "Anthony Edward Stark"
+      ],
+      [
+        "Barbara Ann Minerva"
+      ],
+      [
+        "Bartholomew Allen II"
+      ],
+      [
+        "Bizarro"
+      ],
+      [
+        "Bruce Wayne"
+      ],
+      [
+        "Clark Joseph Kent (Kal-El)"
+      ],
+      [
+        "Cyberdyne Systems Series 1000 Terminator"
+      ],
+      [
+        "Cyberdyne Systems Series 800 Terminator Model 101"
+      ],
+      [
+        "Cyberdyne Systems Series 850 Terminator"
+      ],
+      [
+        "Cyberdyne Systems Series X Terminator"
+      ],
+      [
+        "Daniel Thomas Rand-K'ai"
+      ],
+      [
+        "Diana of Themyscira"
+      ],
+      [
+        "Doomsday"
+      ],
+      [
+        "Dr. Nathaniel Essex"
+      ],
+      [
+        "Dru-Zod"
+      ],
+      [
+        "Edward Charles Allan Brock"
+      ],
+      [
+        "En Sabah Nur"
+      ],
+      [
+        "Erik Stephan Josten"
+      ],
+      [
+        "Faora Hu-Ul"
+      ],
+      [
+        "Franklin Benjamin Richards"
+      ],
+      [
+        "Gwendolyne Stacy"
+      ],
+      [
+        "Henry Henshaw"
+      ],
+      [
+        "J'onn J'onzz"
+      ],
+      [
+        "Jac-jack Parr"
+      ],
+      [
+        "James Howlett"
+      ],
+      [
+        "James Rupert Rhodes"
+      ],
+      [
+        "Jason Rusch"
+      ],
+      [
+        "Jean Grey-Summers"
+      ],
+      [
+        "Jonathan Osterman"
+      ],
+      [
+        "Kakarot"
+      ],
+      [
+        "Kal-El"
+      ],
+      [
+        "Kara Zor-El"
+      ],
+      [
+        "Kara Zor-L"
+      ],
+      [
+        "Kent Nelson"
+      ],
+      [
+        "Laura Kinney"
+      ],
+      [
+        "Liam"
+      ],
+      [
+        "Luke Skywalker"
+      ],
+      [
+        "M'gann M'orzz"
+      ],
+      [
+        "MacDonald Gargan"
+      ],
+      [
+        "Mari Jiwe McCabe"
+      ],
+      [
+        "Michael Jon Carter"
+      ],
+      [
+        "Mortimer Toynbee"
+      ],
+      [
+        "Mr. Mxyzptlk"
+      ],
+      [
+        "Nathan Christopher Charles Summers Dayspring"
+      ],
+      [
+        "Nathaniel Christopher Adam"
+      ],
+      [
+        "Norrin Radd"
+      ],
+      [
+        "Onslaught"
+      ],
+      [
+        "Orin"
+      ],
+      [
+        "Peter Benjamin Parker"
+      ],
+      [
+        "Raymond C. Terrill"
+      ],
+      [
+        "Richard John Grayson"
+      ],
+      [
+        "Richard Rider"
+      ],
+      [
+        "Robert Bruce Banner"
+      ],
+      [
+        "Robert Louis Drake"
+      ],
+      [
+        "Robert Reynolds"
+      ],
+      [
+        "Stephen Vincent Strange"
+      ],
+      [
+        "Thanos"
+      ],
+      [
+        "Thor Odinson"
+      ],
+      [
+        "Todd Arliss"
+      ],
+      [
+        "Uatu"
+      ],
+      [
+        "Uxas"
+      ],
+      [
+        "Victor Creed"
+      ],
+      [
+        "Wallace Rudolph West"
+      ],
+      [
+        "Yautja"
+      ],
+      [
+        "Yoda"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T1.full_name FROM superhero AS T1 INNER JOIN hero_power AS T2 ON T1.id = T2.hero_id GROUP BY T1.full_name HAVING COUNT(T2.power_id) \u003e 15",
+  "id": 721,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "full_name"
+      ],
+      [
+        "Abraham Sapien"
+      ],
+      [
+        "Alexander J. Mercer"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Liam"
+      ],
+      [
+        "Liam"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "En Sabah Nur"
+      ],
+      [
+        "Orin"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Bruce Wayne"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Bizarro"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Michael Jon Carter"
+      ],
+      [
+        "Nathan Christopher Charles Summers Dayspring"
+      ],
+      [
+        "Nathaniel Christopher Adam"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "-"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Barbara Ann Minerva"
+      ],
+      [
+        "Henry Henshaw"
+      ],
+      [
+        "Uxas"
+      ],
+      [
+        "Anakin Skywalker"
+      ],
+      [
+        "-"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Kent Nelson"
+      ],
+      [
+        "Stephen Vincent Strange"
+      ],
+      [
+        "Doomsday"
+      ],
+      [
+        "Jonathan Osterman"
+      ],
+      [
+        "-"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Faora Hu-Ul"
+      ],
+      [
+        "Jason Rusch"
+      ],
+      [
+        "Franklin Benjamin Richards"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Dru-Zod"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Kakarot"
+      ],
+      [
+        "-"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Robert Bruce Banner"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Robert Louis Drake"
+      ],
+      [
+        "Daniel Thomas Rand-K'ai"
+      ],
+      [
+        "Anthony Edward Stark"
+      ],
+      [
+        "Jac-jack Parr"
+      ],
+      [
+        "-"
+      ],
+      [
+        "-"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Luke Skywalker"
+      ],
+      [
+        "-"
+      ],
+      [
+        "J'onn J'onzz"
+      ],
+      [
+        "-"
+      ],
+      [
+        "M'gann M'orzz"
+      ],
+      [
+        "Mr. Mxyzptlk"
+      ],
+      [
+        "Dr. Nathaniel Essex"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Richard Rider"
+      ],
+      [
+        "-"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Onslaught"
+      ],
+      [
+        "Jean Grey-Summers"
+      ],
+      [
+        "Kara Zor-L"
+      ],
+      [
+        "Yautja"
+      ],
+      [
+        "Raymond C. Terrill"
+      ],
+      [
+        "Victor Creed"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Robert Reynolds"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Norrin Radd"
+      ],
+      [
+        "Al Simmons"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Gwendolyne Stacy"
+      ],
+      [
+        "Peter Benjamin Parker"
+      ],
+      [
+        "Kal-El"
+      ],
+      [
+        "Kara Zor-El"
+      ],
+      [
+        "Clark Joseph Kent (Kal-El)"
+      ],
+      [
+        "Cyberdyne Systems Series 1000 Terminator"
+      ],
+      [
+        "Cyberdyne Systems Series 800 Terminator Model 101"
+      ],
+      [
+        "Cyberdyne Systems Series 850 Terminator"
+      ],
+      [
+        "Cyberdyne Systems Series X Terminator"
+      ],
+      [
+        "Thanos"
+      ],
+      [
+        "Thor Odinson"
+      ],
+      [
+        "Todd Arliss"
+      ],
+      [
+        "Mortimer Toynbee"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "-"
+      ],
+      [
+        "-"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Mari Jiwe McCabe"
+      ],
+      [
+        "James Rupert Rhodes"
+      ],
+      [
+        "Uatu"
+      ],
+      [
+        "James Howlett"
+      ],
+      [
+        "Diana of Themyscira"
+      ],
+      [
+        "Laura Kinney"
+      ],
+      [
+        "Yoda"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT s.full_name\nFROM superhero s\nJOIN hero_power hp ON s.id = hp.hero_id\nGROUP BY s.id, s.full_name\nHAVING COUNT(hp.power_id) \u003e 15;",
+  "question": "Please list the full names of all the superheroes with over 15 super powers.",
+  "thinking": ""
+}

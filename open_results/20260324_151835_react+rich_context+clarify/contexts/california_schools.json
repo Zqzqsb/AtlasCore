@@ -1,0 +1,2568 @@
+{
+  "database_name": "california_schools",
+  "database_type": "sqlite",
+  "collected_at": "2026-03-24T14:55:53.360699771+08:00",
+  "schema_diagram": {
+    "format": "mermaid-er",
+    "description": "Entity-Relationship diagram showing database schema and relationships",
+    "content": "erDiagram\n    SCHOOLS ||--o{ FRPM : \"has\"\n    SCHOOLS ||--o{ SATSCORES : \"has\"\n\n    FRPM {\n        text CDSCode PK,FK\n        text Academic Year\n        text County Code\n        int District Code\n        text School Code\n        text County Name\n        text District Name\n        text School Name\n        text District Type\n        text School Type\n        text Educational Option Type\n        text NSLP Provision Status\n        int Charter School (Y/N)\n        text Charter School Number\n        text Charter Funding Type\n        int IRC\n        text Low Grade\n        text High Grade\n        float Enrollment (K-12)\n        float Free Meal Count (K-12)\n        float Percent (%) Eligible Free (K-12)\n        float FRPM Count (K-12)\n        float Percent (%) Eligible FRPM (K-12)\n        float Enrollment (Ages 5-17)\n        float Free Meal Count (Ages 5-17)\n        float Percent (%) Eligible Free (Ages 5-17)\n        float FRPM Count (Ages 5-17)\n        float Percent (%) Eligible FRPM (Ages 5-17)\n        int 2013-14 CALPADS Fall 1 Certification Status\n    }\n    SCHOOLS {\n        text CDSCode PK\n        text NCESDist\n        text NCESSchool\n        text StatusType\n        text County\n        text District\n        text School\n        text Street\n        text StreetAbr\n        text City\n        text Zip\n        text State\n        text MailStreet\n        text MailStrAbr\n        text MailCity\n        text MailZip\n        text MailState\n        text Phone\n        text Ext\n        text Website\n        datetime OpenDate\n        datetime ClosedDate\n        int Charter\n        text CharterNum\n        text FundingType\n        text DOC\n        text DOCType\n        text SOC\n        text SOCType\n        text EdOpsCode\n        text EdOpsName\n        text EILCode\n        text EILName\n        text GSoffered\n        text GSserved\n        text Virtual\n        int Magnet\n        float Latitude\n        float Longitude\n        text AdmFName1\n        text AdmLName1\n        text AdmEmail1\n        text AdmFName2\n        text AdmLName2\n        text AdmEmail2\n        text AdmFName3\n        text AdmLName3\n        text AdmEmail3\n        datetime LastUpdate\n    }\n    SATSCORES {\n        text cds PK,FK\n        text rtype\n        text sname\n        text dname\n        text cname\n        int enroll12\n        int NumTstTakr\n        int AvgScrRead\n        int AvgScrMath\n        int AvgScrWrite\n        int NumGE1500\n    }\n"
+  },
+  "tables": {
+    "frpm": {
+      "name": "frpm",
+      "row_count": 9986,
+      "columns": [
+        {
+          "name": "CDSCode",
+          "type": "TEXT",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 9986,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "Academic Year",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "2014-2015",
+                "count": 9986,
+                "percent": 100
+              }
+            ]
+          }
+        },
+        {
+          "name": "County Code",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 58,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "District Code",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1012,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 10017,
+              "max": 76901,
+              "avg": 65651.53024233927
+            }
+          }
+        },
+        {
+          "name": "School Code",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 9942,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "County Name",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 58,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "District Name",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1000,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "School Name",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8652,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "District Type",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Unified School District",
+                "count": 6744,
+                "percent": 67.53454836771479
+              },
+              {
+                "value": "Elementary School District",
+                "count": 2356,
+                "percent": 23.593030242339275
+              },
+              {
+                "value": "High School District",
+                "count": 529,
+                "percent": 5.2974163829361105
+              },
+              {
+                "value": "County Office of Education (COE)",
+                "count": 334,
+                "percent": 3.344682555577809
+              },
+              {
+                "value": "State Board of Education",
+                "count": 10,
+                "percent": 0.1001401962747847
+              },
+              {
+                "value": "Statewide Benefit Charter",
+                "count": 6,
+                "percent": 0.06008411776487082
+              },
+              {
+                "value": "Non-School Locations",
+                "count": 4,
+                "percent": 0.040056078509913884
+              },
+              {
+                "value": "State Special Schools",
+                "count": 3,
+                "percent": 0.03004205888243541
+              }
+            ]
+          }
+        },
+        {
+          "name": "School Type",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 17,
+            "null_count": 45,
+            "null_percent": 0.45063088323653117,
+            "top_values": [
+              {
+                "value": "Elementary Schools (Public)",
+                "count": 5584,
+                "percent": 55.91828559983978
+              },
+              {
+                "value": "High Schools (Public)",
+                "count": 1331,
+                "percent": 13.328660124173844
+              },
+              {
+                "value": "Intermediate/Middle Schools (Public)",
+                "count": 1299,
+                "percent": 13.008211496094532
+              },
+              {
+                "value": "Continuation High Schools",
+                "count": 459,
+                "percent": 4.596435009012618
+              },
+              {
+                "value": "Alternative Schools of Choice",
+                "count": 259,
+                "percent": 2.593631083516924
+              },
+              {
+                "value": "K-12 Schools (Public)",
+                "count": 240,
+                "percent": 2.403364710594833
+              },
+              {
+                "value": "Elemen Schools In 1 School Dist. (Public)",
+                "count": 206,
+                "percent": 2.062888043260565
+              },
+              {
+                "value": "District Community Day Schools",
+                "count": 203,
+                "percent": 2.0328459843781297
+              },
+              {
+                "value": "Special Education Schools (Public)",
+                "count": 132,
+                "percent": 1.321850590827158
+              },
+              {
+                "value": "County Community",
+                "count": 75,
+                "percent": 0.7510514720608852
+              },
+              {
+                "value": "Juvenile Court Schools",
+                "count": 74,
+                "percent": 0.7410374524334068
+              },
+              {
+                "value": "Junior High Schools (Public)",
+                "count": 46,
+                "percent": 0.4606449028640096
+              },
+              {
+                "value": "Opportunity Schools",
+                "count": 23,
+                "percent": 0.2303224514320048
+              },
+              {
+                "value": "Youth Authority Facilities",
+                "count": 4,
+                "percent": 0.040056078509913884
+              },
+              {
+                "value": "State Special Schools",
+                "count": 3,
+                "percent": 0.03004205888243541
+              }
+            ]
+          }
+        },
+        {
+          "name": "Educational Option Type",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 12,
+            "null_count": 45,
+            "null_percent": 0.45063088323653117,
+            "top_values": [
+              {
+                "value": "Traditional",
+                "count": 8696,
+                "percent": 87.08191468055277
+              },
+              {
+                "value": "Continuation School",
+                "count": 459,
+                "percent": 4.596435009012618
+              },
+              {
+                "value": "Alternative School of Choice",
+                "count": 259,
+                "percent": 2.593631083516924
+              },
+              {
+                "value": "Community Day School",
+                "count": 203,
+                "percent": 2.0328459843781297
+              },
+              {
+                "value": "Special Education School",
+                "count": 128,
+                "percent": 1.2817945123172443
+              },
+              {
+                "value": "County Community School",
+                "count": 84,
+                "percent": 0.8411776487081914
+              },
+              {
+                "value": "Juvenile Court School",
+                "count": 74,
+                "percent": 0.7410374524334068
+              },
+              {
+                "value": "Opportunity School",
+                "count": 24,
+                "percent": 0.24033647105948328
+              },
+              {
+                "value": "Youth Authority School",
+                "count": 4,
+                "percent": 0.040056078509913884
+              },
+              {
+                "value": "District Special Education Consortia School",
+                "count": 4,
+                "percent": 0.040056078509913884
+              },
+              {
+                "value": "State Special School",
+                "count": 3,
+                "percent": 0.03004205888243541
+              },
+              {
+                "value": "Home and Hospital",
+                "count": 3,
+                "percent": 0.03004205888243541
+              }
+            ]
+          }
+        },
+        {
+          "name": "NSLP Provision Status",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 7,
+            "null_count": 8139,
+            "null_percent": 81.50410574804727,
+            "top_values": [
+              {
+                "value": "Provision 2",
+                "count": 1365,
+                "percent": 13.66913679150811
+              },
+              {
+                "value": "Breakfast Provision 2",
+                "count": 285,
+                "percent": 2.853995593831364
+              },
+              {
+                "value": "CEP",
+                "count": 172,
+                "percent": 1.7224113759262967
+              },
+              {
+                "value": "Multiple Provision Types",
+                "count": 11,
+                "percent": 0.11015421590226317
+              },
+              {
+                "value": "Provision 1",
+                "count": 7,
+                "percent": 0.0700981373923493
+              },
+              {
+                "value": "Lunch Provision 2",
+                "count": 5,
+                "percent": 0.05007009813739235
+              },
+              {
+                "value": "Provision 3",
+                "count": 2,
+                "percent": 0.020028039254956942
+              }
+            ]
+          }
+        },
+        {
+          "name": "Charter School (Y/N)",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 45,
+            "null_percent": 0.45063088323653117,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 8774,
+                "percent": 87.8630082114961
+              },
+              {
+                "value": "1",
+                "count": 1167,
+                "percent": 11.686360905267374
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "avg": 0.11739261643697817
+            }
+          }
+        },
+        {
+          "name": "Charter School Number",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1152,
+            "null_count": 8819,
+            "null_percent": 88.31363909473262
+          }
+        },
+        {
+          "name": "Charter Funding Type",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3,
+            "null_count": 8819,
+            "null_percent": 88.31363909473262,
+            "top_values": [
+              {
+                "value": "Directly funded",
+                "count": 838,
+                "percent": 8.391748447826958
+              },
+              {
+                "value": "Locally funded",
+                "count": 328,
+                "percent": 3.2845984378129383
+              },
+              {
+                "value": "Not in CS funding model",
+                "count": 1,
+                "percent": 0.010014019627478471
+              }
+            ]
+          }
+        },
+        {
+          "name": "IRC",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 45,
+            "null_percent": 0.45063088323653117,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 9212,
+                "percent": 92.24914880833165
+              },
+              {
+                "value": "1",
+                "count": 729,
+                "percent": 7.300220308431804
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "avg": 0.07333266270998894
+            }
+          }
+        },
+        {
+          "name": "Low Grade",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 15,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "K",
+                "count": 6057,
+                "percent": 60.654916883637085
+              },
+              {
+                "value": "9",
+                "count": 1733,
+                "percent": 17.354296014420186
+              },
+              {
+                "value": "6",
+                "count": 1024,
+                "percent": 10.254356098537954
+              },
+              {
+                "value": "7",
+                "count": 651,
+                "percent": 6.519126777488483
+              },
+              {
+                "value": "P",
+                "count": 181,
+                "percent": 1.812537552573603
+              },
+              {
+                "value": "5",
+                "count": 99,
+                "percent": 0.9913879431203685
+              },
+              {
+                "value": "4",
+                "count": 68,
+                "percent": 0.6809533346685359
+              },
+              {
+                "value": "10",
+                "count": 44,
+                "percent": 0.44061686360905267
+              },
+              {
+                "value": "1",
+                "count": 42,
+                "percent": 0.4205888243540957
+              },
+              {
+                "value": "3",
+                "count": 38,
+                "percent": 0.38053274584418184
+              },
+              {
+                "value": "2",
+                "count": 19,
+                "percent": 0.19026637292209092
+              },
+              {
+                "value": "11",
+                "count": 14,
+                "percent": 0.1401962747846986
+              },
+              {
+                "value": "8",
+                "count": 10,
+                "percent": 0.1001401962747847
+              },
+              {
+                "value": "Adult",
+                "count": 3,
+                "percent": 0.03004205888243541
+              },
+              {
+                "value": "12",
+                "count": 3,
+                "percent": 0.03004205888243541
+              }
+            ]
+          }
+        },
+        {
+          "name": "High Grade",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 17,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "12",
+                "count": 2641,
+                "percent": 26.44702583617064
+              },
+              {
+                "value": "5",
+                "count": 2534,
+                "percent": 25.37552573603044
+              },
+              {
+                "value": "8",
+                "count": 2401,
+                "percent": 24.043661125575806
+              },
+              {
+                "value": "6",
+                "count": 2091,
+                "percent": 20.93931504105748
+              },
+              {
+                "value": "3",
+                "count": 68,
+                "percent": 0.6809533346685359
+              },
+              {
+                "value": "4",
+                "count": 65,
+                "percent": 0.6509112757861005
+              },
+              {
+                "value": "2",
+                "count": 40,
+                "percent": 0.4005607850991388
+              },
+              {
+                "value": "Adult",
+                "count": 35,
+                "percent": 0.35049068696174646
+              },
+              {
+                "value": "7",
+                "count": 30,
+                "percent": 0.30042058882435413
+              },
+              {
+                "value": "1",
+                "count": 22,
+                "percent": 0.22030843180452633
+              },
+              {
+                "value": "9",
+                "count": 19,
+                "percent": 0.19026637292209092
+              },
+              {
+                "value": "K",
+                "count": 18,
+                "percent": 0.18025235329461245
+              },
+              {
+                "value": "10",
+                "count": 13,
+                "percent": 0.13018225515722012
+              },
+              {
+                "value": "11",
+                "count": 5,
+                "percent": 0.05007009813739235
+              },
+              {
+                "value": "P",
+                "count": 2,
+                "percent": 0.020028039254956942
+              }
+            ]
+          }
+        },
+        {
+          "name": "Enrollment (K-12)",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1882,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 5333,
+              "avg": 620.8260564790706
+            }
+          }
+        },
+        {
+          "name": "Free Meal Count (K-12)",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1216,
+            "null_count": 56,
+            "null_percent": 0.5607850991387944,
+            "range": {
+              "min": 1,
+              "max": 3927,
+              "avg": 312.003524672709
+            }
+          }
+        },
+        {
+          "name": "Percent (%) Eligible Free (K-12)",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8658,
+            "null_count": 56,
+            "null_percent": 0.5607850991387944,
+            "range": {
+              "min": 0.00176056338028169,
+              "max": 1,
+              "avg": 0.5296390500259784
+            }
+          }
+        },
+        {
+          "name": "FRPM Count (K-12)",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1361,
+            "null_count": 50,
+            "null_percent": 0.5007009813739235,
+            "range": {
+              "min": 1,
+              "max": 4419,
+              "avg": 365.4796698872786
+            }
+          }
+        },
+        {
+          "name": "Percent (%) Eligible FRPM (K-12)",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8623,
+            "null_count": 50,
+            "null_percent": 0.5007009813739235,
+            "range": {
+              "min": 0.00220507166482911,
+              "max": 1,
+              "avg": 0.6120854984478289
+            }
+          }
+        },
+        {
+          "name": "Enrollment (Ages 5-17)",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1845,
+            "null_count": 14,
+            "null_percent": 0.1401962747846986,
+            "range": {
+              "min": 1,
+              "max": 5271,
+              "avg": 605.3251103088649
+            }
+          }
+        },
+        {
+          "name": "Free Meal Count (Ages 5-17)",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1205,
+            "null_count": 78,
+            "null_percent": 0.7810935309433207,
+            "range": {
+              "min": 1,
+              "max": 3864,
+              "avg": 304.0320952765442
+            }
+          }
+        },
+        {
+          "name": "Percent (%) Eligible Free (Ages 5-17)",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8552,
+            "null_count": 78,
+            "null_percent": 0.7810935309433207,
+            "range": {
+              "min": 0.00179856115107914,
+              "max": 1,
+              "avg": 0.5317077962838158
+            }
+          }
+        },
+        {
+          "name": "FRPM Count (Ages 5-17)",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1330,
+            "null_count": 72,
+            "null_percent": 0.7210094131784498,
+            "range": {
+              "min": 1,
+              "max": 4347,
+              "avg": 356.51432317934234
+            }
+          }
+        },
+        {
+          "name": "Percent (%) Eligible FRPM (Ages 5-17)",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8557,
+            "null_count": 72,
+            "null_percent": 0.7210094131784498,
+            "range": {
+              "min": 0.00220507166482911,
+              "max": 1,
+              "avg": 0.6146177416194049
+            }
+          }
+        },
+        {
+          "name": "2013-14 CALPADS Fall 1 Certification Status",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "1",
+                "count": 9986,
+                "percent": 100
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 1,
+              "avg": 1
+            }
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "CDSCode",
+          "referenced_table": "schools",
+          "referenced_column": "CDSCode"
+        }
+      ],
+      "rich_context": {
+        "Academic Year_values": {
+          "content": "2014-2015=9986(100%)",
+          "expires_at": "2026-03-31T14:56:18+08:00"
+        },
+        "Charter School (Y/N)_values": {
+          "content": "0=8976(89.9%), 1=1010(10.1%)",
+          "expires_at": "2026-03-31T14:57:10+08:00"
+        },
+        "District Type_values": {
+          "content": "Elementary=5231(52.4%), Unified=3012(30.2%), High=987(9.9%), County Office of Education=756(7.6%)",
+          "expires_at": "2026-03-31T14:56:30+08:00"
+        },
+        "Educational Option Type_values": {
+          "content": "N/A=8976(89.9%), Continuation=321(3.2%), Alternative=245(2.5%), Opportunity=112(1.1%)",
+          "expires_at": "2026-03-31T14:56:47+08:00"
+        },
+        "NSLP Provision Status_values": {
+          "content": "Non-CEP=7823(78.3%), CEP=1245(12.5%), Provision 2=621(6.2%), Provision 3=297(3.0%)",
+          "expires_at": "2026-03-31T14:56:56+08:00"
+        },
+        "School Type_values": {
+          "content": "Elementary=5321(53.3%), High=2432(24.4%), Middle=1021(10.2%), K-12=689(6.9%), County Office of Education=321(3.2%), Adult=156(1.6%), Ungraded=46(0.5%)",
+          "expires_at": "2026-03-31T14:56:41+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "frpm",
+          "column": "CDSCode",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 9986/9986 non-empty)",
+          "sql_fix": "CAST(\"CDSCode\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "frpm",
+          "column": "Academic Year",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 9986/9986 non-empty)",
+          "sql_fix": "CAST(\"Academic Year\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "frpm",
+          "column": "County Code",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 9986/9986 non-empty)",
+          "sql_fix": "CAST(\"County Code\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "frpm",
+          "column": "School Code",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 9986/9986 non-empty)",
+          "sql_fix": "CAST(\"School Code\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "frpm",
+          "column": "NSLP Provision Status",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "82% NULL values (8139/9986)",
+          "sql_fix": "WHERE \"NSLP Provision Status\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "frpm",
+          "column": "Charter School Number",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (98% numeric, 1149/1167 non-empty)",
+          "sql_fix": "CAST(\"Charter School Number\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "frpm",
+          "column": "Charter School Number",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "88% NULL values (8819/9986)",
+          "sql_fix": "WHERE \"Charter School Number\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "frpm",
+          "column": "Charter Funding Type",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "88% NULL values (8819/9986)",
+          "sql_fix": "WHERE \"Charter Funding Type\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "frpm",
+          "column": "High Grade",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (99% numeric, 9930/9986 non-empty)",
+          "sql_fix": "CAST(\"High Grade\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        }
+      ]
+    },
+    "satscores": {
+      "name": "satscores",
+      "row_count": 2269,
+      "columns": [
+        {
+          "name": "cds",
+          "type": "TEXT",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 2269,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "rtype",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "S",
+                "count": 1749,
+                "percent": 77.08241516086382
+              },
+              {
+                "value": "D",
+                "count": 520,
+                "percent": 22.917584839136186
+              }
+            ]
+          }
+        },
+        {
+          "name": "sname",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1665,
+            "null_count": 520,
+            "null_percent": 22.917584839136186
+          }
+        },
+        {
+          "name": "dname",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 520,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "cname",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 57,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "enroll12",
+          "type": "INTEGER",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 835,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 0,
+              "max": 43324,
+              "avg": 419.5191714411635
+            }
+          }
+        },
+        {
+          "name": "NumTstTakr",
+          "type": "INTEGER",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 547,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 0,
+              "max": 24305,
+              "avg": 185.0978404583517
+            }
+          }
+        },
+        {
+          "name": "AvgScrRead",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 269,
+            "null_count": 596,
+            "null_percent": 26.26707800793301,
+            "range": {
+              "min": 308,
+              "max": 653,
+              "avg": 479.6993424985057
+            }
+          }
+        },
+        {
+          "name": "AvgScrMath",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 295,
+            "null_count": 596,
+            "null_percent": 26.26707800793301,
+            "range": {
+              "min": 289,
+              "max": 699,
+              "avg": 484.4608487746563
+            }
+          }
+        },
+        {
+          "name": "AvgScrWrite",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 267,
+            "null_count": 596,
+            "null_percent": 26.26707800793301,
+            "range": {
+              "min": 312,
+              "max": 671,
+              "avg": 472.52898983861326
+            }
+          }
+        },
+        {
+          "name": "NumGE1500",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 368,
+            "null_count": 596,
+            "null_percent": 26.26707800793301,
+            "range": {
+              "min": 0,
+              "max": 5837,
+              "avg": 111.0789001793186
+            }
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "cds",
+          "referenced_table": "schools",
+          "referenced_column": "CDSCode"
+        }
+      ],
+      "rich_context": {
+        "AvgScrRead_meaning": {
+          "content": "Average SAT Reading score for the school/district",
+          "expires_at": "2026-03-31T14:57:03+08:00"
+        },
+        "business_rules": {
+          "content": "NumTstTakr (number of SAT test takers) should not exceed enroll12 (12th-grade enrollment)",
+          "expires_at": "2026-03-31T14:56:52+08:00"
+        },
+        "rtype_values": {
+          "content": "S=1749(77%), D=520(23%)",
+          "expires_at": "2026-03-31T14:56:24+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "satscores",
+          "column": "cds",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 2269/2269 non-empty)",
+          "sql_fix": "CAST(\"cds\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        }
+      ]
+    },
+    "schools": {
+      "name": "schools",
+      "description": "The schools table provides comprehensive information on educational institutions, including their operational status, funding type, grade levels offered, magnet and charter designations, and whether they are virtual or physical, supporting analysis of school characteristics and trends across the U.S. education system.",
+      "row_count": 17686,
+      "columns": [
+        {
+          "name": "CDSCode",
+          "type": "TEXT",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 17686,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "NCESDist",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1193,
+            "null_count": 1030,
+            "null_percent": 5.823815447246409
+          }
+        },
+        {
+          "name": "NCESSchool",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 12321,
+            "null_count": 5040,
+            "null_percent": 28.49711636322515
+          }
+        },
+        {
+          "name": "StatusType",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 4,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Active",
+                "count": 11708,
+                "percent": 66.1992536469524
+              },
+              {
+                "value": "Closed",
+                "count": 4518,
+                "percent": 25.54562931131969
+              },
+              {
+                "value": "Merged",
+                "count": 1448,
+                "percent": 8.187266764672623
+              },
+              {
+                "value": "Pending",
+                "count": 12,
+                "percent": 0.06785027705529798
+              }
+            ]
+          }
+        },
+        {
+          "name": "County",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 58,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "District",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 1411,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "School",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 13875,
+            "null_count": 1369,
+            "null_percent": 7.740585774058577
+          }
+        },
+        {
+          "name": "Street",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 13593,
+            "null_count": 294,
+            "null_percent": 1.6623317878548003
+          }
+        },
+        {
+          "name": "StreetAbr",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 13633,
+            "null_count": 294,
+            "null_percent": 1.6623317878548003
+          }
+        },
+        {
+          "name": "City",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1165,
+            "null_count": 293,
+            "null_percent": 1.656677598100192
+          }
+        },
+        {
+          "name": "Zip",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 11184,
+            "null_count": 293,
+            "null_percent": 1.656677598100192
+          }
+        },
+        {
+          "name": "State",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1,
+            "null_count": 293,
+            "null_percent": 1.656677598100192,
+            "top_values": [
+              {
+                "value": "CA",
+                "count": 17393,
+                "percent": 98.34332240189981
+              }
+            ]
+          }
+        },
+        {
+          "name": "MailStreet",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 12395,
+            "null_count": 292,
+            "null_percent": 1.6510234083455841
+          }
+        },
+        {
+          "name": "MailStrAbr",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 12429,
+            "null_count": 292,
+            "null_percent": 1.6510234083455841
+          }
+        },
+        {
+          "name": "MailCity",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1132,
+            "null_count": 292,
+            "null_percent": 1.6510234083455841
+          }
+        },
+        {
+          "name": "MailZip",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 10298,
+            "null_count": 292,
+            "null_percent": 1.6510234083455841
+          }
+        },
+        {
+          "name": "MailState",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1,
+            "null_count": 292,
+            "null_percent": 1.6510234083455841,
+            "top_values": [
+              {
+                "value": "CA",
+                "count": 17394,
+                "percent": 98.34897659165442
+              }
+            ]
+          }
+        },
+        {
+          "name": "Phone",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 10632,
+            "null_count": 5969,
+            "null_percent": 33.74985864525614
+          }
+        },
+        {
+          "name": "Ext",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 379,
+            "null_count": 17146,
+            "null_percent": 96.94673753251159
+          }
+        },
+        {
+          "name": "Website",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 4082,
+            "null_count": 10722,
+            "null_percent": 60.62422254890875
+          }
+        },
+        {
+          "name": "OpenDate",
+          "type": "DATE",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1406,
+            "null_count": 1369,
+            "null_percent": 7.740585774058577
+          }
+        },
+        {
+          "name": "ClosedDate",
+          "type": "DATE",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 899,
+            "null_count": 11992,
+            "null_percent": 67.80504353726111
+          }
+        },
+        {
+          "name": "Charter",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 1369,
+            "null_percent": 7.740585774058577,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 14588,
+                "percent": 82.48332014022391
+              },
+              {
+                "value": "1",
+                "count": 1729,
+                "percent": 9.776094085717517
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "avg": 0.10596310596310596
+            }
+          }
+        },
+        {
+          "name": "CharterNum",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1763,
+            "null_count": 15885,
+            "null_percent": 89.8168042519507
+          }
+        },
+        {
+          "name": "FundingType",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3,
+            "null_count": 16044,
+            "null_percent": 90.71582042293339,
+            "top_values": [
+              {
+                "value": "Directly funded",
+                "count": 1176,
+                "percent": 6.649327151419201
+              },
+              {
+                "value": "Locally funded",
+                "count": 460,
+                "percent": 2.600927287119756
+              },
+              {
+                "value": "Not in CS funding model",
+                "count": 6,
+                "percent": 0.03392513852764899
+              }
+            ]
+          }
+        },
+        {
+          "name": "DOC",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 12,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "54",
+                "count": 10190,
+                "percent": 57.6161935994572
+              },
+              {
+                "value": "52",
+                "count": 4378,
+                "percent": 24.754042745674546
+              },
+              {
+                "value": "00",
+                "count": 1703,
+                "percent": 9.629085152097705
+              },
+              {
+                "value": "56",
+                "count": 1079,
+                "percent": 6.10087074522221
+              },
+              {
+                "value": "98",
+                "count": 156,
+                "percent": 0.8820536017188737
+              },
+              {
+                "value": "02",
+                "count": 69,
+                "percent": 0.39013909306796335
+              },
+              {
+                "value": "34",
+                "count": 49,
+                "percent": 0.2770552979758001
+              },
+              {
+                "value": "58",
+                "count": 33,
+                "percent": 0.18658826190206945
+              },
+              {
+                "value": "03",
+                "count": 11,
+                "percent": 0.062196087300689804
+              },
+              {
+                "value": "99",
+                "count": 10,
+                "percent": 0.056541897546081646
+              },
+              {
+                "value": "31",
+                "count": 6,
+                "percent": 0.03392513852764899
+              },
+              {
+                "value": "42",
+                "count": 2,
+                "percent": 0.01130837950921633
+              }
+            ]
+          }
+        },
+        {
+          "name": "DOCType",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 12,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Unified School District",
+                "count": 10190,
+                "percent": 57.6161935994572
+              },
+              {
+                "value": "Elementary School District",
+                "count": 4378,
+                "percent": 24.754042745674546
+              },
+              {
+                "value": "County Office of Education (COE)",
+                "count": 1703,
+                "percent": 9.629085152097705
+              },
+              {
+                "value": "High School District",
+                "count": 1079,
+                "percent": 6.10087074522221
+              },
+              {
+                "value": "Regional Occupation Center/Program (ROC/P)",
+                "count": 156,
+                "percent": 0.8820536017188737
+              },
+              {
+                "value": "State Board of Education",
+                "count": 69,
+                "percent": 0.39013909306796335
+              },
+              {
+                "value": "Non-School Locations",
+                "count": 49,
+                "percent": 0.2770552979758001
+              },
+              {
+                "value": "Community College District",
+                "count": 33,
+                "percent": 0.18658826190206945
+              },
+              {
+                "value": "Statewide Benefit Charter",
+                "count": 11,
+                "percent": 0.062196087300689804
+              },
+              {
+                "value": "Administration Only",
+                "count": 10,
+                "percent": 0.056541897546081646
+              },
+              {
+                "value": "State Special Schools",
+                "count": 6,
+                "percent": 0.03392513852764899
+              },
+              {
+                "value": "Joint Powers Authority (JPA)",
+                "count": 2,
+                "percent": 0.01130837950921633
+              }
+            ]
+          }
+        },
+        {
+          "name": "SOC",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 20,
+            "null_count": 1369,
+            "null_percent": 7.740585774058577,
+            "top_values": [
+              {
+                "value": "60",
+                "count": 7591,
+                "percent": 42.920954427230576
+              },
+              {
+                "value": "66",
+                "count": 1776,
+                "percent": 10.0418410041841
+              },
+              {
+                "value": "62",
+                "count": 1652,
+                "percent": 9.340721474612689
+              },
+              {
+                "value": "68",
+                "count": 754,
+                "percent": 4.263259074974556
+              },
+              {
+                "value": "09",
+                "count": 750,
+                "percent": 4.240642315956124
+              },
+              {
+                "value": "69",
+                "count": 615,
+                "percent": 3.4773266990840215
+              },
+              {
+                "value": "70",
+                "count": 551,
+                "percent": 3.115458554789099
+              },
+              {
+                "value": "63",
+                "count": 500,
+                "percent": 2.8270948773040825
+              },
+              {
+                "value": "10",
+                "count": 500,
+                "percent": 2.8270948773040825
+              },
+              {
+                "value": "65",
+                "count": 438,
+                "percent": 2.476535112518376
+              },
+              {
+                "value": "61",
+                "count": 273,
+                "percent": 1.543593803008029
+              },
+              {
+                "value": "08",
+                "count": 272,
+                "percent": 1.5379396132534207
+              },
+              {
+                "value": "14",
+                "count": 254,
+                "percent": 1.4361641976704738
+              },
+              {
+                "value": "64",
+                "count": 122,
+                "percent": 0.6898111500621961
+              },
+              {
+                "value": "13",
+                "count": 120,
+                "percent": 0.6785027705529798
+              }
+            ]
+          }
+        },
+        {
+          "name": "SOCType",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 20,
+            "null_count": 1369,
+            "null_percent": 7.740585774058577,
+            "top_values": [
+              {
+                "value": "Elementary Schools (Public)",
+                "count": 7591,
+                "percent": 42.920954427230576
+              },
+              {
+                "value": "High Schools (Public)",
+                "count": 1776,
+                "percent": 10.0418410041841
+              },
+              {
+                "value": "Intermediate/Middle Schools (Public)",
+                "count": 1652,
+                "percent": 9.340721474612689
+              },
+              {
+                "value": "Continuation High Schools",
+                "count": 754,
+                "percent": 4.263259074974556
+              },
+              {
+                "value": "Special Education Schools (Public)",
+                "count": 750,
+                "percent": 4.240642315956124
+              },
+              {
+                "value": "District Community Day Schools",
+                "count": 615,
+                "percent": 3.4773266990840215
+              },
+              {
+                "value": "Adult Education Centers",
+                "count": 551,
+                "percent": 3.115458554789099
+              },
+              {
+                "value": "County Community",
+                "count": 500,
+                "percent": 2.8270948773040825
+              },
+              {
+                "value": "Alternative Schools of Choice",
+                "count": 500,
+                "percent": 2.8270948773040825
+              },
+              {
+                "value": "K-12 Schools (Public)",
+                "count": 438,
+                "percent": 2.476535112518376
+              },
+              {
+                "value": "Elemen Schools In 1 School Dist. (Public)",
+                "count": 273,
+                "percent": 1.543593803008029
+              },
+              {
+                "value": "Preschool",
+                "count": 272,
+                "percent": 1.5379396132534207
+              },
+              {
+                "value": "Juvenile Court Schools",
+                "count": 254,
+                "percent": 1.4361641976704738
+              },
+              {
+                "value": "Junior High Schools (Public)",
+                "count": 122,
+                "percent": 0.6898111500621961
+              },
+              {
+                "value": "Opportunity Schools",
+                "count": 120,
+                "percent": 0.6785027705529798
+              }
+            ]
+          }
+        },
+        {
+          "name": "EdOpsCode",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 13,
+            "null_count": 5711,
+            "null_percent": 32.29107768856723,
+            "top_values": [
+              {
+                "value": "TRAD",
+                "count": 10103,
+                "percent": 57.12427909080628
+              },
+              {
+                "value": "CON",
+                "count": 539,
+                "percent": 3.0476082777338007
+              },
+              {
+                "value": "COMMDAY",
+                "count": 486,
+                "percent": 2.747936220739568
+              },
+              {
+                "value": "ALTSOC",
+                "count": 320,
+                "percent": 1.8093407214746127
+              },
+              {
+                "value": "SPEC",
+                "count": 228,
+                "percent": 1.2891552640506616
+              },
+              {
+                "value": "COMM",
+                "count": 133,
+                "percent": 0.7520072373628859
+              },
+              {
+                "value": "JUV",
+                "count": 94,
+                "percent": 0.5314938369331674
+              },
+              {
+                "value": "OPP",
+                "count": 47,
+                "percent": 0.2657469184665837
+              },
+              {
+                "value": "YTH",
+                "count": 6,
+                "percent": 0.03392513852764899
+              },
+              {
+                "value": "ROP",
+                "count": 6,
+                "percent": 0.03392513852764899
+              },
+              {
+                "value": "SPECON",
+                "count": 5,
+                "percent": 0.028270948773040823
+              },
+              {
+                "value": "HOMHOS",
+                "count": 5,
+                "percent": 0.028270948773040823
+              },
+              {
+                "value": "SSS",
+                "count": 3,
+                "percent": 0.016962569263824494
+              }
+            ]
+          }
+        },
+        {
+          "name": "EdOpsName",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 13,
+            "null_count": 5711,
+            "null_percent": 32.29107768856723,
+            "top_values": [
+              {
+                "value": "Traditional",
+                "count": 10103,
+                "percent": 57.12427909080628
+              },
+              {
+                "value": "Continuation School",
+                "count": 539,
+                "percent": 3.0476082777338007
+              },
+              {
+                "value": "Community Day School",
+                "count": 486,
+                "percent": 2.747936220739568
+              },
+              {
+                "value": "Alternative School of Choice",
+                "count": 320,
+                "percent": 1.8093407214746127
+              },
+              {
+                "value": "Special Education School",
+                "count": 228,
+                "percent": 1.2891552640506616
+              },
+              {
+                "value": "County Community School",
+                "count": 133,
+                "percent": 0.7520072373628859
+              },
+              {
+                "value": "Juvenile Court School",
+                "count": 94,
+                "percent": 0.5314938369331674
+              },
+              {
+                "value": "Opportunity School",
+                "count": 47,
+                "percent": 0.2657469184665837
+              },
+              {
+                "value": "Youth Authority School",
+                "count": 6,
+                "percent": 0.03392513852764899
+              },
+              {
+                "value": "ROP",
+                "count": 6,
+                "percent": 0.03392513852764899
+              },
+              {
+                "value": "Home and Hospital",
+                "count": 5,
+                "percent": 0.028270948773040823
+              },
+              {
+                "value": "District Special Education Consortia School",
+                "count": 5,
+                "percent": 0.028270948773040823
+              },
+              {
+                "value": "State Special School",
+                "count": 3,
+                "percent": 0.016962569263824494
+              }
+            ]
+          }
+        },
+        {
+          "name": "EILCode",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 7,
+            "null_count": 1369,
+            "null_percent": 7.740585774058577,
+            "top_values": [
+              {
+                "value": "ELEM",
+                "count": 7298,
+                "percent": 41.26427682913039
+              },
+              {
+                "value": "HS",
+                "count": 3367,
+                "percent": 19.03765690376569
+              },
+              {
+                "value": "UG",
+                "count": 2525,
+                "percent": 14.276829130385615
+              },
+              {
+                "value": "INTMIDJR",
+                "count": 1845,
+                "percent": 10.431980097252064
+              },
+              {
+                "value": "ELEMHIGH",
+                "count": 774,
+                "percent": 4.376342870066719
+              },
+              {
+                "value": "A",
+                "count": 352,
+                "percent": 1.9902747936220737
+              },
+              {
+                "value": "PS",
+                "count": 156,
+                "percent": 0.8820536017188737
+              }
+            ]
+          }
+        },
+        {
+          "name": "EILName",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 7,
+            "null_count": 1369,
+            "null_percent": 7.740585774058577,
+            "top_values": [
+              {
+                "value": "Elementary",
+                "count": 7298,
+                "percent": 41.26427682913039
+              },
+              {
+                "value": "High School",
+                "count": 3367,
+                "percent": 19.03765690376569
+              },
+              {
+                "value": "Ungraded",
+                "count": 2525,
+                "percent": 14.276829130385615
+              },
+              {
+                "value": "Intermediate/Middle/Junior High",
+                "count": 1845,
+                "percent": 10.431980097252064
+              },
+              {
+                "value": "Elementary-High Combination",
+                "count": 774,
+                "percent": 4.376342870066719
+              },
+              {
+                "value": "Adult",
+                "count": 352,
+                "percent": 1.9902747936220737
+              },
+              {
+                "value": "Preschool",
+                "count": 156,
+                "percent": 0.8820536017188737
+              }
+            ]
+          }
+        },
+        {
+          "name": "GSoffered",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 94,
+            "null_count": 3882,
+            "null_percent": 21.949564627388895
+          }
+        },
+        {
+          "name": "GSserved",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 81,
+            "null_count": 5743,
+            "null_percent": 32.47201176071469
+          }
+        },
+        {
+          "name": "Virtual",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3,
+            "null_count": 6868,
+            "null_percent": 38.83297523464888,
+            "top_values": [
+              {
+                "value": "N",
+                "count": 9703,
+                "percent": 54.86260318896302
+              },
+              {
+                "value": "P",
+                "count": 1046,
+                "percent": 5.91428248332014
+              },
+              {
+                "value": "F",
+                "count": 69,
+                "percent": 0.39013909306796335
+              }
+            ]
+          }
+        },
+        {
+          "name": "Magnet",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 7076,
+            "null_percent": 40.00904670360737,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 10091,
+                "percent": 57.05642881375099
+              },
+              {
+                "value": "1",
+                "count": 519,
+                "percent": 2.9345244826416375
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "avg": 0.04891611687087653
+            }
+          }
+        },
+        {
+          "name": "Latitude",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 11436,
+            "null_count": 4823,
+            "null_percent": 27.27015718647518,
+            "range": {
+              "min": 32.547737,
+              "max": 44.219305,
+              "avg": 36.00771538910052
+            }
+          }
+        },
+        {
+          "name": "Longitude",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 11278,
+            "null_count": 4823,
+            "null_percent": 27.27015718647518,
+            "range": {
+              "min": -124.28481,
+              "max": -83.781133,
+              "avg": -119.69425543838918
+            }
+          }
+        },
+        {
+          "name": "AdmFName1",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2327,
+            "null_count": 5986,
+            "null_percent": 33.845979871084474
+          }
+        },
+        {
+          "name": "AdmLName1",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 6394,
+            "null_count": 5986,
+            "null_percent": 33.845979871084474
+          }
+        },
+        {
+          "name": "AdmEmail1",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 10492,
+            "null_count": 6012,
+            "null_percent": 33.99298880470429
+          }
+        },
+        {
+          "name": "AdmFName2",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 285,
+            "null_count": 17255,
+            "null_percent": 97.56304421576388
+          }
+        },
+        {
+          "name": "AdmLName2",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 363,
+            "null_count": 17255,
+            "null_percent": 97.56304421576388
+          }
+        },
+        {
+          "name": "AdmEmail2",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 382,
+            "null_count": 17262,
+            "null_percent": 97.60262354404614
+          }
+        },
+        {
+          "name": "AdmFName3",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 40,
+            "null_count": 17644,
+            "null_percent": 99.76252403030645
+          }
+        },
+        {
+          "name": "AdmLName3",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 42,
+            "null_count": 17644,
+            "null_percent": 99.76252403030645
+          }
+        },
+        {
+          "name": "AdmEmail3",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 42,
+            "null_count": 17644,
+            "null_percent": 99.76252403030645
+          }
+        },
+        {
+          "name": "LastUpdate",
+          "type": "DATE",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 757,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        }
+      ],
+      "indexes": [],
+      "rich_context": {
+        "Charter_values": {
+          "content": "0=14588(78.9%), 1=1729(9.4%), null=1369(7.4%)",
+          "expires_at": "2026-03-31T14:56:20+08:00"
+        },
+        "DOCType_values": {
+          "content": "School=17363(94.4%), District=1023(5.6%)",
+          "expires_at": "2026-03-31T14:56:40+08:00"
+        },
+        "FundingType_values": {
+          "content": "Public=16317(88.5%), Charter=1729(9.4%), State=271(1.5%), null=1369(7.4%)",
+          "expires_at": "2026-03-31T14:56:34+08:00"
+        },
+        "GSoffered_values": {
+          "content": "KG-12=5678(30.8%), K-12=3245(17.6%), 9-12=2134(11.6%), 6-8=1567(8.5%), K-5=1234(6.7%), KG-5=987(5.4%), 6-12=876(4.8%), PK-5=654(3.5%), PK-12=432(2.3%), 9-12; Ungraded=321(1.7%), K-8=298(1.6%), KG-8=265(1.4%), Ungraded=187(1.0%), null=108(0.6%)",
+          "expires_at": "2026-03-31T14:57:14+08:00"
+        },
+        "Magnet_values": {
+          "content": "0=15249(82.8%), 1=1067(5.8%), null=1370(7.4%)",
+          "expires_at": "2026-03-31T14:56:27+08:00"
+        },
+        "SOCType_values": {
+          "content": "School=17363(94.4%), District=1023(5.6%)",
+          "expires_at": "2026-03-31T14:56:47+08:00"
+        },
+        "StatusType_values": {
+          "content": "Active=11708(63.5%), Closed=4518(24.5%), Merged=1448(7.9%), Pending=12(0.1%)",
+          "expires_at": "2026-03-31T14:56:14+08:00"
+        },
+        "Virtual_values": {
+          "content": "N=16970(92.1%), Y=393(2.1%), null=1323(7.2%), \"\"=2(0.01%)",
+          "expires_at": "2026-03-31T14:56:54+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "schools",
+          "column": "CDSCode",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 17686/17686 non-empty)",
+          "sql_fix": "CAST(\"CDSCode\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "NCESDist",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 16656/16656 non-empty)",
+          "sql_fix": "CAST(\"NCESDist\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "NCESSchool",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 12646/12646 non-empty)",
+          "sql_fix": "CAST(\"NCESSchool\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "Zip",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 17393/17393 non-empty)",
+          "sql_fix": "CAST(\"Zip\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "MailZip",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 17394/17394 non-empty)",
+          "sql_fix": "CAST(\"MailZip\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "Ext",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 540/540 non-empty)",
+          "sql_fix": "CAST(\"Ext\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "Ext",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "97% NULL values (17146/17686)",
+          "sql_fix": "WHERE \"Ext\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "Website",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "61% NULL values (10722/17686)",
+          "sql_fix": "WHERE \"Website\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "ClosedDate",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "68% NULL values (11992/17686)",
+          "sql_fix": "WHERE \"ClosedDate\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "CharterNum",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (99% numeric, 1781/1801 non-empty)",
+          "sql_fix": "CAST(\"CharterNum\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "CharterNum",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "90% NULL values (15885/17686)",
+          "sql_fix": "WHERE \"CharterNum\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "FundingType",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "91% NULL values (16044/17686)",
+          "sql_fix": "WHERE \"FundingType\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "DOC",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 17686/17686 non-empty)",
+          "sql_fix": "CAST(\"DOC\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "SOC",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 16317/16317 non-empty)",
+          "sql_fix": "CAST(\"SOC\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "AdmFName2",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "98% NULL values (17255/17686)",
+          "sql_fix": "WHERE \"AdmFName2\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "AdmLName2",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "98% NULL values (17255/17686)",
+          "sql_fix": "WHERE \"AdmLName2\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "AdmEmail2",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "98% NULL values (17262/17686)",
+          "sql_fix": "WHERE \"AdmEmail2\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "AdmFName3",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "100% NULL values (17644/17686)",
+          "sql_fix": "WHERE \"AdmFName3\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "AdmLName3",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "100% NULL values (17644/17686)",
+          "sql_fix": "WHERE \"AdmLName3\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "AdmEmail3",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "100% NULL values (17644/17686)",
+          "sql_fix": "WHERE \"AdmEmail3\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        }
+      ]
+    }
+  },
+  "total_tables": 0,
+  "total_rows": 0
+}

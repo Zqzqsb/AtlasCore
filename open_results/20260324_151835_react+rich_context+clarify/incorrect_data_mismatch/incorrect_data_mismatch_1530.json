@@ -1,0 +1,42 @@
+{
+  "db_id": "debit_card_specializing",
+  "difficulty": "moderate",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "SUM(T1.Price)",
+        "SUM(IIF(T3.Date = '201201', T1.Price, 0))"
+      ],
+      [
+        "68740.2",
+        "3437.01"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT SUM(T1.Price) , SUM(IIF(T3.Date = '201201', T1.Price, 0)) FROM transactions_1k AS T1 INNER JOIN gasstations AS T2 ON T1.GasStationID = T2.GasStationID INNER JOIN yearmonth AS T3 ON T1.CustomerID = T3.CustomerID WHERE T1.CustomerID = '38508'",
+  "id": 1530,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "SUM(T1.Price)",
+        "SUM(IIF(T3.Date = '201201', T1.Price, 0))"
+      ],
+      [
+        "3437.01",
+        "0"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT SUM(T1.Price), SUM(IIF(T3.Date = '201201', T1.Price, 0)) FROM transactions_1k AS T1 JOIN yearmonth AS T3 ON T1.CustomerID = T3.CustomerID AND strftime('%Y%m', T1.Date) = T3.Date WHERE T1.CustomerID = 38508;",
+  "question": "What is the amount spent by customer \"38508\" at the gas stations? How much had the customer spent in January 2012?",
+  "thinking": ""
+}

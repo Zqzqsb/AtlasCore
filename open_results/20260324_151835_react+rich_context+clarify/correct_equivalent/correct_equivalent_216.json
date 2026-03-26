@@ -1,0 +1,42 @@
+{
+  "db_id": "toxicology",
+  "difficulty": "challenging",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "iodine_nums",
+        "sulfur_nums"
+      ],
+      [
+        "3",
+        "77"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(DISTINCT CASE WHEN T1.element = 'i' THEN T1.atom_id ELSE NULL END) AS iodine_nums , COUNT(DISTINCT CASE WHEN T1.element = 's' THEN T1.atom_id ELSE NULL END) AS sulfur_nums FROM atom AS T1 INNER JOIN connected AS T2 ON T1.atom_id = T2.atom_id INNER JOIN bond AS T3 ON T2.bond_id = T3.bond_id WHERE T3.bond_type = '-'",
+  "id": 216,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "iodine_nums",
+        "sulfur_nums"
+      ],
+      [
+        "3",
+        "77"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(DISTINCT CASE WHEN a.element = 'i' THEN a.atom_id END) as iodine_nums, COUNT(DISTINCT CASE WHEN a.element = 's' THEN a.atom_id END) as sulfur_nums FROM atom a JOIN connected c ON a.atom_id = c.atom_id JOIN bond b ON c.bond_id = b.bond_id WHERE b.bond_type = '-'",
+  "question": "How many atoms with iodine and with sulfur type elements are there in single bond molecules?",
+  "thinking": ""
+}

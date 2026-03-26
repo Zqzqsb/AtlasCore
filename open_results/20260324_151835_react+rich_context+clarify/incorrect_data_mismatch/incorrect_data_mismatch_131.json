@@ -1,0 +1,38 @@
+{
+  "db_id": "financial",
+  "difficulty": "moderate",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T3.account_id)"
+      ],
+      [
+        "74"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T3.account_id) FROM district AS T1 INNER JOIN client AS T2 ON T1.district_id = T2.district_id INNER JOIN disp AS T3 ON T2.client_id = T3.client_id WHERE T1.A3 = 'south Bohemia' AND T3.type != 'OWNER'",
+  "id": 131,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T3.account_id)"
+      ],
+      [
+        "296"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(T3.account_id)\nFROM account AS T3\nJOIN district AS T4 ON T3.district_id = T4.district_id\nJOIN disp AS T5 ON T3.account_id = T5.account_id AND T5.type = 'OWNER'\nLEFT JOIN card AS T6 ON T5.disp_id = T6.disp_id\nWHERE T4.A3 = 'south Bohemia'\n  AND T6.card_id IS NULL;",
+  "question": "How many of the account holders in South Bohemia still do not own credit cards?",
+  "thinking": ""
+}

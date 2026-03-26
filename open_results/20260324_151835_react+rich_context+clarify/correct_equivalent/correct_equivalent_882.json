@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(COUNT(CASE WHEN T2.time IS NOT NULL THEN T2.driverId END) AS REAL) * 100 / COUNT(T2.driverId)"
+      ],
+      [
+        "17.24137931034483"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT CAST(COUNT(CASE WHEN T2.time IS NOT NULL THEN T2.driverId END) AS REAL) * 100 / COUNT(T2.driverId) FROM races AS T1 INNER JOIN results AS T2 ON T2.raceId = T1.raceId WHERE T1.date = '1983-07-16'",
+  "id": 882,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(COUNT(CASE WHEN T2.time IS NOT NULL THEN T2.driverId END) AS REAL) * 100 / COUNT(T2.driverId)"
+      ],
+      [
+        "17.24137931034483"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT CAST(COUNT(CASE WHEN T2.time IS NOT NULL THEN T2.driverId END) AS REAL) * 100 / COUNT(T2.driverId)\nFROM races AS T1\nJOIN results AS T2 ON T1.raceId = T2.raceId\nWHERE T1.date = '1983-07-16'",
+  "question": "For the drivers who took part in the race in 1983/7/16, what's their race completion rate?",
+  "thinking": ""
+}

@@ -1,0 +1,66 @@
+{
+  "db_id": "student_club",
+  "difficulty": "challenging",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "first_name",
+        "last_name",
+        "phone"
+      ],
+      [
+        "Sacha",
+        "Harrison",
+        "840-555-4781"
+      ],
+      [
+        "Phillip",
+        "Cullen",
+        "905-555-5035"
+      ],
+      [
+        "Elijah",
+        "Allen",
+        "724-555-5721"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T3.first_name, T3.last_name, T3.phone FROM expense AS T1 INNER JOIN budget AS T2 ON T1.link_to_budget = T2.budget_id INNER JOIN member AS T3 ON T3.member_id = T1.link_to_member WHERE T1.cost \u003e ( SELECT AVG(T1.cost) FROM expense AS T1 INNER JOIN budget AS T2 ON T1.link_to_budget = T2.budget_id INNER JOIN member AS T3 ON T3.member_id = T1.link_to_member )",
+  "id": 1458,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "first_name",
+        "last_name",
+        "phone"
+      ],
+      [
+        "Sacha",
+        "Harrison",
+        "840-555-4781"
+      ],
+      [
+        "Phillip",
+        "Cullen",
+        "905-555-5035"
+      ],
+      [
+        "Elijah",
+        "Allen",
+        "724-555-5721"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT m.first_name, m.last_name, m.phone\nFROM member m\nJOIN expense e ON m.member_id = e.link_to_member\nWHERE e.cost \u003e (SELECT AVG(cost) FROM expense)",
+  "question": "Give the full name and contact number of members who had to spend more than average on each expense.",
+  "thinking": ""
+}

@@ -1,0 +1,38 @@
+{
+  "db_id": "student_club",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "t_shirt_size"
+      ],
+      [
+        "Large"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT t_shirt_size FROM member GROUP BY t_shirt_size ORDER BY COUNT(t_shirt_size) DESC LIMIT 1",
+  "id": 1403,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "t_shirt_size"
+      ],
+      [
+        "Large"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT t_shirt_size FROM member GROUP BY t_shirt_size ORDER BY COUNT(*) DESC LIMIT 1",
+  "question": "What is the most popular size of t-shirt ordered by the club members?",
+  "thinking": ""
+}

@@ -1,0 +1,74 @@
+{
+  "db_id": "toxicology",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "bond_id",
+        "label"
+      ],
+      [
+        "TR041_7_10",
+        "+"
+      ],
+      [
+        "TR041_8_9",
+        "+"
+      ],
+      [
+        "TR377_3_5",
+        "-"
+      ],
+      [
+        "TR377_4_6",
+        "-"
+      ],
+      [
+        "TR499_1_2",
+        "+"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T1.bond_id, T2.label FROM bond AS T1 INNER JOIN molecule AS T2 ON T1.molecule_id = T2.molecule_id WHERE T1.bond_type = '#'",
+  "id": 281,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "bond_id",
+        "label"
+      ],
+      [
+        "TR041_7_10",
+        "+"
+      ],
+      [
+        "TR041_8_9",
+        "+"
+      ],
+      [
+        "TR377_3_5",
+        "-"
+      ],
+      [
+        "TR377_4_6",
+        "-"
+      ],
+      [
+        "TR499_1_2",
+        "+"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT b.bond_id, m.label \nFROM bond b\nJOIN molecule m ON b.molecule_id = m.molecule_id\nWHERE b.bond_type = '#'",
+  "question": "Enumerate the bond ID of triple bond type molecules and tell me if they are carcinogenic or not.",
+  "thinking": ""
+}

@@ -1,0 +1,1274 @@
+{
+  "db_id": "superhero",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=208, pred=206",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "superhero_name"
+      ],
+      [
+        "Abraxas"
+      ],
+      [
+        "Adam Strange"
+      ],
+      [
+        "Air-Walker"
+      ],
+      [
+        "Alan Scott"
+      ],
+      [
+        "Amazo"
+      ],
+      [
+        "Angel"
+      ],
+      [
+        "Angel"
+      ],
+      [
+        "Angel Salvadore"
+      ],
+      [
+        "Annihilus"
+      ],
+      [
+        "Anti-Monitor"
+      ],
+      [
+        "Apocalypse"
+      ],
+      [
+        "Archangel"
+      ],
+      [
+        "Ardina"
+      ],
+      [
+        "Astro Boy"
+      ],
+      [
+        "Atom II"
+      ],
+      [
+        "Aurora"
+      ],
+      [
+        "Aztar"
+      ],
+      [
+        "Bananaman"
+      ],
+      [
+        "Banshee"
+      ],
+      [
+        "Beak"
+      ],
+      [
+        "Beast Boy"
+      ],
+      [
+        "Beyonder"
+      ],
+      [
+        "Big Barda"
+      ],
+      [
+        "Binary"
+      ],
+      [
+        "Bird-Brain"
+      ],
+      [
+        "Bird-Man"
+      ],
+      [
+        "Bird-Man II"
+      ],
+      [
+        "Birdman"
+      ],
+      [
+        "Bizarro"
+      ],
+      [
+        "Black Adam"
+      ],
+      [
+        "Black Bolt"
+      ],
+      [
+        "Black Flash"
+      ],
+      [
+        "Black Lightning"
+      ],
+      [
+        "Blackwing"
+      ],
+      [
+        "Bloodhawk"
+      ],
+      [
+        "Blue Beetle"
+      ],
+      [
+        "Blue Beetle III"
+      ],
+      [
+        "Boba Fett"
+      ],
+      [
+        "Booster Gold"
+      ],
+      [
+        "Brainiac"
+      ],
+      [
+        "Bumblebee"
+      ],
+      [
+        "Bumbleboy"
+      ],
+      [
+        "Cable"
+      ],
+      [
+        "Cannonball"
+      ],
+      [
+        "Captain Atom"
+      ],
+      [
+        "Captain Britain"
+      ],
+      [
+        "Captain Hindsight"
+      ],
+      [
+        "Captain Marvel"
+      ],
+      [
+        "Captain Marvel"
+      ],
+      [
+        "Captain Midnight"
+      ],
+      [
+        "Captain Planet"
+      ],
+      [
+        "Captain Universe"
+      ],
+      [
+        "Crimson Crusader"
+      ],
+      [
+        "Crimson Dynamo"
+      ],
+      [
+        "Cyborg"
+      ],
+      [
+        "Cyborg Superman"
+      ],
+      [
+        "Darkhawk"
+      ],
+      [
+        "Darkseid"
+      ],
+      [
+        "Darkstar"
+      ],
+      [
+        "Deadman"
+      ],
+      [
+        "Doctor Doom"
+      ],
+      [
+        "Doctor Doom II"
+      ],
+      [
+        "Doctor Fate"
+      ],
+      [
+        "Doctor Strange"
+      ],
+      [
+        "Donna Troy"
+      ],
+      [
+        "Dr Manhattan"
+      ],
+      [
+        "Enchantress"
+      ],
+      [
+        "Energy"
+      ],
+      [
+        "Evilhawk"
+      ],
+      [
+        "Exodus"
+      ],
+      [
+        "Falcon"
+      ],
+      [
+        "Fallen One II"
+      ],
+      [
+        "Faora"
+      ],
+      [
+        "Fighting Spirit"
+      ],
+      [
+        "Fin Fang Foom"
+      ],
+      [
+        "Firebird"
+      ],
+      [
+        "Firelord"
+      ],
+      [
+        "Firestar"
+      ],
+      [
+        "Firestorm"
+      ],
+      [
+        "Flash"
+      ],
+      [
+        "Flash II"
+      ],
+      [
+        "Flash III"
+      ],
+      [
+        "Franklin Richards"
+      ],
+      [
+        "Galactus"
+      ],
+      [
+        "General Zod"
+      ],
+      [
+        "Gladiator"
+      ],
+      [
+        "Goku"
+      ],
+      [
+        "Gravity"
+      ],
+      [
+        "Guy Gardner"
+      ],
+      [
+        "Hal Jordan"
+      ],
+      [
+        "Hancock"
+      ],
+      [
+        "Havok"
+      ],
+      [
+        "Hawk"
+      ],
+      [
+        "Hawkgirl"
+      ],
+      [
+        "Hellstorm"
+      ],
+      [
+        "Human Torch"
+      ],
+      [
+        "Hybrid"
+      ],
+      [
+        "Hyperion"
+      ],
+      [
+        "Impulse"
+      ],
+      [
+        "Indigo"
+      ],
+      [
+        "Ink"
+      ],
+      [
+        "Iron Man"
+      ],
+      [
+        "Iron Monger"
+      ],
+      [
+        "Isis"
+      ],
+      [
+        "Jack of Hearts"
+      ],
+      [
+        "Jack-Jack"
+      ],
+      [
+        "Jessica Cruz"
+      ],
+      [
+        "Jessica Jones"
+      ],
+      [
+        "John Stewart"
+      ],
+      [
+        "Justice"
+      ],
+      [
+        "Karate Kid"
+      ],
+      [
+        "Kevin 11"
+      ],
+      [
+        "Krypto"
+      ],
+      [
+        "Kyle Rayner"
+      ],
+      [
+        "Legion"
+      ],
+      [
+        "Lex Luthor"
+      ],
+      [
+        "Light Lass"
+      ],
+      [
+        "Living Brain"
+      ],
+      [
+        "Living Tribunal"
+      ],
+      [
+        "Loki"
+      ],
+      [
+        "Mach-IV"
+      ],
+      [
+        "Machine Man"
+      ],
+      [
+        "Magneto"
+      ],
+      [
+        "Magus"
+      ],
+      [
+        "Man-Bat"
+      ],
+      [
+        "Mantis"
+      ],
+      [
+        "Martian Manhunter"
+      ],
+      [
+        "Marvel Girl"
+      ],
+      [
+        "Match"
+      ],
+      [
+        "Maxima"
+      ],
+      [
+        "Metron"
+      ],
+      [
+        "Mimic"
+      ],
+      [
+        "Miss Martian"
+      ],
+      [
+        "Mister Mxyzptlk"
+      ],
+      [
+        "Mister Sinister"
+      ],
+      [
+        "MODOK"
+      ],
+      [
+        "Monarch"
+      ],
+      [
+        "Moonstone"
+      ],
+      [
+        "Namor"
+      ],
+      [
+        "Namora"
+      ],
+      [
+        "Namorita"
+      ],
+      [
+        "Nathan Petrelli"
+      ],
+      [
+        "Nova"
+      ],
+      [
+        "One-Above-All"
+      ],
+      [
+        "Onslaught"
+      ],
+      [
+        "Osiris"
+      ],
+      [
+        "Parademon"
+      ],
+      [
+        "Polaris"
+      ],
+      [
+        "Power Girl"
+      ],
+      [
+        "Raven"
+      ],
+      [
+        "Ray"
+      ],
+      [
+        "Red Tornado"
+      ],
+      [
+        "Redeemer III"
+      ],
+      [
+        "Scarlet Witch"
+      ],
+      [
+        "Sentry"
+      ],
+      [
+        "Shadow Lass"
+      ],
+      [
+        "Shriek"
+      ],
+      [
+        "Silver Surfer"
+      ],
+      [
+        "Silverclaw"
+      ],
+      [
+        "Simon Baz"
+      ],
+      [
+        "Sinestro"
+      ],
+      [
+        "Siryn"
+      ],
+      [
+        "Snowbird"
+      ],
+      [
+        "Songbird"
+      ],
+      [
+        "Space Ghost"
+      ],
+      [
+        "Spawn"
+      ],
+      [
+        "Spectre"
+      ],
+      [
+        "Spider-Woman"
+      ],
+      [
+        "Spider-Woman III"
+      ],
+      [
+        "Spider-Woman IV"
+      ],
+      [
+        "Stardust"
+      ],
+      [
+        "Starfire"
+      ],
+      [
+        "Static"
+      ],
+      [
+        "Steel"
+      ],
+      [
+        "Storm"
+      ],
+      [
+        "Sunspot"
+      ],
+      [
+        "Superboy"
+      ],
+      [
+        "Superboy-Prime"
+      ],
+      [
+        "Supergirl"
+      ],
+      [
+        "Superman"
+      ],
+      [
+        "Swamp Thing"
+      ],
+      [
+        "Swarm"
+      ],
+      [
+        "Tempest"
+      ],
+      [
+        "Thanos"
+      ],
+      [
+        "Thor"
+      ],
+      [
+        "Thunderbird III"
+      ],
+      [
+        "Titan"
+      ],
+      [
+        "Trickster"
+      ],
+      [
+        "Trigon"
+      ],
+      [
+        "Triplicate Girl"
+      ],
+      [
+        "Ultragirl"
+      ],
+      [
+        "Ultron"
+      ],
+      [
+        "Vegeta"
+      ],
+      [
+        "Vindicator"
+      ],
+      [
+        "Vision"
+      ],
+      [
+        "Vixen"
+      ],
+      [
+        "Vulture"
+      ],
+      [
+        "War Machine"
+      ],
+      [
+        "Warlock"
+      ],
+      [
+        "Warp"
+      ],
+      [
+        "Wasp"
+      ],
+      [
+        "Watcher"
+      ],
+      [
+        "Wildfire"
+      ],
+      [
+        "Wonder Girl"
+      ],
+      [
+        "Wonder Man"
+      ],
+      [
+        "Wonder Woman"
+      ],
+      [
+        "X-Man"
+      ],
+      [
+        "Yellowjacket II"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.superhero_name FROM superhero AS T1 INNER JOIN hero_power AS T2 ON T1.id = T2.hero_id INNER JOIN superpower AS T3 ON T2.power_id = T3.id WHERE T3.power_name = 'Flight'",
+  "id": 772,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "superhero_name"
+      ],
+      [
+        "Abraxas"
+      ],
+      [
+        "Adam Strange"
+      ],
+      [
+        "Air-Walker"
+      ],
+      [
+        "Alan Scott"
+      ],
+      [
+        "Amazo"
+      ],
+      [
+        "Angel"
+      ],
+      [
+        "Angel Salvadore"
+      ],
+      [
+        "Annihilus"
+      ],
+      [
+        "Anti-Monitor"
+      ],
+      [
+        "Apocalypse"
+      ],
+      [
+        "Archangel"
+      ],
+      [
+        "Ardina"
+      ],
+      [
+        "Astro Boy"
+      ],
+      [
+        "Atom II"
+      ],
+      [
+        "Aurora"
+      ],
+      [
+        "Aztar"
+      ],
+      [
+        "Bananaman"
+      ],
+      [
+        "Banshee"
+      ],
+      [
+        "Beak"
+      ],
+      [
+        "Beast Boy"
+      ],
+      [
+        "Beyonder"
+      ],
+      [
+        "Big Barda"
+      ],
+      [
+        "Binary"
+      ],
+      [
+        "Bird-Brain"
+      ],
+      [
+        "Bird-Man"
+      ],
+      [
+        "Bird-Man II"
+      ],
+      [
+        "Birdman"
+      ],
+      [
+        "Bizarro"
+      ],
+      [
+        "Black Adam"
+      ],
+      [
+        "Black Bolt"
+      ],
+      [
+        "Black Flash"
+      ],
+      [
+        "Black Lightning"
+      ],
+      [
+        "Blackwing"
+      ],
+      [
+        "Bloodhawk"
+      ],
+      [
+        "Blue Beetle"
+      ],
+      [
+        "Blue Beetle III"
+      ],
+      [
+        "Boba Fett"
+      ],
+      [
+        "Booster Gold"
+      ],
+      [
+        "Brainiac"
+      ],
+      [
+        "Bumblebee"
+      ],
+      [
+        "Bumbleboy"
+      ],
+      [
+        "Cable"
+      ],
+      [
+        "Cannonball"
+      ],
+      [
+        "Captain Atom"
+      ],
+      [
+        "Captain Britain"
+      ],
+      [
+        "Captain Hindsight"
+      ],
+      [
+        "Captain Marvel"
+      ],
+      [
+        "Captain Midnight"
+      ],
+      [
+        "Captain Planet"
+      ],
+      [
+        "Captain Universe"
+      ],
+      [
+        "Crimson Crusader"
+      ],
+      [
+        "Crimson Dynamo"
+      ],
+      [
+        "Cyborg"
+      ],
+      [
+        "Cyborg Superman"
+      ],
+      [
+        "Darkhawk"
+      ],
+      [
+        "Darkseid"
+      ],
+      [
+        "Darkstar"
+      ],
+      [
+        "Deadman"
+      ],
+      [
+        "Doctor Doom"
+      ],
+      [
+        "Doctor Doom II"
+      ],
+      [
+        "Doctor Fate"
+      ],
+      [
+        "Doctor Strange"
+      ],
+      [
+        "Donna Troy"
+      ],
+      [
+        "Dr Manhattan"
+      ],
+      [
+        "Enchantress"
+      ],
+      [
+        "Energy"
+      ],
+      [
+        "Evilhawk"
+      ],
+      [
+        "Exodus"
+      ],
+      [
+        "Falcon"
+      ],
+      [
+        "Fallen One II"
+      ],
+      [
+        "Faora"
+      ],
+      [
+        "Fighting Spirit"
+      ],
+      [
+        "Fin Fang Foom"
+      ],
+      [
+        "Firebird"
+      ],
+      [
+        "Firelord"
+      ],
+      [
+        "Firestar"
+      ],
+      [
+        "Firestorm"
+      ],
+      [
+        "Flash"
+      ],
+      [
+        "Flash II"
+      ],
+      [
+        "Flash III"
+      ],
+      [
+        "Franklin Richards"
+      ],
+      [
+        "Galactus"
+      ],
+      [
+        "General Zod"
+      ],
+      [
+        "Gladiator"
+      ],
+      [
+        "Goku"
+      ],
+      [
+        "Gravity"
+      ],
+      [
+        "Guy Gardner"
+      ],
+      [
+        "Hal Jordan"
+      ],
+      [
+        "Hancock"
+      ],
+      [
+        "Havok"
+      ],
+      [
+        "Hawk"
+      ],
+      [
+        "Hawkgirl"
+      ],
+      [
+        "Hellstorm"
+      ],
+      [
+        "Human Torch"
+      ],
+      [
+        "Hybrid"
+      ],
+      [
+        "Hyperion"
+      ],
+      [
+        "Impulse"
+      ],
+      [
+        "Indigo"
+      ],
+      [
+        "Ink"
+      ],
+      [
+        "Iron Man"
+      ],
+      [
+        "Iron Monger"
+      ],
+      [
+        "Isis"
+      ],
+      [
+        "Jack of Hearts"
+      ],
+      [
+        "Jack-Jack"
+      ],
+      [
+        "Jessica Cruz"
+      ],
+      [
+        "Jessica Jones"
+      ],
+      [
+        "John Stewart"
+      ],
+      [
+        "Justice"
+      ],
+      [
+        "Karate Kid"
+      ],
+      [
+        "Kevin 11"
+      ],
+      [
+        "Krypto"
+      ],
+      [
+        "Kyle Rayner"
+      ],
+      [
+        "Legion"
+      ],
+      [
+        "Lex Luthor"
+      ],
+      [
+        "Light Lass"
+      ],
+      [
+        "Living Brain"
+      ],
+      [
+        "Living Tribunal"
+      ],
+      [
+        "Loki"
+      ],
+      [
+        "Mach-IV"
+      ],
+      [
+        "Machine Man"
+      ],
+      [
+        "Magneto"
+      ],
+      [
+        "Magus"
+      ],
+      [
+        "Man-Bat"
+      ],
+      [
+        "Mantis"
+      ],
+      [
+        "Martian Manhunter"
+      ],
+      [
+        "Marvel Girl"
+      ],
+      [
+        "Match"
+      ],
+      [
+        "Maxima"
+      ],
+      [
+        "Metron"
+      ],
+      [
+        "Mimic"
+      ],
+      [
+        "Miss Martian"
+      ],
+      [
+        "Mister Mxyzptlk"
+      ],
+      [
+        "Mister Sinister"
+      ],
+      [
+        "MODOK"
+      ],
+      [
+        "Monarch"
+      ],
+      [
+        "Moonstone"
+      ],
+      [
+        "Namor"
+      ],
+      [
+        "Namora"
+      ],
+      [
+        "Namorita"
+      ],
+      [
+        "Nathan Petrelli"
+      ],
+      [
+        "Nova"
+      ],
+      [
+        "One-Above-All"
+      ],
+      [
+        "Onslaught"
+      ],
+      [
+        "Osiris"
+      ],
+      [
+        "Parademon"
+      ],
+      [
+        "Polaris"
+      ],
+      [
+        "Power Girl"
+      ],
+      [
+        "Raven"
+      ],
+      [
+        "Ray"
+      ],
+      [
+        "Red Tornado"
+      ],
+      [
+        "Redeemer III"
+      ],
+      [
+        "Scarlet Witch"
+      ],
+      [
+        "Sentry"
+      ],
+      [
+        "Shadow Lass"
+      ],
+      [
+        "Shriek"
+      ],
+      [
+        "Silver Surfer"
+      ],
+      [
+        "Silverclaw"
+      ],
+      [
+        "Simon Baz"
+      ],
+      [
+        "Sinestro"
+      ],
+      [
+        "Siryn"
+      ],
+      [
+        "Snowbird"
+      ],
+      [
+        "Songbird"
+      ],
+      [
+        "Space Ghost"
+      ],
+      [
+        "Spawn"
+      ],
+      [
+        "Spectre"
+      ],
+      [
+        "Spider-Woman"
+      ],
+      [
+        "Spider-Woman III"
+      ],
+      [
+        "Spider-Woman IV"
+      ],
+      [
+        "Stardust"
+      ],
+      [
+        "Starfire"
+      ],
+      [
+        "Static"
+      ],
+      [
+        "Steel"
+      ],
+      [
+        "Storm"
+      ],
+      [
+        "Sunspot"
+      ],
+      [
+        "Superboy"
+      ],
+      [
+        "Superboy-Prime"
+      ],
+      [
+        "Supergirl"
+      ],
+      [
+        "Superman"
+      ],
+      [
+        "Swamp Thing"
+      ],
+      [
+        "Swarm"
+      ],
+      [
+        "Tempest"
+      ],
+      [
+        "Thanos"
+      ],
+      [
+        "Thor"
+      ],
+      [
+        "Thunderbird III"
+      ],
+      [
+        "Titan"
+      ],
+      [
+        "Trickster"
+      ],
+      [
+        "Trigon"
+      ],
+      [
+        "Triplicate Girl"
+      ],
+      [
+        "Ultragirl"
+      ],
+      [
+        "Ultron"
+      ],
+      [
+        "Vegeta"
+      ],
+      [
+        "Vindicator"
+      ],
+      [
+        "Vision"
+      ],
+      [
+        "Vixen"
+      ],
+      [
+        "Vulture"
+      ],
+      [
+        "War Machine"
+      ],
+      [
+        "Warlock"
+      ],
+      [
+        "Warp"
+      ],
+      [
+        "Wasp"
+      ],
+      [
+        "Watcher"
+      ],
+      [
+        "Wildfire"
+      ],
+      [
+        "Wonder Girl"
+      ],
+      [
+        "Wonder Man"
+      ],
+      [
+        "Wonder Woman"
+      ],
+      [
+        "X-Man"
+      ],
+      [
+        "Yellowjacket II"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT s.superhero_name\nFROM superhero s\nJOIN hero_power hp ON s.id = hp.hero_id\nJOIN superpower sp ON hp.power_id = sp.id\nWHERE sp.power_name = 'Flight';",
+  "question": "List the name of superheroes with flight power.",
+  "thinking": ""
+}

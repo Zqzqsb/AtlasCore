@@ -1,0 +1,38 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Diagnosis"
+      ],
+      [
+        "BEHCET"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT patientData.Diagnosis FROM Patient AS patientData INNER JOIN Laboratory AS labData ON patientData.ID = labData.ID WHERE labData.IGA BETWEEN 80 AND 500 ORDER BY labData.IGA DESC LIMIT 1",
+  "id": 1254,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Diagnosis"
+      ],
+      [
+        "BEHCET"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT p.Diagnosis\nFROM Laboratory l\nJOIN Patient p ON l.ID = p.ID\nWHERE l.IGA BETWEEN 80 AND 500\nORDER BY l.IGA DESC\nLIMIT 1;",
+  "question": "For the patient who has the highest Ig A within the normal range, what is his or her diagnosis?",
+  "thinking": ""
+}

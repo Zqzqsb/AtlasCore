@@ -1,0 +1,50 @@
+{
+  "db_id": "superhero",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "superhero_name"
+      ],
+      [
+        "Crystal"
+      ],
+      [
+        "Red Tornado"
+      ],
+      [
+        "Tempest"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.superhero_name FROM superhero AS T1 INNER JOIN hero_power AS T2 ON T1.id = T2.hero_id INNER JOIN superpower AS T3 ON T2.power_id = T3.id WHERE T3.power_name = 'Wind Control' ORDER BY T1.superhero_name",
+  "id": 825,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "superhero_name"
+      ],
+      [
+        "Crystal"
+      ],
+      [
+        "Red Tornado"
+      ],
+      [
+        "Tempest"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT s.superhero_name\nFROM superhero s\nJOIN hero_power hp ON s.id = hp.hero_id\nJOIN superpower sp ON hp.power_id = sp.id\nWHERE sp.power_name = 'Wind Control'\nORDER BY s.superhero_name;",
+  "question": "Identify superheroes who can control wind and list their names in alphabetical order.",
+  "thinking": ""
+}

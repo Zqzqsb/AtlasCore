@@ -1,0 +1,46 @@
+{
+  "db_id": "student_club",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "first_name",
+        "last_name",
+        "position"
+      ],
+      [
+        "Dean",
+        "O'Reilly",
+        "Member"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.first_name, T1.last_name, T1.position FROM member AS T1 INNER JOIN zip_code AS T2 ON T2.zip_code = T1.zip WHERE T2.city = 'Lincolnton' AND T2.state = 'North Carolina' AND T2.zip_code = 28092",
+  "id": 1470,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "first_name",
+        "last_name",
+        "position"
+      ],
+      [
+        "Dean",
+        "O'Reilly",
+        "Member"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT m.first_name, m.last_name, m.position \nFROM member m\nJOIN zip_code z ON m.zip = z.zip_code\nWHERE z.city = 'Lincolnton' \n  AND z.state = 'North Carolina'\n  AND z.zip_code = 28092;",
+  "question": "Which student has the hometown of Lincolnton, North Carolina with the zip code of 28092? List their full name and position.",
+  "thinking": ""
+}

@@ -1,0 +1,53 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=4, pred=3",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "promoTypes"
+      ],
+      [
+        "tourney,fnm"
+      ],
+      [
+        "arenaleague"
+      ],
+      [
+        "mediainsert"
+      ],
+      [
+        "mediainsert"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT promoTypes FROM cards WHERE name = 'Duress' AND promoTypes IS NOT NULL",
+  "id": 358,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "promoTypes"
+      ],
+      [
+        "tourney,fnm"
+      ],
+      [
+        "arenaleague"
+      ],
+      [
+        "mediainsert"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT promoTypes FROM cards WHERE name = 'Duress' AND promoTypes IS NOT NULL;",
+  "question": "What type of promotion is of card 'Duress'?",
+  "thinking": ""
+}

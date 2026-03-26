@@ -1,0 +1,38 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CreaionDate"
+      ],
+      [
+        "2010-08-09 00:37:45 +0000 UTC"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.CreaionDate FROM users AS T1 INNER JOIN posts AS T2 ON T1.Id = T2.OwnerUserId WHERE T1.Age IS NOT NULL ORDER BY T1.Age, T2.CreaionDate LIMIT 1",
+  "id": 671,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CreaionDate"
+      ],
+      [
+        "2010-08-09 00:37:45 +0000 UTC"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT p.CreaionDate\nFROM users u\nJOIN posts p ON u.Id = p.OwnerUserId\nWHERE u.Age IS NOT NULL\nORDER BY u.Age ASC, p.CreaionDate ASC\nLIMIT 1",
+  "question": "What is the date when the youngest user made his or her first post?",
+  "thinking": ""
+}

@@ -1,0 +1,50 @@
+{
+  "db_id": "card_games",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name",
+        "format"
+      ],
+      [
+        "Sol Ring",
+        "duel"
+      ],
+      [
+        "Sol Ring",
+        "legacy"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.name, T2.format FROM cards AS T1 INNER JOIN legalities AS T2 ON T2.uuid = T1.uuid WHERE T1.edhrecRank = 1 AND T2.status = 'Banned' GROUP BY T1.name, T2.format",
+  "id": 523,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name",
+        "format"
+      ],
+      [
+        "Sol Ring",
+        "duel"
+      ],
+      [
+        "Sol Ring",
+        "legacy"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT c.name, l.format\nFROM cards c\nJOIN legalities l ON c.uuid = l.uuid\nWHERE c.edhrecRank = 1 AND l.status = 'Banned'",
+  "question": "Which cards are ranked 1st on EDHRec? List all of the cards name and its banned play format.",
+  "thinking": ""
+}

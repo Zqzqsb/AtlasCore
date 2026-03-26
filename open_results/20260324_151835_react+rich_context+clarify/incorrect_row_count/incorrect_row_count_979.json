@@ -1,0 +1,61 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=2, pred=3",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "location",
+        "lat",
+        "lng"
+      ],
+      [
+        "Spielburg",
+        "47.2197",
+        "14.7647"
+      ],
+      [
+        "Styria",
+        "47.2039",
+        "14.7478"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT location, lat, lng FROM circuits WHERE country = 'Austria'",
+  "id": 979,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "location",
+        "lat",
+        "lng"
+      ],
+      [
+        "Spielburg",
+        "47.2197",
+        "14.7647"
+      ],
+      [
+        "Styria",
+        "47.2039",
+        "14.7478"
+      ],
+      [
+        "Spielburg",
+        "47.2197",
+        "14.7647"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT location, lat, lng FROM circuits WHERE country = 'Austria';",
+  "question": "How many times the circuits were held in Austria? Please give their location and coordinates.",
+  "thinking": ""
+}

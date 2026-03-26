@@ -1,0 +1,42 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AvgScrWrite",
+        "City"
+      ],
+      [
+        "435",
+        "Los Angeles"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.AvgScrWrite, T2.City FROM satscores AS T1 INNER JOIN schools AS T2 ON T1.cds = T2.CDSCode ORDER BY T1.NumGE1500 DESC LIMIT 1",
+  "id": 45,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AvgScrWrite",
+        "City"
+      ],
+      [
+        "435",
+        "Los Angeles"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT \n    s.AvgScrWrite,\n    sch.City\nFROM satscores s\nJOIN schools sch ON CAST(s.cds AS INTEGER) = CAST(sch.CDSCode AS INTEGER)\nWHERE s.NumGE1500 \u003e= 1500\nORDER BY s.NumTstTakr DESC\nLIMIT 1;",
+  "question": "What is the average writing score of the school who has the highest number of test takers whose total SAT sscores are greater or equal to 1500? Indicate the city to where the school is situated.",
+  "thinking": ""
+}

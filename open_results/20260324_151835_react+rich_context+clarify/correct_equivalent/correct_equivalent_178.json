@@ -1,0 +1,42 @@
+{
+  "db_id": "financial",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "balance",
+        "gender"
+      ],
+      [
+        "15096",
+        "M"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T4.balance, T1.gender FROM client AS T1 INNER JOIN disp AS T2 ON T1.client_id = T2.client_id INNER JOIN account AS T3 ON T2.account_id =T3.account_id INNER JOIN trans AS T4 ON T3.account_id = T4.account_id WHERE T1.client_id = 4 AND T4.trans_id = 851",
+  "id": 178,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "balance",
+        "gender"
+      ],
+      [
+        "15096",
+        "M"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT t.balance, c.gender FROM trans t JOIN disp d ON t.account_id = d.account_id JOIN client c ON d.client_id = c.client_id WHERE t.trans_id = 851 AND c.client_id = 4",
+  "question": "What is the sum that client number 4's account has following transaction 851? Who owns this account, a man or a woman?",
+  "thinking": ""
+}

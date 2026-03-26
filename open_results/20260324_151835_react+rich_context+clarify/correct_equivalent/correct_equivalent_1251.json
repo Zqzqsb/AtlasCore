@@ -1,0 +1,176 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "ID"
+      ],
+      [
+        "48473"
+      ],
+      [
+        "250391"
+      ],
+      [
+        "460574"
+      ],
+      [
+        "668398"
+      ],
+      [
+        "1066089"
+      ],
+      [
+        "1086485"
+      ],
+      [
+        "1130007"
+      ],
+      [
+        "1185720"
+      ],
+      [
+        "1567380"
+      ],
+      [
+        "1665879"
+      ],
+      [
+        "1755350"
+      ],
+      [
+        "2307640"
+      ],
+      [
+        "2315140"
+      ],
+      [
+        "2320830"
+      ],
+      [
+        "2343945"
+      ],
+      [
+        "2933261"
+      ],
+      [
+        "3171569"
+      ],
+      [
+        "3362815"
+      ],
+      [
+        "3418071"
+      ],
+      [
+        "4632548"
+      ],
+      [
+        "4894243"
+      ],
+      [
+        "5060913"
+      ],
+      [
+        "5164396"
+      ],
+      [
+        "5184284"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T1.ID FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.`U-PRO` \u003e 0 AND T2.`U-PRO` \u003c 30 AND T1.Diagnosis = 'SLE'",
+  "id": 1251,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "ID"
+      ],
+      [
+        "48473"
+      ],
+      [
+        "250391"
+      ],
+      [
+        "460574"
+      ],
+      [
+        "668398"
+      ],
+      [
+        "1066089"
+      ],
+      [
+        "1086485"
+      ],
+      [
+        "1130007"
+      ],
+      [
+        "1185720"
+      ],
+      [
+        "1567380"
+      ],
+      [
+        "1665879"
+      ],
+      [
+        "1755350"
+      ],
+      [
+        "2307640"
+      ],
+      [
+        "2315140"
+      ],
+      [
+        "2320830"
+      ],
+      [
+        "2343945"
+      ],
+      [
+        "2933261"
+      ],
+      [
+        "3171569"
+      ],
+      [
+        "3362815"
+      ],
+      [
+        "3418071"
+      ],
+      [
+        "4632548"
+      ],
+      [
+        "4894243"
+      ],
+      [
+        "5060913"
+      ],
+      [
+        "5164396"
+      ],
+      [
+        "5184284"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT p.ID FROM Patient p JOIN Laboratory l ON p.ID = l.ID WHERE p.Diagnosis = 'SLE' AND l.\"U-PRO\" \u003e '0' AND l.\"U-PRO\" \u003c '30'",
+  "question": "Which patient has a normal proteinuria level and is diagnosed with SLE? Please give his or her patient ID.",
+  "thinking": ""
+}

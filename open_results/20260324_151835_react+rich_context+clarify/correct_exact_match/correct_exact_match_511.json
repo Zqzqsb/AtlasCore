@@ -1,0 +1,16 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT artist FROM cards WHERE side IS NULL ORDER BY convertedManaCost DESC LIMIT 1",
+  "id": 511,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT artist\nFROM cards\nWHERE side IS NULL\nORDER BY convertedManaCost DESC\nLIMIT 1",
+  "question": "Among the cards that doesn't have multiple faces on the same card, who is the illustrator of the card art that has the highest cost of converted mana?",
+  "thinking": ""
+}

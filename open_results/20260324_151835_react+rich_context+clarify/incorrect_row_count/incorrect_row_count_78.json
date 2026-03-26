@@ -1,0 +1,37 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "moderate",
+  "error_reason": "row count mismatch: gold=2, pred=-1",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "School",
+        "T1.`FRPM Count (Ages 5-17)` * 100 / T1.`Enrollment (Ages 5-17)`"
+      ],
+      [
+        "White Oak Elementary",
+        "3.755868544600939"
+      ],
+      [
+        "The Accelerated",
+        "97.63888888888889"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.School, T1.`FRPM Count (Ages 5-17)` * 100 / T1.`Enrollment (Ages 5-17)` FROM frpm AS T1 INNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode WHERE T2.County = 'Los Angeles' AND T2.GSserved = 'K-9'",
+  "id": 78,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": []
+  },
+  "pred_sql": "SELECT `School Name` AS School, `FRPM Count (Ages 5-17)` * 100.0 / `Enrollment (Ages 5-17)` \nFROM frpm\nWHERE `County Name` = 'Los Angeles'\nAND `Low Grade` IN ('K', 'KG')\nAND `High Grade` = '9'",
+  "question": "Which schools served a grade span of Kindergarten to 9th grade in the county of Los Angeles and what is its Percent (%) Eligible FRPM (Ages 5-17)?",
+  "thinking": ""
+}

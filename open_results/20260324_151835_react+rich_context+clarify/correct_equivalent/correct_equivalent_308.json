@@ -1,0 +1,44 @@
+{
+  "db_id": "toxicology",
+  "difficulty": "challenging",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "element"
+      ],
+      [
+        "c"
+      ],
+      [
+        "cl"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.element FROM connected AS T1 INNER JOIN atom AS T2 ON T1.atom_id = T2.atom_id WHERE T1.bond_id = 'TR000_2_3'",
+  "id": 308,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "element"
+      ],
+      [
+        "c"
+      ],
+      [
+        "cl"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT a1.element\nFROM connected c\nJOIN atom a1 ON c.atom_id = a1.atom_id\nWHERE c.bond_id = 'TR000_2_3'\nUNION\nSELECT a2.element\nFROM connected c\nJOIN atom a2 ON c.atom_id2 = a2.atom_id\nWHERE c.bond_id = 'TR000_2_3';",
+  "question": "Name the atoms' elements that form bond TR000_2_3.",
+  "thinking": ""
+}

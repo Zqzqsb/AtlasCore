@@ -1,0 +1,749 @@
+{
+  "db_id": "superhero",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=5, pred=234",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "superhero_name"
+      ],
+      [
+        "Abe Sapien"
+      ],
+      [
+        "Abin Sur"
+      ],
+      [
+        "Abraxas"
+      ],
+      [
+        "Absorbing Man"
+      ],
+      [
+        "Adam Monroe"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.superhero_name FROM superhero AS T1 INNER JOIN colour AS T2 ON T1.eye_colour_id = T2.id WHERE T2.colour = 'Blue' LIMIT 5",
+  "id": 813,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "superhero_name"
+      ],
+      [
+        "Abe Sapien"
+      ],
+      [
+        "Abin Sur"
+      ],
+      [
+        "Abraxas"
+      ],
+      [
+        "Absorbing Man"
+      ],
+      [
+        "Adam Monroe"
+      ],
+      [
+        "Adam Strange"
+      ],
+      [
+        "Agent 13"
+      ],
+      [
+        "Air-Walker"
+      ],
+      [
+        "Alan Scott"
+      ],
+      [
+        "Alfred Pennyworth"
+      ],
+      [
+        "Angel"
+      ],
+      [
+        "Animal Man"
+      ],
+      [
+        "Ant-Man"
+      ],
+      [
+        "Ant-Man II"
+      ],
+      [
+        "Anti-Venom"
+      ],
+      [
+        "Aquababy"
+      ],
+      [
+        "Aqualad"
+      ],
+      [
+        "Aquaman"
+      ],
+      [
+        "Arachne"
+      ],
+      [
+        "Archangel"
+      ],
+      [
+        "Atlas"
+      ],
+      [
+        "Atlas"
+      ],
+      [
+        "Atom"
+      ],
+      [
+        "Aurora"
+      ],
+      [
+        "Batgirl VI"
+      ],
+      [
+        "Batman"
+      ],
+      [
+        "Batman II"
+      ],
+      [
+        "Batman III"
+      ],
+      [
+        "Beast"
+      ],
+      [
+        "Big Barda"
+      ],
+      [
+        "Big Man"
+      ],
+      [
+        "Binary"
+      ],
+      [
+        "Bionic Woman"
+      ],
+      [
+        "Black Bolt"
+      ],
+      [
+        "Black Canary"
+      ],
+      [
+        "Black Canary II"
+      ],
+      [
+        "Black Widow II"
+      ],
+      [
+        "Blackwing"
+      ],
+      [
+        "Bloodaxe"
+      ],
+      [
+        "Blue Beetle"
+      ],
+      [
+        "Blue Beetle II"
+      ],
+      [
+        "Boom-Boom"
+      ],
+      [
+        "Booster Gold"
+      ],
+      [
+        "Box III"
+      ],
+      [
+        "Bullseye"
+      ],
+      [
+        "Cable"
+      ],
+      [
+        "Callisto"
+      ],
+      [
+        "Cannonball"
+      ],
+      [
+        "Captain America"
+      ],
+      [
+        "Captain Atom"
+      ],
+      [
+        "Captain Britain"
+      ],
+      [
+        "Captain Epic"
+      ],
+      [
+        "Captain Mar-vell"
+      ],
+      [
+        "Captain Marvel"
+      ],
+      [
+        "Captain Marvel"
+      ],
+      [
+        "Captain Marvel II"
+      ],
+      [
+        "Cat"
+      ],
+      [
+        "Chewbacca"
+      ],
+      [
+        "Claire Bennet"
+      ],
+      [
+        "Clock King"
+      ],
+      [
+        "Crimson Crusader"
+      ],
+      [
+        "Cyborg Superman"
+      ],
+      [
+        "Cypher"
+      ],
+      [
+        "Dagger"
+      ],
+      [
+        "Daredevil"
+      ],
+      [
+        "Dash"
+      ],
+      [
+        "Dazzler"
+      ],
+      [
+        "Deadman"
+      ],
+      [
+        "Deathstroke"
+      ],
+      [
+        "Doc Samson"
+      ],
+      [
+        "Doctor Fate"
+      ],
+      [
+        "Domino"
+      ],
+      [
+        "Donna Troy"
+      ],
+      [
+        "Electro"
+      ],
+      [
+        "Elektra"
+      ],
+      [
+        "Elle Bishop"
+      ],
+      [
+        "Elongated Man"
+      ],
+      [
+        "Emma Frost"
+      ],
+      [
+        "Enchantress"
+      ],
+      [
+        "Exodus"
+      ],
+      [
+        "Fabian Cortez"
+      ],
+      [
+        "Firestorm II"
+      ],
+      [
+        "Flash"
+      ],
+      [
+        "Flash II"
+      ],
+      [
+        "Franklin Richards"
+      ],
+      [
+        "Franklin Storm"
+      ],
+      [
+        "Frigga"
+      ],
+      [
+        "Genesis"
+      ],
+      [
+        "Gladiator"
+      ],
+      [
+        "Granny Goodness"
+      ],
+      [
+        "Gravity"
+      ],
+      [
+        "Green Goblin"
+      ],
+      [
+        "Green Goblin II"
+      ],
+      [
+        "Green Lantern"
+      ],
+      [
+        "Green Lantern II"
+      ],
+      [
+        "Guy Gardner"
+      ],
+      [
+        "Harley Quinn"
+      ],
+      [
+        "Havok"
+      ],
+      [
+        "Hawkeye"
+      ],
+      [
+        "Hawkeye II"
+      ],
+      [
+        "Hawkman"
+      ],
+      [
+        "Hawkwoman III"
+      ],
+      [
+        "Heat Wave"
+      ],
+      [
+        "Hellcat"
+      ],
+      [
+        "Hercules"
+      ],
+      [
+        "Hobgoblin"
+      ],
+      [
+        "Hollow"
+      ],
+      [
+        "Human Torch"
+      ],
+      [
+        "Huntress"
+      ],
+      [
+        "Husk"
+      ],
+      [
+        "Hyperion"
+      ],
+      [
+        "Ink"
+      ],
+      [
+        "Invisible Woman"
+      ],
+      [
+        "Iron Fist"
+      ],
+      [
+        "Iron Man"
+      ],
+      [
+        "Iron Monger"
+      ],
+      [
+        "Jack-Jack"
+      ],
+      [
+        "James Bond"
+      ],
+      [
+        "James Bond (Craig)"
+      ],
+      [
+        "Jennifer Kale"
+      ],
+      [
+        "Jigsaw"
+      ],
+      [
+        "John Constantine"
+      ],
+      [
+        "Jolt"
+      ],
+      [
+        "Juggernaut"
+      ],
+      [
+        "Kick-Ass"
+      ],
+      [
+        "Killer Frost"
+      ],
+      [
+        "Kingpin"
+      ],
+      [
+        "Krypto"
+      ],
+      [
+        "Leonardo"
+      ],
+      [
+        "Light Lass"
+      ],
+      [
+        "Lightning Lad"
+      ],
+      [
+        "Lightning Lord"
+      ],
+      [
+        "Living Tribunal"
+      ],
+      [
+        "Longshot"
+      ],
+      [
+        "Luke Skywalker"
+      ],
+      [
+        "Magog"
+      ],
+      [
+        "Man of Miracles"
+      ],
+      [
+        "Mandarin"
+      ],
+      [
+        "Master Brood"
+      ],
+      [
+        "Maverick"
+      ],
+      [
+        "Meltdown"
+      ],
+      [
+        "Mera"
+      ],
+      [
+        "Metron"
+      ],
+      [
+        "Michelangelo"
+      ],
+      [
+        "Misfit"
+      ],
+      [
+        "Mister Knife"
+      ],
+      [
+        "Mister Zsasz"
+      ],
+      [
+        "Mockingbird"
+      ],
+      [
+        "Molecule Man"
+      ],
+      [
+        "Monarch"
+      ],
+      [
+        "Moonstone"
+      ],
+      [
+        "Mr Immortal"
+      ],
+      [
+        "Mr Incredible"
+      ],
+      [
+        "Ms Marvel II"
+      ],
+      [
+        "Multiple Man"
+      ],
+      [
+        "Namora"
+      ],
+      [
+        "Namorita"
+      ],
+      [
+        "Naruto Uzumaki"
+      ],
+      [
+        "Nebula"
+      ],
+      [
+        "Nightwing"
+      ],
+      [
+        "Niki Sanders"
+      ],
+      [
+        "Northstar"
+      ],
+      [
+        "Odin"
+      ],
+      [
+        "Oracle"
+      ],
+      [
+        "Ozymandias"
+      ],
+      [
+        "Penance II"
+      ],
+      [
+        "Penguin"
+      ],
+      [
+        "Phantom Girl"
+      ],
+      [
+        "Plastic Man"
+      ],
+      [
+        "Plastique"
+      ],
+      [
+        "Power Girl"
+      ],
+      [
+        "Professor X"
+      ],
+      [
+        "Professor Zoom"
+      ],
+      [
+        "Psylocke"
+      ],
+      [
+        "Punisher"
+      ],
+      [
+        "Pyro"
+      ],
+      [
+        "Question"
+      ],
+      [
+        "Quicksilver"
+      ],
+      [
+        "Razor-Fist II"
+      ],
+      [
+        "Red Hood"
+      ],
+      [
+        "Red Robin"
+      ],
+      [
+        "Red Skull"
+      ],
+      [
+        "Rick Flag"
+      ],
+      [
+        "Rip Hunter"
+      ],
+      [
+        "Robin"
+      ],
+      [
+        "Robin II"
+      ],
+      [
+        "Robin III"
+      ],
+      [
+        "Robin V"
+      ],
+      [
+        "Ronin"
+      ],
+      [
+        "Rorschach"
+      ],
+      [
+        "Sage"
+      ],
+      [
+        "Saturn Girl"
+      ],
+      [
+        "Scarecrow"
+      ],
+      [
+        "Scarlet Spider"
+      ],
+      [
+        "Scarlet Witch"
+      ],
+      [
+        "Sentry"
+      ],
+      [
+        "Shazam"
+      ],
+      [
+        "She-Thing"
+      ],
+      [
+        "Sif"
+      ],
+      [
+        "Siren"
+      ],
+      [
+        "Siryn"
+      ],
+      [
+        "Spider-Girl"
+      ],
+      [
+        "Spider-Gwen"
+      ],
+      [
+        "Star-Lord"
+      ],
+      [
+        "Stargirl"
+      ],
+      [
+        "Storm"
+      ],
+      [
+        "Superboy"
+      ],
+      [
+        "Superboy-Prime"
+      ],
+      [
+        "Supergirl"
+      ],
+      [
+        "Superman"
+      ],
+      [
+        "Thing"
+      ],
+      [
+        "Thor"
+      ],
+      [
+        "Thor Girl"
+      ],
+      [
+        "Thunderstrike"
+      ],
+      [
+        "Toxin"
+      ],
+      [
+        "Trickster"
+      ],
+      [
+        "Ultragirl"
+      ],
+      [
+        "Utgard-Loki"
+      ],
+      [
+        "Vagabond"
+      ],
+      [
+        "Valkyrie"
+      ],
+      [
+        "Venom"
+      ],
+      [
+        "Vertigo II"
+      ],
+      [
+        "Walrus"
+      ],
+      [
+        "Warbird"
+      ],
+      [
+        "Wasp"
+      ],
+      [
+        "White Queen"
+      ],
+      [
+        "Wolverine"
+      ],
+      [
+        "Wonder Girl"
+      ],
+      [
+        "Wonder Woman"
+      ],
+      [
+        "X-Man"
+      ],
+      [
+        "Yellow Claw"
+      ],
+      [
+        "Yellowjacket"
+      ],
+      [
+        "Yellowjacket II"
+      ],
+      [
+        "Zatanna"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT superhero.superhero_name FROM superhero JOIN colour ON superhero.eye_colour_id = colour.id WHERE colour.colour = 'Blue';",
+  "question": "List down at least five full names of superheroes with blue eyes.",
+  "thinking": ""
+}

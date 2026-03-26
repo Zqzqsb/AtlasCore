@@ -1,0 +1,38 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "challenging",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.ID)"
+      ],
+      [
+        "2"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Examination AS T2 ON T1.ID = T2.ID WHERE T2.Diagnosis = 'Behcet' AND T1.SEX = 'M' AND STRFTIME('%Y', T2.`Examination Date`) BETWEEN '1995' AND '1997' AND T1.Admission = '-'",
+  "id": 1203,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.ID)"
+      ],
+      [
+        "2"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(T1.ID) \nFROM Patient AS T1\nINNER JOIN Examination AS T2 ON T1.ID = T2.ID\nWHERE T1.SEX = 'M'\nAND T2.\"Examination Date\" BETWEEN '1995-01-01' AND '1997-12-31'\nAND T2.Diagnosis LIKE '%Behcet%'\nAND T1.Admission = '-'",
+  "question": "How many male patients who underwent testing between 1995 and 1997 and were subsequently diagnosed with Behcet disease did not stay in the hospital for treatment?",
+  "thinking": ""
+}

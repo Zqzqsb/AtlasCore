@@ -1,0 +1,38 @@
+{
+  "db_id": "card_games",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "frameEffects"
+      ],
+      [
+        "legendary"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT frameEffects FROM cards WHERE cardKingdomFoilId IS NOT NULL AND cardKingdomId IS NOT NULL GROUP BY frameEffects ORDER BY COUNT(frameEffects) DESC LIMIT 1",
+  "id": 512,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "frameEffects"
+      ],
+      [
+        "legendary"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT frameEffects FROM cards WHERE cardKingdomFoilId IS NOT NULL AND cardKingdomId IS NOT NULL AND frameEffects IS NOT NULL GROUP BY frameEffects ORDER BY COUNT(*) DESC LIMIT 1",
+  "question": "What is the most common visual frame effects among the incredibly powerful foils?",
+  "thinking": ""
+}

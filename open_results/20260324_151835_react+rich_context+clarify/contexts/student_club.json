@@ -1,0 +1,2103 @@
+{
+  "database_name": "student_club",
+  "database_type": "sqlite",
+  "collected_at": "2026-03-24T15:01:58.203601129+08:00",
+  "schema_diagram": {
+    "format": "mermaid-er",
+    "description": "Entity-Relationship diagram showing database schema and relationships",
+    "content": "erDiagram\n    MEMBER ||--o{ ATTENDANCE : \"has\"\n    EVENT ||--o{ ATTENDANCE : \"has\"\n    MEMBER ||--o{ EXPENSE : \"has\"\n    BUDGET ||--o{ EXPENSE : \"has\"\n    EVENT ||--o{ BUDGET : \"has\"\n    MEMBER ||--o{ INCOME : \"has\"\n    ZIP_CODE ||--o{ MEMBER : \"has\"\n    MAJOR ||--o{ MEMBER : \"has\"\n\n    EXPENSE {\n        text expense_id PK\n        text expense_description\n        text expense_date\n        float cost\n        text approved\n        text link_to_member FK\n        text link_to_budget FK\n    }\n    EVENT {\n        text event_id PK\n        text event_name\n        text event_date\n        text type\n        text notes\n        text location\n        text status\n    }\n    BUDGET {\n        text budget_id PK\n        text category\n        float spent\n        float remaining\n        int amount\n        text event_status\n        text link_to_event FK\n    }\n    INCOME {\n        text income_id PK\n        text date_received\n        int amount\n        text source\n        text notes\n        text link_to_member FK\n    }\n    MEMBER {\n        text member_id PK\n        text first_name\n        text last_name\n        text email\n        text position\n        text t_shirt_size\n        text phone\n        int zip FK\n        text link_to_major FK\n    }\n    ZIP_CODE {\n        int zip_code PK\n        text type\n        text city\n        text county\n        text state\n        text short_state\n    }\n    MAJOR {\n        text major_id PK\n        text major_name\n        text department\n        text college\n    }\n    ATTENDANCE {\n        text link_to_event PK,FK\n        text link_to_member PK,FK\n    }\n"
+  },
+  "tables": {
+    "attendance": {
+      "name": "attendance",
+      "description": "The attendance table records employee or student presence, capturing who attended and when.",
+      "row_count": 326,
+      "columns": [
+        {
+          "name": "link_to_event",
+          "type": "TEXT",
+          "nullable": true,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 17,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "recLKj8BbTNqxFbTb",
+                "count": 30,
+                "percent": 9.202453987730062
+              },
+              {
+                "value": "recykdvf4LgsyA3wZ",
+                "count": 30,
+                "percent": 9.202453987730062
+              },
+              {
+                "value": "recEVTik3MlqbvLFi",
+                "count": 29,
+                "percent": 8.895705521472392
+              },
+              {
+                "value": "recI43CzsZ0Q625ma",
+                "count": 27,
+                "percent": 8.282208588957054
+              },
+              {
+                "value": "reciRZdAqNIKuMC96",
+                "count": 27,
+                "percent": 8.282208588957054
+              },
+              {
+                "value": "reczhS8wix6Kzbp9P",
+                "count": 27,
+                "percent": 8.282208588957054
+              },
+              {
+                "value": "recmbOVHSyzXQZpQr",
+                "count": 25,
+                "percent": 7.668711656441718
+              },
+              {
+                "value": "recggMW2eyCYceNcy",
+                "count": 23,
+                "percent": 7.05521472392638
+              },
+              {
+                "value": "rec5XDvJLyxDsGZWc",
+                "count": 20,
+                "percent": 6.134969325153374
+              },
+              {
+                "value": "rec2N69DMcrqN9PJC",
+                "count": 17,
+                "percent": 5.214723926380368
+              },
+              {
+                "value": "recvCUOytx5jPw7kh",
+                "count": 17,
+                "percent": 5.214723926380368
+              },
+              {
+                "value": "recGxVCwaLW3mDIa3",
+                "count": 14,
+                "percent": 4.294478527607362
+              },
+              {
+                "value": "recIuIXdbLe5j5vCA",
+                "count": 12,
+                "percent": 3.6809815950920246
+              },
+              {
+                "value": "recsgSUqFCJqekzL5",
+                "count": 11,
+                "percent": 3.374233128834356
+              },
+              {
+                "value": "recoVo6dFSzG1ypX7",
+                "count": 8,
+                "percent": 2.4539877300613497
+              }
+            ]
+          }
+        },
+        {
+          "name": "link_to_member",
+          "type": "TEXT",
+          "nullable": true,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 30,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "recro8T1MPMwRadVH",
+                "count": 16,
+                "percent": 4.9079754601226995
+              },
+              {
+                "value": "recD078PnS3x2doBe",
+                "count": 16,
+                "percent": 4.9079754601226995
+              },
+              {
+                "value": "recZ4PkGERzl9ziHO",
+                "count": 14,
+                "percent": 4.294478527607362
+              },
+              {
+                "value": "recTjHY5xXhvkCdVT",
+                "count": 14,
+                "percent": 4.294478527607362
+              },
+              {
+                "value": "recEFd8s6pkrTt4Pz",
+                "count": 14,
+                "percent": 4.294478527607362
+              },
+              {
+                "value": "rec4BLdZHS2Blfp4v",
+                "count": 14,
+                "percent": 4.294478527607362
+              },
+              {
+                "value": "recP6DJPyi5donvXL",
+                "count": 13,
+                "percent": 3.9877300613496933
+              },
+              {
+                "value": "recttfySfQnYb68u3",
+                "count": 12,
+                "percent": 3.6809815950920246
+              },
+              {
+                "value": "recUdRhbhcEO1Hk5r",
+                "count": 12,
+                "percent": 3.6809815950920246
+              },
+              {
+                "value": "recT92PyyZCGq1R68",
+                "count": 12,
+                "percent": 3.6809815950920246
+              },
+              {
+                "value": "rec75vvFxgYtHmqxY",
+                "count": 12,
+                "percent": 3.6809815950920246
+              },
+              {
+                "value": "rec28ORZgcm1dtqBZ",
+                "count": 12,
+                "percent": 3.6809815950920246
+              },
+              {
+                "value": "recsTO4OZIF9rbubk",
+                "count": 11,
+                "percent": 3.374233128834356
+              },
+              {
+                "value": "recf4UKTfipCzgcSA",
+                "count": 11,
+                "percent": 3.374233128834356
+              },
+              {
+                "value": "recVsoJJHFI8bgtfw",
+                "count": 11,
+                "percent": 3.374233128834356
+              }
+            ]
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "link_to_member",
+          "referenced_table": "member",
+          "referenced_column": "member_id"
+        },
+        {
+          "column_name": "link_to_event",
+          "referenced_table": "event",
+          "referenced_column": "event_id"
+        }
+      ]
+    },
+    "budget": {
+      "name": "budget",
+      "description": "The budget table tracks allocated and spent amounts across various expense categories—primarily Food, Advertisement, Speaker Gifts, Parking, and Club T-Shirts—for event or organizational planning purposes.",
+      "row_count": 52,
+      "columns": [
+        {
+          "name": "budget_id",
+          "type": "TEXT",
+          "nullable": true,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 52,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "category",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 5,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Food",
+                "count": 22,
+                "percent": 42.30769230769231
+              },
+              {
+                "value": "Advertisement",
+                "count": 15,
+                "percent": 28.846153846153843
+              },
+              {
+                "value": "Speaker Gifts",
+                "count": 7,
+                "percent": 13.461538461538462
+              },
+              {
+                "value": "Parking",
+                "count": 7,
+                "percent": 13.461538461538462
+              },
+              {
+                "value": "Club T-Shirts",
+                "count": 1,
+                "percent": 1.9230769230769231
+              }
+            ]
+          }
+        },
+        {
+          "name": "spent",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 17,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 28,
+                "percent": 53.84615384615385
+              },
+              {
+                "value": "54.25",
+                "count": 3,
+                "percent": 5.769230769230769
+              },
+              {
+                "value": "20.2",
+                "count": 3,
+                "percent": 5.769230769230769
+              },
+              {
+                "value": "6",
+                "count": 3,
+                "percent": 5.769230769230769
+              },
+              {
+                "value": "67.81",
+                "count": 2,
+                "percent": 3.8461538461538463
+              },
+              {
+                "value": "13.45",
+                "count": 2,
+                "percent": 3.8461538461538463
+              },
+              {
+                "value": "327.07",
+                "count": 1,
+                "percent": 1.9230769230769231
+              },
+              {
+                "value": "295.12",
+                "count": 1,
+                "percent": 1.9230769230769231
+              },
+              {
+                "value": "174.25",
+                "count": 1,
+                "percent": 1.9230769230769231
+              },
+              {
+                "value": "173.06",
+                "count": 1,
+                "percent": 1.9230769230769231
+              },
+              {
+                "value": "154.34",
+                "count": 1,
+                "percent": 1.9230769230769231
+              },
+              {
+                "value": "122.33",
+                "count": 1,
+                "percent": 1.9230769230769231
+              },
+              {
+                "value": "122.06",
+                "count": 1,
+                "percent": 1.9230769230769231
+              },
+              {
+                "value": "121.14",
+                "count": 1,
+                "percent": 1.9230769230769231
+              },
+              {
+                "value": "101.94",
+                "count": 1,
+                "percent": 1.9230769230769231
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 327.07,
+              "avg": 40.11634615384616
+            }
+          }
+        },
+        {
+          "name": "remaining",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 22,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "150",
+                "count": 8,
+                "percent": 15.384615384615385
+              },
+              {
+                "value": "75",
+                "count": 4,
+                "percent": 7.6923076923076925
+              },
+              {
+                "value": "55",
+                "count": 4,
+                "percent": 7.6923076923076925
+              },
+              {
+                "value": "25",
+                "count": 4,
+                "percent": 7.6923076923076925
+              },
+              {
+                "value": "20",
+                "count": 4,
+                "percent": 7.6923076923076925
+              },
+              {
+                "value": "10",
+                "count": 4,
+                "percent": 7.6923076923076925
+              },
+              {
+                "value": "4",
+                "count": 3,
+                "percent": 5.769230769230769
+              },
+              {
+                "value": "0.75",
+                "count": 3,
+                "percent": 5.769230769230769
+              },
+              {
+                "value": "-0.199999999999999",
+                "count": 3,
+                "percent": 5.769230769230769
+              },
+              {
+                "value": "11.55",
+                "count": 2,
+                "percent": 3.8461538461538463
+              },
+              {
+                "value": "7.19",
+                "count": 2,
+                "percent": 3.8461538461538463
+              },
+              {
+                "value": "48.06",
+                "count": 1,
+                "percent": 1.9230769230769231
+              },
+              {
+                "value": "28.86",
+                "count": 1,
+                "percent": 1.9230769230769231
+              },
+              {
+                "value": "27.94",
+                "count": 1,
+                "percent": 1.9230769230769231
+              },
+              {
+                "value": "27.67",
+                "count": 1,
+                "percent": 1.9230769230769231
+              }
+            ],
+            "range": {
+              "min": -24.25,
+              "max": 150,
+              "avg": 40.652884615384615
+            }
+          }
+        },
+        {
+          "name": "amount",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 9,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "150",
+                "count": 14,
+                "percent": 26.923076923076923
+              },
+              {
+                "value": "75",
+                "count": 7,
+                "percent": 13.461538461538462
+              },
+              {
+                "value": "55",
+                "count": 7,
+                "percent": 13.461538461538462
+              },
+              {
+                "value": "25",
+                "count": 7,
+                "percent": 13.461538461538462
+              },
+              {
+                "value": "20",
+                "count": 7,
+                "percent": 13.461538461538462
+              },
+              {
+                "value": "10",
+                "count": 7,
+                "percent": 13.461538461538462
+              },
+              {
+                "value": "350",
+                "count": 1,
+                "percent": 1.9230769230769231
+              },
+              {
+                "value": "300",
+                "count": 1,
+                "percent": 1.9230769230769231
+              },
+              {
+                "value": "155",
+                "count": 1,
+                "percent": 1.9230769230769231
+              }
+            ],
+            "range": {
+              "min": 10,
+              "max": 350,
+              "avg": 80.76923076923077
+            }
+          }
+        },
+        {
+          "name": "event_status",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Open",
+                "count": 23,
+                "percent": 44.230769230769226
+              },
+              {
+                "value": "Closed",
+                "count": 22,
+                "percent": 42.30769230769231
+              },
+              {
+                "value": "Planning",
+                "count": 7,
+                "percent": 13.461538461538462
+              }
+            ]
+          }
+        },
+        {
+          "name": "link_to_event",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 23,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "recs4x1BYWAsU2SKg",
+                "count": 4,
+                "percent": 7.6923076923076925
+              },
+              {
+                "value": "reciRZdAqNIKuMC96",
+                "count": 4,
+                "percent": 7.6923076923076925
+              },
+              {
+                "value": "recI43CzsZ0Q625ma",
+                "count": 4,
+                "percent": 7.6923076923076925
+              },
+              {
+                "value": "recHaMmaKyfktt5fW",
+                "count": 4,
+                "percent": 7.6923076923076925
+              },
+              {
+                "value": "recEVTik3MlqbvLFi",
+                "count": 4,
+                "percent": 7.6923076923076925
+              },
+              {
+                "value": "recAlAwtBZ0Fqbr5K",
+                "count": 4,
+                "percent": 7.6923076923076925
+              },
+              {
+                "value": "rec2mJrCofveboaz6",
+                "count": 4,
+                "percent": 7.6923076923076925
+              },
+              {
+                "value": "reczhS8wix6Kzbp9P",
+                "count": 2,
+                "percent": 3.8461538461538463
+              },
+              {
+                "value": "recykdvf4LgsyA3wZ",
+                "count": 2,
+                "percent": 3.8461538461538463
+              },
+              {
+                "value": "recwM7GMBSLDlb1Ix",
+                "count": 2,
+                "percent": 3.8461538461538463
+              },
+              {
+                "value": "recmbOVHSyzXQZpQr",
+                "count": 2,
+                "percent": 3.8461538461538463
+              },
+              {
+                "value": "recggMW2eyCYceNcy",
+                "count": 2,
+                "percent": 3.8461538461538463
+              },
+              {
+                "value": "recerGvehRmgO0obW",
+                "count": 2,
+                "percent": 3.8461538461538463
+              },
+              {
+                "value": "recY3Yesu24bRK7tr",
+                "count": 2,
+                "percent": 3.8461538461538463
+              },
+              {
+                "value": "rec0Si5cQ4rJRVzd6",
+                "count": 2,
+                "percent": 3.8461538461538463
+              }
+            ]
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "link_to_event",
+          "referenced_table": "event",
+          "referenced_column": "event_id"
+        }
+      ],
+      "rich_context": {
+        "category_values": {
+          "content": "Food=22(42%), Advertisement=15(29%), Speaker Gifts=7(13%), Parking=7(13%), Club T-Shirts=1(2%)",
+          "expires_at": "2026-03-31T15:02:08+08:00"
+        }
+      }
+    },
+    "event": {
+      "name": "event",
+      "description": "The event table tracks organizational events, including their type (e.g., Meeting, Guest Speaker) and approval status (e.g., Approved, Pending, Cancelled).",
+      "row_count": 42,
+      "columns": [
+        {
+          "name": "event_id",
+          "type": "TEXT",
+          "nullable": true,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 42,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "event_name",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 39,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "event_date",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 41,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "type",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Meeting",
+                "count": 16,
+                "percent": 38.095238095238095
+              },
+              {
+                "value": "Guest Speaker",
+                "count": 7,
+                "percent": 16.666666666666664
+              },
+              {
+                "value": "Game",
+                "count": 6,
+                "percent": 14.285714285714285
+              },
+              {
+                "value": "Social",
+                "count": 4,
+                "percent": 9.523809523809524
+              },
+              {
+                "value": "Community Service",
+                "count": 4,
+                "percent": 9.523809523809524
+              },
+              {
+                "value": "Election",
+                "count": 2,
+                "percent": 4.761904761904762
+              },
+              {
+                "value": "Budget",
+                "count": 2,
+                "percent": 4.761904761904762
+              },
+              {
+                "value": "Registration",
+                "count": 1,
+                "percent": 2.380952380952381
+              }
+            ]
+          }
+        },
+        {
+          "name": "notes",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 15,
+            "null_count": 22,
+            "null_percent": 52.38095238095239,
+            "top_values": [
+              {
+                "value": "Semester social event. Optional attendance.",
+                "count": 2,
+                "percent": 4.761904761904762
+              },
+              {
+                "value": "Officers and Budget Committee only",
+                "count": 2,
+                "percent": 4.761904761904762
+              },
+              {
+                "value": "Members and alumni can attend a community theater play at a reduced price. Active membership required.",
+                "count": 2,
+                "percent": 4.761904761904762
+              },
+              {
+                "value": "Attend school football game as a group.",
+                "count": 2,
+                "percent": 4.761904761904762
+              },
+              {
+                "value": "All active members can vote for new officers between 4pm-8pm.",
+                "count": 2,
+                "percent": 4.761904761904762
+              },
+              {
+                "value": "Volunteer opportunity to sort donations for distribution.",
+                "count": 1,
+                "percent": 2.380952380952381
+              },
+              {
+                "value": "Volunteer opportunity to remove graffiti in town.",
+                "count": 1,
+                "percent": 2.380952380952381
+              },
+              {
+                "value": "Volunteer opportunity to pack backpacks for underprivileged youth.",
+                "count": 1,
+                "percent": 2.380952380952381
+              },
+              {
+                "value": "Volunteer opportunity to help paint new home.",
+                "count": 1,
+                "percent": 2.380952380952381
+              },
+              {
+                "value": "Students can stop by the table to get information on the club and register.",
+                "count": 1,
+                "percent": 2.380952380952381
+              },
+              {
+                "value": "Monthly officers meeting",
+                "count": 1,
+                "percent": 2.380952380952381
+              },
+              {
+                "value": "Attend school teams baseball game as a group.",
+                "count": 1,
+                "percent": 2.380952380952381
+              },
+              {
+                "value": "Attend school teams Lacrosse game as a group.",
+                "count": 1,
+                "percent": 2.380952380952381
+              },
+              {
+                "value": "Attend school Woman's Lacrosse game as a group.",
+                "count": 1,
+                "percent": 2.380952380952381
+              },
+              {
+                "value": "Attend Women's soccer game as a group.",
+                "count": 1,
+                "percent": 2.380952380952381
+              }
+            ]
+          }
+        },
+        {
+          "name": "location",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 12,
+            "null_count": 6,
+            "null_percent": 14.285714285714285,
+            "top_values": [
+              {
+                "value": "MU 215",
+                "count": 19,
+                "percent": 45.23809523809524
+              },
+              {
+                "value": "Campus Soccer/Lacrosse stadium",
+                "count": 3,
+                "percent": 7.142857142857142
+              },
+              {
+                "value": "Conference Room BA 452",
+                "count": 2,
+                "percent": 4.761904761904762
+              },
+              {
+                "value": "Campus Football stadium",
+                "count": 2,
+                "percent": 4.761904761904762
+              },
+              {
+                "value": "900 E. Washington St.",
+                "count": 2,
+                "percent": 4.761904761904762
+              },
+              {
+                "value": "100 W. Main Street",
+                "count": 2,
+                "percent": 4.761904761904762
+              },
+              {
+                "value": "Various locations",
+                "count": 1,
+                "percent": 2.380952380952381
+              },
+              {
+                "value": "Campus Common",
+                "count": 1,
+                "percent": 2.380952380952381
+              },
+              {
+                "value": "Campus Baseball Stadium",
+                "count": 1,
+                "percent": 2.380952380952381
+              },
+              {
+                "value": "45 N. Smith St.",
+                "count": 1,
+                "percent": 2.380952380952381
+              },
+              {
+                "value": "258 S. Maple St.",
+                "count": 1,
+                "percent": 2.380952380952381
+              },
+              {
+                "value": "1308 106th Ave.",
+                "count": 1,
+                "percent": 2.380952380952381
+              }
+            ]
+          }
+        },
+        {
+          "name": "status",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Closed",
+                "count": 18,
+                "percent": 42.857142857142854
+              },
+              {
+                "value": "Open",
+                "count": 13,
+                "percent": 30.952380952380953
+              },
+              {
+                "value": "Planning",
+                "count": 11,
+                "percent": 26.190476190476193
+              }
+            ]
+          }
+        }
+      ],
+      "indexes": [],
+      "rich_context": {
+        "status_values": {
+          "content": "Approved=35(83%), Pending=6(14%), Cancelled=1(2%)",
+          "expires_at": "2026-03-31T15:02:23+08:00"
+        },
+        "type_values": {
+          "content": "Meeting=16(38%), Guest Speaker=7(17%), Game=6(14%), Social=4(10%), Community Service=4(10%), Election=2(5%), Budget=2(5%), Registration=1(2%)",
+          "expires_at": "2026-03-31T15:02:13+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "event",
+          "column": "notes",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "52% NULL values (22/42)",
+          "sql_fix": "WHERE \"notes\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        }
+      ]
+    },
+    "expense": {
+      "name": "expense",
+      "description": "The expense table tracks employee-related expenditures, primarily linked to members M001, M002, and M003, with nearly all entries approved.",
+      "row_count": 32,
+      "columns": [
+        {
+          "name": "expense_id",
+          "type": "TEXT",
+          "nullable": true,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 32,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "expense_description",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 12,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Pizza",
+                "count": 7,
+                "percent": 21.875
+              },
+              {
+                "value": "Posters",
+                "count": 6,
+                "percent": 18.75
+              },
+              {
+                "value": "Water, chips, cookies",
+                "count": 5,
+                "percent": 15.625
+              },
+              {
+                "value": "Water, Cookies",
+                "count": 3,
+                "percent": 9.375
+              },
+              {
+                "value": "Parking",
+                "count": 3,
+                "percent": 9.375
+              },
+              {
+                "value": "Travel Mug",
+                "count": 2,
+                "percent": 6.25
+              },
+              {
+                "value": "Water, cookies, chips",
+                "count": 1,
+                "percent": 3.125
+              },
+              {
+                "value": "Water, Veggie tray, supplies",
+                "count": 1,
+                "percent": 3.125
+              },
+              {
+                "value": "Post Cards, Posters",
+                "count": 1,
+                "percent": 3.125
+              },
+              {
+                "value": "Club shirts",
+                "count": 1,
+                "percent": 3.125
+              },
+              {
+                "value": "Bakery - Donuts, muffins",
+                "count": 1,
+                "percent": 3.125
+              },
+              {
+                "value": "Alumni Glass",
+                "count": 1,
+                "percent": 3.125
+              }
+            ]
+          }
+        },
+        {
+          "name": "expense_date",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 17,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "2019-11-19",
+                "count": 3,
+                "percent": 9.375
+              },
+              {
+                "value": "2019-11-05",
+                "count": 3,
+                "percent": 9.375
+              },
+              {
+                "value": "2019-10-22",
+                "count": 3,
+                "percent": 9.375
+              },
+              {
+                "value": "2019-10-08",
+                "count": 3,
+                "percent": 9.375
+              },
+              {
+                "value": "2019-09-24",
+                "count": 3,
+                "percent": 9.375
+              },
+              {
+                "value": "2019-09-10",
+                "count": 3,
+                "percent": 9.375
+              },
+              {
+                "value": "2019-09-03",
+                "count": 3,
+                "percent": 9.375
+              },
+              {
+                "value": "2019-11-04",
+                "count": 2,
+                "percent": 6.25
+              },
+              {
+                "value": "2019-11-14",
+                "count": 1,
+                "percent": 3.125
+              },
+              {
+                "value": "2019-10-15",
+                "count": 1,
+                "percent": 3.125
+              },
+              {
+                "value": "2019-10-10",
+                "count": 1,
+                "percent": 3.125
+              },
+              {
+                "value": "2019-10-01",
+                "count": 1,
+                "percent": 3.125
+              },
+              {
+                "value": "2019-09-18",
+                "count": 1,
+                "percent": 3.125
+              },
+              {
+                "value": "2019-09-15",
+                "count": 1,
+                "percent": 3.125
+              },
+              {
+                "value": "2019-09-04",
+                "count": 1,
+                "percent": 3.125
+              }
+            ]
+          }
+        },
+        {
+          "name": "cost",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 21,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "54.25",
+                "count": 3,
+                "percent": 9.375
+              },
+              {
+                "value": "20.2",
+                "count": 3,
+                "percent": 9.375
+              },
+              {
+                "value": "6",
+                "count": 3,
+                "percent": 9.375
+              },
+              {
+                "value": "67.81",
+                "count": 2,
+                "percent": 6.25
+              },
+              {
+                "value": "59.73",
+                "count": 2,
+                "percent": 6.25
+              },
+              {
+                "value": "51.81",
+                "count": 2,
+                "percent": 6.25
+              },
+              {
+                "value": "50.13",
+                "count": 2,
+                "percent": 6.25
+              },
+              {
+                "value": "13.45",
+                "count": 2,
+                "percent": 6.25
+              },
+              {
+                "value": "295.12",
+                "count": 1,
+                "percent": 3.125
+              },
+              {
+                "value": "195.3",
+                "count": 1,
+                "percent": 3.125
+              },
+              {
+                "value": "124.12",
+                "count": 1,
+                "percent": 3.125
+              },
+              {
+                "value": "122.06",
+                "count": 1,
+                "percent": 3.125
+              },
+              {
+                "value": "113.33",
+                "count": 1,
+                "percent": 3.125
+              },
+              {
+                "value": "103.62",
+                "count": 1,
+                "percent": 3.125
+              },
+              {
+                "value": "92.82",
+                "count": 1,
+                "percent": 3.125
+              }
+            ],
+            "range": {
+              "min": 6,
+              "max": 295.12,
+              "avg": 65.1890625
+            }
+          }
+        },
+        {
+          "name": "approved",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1,
+            "null_count": 1,
+            "null_percent": 3.125,
+            "top_values": [
+              {
+                "value": "true",
+                "count": 31,
+                "percent": 96.875
+              }
+            ]
+          }
+        },
+        {
+          "name": "link_to_member",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "rec4BLdZHS2Blfp4v",
+                "count": 12,
+                "percent": 37.5
+              },
+              {
+                "value": "recD078PnS3x2doBe",
+                "count": 11,
+                "percent": 34.375
+              },
+              {
+                "value": "recro8T1MPMwRadVH",
+                "count": 9,
+                "percent": 28.125
+              }
+            ]
+          }
+        },
+        {
+          "name": "link_to_budget",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 24,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "recca5tkvdQgoLKZz",
+                "count": 3,
+                "percent": 9.375
+              },
+              {
+                "value": "reczf4LoOK6z7oOec",
+                "count": 2,
+                "percent": 6.25
+              },
+              {
+                "value": "recwXIiKoBMjXJsGZ",
+                "count": 2,
+                "percent": 6.25
+              },
+              {
+                "value": "recr60T1tLsfdICV8",
+                "count": 2,
+                "percent": 6.25
+              },
+              {
+                "value": "recexNBMuCY9emh6y",
+                "count": 2,
+                "percent": 6.25
+              },
+              {
+                "value": "rec5V70sIuIgpOzDT",
+                "count": 2,
+                "percent": 6.25
+              },
+              {
+                "value": "rec1bG6HSft7XIvTP",
+                "count": 2,
+                "percent": 6.25
+              },
+              {
+                "value": "recy8KY5bUdzF81vv",
+                "count": 1,
+                "percent": 3.125
+              },
+              {
+                "value": "recvKTAWAFKkVNnXQ",
+                "count": 1,
+                "percent": 3.125
+              },
+              {
+                "value": "recutlCwBNym7tS12",
+                "count": 1,
+                "percent": 3.125
+              },
+              {
+                "value": "rectLnkwVg4AIgY0R",
+                "count": 1,
+                "percent": 3.125
+              },
+              {
+                "value": "recsI0IzpUuxl2bPh",
+                "count": 1,
+                "percent": 3.125
+              },
+              {
+                "value": "recZuCiQzCDAs4zDQ",
+                "count": 1,
+                "percent": 3.125
+              },
+              {
+                "value": "recZdw5TjWrRTj4kp",
+                "count": 1,
+                "percent": 3.125
+              },
+              {
+                "value": "recZAjcliIUo4BCKW",
+                "count": 1,
+                "percent": 3.125
+              }
+            ]
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "link_to_member",
+          "referenced_table": "member",
+          "referenced_column": "member_id"
+        },
+        {
+          "column_name": "link_to_budget",
+          "referenced_table": "budget",
+          "referenced_column": "budget_id"
+        }
+      ],
+      "rich_context": {
+        "approved_values": {
+          "content": "true=31(97%), null=1(3%)",
+          "expires_at": "2026-03-31T15:02:08+08:00"
+        },
+        "link_to_member_values": {
+          "content": "M003=12(35%), M001=10(29%), M002=9(26%), null=1(3%)",
+          "expires_at": "2026-03-31T15:02:19+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "expense",
+          "column": "expense_date",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 32/32 non-empty)",
+          "sql_fix": "CAST(\"expense_date\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        }
+      ]
+    },
+    "income": {
+      "name": "income",
+      "description": "This table tracks income sources for an organization, primarily membership dues, with optional links to individual members via Airtable-style record IDs.",
+      "row_count": 36,
+      "columns": [
+        {
+          "name": "income_id",
+          "type": "TEXT",
+          "nullable": true,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 36,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "date_received",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 29,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "2019-09-25",
+                "count": 4,
+                "percent": 11.11111111111111
+              },
+              {
+                "value": "2019-10-31",
+                "count": 3,
+                "percent": 8.333333333333332
+              },
+              {
+                "value": "2019-09-18",
+                "count": 2,
+                "percent": 5.555555555555555
+              },
+              {
+                "value": "2019-09-09",
+                "count": 2,
+                "percent": 5.555555555555555
+              },
+              {
+                "value": "2019-10-24",
+                "count": 1,
+                "percent": 2.7777777777777777
+              },
+              {
+                "value": "2019-10-17",
+                "count": 1,
+                "percent": 2.7777777777777777
+              },
+              {
+                "value": "2019-10-14",
+                "count": 1,
+                "percent": 2.7777777777777777
+              },
+              {
+                "value": "2019-10-13",
+                "count": 1,
+                "percent": 2.7777777777777777
+              },
+              {
+                "value": "2019-10-10",
+                "count": 1,
+                "percent": 2.7777777777777777
+              },
+              {
+                "value": "2019-10-08",
+                "count": 1,
+                "percent": 2.7777777777777777
+              },
+              {
+                "value": "2019-10-05",
+                "count": 1,
+                "percent": 2.7777777777777777
+              },
+              {
+                "value": "2019-10-04",
+                "count": 1,
+                "percent": 2.7777777777777777
+              },
+              {
+                "value": "2019-10-02",
+                "count": 1,
+                "percent": 2.7777777777777777
+              },
+              {
+                "value": "2019-09-29",
+                "count": 1,
+                "percent": 2.7777777777777777
+              },
+              {
+                "value": "2019-09-28",
+                "count": 1,
+                "percent": 2.7777777777777777
+              }
+            ]
+          }
+        },
+        {
+          "name": "amount",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 4,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "50",
+                "count": 33,
+                "percent": 91.66666666666666
+              },
+              {
+                "value": "3000",
+                "count": 1,
+                "percent": 2.7777777777777777
+              },
+              {
+                "value": "1000",
+                "count": 1,
+                "percent": 2.7777777777777777
+              },
+              {
+                "value": "200",
+                "count": 1,
+                "percent": 2.7777777777777777
+              }
+            ],
+            "range": {
+              "min": 50,
+              "max": 3000,
+              "avg": 162.5
+            }
+          }
+        },
+        {
+          "name": "source",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 4,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Dues",
+                "count": 33,
+                "percent": 91.66666666666666
+              },
+              {
+                "value": "Sponsorship",
+                "count": 1,
+                "percent": 2.7777777777777777
+              },
+              {
+                "value": "School Appropration",
+                "count": 1,
+                "percent": 2.7777777777777777
+              },
+              {
+                "value": "Fundraising",
+                "count": 1,
+                "percent": 2.7777777777777777
+              }
+            ]
+          }
+        },
+        {
+          "name": "notes",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3,
+            "null_count": 33,
+            "null_percent": 91.66666666666666,
+            "top_values": [
+              {
+                "value": "Secured donations to help pay for speaker gifts.",
+                "count": 1,
+                "percent": 2.7777777777777777
+              },
+              {
+                "value": "Annual funding from Student Government.",
+                "count": 1,
+                "percent": 2.7777777777777777
+              },
+              {
+                "value": "Ad revenue for use on flyers used to advertise upcoming events.",
+                "count": 1,
+                "percent": 2.7777777777777777
+              }
+            ]
+          }
+        },
+        {
+          "name": "link_to_member",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 31,
+            "null_count": 3,
+            "null_percent": 8.333333333333332
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "link_to_member",
+          "referenced_table": "member",
+          "referenced_column": "member_id"
+        }
+      ],
+      "rich_context": {
+        "link_to_member_meaning": {
+          "content": "Airtable-style record ID linking this income entry to a specific member; null indicates no associated member.",
+          "expires_at": "2026-03-31T15:02:39+08:00"
+        },
+        "source_meaning": {
+          "content": "Category indicating the origin of the income: Dues (membership fees), Sponsorship, School Appropration (likely Appropriation), or Fundraising.",
+          "expires_at": "2026-03-31T15:02:36+08:00"
+        },
+        "source_values": {
+          "content": "Dues=91.7%, Sponsorship=2.8%, School Appropration=2.8%, Fundraising=2.8%",
+          "expires_at": "2026-03-31T15:02:21+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "income",
+          "column": "date_received",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 36/36 non-empty)",
+          "sql_fix": "CAST(\"date_received\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "income",
+          "column": "notes",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "92% NULL values (33/36)",
+          "sql_fix": "WHERE \"notes\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        }
+      ]
+    },
+    "major": {
+      "name": "major",
+      "description": "The major table stores information about academic majors, including their distribution across colleges, to support enrollment analysis and institutional planning.",
+      "row_count": 113,
+      "columns": [
+        {
+          "name": "major_id",
+          "type": "TEXT",
+          "nullable": true,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 113,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "major_name",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 113,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "department",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 47,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "college",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "College of Agriculture and Applied Sciences",
+                "count": 36,
+                "percent": 31.858407079646017
+              },
+              {
+                "value": "College of Humanities and Social Sciences",
+                "count": 24,
+                "percent": 21.238938053097346
+              },
+              {
+                "value": "College of Education \u0026 Human Services",
+                "count": 13,
+                "percent": 11.504424778761061
+              },
+              {
+                "value": "College of Science",
+                "count": 12,
+                "percent": 10.619469026548673
+              },
+              {
+                "value": "College of Natural Resources",
+                "count": 9,
+                "percent": 7.964601769911504
+              },
+              {
+                "value": "School of Business",
+                "count": 7,
+                "percent": 6.1946902654867255
+              },
+              {
+                "value": "College of the Arts",
+                "count": 6,
+                "percent": 5.3097345132743365
+              },
+              {
+                "value": "College of Engineering",
+                "count": 6,
+                "percent": 5.3097345132743365
+              }
+            ]
+          }
+        }
+      ],
+      "indexes": [],
+      "rich_context": {
+        "college_values": {
+          "content": "College of Agriculture and Applied Sciences(31.9%), College of Humanities and Social Sciences(21.2%), College of Education \u0026 Human Services(11.5%), College of Science(10.6%), College of Natural Resources(8.0%), School of Business(6.2%), College of the Arts(5.3%), College of Engineering(5.3%)",
+          "expires_at": "2026-03-31T15:02:14+08:00"
+        }
+      }
+    },
+    "member": {
+      "name": "member",
+      "description": "The member table stores information about organization members, including their roles (primarily general members with a few executive positions) and T-shirt sizes for event or uniform purposes.",
+      "row_count": 33,
+      "columns": [
+        {
+          "name": "member_id",
+          "type": "TEXT",
+          "nullable": true,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 33,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "first_name",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 33,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "last_name",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 33,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "email",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 33,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "position",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 6,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Member",
+                "count": 26,
+                "percent": 78.78787878787878
+              },
+              {
+                "value": "Inactive",
+                "count": 3,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "Vice President",
+                "count": 1,
+                "percent": 3.0303030303030303
+              },
+              {
+                "value": "Treasurer",
+                "count": 1,
+                "percent": 3.0303030303030303
+              },
+              {
+                "value": "Secretary",
+                "count": 1,
+                "percent": 3.0303030303030303
+              },
+              {
+                "value": "President",
+                "count": 1,
+                "percent": 3.0303030303030303
+              }
+            ]
+          }
+        },
+        {
+          "name": "t_shirt_size",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 4,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Large",
+                "count": 13,
+                "percent": 39.39393939393939
+              },
+              {
+                "value": "Medium",
+                "count": 10,
+                "percent": 30.303030303030305
+              },
+              {
+                "value": "X-Large",
+                "count": 8,
+                "percent": 24.242424242424242
+              },
+              {
+                "value": "Small",
+                "count": 2,
+                "percent": 6.0606060606060606
+              }
+            ]
+          }
+        },
+        {
+          "name": "phone",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 33,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "zip",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 33,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1020,
+              "max": 98290,
+              "avg": 37892.757575757576
+            }
+          }
+        },
+        {
+          "name": "link_to_major",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 26,
+            "null_count": 1,
+            "null_percent": 3.0303030303030303,
+            "top_values": [
+              {
+                "value": "recKJHO1P6ZC5m567",
+                "count": 3,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "recxRBSgVYeSEGvyo",
+                "count": 2,
+                "percent": 6.0606060606060606
+              },
+              {
+                "value": "reclQ8BVvj2w4cQ4V",
+                "count": 2,
+                "percent": 6.0606060606060606
+              },
+              {
+                "value": "recdIBgeU38UbV2sy",
+                "count": 2,
+                "percent": 6.0606060606060606
+              },
+              {
+                "value": "recObV24Ass2ouQHK",
+                "count": 2,
+                "percent": 6.0606060606060606
+              },
+              {
+                "value": "recxK3MHQFbR9J5uO",
+                "count": 1,
+                "percent": 3.0303030303030303
+              },
+              {
+                "value": "recuN6taqCVkaZMZS",
+                "count": 1,
+                "percent": 3.0303030303030303
+              },
+              {
+                "value": "rectez0Ce1okUhv8w",
+                "count": 1,
+                "percent": 3.0303030303030303
+              },
+              {
+                "value": "rectOU2QnznthfWv7",
+                "count": 1,
+                "percent": 3.0303030303030303
+              },
+              {
+                "value": "recf3mPmWq4JXKf4L",
+                "count": 1,
+                "percent": 3.0303030303030303
+              },
+              {
+                "value": "recaJdSK83k6ekRJL",
+                "count": 1,
+                "percent": 3.0303030303030303
+              },
+              {
+                "value": "recXLfKqMqRArcKNg",
+                "count": 1,
+                "percent": 3.0303030303030303
+              },
+              {
+                "value": "recVeoVlIsO6k6iUM",
+                "count": 1,
+                "percent": 3.0303030303030303
+              },
+              {
+                "value": "recVYIFAwjT91pnv7",
+                "count": 1,
+                "percent": 3.0303030303030303
+              },
+              {
+                "value": "recVNDNQrJxsXPFXa",
+                "count": 1,
+                "percent": 3.0303030303030303
+              }
+            ]
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "zip",
+          "referenced_table": "zip_code",
+          "referenced_column": "zip_code"
+        },
+        {
+          "column_name": "link_to_major",
+          "referenced_table": "major",
+          "referenced_column": "major_id"
+        }
+      ],
+      "rich_context": {
+        "position_values": {
+          "content": "Member=26(78.8%), Inactive=3(9.1%), Vice President=1(3.0%), Treasurer=1(3.0%), Secretary=1(3.0%), President=1(3.0%)",
+          "expires_at": "2026-03-31T15:02:09+08:00"
+        },
+        "t_shirt_size_values": {
+          "content": "M=12(36.4%), L=8(24.2%), S=6(18.2%), XL=4(12.1%), XXL=3(9.1%)",
+          "expires_at": "2026-03-31T15:02:20+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "member",
+          "column": "phone",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (94% numeric, 31/33 non-empty)",
+          "sql_fix": "CAST(\"phone\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        }
+      ]
+    },
+    "zip_code": {
+      "name": "zip_code",
+      "description": "The zip_code table stores geographic and demographic information associated with U.S. ZIP codes to support location-based data analysis and address validation.",
+      "row_count": 41877,
+      "columns": [
+        {
+          "name": "zip_code",
+          "type": "INTEGER",
+          "nullable": true,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 41877,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 501,
+              "max": 99950,
+              "avg": 49615.97597726676
+            }
+          }
+        },
+        {
+          "name": "type",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Standard",
+                "count": 29973,
+                "percent": 71.57389497815029
+              },
+              {
+                "value": "PO Box",
+                "count": 9438,
+                "percent": 22.537431048069344
+              },
+              {
+                "value": "Unique",
+                "count": 2466,
+                "percent": 5.888673973780357
+              }
+            ]
+          }
+        },
+        {
+          "name": "city",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 18729,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "county",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2010,
+            "null_count": 88,
+            "null_percent": 0.21013921723141582
+          }
+        },
+        {
+          "name": "state",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 52,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "short_state",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 52,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        }
+      ],
+      "indexes": []
+    }
+  },
+  "total_tables": 0,
+  "total_rows": 0
+}

@@ -1,0 +1,38 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "player_name"
+      ],
+      [
+        "Oka Nikolov"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT t1.player_name FROM Player AS t1 INNER JOIN Player_Attributes AS t2 ON t1.player_api_id = t2.player_api_id WHERE t2.finishing = 1 ORDER BY t1.birthday ASC LIMIT 1",
+  "id": 1126,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "player_name"
+      ],
+      [
+        "Oka Nikolov"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT p.player_name\nFROM Player p\nJOIN Player_Attributes pa ON p.player_api_id = pa.player_api_id\nWHERE pa.finishing = 1\nORDER BY p.birthday ASC\nLIMIT 1;",
+  "question": "Among the players with finishing rate of 1, pick the eldest player and state the player's name.",
+  "thinking": ""
+}

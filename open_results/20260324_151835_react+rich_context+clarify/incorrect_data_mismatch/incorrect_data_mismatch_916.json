@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "nationality"
+      ],
+      [
+        "French"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT nationality FROM drivers WHERE dob IS NOT NULL ORDER BY dob ASC LIMIT 1",
+  "id": 916,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "nationality"
+      ],
+      [
+        "South African"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT nationality FROM drivers ORDER BY dob ASC LIMIT 1;",
+  "question": "Which country is the oldest driver from?",
+  "thinking": ""
+}

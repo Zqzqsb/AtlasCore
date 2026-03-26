@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "challenging",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(SUM(IIF(T1.time IS NOT NULL, 1, 0)) AS REAL) * 100 / COUNT(T1.raceId)"
+      ],
+      [
+        "29.032258064516128"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT CAST(SUM(IIF(T1.time IS NOT NULL, 1, 0)) AS REAL) * 100 / COUNT(T1.raceId) FROM results AS T1 INNER JOIN races AS T2 on T1.raceId = T2.raceId INNER JOIN drivers AS T3 on T1.driverId = T3.driverId WHERE T3.nationality = 'Japanese' AND T2.year BETWEEN 2007 AND 2009",
+  "id": 955,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(SUM(IIF(T1.time IS NOT NULL, 1, 0)) AS REAL) * 100 / COUNT(T1.raceId)"
+      ],
+      [
+        "29.032258064516128"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT CAST(SUM(IIF(T1.time IS NOT NULL, 1, 0)) AS REAL) * 100 / COUNT(T1.raceId) \nFROM results AS T1\nJOIN drivers AS T2 ON T1.driverId = T2.driverId\nJOIN races AS T3 ON T1.raceId = T3.raceId\nWHERE T2.nationality = 'Japanese' \nAND T3.year BETWEEN 2007 AND 2009;",
+  "question": "Please calculate the race completion percentage of Japanese drivers from 2007 to 2009.",
+  "thinking": ""
+}

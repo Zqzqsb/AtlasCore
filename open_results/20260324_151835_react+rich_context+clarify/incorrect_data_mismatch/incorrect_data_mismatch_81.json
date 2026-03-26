@@ -1,0 +1,46 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "School Type",
+        "School Name",
+        "Latitude"
+      ],
+      [
+        "High Schools (Public)",
+        "Leggett Valley High",
+        "44.219305"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.`School Type`, T1.`School Name`, T2.Latitude FROM frpm AS T1 INNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode ORDER BY T2.Latitude DESC LIMIT 1",
+  "id": 81,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "School Type",
+        "School Name",
+        "Latitude"
+      ],
+      [
+        "High School",
+        "Leggett Valley High",
+        "44.219305"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT EILName AS \"School Type\", School AS \"School Name\", Latitude FROM schools ORDER BY Latitude DESC LIMIT 1",
+  "question": "What is the school type of the school with the highest latitude? Indicate the name of the school as well as the latitude coordinates.",
+  "thinking": ""
+}

@@ -1,0 +1,90 @@
+{
+  "db_id": "debit_card_specializing",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "ProductID",
+        "Description"
+      ],
+      [
+        "317",
+        "Diesel"
+      ],
+      [
+        "322",
+        "Nat.Super"
+      ],
+      [
+        "336",
+        "Prev.náplne"
+      ],
+      [
+        "332",
+        "Diesel aditiv"
+      ],
+      [
+        "341",
+        "Umývanie voz"
+      ],
+      [
+        "352",
+        "Autokozmetik"
+      ],
+      [
+        "2",
+        "Nafta"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T1.ProductID, T3.Description FROM transactions_1k AS T1 INNER JOIN customers AS T2 ON T1.CustomerID = T2.CustomerID INNER JOIN products AS T3 ON T1.ProductID = T3.ProductID WHERE T2.Currency = 'EUR'",
+  "id": 1504,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "ProductID",
+        "Description"
+      ],
+      [
+        "317",
+        "Diesel"
+      ],
+      [
+        "322",
+        "Nat.Super"
+      ],
+      [
+        "336",
+        "Prev.náplne"
+      ],
+      [
+        "332",
+        "Diesel aditiv"
+      ],
+      [
+        "341",
+        "Umývanie voz"
+      ],
+      [
+        "352",
+        "Autokozmetik"
+      ],
+      [
+        "2",
+        "Nafta"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT p.ProductID, TRIM(p.Description) AS Description\nFROM transactions_1k t\nJOIN customers c ON t.CustomerID = c.CustomerID\nJOIN products p ON t.ProductID = p.ProductID\nWHERE c.Currency = 'EUR'",
+  "question": "Please list the product description of the products bought in transactions in euro.",
+  "thinking": ""
+}

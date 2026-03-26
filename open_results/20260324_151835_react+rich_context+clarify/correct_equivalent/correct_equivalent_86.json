@@ -1,0 +1,42 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "T1.`Free Meal Count (K-12)` * 100 / T1.`Enrollment (K-12)`",
+        "District Code"
+      ],
+      [
+        "70.15113350125945",
+        "64857"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.`Free Meal Count (K-12)` * 100 / T1.`Enrollment (K-12)`, T1.`District Code` FROM frpm AS T1 INNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode WHERE T2.AdmFName1 = 'Alusine'",
+  "id": 86,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Free Meal Count (K-12) * 100 / Enrollment (K-12)",
+        "District Code"
+      ],
+      [
+        "70.15113350125945",
+        "64857"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT \"Free Meal Count (K-12)\" * 100.0 / \"Enrollment (K-12)\" AS \"Free Meal Count (K-12) * 100 / Enrollment (K-12)\", \"District Code\"\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.AdmFName1 = 'Alusine' \n   OR schools.AdmFName2 = 'Alusine' \n   OR schools.AdmFName3 = 'Alusine';",
+  "question": "What is the Percent (%) Eligible Free (K-12) in the school administered by an administrator whose first name is Alusine. List the district code of the school.",
+  "thinking": ""
+}

@@ -1,0 +1,62 @@
+{
+  "db_id": "card_games",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "translation"
+      ],
+      [
+        "第９版 基本セット"
+      ],
+      [
+        "Commander (2015 Edition)"
+      ],
+      [
+        "Commander (2016 Edition)"
+      ],
+      [
+        "Commander (2017 EDITION)"
+      ],
+      [
+        "Magic: the Gathering Commander"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.translation FROM cards AS T1 INNER JOIN set_translations AS T2 ON T2.setCode = T1.setCode WHERE T1.name = 'Fellwar Stone' AND T2.language = 'Japanese' AND T2.translation IS NOT NULL",
+  "id": 501,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "translation"
+      ],
+      [
+        "第９版 基本セット"
+      ],
+      [
+        "Commander (2015 Edition)"
+      ],
+      [
+        "Commander (2016 Edition)"
+      ],
+      [
+        "Commander (2017 EDITION)"
+      ],
+      [
+        "Magic: the Gathering Commander"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT st.translation\nFROM cards c\nJOIN set_translations st ON c.setCode = st.setCode\nWHERE c.name = 'Fellwar Stone'\nAND st.language = 'Japanese'\nAND st.translation IS NOT NULL",
+  "question": "Tell the Japanese name of the set which card \"Fellwar Stone\" is in it.",
+  "thinking": ""
+}

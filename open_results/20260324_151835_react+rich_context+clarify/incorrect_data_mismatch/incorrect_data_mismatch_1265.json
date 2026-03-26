@@ -1,0 +1,38 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "moderate",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(DISTINCT T1.ID)"
+      ],
+      [
+        "1"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(DISTINCT T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.C4 \u003e 10 AND T1.Diagnosis = 'APS'",
+  "id": 1265,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(DISTINCT T1.ID)"
+      ],
+      [
+        "0"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(DISTINCT T1.ID)\nFROM Patient AS T1\nJOIN Examination AS T2 ON T1.ID = T2.ID\nJOIN Laboratory AS T3 ON T1.ID = T3.ID\nWHERE T2.Thrombosis = 1\nAND T3.C4 \u003e 10",
+  "question": "Among the patients have blood clots in veins, how many of them have a normal level of complement 4?",
+  "thinking": ""
+}

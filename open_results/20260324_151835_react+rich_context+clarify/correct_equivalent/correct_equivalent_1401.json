@@ -1,0 +1,38 @@
+{
+  "db_id": "student_club",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(SUM(CASE WHEN type = 'Community Service' THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(type)"
+      ],
+      [
+        "10"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT CAST(SUM(CASE WHEN type = 'Community Service' THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(type) FROM event WHERE SUBSTR(event_date, 1, 4) = '2019'",
+  "id": 1401,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(SUM(CASE WHEN type = 'Community Service' THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(type)"
+      ],
+      [
+        "10"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT CAST(SUM(CASE WHEN type = 'Community Service' THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(type) FROM event WHERE event_date BETWEEN '2019-01-01' AND '2019-12-31'",
+  "question": "Among all events hold by the Student_Club in 2019, find the percentage share of events related to 'Community Service'",
+  "thinking": ""
+}

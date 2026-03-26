@@ -1,0 +1,38 @@
+{
+  "db_id": "toxicology",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "ROUND(CAST(COUNT(CASE WHEN T.bond_type = '=' THEN T.bond_id ELSE NULL END) AS REAL) * 100 / COUNT(T.bond_id),5)"
+      ],
+      [
+        "3.84615"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT ROUND(CAST(COUNT(CASE WHEN T.bond_type = '=' THEN T.bond_id ELSE NULL END) AS REAL) * 100 / COUNT(T.bond_id),5) FROM bond AS T WHERE T.molecule_id = 'TR008'",
+  "id": 227,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "ROUND(CAST(COUNT(CASE WHEN T.bond_type = '=' THEN T.bond_id ELSE NULL END) AS REAL) * 100 / COUNT(T.bond_id), 5)"
+      ],
+      [
+        "3.84615"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT ROUND(CAST(COUNT(CASE WHEN T.bond_type = '=' THEN T.bond_id ELSE NULL END) AS REAL) * 100 / COUNT(T.bond_id), 5) FROM bond AS T WHERE T.molecule_id = 'TR008';",
+  "question": "What is the percentage of double bonds in the molecule TR008? Please provide your answer as a percentage with five decimal places.",
+  "thinking": ""
+}

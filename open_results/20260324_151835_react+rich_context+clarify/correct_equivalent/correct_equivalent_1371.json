@@ -1,0 +1,122 @@
+{
+  "db_id": "student_club",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "expense_id",
+        "expense_description"
+      ],
+      [
+        "rec1oMgNFt7Y0G40x",
+        "Pizza"
+      ],
+      [
+        "recHPdtBtpThSA9lq",
+        "Pizza"
+      ],
+      [
+        "recILV3eykJuWc489",
+        "Pizza"
+      ],
+      [
+        "recIudsuLiDpzK8Io",
+        "Posters"
+      ],
+      [
+        "recJnyr7Z1CjAlHgA",
+        "Posters"
+      ],
+      [
+        "recTUt9QxJ0Sp3H3m",
+        "Water, chips, cookies"
+      ],
+      [
+        "recc708ab2lufAlNR",
+        "Posters"
+      ],
+      [
+        "reccb1HM5bxQG3mLF",
+        "Water, chips, cookies"
+      ],
+      [
+        "receRmFWtS9xJdkL2",
+        "Pizza"
+      ],
+      [
+        "recoMvesC2XeccvpV",
+        "Water, Cookies"
+      ],
+      [
+        "recpalswlVDIbuLLu",
+        "Water, cookies, chips"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.expense_id, T2.expense_description FROM member AS T1 INNER JOIN expense AS T2 ON T1.member_id = T2.link_to_member WHERE T1.position = 'Vice President'",
+  "id": 1371,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "expense_id",
+        "expense_description"
+      ],
+      [
+        "rec1oMgNFt7Y0G40x",
+        "Pizza"
+      ],
+      [
+        "recHPdtBtpThSA9lq",
+        "Pizza"
+      ],
+      [
+        "recILV3eykJuWc489",
+        "Pizza"
+      ],
+      [
+        "recIudsuLiDpzK8Io",
+        "Posters"
+      ],
+      [
+        "recJnyr7Z1CjAlHgA",
+        "Posters"
+      ],
+      [
+        "recTUt9QxJ0Sp3H3m",
+        "Water, chips, cookies"
+      ],
+      [
+        "recc708ab2lufAlNR",
+        "Posters"
+      ],
+      [
+        "reccb1HM5bxQG3mLF",
+        "Water, chips, cookies"
+      ],
+      [
+        "receRmFWtS9xJdkL2",
+        "Pizza"
+      ],
+      [
+        "recoMvesC2XeccvpV",
+        "Water, Cookies"
+      ],
+      [
+        "recpalswlVDIbuLLu",
+        "Water, cookies, chips"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT e.expense_id, e.expense_description\nFROM expense e\nJOIN member m ON e.link_to_member = m.member_id\nWHERE m.position = 'Vice President'",
+  "question": "List all the expenses incurred by the vice president.",
+  "thinking": ""
+}

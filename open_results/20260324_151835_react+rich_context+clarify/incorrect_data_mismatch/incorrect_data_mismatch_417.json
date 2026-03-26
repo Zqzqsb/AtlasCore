@@ -1,0 +1,38 @@
+{
+  "db_id": "card_games",
+  "difficulty": "challenging",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(SUM(CASE WHEN T2.language = 'French' THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(T1.id)"
+      ],
+      [
+        "12.975290140452374"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT CAST(SUM(CASE WHEN T2.language = 'French' THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(T1.id) FROM cards AS T1 INNER JOIN foreign_data AS T2 ON T1.uuid = T2.uuid WHERE T1.power IS NULL OR T1.power = '*'",
+  "id": 417,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(SUM(CASE WHEN T2.language = 'French' THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(T1.id)"
+      ],
+      [
+        "11.58288545450303"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT CAST(SUM(CASE WHEN T2.language = 'French' THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(T1.id) \nFROM cards T1 \nLEFT JOIN foreign_data T2 ON T1.uuid = T2.uuid \nWHERE T1.power IS NULL OR T1.power = '*'",
+  "question": "What percentage of cards without power are in French?",
+  "thinking": ""
+}

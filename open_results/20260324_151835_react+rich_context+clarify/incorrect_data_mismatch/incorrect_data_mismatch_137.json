@@ -1,0 +1,38 @@
+{
+  "db_id": "financial",
+  "difficulty": "moderate",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.account_id)"
+      ],
+      [
+        "65"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T1.account_id) FROM account AS T1 INNER JOIN loan AS T2 ON T1.account_id = T2.account_id WHERE T2.date BETWEEN '1995-01-01' AND '1997-12-31' AND T1.frequency = 'POPLATEK MESICNE' AND T2.amount \u003e= 250000",
+  "id": 137,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.account_id)"
+      ],
+      [
+        "3"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(T1.account_id) FROM loan AS T1 INNER JOIN account AS T2 ON T1.account_id = T2.account_id WHERE T1.date BETWEEN '1995-01-01' AND '1997-12-31' AND T1.amount \u003e= 250000 AND T2.frequency = 'POPLATEK MESICNE' AND T1.status = 'A'",
+  "question": "Between 1/1/1995 and 12/31/1997, how many loans in the amount of at least 250,000 per account that chose monthly statement issuance were approved?",
+  "thinking": ""
+}

@@ -1,0 +1,141 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "challenging",
+  "error_reason": "row count mismatch: gold=20, pred=1",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "forename",
+        "surname",
+        "driverId"
+      ],
+      [
+        "Nico",
+        "Hülkenberg",
+        "807"
+      ],
+      [
+        "Daniel",
+        "Ricciardo",
+        "817"
+      ],
+      [
+        "Adrian",
+        "Sutil",
+        "16"
+      ],
+      [
+        "Kevin",
+        "Magnussen",
+        "825"
+      ],
+      [
+        "Nico",
+        "Rosberg",
+        "3"
+      ],
+      [
+        "Jules",
+        "Bianchi",
+        "824"
+      ],
+      [
+        "Jean-Éric",
+        "Vergne",
+        "818"
+      ],
+      [
+        "Esteban",
+        "Gutiérrez",
+        "821"
+      ],
+      [
+        "Lewis",
+        "Hamilton",
+        "1"
+      ],
+      [
+        "Romain",
+        "Grosjean",
+        "154"
+      ],
+      [
+        "Pastor",
+        "Maldonado",
+        "813"
+      ],
+      [
+        "Jenson",
+        "Button",
+        "18"
+      ],
+      [
+        "Sergio",
+        "Pérez",
+        "815"
+      ],
+      [
+        "Daniil",
+        "Kvyat",
+        "826"
+      ],
+      [
+        "Kamui",
+        "Kobayashi",
+        "155"
+      ],
+      [
+        "Valtteri",
+        "Bottas",
+        "822"
+      ],
+      [
+        "Fernando",
+        "Alonso",
+        "4"
+      ],
+      [
+        "Marcus",
+        "Ericsson",
+        "828"
+      ],
+      [
+        "Sebastian",
+        "Vettel",
+        "20"
+      ],
+      [
+        "Max",
+        "Chilton",
+        "820"
+      ]
+    ]
+  },
+  "gt_sql": "WITH lap_times_in_seconds AS (SELECT driverId, (CASE WHEN SUBSTR(time, 1, INSTR(time, ':') - 1) \u003c\u003e '' THEN CAST(SUBSTR(time, 1, INSTR(time, ':') - 1) AS REAL) * 60 ELSE 0 END + CASE WHEN SUBSTR(time, INSTR(time, ':') + 1, INSTR(time, '.') - INSTR(time, ':') - 1) \u003c\u003e '' THEN CAST(SUBSTR(time, INSTR(time, ':') + 1, INSTR(time, '.') - INSTR(time, ':') - 1) AS REAL) ELSE 0 END + CASE WHEN SUBSTR(time, INSTR(time, '.') + 1) \u003c\u003e '' THEN CAST(SUBSTR(time, INSTR(time, '.') + 1) AS REAL) / 1000 ELSE 0 END) AS time_in_seconds FROM lapTimes) SELECT T2.forename, T2.surname, T1.driverId FROM (SELECT driverId, MIN(time_in_seconds) AS min_time_in_seconds FROM lap_times_in_seconds GROUP BY driverId) AS T1 INNER JOIN drivers AS T2 ON T1.driverId = T2.driverId ORDER BY T1.min_time_in_seconds ASC LIMIT 20",
+  "id": 1012,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "forename",
+        "surname",
+        "driverId"
+      ],
+      [
+        "Lewis",
+        "Hamilton",
+        "1"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT d.forename, d.surname, d.driverId\nFROM lapTimes lt\nJOIN drivers d ON lt.driverId = d.driverId\nORDER BY lt.milliseconds ASC\nLIMIT 1;",
+  "question": "Which top 20 driver created the shortest lap time ever record in a Formula_1 race? Please give them full names.",
+  "thinking": ""
+}

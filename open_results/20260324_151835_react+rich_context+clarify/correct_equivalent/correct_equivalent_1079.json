@@ -1,0 +1,38 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "player_name"
+      ],
+      [
+        "Aaron Lennon"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT player_name FROM Player WHERE player_name IN ('Aaron Lennon', 'Abdelaziz Barrada') ORDER BY birthday ASC LIMIT 1",
+  "id": 1079,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "player_name"
+      ],
+      [
+        "Aaron Lennon"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT player_name\nFROM Player\nWHERE player_name IN ('Aaron Lennon', 'Abdelaziz Barrada')\nORDER BY CAST(birthday AS INTEGER) ASC\nLIMIT 1;",
+  "question": "Which player is older, Aaron Lennon or Abdelaziz Barrada?",
+  "thinking": ""
+}

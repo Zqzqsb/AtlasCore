@@ -1,0 +1,71 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "moderate",
+  "error_reason": "row count mismatch: gold=10, pred=3",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "driverId"
+      ],
+      [
+        "4"
+      ],
+      [
+        "37"
+      ],
+      [
+        "4"
+      ],
+      [
+        "37"
+      ],
+      [
+        "4"
+      ],
+      [
+        "4"
+      ],
+      [
+        "4"
+      ],
+      [
+        "4"
+      ],
+      [
+        "4"
+      ],
+      [
+        "37"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.driverId FROM pitStops AS T1 INNER JOIN drivers AS T2 on T1.driverId = T2.driverId WHERE T2.nationality = 'Spanish' AND STRFTIME('%Y', T2.dob) \u003c '1982' ORDER BY T1.time DESC LIMIT 10",
+  "id": 974,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "driverId"
+      ],
+      [
+        "37"
+      ],
+      [
+        "4"
+      ],
+      [
+        "48"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT d.driverId\nFROM drivers d\nJOIN lapTimes lt ON d.driverId = lt.driverId\nWHERE d.nationality = 'Spanish' \n  AND strftime('%Y', d.dob) \u003c '1982'\nGROUP BY d.driverId\nORDER BY MAX(CAST(lt.time AS INTEGER)) DESC\nLIMIT 10",
+  "question": "List out top 10 Spanish drivers who were born before 1982 and have the latest lap time.",
+  "thinking": ""
+}

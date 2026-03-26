@@ -1,0 +1,38 @@
+{
+  "db_id": "financial",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T2.client_id)"
+      ],
+      [
+        "8"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T2.client_id) FROM district AS T1 INNER JOIN client AS T2 ON T1.district_id = T2.district_id WHERE T2.gender = 'F' AND STRFTIME('%Y', T2.birth_date) \u003c '1950' AND T1.A2 = 'Sokolov'",
+  "id": 101,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.client_id)"
+      ],
+      [
+        "8"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(T1.client_id) \nFROM client AS T1\nJOIN district AS T2 ON T1.district_id = T2.district_id\nWHERE T1.gender = 'F' \nAND STRFTIME('%Y', T1.birth_date) \u003c '1950'\nAND T2.A2 = 'Sokolov'",
+  "question": "Among the account opened, how many female customers who were born before 1950 and stayed in Sokolov?",
+  "thinking": ""
+}

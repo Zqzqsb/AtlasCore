@@ -1,0 +1,30 @@
+{
+  "ambiguous_count": 0,
+  "correct_count": 207,
+  "correct_rate": 76.33637548891787,
+  "equivalent_count": 964,
+  "error_count": 363,
+  "error_counts": [
+    {
+      "Reason": "",
+      "Count": 190,
+      "Type": "row_count_error"
+    },
+    {
+      "Reason": "",
+      "Count": 168,
+      "Type": "data_mismatch"
+    }
+  ],
+  "error_statistics": {
+    "condition_error_count": 0,
+    "data_error_count": 168,
+    "join_error_count": 0,
+    "order_error_count": 0,
+    "other_error_count": 0,
+    "projection_error_count": 0,
+    "syntax_error_count": 2,
+    "timeout_count": 2
+  },
+  "total_files": 1534
+}

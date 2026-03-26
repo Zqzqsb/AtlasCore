@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "duration"
+      ],
+      [
+        "59.555"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT duration FROM pitStops ORDER BY duration DESC LIMIT 1",
+  "id": 1006,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "duration"
+      ],
+      [
+        "59.555"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT MAX(CAST(\"duration\" AS REAL)) AS duration FROM \"pitStops\";",
+  "question": "What was the longest time a driver had ever spent at a pit stop?",
+  "thinking": ""
+}

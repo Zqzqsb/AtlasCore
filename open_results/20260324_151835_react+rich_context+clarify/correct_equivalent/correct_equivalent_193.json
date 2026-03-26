@@ -1,0 +1,38 @@
+{
+  "db_id": "financial",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AVG(T2.amount)"
+      ],
+      [
+        "192836.57142857142"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT AVG(T2.amount) FROM account AS T1 INNER JOIN loan AS T2 ON T1.account_id = T2.account_id WHERE T2.status IN ('C', 'D') AND T1.frequency = 'POPLATEK PO OBRATU'",
+  "id": 193,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AVG(T1.amount)"
+      ],
+      [
+        "192836.57142857142"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT AVG(T1.amount) \nFROM loan AS T1\nJOIN account AS T2 ON T1.account_id = T2.account_id\nWHERE T1.status IN ('C', 'D')\nAND T2.frequency = 'POPLATEK PO OBRATU'",
+  "question": "What is the average amount of loan which are still on running contract with statement issuance after each transaction?",
+  "thinking": ""
+}

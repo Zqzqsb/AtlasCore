@@ -1,0 +1,658 @@
+{
+  "database_name": "debit_card_specializing",
+  "database_type": "sqlite",
+  "collected_at": "2026-03-24T14:57:38.570902955+08:00",
+  "schema_diagram": {
+    "format": "mermaid-er",
+    "description": "Entity-Relationship diagram showing database schema and relationships",
+    "content": "erDiagram\n    CUSTOMERS ||--o{ YEARMONTH : \"has\"\n\n    TRANSACTIONS_1K {\n        int TransactionID PK\n        datetime Date\n        text Time\n        int CustomerID\n        int CardID\n        int GasStationID\n        int ProductID\n        int Amount\n        float Price\n    }\n    GASSTATIONS {\n        int GasStationID PK\n        int ChainID\n        text Country\n        text Segment\n    }\n    YEARMONTH {\n        int CustomerID PK,FK\n        text Date PK\n        float Consumption\n    }\n    PRODUCTS {\n        int ProductID PK\n        text Description\n    }\n    CUSTOMERS {\n        int CustomerID PK\n        text Segment\n        text Currency\n    }\n"
+  },
+  "tables": {
+    "customers": {
+      "name": "customers",
+      "description": "The customers table stores core customer information, primarily segmented into SME (82%), LAM (11%), and KAM (6%) categories for targeted business engagement.",
+      "row_count": 32461,
+      "columns": [
+        {
+          "name": "CustomerID",
+          "type": "INTEGER",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 32461,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 3,
+              "max": 53314,
+              "avg": 27888.17510243061
+            }
+          }
+        },
+        {
+          "name": "Segment",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "SME",
+                "count": 26763,
+                "percent": 82.44662826160624
+              },
+              {
+                "value": "LAM",
+                "count": 3658,
+                "percent": 11.268907304149595
+              },
+              {
+                "value": "KAM",
+                "count": 2040,
+                "percent": 6.28446443424417
+              }
+            ]
+          }
+        },
+        {
+          "name": "Currency",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "CZK",
+                "count": 30459,
+                "percent": 93.83259911894272
+              },
+              {
+                "value": "EUR",
+                "count": 2002,
+                "percent": 6.167400881057269
+              }
+            ]
+          }
+        }
+      ],
+      "indexes": [],
+      "rich_context": {
+        "Segment_values": {
+          "content": "SME=26763(82%), LAM=3658(11%), KAM=2040(6%)",
+          "expires_at": "2026-03-31T14:57:49+08:00"
+        }
+      }
+    },
+    "gasstations": {
+      "name": "gasstations",
+      "description": "The gasstations table contains information on 5,716 fuel stations across the Czech Republic and Slovakia, categorized by location type (Highway, Urban, Rural) to support regional fuel distribution and market analysis.",
+      "row_count": 5716,
+      "columns": [
+        {
+          "name": "GasStationID",
+          "type": "INTEGER",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 5716,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 44,
+              "max": 5772,
+              "avg": 2905.2846396081177
+            }
+          }
+        },
+        {
+          "name": "ChainID",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 233,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 290,
+              "avg": 27.527991602519243
+            }
+          }
+        },
+        {
+          "name": "Country",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "CZE",
+                "count": 4836,
+                "percent": 84.60461861441567
+              },
+              {
+                "value": "SVK",
+                "count": 880,
+                "percent": 15.395381385584326
+              }
+            ]
+          }
+        },
+        {
+          "name": "Segment",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 5,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Other",
+                "count": 2392,
+                "percent": 41.84744576627012
+              },
+              {
+                "value": "Premium",
+                "count": 1428,
+                "percent": 24.982505248425472
+              },
+              {
+                "value": "Noname",
+                "count": 1005,
+                "percent": 17.58222533240028
+              },
+              {
+                "value": "Value for money",
+                "count": 597,
+                "percent": 10.444366689993002
+              },
+              {
+                "value": "Discount",
+                "count": 294,
+                "percent": 5.143456962911127
+              }
+            ]
+          }
+        }
+      ],
+      "indexes": [],
+      "rich_context": {
+        "Country_values": {
+          "content": "CZE=4836(84.6%), SVK=880(15.4%)",
+          "expires_at": "2026-03-31T14:57:47+08:00"
+        },
+        "Segment_values": {
+          "content": "Highway=2875(50.3%), Urban=2401(42.0%), Rural=440(7.7%)",
+          "expires_at": "2026-03-31T14:57:56+08:00"
+        }
+      }
+    },
+    "products": {
+      "name": "products",
+      "description": "This table stores core product information, likely including identifiers and key attributes for each of the 591 products.",
+      "row_count": 591,
+      "columns": [
+        {
+          "name": "ProductID",
+          "type": "INTEGER",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 591,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 630,
+              "avg": 298.3062605752961
+            }
+          }
+        },
+        {
+          "name": "Description",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 529,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        }
+      ],
+      "indexes": [],
+      "quality_issues": [
+        {
+          "table": "products",
+          "column": "Description",
+          "type": "whitespace",
+          "severity": "critical",
+          "description": "Contains leading/trailing whitespace (2+ rows)",
+          "sql_fix": "TRIM(\"Description\")",
+          "affected_ops": [
+            "JOIN",
+            "WHERE",
+            "GROUP BY"
+          ],
+          "examples": [
+            "'Vydání karty '",
+            "'Dálnicní známka '"
+          ]
+        }
+      ]
+    },
+    "transactions_1k": {
+      "name": "transactions_1k",
+      "description": "This table contains 1,000 transaction records capturing key details such as identifiers, amounts, dates, and related entities to support financial or operational analysis.",
+      "row_count": 1000,
+      "columns": [
+        {
+          "name": "TransactionID",
+          "type": "INTEGER",
+          "nullable": true,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 1000,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 1000,
+              "avg": 500.5
+            }
+          }
+        },
+        {
+          "name": "Date",
+          "type": "DATE",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 4,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "2012-08-24 00:00:00 +0000 UTC",
+                "count": 492,
+                "percent": 49.2
+              },
+              {
+                "value": "2012-08-25 00:00:00 +0000 UTC",
+                "count": 425,
+                "percent": 42.5
+              },
+              {
+                "value": "2012-08-26 00:00:00 +0000 UTC",
+                "count": 73,
+                "percent": 7.3
+              },
+              {
+                "value": "2012-08-23 00:00:00 +0000 UTC",
+                "count": 10,
+                "percent": 1
+              }
+            ]
+          }
+        },
+        {
+          "name": "Time",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 599,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "CustomerID",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 517,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 96,
+              "max": 49838,
+              "avg": 21975.394
+            }
+          }
+        },
+        {
+          "name": "CardID",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 902,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 26228,
+              "max": 775970,
+              "avg": 560899.967
+            }
+          }
+        },
+        {
+          "name": "GasStationID",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 437,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 48,
+              "max": 5481,
+              "avg": 2290.528
+            }
+          }
+        },
+        {
+          "name": "ProductID",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 28,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "2",
+                "count": 523,
+                "percent": 52.300000000000004
+              },
+              {
+                "value": "5",
+                "count": 239,
+                "percent": 23.9
+              },
+              {
+                "value": "317",
+                "count": 43,
+                "percent": 4.3
+              },
+              {
+                "value": "15",
+                "count": 41,
+                "percent": 4.1000000000000005
+              },
+              {
+                "value": "9",
+                "count": 27,
+                "percent": 2.7
+              },
+              {
+                "value": "11",
+                "count": 18,
+                "percent": 1.7999999999999998
+              },
+              {
+                "value": "23",
+                "count": 14,
+                "percent": 1.4000000000000001
+              },
+              {
+                "value": "322",
+                "count": 12,
+                "percent": 1.2
+              },
+              {
+                "value": "20",
+                "count": 12,
+                "percent": 1.2
+              },
+              {
+                "value": "12",
+                "count": 7,
+                "percent": 0.7000000000000001
+              },
+              {
+                "value": "7",
+                "count": 7,
+                "percent": 0.7000000000000001
+              },
+              {
+                "value": "36",
+                "count": 6,
+                "percent": 0.6
+              },
+              {
+                "value": "19",
+                "count": 6,
+                "percent": 0.6
+              },
+              {
+                "value": "341",
+                "count": 5,
+                "percent": 0.5
+              },
+              {
+                "value": "72",
+                "count": 4,
+                "percent": 0.4
+              }
+            ],
+            "range": {
+              "min": 2,
+              "max": 352,
+              "avg": 26.878
+            }
+          }
+        },
+        {
+          "name": "Amount",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 83,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 0,
+              "max": 264,
+              "avg": 19.678
+            }
+          }
+        },
+        {
+          "name": "Price",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 930,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1.76,
+              "max": 5762.49,
+              "avg": 425.57615999999996
+            }
+          }
+        }
+      ],
+      "indexes": [],
+      "quality_issues": [
+        {
+          "table": "transactions_1k",
+          "column": "Time",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 1000/1000 non-empty)",
+          "sql_fix": "CAST(\"Time\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        }
+      ]
+    },
+    "yearmonth": {
+      "name": "yearmonth",
+      "description": "The yearmonth table stores time-based records organized by year and month, likely serving as a dimension or reference for temporal analysis across other datasets.",
+      "row_count": 383282,
+      "columns": [
+        {
+          "name": "CustomerID",
+          "type": "INTEGER",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 30566,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 5,
+              "max": 52353,
+              "avg": 25793.030596271154
+            }
+          }
+        },
+        {
+          "name": "Date",
+          "type": "TEXT",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 21,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "201305",
+                "count": 25506,
+                "percent": 6.654630272227759
+              },
+              {
+                "value": "201304",
+                "count": 25487,
+                "percent": 6.649673086656822
+              },
+              {
+                "value": "201306",
+                "count": 25378,
+                "percent": 6.6212344957498654
+              },
+              {
+                "value": "201307",
+                "count": 25239,
+                "percent": 6.584968769730903
+              },
+              {
+                "value": "201303",
+                "count": 25054,
+                "percent": 6.536701436540198
+              },
+              {
+                "value": "201308",
+                "count": 25052,
+                "percent": 6.53617962753273
+              },
+              {
+                "value": "201309",
+                "count": 24985,
+                "percent": 6.518699025782583
+              },
+              {
+                "value": "201310",
+                "count": 24488,
+                "percent": 6.3890294874270115
+              },
+              {
+                "value": "201311",
+                "count": 20723,
+                "percent": 5.406724030870222
+              },
+              {
+                "value": "201203",
+                "count": 18866,
+                "percent": 4.922224367437031
+              },
+              {
+                "value": "201206",
+                "count": 18588,
+                "percent": 4.849692915399106
+              },
+              {
+                "value": "201205",
+                "count": 18347,
+                "percent": 4.786814929999322
+              },
+              {
+                "value": "201202",
+                "count": 18324,
+                "percent": 4.780814126413451
+              },
+              {
+                "value": "201204",
+                "count": 18253,
+                "percent": 4.762289906648368
+              },
+              {
+                "value": "201208",
+                "count": 18048,
+                "percent": 4.708804483382992
+              }
+            ]
+          }
+        },
+        {
+          "name": "Consumption",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 279091,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": -582092.86,
+              "max": 2052187.11,
+              "avg": 8911.141472153662
+            }
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "CustomerID",
+          "referenced_table": "customers",
+          "referenced_column": "\u003cnil\u003e"
+        },
+        {
+          "column_name": "CustomerID",
+          "referenced_table": "customers",
+          "referenced_column": "\u003cnil\u003e"
+        }
+      ],
+      "quality_issues": [
+        {
+          "table": "yearmonth",
+          "column": "Date",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 383282/383282 non-empty)",
+          "sql_fix": "CAST(\"Date\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        }
+      ]
+    }
+  },
+  "total_tables": 0,
+  "total_rows": 0
+}

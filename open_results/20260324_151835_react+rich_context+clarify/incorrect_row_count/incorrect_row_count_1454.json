@@ -1,0 +1,37 @@
+{
+  "db_id": "student_club",
+  "difficulty": "moderate",
+  "error_reason": "row count mismatch: gold=3, pred=-1",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "event_name"
+      ],
+      [
+        "November Speaker"
+      ],
+      [
+        "October Speaker"
+      ],
+      [
+        "September Speaker"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.event_name FROM event AS T1 INNER JOIN budget AS T2 ON T1.event_id = T2.link_to_event INNER JOIN expense AS T3 ON T2.budget_id = T3.link_to_budget WHERE T2.category = 'Parking' AND T3.cost \u003c (SELECT AVG(cost) FROM expense)",
+  "id": 1454,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": []
+  },
+  "pred_sql": "SELECT e.event_name\nFROM expense ex\nJOIN budget b ON ex.link_to_budget = b.budget_id\nJOIN event e ON b.link_to_event = e.event_id\nWHERE b.category = 'Parking'\n  AND ex.cost \u003c (\n    SELECT AVG(ex2.cost)\n    FROM expense ex2\n    JOIN budget b2 ON ex2.link_to_budget = b2.budget_id\n    WHERE b2.category = 'Parking'\n  );",
+  "question": "List the name of events with less than average parking cost.",
+  "thinking": ""
+}

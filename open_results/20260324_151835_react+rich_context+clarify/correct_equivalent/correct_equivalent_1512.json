@@ -1,0 +1,38 @@
+{
+  "db_id": "debit_card_specializing",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AVG(T1.Price)"
+      ],
+      [
+        "23.189848484848483"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT AVG(T1.Price) FROM transactions_1k AS T1 INNER JOIN gasstations AS T2 ON T1.GasStationID = T2.GasStationID INNER JOIN customers AS T3 ON T1.CustomerID = T3.CustomerID WHERE T3.Currency = 'EUR'",
+  "id": 1512,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AVG(T1.Price)"
+      ],
+      [
+        "23.189848484848483"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT AVG(T1.Price) FROM transactions_1k AS T1 JOIN customers AS C ON T1.CustomerID = C.CustomerID WHERE C.Currency = 'EUR';",
+  "question": "For the customers who paid in the euro, what is their average total price of the transactions?",
+  "thinking": ""
+}

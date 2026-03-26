@@ -1,0 +1,38 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "First Date"
+      ],
+      [
+        "1998-07-01 00:00:00 +0000 UTC"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.`First Date` FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.LDH \u003e= 500 ORDER BY T1.`First Date` DESC LIMIT 1",
+  "id": 1286,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "First Date"
+      ],
+      [
+        "1998-07-01 00:00:00 +0000 UTC"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT p.\"First Date\"\nFROM Patient p\nJOIN Laboratory l ON p.ID = l.ID\nWHERE l.LDH \u003e= 500\nORDER BY p.\"First Date\" DESC\nLIMIT 1;",
+  "question": "When is the latest patient's medical data recorded? This patient should have an abnormal level of lactate dehydrogenase.",
+  "thinking": ""
+}

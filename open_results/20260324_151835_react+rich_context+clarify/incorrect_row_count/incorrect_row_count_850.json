@@ -1,0 +1,116 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=1, pred=27",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "url"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/Circuit_de_Barcelona-Catalunya"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T1.url FROM circuits AS T1 INNER JOIN races AS T2 ON T2.circuitID = T1.circuitId WHERE T1.name = 'Circuit de Barcelona-Catalunya'",
+  "id": 850,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "url"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/2009_Spanish_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/2008_Spanish_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/2007_Spanish_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/2006_Spanish_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/2005_Spanish_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/2004_Spanish_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/2003_Spanish_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/2002_Spanish_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/2001_Spanish_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/2000_Spanish_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/1999_Spanish_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/1998_Spanish_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/1997_Spanish_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/1996_Spanish_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/1995_Spanish_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/1994_Spanish_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/1993_Spanish_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/1992_Spanish_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/1991_Spanish_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/2010_Spanish_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/2011_Spanish_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/2012_Spanish_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/2013_Spanish_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/2014_Spanish_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/2015_Spanish_Grand_Prix"
+      ],
+      [
+        "https://en.wikipedia.org/wiki/2016_Spanish_Grand_Prix"
+      ],
+      [
+        "https://en.wikipedia.org/wiki/2017_Spanish_Grand_Prix"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT r.url\nFROM races r\nJOIN circuits c ON r.circuitId = c.circuitId\nWHERE c.name = 'Circuit de Barcelona-Catalunya';",
+  "question": "Where can the introduction of the races held on Circuit de Barcelona-Catalunya be found?",
+  "thinking": ""
+}

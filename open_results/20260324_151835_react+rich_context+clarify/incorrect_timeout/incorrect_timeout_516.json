@@ -1,0 +1,16 @@
+{
+  "db_id": "card_games",
+  "difficulty": "moderate",
+  "error_reason": "SQL execution timed out after 2m0s",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT T1.originalReleaseDate, T2.format FROM cards AS T1 INNER JOIN legalities AS T2 ON T1.uuid = T2.uuid WHERE T1.rarity = 'mythic' AND T1.originalReleaseDate IS NOT NULL AND T2.status = 'Legal' ORDER BY T1.originalReleaseDate LIMIT 1",
+  "id": 516,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "WITH oldest_mythic AS (SELECT MIN(originalReleaseDate) as min_date FROM cards WHERE rarity = 'mythic') SELECT c.originalReleaseDate, l.format FROM cards c JOIN legalities l ON c.uuid = l.uuid JOIN oldest_mythic om ON c.originalReleaseDate = om.min_date WHERE c.rarity = 'mythic' AND l.status = 'Legal'",
+  "question": "When was the oldest mythic card released and what are its legal play formats?",
+  "thinking": ""
+}

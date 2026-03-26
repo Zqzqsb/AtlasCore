@@ -1,0 +1,92 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=1, pred=19",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "url"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/Sepang_International_Circuit"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T1.url FROM circuits AS T1 INNER JOIN races AS T2 ON T2.circuitID = T1.circuitId WHERE T1.name = 'Sepang International Circuit'",
+  "id": 856,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "url"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/2009_Malaysian_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/2008_Malaysian_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/2007_Malaysian_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/2006_Malaysian_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/2005_Malaysian_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/2004_Malaysian_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/2003_Malaysian_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/2002_Malaysian_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/2001_Malaysian_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/2000_Malaysian_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/1999_Malaysian_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/2010_Malaysian_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/2011_Malaysian_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/2012_Malaysian_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/2013_Malaysian_Grand_Prix"
+      ],
+      [
+        "https://en.wikipedia.org/wiki/2014_Malaysian_Grand_Prix"
+      ],
+      [
+        "http://en.wikipedia.org/wiki/2015_Malaysian_Grand_Prix"
+      ],
+      [
+        "https://en.wikipedia.org/wiki/2016_Malaysian_Grand_Prix"
+      ],
+      [
+        "https://en.wikipedia.org/wiki/2017_Malaysian_Grand_Prix"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT url FROM races WHERE circuitId = 2;",
+  "question": "Where can I find the information about the races held on Sepang International Circuit?",
+  "thinking": ""
+}

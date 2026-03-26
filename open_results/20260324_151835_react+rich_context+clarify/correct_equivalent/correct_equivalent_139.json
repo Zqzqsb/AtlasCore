@@ -1,0 +1,38 @@
+{
+  "db_id": "financial",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.client_id)"
+      ],
+      [
+        "96"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T1.client_id) FROM client AS T1 INNER JOIN district AS T2 ON T1.district_id = T2.district_id WHERE T1.gender = 'M' AND T2.A15 = (SELECT T3.A15 FROM district AS T3 ORDER BY T3.A15 DESC LIMIT 1, 1)",
+  "id": 139,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.client_id)"
+      ],
+      [
+        "96"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(T1.client_id)\nFROM client AS T1\nJOIN district AS T2 ON T1.district_id = T2.district_id\nWHERE T1.gender = 'M'\n  AND T2.district_id = (\n    SELECT district_id\n    FROM district\n    ORDER BY CAST(A15 AS INTEGER) DESC\n    LIMIT 1 OFFSET 1\n  );",
+  "question": "In the branch where the second-highest number of crimes were committed in 1995 occurred, how many male clients are there?",
+  "thinking": ""
+}

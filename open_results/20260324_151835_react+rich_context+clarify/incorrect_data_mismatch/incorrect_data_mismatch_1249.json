@@ -1,0 +1,38 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "moderate",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(DISTINCT T1.ID)"
+      ],
+      [
+        "75"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(DISTINCT T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.FG \u003c= 150 OR T2.FG \u003e= 450 AND T1.Birthday \u003e '1980-01-01'",
+  "id": 1249,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(DISTINCT T1.ID)"
+      ],
+      [
+        "3"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(DISTINCT T1.ID) \nFROM Patient AS T1\nJOIN Laboratory AS T2 ON T1.ID = T2.ID\nWHERE T1.Birthday \u003e '1980-01-01'\nAND (T2.FG \u003c 150 OR T2.FG \u003e 450)",
+  "question": "How many patients born after 1980/1/1 have an abnormal fibrinogen level?",
+  "thinking": ""
+}

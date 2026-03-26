@@ -1,0 +1,38 @@
+{
+  "db_id": "debit_card_specializing",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CustomerID"
+      ],
+      [
+        "19182"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT CustomerID FROM transactions_1k WHERE Date = '2012-08-25' GROUP BY CustomerID ORDER BY SUM(Price) DESC LIMIT 1",
+  "id": 1513,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CustomerID"
+      ],
+      [
+        "7938"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT CustomerID FROM transactions_1k WHERE Date = '2012-08-25' ORDER BY Price DESC LIMIT 1",
+  "question": "Which customer paid the most in 2012/8/25?",
+  "thinking": ""
+}

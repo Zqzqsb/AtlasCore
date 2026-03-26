@@ -1,0 +1,44 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Enrollment (Ages 5-17)"
+      ],
+      [
+        "40"
+      ],
+      [
+        "335"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.`Enrollment (Ages 5-17)` FROM frpm AS T1 INNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode WHERE T2.EdOpsCode = 'SSS' AND T2.City = 'Fremont' AND T1.`Academic Year` BETWEEN 2014 AND 2015",
+  "id": 73,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Enrollment (Ages 5-17)"
+      ],
+      [
+        "40"
+      ],
+      [
+        "335"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT frpm.\"Enrollment (Ages 5-17)\"\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Fremont'\n  AND schools.EdOpsCode = 'SSS'\n  AND frpm.\"Academic Year\" = '2014-2015';",
+  "question": "How many students from the ages of 5 to 17 are enrolled at the State Special School school in Fremont for the 2014-2015 academic year?",
+  "thinking": ""
+}

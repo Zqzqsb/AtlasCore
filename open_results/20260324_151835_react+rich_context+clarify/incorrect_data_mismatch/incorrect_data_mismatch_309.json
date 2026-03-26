@@ -1,0 +1,38 @@
+{
+  "db_id": "toxicology",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.bond_id)"
+      ],
+      [
+        "314"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T1.bond_id) FROM connected AS T1 INNER JOIN atom AS T2 ON T1.atom_id = T2.atom_id WHERE T2.element = 'cl'",
+  "id": 309,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.bond_id)"
+      ],
+      [
+        "628"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(T1.bond_id) FROM connected AS T1 JOIN atom AS T2 ON T1.atom_id = T2.atom_id JOIN atom AS T3 ON T1.atom_id2 = T3.atom_id WHERE T2.element = 'cl' OR T3.element = 'cl';",
+  "question": "How many bonds are created by bonding atoms with chlorine element?",
+  "thinking": ""
+}

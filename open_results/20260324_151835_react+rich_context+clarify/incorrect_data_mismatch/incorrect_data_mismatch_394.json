@@ -1,0 +1,38 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(id)"
+      ],
+      [
+        "739"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(id) FROM cards WHERE (cardKingdomId IS NULL OR cardKingdomFoilId IS NULL) AND artist = 'John Avon'",
+  "id": 394,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(id)"
+      ],
+      [
+        "702"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(id) FROM cards WHERE artist = 'John Avon' AND cardKingdomFoilId IS NULL;",
+  "question": "On how many cards designed by John Avon is its foil non-powerful?",
+  "thinking": ""
+}

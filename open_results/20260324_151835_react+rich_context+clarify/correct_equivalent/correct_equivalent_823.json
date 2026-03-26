@@ -1,0 +1,38 @@
+{
+  "db_id": "superhero",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.id)"
+      ],
+      [
+        "6"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T1.id) FROM superhero AS T1 INNER JOIN alignment AS T2 ON T1.alignment_id = T2.id INNER JOIN colour AS T3 ON T1.skin_colour_id = T3.id WHERE T2.alignment = 'Bad' AND T3.colour = 'Green'",
+  "id": 823,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.id)"
+      ],
+      [
+        "6"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(T1.id) FROM superhero AS T1 JOIN colour AS T2 ON T1.skin_colour_id = T2.id JOIN alignment AS T3 ON T1.alignment_id = T3.id WHERE T2.colour = 'Green' AND T3.alignment = 'Bad';",
+  "question": "How many green-skinned villains are there in the superhero universe?",
+  "thinking": ""
+}

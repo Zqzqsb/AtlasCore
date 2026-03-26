@@ -1,0 +1,38 @@
+{
+  "db_id": "debit_card_specializing",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AVG(Amount)"
+      ],
+      [
+        "\u003cnil\u003e"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT AVG(Amount) FROM transactions_1k WHERE Date LIKE '2012-01%'",
+  "id": 1505,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AVG(Amount)"
+      ],
+      [
+        "\u003cnil\u003e"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT AVG(Amount) FROM transactions_1k WHERE Date LIKE '%2012-01%'",
+  "question": "What is the average total price of the transactions taken place in January, 2012?",
+  "thinking": ""
+}

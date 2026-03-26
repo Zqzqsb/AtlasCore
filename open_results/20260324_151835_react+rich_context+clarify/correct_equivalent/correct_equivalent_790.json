@@ -1,0 +1,38 @@
+{
+  "db_id": "superhero",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(SUM(T1.weight_kg) AS REAL) / COUNT(T1.id)"
+      ],
+      [
+        "123.75"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT CAST(SUM(T1.weight_kg) AS REAL) / COUNT(T1.id) FROM superhero AS T1 INNER JOIN race AS T2 ON T1.race_id = T2.id WHERE T2.race = 'Alien'",
+  "id": 790,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(SUM(sh.weight_kg) AS REAL) / COUNT(sh.id)"
+      ],
+      [
+        "123.75"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT CAST(SUM(sh.weight_kg) AS REAL) / COUNT(sh.id) \nFROM superhero sh\nJOIN race r ON sh.race_id = r.id\nWHERE r.race = 'Alien';",
+  "question": "Find the average weight of the heroes who are aliens.",
+  "thinking": ""
+}

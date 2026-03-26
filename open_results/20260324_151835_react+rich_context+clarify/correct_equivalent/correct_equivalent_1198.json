@@ -1,0 +1,42 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "First Date",
+        "Diagnosis"
+      ],
+      [
+        "\u003cnil\u003e",
+        "SLE"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT `First Date`, Diagnosis FROM Patient WHERE ID = 48473",
+  "id": 1198,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "First Date",
+        "Diagnosis"
+      ],
+      [
+        "\u003cnil\u003e",
+        "SLE"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT \"First Date\", \"Diagnosis\" FROM Patient WHERE ID = 48473;",
+  "question": "When was the medical information on patient number 48473 first documented, and what disease did she have?",
+  "thinking": ""
+}

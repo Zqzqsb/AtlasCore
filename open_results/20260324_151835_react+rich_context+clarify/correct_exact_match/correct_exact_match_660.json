@@ -1,0 +1,16 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT COUNT(Id) FROM tags WHERE Count BETWEEN 5000 AND 7000",
+  "id": 660,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT COUNT(Id) FROM tags WHERE Count BETWEEN 5000 AND 7000;",
+  "question": "How many tags have post count between 5,000 to 7,000?",
+  "thinking": ""
+}

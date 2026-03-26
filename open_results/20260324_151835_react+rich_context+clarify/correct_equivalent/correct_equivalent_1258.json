@@ -1,0 +1,38 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "challenging",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(DISTINCT T1.ID)"
+      ],
+      [
+        "4"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(DISTINCT T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.CRE \u003e= 1.5 AND STRFTIME('%Y', Date('now')) - STRFTIME('%Y', T1.Birthday) \u003c 70",
+  "id": 1258,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(DISTINCT T1.ID)"
+      ],
+      [
+        "4"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(DISTINCT T1.ID) FROM Laboratory AS T1 JOIN Patient AS T2 ON T1.ID = T2.ID WHERE T1.CRE \u003e= 1.5 AND (strftime('%Y', 'now') - strftime('%Y', T2.Birthday)) \u003c 70",
+  "question": "Among the patients whose creatinine level is abnormal, how many of them aren't 70 yet?",
+  "thinking": ""
+}

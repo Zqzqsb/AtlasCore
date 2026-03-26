@@ -1,0 +1,680 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=191, pred=25",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name"
+      ],
+      [
+        "Malaysian Grand Prix"
+      ],
+      [
+        "Bahrain Grand Prix"
+      ],
+      [
+        "Spanish Grand Prix"
+      ],
+      [
+        "Turkish Grand Prix"
+      ],
+      [
+        "Monaco Grand Prix"
+      ],
+      [
+        "Canadian Grand Prix"
+      ],
+      [
+        "French Grand Prix"
+      ],
+      [
+        "British Grand Prix"
+      ],
+      [
+        "German Grand Prix"
+      ],
+      [
+        "Hungarian Grand Prix"
+      ],
+      [
+        "European Grand Prix"
+      ],
+      [
+        "Belgian Grand Prix"
+      ],
+      [
+        "Italian Grand Prix"
+      ],
+      [
+        "Singapore Grand Prix"
+      ],
+      [
+        "Japanese Grand Prix"
+      ],
+      [
+        "Chinese Grand Prix"
+      ],
+      [
+        "Brazilian Grand Prix"
+      ],
+      [
+        "Malaysian Grand Prix"
+      ],
+      [
+        "Bahrain Grand Prix"
+      ],
+      [
+        "Spanish Grand Prix"
+      ],
+      [
+        "Monaco Grand Prix"
+      ],
+      [
+        "Canadian Grand Prix"
+      ],
+      [
+        "United States Grand Prix"
+      ],
+      [
+        "French Grand Prix"
+      ],
+      [
+        "British Grand Prix"
+      ],
+      [
+        "European Grand Prix"
+      ],
+      [
+        "Hungarian Grand Prix"
+      ],
+      [
+        "Turkish Grand Prix"
+      ],
+      [
+        "Italian Grand Prix"
+      ],
+      [
+        "Belgian Grand Prix"
+      ],
+      [
+        "Japanese Grand Prix"
+      ],
+      [
+        "Chinese Grand Prix"
+      ],
+      [
+        "Brazilian Grand Prix"
+      ],
+      [
+        "Malaysian Grand Prix"
+      ],
+      [
+        "Chinese Grand Prix"
+      ],
+      [
+        "Bahrain Grand Prix"
+      ],
+      [
+        "Spanish Grand Prix"
+      ],
+      [
+        "Monaco Grand Prix"
+      ],
+      [
+        "Turkish Grand Prix"
+      ],
+      [
+        "British Grand Prix"
+      ],
+      [
+        "German Grand Prix"
+      ],
+      [
+        "Hungarian Grand Prix"
+      ],
+      [
+        "European Grand Prix"
+      ],
+      [
+        "Belgian Grand Prix"
+      ],
+      [
+        "Italian Grand Prix"
+      ],
+      [
+        "Singapore Grand Prix"
+      ],
+      [
+        "Japanese Grand Prix"
+      ],
+      [
+        "Brazilian Grand Prix"
+      ],
+      [
+        "Abu Dhabi Grand Prix"
+      ],
+      [
+        "Bahrain Grand Prix"
+      ],
+      [
+        "Malaysian Grand Prix"
+      ],
+      [
+        "Chinese Grand Prix"
+      ],
+      [
+        "Spanish Grand Prix"
+      ],
+      [
+        "Monaco Grand Prix"
+      ],
+      [
+        "Turkish Grand Prix"
+      ],
+      [
+        "Canadian Grand Prix"
+      ],
+      [
+        "European Grand Prix"
+      ],
+      [
+        "British Grand Prix"
+      ],
+      [
+        "German Grand Prix"
+      ],
+      [
+        "Hungarian Grand Prix"
+      ],
+      [
+        "Belgian Grand Prix"
+      ],
+      [
+        "Italian Grand Prix"
+      ],
+      [
+        "Singapore Grand Prix"
+      ],
+      [
+        "Japanese Grand Prix"
+      ],
+      [
+        "Korean Grand Prix"
+      ],
+      [
+        "Brazilian Grand Prix"
+      ],
+      [
+        "Abu Dhabi Grand Prix"
+      ],
+      [
+        "Malaysian Grand Prix"
+      ],
+      [
+        "Chinese Grand Prix"
+      ],
+      [
+        "Turkish Grand Prix"
+      ],
+      [
+        "Spanish Grand Prix"
+      ],
+      [
+        "Monaco Grand Prix"
+      ],
+      [
+        "Canadian Grand Prix"
+      ],
+      [
+        "European Grand Prix"
+      ],
+      [
+        "British Grand Prix"
+      ],
+      [
+        "German Grand Prix"
+      ],
+      [
+        "Hungarian Grand Prix"
+      ],
+      [
+        "Belgian Grand Prix"
+      ],
+      [
+        "Italian Grand Prix"
+      ],
+      [
+        "Singapore Grand Prix"
+      ],
+      [
+        "Japanese Grand Prix"
+      ],
+      [
+        "Korean Grand Prix"
+      ],
+      [
+        "Indian Grand Prix"
+      ],
+      [
+        "Abu Dhabi Grand Prix"
+      ],
+      [
+        "Brazilian Grand Prix"
+      ],
+      [
+        "Malaysian Grand Prix"
+      ],
+      [
+        "Chinese Grand Prix"
+      ],
+      [
+        "Bahrain Grand Prix"
+      ],
+      [
+        "Spanish Grand Prix"
+      ],
+      [
+        "Monaco Grand Prix"
+      ],
+      [
+        "Canadian Grand Prix"
+      ],
+      [
+        "European Grand Prix"
+      ],
+      [
+        "British Grand Prix"
+      ],
+      [
+        "German Grand Prix"
+      ],
+      [
+        "Hungarian Grand Prix"
+      ],
+      [
+        "Belgian Grand Prix"
+      ],
+      [
+        "Italian Grand Prix"
+      ],
+      [
+        "Singapore Grand Prix"
+      ],
+      [
+        "Japanese Grand Prix"
+      ],
+      [
+        "Korean Grand Prix"
+      ],
+      [
+        "Indian Grand Prix"
+      ],
+      [
+        "Abu Dhabi Grand Prix"
+      ],
+      [
+        "United States Grand Prix"
+      ],
+      [
+        "Brazilian Grand Prix"
+      ],
+      [
+        "Malaysian Grand Prix"
+      ],
+      [
+        "Chinese Grand Prix"
+      ],
+      [
+        "Bahrain Grand Prix"
+      ],
+      [
+        "Spanish Grand Prix"
+      ],
+      [
+        "Monaco Grand Prix"
+      ],
+      [
+        "Canadian Grand Prix"
+      ],
+      [
+        "British Grand Prix"
+      ],
+      [
+        "German Grand Prix"
+      ],
+      [
+        "Hungarian Grand Prix"
+      ],
+      [
+        "Belgian Grand Prix"
+      ],
+      [
+        "Italian Grand Prix"
+      ],
+      [
+        "Singapore Grand Prix"
+      ],
+      [
+        "Korean Grand Prix"
+      ],
+      [
+        "Japanese Grand Prix"
+      ],
+      [
+        "Indian Grand Prix"
+      ],
+      [
+        "Abu Dhabi Grand Prix"
+      ],
+      [
+        "United States Grand Prix"
+      ],
+      [
+        "Brazilian Grand Prix"
+      ],
+      [
+        "Malaysian Grand Prix"
+      ],
+      [
+        "Bahrain Grand Prix"
+      ],
+      [
+        "Chinese Grand Prix"
+      ],
+      [
+        "Spanish Grand Prix"
+      ],
+      [
+        "Monaco Grand Prix"
+      ],
+      [
+        "Canadian Grand Prix"
+      ],
+      [
+        "Austrian Grand Prix"
+      ],
+      [
+        "British Grand Prix"
+      ],
+      [
+        "German Grand Prix"
+      ],
+      [
+        "Hungarian Grand Prix"
+      ],
+      [
+        "Belgian Grand Prix"
+      ],
+      [
+        "Italian Grand Prix"
+      ],
+      [
+        "Singapore Grand Prix"
+      ],
+      [
+        "Japanese Grand Prix"
+      ],
+      [
+        "Russian Grand Prix"
+      ],
+      [
+        "United States Grand Prix"
+      ],
+      [
+        "Brazilian Grand Prix"
+      ],
+      [
+        "Abu Dhabi Grand Prix"
+      ],
+      [
+        "Malaysian Grand Prix"
+      ],
+      [
+        "Chinese Grand Prix"
+      ],
+      [
+        "Bahrain Grand Prix"
+      ],
+      [
+        "Spanish Grand Prix"
+      ],
+      [
+        "Monaco Grand Prix"
+      ],
+      [
+        "Canadian Grand Prix"
+      ],
+      [
+        "Austrian Grand Prix"
+      ],
+      [
+        "British Grand Prix"
+      ],
+      [
+        "Hungarian Grand Prix"
+      ],
+      [
+        "Belgian Grand Prix"
+      ],
+      [
+        "Italian Grand Prix"
+      ],
+      [
+        "Singapore Grand Prix"
+      ],
+      [
+        "Japanese Grand Prix"
+      ],
+      [
+        "Russian Grand Prix"
+      ],
+      [
+        "United States Grand Prix"
+      ],
+      [
+        "Mexican Grand Prix"
+      ],
+      [
+        "Brazilian Grand Prix"
+      ],
+      [
+        "Abu Dhabi Grand Prix"
+      ],
+      [
+        "Bahrain Grand Prix"
+      ],
+      [
+        "Chinese Grand Prix"
+      ],
+      [
+        "Russian Grand Prix"
+      ],
+      [
+        "Spanish Grand Prix"
+      ],
+      [
+        "Monaco Grand Prix"
+      ],
+      [
+        "Canadian Grand Prix"
+      ],
+      [
+        "European Grand Prix"
+      ],
+      [
+        "Austrian Grand Prix"
+      ],
+      [
+        "British Grand Prix"
+      ],
+      [
+        "Hungarian Grand Prix"
+      ],
+      [
+        "German Grand Prix"
+      ],
+      [
+        "Belgian Grand Prix"
+      ],
+      [
+        "Italian Grand Prix"
+      ],
+      [
+        "Singapore Grand Prix"
+      ],
+      [
+        "Malaysian Grand Prix"
+      ],
+      [
+        "Japanese Grand Prix"
+      ],
+      [
+        "United States Grand Prix"
+      ],
+      [
+        "Mexican Grand Prix"
+      ],
+      [
+        "Brazilian Grand Prix"
+      ],
+      [
+        "Abu Dhabi Grand Prix"
+      ],
+      [
+        "Chinese Grand Prix"
+      ],
+      [
+        "Bahrain Grand Prix"
+      ],
+      [
+        "Russian Grand Prix"
+      ],
+      [
+        "Spanish Grand Prix"
+      ],
+      [
+        "Monaco Grand Prix"
+      ],
+      [
+        "Canadian Grand Prix"
+      ],
+      [
+        "Azerbaijan Grand Prix"
+      ],
+      [
+        "Austrian Grand Prix"
+      ],
+      [
+        "British Grand Prix"
+      ],
+      [
+        "Hungarian Grand Prix"
+      ],
+      [
+        "Belgian Grand Prix"
+      ],
+      [
+        "Italian Grand Prix"
+      ],
+      [
+        "Singapore Grand Prix"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.name FROM races AS T1 INNER JOIN results AS T2 ON T2.raceId = T1.raceId INNER JOIN drivers AS T3 ON T3.driverId = T2.driverId WHERE T3.forename = 'Lewis' AND T3.surname = 'Hamilton'",
+  "id": 930,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name"
+      ],
+      [
+        "Abu Dhabi Grand Prix"
+      ],
+      [
+        "Austrian Grand Prix"
+      ],
+      [
+        "Azerbaijan Grand Prix"
+      ],
+      [
+        "Bahrain Grand Prix"
+      ],
+      [
+        "Belgian Grand Prix"
+      ],
+      [
+        "Brazilian Grand Prix"
+      ],
+      [
+        "British Grand Prix"
+      ],
+      [
+        "Canadian Grand Prix"
+      ],
+      [
+        "Chinese Grand Prix"
+      ],
+      [
+        "European Grand Prix"
+      ],
+      [
+        "French Grand Prix"
+      ],
+      [
+        "German Grand Prix"
+      ],
+      [
+        "Hungarian Grand Prix"
+      ],
+      [
+        "Indian Grand Prix"
+      ],
+      [
+        "Italian Grand Prix"
+      ],
+      [
+        "Japanese Grand Prix"
+      ],
+      [
+        "Korean Grand Prix"
+      ],
+      [
+        "Malaysian Grand Prix"
+      ],
+      [
+        "Mexican Grand Prix"
+      ],
+      [
+        "Monaco Grand Prix"
+      ],
+      [
+        "Russian Grand Prix"
+      ],
+      [
+        "Singapore Grand Prix"
+      ],
+      [
+        "Spanish Grand Prix"
+      ],
+      [
+        "Turkish Grand Prix"
+      ],
+      [
+        "United States Grand Prix"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT r.name\nFROM races r\nJOIN results res ON r.raceId = res.raceId\nJOIN drivers d ON res.driverId = d.driverId\nWHERE d.forename = 'Lewis' AND d.surname = 'Hamilton'\nORDER BY r.name;",
+  "question": "Please list the Formula_1 races that Lewis Hamilton participated.",
+  "thinking": ""
+}

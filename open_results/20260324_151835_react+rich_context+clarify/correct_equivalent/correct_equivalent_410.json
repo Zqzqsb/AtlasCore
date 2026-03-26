@@ -1,0 +1,38 @@
+{
+  "db_id": "card_games",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.id)"
+      ],
+      [
+        "16"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T1.id) FROM cards AS T1 INNER JOIN legalities AS T2 ON T1.uuid = T2.uuid INNER JOIN rulings AS T3 ON T1.uuid = T3.uuid WHERE T2.format = 'premodern' AND T3.text = 'This is a triggered mana ability.' AND T1.Side IS NULL",
+  "id": 410,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.id)"
+      ],
+      [
+        "16"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(T1.id)\nFROM cards AS T1\nJOIN legalities AS T2 ON T1.uuid = T2.uuid\nJOIN rulings AS T3 ON T1.uuid = T3.uuid\nWHERE T2.format = 'premodern'\n  AND TRIM(T3.text) = 'This is a triggered mana ability.'\n  AND T1.side IS NULL",
+  "question": "Indicates the number of cards with pre-modern format, ruling text \"This is a triggered mana ability.\" that do not have multiple faces.",
+  "thinking": ""
+}

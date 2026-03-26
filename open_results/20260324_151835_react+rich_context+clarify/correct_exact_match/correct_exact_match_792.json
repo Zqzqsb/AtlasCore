@@ -1,0 +1,16 @@
+{
+  "db_id": "superhero",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT CAST(SUM(height_cm) AS REAL) / COUNT(id) FROM superhero",
+  "id": 792,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT CAST(SUM(height_cm) AS REAL) / COUNT(id) FROM superhero;",
+  "question": "Calculate the average height for each superhero.",
+  "thinking": ""
+}

@@ -1,0 +1,31 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=1, pred=-1",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Text"
+      ],
+      [
+        "That's just an example - it might have a median that is much smaller, on the order of 200 (it depends on how I partition the data). That would preclude using a normal distribution, right?"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.Text FROM comments AS T1 INNER JOIN posts AS T2 ON T1.PostId = T2.Id WHERE T1.CreationDate = '2010-07-19 19:37:33.0'",
+  "id": 618,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": []
+  },
+  "pred_sql": "SELECT TRIM(comments.Text) AS Text FROM comments JOIN posts ON comments.PostId = posts.Id WHERE posts.CreaionDate = '2010-07-19 19:37:33'",
+  "question": "What is the detailed content of the comment of the post which was created on 7/19/2010 7:37:33 PM?",
+  "thinking": ""
+}

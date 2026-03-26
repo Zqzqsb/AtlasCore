@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "location"
+      ],
+      [
+        "Abu Dhabi"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.location FROM circuits AS T1 INNER JOIN races AS T2 ON T1.circuitId = T2.circuitId ORDER BY T2.date DESC LIMIT 1",
+  "id": 1001,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "location"
+      ],
+      [
+        "Abu Dhabi, UAE"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT circuits.location || ', ' || circuits.country AS location FROM races JOIN circuits ON races.circuitId = circuits.circuitId ORDER BY races.date DESC LIMIT 1",
+  "question": "Which racetrack hosted the most recent race? Indicate the full location.",
+  "thinking": ""
+}

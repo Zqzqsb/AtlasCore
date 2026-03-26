@@ -1,0 +1,44 @@
+{
+  "db_id": "card_games",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "translation"
+      ],
+      [
+        "Set Base Decima Edizione"
+      ],
+      [
+        "Sentenza"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT translation FROM set_translations WHERE setCode IN ( SELECT setCode FROM cards WHERE name = 'Ancestor''s Chosen' ) AND language = 'Italian'",
+  "id": 463,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "translation"
+      ],
+      [
+        "Set Base Decima Edizione"
+      ],
+      [
+        "Sentenza"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT st.translation \nFROM cards c\nJOIN set_translations st ON c.setCode = st.setCode\nWHERE c.name = 'Ancestor''s Chosen'\n  AND st.language = 'Italian'",
+  "question": "What's the Italian name of the set of cards with \"Ancestor's Chosen\" is in?",
+  "thinking": ""
+}

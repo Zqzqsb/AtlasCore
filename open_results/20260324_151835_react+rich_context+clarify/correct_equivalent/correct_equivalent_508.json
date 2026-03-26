@@ -1,0 +1,38 @@
+{
+  "db_id": "card_games",
+  "difficulty": "challenging",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(SUM(CASE WHEN isOnlineOnly = 1 THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(id)"
+      ],
+      [
+        "0.8264462809917356"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT CAST(SUM(CASE WHEN isOnlineOnly = 1 THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(id) FROM sets WHERE code IN ( SELECT setCode FROM set_translations WHERE language = 'Portuguese (Brazil)' )",
+  "id": 508,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(SUM(CASE WHEN s.isOnlineOnly = 1 THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(s.id)"
+      ],
+      [
+        "0.8264462809917356"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT CAST(SUM(CASE WHEN s.isOnlineOnly = 1 THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(s.id) \nFROM set_translations st\nJOIN sets s ON st.setCode = s.code\nWHERE st.language = 'Portuguese (Brazil)';",
+  "question": "For all the set of cards that has Brazil Portuguese translation, what is the percentage of them are only available online?",
+  "thinking": ""
+}

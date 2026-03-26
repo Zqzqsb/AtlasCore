@@ -1,0 +1,316 @@
+{
+  "database_name": "toxicology",
+  "database_type": "sqlite",
+  "collected_at": "2026-03-24T15:06:03.120749317+08:00",
+  "schema_diagram": {
+    "format": "mermaid-er",
+    "description": "Entity-Relationship diagram showing database schema and relationships",
+    "content": "erDiagram\n    MOLECULE ||--o{ BOND : \"has\"\n    BOND ||--o{ CONNECTED : \"has\"\n    ATOM ||--o{ CONNECTED : \"has\"\n    ATOM ||--o{ CONNECTED : \"has\"\n    MOLECULE ||--o{ ATOM : \"has\"\n\n    BOND {\n        text bond_id PK\n        text molecule_id FK\n        text bond_type\n    }\n    CONNECTED {\n        text atom_id PK,FK\n        text atom_id2 PK,FK\n        text bond_id FK\n    }\n    MOLECULE {\n        text molecule_id PK\n        text label\n    }\n    ATOM {\n        text atom_id PK\n        text molecule_id FK\n        text element\n    }\n"
+  },
+  "tables": {
+    "atom": {
+      "name": "atom",
+      "description": "The atom table stores elemental composition data, capturing the frequency distribution of chemical elements found in a dataset as of March 31, 2026.",
+      "row_count": 9111,
+      "columns": [
+        {
+          "name": "atom_id",
+          "type": "TEXT",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 9111,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "molecule_id",
+          "type": "TEXT",
+          "nullable": true,
+          "default": "NULL",
+          "value_stats": {
+            "distinct_count": 343,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "element",
+          "type": "TEXT",
+          "nullable": true,
+          "default": "NULL",
+          "value_stats": {
+            "distinct_count": 18,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "h",
+                "count": 4034,
+                "percent": 44.27614970914279
+              },
+              {
+                "value": "c",
+                "count": 3433,
+                "percent": 37.679727801558556
+              },
+              {
+                "value": "o",
+                "count": 737,
+                "percent": 8.08912303808583
+              },
+              {
+                "value": "n",
+                "count": 373,
+                "percent": 4.093952365272748
+              },
+              {
+                "value": "cl",
+                "count": 317,
+                "percent": 3.4793107233015035
+              },
+              {
+                "value": "s",
+                "count": 94,
+                "percent": 1.0317198990231586
+              },
+              {
+                "value": "br",
+                "count": 46,
+                "percent": 0.5048842059049501
+              },
+              {
+                "value": "na",
+                "count": 32,
+                "percent": 0.35122379541213916
+              },
+              {
+                "value": "p",
+                "count": 23,
+                "percent": 0.25244210295247504
+              },
+              {
+                "value": "f",
+                "count": 10,
+                "percent": 0.10975743606629348
+              },
+              {
+                "value": "i",
+                "count": 3,
+                "percent": 0.03292723081988805
+              },
+              {
+                "value": "sn",
+                "count": 2,
+                "percent": 0.021951487213258698
+              },
+              {
+                "value": "cu",
+                "count": 2,
+                "percent": 0.021951487213258698
+              },
+              {
+                "value": "zn",
+                "count": 1,
+                "percent": 0.010975743606629349
+              },
+              {
+                "value": "y",
+                "count": 1,
+                "percent": 0.010975743606629349
+              }
+            ]
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "molecule_id",
+          "referenced_table": "molecule",
+          "referenced_column": "molecule_id"
+        }
+      ],
+      "rich_context": {
+        "element_values": {
+          "content": "h=hydrogen(44.28%), c=carbon(37.68%), o=oxygen(8.09%), n=nitrogen(4.09%), cl=chlorine(3.48%), s=sulfur(1.03%), br=bromine(0.50%), na=sodium(0.35%), p=phosphorus(0.25%), f=fluorine(0.11%), i=iodine(0.03%), sn=tin(0.02%), cu=copper(0.02%), zn=zinc(0.01%), y=yttrium(0.01%)",
+          "expires_at": "2026-03-31T15:06:24+08:00"
+        }
+      }
+    },
+    "bond": {
+      "name": "bond",
+      "description": "The bond table stores information about financial bonds, likely including identifiers and key attributes for tracking and managing bond instruments.",
+      "row_count": 9156,
+      "columns": [
+        {
+          "name": "bond_id",
+          "type": "TEXT",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 9156,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "molecule_id",
+          "type": "TEXT",
+          "nullable": true,
+          "default": "NULL",
+          "value_stats": {
+            "distinct_count": 343,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "bond_type",
+          "type": "TEXT",
+          "nullable": true,
+          "default": "NULL",
+          "value_stats": {
+            "distinct_count": 3,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "-",
+                "count": 7743,
+                "percent": 84.56749672346002
+              },
+              {
+                "value": "=",
+                "count": 1408,
+                "percent": 15.377894276976845
+              },
+              {
+                "value": "#",
+                "count": 5,
+                "percent": 0.054608999563128
+              }
+            ]
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "molecule_id",
+          "referenced_table": "molecule",
+          "referenced_column": "molecule_id"
+        }
+      ]
+    },
+    "connected": {
+      "name": "connected",
+      "description": "The \"connected\" table tracks relationships or associations between entities, likely indicating which items, users, or systems are linked or connected to one another.",
+      "row_count": 18312,
+      "columns": [
+        {
+          "name": "atom_id",
+          "type": "TEXT",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 9073,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "atom_id2",
+          "type": "TEXT",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 9073,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "bond_id",
+          "type": "TEXT",
+          "nullable": true,
+          "default": "NULL",
+          "value_stats": {
+            "distinct_count": 9156,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "bond_id",
+          "referenced_table": "bond",
+          "referenced_column": "bond_id"
+        },
+        {
+          "column_name": "atom_id2",
+          "referenced_table": "atom",
+          "referenced_column": "atom_id"
+        },
+        {
+          "column_name": "atom_id",
+          "referenced_table": "atom",
+          "referenced_column": "atom_id"
+        }
+      ]
+    },
+    "molecule": {
+      "name": "molecule",
+      "description": "The molecule table stores molecular records categorized by a binary label indicating their classification, with 55.7% labeled as \"-=\" and 44.3% as \"+=\".",
+      "row_count": 343,
+      "columns": [
+        {
+          "name": "molecule_id",
+          "type": "TEXT",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 343,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "label",
+          "type": "TEXT",
+          "nullable": true,
+          "default": "NULL",
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "-",
+                "count": 191,
+                "percent": 55.68513119533528
+              },
+              {
+                "value": "+",
+                "count": 152,
+                "percent": 44.31486880466473
+              }
+            ]
+          }
+        }
+      ],
+      "indexes": [],
+      "rich_context": {
+        "label_values": {
+          "content": "-=(191)(55.7%), +=(152)(44.3%)",
+          "expires_at": "2026-03-31T15:06:21+08:00"
+        }
+      }
+    }
+  },
+  "total_tables": 0,
+  "total_rows": 0
+}

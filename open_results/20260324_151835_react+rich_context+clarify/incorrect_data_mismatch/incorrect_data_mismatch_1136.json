@@ -1,0 +1,62 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "moderate",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "id"
+      ],
+      [
+        "33339"
+      ],
+      [
+        "33340"
+      ],
+      [
+        "33341"
+      ],
+      [
+        "33342"
+      ],
+      [
+        "153454"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT id FROM Player_Attributes WHERE preferred_foot = 'right' ORDER BY potential DESC LIMIT 5",
+  "id": 1136,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "id"
+      ],
+      [
+        "132235"
+      ],
+      [
+        "132236"
+      ],
+      [
+        "66213"
+      ],
+      [
+        "66214"
+      ],
+      [
+        "15031"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT id FROM Player_Attributes WHERE preferred_foot = 'right' ORDER BY potential ASC LIMIT 5",
+  "question": "Please provide top five football players' IDs who are among the lowest potential players and prefer to use the right foot when attacking.",
+  "thinking": ""
+}

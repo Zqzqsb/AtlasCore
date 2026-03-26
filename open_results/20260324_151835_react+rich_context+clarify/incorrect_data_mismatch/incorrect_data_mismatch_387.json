@@ -1,0 +1,38 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.id)"
+      ],
+      [
+        "583"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T1.id) FROM cards AS T1 INNER JOIN legalities AS T2 ON T1.uuid = T2.uuid WHERE T1.frameVersion = 'future'",
+  "id": 387,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.id)"
+      ],
+      [
+        "93"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(T1.id) FROM cards AS T1 WHERE T1.frameVersion = 'future'",
+  "question": "How many cards are having future frame version and what are the legality status of these cards?",
+  "thinking": ""
+}

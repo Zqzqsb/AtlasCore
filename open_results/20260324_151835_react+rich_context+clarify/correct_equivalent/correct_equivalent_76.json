@@ -1,0 +1,98 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "EILName",
+        "School"
+      ],
+      [
+        "Elementary",
+        "Lemon Grove Academy for the Sciences and Humanities"
+      ],
+      [
+        "Elementary",
+        "Monterey Heights Elementary"
+      ],
+      [
+        "Elementary",
+        "Mt. Vernon Elementary"
+      ],
+      [
+        "Elementary",
+        "San Altos Elementary"
+      ],
+      [
+        "Elementary",
+        "San Miguel Elementary"
+      ],
+      [
+        "Elementary",
+        "Vista La Mesa Academy"
+      ],
+      [
+        "High School",
+        "Torrey Pines High"
+      ],
+      [
+        "High School",
+        "La Costa Canyon High"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.EILName, T2.School FROM frpm AS T1 INNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode WHERE T1.`NSLP Provision Status` = 'Breakfast Provision 2' AND T1.`County Code` = 37",
+  "id": 76,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "EILName",
+        "School"
+      ],
+      [
+        "Elementary",
+        "Lemon Grove Academy for the Sciences and Humanities"
+      ],
+      [
+        "Elementary",
+        "Monterey Heights Elementary"
+      ],
+      [
+        "Elementary",
+        "Mt. Vernon Elementary"
+      ],
+      [
+        "Elementary",
+        "San Altos Elementary"
+      ],
+      [
+        "Elementary",
+        "San Miguel Elementary"
+      ],
+      [
+        "Elementary",
+        "Vista La Mesa Academy"
+      ],
+      [
+        "High School",
+        "Torrey Pines High"
+      ],
+      [
+        "High School",
+        "La Costa Canyon High"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT s.EILName, s.School \nFROM frpm f\nJOIN schools s ON CAST(f.CDSCode AS INTEGER) = CAST(s.CDSCode AS INTEGER)\nWHERE f.\"NSLP Provision Status\" = 'Breakfast Provision 2'\nAND f.\"County Code\" = '37'",
+  "question": "What is the educational level name for the schools with Breakfast Provision 2 in county code 37? Indicate the name of the school.",
+  "thinking": ""
+}

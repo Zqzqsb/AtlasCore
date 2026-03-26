@@ -1,0 +1,38 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.Id)"
+      ],
+      [
+        "19"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T1.Id) FROM users AS T1 INNER JOIN posts AS T2 ON T1.Id = T2.OwnerUserId WHERE T1.Location = 'United Kingdom' AND T2.FavoriteCount \u003e= 4",
+  "id": 673,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.Id)"
+      ],
+      [
+        "19"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(T1.Id) \nFROM users AS T1 \nJOIN posts AS T2 ON T1.Id = T2.OwnerUserId \nWHERE TRIM(T1.Location) = 'United Kingdom' \nAND T2.FavoriteCount \u003e= 4;",
+  "question": "Among the users located in United Kingdom, how many users whose post have a total favorite amount of 4 or more?",
+  "thinking": ""
+}

@@ -1,0 +1,38 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "challenging",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(SUM(CASE WHEN Diagnosis = 'BEHCET' THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(ID)"
+      ],
+      [
+        "50"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT CAST(SUM(CASE WHEN Diagnosis = 'BEHCET' THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(ID) FROM Patient WHERE STRFTIME('%Y', `First Date`) = '1981' AND SEX = 'M'",
+  "id": 1192,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(SUM(CASE WHEN TRIM(\"Diagnosis\") = 'BEHCET' THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(ID)"
+      ],
+      [
+        "50"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT CAST(SUM(CASE WHEN TRIM(\"Diagnosis\") = 'BEHCET' THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(ID) \nFROM Patient \nWHERE \"SEX\" = 'M' \nAND STRFTIME('%Y', \"First Date\") = '1981'",
+  "question": "What percentage of male patients who first presented to the hospital in 1981 were diagnosed with BEHCET?",
+  "thinking": ""
+}

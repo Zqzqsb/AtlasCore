@@ -1,0 +1,46 @@
+{
+  "db_id": "debit_card_specializing",
+  "difficulty": "moderate",
+  "error_reason": "column name mismatch and positional data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CustomerID",
+        "SUM(T2.Price / T2.Amount)",
+        "Currency"
+      ],
+      [
+        "12459",
+        "203.8560787354258",
+        "CZK"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.CustomerID, SUM(T2.Price / T2.Amount), T1.Currency FROM customers AS T1 INNER JOIN transactions_1k AS T2 ON T1.CustomerID = T2.CustomerID WHERE T2.CustomerID = ( SELECT CustomerID FROM yearmonth ORDER BY Consumption DESC LIMIT 1 ) GROUP BY T2.CustomerID, T1.Currency",
+  "id": 1532,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CustomerID",
+        "avg_price_per_item_sum",
+        "Currency"
+      ],
+      [
+        "19182",
+        "503.3321964222591",
+        "CZK"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT \n    c.CustomerID,\n    SUM(t.Price / t.Amount) AS avg_price_per_item_sum,\n    c.Currency\nFROM customers c\nJOIN transactions_1k t ON c.CustomerID = t.CustomerID\nWHERE t.Amount \u003e 0\nGROUP BY c.CustomerID, c.Currency\nORDER BY SUM(t.Price) DESC\nLIMIT 1;",
+  "question": "Who is the top spending customer and how much is the average price per single item purchased by this customer? What currency was being used?",
+  "thinking": ""
+}

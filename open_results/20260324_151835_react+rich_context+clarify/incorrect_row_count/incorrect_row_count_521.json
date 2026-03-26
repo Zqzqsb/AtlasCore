@@ -1,0 +1,2322 @@
+{
+  "db_id": "card_games",
+  "difficulty": "moderate",
+  "error_reason": "row count mismatch: gold=1, pred=571",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "artist",
+        "format"
+      ],
+      [
+        "Anna Pavleeva",
+        "gladiator"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.artist, T2.format FROM cards AS T1 INNER JOIN legalities AS T2 ON T2.uuid = T1.uuid GROUP BY T1.artist ORDER BY COUNT(T1.id) ASC LIMIT 1",
+  "id": 521,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "artist",
+        "format"
+      ],
+      [
+        "Aenami",
+        "brawl"
+      ],
+      [
+        "Aenami",
+        "commander"
+      ],
+      [
+        "Aenami",
+        "duel"
+      ],
+      [
+        "Aenami",
+        "future"
+      ],
+      [
+        "Aenami",
+        "gladiator"
+      ],
+      [
+        "Aenami",
+        "historic"
+      ],
+      [
+        "Aenami",
+        "legacy"
+      ],
+      [
+        "Aenami",
+        "modern"
+      ],
+      [
+        "Aenami",
+        "pioneer"
+      ],
+      [
+        "Aenami",
+        "standard"
+      ],
+      [
+        "Aenami",
+        "vintage"
+      ],
+      [
+        "AlbaBG",
+        "commander"
+      ],
+      [
+        "AlbaBG",
+        "duel"
+      ],
+      [
+        "AlbaBG",
+        "legacy"
+      ],
+      [
+        "AlbaBG",
+        "modern"
+      ],
+      [
+        "AlbaBG",
+        "pauper"
+      ],
+      [
+        "AlbaBG",
+        "penny"
+      ],
+      [
+        "AlbaBG",
+        "vintage"
+      ],
+      [
+        "Alessandra Pisano",
+        "commander"
+      ],
+      [
+        "Alessandra Pisano",
+        "duel"
+      ],
+      [
+        "Alessandra Pisano",
+        "legacy"
+      ],
+      [
+        "Alessandra Pisano",
+        "vintage"
+      ],
+      [
+        "Alexis Ziritt",
+        "commander"
+      ],
+      [
+        "Alexis Ziritt",
+        "duel"
+      ],
+      [
+        "Alexis Ziritt",
+        "legacy"
+      ],
+      [
+        "Alexis Ziritt",
+        "modern"
+      ],
+      [
+        "Alexis Ziritt",
+        "pauper"
+      ],
+      [
+        "Alexis Ziritt",
+        "premodern"
+      ],
+      [
+        "Alexis Ziritt",
+        "vintage"
+      ],
+      [
+        "Allison Carl",
+        "commander"
+      ],
+      [
+        "Allison Carl",
+        "duel"
+      ],
+      [
+        "Allison Carl",
+        "legacy"
+      ],
+      [
+        "Allison Carl",
+        "penny"
+      ],
+      [
+        "Allison Carl",
+        "vintage"
+      ],
+      [
+        "Andrew Murray",
+        "commander"
+      ],
+      [
+        "Andrew Murray",
+        "duel"
+      ],
+      [
+        "Andrew Murray",
+        "legacy"
+      ],
+      [
+        "Andrew Murray",
+        "modern"
+      ],
+      [
+        "Andrew Murray",
+        "pauper"
+      ],
+      [
+        "Andrew Murray",
+        "penny"
+      ],
+      [
+        "Andrew Murray",
+        "vintage"
+      ],
+      [
+        "Anna Pavleeva",
+        "gladiator"
+      ],
+      [
+        "Anna Pavleeva",
+        "historic"
+      ],
+      [
+        "Antonio Bravo",
+        "brawl"
+      ],
+      [
+        "Antonio Bravo",
+        "commander"
+      ],
+      [
+        "Antonio Bravo",
+        "duel"
+      ],
+      [
+        "Antonio Bravo",
+        "future"
+      ],
+      [
+        "Antonio Bravo",
+        "gladiator"
+      ],
+      [
+        "Antonio Bravo",
+        "historic"
+      ],
+      [
+        "Antonio Bravo",
+        "legacy"
+      ],
+      [
+        "Antonio Bravo",
+        "modern"
+      ],
+      [
+        "Antonio Bravo",
+        "pioneer"
+      ],
+      [
+        "Antonio Bravo",
+        "standard"
+      ],
+      [
+        "Antonio Bravo",
+        "vintage"
+      ],
+      [
+        "Bad Flip Productions, Inc.",
+        "commander"
+      ],
+      [
+        "Bad Flip Productions, Inc.",
+        "duel"
+      ],
+      [
+        "Bad Flip Productions, Inc.",
+        "legacy"
+      ],
+      [
+        "Bad Flip Productions, Inc.",
+        "modern"
+      ],
+      [
+        "Bad Flip Productions, Inc.",
+        "pioneer"
+      ],
+      [
+        "Bad Flip Productions, Inc.",
+        "vintage"
+      ],
+      [
+        "Bastien Grivet \u0026 Jessica Rossier",
+        "brawl"
+      ],
+      [
+        "Bastien Grivet \u0026 Jessica Rossier",
+        "commander"
+      ],
+      [
+        "Bastien Grivet \u0026 Jessica Rossier",
+        "duel"
+      ],
+      [
+        "Bastien Grivet \u0026 Jessica Rossier",
+        "future"
+      ],
+      [
+        "Bastien Grivet \u0026 Jessica Rossier",
+        "gladiator"
+      ],
+      [
+        "Bastien Grivet \u0026 Jessica Rossier",
+        "historic"
+      ],
+      [
+        "Bastien Grivet \u0026 Jessica Rossier",
+        "legacy"
+      ],
+      [
+        "Bastien Grivet \u0026 Jessica Rossier",
+        "modern"
+      ],
+      [
+        "Bastien Grivet \u0026 Jessica Rossier",
+        "pioneer"
+      ],
+      [
+        "Bastien Grivet \u0026 Jessica Rossier",
+        "standard"
+      ],
+      [
+        "Bastien Grivet \u0026 Jessica Rossier",
+        "vintage"
+      ],
+      [
+        "Brigitte Roka",
+        "commander"
+      ],
+      [
+        "Brigitte Roka",
+        "duel"
+      ],
+      [
+        "Brigitte Roka",
+        "legacy"
+      ],
+      [
+        "Brigitte Roka",
+        "modern"
+      ],
+      [
+        "Brigitte Roka",
+        "pauper"
+      ],
+      [
+        "Brigitte Roka",
+        "premodern"
+      ],
+      [
+        "Brigitte Roka",
+        "vintage"
+      ],
+      [
+        "Caramelaw",
+        "commander"
+      ],
+      [
+        "Caramelaw",
+        "duel"
+      ],
+      [
+        "Caramelaw",
+        "gladiator"
+      ],
+      [
+        "Caramelaw",
+        "historic"
+      ],
+      [
+        "Caramelaw",
+        "legacy"
+      ],
+      [
+        "Caramelaw",
+        "modern"
+      ],
+      [
+        "Caramelaw",
+        "penny"
+      ],
+      [
+        "Caramelaw",
+        "pioneer"
+      ],
+      [
+        "Caramelaw",
+        "vintage"
+      ],
+      [
+        "Chengo McFlingers",
+        "commander"
+      ],
+      [
+        "Chengo McFlingers",
+        "duel"
+      ],
+      [
+        "Chengo McFlingers",
+        "legacy"
+      ],
+      [
+        "Chengo McFlingers",
+        "modern"
+      ],
+      [
+        "Chengo McFlingers",
+        "pauper"
+      ],
+      [
+        "Chengo McFlingers",
+        "penny"
+      ],
+      [
+        "Chengo McFlingers",
+        "vintage"
+      ],
+      [
+        "D. Alexander Gregory \u0026 Jeremy Jarvis",
+        "commander"
+      ],
+      [
+        "D. Alexander Gregory \u0026 Jeremy Jarvis",
+        "duel"
+      ],
+      [
+        "D. Alexander Gregory \u0026 Jeremy Jarvis",
+        "legacy"
+      ],
+      [
+        "D. Alexander Gregory \u0026 Jeremy Jarvis",
+        "modern"
+      ],
+      [
+        "D. Alexander Gregory \u0026 Jeremy Jarvis",
+        "penny"
+      ],
+      [
+        "D. Alexander Gregory \u0026 Jeremy Jarvis",
+        "vintage"
+      ],
+      [
+        "DXTR",
+        "commander"
+      ],
+      [
+        "DXTR",
+        "duel"
+      ],
+      [
+        "DXTR",
+        "legacy"
+      ],
+      [
+        "DXTR",
+        "modern"
+      ],
+      [
+        "DXTR",
+        "pauper"
+      ],
+      [
+        "DXTR",
+        "vintage"
+      ],
+      [
+        "Daniel R. Horne",
+        "commander"
+      ],
+      [
+        "Daniel R. Horne",
+        "duel"
+      ],
+      [
+        "Daniel R. Horne",
+        "legacy"
+      ],
+      [
+        "Daniel R. Horne",
+        "premodern"
+      ],
+      [
+        "Daniel R. Horne",
+        "vintage"
+      ],
+      [
+        "Daniel Zrom",
+        "brawl"
+      ],
+      [
+        "Daniel Zrom",
+        "commander"
+      ],
+      [
+        "Daniel Zrom",
+        "duel"
+      ],
+      [
+        "Daniel Zrom",
+        "future"
+      ],
+      [
+        "Daniel Zrom",
+        "gladiator"
+      ],
+      [
+        "Daniel Zrom",
+        "historic"
+      ],
+      [
+        "Daniel Zrom",
+        "legacy"
+      ],
+      [
+        "Daniel Zrom",
+        "modern"
+      ],
+      [
+        "Daniel Zrom",
+        "pioneer"
+      ],
+      [
+        "Daniel Zrom",
+        "standard"
+      ],
+      [
+        "Daniel Zrom",
+        "vintage"
+      ],
+      [
+        "Danny Miller",
+        "commander"
+      ],
+      [
+        "Danny Miller",
+        "duel"
+      ],
+      [
+        "Danny Miller",
+        "legacy"
+      ],
+      [
+        "Danny Miller",
+        "modern"
+      ],
+      [
+        "Danny Miller",
+        "vintage"
+      ],
+      [
+        "Darbury Stenderu",
+        "commander"
+      ],
+      [
+        "Darbury Stenderu",
+        "duel"
+      ],
+      [
+        "Darbury Stenderu",
+        "legacy"
+      ],
+      [
+        "Darbury Stenderu",
+        "pauper"
+      ],
+      [
+        "Darbury Stenderu",
+        "premodern"
+      ],
+      [
+        "Darbury Stenderu",
+        "vintage"
+      ],
+      [
+        "Denis Nigmatullin",
+        "brawl"
+      ],
+      [
+        "Denis Nigmatullin",
+        "commander"
+      ],
+      [
+        "Denis Nigmatullin",
+        "duel"
+      ],
+      [
+        "Denis Nigmatullin",
+        "future"
+      ],
+      [
+        "Denis Nigmatullin",
+        "gladiator"
+      ],
+      [
+        "Denis Nigmatullin",
+        "historic"
+      ],
+      [
+        "Denis Nigmatullin",
+        "legacy"
+      ],
+      [
+        "Denis Nigmatullin",
+        "modern"
+      ],
+      [
+        "Denis Nigmatullin",
+        "penny"
+      ],
+      [
+        "Denis Nigmatullin",
+        "pioneer"
+      ],
+      [
+        "Denis Nigmatullin",
+        "standard"
+      ],
+      [
+        "Denis Nigmatullin",
+        "vintage"
+      ],
+      [
+        "Ejiwa \"Edge\" Ebenebe",
+        "commander"
+      ],
+      [
+        "Ejiwa \"Edge\" Ebenebe",
+        "duel"
+      ],
+      [
+        "Ejiwa \"Edge\" Ebenebe",
+        "legacy"
+      ],
+      [
+        "Ejiwa \"Edge\" Ebenebe",
+        "modern"
+      ],
+      [
+        "Ejiwa \"Edge\" Ebenebe",
+        "pauper"
+      ],
+      [
+        "Ejiwa \"Edge\" Ebenebe",
+        "vintage"
+      ],
+      [
+        "Eric Wilkerson",
+        "commander"
+      ],
+      [
+        "Eric Wilkerson",
+        "duel"
+      ],
+      [
+        "Eric Wilkerson",
+        "legacy"
+      ],
+      [
+        "Eric Wilkerson",
+        "modern"
+      ],
+      [
+        "Eric Wilkerson",
+        "vintage"
+      ],
+      [
+        "Erica Williams",
+        "commander"
+      ],
+      [
+        "Erica Williams",
+        "duel"
+      ],
+      [
+        "Erica Williams",
+        "legacy"
+      ],
+      [
+        "Erica Williams",
+        "vintage"
+      ],
+      [
+        "Ernanda Souza",
+        "commander"
+      ],
+      [
+        "Ernanda Souza",
+        "duel"
+      ],
+      [
+        "Ernanda Souza",
+        "gladiator"
+      ],
+      [
+        "Ernanda Souza",
+        "historic"
+      ],
+      [
+        "Ernanda Souza",
+        "legacy"
+      ],
+      [
+        "Ernanda Souza",
+        "modern"
+      ],
+      [
+        "Ernanda Souza",
+        "pioneer"
+      ],
+      [
+        "Ernanda Souza",
+        "vintage"
+      ],
+      [
+        "GrafitArt",
+        "commander"
+      ],
+      [
+        "GrafitArt",
+        "duel"
+      ],
+      [
+        "GrafitArt",
+        "legacy"
+      ],
+      [
+        "GrafitArt",
+        "pauper"
+      ],
+      [
+        "GrafitArt",
+        "premodern"
+      ],
+      [
+        "GrafitArt",
+        "vintage"
+      ],
+      [
+        "Hillary Wilson",
+        "brawl"
+      ],
+      [
+        "Hillary Wilson",
+        "commander"
+      ],
+      [
+        "Hillary Wilson",
+        "duel"
+      ],
+      [
+        "Hillary Wilson",
+        "future"
+      ],
+      [
+        "Hillary Wilson",
+        "gladiator"
+      ],
+      [
+        "Hillary Wilson",
+        "historic"
+      ],
+      [
+        "Hillary Wilson",
+        "legacy"
+      ],
+      [
+        "Hillary Wilson",
+        "modern"
+      ],
+      [
+        "Hillary Wilson",
+        "pauper"
+      ],
+      [
+        "Hillary Wilson",
+        "penny"
+      ],
+      [
+        "Hillary Wilson",
+        "pioneer"
+      ],
+      [
+        "Hillary Wilson",
+        "standard"
+      ],
+      [
+        "Hillary Wilson",
+        "vintage"
+      ],
+      [
+        "Illustranesia",
+        "commander"
+      ],
+      [
+        "Illustranesia",
+        "duel"
+      ],
+      [
+        "Illustranesia",
+        "legacy"
+      ],
+      [
+        "Illustranesia",
+        "premodern"
+      ],
+      [
+        "Illustranesia",
+        "vintage"
+      ],
+      [
+        "Ivan Shavrin",
+        "commander"
+      ],
+      [
+        "Ivan Shavrin",
+        "duel"
+      ],
+      [
+        "Ivan Shavrin",
+        "legacy"
+      ],
+      [
+        "Ivan Shavrin",
+        "premodern"
+      ],
+      [
+        "Ivan Shavrin",
+        "vintage"
+      ],
+      [
+        "JOZ",
+        "brawl"
+      ],
+      [
+        "JOZ",
+        "commander"
+      ],
+      [
+        "JOZ",
+        "duel"
+      ],
+      [
+        "JOZ",
+        "future"
+      ],
+      [
+        "JOZ",
+        "gladiator"
+      ],
+      [
+        "JOZ",
+        "historic"
+      ],
+      [
+        "JOZ",
+        "legacy"
+      ],
+      [
+        "JOZ",
+        "modern"
+      ],
+      [
+        "JOZ",
+        "penny"
+      ],
+      [
+        "JOZ",
+        "pioneer"
+      ],
+      [
+        "JOZ",
+        "standard"
+      ],
+      [
+        "JOZ",
+        "vintage"
+      ],
+      [
+        "Jacques Bredy",
+        "commander"
+      ],
+      [
+        "Jacques Bredy",
+        "duel"
+      ],
+      [
+        "Jacques Bredy",
+        "legacy"
+      ],
+      [
+        "Jacques Bredy",
+        "penny"
+      ],
+      [
+        "Jacques Bredy",
+        "premodern"
+      ],
+      [
+        "Jacques Bredy",
+        "vintage"
+      ],
+      [
+        "Jaime A. Zuverza",
+        "commander"
+      ],
+      [
+        "Jaime A. Zuverza",
+        "duel"
+      ],
+      [
+        "Jaime A. Zuverza",
+        "legacy"
+      ],
+      [
+        "Jaime A. Zuverza",
+        "modern"
+      ],
+      [
+        "Jaime A. Zuverza",
+        "pauper"
+      ],
+      [
+        "Jaime A. Zuverza",
+        "vintage"
+      ],
+      [
+        "James Ernest",
+        "commander"
+      ],
+      [
+        "James Ernest",
+        "duel"
+      ],
+      [
+        "James Ernest",
+        "legacy"
+      ],
+      [
+        "James Ernest",
+        "premodern"
+      ],
+      [
+        "James Ernest",
+        "vintage"
+      ],
+      [
+        "Jen Bartel",
+        "commander"
+      ],
+      [
+        "Jen Bartel",
+        "duel"
+      ],
+      [
+        "Jen Bartel",
+        "legacy"
+      ],
+      [
+        "Jen Bartel",
+        "modern"
+      ],
+      [
+        "Jen Bartel",
+        "vintage"
+      ],
+      [
+        "Jen Page",
+        "commander"
+      ],
+      [
+        "Jen Page",
+        "duel"
+      ],
+      [
+        "Jen Page",
+        "legacy"
+      ],
+      [
+        "Jen Page",
+        "modern"
+      ],
+      [
+        "Jen Page",
+        "penny"
+      ],
+      [
+        "Jen Page",
+        "vintage"
+      ],
+      [
+        "Jeremy Jarvis \u0026 Wayne Reynolds",
+        "commander"
+      ],
+      [
+        "Jeremy Jarvis \u0026 Wayne Reynolds",
+        "duel"
+      ],
+      [
+        "Jeremy Jarvis \u0026 Wayne Reynolds",
+        "legacy"
+      ],
+      [
+        "Jeremy Jarvis \u0026 Wayne Reynolds",
+        "modern"
+      ],
+      [
+        "Jeremy Jarvis \u0026 Wayne Reynolds",
+        "pauper"
+      ],
+      [
+        "Jeremy Jarvis \u0026 Wayne Reynolds",
+        "penny"
+      ],
+      [
+        "Jeremy Jarvis \u0026 Wayne Reynolds",
+        "vintage"
+      ],
+      [
+        "Jinho Bae",
+        "brawl"
+      ],
+      [
+        "Jinho Bae",
+        "commander"
+      ],
+      [
+        "Jinho Bae",
+        "duel"
+      ],
+      [
+        "Jinho Bae",
+        "future"
+      ],
+      [
+        "Jinho Bae",
+        "gladiator"
+      ],
+      [
+        "Jinho Bae",
+        "historic"
+      ],
+      [
+        "Jinho Bae",
+        "legacy"
+      ],
+      [
+        "Jinho Bae",
+        "modern"
+      ],
+      [
+        "Jinho Bae",
+        "pioneer"
+      ],
+      [
+        "Jinho Bae",
+        "standard"
+      ],
+      [
+        "Jinho Bae",
+        "vintage"
+      ],
+      [
+        "Joy Ang",
+        "commander"
+      ],
+      [
+        "Joy Ang",
+        "duel"
+      ],
+      [
+        "Joy Ang",
+        "legacy"
+      ],
+      [
+        "Joy Ang",
+        "premodern"
+      ],
+      [
+        "Joy Ang",
+        "vintage"
+      ],
+      [
+        "JungShan",
+        "commander"
+      ],
+      [
+        "JungShan",
+        "duel"
+      ],
+      [
+        "JungShan",
+        "legacy"
+      ],
+      [
+        "JungShan",
+        "modern"
+      ],
+      [
+        "JungShan",
+        "penny"
+      ],
+      [
+        "JungShan",
+        "vintage"
+      ],
+      [
+        "Kisung Koh",
+        "commander"
+      ],
+      [
+        "Kisung Koh",
+        "duel"
+      ],
+      [
+        "Kisung Koh",
+        "gladiator"
+      ],
+      [
+        "Kisung Koh",
+        "historic"
+      ],
+      [
+        "Kisung Koh",
+        "legacy"
+      ],
+      [
+        "Kisung Koh",
+        "modern"
+      ],
+      [
+        "Kisung Koh",
+        "pauper"
+      ],
+      [
+        "Kisung Koh",
+        "pioneer"
+      ],
+      [
+        "Kisung Koh",
+        "vintage"
+      ],
+      [
+        "Kotakan",
+        "brawl"
+      ],
+      [
+        "Kotakan",
+        "commander"
+      ],
+      [
+        "Kotakan",
+        "duel"
+      ],
+      [
+        "Kotakan",
+        "future"
+      ],
+      [
+        "Kotakan",
+        "gladiator"
+      ],
+      [
+        "Kotakan",
+        "historic"
+      ],
+      [
+        "Kotakan",
+        "legacy"
+      ],
+      [
+        "Kotakan",
+        "modern"
+      ],
+      [
+        "Kotakan",
+        "penny"
+      ],
+      [
+        "Kotakan",
+        "pioneer"
+      ],
+      [
+        "Kotakan",
+        "standard"
+      ],
+      [
+        "Kotakan",
+        "vintage"
+      ],
+      [
+        "Kristina Collantes",
+        "commander"
+      ],
+      [
+        "Kristina Collantes",
+        "duel"
+      ],
+      [
+        "Kristina Collantes",
+        "legacy"
+      ],
+      [
+        "Kristina Collantes",
+        "modern"
+      ],
+      [
+        "Kristina Collantes",
+        "pauper"
+      ],
+      [
+        "Kristina Collantes",
+        "vintage"
+      ],
+      [
+        "Kunio Hagio",
+        "commander"
+      ],
+      [
+        "Kunio Hagio",
+        "duel"
+      ],
+      [
+        "Kunio Hagio",
+        "legacy"
+      ],
+      [
+        "Kunio Hagio",
+        "penny"
+      ],
+      [
+        "Kunio Hagio",
+        "premodern"
+      ],
+      [
+        "Kunio Hagio",
+        "vintage"
+      ],
+      [
+        "Lauren YS",
+        "commander"
+      ],
+      [
+        "Lauren YS",
+        "duel"
+      ],
+      [
+        "Lauren YS",
+        "legacy"
+      ],
+      [
+        "Lauren YS",
+        "modern"
+      ],
+      [
+        "Lauren YS",
+        "pauper"
+      ],
+      [
+        "Lauren YS",
+        "vintage"
+      ],
+      [
+        "Liz Danforth \u0026 Douglas Shuler",
+        "commander"
+      ],
+      [
+        "Liz Danforth \u0026 Douglas Shuler",
+        "duel"
+      ],
+      [
+        "Liz Danforth \u0026 Douglas Shuler",
+        "legacy"
+      ],
+      [
+        "Liz Danforth \u0026 Douglas Shuler",
+        "premodern"
+      ],
+      [
+        "Liz Danforth \u0026 Douglas Shuler",
+        "vintage"
+      ],
+      [
+        "Lorenzo Lanfranconi",
+        "brawl"
+      ],
+      [
+        "Lorenzo Lanfranconi",
+        "commander"
+      ],
+      [
+        "Lorenzo Lanfranconi",
+        "duel"
+      ],
+      [
+        "Lorenzo Lanfranconi",
+        "future"
+      ],
+      [
+        "Lorenzo Lanfranconi",
+        "gladiator"
+      ],
+      [
+        "Lorenzo Lanfranconi",
+        "historic"
+      ],
+      [
+        "Lorenzo Lanfranconi",
+        "legacy"
+      ],
+      [
+        "Lorenzo Lanfranconi",
+        "modern"
+      ],
+      [
+        "Lorenzo Lanfranconi",
+        "penny"
+      ],
+      [
+        "Lorenzo Lanfranconi",
+        "pioneer"
+      ],
+      [
+        "Lorenzo Lanfranconi",
+        "standard"
+      ],
+      [
+        "Lorenzo Lanfranconi",
+        "vintage"
+      ],
+      [
+        "Lou Harrison",
+        "commander"
+      ],
+      [
+        "Lou Harrison",
+        "duel"
+      ],
+      [
+        "Lou Harrison",
+        "legacy"
+      ],
+      [
+        "Lou Harrison",
+        "premodern"
+      ],
+      [
+        "Lou Harrison",
+        "vintage"
+      ],
+      [
+        "Mab Graves",
+        "commander"
+      ],
+      [
+        "Mab Graves",
+        "duel"
+      ],
+      [
+        "Mab Graves",
+        "gladiator"
+      ],
+      [
+        "Mab Graves",
+        "historic"
+      ],
+      [
+        "Mab Graves",
+        "legacy"
+      ],
+      [
+        "Mab Graves",
+        "modern"
+      ],
+      [
+        "Mab Graves",
+        "penny"
+      ],
+      [
+        "Mab Graves",
+        "pioneer"
+      ],
+      [
+        "Mab Graves",
+        "vintage"
+      ],
+      [
+        "Maddie Julyk",
+        "brawl"
+      ],
+      [
+        "Maddie Julyk",
+        "commander"
+      ],
+      [
+        "Maddie Julyk",
+        "duel"
+      ],
+      [
+        "Maddie Julyk",
+        "future"
+      ],
+      [
+        "Maddie Julyk",
+        "gladiator"
+      ],
+      [
+        "Maddie Julyk",
+        "historic"
+      ],
+      [
+        "Maddie Julyk",
+        "legacy"
+      ],
+      [
+        "Maddie Julyk",
+        "modern"
+      ],
+      [
+        "Maddie Julyk",
+        "penny"
+      ],
+      [
+        "Maddie Julyk",
+        "pioneer"
+      ],
+      [
+        "Maddie Julyk",
+        "standard"
+      ],
+      [
+        "Maddie Julyk",
+        "vintage"
+      ],
+      [
+        "Maria Abagnale",
+        "commander"
+      ],
+      [
+        "Maria Abagnale",
+        "duel"
+      ],
+      [
+        "Maria Abagnale",
+        "legacy"
+      ],
+      [
+        "Maria Abagnale",
+        "modern"
+      ],
+      [
+        "Maria Abagnale",
+        "penny"
+      ],
+      [
+        "Maria Abagnale",
+        "vintage"
+      ],
+      [
+        "Maria Poliakova",
+        "commander"
+      ],
+      [
+        "Maria Poliakova",
+        "duel"
+      ],
+      [
+        "Maria Poliakova",
+        "legacy"
+      ],
+      [
+        "Maria Poliakova",
+        "modern"
+      ],
+      [
+        "Maria Poliakova",
+        "pauper"
+      ],
+      [
+        "Maria Poliakova",
+        "vintage"
+      ],
+      [
+        "Michele Parisi",
+        "brawl"
+      ],
+      [
+        "Michele Parisi",
+        "commander"
+      ],
+      [
+        "Michele Parisi",
+        "duel"
+      ],
+      [
+        "Michele Parisi",
+        "future"
+      ],
+      [
+        "Michele Parisi",
+        "gladiator"
+      ],
+      [
+        "Michele Parisi",
+        "historic"
+      ],
+      [
+        "Michele Parisi",
+        "legacy"
+      ],
+      [
+        "Michele Parisi",
+        "modern"
+      ],
+      [
+        "Michele Parisi",
+        "pauper"
+      ],
+      [
+        "Michele Parisi",
+        "penny"
+      ],
+      [
+        "Michele Parisi",
+        "pioneer"
+      ],
+      [
+        "Michele Parisi",
+        "standard"
+      ],
+      [
+        "Michele Parisi",
+        "vintage"
+      ],
+      [
+        "Omaha Pérez",
+        "commander"
+      ],
+      [
+        "Omaha Pérez",
+        "duel"
+      ],
+      [
+        "Omaha Pérez",
+        "legacy"
+      ],
+      [
+        "Omaha Pérez",
+        "pauper"
+      ],
+      [
+        "Omaha Pérez",
+        "premodern"
+      ],
+      [
+        "Omaha Pérez",
+        "vintage"
+      ],
+      [
+        "Paolo Puggioni",
+        "commander"
+      ],
+      [
+        "Paolo Puggioni",
+        "legacy"
+      ],
+      [
+        "Paolo Puggioni",
+        "vintage"
+      ],
+      [
+        "Paul Chadwick",
+        "commander"
+      ],
+      [
+        "Paul Chadwick",
+        "duel"
+      ],
+      [
+        "Paul Chadwick",
+        "legacy"
+      ],
+      [
+        "Paul Chadwick",
+        "modern"
+      ],
+      [
+        "Paul Chadwick",
+        "penny"
+      ],
+      [
+        "Paul Chadwick",
+        "vintage"
+      ],
+      [
+        "Poison Project",
+        "brawl"
+      ],
+      [
+        "Poison Project",
+        "commander"
+      ],
+      [
+        "Poison Project",
+        "duel"
+      ],
+      [
+        "Poison Project",
+        "future"
+      ],
+      [
+        "Poison Project",
+        "gladiator"
+      ],
+      [
+        "Poison Project",
+        "historic"
+      ],
+      [
+        "Poison Project",
+        "legacy"
+      ],
+      [
+        "Poison Project",
+        "modern"
+      ],
+      [
+        "Poison Project",
+        "penny"
+      ],
+      [
+        "Poison Project",
+        "pioneer"
+      ],
+      [
+        "Poison Project",
+        "standard"
+      ],
+      [
+        "Poison Project",
+        "vintage"
+      ],
+      [
+        "Rafal Wechterowicz",
+        "commander"
+      ],
+      [
+        "Rafal Wechterowicz",
+        "duel"
+      ],
+      [
+        "Rafal Wechterowicz",
+        "legacy"
+      ],
+      [
+        "Rafal Wechterowicz",
+        "modern"
+      ],
+      [
+        "Rafal Wechterowicz",
+        "pioneer"
+      ],
+      [
+        "Rafal Wechterowicz",
+        "vintage"
+      ],
+      [
+        "Rian Gonzales",
+        "commander"
+      ],
+      [
+        "Rian Gonzales",
+        "duel"
+      ],
+      [
+        "Rian Gonzales",
+        "legacy"
+      ],
+      [
+        "Rian Gonzales",
+        "modern"
+      ],
+      [
+        "Rian Gonzales",
+        "vintage"
+      ],
+      [
+        "Rick O'Brien",
+        "commander"
+      ],
+      [
+        "Rick O'Brien",
+        "duel"
+      ],
+      [
+        "Rick O'Brien",
+        "legacy"
+      ],
+      [
+        "Rick O'Brien",
+        "pauper"
+      ],
+      [
+        "Rick O'Brien",
+        "premodern"
+      ],
+      [
+        "Rick O'Brien",
+        "vintage"
+      ],
+      [
+        "Ron Spears \u0026 Wayne Reynolds",
+        "commander"
+      ],
+      [
+        "Ron Spears \u0026 Wayne Reynolds",
+        "duel"
+      ],
+      [
+        "Ron Spears \u0026 Wayne Reynolds",
+        "legacy"
+      ],
+      [
+        "Ron Spears \u0026 Wayne Reynolds",
+        "modern"
+      ],
+      [
+        "Ron Spears \u0026 Wayne Reynolds",
+        "penny"
+      ],
+      [
+        "Ron Spears \u0026 Wayne Reynolds",
+        "vintage"
+      ],
+      [
+        "Ruxing Gao",
+        "commander"
+      ],
+      [
+        "Ruxing Gao",
+        "duel"
+      ],
+      [
+        "Ruxing Gao",
+        "legacy"
+      ],
+      [
+        "Ruxing Gao",
+        "premodern"
+      ],
+      [
+        "Ruxing Gao",
+        "vintage"
+      ],
+      [
+        "Scott Buoncristiano",
+        "commander"
+      ],
+      [
+        "Scott Buoncristiano",
+        "duel"
+      ],
+      [
+        "Scott Buoncristiano",
+        "gladiator"
+      ],
+      [
+        "Scott Buoncristiano",
+        "historic"
+      ],
+      [
+        "Scott Buoncristiano",
+        "legacy"
+      ],
+      [
+        "Scott Buoncristiano",
+        "modern"
+      ],
+      [
+        "Scott Buoncristiano",
+        "pioneer"
+      ],
+      [
+        "Scott Buoncristiano",
+        "vintage"
+      ],
+      [
+        "Sean McConnell",
+        "commander"
+      ],
+      [
+        "Sean McConnell",
+        "duel"
+      ],
+      [
+        "Sean McConnell",
+        "legacy"
+      ],
+      [
+        "Sean McConnell",
+        "pauper"
+      ],
+      [
+        "Sean McConnell",
+        "premodern"
+      ],
+      [
+        "Sean McConnell",
+        "vintage"
+      ],
+      [
+        "Theodoru",
+        "commander"
+      ],
+      [
+        "Theodoru",
+        "duel"
+      ],
+      [
+        "Theodoru",
+        "legacy"
+      ],
+      [
+        "Theodoru",
+        "modern"
+      ],
+      [
+        "Theodoru",
+        "pauper"
+      ],
+      [
+        "Theodoru",
+        "penny"
+      ],
+      [
+        "Theodoru",
+        "pioneer"
+      ],
+      [
+        "Theodoru",
+        "vintage"
+      ],
+      [
+        "Toma Feizo Gas",
+        "commander"
+      ],
+      [
+        "Toma Feizo Gas",
+        "duel"
+      ],
+      [
+        "Toma Feizo Gas",
+        "legacy"
+      ],
+      [
+        "Toma Feizo Gas",
+        "vintage"
+      ],
+      [
+        "Toraji",
+        "commander"
+      ],
+      [
+        "Toraji",
+        "duel"
+      ],
+      [
+        "Toraji",
+        "gladiator"
+      ],
+      [
+        "Toraji",
+        "historic"
+      ],
+      [
+        "Toraji",
+        "legacy"
+      ],
+      [
+        "Toraji",
+        "modern"
+      ],
+      [
+        "Toraji",
+        "pauper"
+      ],
+      [
+        "Toraji",
+        "penny"
+      ],
+      [
+        "Toraji",
+        "pioneer"
+      ],
+      [
+        "Toraji",
+        "vintage"
+      ],
+      [
+        "Valera Lutfullina",
+        "commander"
+      ],
+      [
+        "Valera Lutfullina",
+        "duel"
+      ],
+      [
+        "Valera Lutfullina",
+        "gladiator"
+      ],
+      [
+        "Valera Lutfullina",
+        "historic"
+      ],
+      [
+        "Valera Lutfullina",
+        "legacy"
+      ],
+      [
+        "Valera Lutfullina",
+        "modern"
+      ],
+      [
+        "Valera Lutfullina",
+        "pauper"
+      ],
+      [
+        "Valera Lutfullina",
+        "penny"
+      ],
+      [
+        "Valera Lutfullina",
+        "pioneer"
+      ],
+      [
+        "Valera Lutfullina",
+        "vintage"
+      ],
+      [
+        "Vance Kelly",
+        "commander"
+      ],
+      [
+        "Vance Kelly",
+        "duel"
+      ],
+      [
+        "Vance Kelly",
+        "legacy"
+      ],
+      [
+        "Vance Kelly",
+        "modern"
+      ],
+      [
+        "Vance Kelly",
+        "pioneer"
+      ],
+      [
+        "Vance Kelly",
+        "vintage"
+      ],
+      [
+        "Wesley Burt \u0026 コーヘー",
+        "commander"
+      ],
+      [
+        "Wesley Burt \u0026 コーヘー",
+        "duel"
+      ],
+      [
+        "Wesley Burt \u0026 コーヘー",
+        "gladiator"
+      ],
+      [
+        "Wesley Burt \u0026 コーヘー",
+        "historic"
+      ],
+      [
+        "Wesley Burt \u0026 コーヘー",
+        "legacy"
+      ],
+      [
+        "Wesley Burt \u0026 コーヘー",
+        "modern"
+      ],
+      [
+        "Wesley Burt \u0026 コーヘー",
+        "pioneer"
+      ],
+      [
+        "Wesley Burt \u0026 コーヘー",
+        "vintage"
+      ],
+      [
+        "Yan Li",
+        "commander"
+      ],
+      [
+        "Yan Li",
+        "duel"
+      ],
+      [
+        "Yan Li",
+        "legacy"
+      ],
+      [
+        "Yan Li",
+        "modern"
+      ],
+      [
+        "Yan Li",
+        "penny"
+      ],
+      [
+        "Yan Li",
+        "pioneer"
+      ],
+      [
+        "Yan Li",
+        "vintage"
+      ],
+      [
+        "Yosuke Ueno",
+        "commander"
+      ],
+      [
+        "Yosuke Ueno",
+        "duel"
+      ],
+      [
+        "Yosuke Ueno",
+        "legacy"
+      ],
+      [
+        "Yosuke Ueno",
+        "pauper"
+      ],
+      [
+        "Yosuke Ueno",
+        "vintage"
+      ],
+      [
+        "Zak Plucinski \u0026 D. Alexander Gregory",
+        "commander"
+      ],
+      [
+        "Zak Plucinski \u0026 D. Alexander Gregory",
+        "duel"
+      ],
+      [
+        "Zak Plucinski \u0026 D. Alexander Gregory",
+        "legacy"
+      ],
+      [
+        "Zak Plucinski \u0026 D. Alexander Gregory",
+        "premodern"
+      ],
+      [
+        "Zak Plucinski \u0026 D. Alexander Gregory",
+        "vintage"
+      ],
+      [
+        "rk post \u0026 Mark Tedin",
+        "commander"
+      ],
+      [
+        "rk post \u0026 Mark Tedin",
+        "duel"
+      ],
+      [
+        "rk post \u0026 Mark Tedin",
+        "legacy"
+      ],
+      [
+        "rk post \u0026 Mark Tedin",
+        "penny"
+      ],
+      [
+        "rk post \u0026 Mark Tedin",
+        "premodern"
+      ],
+      [
+        "rk post \u0026 Mark Tedin",
+        "vintage"
+      ],
+      [
+        "ヨロイコウジ",
+        "brawl"
+      ],
+      [
+        "ヨロイコウジ",
+        "commander"
+      ],
+      [
+        "ヨロイコウジ",
+        "duel"
+      ],
+      [
+        "ヨロイコウジ",
+        "future"
+      ],
+      [
+        "ヨロイコウジ",
+        "gladiator"
+      ],
+      [
+        "ヨロイコウジ",
+        "historic"
+      ],
+      [
+        "ヨロイコウジ",
+        "legacy"
+      ],
+      [
+        "ヨロイコウジ",
+        "modern"
+      ],
+      [
+        "ヨロイコウジ",
+        "pauper"
+      ],
+      [
+        "ヨロイコウジ",
+        "penny"
+      ],
+      [
+        "ヨロイコウジ",
+        "pioneer"
+      ],
+      [
+        "ヨロイコウジ",
+        "standard"
+      ],
+      [
+        "ヨロイコウジ",
+        "vintage"
+      ],
+      [
+        "张艺娜",
+        "commander"
+      ],
+      [
+        "张艺娜",
+        "duel"
+      ],
+      [
+        "张艺娜",
+        "legacy"
+      ],
+      [
+        "张艺娜",
+        "pauper"
+      ],
+      [
+        "张艺娜",
+        "penny"
+      ],
+      [
+        "张艺娜",
+        "premodern"
+      ],
+      [
+        "张艺娜",
+        "vintage"
+      ],
+      [
+        "李尤松",
+        "commander"
+      ],
+      [
+        "李尤松",
+        "duel"
+      ],
+      [
+        "李尤松",
+        "gladiator"
+      ],
+      [
+        "李尤松",
+        "historic"
+      ],
+      [
+        "李尤松",
+        "legacy"
+      ],
+      [
+        "李尤松",
+        "modern"
+      ],
+      [
+        "李尤松",
+        "pauper"
+      ],
+      [
+        "李尤松",
+        "penny"
+      ],
+      [
+        "李尤松",
+        "pioneer"
+      ],
+      [
+        "李尤松",
+        "premodern"
+      ],
+      [
+        "李尤松",
+        "vintage"
+      ],
+      [
+        "李有良",
+        "commander"
+      ],
+      [
+        "李有良",
+        "duel"
+      ],
+      [
+        "李有良",
+        "legacy"
+      ],
+      [
+        "李有良",
+        "premodern"
+      ],
+      [
+        "李有良",
+        "vintage"
+      ],
+      [
+        "杨光恒",
+        "commander"
+      ],
+      [
+        "杨光恒",
+        "duel"
+      ],
+      [
+        "杨光恒",
+        "legacy"
+      ],
+      [
+        "杨光恒",
+        "vintage"
+      ],
+      [
+        "杨钊",
+        "commander"
+      ],
+      [
+        "杨钊",
+        "duel"
+      ],
+      [
+        "杨钊",
+        "legacy"
+      ],
+      [
+        "杨钊",
+        "vintage"
+      ],
+      [
+        "王峰",
+        "commander"
+      ],
+      [
+        "王峰",
+        "duel"
+      ],
+      [
+        "王峰",
+        "legacy"
+      ],
+      [
+        "王峰",
+        "vintage"
+      ],
+      [
+        "羽山晃平",
+        "brawl"
+      ],
+      [
+        "羽山晃平",
+        "commander"
+      ],
+      [
+        "羽山晃平",
+        "duel"
+      ],
+      [
+        "羽山晃平",
+        "future"
+      ],
+      [
+        "羽山晃平",
+        "gladiator"
+      ],
+      [
+        "羽山晃平",
+        "historic"
+      ],
+      [
+        "羽山晃平",
+        "legacy"
+      ],
+      [
+        "羽山晃平",
+        "modern"
+      ],
+      [
+        "羽山晃平",
+        "penny"
+      ],
+      [
+        "羽山晃平",
+        "pioneer"
+      ],
+      [
+        "羽山晃平",
+        "standard"
+      ],
+      [
+        "羽山晃平",
+        "vintage"
+      ]
+    ]
+  },
+  "pred_sql": "WITH artist_counts AS (\n  SELECT artist, COUNT(*) as card_count\n  FROM cards\n  WHERE artist IS NOT NULL\n  GROUP BY artist\n),\nmin_count AS (\n  SELECT MIN(card_count) as min_val\n  FROM artist_counts\n),\nmin_artists AS (\n  SELECT artist\n  FROM artist_counts\n  WHERE card_count = (SELECT min_val FROM min_count)\n)\nSELECT c.artist, l.format\nFROM cards c\nJOIN legalities l ON c.uuid = l.uuid\nWHERE c.artist IN (SELECT artist FROM min_artists)\nORDER BY c.artist, l.format;",
+  "question": "Who is the illustrator that illustrated the least amount of cards? List the format of play of the cards that he/she illustrated.",
+  "thinking": ""
+}

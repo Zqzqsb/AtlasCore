@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "moderate",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "nationality"
+      ],
+      [
+        "Italian"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.nationality FROM drivers AS T1 INNER JOIN results AS T2 ON T2.driverId = T1.driverId ORDER BY T2.fastestLapSpeed DESC LIMIT 1",
+  "id": 880,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "nationality"
+      ],
+      [
+        "Brazilian"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT d.\"nationality\"\nFROM results r\nJOIN drivers d ON r.\"driverId\" = d.\"driverId\"\nWHERE r.\"fastestLapSpeed\" IS NOT NULL\nORDER BY CAST(r.\"fastestLapSpeed\" AS REAL) DESC\nLIMIT 1;",
+  "question": "For the driver who set the fastest lap speed, what is his nationality?",
+  "thinking": ""
+}

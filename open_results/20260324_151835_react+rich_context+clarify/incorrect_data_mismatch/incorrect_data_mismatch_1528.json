@@ -1,0 +1,38 @@
+{
+  "db_id": "debit_card_specializing",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "GasStationID"
+      ],
+      [
+        "4347"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT GasStationID FROM transactions_1k GROUP BY GasStationID ORDER BY SUM(Price) DESC LIMIT 1",
+  "id": 1528,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "GasStationID"
+      ],
+      [
+        "3250"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT GasStationID FROM transactions_1k GROUP BY GasStationID ORDER BY SUM(Price * Amount) DESC LIMIT 1",
+  "question": "Which gas station has the highest amount of revenue?",
+  "thinking": ""
+}

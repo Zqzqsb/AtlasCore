@@ -1,0 +1,56 @@
+{
+  "db_id": "debit_card_specializing",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CustomerID",
+        "Date",
+        "Consumption"
+      ],
+      [
+        "40333",
+        "201201",
+        "4084.9"
+      ],
+      [
+        "7630",
+        "201201",
+        "24953.81"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.CustomerID, T2.Date, T2.Consumption FROM transactions_1k AS T1 INNER JOIN yearmonth AS T2 ON T1.CustomerID = T2.CustomerID WHERE T1.Date = '2012-08-24' AND T1.Price = 124.05 AND T2.Date = '201201'",
+  "id": 1521,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CustomerID",
+        "Date",
+        "Consumption"
+      ],
+      [
+        "7630",
+        "201201",
+        "24953.81"
+      ],
+      [
+        "40333",
+        "201201",
+        "4084.9"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT t.CustomerID, y.Date, y.Consumption \nFROM (SELECT CustomerID FROM transactions_1k WHERE Date = '2012-08-24' AND Price = 124.05) t\nJOIN yearmonth y ON t.CustomerID = y.CustomerID\nWHERE y.Date = '201201'\nORDER BY t.CustomerID",
+  "question": "For the customer who paid 124.05 in 2012/8/24, how much did he/she spend during the January of 2012? And what is the date and expenses exactly?",
+  "thinking": ""
+}

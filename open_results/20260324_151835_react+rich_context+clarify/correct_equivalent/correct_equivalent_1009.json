@@ -1,0 +1,24 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": []
+  },
+  "gt_sql": "SELECT T1.lap FROM pitStops AS T1 INNER JOIN drivers AS T2 on T1.driverId = T2.driverId INNER JOIN races AS T3 on T1.raceId = T3.raceId WHERE T2.forename = 'Lewis' AND T2.surname = 'Hamilton' AND T3.year = 2011 AND T3.name = 'Australian Grand Prix'",
+  "id": 1009,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": []
+  },
+  "pred_sql": "SELECT ps.lap\nFROM pitStops ps\nJOIN drivers d ON ps.driverId = d.driverId\nJOIN races r ON ps.raceId = r.raceId\nWHERE d.forename = 'Lewis' \n  AND d.surname = 'Hamilton'\n  AND r.year = 2011\n  AND r.name = 'Australian Grand Prix';",
+  "question": "During which lap did Lewis Hamilton take a pit stop during the 2011 Australian Grand Prix?",
+  "thinking": ""
+}

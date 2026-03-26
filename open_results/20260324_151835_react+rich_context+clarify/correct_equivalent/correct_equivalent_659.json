@@ -1,0 +1,62 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Title"
+      ],
+      [
+        "What is the meaning of p values and t values in statistical tests?"
+      ],
+      [
+        "How to choose between Pearson and Spearman correlation?"
+      ],
+      [
+        "How do I get the number of rows of a data.frame in R?"
+      ],
+      [
+        "How to interpret and report  eta squared / partial eta squared in statistically significant and non-significant analyses?"
+      ],
+      [
+        "How to interpret F- and p-value in ANOVA?"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT Title FROM posts ORDER BY ViewCount DESC LIMIT 5",
+  "id": 659,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Title"
+      ],
+      [
+        "What is the meaning of p values and t values in statistical tests?"
+      ],
+      [
+        "How to choose between Pearson and Spearman correlation?"
+      ],
+      [
+        "How do I get the number of rows of a data.frame in R?"
+      ],
+      [
+        "How to interpret and report  eta squared / partial eta squared in statistically significant and non-significant analyses?"
+      ],
+      [
+        "How to interpret F- and p-value in ANOVA?"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT TRIM(\"Title\") AS Title FROM posts WHERE \"ViewCount\" IS NOT NULL AND \"Title\" IS NOT NULL ORDER BY \"ViewCount\" DESC LIMIT 5",
+  "question": "What are the titles of the top 5 posts with the highest popularity?",
+  "thinking": ""
+}

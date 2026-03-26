@@ -1,0 +1,38 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(SUM(IIF(T2.Age BETWEEN 13 AND 18, 1, 0)) AS REAL) * 100 / COUNT(T1.Id)"
+      ],
+      [
+        "0.7334963325183375"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT CAST(SUM(IIF(T2.Age BETWEEN 13 AND 18, 1, 0)) AS REAL) * 100 / COUNT(T1.Id) FROM badges AS T1 INNER JOIN users AS T2 ON T1.UserId = T2.Id WHERE T1.`Name` = 'Organizer'",
+  "id": 616,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(SUM(IIF(T2.Age BETWEEN 13 AND 18, 1, 0)) AS REAL) * 100 / COUNT(T1.Id)"
+      ],
+      [
+        "0.7334963325183375"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT CAST(SUM(IIF(T2.Age BETWEEN 13 AND 18, 1, 0)) AS REAL) * 100 / COUNT(T1.Id) \nFROM badges AS T1 \nJOIN users AS T2 ON T1.UserId = T2.Id \nWHERE T1.Name = 'Organizer';",
+  "question": "Among the users who obtained the \"Organizer\" badges, calculate the percentage of users who are teenagers.",
+  "thinking": ""
+}

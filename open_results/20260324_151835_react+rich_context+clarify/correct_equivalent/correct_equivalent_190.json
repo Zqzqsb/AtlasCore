@@ -1,0 +1,38 @@
+{
+  "db_id": "financial",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "account_id"
+      ],
+      [
+        "1743"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T3.account_id FROM client AS T1 INNER JOIN district AS T2 ON T1.district_id = T2.district_id INNER JOIN account AS T3 ON T2.district_id = T3.district_id INNER JOIN disp AS T4 ON T1.client_id = T4.client_id AND T4.account_id = T3.account_id  WHERE T1.gender = 'F' ORDER BY T1.birth_date ASC, T2.A11 ASC LIMIT 1",
+  "id": 190,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "account_id"
+      ],
+      [
+        "1743"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT d.account_id\nFROM client c\nJOIN disp d ON c.client_id = d.client_id\nJOIN district dist ON c.district_id = dist.district_id\nWHERE c.gender = 'F'\n  AND c.birth_date = (SELECT MIN(c2.birth_date) FROM client c2 WHERE c2.gender = 'F')\n  AND dist.A11 = (SELECT MIN(dist2.A11) \n                  FROM client c3 \n                  JOIN district dist2 ON c3.district_id = dist2.district_id \n                  WHERE c3.gender = 'F' \n                    AND c3.birth_date = (SELECT MIN(c4.birth_date) FROM client c4 WHERE c4.gender = 'F'))",
+  "question": "Name the account numbers of female clients who are oldest and have lowest average salary?",
+  "thinking": ""
+}

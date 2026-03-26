@@ -1,0 +1,38 @@
+{
+  "db_id": "student_club",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "state"
+      ],
+      [
+        "New Jersey"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.state FROM member AS T1 INNER JOIN zip_code AS T2 ON T1.zip = T2.zip_code WHERE T1.first_name = 'Sacha' AND T1.last_name = 'Harrison'",
+  "id": 1356,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "state"
+      ],
+      [
+        "New Jersey"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT z.state \nFROM member m\nJOIN zip_code z ON m.zip = z.zip_code\nWHERE m.first_name = 'Sacha' AND m.last_name = 'Harrison'",
+  "question": "Where is the hometown state for \"Sacha Harrison\"?",
+  "thinking": ""
+}

@@ -1,0 +1,68 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "language"
+      ],
+      [
+        "German"
+      ],
+      [
+        "Spanish"
+      ],
+      [
+        "French"
+      ],
+      [
+        "Italian"
+      ],
+      [
+        "Japanese"
+      ],
+      [
+        "Portuguese (Brazil)"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.language FROM cards AS T1 INNER JOIN foreign_data AS T2 ON T1.uuid = T2.uuid WHERE T1.name = 'Annul' AND T1.number = 29",
+  "id": 351,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "language"
+      ],
+      [
+        "German"
+      ],
+      [
+        "Spanish"
+      ],
+      [
+        "French"
+      ],
+      [
+        "Italian"
+      ],
+      [
+        "Japanese"
+      ],
+      [
+        "Portuguese (Brazil)"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT fd.language\nFROM cards c\nJOIN foreign_data fd ON c.uuid = fd.uuid\nWHERE LOWER(c.name) = 'annul' AND c.number = '29';",
+  "question": "State the alternative languages available for card named Annul numbered 29.",
+  "thinking": ""
+}

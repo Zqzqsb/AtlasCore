@@ -1,0 +1,38 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(UserId)"
+      ],
+      [
+        "2875"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(UserId) FROM ( SELECT UserId, COUNT(Name) AS num FROM badges GROUP BY UserId ) T WHERE T.num \u003e 5",
+  "id": 593,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(UserId)"
+      ],
+      [
+        "2875"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(UserId) FROM (SELECT UserId FROM badges GROUP BY UserId HAVING COUNT(Name) \u003e 5)",
+  "question": "How many users are awarded with more than 5 badges?",
+  "thinking": ""
+}

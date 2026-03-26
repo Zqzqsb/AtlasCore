@@ -1,0 +1,53 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=1, pred=6",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name"
+      ],
+      [
+        "Ancestor's Chosen"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT name FROM cards ORDER BY faceConvertedManaCost LIMIT 1",
+  "id": 343,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name"
+      ],
+      [
+        "Rags // Riches"
+      ],
+      [
+        "Elbrus, the Binding Blade // Withengar Unbound"
+      ],
+      [
+        "Realm-Cloaked Giant // Cast Off"
+      ],
+      [
+        "Reaper of Night // Harvest Fear"
+      ],
+      [
+        "Beanstalk Giant // Fertile Footsteps"
+      ],
+      [
+        "Flaxen Intruder // Welcome Home"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT name FROM cards WHERE faceConvertedManaCost = (SELECT MAX(faceConvertedManaCost) FROM cards WHERE faceConvertedManaCost IS NOT NULL)",
+  "question": "List the card names with value that cost more converted mana for the face.",
+  "thinking": ""
+}

@@ -1,0 +1,80 @@
+{
+  "db_id": "student_club",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "event_name"
+      ],
+      [
+        "November Meeting"
+      ],
+      [
+        "November Speaker"
+      ],
+      [
+        "October Meeting"
+      ],
+      [
+        "October Speaker"
+      ],
+      [
+        "Registration"
+      ],
+      [
+        "September Meeting"
+      ],
+      [
+        "September Speaker"
+      ],
+      [
+        "Yearly Kickoff"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.event_name FROM event AS T1 INNER JOIN attendance AS T2 ON T1.event_id = T2.link_to_event GROUP BY T1.event_id HAVING COUNT(T2.link_to_event) \u003e 20 EXCEPT SELECT T1.event_name FROM event AS T1  WHERE T1.type = 'Fundraiser'",
+  "id": 1324,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "event_name"
+      ],
+      [
+        "October Speaker"
+      ],
+      [
+        "September Speaker"
+      ],
+      [
+        "Registration"
+      ],
+      [
+        "October Meeting"
+      ],
+      [
+        "November Speaker"
+      ],
+      [
+        "November Meeting"
+      ],
+      [
+        "Yearly Kickoff"
+      ],
+      [
+        "September Meeting"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT e.event_name\nFROM event e\nJOIN attendance a ON e.event_id = a.link_to_event\nWHERE e.type != 'Fundraiser'\nGROUP BY e.event_id, e.event_name\nHAVING COUNT(*) \u003e 20;",
+  "question": "List all the names of events that had an attendance of over 20 students but were not fundraisers.",
+  "thinking": ""
+}

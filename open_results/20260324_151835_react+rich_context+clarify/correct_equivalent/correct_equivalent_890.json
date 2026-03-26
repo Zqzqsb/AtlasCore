@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "date"
+      ],
+      [
+        "1986-07-13 00:00:00 +0000 UTC"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.date FROM circuits AS T1 INNER JOIN races AS T2 ON T2.circuitID = T1.circuitId WHERE T1.name = 'Brands Hatch' AND T2.name = 'British Grand Prix' ORDER BY T2.year DESC LIMIT 1",
+  "id": 890,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "date"
+      ],
+      [
+        "1986-07-13 00:00:00 +0000 UTC"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT r.date FROM circuits c JOIN races r ON c.circuitId = r.circuitId WHERE c.name = 'Brands Hatch' AND r.name = 'British Grand Prix' ORDER BY r.year DESC LIMIT 1",
+  "question": "When was the last f1 season whereby Brands Hatch hosted the British Grand Prix?",
+  "thinking": ""
+}

@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T2.circuitId)"
+      ],
+      [
+        "95"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T2.circuitId) FROM circuits AS T1 INNER JOIN races AS T2 ON T2.circuitID = T1.circuitId WHERE T1.country = 'Italy'",
+  "id": 924,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T2.circuitId)"
+      ],
+      [
+        "95"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(T2.circuitId) FROM races AS T1 INNER JOIN circuits AS T2 ON T1.circuitId = T2.circuitId WHERE T2.country = 'Italy';",
+  "question": "How many Formula_1 races took place on the circuits in Italy?",
+  "thinking": ""
+}

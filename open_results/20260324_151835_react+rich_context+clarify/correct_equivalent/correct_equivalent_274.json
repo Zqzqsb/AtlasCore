@@ -1,0 +1,38 @@
+{
+  "db_id": "toxicology",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(COUNT( CASE WHEN T1.element = 'cl' THEN T1.element ELSE NULL END) AS REAL) * 100 / COUNT(T1.element)"
+      ],
+      [
+        "3.1419284940411703"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT CAST(COUNT( CASE WHEN T1.element = 'cl' THEN T1.element ELSE NULL END) AS REAL) * 100 / COUNT(T1.element) FROM atom AS T1 INNER JOIN molecule AS T2 ON T1.molecule_id = T2.molecule_id WHERE T2.label = '+'",
+  "id": 274,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "percentage"
+      ],
+      [
+        "3.1419284940411703"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT CAST(SUM(CASE WHEN a.element = 'cl' THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(*) AS percentage\nFROM atom a\nJOIN molecule m ON a.molecule_id = m.molecule_id\nWHERE m.label = '+'",
+  "question": "What is the percentage of element chlorine in carcinogenic molecules?",
+  "thinking": ""
+}

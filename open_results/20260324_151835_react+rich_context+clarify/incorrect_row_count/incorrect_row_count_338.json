@@ -1,0 +1,178 @@
+{
+  "db_id": "toxicology",
+  "difficulty": "challenging",
+  "error_reason": "row count mismatch: gold=6, pred=30",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "element",
+        "bond_type"
+      ],
+      [
+        "c",
+        "-"
+      ],
+      [
+        "c",
+        "="
+      ],
+      [
+        "cl",
+        "-"
+      ],
+      [
+        "cl",
+        "="
+      ],
+      [
+        "h",
+        "-"
+      ],
+      [
+        "h",
+        "="
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T1.element, T2.bond_type FROM atom AS T1 INNER JOIN bond AS T2 ON T1.molecule_id = T2.molecule_id WHERE T1.molecule_id = 'TR002'",
+  "id": 338,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "element",
+        "bond_type"
+      ],
+      [
+        "c",
+        "-"
+      ],
+      [
+        "c",
+        "-"
+      ],
+      [
+        "c",
+        "-"
+      ],
+      [
+        "c",
+        "-"
+      ],
+      [
+        "c",
+        "="
+      ],
+      [
+        "c",
+        "-"
+      ],
+      [
+        "c",
+        "-"
+      ],
+      [
+        "c",
+        "-"
+      ],
+      [
+        "c",
+        "-"
+      ],
+      [
+        "c",
+        "="
+      ],
+      [
+        "cl",
+        "-"
+      ],
+      [
+        "cl",
+        "-"
+      ],
+      [
+        "cl",
+        "-"
+      ],
+      [
+        "cl",
+        "-"
+      ],
+      [
+        "cl",
+        "="
+      ],
+      [
+        "cl",
+        "-"
+      ],
+      [
+        "cl",
+        "-"
+      ],
+      [
+        "cl",
+        "-"
+      ],
+      [
+        "cl",
+        "-"
+      ],
+      [
+        "cl",
+        "="
+      ],
+      [
+        "cl",
+        "-"
+      ],
+      [
+        "cl",
+        "-"
+      ],
+      [
+        "cl",
+        "-"
+      ],
+      [
+        "cl",
+        "-"
+      ],
+      [
+        "cl",
+        "="
+      ],
+      [
+        "h",
+        "-"
+      ],
+      [
+        "h",
+        "-"
+      ],
+      [
+        "h",
+        "-"
+      ],
+      [
+        "h",
+        "-"
+      ],
+      [
+        "h",
+        "="
+      ]
+    ]
+  },
+  "pred_sql": "SELECT a.element, b.bond_type FROM atom a JOIN bond b ON a.molecule_id = b.molecule_id WHERE a.molecule_id = 'TR002';",
+  "question": "List the element and bond type included in the molecule with molecule ID of TR002.",
+  "thinking": ""
+}

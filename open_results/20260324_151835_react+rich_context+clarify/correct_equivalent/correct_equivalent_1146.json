@@ -1,0 +1,56 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name"
+      ],
+      [
+        "Spain LIGA BBVA"
+      ],
+      [
+        "Italy Serie A"
+      ],
+      [
+        "France Ligue 1"
+      ],
+      [
+        "England Premier League"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT t1.name FROM League AS t1 INNER JOIN Match AS t2 ON t1.id = t2.league_id WHERE t2.season = '2015/2016' GROUP BY t1.name ORDER BY COUNT(t2.id) DESC LIMIT 4",
+  "id": 1146,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name"
+      ],
+      [
+        "Spain LIGA BBVA"
+      ],
+      [
+        "Italy Serie A"
+      ],
+      [
+        "France Ligue 1"
+      ],
+      [
+        "England Premier League"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT League.name\nFROM Match\nJOIN League ON Match.league_id = League.id\nWHERE Match.season = '2015/2016'\nGROUP BY League.name\nORDER BY COUNT(Match.id) DESC\nLIMIT 4",
+  "question": "Which top 4 leagues had the most games in the 2015-2016 season?",
+  "thinking": ""
+}

@@ -1,0 +1,38 @@
+{
+  "db_id": "financial",
+  "difficulty": "moderate",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.account_id)"
+      ],
+      [
+        "1556"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T1.account_id) FROM trans AS T1 INNER JOIN account AS T2 ON T1.account_id = T2.account_id INNER JOIN disp AS T4 ON T2.account_id = T4.account_id INNER JOIN client AS T3 ON T4.client_id = T3.client_id WHERE STRFTIME('%Y', T3.birth_date) BETWEEN '1974' AND '1976' AND T3.gender = 'M' AND T1.amount \u003e 4000 AND T1.k_symbol = 'SIPO'",
+  "id": 183,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.account_id)"
+      ],
+      [
+        "44"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(T1.account_id) \nFROM client AS T2 \nJOIN disp AS T3 ON T2.client_id = T3.client_id \nJOIN \"order\" AS T1 ON T3.account_id = T1.account_id \nWHERE T2.gender = 'M' \nAND STRFTIME('%Y', T2.birth_date) BETWEEN '1974' AND '1976' \nAND T1.k_symbol = 'SIPO' \nAND T1.amount \u003e 4000",
+  "question": "How many male customers who were born between 1974 and 1976 have made a payment on their home in excess of $4000?",
+  "thinking": ""
+}

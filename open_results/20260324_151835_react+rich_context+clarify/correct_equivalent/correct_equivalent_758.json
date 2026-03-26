@@ -1,0 +1,38 @@
+{
+  "db_id": "superhero",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "race"
+      ],
+      [
+        "Xenomorph XX121"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.race FROM superhero AS T1 INNER JOIN race AS T2 ON T1.race_id = T2.id WHERE T1.weight_kg = 169",
+  "id": 758,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "race"
+      ],
+      [
+        "Xenomorph XX121"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT r.race\nFROM superhero s\nJOIN race r ON s.race_id = r.id\nWHERE s.weight_kg = 169",
+  "question": "Identify the race of the superhero who weighed 169 kg.",
+  "thinking": ""
+}

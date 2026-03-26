@@ -1,0 +1,38 @@
+{
+  "db_id": "toxicology",
+  "difficulty": "simple",
+  "error_reason": "column name mismatch and positional data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(DISTINCT T1.molecule_id)"
+      ],
+      [
+        "341"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(DISTINCT T1.molecule_id) FROM atom AS T1 INNER JOIN bond AS T2 ON T1.molecule_id = T2.molecule_id WHERE T1.element \u003c\u003e 's' AND T2.bond_type \u003c\u003e '='",
+  "id": 312,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(DISTINCT m.molecule_id)"
+      ],
+      [
+        "50"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(DISTINCT m.molecule_id)\nFROM molecule m\nWHERE m.molecule_id NOT IN (\n    SELECT a.molecule_id\n    FROM atom a\n    WHERE a.element = 's'\n)\nAND m.molecule_id NOT IN (\n    SELECT b.molecule_id\n    FROM bond b\n    WHERE b.bond_type = '='\n);",
+  "question": "How many molecules without sulphur element is not having double bond?",
+  "thinking": ""
+}

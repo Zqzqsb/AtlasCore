@@ -1,0 +1,38 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Name"
+      ],
+      [
+        "Quorum"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.Name FROM badges AS T1 INNER JOIN users AS T2 ON T1.UserId = T2.Id WHERE T2.DisplayName = 'Emmett' ORDER BY T1.Date DESC LIMIT 1",
+  "id": 691,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Name"
+      ],
+      [
+        "Quorum"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT b.Name\nFROM badges b\nJOIN users u ON b.UserId = u.Id\nWHERE TRIM(u.DisplayName) = 'Emmett'\nORDER BY b.Date DESC\nLIMIT 1;",
+  "question": "Identify the latest badge awarded to the user with the display name Emmett.",
+  "thinking": ""
+}

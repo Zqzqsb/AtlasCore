@@ -1,0 +1,38 @@
+{
+  "db_id": "superhero",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.id)"
+      ],
+      [
+        "28"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T1.id) FROM superhero AS T1 INNER JOIN alignment AS T2 ON T1.alignment_id = T2.id WHERE T2.alignment = 'Neutral'",
+  "id": 796,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.id)"
+      ],
+      [
+        "28"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(T1.id) FROM superhero AS T1 WHERE T1.alignment_id = 3;",
+  "question": "How many superheroes have a neutral alignment?",
+  "thinking": ""
+}

@@ -1,0 +1,92 @@
+{
+  "db_id": "debit_card_specializing",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "ChainID"
+      ],
+      [
+        "77"
+      ],
+      [
+        "70"
+      ],
+      [
+        "61"
+      ],
+      [
+        "98"
+      ],
+      [
+        "76"
+      ],
+      [
+        "130"
+      ],
+      [
+        "246"
+      ],
+      [
+        "35"
+      ],
+      [
+        "4"
+      ],
+      [
+        "219"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T3.ChainID FROM transactions_1k AS T1 INNER JOIN customers AS T2 ON T1.CustomerID = T2.CustomerID INNER JOIN gasstations AS T3 ON T1.GasStationID = T3.GasStationID WHERE T2.Currency = 'EUR'",
+  "id": 1503,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "ChainID"
+      ],
+      [
+        "77"
+      ],
+      [
+        "70"
+      ],
+      [
+        "61"
+      ],
+      [
+        "98"
+      ],
+      [
+        "76"
+      ],
+      [
+        "130"
+      ],
+      [
+        "246"
+      ],
+      [
+        "35"
+      ],
+      [
+        "4"
+      ],
+      [
+        "219"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT g.ChainID\nFROM transactions_1k t\nJOIN customers c ON t.CustomerID = c.CustomerID\nJOIN gasstations g ON t.GasStationID = g.GasStationID\nWHERE c.Currency = 'EUR'",
+  "question": "Please list the chains of the gas stations with transactions in euro.",
+  "thinking": ""
+}

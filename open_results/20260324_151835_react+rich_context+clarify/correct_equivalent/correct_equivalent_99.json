@@ -1,0 +1,38 @@
+{
+  "db_id": "financial",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "account_id"
+      ],
+      [
+        "176"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.account_id FROM loan AS T1 INNER JOIN account AS T2 ON T1.account_id = T2.account_id WHERE STRFTIME('%Y', T1.date) = '1997' AND T2.frequency = 'POPLATEK TYDNE' ORDER BY T1.amount LIMIT 1",
+  "id": 99,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "account_id"
+      ],
+      [
+        "176"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT a.account_id\nFROM account a\nJOIN loan l ON a.account_id = l.account_id\nWHERE l.status = 'A'\n  AND STRFTIME('%Y', l.date) = '1997'\n  AND a.frequency = 'POPLATEK TYDNE'\nORDER BY l.amount ASC\nLIMIT 1",
+  "question": "Among the accounts who have approved loan date in 1997, list out the accounts that have the lowest approved amount and choose weekly issuance statement.",
+  "thinking": ""
+}

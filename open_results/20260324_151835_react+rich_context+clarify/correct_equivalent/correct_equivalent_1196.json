@@ -1,0 +1,38 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AVG(T2.ALB)"
+      ],
+      [
+        "3.9123076923076923"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT AVG(T2.ALB) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.PLT \u003e 400 AND T1.Diagnosis = 'SLE' AND T1.SEX = 'F'",
+  "id": 1196,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AVG(T2.ALB)"
+      ],
+      [
+        "3.9123076923076923"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT AVG(T2.ALB) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T1.SEX = 'F' AND T2.PLT \u003e 400 AND TRIM(T1.Diagnosis) = 'SLE'",
+  "question": "What is the average blood albumin level for female patients with a PLT greater than 400 who have been diagnosed with SLE?",
+  "thinking": ""
+}

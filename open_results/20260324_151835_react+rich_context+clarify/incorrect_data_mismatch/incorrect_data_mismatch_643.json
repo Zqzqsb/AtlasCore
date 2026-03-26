@@ -1,0 +1,38 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(id)"
+      ],
+      [
+        "209"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(id) FROM postHistory WHERE date(CreationDate) = '2010-07-21'",
+  "id": 643,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(Id)"
+      ],
+      [
+        "108"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(Id) FROM posts WHERE CreaionDate BETWEEN '2010-07-21 00:00:00' AND '2010-07-21 23:59:59';",
+  "question": "How many posts were created on 21st July, 2010?",
+  "thinking": ""
+}

@@ -1,0 +1,200 @@
+{
+  "db_id": "superhero",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "superhero_name"
+      ],
+      [
+        "Ares"
+      ],
+      [
+        "Bizarro"
+      ],
+      [
+        "Black Flash"
+      ],
+      [
+        "Brundlefly"
+      ],
+      [
+        "Captain Cold"
+      ],
+      [
+        "Copycat"
+      ],
+      [
+        "Deadpool"
+      ],
+      [
+        "Deathstroke"
+      ],
+      [
+        "Etrigan"
+      ],
+      [
+        "Galactus"
+      ],
+      [
+        "Gladiator"
+      ],
+      [
+        "Indigo"
+      ],
+      [
+        "Juggernaut"
+      ],
+      [
+        "Living Tribunal"
+      ],
+      [
+        "Lobo"
+      ],
+      [
+        "Lucifer Morningstar"
+      ],
+      [
+        "Man-Bat"
+      ],
+      [
+        "One-Above-All"
+      ],
+      [
+        "Phantom Stranger"
+      ],
+      [
+        "Raven"
+      ],
+      [
+        "Red Hood"
+      ],
+      [
+        "Red Hulk"
+      ],
+      [
+        "Robin VI"
+      ],
+      [
+        "Sandman"
+      ],
+      [
+        "Sinestro"
+      ],
+      [
+        "The Comedian"
+      ],
+      [
+        "The Presence"
+      ],
+      [
+        "Toad"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.superhero_name FROM superhero AS T1 INNER JOIN alignment AS T2 ON T1.alignment_id = T2.id WHERE T2.alignment = 'Neutral'",
+  "id": 786,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "superhero_name"
+      ],
+      [
+        "Ares"
+      ],
+      [
+        "Bizarro"
+      ],
+      [
+        "Black Flash"
+      ],
+      [
+        "Brundlefly"
+      ],
+      [
+        "Captain Cold"
+      ],
+      [
+        "Copycat"
+      ],
+      [
+        "Deadpool"
+      ],
+      [
+        "Deathstroke"
+      ],
+      [
+        "Etrigan"
+      ],
+      [
+        "Galactus"
+      ],
+      [
+        "Gladiator"
+      ],
+      [
+        "Indigo"
+      ],
+      [
+        "Juggernaut"
+      ],
+      [
+        "Living Tribunal"
+      ],
+      [
+        "Lobo"
+      ],
+      [
+        "Lucifer Morningstar"
+      ],
+      [
+        "Man-Bat"
+      ],
+      [
+        "One-Above-All"
+      ],
+      [
+        "Phantom Stranger"
+      ],
+      [
+        "Raven"
+      ],
+      [
+        "Red Hood"
+      ],
+      [
+        "Red Hulk"
+      ],
+      [
+        "Robin VI"
+      ],
+      [
+        "Sandman"
+      ],
+      [
+        "Sinestro"
+      ],
+      [
+        "The Comedian"
+      ],
+      [
+        "The Presence"
+      ],
+      [
+        "Toad"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT s.superhero_name\nFROM superhero s\nJOIN alignment a ON s.alignment_id = a.id\nWHERE a.alignment = 'Neutral';",
+  "question": "Describe the names of neutral alignment superheroes.",
+  "thinking": ""
+}

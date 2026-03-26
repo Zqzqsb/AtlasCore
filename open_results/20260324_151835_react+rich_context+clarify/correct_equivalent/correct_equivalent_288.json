@@ -1,0 +1,38 @@
+{
+  "db_id": "toxicology",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(COUNT(CASE WHEN T.bond_type = '=' THEN T.bond_id ELSE NULL END) AS REAL) * 100 / COUNT(T.bond_id)"
+      ],
+      [
+        "21.428571428571427"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT CAST(COUNT(CASE WHEN T.bond_type = '=' THEN T.bond_id ELSE NULL END) AS REAL) * 100 / COUNT(T.bond_id) FROM bond AS T WHERE T.molecule_id = 'TR047'",
+  "id": 288,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(COUNT(CASE WHEN bond_type = '=' THEN bond_id ELSE NULL END) AS REAL) * 100 / COUNT(bond_id)"
+      ],
+      [
+        "21.428571428571427"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT CAST(COUNT(CASE WHEN bond_type = '=' THEN bond_id ELSE NULL END) AS REAL) * 100 / COUNT(bond_id) FROM bond WHERE molecule_id = 'TR047';",
+  "question": "Among all chemical compounds that contain molecule TR047, identify the percent that form a double-bond.",
+  "thinking": ""
+}

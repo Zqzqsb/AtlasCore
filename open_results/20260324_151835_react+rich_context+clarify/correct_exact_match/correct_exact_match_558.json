@@ -1,0 +1,16 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT CAST(SUM(IIF(T2.Age \u003e 65, 1, 0)) AS REAL) * 100 / COUNT(T1.Id) FROM posts AS T1 INNER JOIN users AS T2 ON T1.OwnerUserId = T2.Id WHERE T1.Score \u003e 5",
+  "id": 558,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT CAST(SUM(IIF(T2.Age \u003e 65, 1, 0)) AS REAL) * 100 / COUNT(T1.Id) FROM posts AS T1 INNER JOIN users AS T2 ON T1.OwnerUserId = T2.Id WHERE T1.Score \u003e 5",
+  "question": "Among the posts with a score of over 5, what is the percentage of them being owned by an elder user?",
+  "thinking": ""
+}

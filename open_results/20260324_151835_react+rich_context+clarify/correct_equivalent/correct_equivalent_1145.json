@@ -1,0 +1,46 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "id",
+        "finishing",
+        "curve"
+      ],
+      [
+        "98022",
+        "13",
+        "13"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT id, finishing, curve FROM Player_Attributes WHERE player_api_id = ( SELECT player_api_id FROM Player ORDER BY weight DESC LIMIT 1 ) LIMIT 1",
+  "id": 1145,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "id",
+        "finishing",
+        "curve"
+      ],
+      [
+        "98022",
+        "13",
+        "13"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT pa.id, pa.finishing, pa.curve\nFROM Player_Attributes pa\nJOIN Player p ON pa.player_api_id = p.player_api_id\nWHERE p.weight = (SELECT MAX(weight) FROM Player)\nLIMIT 1;",
+  "question": "Please state the finishing rate and curve score of the player who has the heaviest weight.",
+  "thinking": ""
+}

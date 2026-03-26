@@ -1,0 +1,236 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "School"
+      ],
+      [
+        "Dunlap Leadership Academy"
+      ],
+      [
+        "Academy of Arts and Sciences: Fresno"
+      ],
+      [
+        "Insight School of California"
+      ],
+      [
+        "California Virtual Academy @ Kings"
+      ],
+      [
+        "National University Academy, Armona"
+      ],
+      [
+        "California Virtual Academy @ Los Angeles"
+      ],
+      [
+        "Insight @ Los Angeles"
+      ],
+      [
+        "Los Angeles County Online High"
+      ],
+      [
+        "Desert Sands Charter"
+      ],
+      [
+        "iQ Academy California-Los Angeles"
+      ],
+      [
+        "Academy of Arts and Sciences: Los Angeles (9-12)"
+      ],
+      [
+        "SIATech Academy South"
+      ],
+      [
+        "Capistrano Connections Academy"
+      ],
+      [
+        "California Preparatory Academy"
+      ],
+      [
+        "Rivercrest Preparatory"
+      ],
+      [
+        "Riverside Virtual"
+      ],
+      [
+        "Southern California Online Academy"
+      ],
+      [
+        "Oasis High (Alternative)"
+      ],
+      [
+        "San Diego Virtual"
+      ],
+      [
+        "Academy of Arts and Sciences"
+      ],
+      [
+        "RAI Online Charter"
+      ],
+      [
+        "California Connections Academy @ Ripon"
+      ],
+      [
+        "California Virtual Academy @ San Joaquin"
+      ],
+      [
+        "Renew Virtual Academy K12 #1"
+      ],
+      [
+        "Delta Home Charter"
+      ],
+      [
+        "Valley View Charter Prep"
+      ],
+      [
+        "Delta Charter Online"
+      ],
+      [
+        "California Virtual Academy @ San Mateo"
+      ],
+      [
+        "California Virtual Academy @ Sonoma"
+      ],
+      [
+        "Academy of Arts and Sciences: Sonoma"
+      ],
+      [
+        "California Virtual Academy @ Sutter"
+      ],
+      [
+        "California Connections Academy@Central"
+      ],
+      [
+        "California Virtual Academy @ Jamestown"
+      ],
+      [
+        "Academy of Arts and Sciences: Thousand Oaks \u0026 Simi Valley"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT School FROM (SELECT T2.School,T1.AvgScrRead, RANK() OVER (PARTITION BY T2.County ORDER BY T1.AvgScrRead DESC) AS rnk FROM satscores AS T1 INNER JOIN schools AS T2 ON T1.cds = T2.CDSCode WHERE T2.Virtual = 'F' ) ranked_schools WHERE rnk \u003c= 5",
+  "id": 42,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "School"
+      ],
+      [
+        "Dunlap Leadership Academy"
+      ],
+      [
+        "Academy of Arts and Sciences: Fresno"
+      ],
+      [
+        "Insight School of California"
+      ],
+      [
+        "California Virtual Academy @ Kings"
+      ],
+      [
+        "National University Academy, Armona"
+      ],
+      [
+        "California Virtual Academy @ Los Angeles"
+      ],
+      [
+        "Insight @ Los Angeles"
+      ],
+      [
+        "Los Angeles County Online High"
+      ],
+      [
+        "Desert Sands Charter"
+      ],
+      [
+        "iQ Academy California-Los Angeles"
+      ],
+      [
+        "Academy of Arts and Sciences: Los Angeles (9-12)"
+      ],
+      [
+        "SIATech Academy South"
+      ],
+      [
+        "Capistrano Connections Academy"
+      ],
+      [
+        "California Preparatory Academy"
+      ],
+      [
+        "Rivercrest Preparatory"
+      ],
+      [
+        "Riverside Virtual"
+      ],
+      [
+        "Southern California Online Academy"
+      ],
+      [
+        "Oasis High (Alternative)"
+      ],
+      [
+        "San Diego Virtual"
+      ],
+      [
+        "Academy of Arts and Sciences"
+      ],
+      [
+        "RAI Online Charter"
+      ],
+      [
+        "California Connections Academy @ Ripon"
+      ],
+      [
+        "California Virtual Academy @ San Joaquin"
+      ],
+      [
+        "Renew Virtual Academy K12 #1"
+      ],
+      [
+        "Delta Home Charter"
+      ],
+      [
+        "Valley View Charter Prep"
+      ],
+      [
+        "Delta Charter Online"
+      ],
+      [
+        "California Virtual Academy @ San Mateo"
+      ],
+      [
+        "California Virtual Academy @ Sonoma"
+      ],
+      [
+        "Academy of Arts and Sciences: Sonoma"
+      ],
+      [
+        "California Virtual Academy @ Sutter"
+      ],
+      [
+        "California Connections Academy@Central"
+      ],
+      [
+        "California Virtual Academy @ Jamestown"
+      ],
+      [
+        "Academy of Arts and Sciences: Thousand Oaks \u0026 Simi Valley"
+      ]
+    ]
+  },
+  "pred_sql": "WITH ranked_schools AS (\n    SELECT s.School, \n           RANK() OVER (PARTITION BY s.County ORDER BY sat.AvgScrRead DESC) as rnk\n    FROM schools s\n    JOIN satscores sat ON s.CDSCode = sat.cds\n    WHERE s.Virtual = 'F'\n)\nSELECT School\nFROM ranked_schools\nWHERE rnk \u003c= 5;",
+  "question": "List the names of virtual schools that are among the top 5 in their respective counties based on average reading scores.",
+  "thinking": ""
+}

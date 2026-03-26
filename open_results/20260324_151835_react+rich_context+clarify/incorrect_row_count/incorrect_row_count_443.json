@@ -1,0 +1,82 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=3, pred=9",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "baseSetSize",
+        "setCode"
+      ],
+      [
+        "350",
+        "MMQ"
+      ],
+      [
+        "144",
+        "PCY"
+      ],
+      [
+        "167",
+        "WTH"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T1.baseSetSize, T2.setCode FROM sets AS T1 INNER JOIN set_translations AS T2 ON T2.setCode = T1.code WHERE T1.block IN ('Masques', 'Mirage')",
+  "id": 443,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "baseSetSize",
+        "setCode"
+      ],
+      [
+        "350",
+        "MIR"
+      ],
+      [
+        "350",
+        "MMQ"
+      ],
+      [
+        "143",
+        "NEM"
+      ],
+      [
+        "144",
+        "PCY"
+      ],
+      [
+        "1",
+        "PMMQ"
+      ],
+      [
+        "1",
+        "PNEM"
+      ],
+      [
+        "1",
+        "PPCY"
+      ],
+      [
+        "167",
+        "VIS"
+      ],
+      [
+        "167",
+        "WTH"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT baseSetSize, code AS setCode FROM sets WHERE block IN (\"Masques\", \"Mirage\");",
+  "question": "Mention the base set size and set code of the set that was in block named \"Masques\" and \"Mirage\".",
+  "thinking": ""
+}

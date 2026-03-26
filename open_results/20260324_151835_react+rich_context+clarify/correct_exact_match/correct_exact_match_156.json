@@ -1,0 +1,16 @@
+{
+  "db_id": "financial",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT CAST(SUM(type = 'gold' AND STRFTIME('%Y', issued) \u003c '1998') AS REAL) * 100 / COUNT(card_id) FROM card",
+  "id": 156,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT CAST(SUM(type = 'gold' AND STRFTIME('%Y', issued) \u003c '1998') AS REAL) * 100 / COUNT(card_id) FROM card;",
+  "question": "How many percent of 'Gold' cards were issued prior to 1998?",
+  "thinking": ""
+}

@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(*)"
+      ],
+      [
+        "0"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(*) FROM drivers AS T1 INNER JOIN results AS T2 ON T1.driverId = T2.driverId INNER JOIN races AS T3 ON T3.raceId = T2.raceId WHERE T3.name = 'Australian Grand Prix' AND T1.nationality = 'British' AND T3.year = 2008",
+  "id": 940,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(*)"
+      ],
+      [
+        "0"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(*)\nFROM drivers d\nJOIN results r ON d.driverId = r.driverId\nJOIN races ra ON r.raceId = ra.raceId\nWHERE d.nationality = 'British'\n  AND ra.year = 2008\n  AND ra.name = 'Australian Grand Prix';",
+  "question": "How many drivers from the UN participated in the 2008 Australian Grand Prix?",
+  "thinking": ""
+}

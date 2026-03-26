@@ -1,0 +1,46 @@
+{
+  "db_id": "toxicology",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=1, pred=2",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "atom_id1",
+        "atom_id2"
+      ],
+      [
+        "TR001_2",
+        "TR001_6"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT SUBSTR(T.bond_id, 1, 7) AS atom_id1 , T.molecule_id || SUBSTR(T.bond_id, 8, 2) AS atom_id2 FROM bond AS T WHERE T.molecule_id = 'TR001' AND T.bond_id = 'TR001_2_6'",
+  "id": 222,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "atom_id1",
+        "atom_id2"
+      ],
+      [
+        "TR001_2",
+        "TR001_6"
+      ],
+      [
+        "TR001_6",
+        "TR001_2"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT c.atom_id AS atom_id1, c.atom_id2 AS atom_id2 FROM connected c JOIN bond b ON c.bond_id = b.bond_id WHERE b.molecule_id = 'TR001' AND c.bond_id = 'TR001_2_6';",
+  "question": "What are the atoms that are bonded in the molecule TR001 with the bond ID of TR001_2_6?",
+  "thinking": ""
+}

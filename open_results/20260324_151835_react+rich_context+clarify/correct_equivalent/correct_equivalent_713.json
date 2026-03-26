@@ -1,0 +1,50 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Id",
+        "Text"
+      ],
+      [
+        "203",
+        "A related question: People often use the nonparametric Mann-Whitney test for this kind of data. Since there are only five possible values, there will be lots of tied ranks. The Mann-Whitney test adjusts for tied ranks, but does this adjustment work when there are a huge number of ties?"
+      ],
+      [
+        "203",
+        "You may be interested in this recent article published in PARE, *Five-Point Likert Items: t test versus Mann-Whitney-Wilcoxon*, http://j.mp/biLWrA."
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.Id, T1.Text FROM comments AS T1 INNER JOIN posts AS T2 ON T1.PostId = T2.Id WHERE T2.Title = 'Group differences on a five point Likert item'",
+  "id": 713,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Id",
+        "Text"
+      ],
+      [
+        "203",
+        "A related question: People often use the nonparametric Mann-Whitney test for this kind of data. Since there are only five possible values, there will be lots of tied ranks. The Mann-Whitney test adjusts for tied ranks, but does this adjustment work when there are a huge number of ties?"
+      ],
+      [
+        "203",
+        "You may be interested in this recent article published in PARE, *Five-Point Likert Items: t test versus Mann-Whitney-Wilcoxon*, http://j.mp/biLWrA."
+      ]
+    ]
+  },
+  "pred_sql": "SELECT p.Id, c.Text \nFROM posts p\nJOIN comments c ON p.Id = c.PostId\nWHERE TRIM(p.Title) = 'Group differences on a five point Likert item';",
+  "question": "What is the post ID and the comments commented in the post titled by \"Group differences on a five point Likert item\"?",
+  "thinking": ""
+}

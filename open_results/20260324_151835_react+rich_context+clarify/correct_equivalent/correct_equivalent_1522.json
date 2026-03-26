@@ -1,0 +1,38 @@
+{
+  "db_id": "debit_card_specializing",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.TransactionID)"
+      ],
+      [
+        "14"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T1.TransactionID) FROM transactions_1k AS T1 INNER JOIN gasstations AS T2 ON T1.GasStationID = T2.GasStationID WHERE T1.Date = '2012-08-26' AND T1.Time BETWEEN '08:00:00' AND '09:00:00' AND T2.Country = 'CZE'",
+  "id": 1522,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.TransactionID)"
+      ],
+      [
+        "14"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(T1.TransactionID)\nFROM transactions_1k T1\nJOIN gasstations T2 ON T1.GasStationID = T2.GasStationID\nWHERE T1.Date = '2012-08-26'\n  AND T1.Time BETWEEN '08:00:00' AND '09:00:00'\n  AND T2.Country = 'CZE';",
+  "question": "For all the transactions happened during 8:00-9:00 in 2012/8/26, how many happened in CZE?",
+  "thinking": ""
+}

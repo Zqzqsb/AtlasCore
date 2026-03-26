@@ -1,0 +1,16 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT name FROM races WHERE year = 2005 ORDER BY name DESC",
+  "id": 884,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT name FROM races WHERE year = 2005 ORDER BY name DESC;",
+  "question": "How many races were there in 2005? Name all the races in descending order.",
+  "thinking": ""
+}

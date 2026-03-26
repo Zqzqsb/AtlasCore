@@ -1,0 +1,2840 @@
+{
+  "database_name": "formula_1",
+  "database_type": "sqlite",
+  "collected_at": "2026-03-24T15:00:13.631630702+08:00",
+  "schema_diagram": {
+    "format": "mermaid-er",
+    "description": "Entity-Relationship diagram showing database schema and relationships",
+    "content": "erDiagram\n    CONSTRUCTORS ||--o{ CONSTRUCTORSTANDINGS : \"has\"\n    RACES ||--o{ CONSTRUCTORSTANDINGS : \"has\"\n    CONSTRUCTORS ||--o{ CONSTRUCTORRESULTS : \"has\"\n    RACES ||--o{ CONSTRUCTORRESULTS : \"has\"\n    DRIVERS ||--o{ LAPTIMES : \"has\"\n    RACES ||--o{ LAPTIMES : \"has\"\n    DRIVERS ||--o{ PITSTOPS : \"has\"\n    RACES ||--o{ PITSTOPS : \"has\"\n    CIRCUITS ||--o{ RACES : \"has\"\n    SEASONS ||--o{ RACES : \"has\"\n    CONSTRUCTORS ||--o{ QUALIFYING : \"has\"\n    DRIVERS ||--o{ QUALIFYING : \"has\"\n    RACES ||--o{ QUALIFYING : \"has\"\n    DRIVERS ||--o{ DRIVERSTANDINGS : \"has\"\n    RACES ||--o{ DRIVERSTANDINGS : \"has\"\n    STATUS ||--o{ RESULTS : \"has\"\n    CONSTRUCTORS ||--o{ RESULTS : \"has\"\n    DRIVERS ||--o{ RESULTS : \"has\"\n    RACES ||--o{ RESULTS : \"has\"\n\n    CONSTRUCTORSTANDINGS {\n        int constructorStandingsId PK\n        int raceId FK\n        int constructorId FK\n        float points\n        int position\n        text positionText\n        int wins\n    }\n    CIRCUITS {\n        int circuitId PK\n        text circuitRef\n        text name\n        text location\n        text country\n        float lat\n        float lng\n        int alt\n        text url\n    }\n    SEASONS {\n        int year PK\n        text url\n    }\n    CONSTRUCTORS {\n        int constructorId PK\n        text constructorRef\n        text name\n        text nationality\n        text url\n    }\n    CONSTRUCTORRESULTS {\n        int constructorResultsId PK\n        int raceId FK\n        int constructorId FK\n        float points\n        text status\n    }\n    DRIVERS {\n        int driverId PK\n        text driverRef\n        int number\n        text code\n        text forename\n        text surname\n        datetime dob\n        text nationality\n        text url\n    }\n    LAPTIMES {\n        int raceId PK,FK\n        int driverId PK,FK\n        int lap PK\n        int position\n        text time\n        int milliseconds\n    }\n    PITSTOPS {\n        int raceId PK,FK\n        int driverId PK,FK\n        int stop PK\n        int lap\n        text time\n        text duration\n        int milliseconds\n    }\n    RACES {\n        int raceId PK\n        int year FK\n        int round\n        int circuitId FK\n        text name\n        datetime date\n        text time\n        text url\n    }\n    STATUS {\n        int statusId PK\n        text status\n    }\n    QUALIFYING {\n        int qualifyId PK\n        int raceId FK\n        int driverId FK\n        int constructorId FK\n        int number\n        int position\n        text q1\n        text q2\n        text q3\n    }\n    DRIVERSTANDINGS {\n        int driverStandingsId PK\n        int raceId FK\n        int driverId FK\n        float points\n        int position\n        text positionText\n        int wins\n    }\n    RESULTS {\n        int resultId PK\n        int raceId FK\n        int driverId FK\n        int constructorId FK\n        int number\n        int grid\n        int position\n        text positionText\n        int positionOrder\n        float points\n        int laps\n        text time\n        int milliseconds\n        int fastestLap\n        int rank\n        text fastestLapTime\n        text fastestLapSpeed\n        int statusId FK\n    }\n"
+  },
+  "tables": {
+    "circuits": {
+      "name": "circuits",
+      "description": "The circuits table stores information about racing circuits worldwide, including their locations across 15 countries, with the highest concentration in the USA.",
+      "row_count": 72,
+      "columns": [
+        {
+          "name": "circuitId",
+          "type": "INTEGER",
+          "nullable": true,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 72,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 2,
+              "max": 73,
+              "avg": 37.5
+            }
+          }
+        },
+        {
+          "name": "circuitRef",
+          "type": "TEXT",
+          "nullable": false,
+          "default": "''",
+          "value_stats": {
+            "distinct_count": 72,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "name",
+          "type": "TEXT",
+          "nullable": false,
+          "default": "''",
+          "value_stats": {
+            "distinct_count": 72,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "location",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 69,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "country",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 32,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "lat",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 71,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": -34.9272,
+              "max": 57.2653,
+              "avg": 34.86850458333333
+            }
+          }
+        },
+        {
+          "name": "lng",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 71,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": -118.189,
+              "max": 138.927,
+              "avg": -0.266690277777778
+            }
+          }
+        },
+        {
+          "name": "alt",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 0,
+            "null_count": 72,
+            "null_percent": 100,
+            "range": {
+              "min": 0,
+              "max": 0,
+              "avg": 0
+            }
+          }
+        },
+        {
+          "name": "url",
+          "type": "TEXT",
+          "nullable": false,
+          "default": "''",
+          "value_stats": {
+            "distinct_count": 72,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        }
+      ],
+      "indexes": [],
+      "rich_context": {
+        "country_values": {
+          "content": "USA=11(15%), France=7(10%), Spain=6(8%), UK=4(6%), Portugal=3(4%), Japan=3(4%), Italy=3(4%), Germany=3(4%), Canada=3(4%), Belgium=3(4%), Austria=3(4%), South Africa=2(3%), Brazil=2(3%), UAE=1(1%), Turkey=1(1%)",
+          "expires_at": "2026-03-31T15:00:32+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "circuits",
+          "column": "alt",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "100% NULL values (72/72)",
+          "sql_fix": "WHERE \"alt\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        }
+      ]
+    },
+    "constructorResults": {
+      "name": "constructorResults",
+      "description": "The constructorResults table records the points awarded to Formula 1 constructors in each race, with most entries indicating no points earned (0) and a small fraction marked with status 'D' for disqualification or other non-standard outcomes.",
+      "row_count": 11082,
+      "columns": [
+        {
+          "name": "constructorResultsId",
+          "type": "INTEGER",
+          "nullable": true,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 11082,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 15579,
+              "avg": 7319.365998917163
+            }
+          }
+        },
+        {
+          "name": "raceId",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 907,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 982,
+              "avg": 453.5348312578957
+            }
+          }
+        },
+        {
+          "name": "constructorId",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 172,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 210,
+              "avg": 41.2624075076701
+            }
+          }
+        },
+        {
+          "name": "points",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 45,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 0,
+              "max": 66,
+              "avg": 3.1552517596101786
+            }
+          }
+        },
+        {
+          "name": "status",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1,
+            "null_count": 11065,
+            "null_percent": 99.84659808698791,
+            "top_values": [
+              {
+                "value": "D",
+                "count": 17,
+                "percent": 0.1534019130120917
+              }
+            ]
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "constructorId",
+          "referenced_table": "constructors",
+          "referenced_column": "constructorId"
+        },
+        {
+          "column_name": "raceId",
+          "referenced_table": "races",
+          "referenced_column": "raceId"
+        }
+      ],
+      "rich_context": {
+        "points_meaning": {
+          "content": "Points awarded to constructors in races based on finishing position; 0 indicates no points earned (e.g., did not finish in point-scoring positions)",
+          "expires_at": "2026-03-31T15:00:36+08:00"
+        },
+        "status_values": {
+          "content": "NULL=11065(99.85%), D=17(0.15%)",
+          "expires_at": "2026-03-31T15:00:25+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "constructorResults",
+          "column": "status",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "100% NULL values (11065/11082)",
+          "sql_fix": "WHERE \"status\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "constructorResults",
+          "column": "raceId",
+          "type": "orphan",
+          "severity": "warning",
+          "description": "239 orphan records (raceId not in races.raceId)",
+          "sql_fix": "LEFT JOIN \"races\" ON \"constructorResults\".\"raceId\" = \"races\".\"raceId\"",
+          "affected_ops": [
+            "JOIN"
+          ]
+        }
+      ]
+    },
+    "constructorStandings": {
+      "name": "constructorStandings",
+      "description": "The constructorStandings table tracks the cumulative standings of Formula 1 constructors across races and seasons, including their positions, points, and number of wins.",
+      "row_count": 11836,
+      "columns": [
+        {
+          "name": "constructorStandingsId",
+          "type": "INTEGER",
+          "nullable": true,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 11836,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 26872,
+              "avg": 15141.54123014532
+            }
+          }
+        },
+        {
+          "name": "raceId",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 906,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 982,
+              "avg": 466.4880871916188
+            }
+          }
+        },
+        {
+          "name": "constructorId",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 156,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 210,
+              "avg": 45.697279486312944
+            }
+          }
+        },
+        {
+          "name": "points",
+          "type": "REAL",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 436,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 0,
+              "max": 765,
+              "avg": 26.384673876309563
+            }
+          }
+        },
+        {
+          "name": "position",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 22,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "3",
+                "count": 906,
+                "percent": 7.654613044947617
+              },
+              {
+                "value": "2",
+                "count": 906,
+                "percent": 7.654613044947617
+              },
+              {
+                "value": "1",
+                "count": 906,
+                "percent": 7.654613044947617
+              },
+              {
+                "value": "6",
+                "count": 905,
+                "percent": 7.646164244677256
+              },
+              {
+                "value": "5",
+                "count": 905,
+                "percent": 7.646164244677256
+              },
+              {
+                "value": "4",
+                "count": 905,
+                "percent": 7.646164244677256
+              },
+              {
+                "value": "7",
+                "count": 901,
+                "percent": 7.61236904359581
+              },
+              {
+                "value": "8",
+                "count": 889,
+                "percent": 7.5109834403514695
+              },
+              {
+                "value": "9",
+                "count": 875,
+                "percent": 7.392700236566407
+              },
+              {
+                "value": "10",
+                "count": 839,
+                "percent": 7.08854342683339
+              },
+              {
+                "value": "11",
+                "count": 723,
+                "percent": 6.108482595471443
+              },
+              {
+                "value": "12",
+                "count": 497,
+                "percent": 4.19905373436972
+              },
+              {
+                "value": "13",
+                "count": 389,
+                "percent": 3.286583305170666
+              },
+              {
+                "value": "14",
+                "count": 333,
+                "percent": 2.8134504900304154
+              },
+              {
+                "value": "15",
+                "count": 300,
+                "percent": 2.5346400811084826
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 22,
+              "avg": 7.450912470429199
+            }
+          }
+        },
+        {
+          "name": "positionText",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 23,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "3",
+                "count": 906,
+                "percent": 7.654613044947617
+              },
+              {
+                "value": "2",
+                "count": 906,
+                "percent": 7.654613044947617
+              },
+              {
+                "value": "1",
+                "count": 906,
+                "percent": 7.654613044947617
+              },
+              {
+                "value": "6",
+                "count": 905,
+                "percent": 7.646164244677256
+              },
+              {
+                "value": "5",
+                "count": 905,
+                "percent": 7.646164244677256
+              },
+              {
+                "value": "4",
+                "count": 905,
+                "percent": 7.646164244677256
+              },
+              {
+                "value": "7",
+                "count": 901,
+                "percent": 7.61236904359581
+              },
+              {
+                "value": "8",
+                "count": 889,
+                "percent": 7.5109834403514695
+              },
+              {
+                "value": "9",
+                "count": 875,
+                "percent": 7.392700236566407
+              },
+              {
+                "value": "10",
+                "count": 839,
+                "percent": 7.08854342683339
+              },
+              {
+                "value": "11",
+                "count": 706,
+                "percent": 5.964852990875296
+              },
+              {
+                "value": "12",
+                "count": 497,
+                "percent": 4.19905373436972
+              },
+              {
+                "value": "13",
+                "count": 389,
+                "percent": 3.286583305170666
+              },
+              {
+                "value": "14",
+                "count": 333,
+                "percent": 2.8134504900304154
+              },
+              {
+                "value": "15",
+                "count": 300,
+                "percent": 2.5346400811084826
+              }
+            ]
+          }
+        },
+        {
+          "name": "wins",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 20,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 9272,
+                "percent": 78.33727610679283
+              },
+              {
+                "value": "1",
+                "count": 1019,
+                "percent": 8.60932747549848
+              },
+              {
+                "value": "2",
+                "count": 484,
+                "percent": 4.089219330855019
+              },
+              {
+                "value": "3",
+                "count": 330,
+                "percent": 2.7881040892193307
+              },
+              {
+                "value": "4",
+                "count": 207,
+                "percent": 1.748901655964853
+              },
+              {
+                "value": "5",
+                "count": 153,
+                "percent": 1.2926664413653262
+              },
+              {
+                "value": "6",
+                "count": 123,
+                "percent": 1.0392024332544778
+              },
+              {
+                "value": "7",
+                "count": 82,
+                "percent": 0.6928016221696519
+              },
+              {
+                "value": "8",
+                "count": 56,
+                "percent": 0.4731328151402501
+              },
+              {
+                "value": "9",
+                "count": 32,
+                "percent": 0.27036160865157144
+              },
+              {
+                "value": "10",
+                "count": 26,
+                "percent": 0.21966880702940184
+              },
+              {
+                "value": "11",
+                "count": 14,
+                "percent": 0.11828320378506252
+              },
+              {
+                "value": "12",
+                "count": 11,
+                "percent": 0.09293680297397769
+              },
+              {
+                "value": "15",
+                "count": 7,
+                "percent": 0.05914160189253126
+              },
+              {
+                "value": "14",
+                "count": 7,
+                "percent": 0.05914160189253126
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 19,
+              "avg": 0.6387293004393376
+            }
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "constructorId",
+          "referenced_table": "constructors",
+          "referenced_column": "constructorId"
+        },
+        {
+          "column_name": "raceId",
+          "referenced_table": "races",
+          "referenced_column": "raceId"
+        }
+      ],
+      "rich_context": {
+        "positionText_values": {
+          "content": "1=906(≈12.5%), 2=906(≈12.5%), 3=906(≈12.5%), 4=905(≈12.5%), 5=905(≈12.5%), 6=905(≈12.5%), 7=901(≈12.4%), 8=889(≈12.2%), 9=875(≈12.0%), 10=839(≈11.5%), 11=706(≈9.7%), 12=497(≈6.8%), 13=389(≈5.3%), 14=333(≈4.6%), 15=300(≈4.1%), E=17(≈0.2%)",
+          "expires_at": "2026-03-31T15:00:46+08:00"
+        },
+        "wins_values": {
+          "content": "0=5783(≈79.5%), 1=906(≈12.5%), 2=246(≈3.4%), 3=54(≈0.7%), 4=10(≈0.1%), 5=2(≈0.0%)",
+          "expires_at": "2026-03-31T15:01:08+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "constructorStandings",
+          "column": "positionText",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 11819/11836 non-empty)",
+          "sql_fix": "CAST(\"positionText\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "constructorStandings",
+          "column": "raceId",
+          "type": "orphan",
+          "severity": "warning",
+          "description": "198 orphan records (raceId not in races.raceId)",
+          "sql_fix": "LEFT JOIN \"races\" ON \"constructorStandings\".\"raceId\" = \"races\".\"raceId\"",
+          "affected_ops": [
+            "JOIN"
+          ]
+        }
+      ]
+    },
+    "constructors": {
+      "name": "constructors",
+      "description": "The constructors table stores information about Formula 1 constructor teams, including their nationalities, with a majority being British, reflecting the historical dominance of UK-based teams in the sport.",
+      "row_count": 208,
+      "columns": [
+        {
+          "name": "constructorId",
+          "type": "INTEGER",
+          "nullable": true,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 208,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 210,
+              "avg": 105.51442307692308
+            }
+          }
+        },
+        {
+          "name": "constructorRef",
+          "type": "TEXT",
+          "nullable": false,
+          "default": "''",
+          "value_stats": {
+            "distinct_count": 208,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "name",
+          "type": "TEXT",
+          "nullable": false,
+          "default": "''",
+          "value_stats": {
+            "distinct_count": 208,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "nationality",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 24,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "British",
+                "count": 85,
+                "percent": 40.86538461538461
+              },
+              {
+                "value": "American",
+                "count": 39,
+                "percent": 18.75
+              },
+              {
+                "value": "Italian",
+                "count": 29,
+                "percent": 13.942307692307693
+              },
+              {
+                "value": "French",
+                "count": 12,
+                "percent": 5.769230769230769
+              },
+              {
+                "value": "German",
+                "count": 10,
+                "percent": 4.807692307692308
+              },
+              {
+                "value": "Japanese",
+                "count": 5,
+                "percent": 2.403846153846154
+              },
+              {
+                "value": "Swiss",
+                "count": 4,
+                "percent": 1.9230769230769231
+              },
+              {
+                "value": "South African",
+                "count": 3,
+                "percent": 1.4423076923076923
+              },
+              {
+                "value": "Dutch",
+                "count": 3,
+                "percent": 1.4423076923076923
+              },
+              {
+                "value": "Russian",
+                "count": 2,
+                "percent": 0.9615384615384616
+              },
+              {
+                "value": "Malaysian",
+                "count": 2,
+                "percent": 0.9615384615384616
+              },
+              {
+                "value": "Canadian",
+                "count": 2,
+                "percent": 0.9615384615384616
+              },
+              {
+                "value": "Spanish",
+                "count": 1,
+                "percent": 0.4807692307692308
+              },
+              {
+                "value": "Rhodesian",
+                "count": 1,
+                "percent": 0.4807692307692308
+              },
+              {
+                "value": "New Zealand",
+                "count": 1,
+                "percent": 0.4807692307692308
+              }
+            ]
+          }
+        },
+        {
+          "name": "url",
+          "type": "TEXT",
+          "nullable": false,
+          "default": "''",
+          "value_stats": {
+            "distinct_count": 171,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        }
+      ],
+      "indexes": [],
+      "rich_context": {
+        "nationality_values": {
+          "content": "British=85(40.87%), American=39(18.75%), Italian=29(13.94%), French=12(5.77%), German=10(4.81%), Japanese=5(2.40%), Swiss=4(1.92%), South African=3(1.44%), Dutch=3(1.44%), Russian=2(0.96%), Malaysian=2(0.96%), Canadian=2(0.96%), Spanish=1(0.48%), Rhodesian=1(0.48%), New Zealand=1(0.48%)",
+          "expires_at": "2026-03-31T15:00:31+08:00"
+        }
+      }
+    },
+    "driverStandings": {
+      "name": "driverStandings",
+      "description": "The driverStandings table records the cumulative points, positions, and performance metrics for drivers across races in a motorsport season.",
+      "row_count": 31578,
+      "columns": [
+        {
+          "name": "driverStandingsId",
+          "type": "INTEGER",
+          "nullable": true,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 31578,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 68460,
+              "avg": 39409.427987839634
+            }
+          }
+        },
+        {
+          "name": "raceId",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 970,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 982,
+              "avg": 535.8256064348598
+            }
+          }
+        },
+        {
+          "name": "driverId",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 833,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 841,
+              "avg": 278.7265501298372
+            }
+          }
+        },
+        {
+          "name": "points",
+          "type": "REAL",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 337,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 0,
+              "max": 397,
+              "avg": 10.337760782823485
+            }
+          }
+        },
+        {
+          "name": "position",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 108,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 108,
+              "avg": 20.60760656153018
+            }
+          }
+        },
+        {
+          "name": "positionText",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 109,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "wins",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 14,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 27946,
+                "percent": 88.49832161631515
+              },
+              {
+                "value": "1",
+                "count": 1898,
+                "percent": 6.010513648742796
+              },
+              {
+                "value": "2",
+                "count": 744,
+                "percent": 2.3560706821204636
+              },
+              {
+                "value": "3",
+                "count": 382,
+                "percent": 1.2097029577553993
+              },
+              {
+                "value": "4",
+                "count": 223,
+                "percent": 0.7061878523022357
+              },
+              {
+                "value": "5",
+                "count": 145,
+                "percent": 0.4591804420799291
+              },
+              {
+                "value": "6",
+                "count": 116,
+                "percent": 0.36734435366394325
+              },
+              {
+                "value": "7",
+                "count": 50,
+                "percent": 0.1583380834758376
+              },
+              {
+                "value": "8",
+                "count": 25,
+                "percent": 0.0791690417379188
+              },
+              {
+                "value": "9",
+                "count": 21,
+                "percent": 0.0665019950598518
+              },
+              {
+                "value": "10",
+                "count": 13,
+                "percent": 0.04116790170371778
+              },
+              {
+                "value": "11",
+                "count": 7,
+                "percent": 0.022167331686617265
+              },
+              {
+                "value": "12",
+                "count": 5,
+                "percent": 0.015833808347583758
+              },
+              {
+                "value": "13",
+                "count": 3,
+                "percent": 0.009500285008550257
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 13,
+              "avg": 0.24985749572487176
+            }
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "driverId",
+          "referenced_table": "drivers",
+          "referenced_column": "driverId"
+        },
+        {
+          "column_name": "raceId",
+          "referenced_table": "races",
+          "referenced_column": "raceId"
+        }
+      ],
+      "quality_issues": [
+        {
+          "table": "driverStandings",
+          "column": "positionText",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 31577/31578 non-empty)",
+          "sql_fix": "CAST(\"positionText\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "driverStandings",
+          "column": "raceId",
+          "type": "orphan",
+          "severity": "warning",
+          "description": "342 orphan records (raceId not in races.raceId)",
+          "sql_fix": "LEFT JOIN \"races\" ON \"driverStandings\".\"raceId\" = \"races\".\"raceId\"",
+          "affected_ops": [
+            "JOIN"
+          ]
+        }
+      ]
+    },
+    "drivers": {
+      "name": "drivers",
+      "description": "The drivers table stores comprehensive information about racing drivers, including their nationalities, with a focus on historical representation across various countries.",
+      "row_count": 840,
+      "columns": [
+        {
+          "name": "driverId",
+          "type": "INTEGER",
+          "nullable": true,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 840,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 841,
+              "avg": 420.53809523809525
+            }
+          }
+        },
+        {
+          "name": "driverRef",
+          "type": "TEXT",
+          "nullable": false,
+          "default": "''",
+          "value_stats": {
+            "distinct_count": 840,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "number",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 36,
+            "null_count": 804,
+            "null_percent": 95.71428571428572,
+            "range": {
+              "min": 2,
+              "max": 99,
+              "avg": 30.833333333333332
+            }
+          }
+        },
+        {
+          "name": "code",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 80,
+            "null_count": 757,
+            "null_percent": 90.11904761904762
+          }
+        },
+        {
+          "name": "forename",
+          "type": "TEXT",
+          "nullable": false,
+          "default": "''",
+          "value_stats": {
+            "distinct_count": 465,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "surname",
+          "type": "TEXT",
+          "nullable": false,
+          "default": "''",
+          "value_stats": {
+            "distinct_count": 784,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "dob",
+          "type": "DATE",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 821,
+            "null_count": 1,
+            "null_percent": 0.11904761904761905
+          }
+        },
+        {
+          "name": "nationality",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 41,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "url",
+          "type": "TEXT",
+          "nullable": false,
+          "default": "''",
+          "value_stats": {
+            "distinct_count": 840,
+            "null_count": 0,
+            "null_percent": 0,
+            "empty_count": 1
+          }
+        }
+      ],
+      "indexes": [],
+      "rich_context": {
+        "nationality_values": {
+          "content": "British=162(23.5%), American=157(22.8%), Italian=99(14.4%), French=72(10.5%), German=49(7.1%), Brazilian=31(4.5%), Argentine=24(3.5%), Swiss=23(3.3%), South African=23(3.3%), Belgian=23(3.3%), Japanese=19(2.8%), Dutch=17(2.5%), Australian=17(2.5%), Spanish=15(2.2%), Austrian=15(2.2%)",
+          "expires_at": "2026-03-31T15:00:27+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "drivers",
+          "column": "number",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "96% NULL values (804/840)",
+          "sql_fix": "WHERE \"number\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "drivers",
+          "column": "code",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "90% NULL values (757/840)",
+          "sql_fix": "WHERE \"code\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "drivers",
+          "column": "url",
+          "type": "empty_string",
+          "severity": "warning",
+          "description": "Contains 1 empty string values in addition to NULLs",
+          "sql_fix": "WHERE \"url\" IS NOT NULL AND \"url\" != ''",
+          "affected_ops": [
+            "WHERE",
+            "GROUP BY"
+          ]
+        }
+      ]
+    },
+    "lapTimes": {
+      "name": "lapTimes",
+      "description": "The lapTimes table records detailed lap-by-lap timing and position data for racing events, enabling performance analysis of drivers across individual laps.",
+      "row_count": 400524,
+      "columns": [
+        {
+          "name": "raceId",
+          "type": "INTEGER",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 367,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 2,
+              "max": 982,
+              "avg": 415.8345941816221
+            }
+          }
+        },
+        {
+          "name": "driverId",
+          "type": "INTEGER",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 121,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 841,
+              "avg": 181.13138788187476
+            }
+          }
+        },
+        {
+          "name": "lap",
+          "type": "INTEGER",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 78,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 78,
+              "avg": 29.96910047837333
+            }
+          }
+        },
+        {
+          "name": "position",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 24,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "2",
+                "count": 22641,
+                "percent": 5.652844773346915
+              },
+              {
+                "value": "1",
+                "count": 22641,
+                "percent": 5.652844773346915
+              },
+              {
+                "value": "3",
+                "count": 22635,
+                "percent": 5.651346735776134
+              },
+              {
+                "value": "4",
+                "count": 22623,
+                "percent": 5.648350660634568
+              },
+              {
+                "value": "5",
+                "count": 22598,
+                "percent": 5.642108837422976
+              },
+              {
+                "value": "6",
+                "count": 22560,
+                "percent": 5.632621266141355
+              },
+              {
+                "value": "7",
+                "count": 22420,
+                "percent": 5.597667056156435
+              },
+              {
+                "value": "8",
+                "count": 22359,
+                "percent": 5.582437007520149
+              },
+              {
+                "value": "9",
+                "count": 22255,
+                "percent": 5.556471022959922
+              },
+              {
+                "value": "10",
+                "count": 22066,
+                "percent": 5.509282839480281
+              },
+              {
+                "value": "11",
+                "count": 21751,
+                "percent": 5.430635867014211
+              },
+              {
+                "value": "12",
+                "count": 21301,
+                "percent": 5.318283049205541
+              },
+              {
+                "value": "13",
+                "count": 20596,
+                "percent": 5.142263634638623
+              },
+              {
+                "value": "14",
+                "count": 19812,
+                "percent": 4.946520058723073
+              },
+              {
+                "value": "15",
+                "count": 18873,
+                "percent": 4.712077178895647
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 24,
+              "avg": 9.697878279453915
+            }
+          }
+        },
+        {
+          "name": "time",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 66694,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "milliseconds",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 66694,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 67411,
+              "max": 7507547,
+              "avg": 95708.59732250751
+            }
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "driverId",
+          "referenced_table": "drivers",
+          "referenced_column": "driverId"
+        },
+        {
+          "column_name": "raceId",
+          "referenced_table": "races",
+          "referenced_column": "raceId"
+        }
+      ],
+      "rich_context": {
+        "position_values": {
+          "content": "1=22641(5.65%), 2=22641(5.65%), 3=22635(5.65%), 4=22623(5.65%), 5=22598(5.64%), 6=22560(5.63%), 7=22420(5.60%), 8=22359(5.58%), 9=22255(5.56%), 10=22066(5.51%), 11=21751(5.43%), 12=21301(5.32%), 13=20596(5.14%), 14=19812(4.95%), 15=18873(4.71%)",
+          "expires_at": "2026-03-31T15:00:37+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "lapTimes",
+          "column": "time",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 400524/400524 non-empty)",
+          "sql_fix": "CAST(\"time\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        }
+      ]
+    },
+    "pitStops": {
+      "name": "pitStops",
+      "description": "The pitStops table records detailed information about each pit stop during Formula 1 races, including the stop sequence and duration in seconds.",
+      "row_count": 5815,
+      "columns": [
+        {
+          "name": "raceId",
+          "type": "INTEGER",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 124,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 842,
+              "max": 982,
+              "avg": 906.0116938950989
+            }
+          }
+        },
+        {
+          "name": "driverId",
+          "type": "INTEGER",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 54,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 841,
+              "avg": 424.9563198624248
+            }
+          }
+        },
+        {
+          "name": "stop",
+          "type": "INTEGER",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 6,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "1",
+                "count": 2552,
+                "percent": 43.88650042992261
+              },
+              {
+                "value": "2",
+                "count": 2005,
+                "percent": 34.47979363714531
+              },
+              {
+                "value": "3",
+                "count": 932,
+                "percent": 16.027515047291487
+              },
+              {
+                "value": "4",
+                "count": 250,
+                "percent": 4.299226139294927
+              },
+              {
+                "value": "5",
+                "count": 63,
+                "percent": 1.0834049871023215
+              },
+              {
+                "value": "6",
+                "count": 13,
+                "percent": 0.2235597592433362
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 6,
+              "avg": 1.8488392089423904
+            }
+          }
+        },
+        {
+          "name": "lap",
+          "type": "INTEGER",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 73,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 74,
+              "avg": 25.100085984522785
+            }
+          }
+        },
+        {
+          "name": "time",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 4650,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "duration",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 4580,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "milliseconds",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 4580,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 12897,
+              "max": 2011266,
+              "avg": 46307.77798796217
+            }
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "driverId",
+          "referenced_table": "drivers",
+          "referenced_column": "driverId"
+        },
+        {
+          "column_name": "raceId",
+          "referenced_table": "races",
+          "referenced_column": "raceId"
+        }
+      ],
+      "rich_context": {
+        "duration_meaning": {
+          "content": "Duration of the pit stop in seconds, stored as TEXT with up to 3 decimal places (e.g., \"22.838\")",
+          "expires_at": "2026-03-31T15:00:50+08:00"
+        },
+        "stop_values": {
+          "content": "1=first pit stop(44%), 2=second pit stop(35%), 3=third pit stop(16%), 4=fourth pit stop(4%), 5=fifth pit stop(1%), 6=sixth pit stop(\u003c1%)",
+          "expires_at": "2026-03-31T15:00:33+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "pitStops",
+          "column": "time",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 5815/5815 non-empty)",
+          "sql_fix": "CAST(\"time\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "pitStops",
+          "column": "duration",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 5815/5815 non-empty)",
+          "sql_fix": "CAST(\"duration\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        }
+      ]
+    },
+    "qualifying": {
+      "name": "qualifying",
+      "description": "The qualifying table captures each driver's performance during Formula 1 qualifying sessions, including their car number, lap times in Q1, Q2, and Q3, and their final qualifying position.",
+      "row_count": 6967,
+      "columns": [
+        {
+          "name": "qualifyId",
+          "type": "INTEGER",
+          "nullable": true,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 6967,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 23,
+              "max": 7419,
+              "avg": 3719.180134921774
+            }
+          }
+        },
+        {
+          "name": "raceId",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 319,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 2,
+              "max": 982,
+              "avg": 443.5617913018516
+            }
+          }
+        },
+        {
+          "name": "driverId",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 151,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 841,
+              "avg": 198.58734031864503
+            }
+          }
+        },
+        {
+          "name": "constructorId",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 41,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 210,
+              "avg": 34.86651356394431
+            }
+          }
+        },
+        {
+          "name": "number",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 48,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 0,
+              "max": 99,
+              "avg": 15.16721687957514
+            }
+          }
+        },
+        {
+          "name": "position",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 28,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "18",
+                "count": 319,
+                "percent": 4.578728290512416
+              },
+              {
+                "value": "17",
+                "count": 319,
+                "percent": 4.578728290512416
+              },
+              {
+                "value": "16",
+                "count": 319,
+                "percent": 4.578728290512416
+              },
+              {
+                "value": "15",
+                "count": 319,
+                "percent": 4.578728290512416
+              },
+              {
+                "value": "14",
+                "count": 319,
+                "percent": 4.578728290512416
+              },
+              {
+                "value": "13",
+                "count": 319,
+                "percent": 4.578728290512416
+              },
+              {
+                "value": "12",
+                "count": 319,
+                "percent": 4.578728290512416
+              },
+              {
+                "value": "11",
+                "count": 319,
+                "percent": 4.578728290512416
+              },
+              {
+                "value": "10",
+                "count": 319,
+                "percent": 4.578728290512416
+              },
+              {
+                "value": "9",
+                "count": 319,
+                "percent": 4.578728290512416
+              },
+              {
+                "value": "8",
+                "count": 319,
+                "percent": 4.578728290512416
+              },
+              {
+                "value": "7",
+                "count": 319,
+                "percent": 4.578728290512416
+              },
+              {
+                "value": "6",
+                "count": 319,
+                "percent": 4.578728290512416
+              },
+              {
+                "value": "5",
+                "count": 319,
+                "percent": 4.578728290512416
+              },
+              {
+                "value": "4",
+                "count": 319,
+                "percent": 4.578728290512416
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 28,
+              "avg": 11.50193770632984
+            }
+          }
+        },
+        {
+          "name": "q1",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 6283,
+            "null_count": 109,
+            "null_percent": 1.564518444093584
+          }
+        },
+        {
+          "name": "q2",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3222,
+            "null_count": 3577,
+            "null_percent": 51.34204105066743,
+            "empty_count": 23
+          }
+        },
+        {
+          "name": "q3",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1959,
+            "null_count": 4935,
+            "null_percent": 70.83393139084254,
+            "empty_count": 28
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "constructorId",
+          "referenced_table": "constructors",
+          "referenced_column": "constructorId"
+        },
+        {
+          "column_name": "driverId",
+          "referenced_table": "drivers",
+          "referenced_column": "driverId"
+        },
+        {
+          "column_name": "raceId",
+          "referenced_table": "races",
+          "referenced_column": "raceId"
+        }
+      ],
+      "rich_context": {
+        "number_meaning": {
+          "content": "Car number assigned to a driver for the race weekend; used for identification on track and in timing systems",
+          "expires_at": "2026-03-31T15:00:38+08:00"
+        },
+        "position_meaning": {
+          "content": "Qualifying position in the session, where 1 = fastest qualifier (pole position), higher numbers indicate slower qualifying times",
+          "expires_at": "2026-03-31T15:00:32+08:00"
+        },
+        "q1_meaning": {
+          "content": "Lap time recorded by driver in Qualifying Session 1 (Q1), formatted as M:SS.mmm (minutes:seconds.milliseconds)",
+          "expires_at": "2026-03-31T15:00:48+08:00"
+        },
+        "q2_meaning": {
+          "content": "Lap time recorded by driver in Qualifying Session 2 (Q2), formatted as M:SS.mmm (minutes:seconds.milliseconds)",
+          "expires_at": "2026-03-31T15:00:51+08:00"
+        },
+        "q3_meaning": {
+          "content": "Lap time recorded by driver in Qualifying Session 3 (Q3), formatted as M:SS.mmm (minutes:seconds.milliseconds)",
+          "expires_at": "2026-03-31T15:00:57+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "qualifying",
+          "column": "q1",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 6858/6858 non-empty)",
+          "sql_fix": "CAST(\"q1\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "qualifying",
+          "column": "q2",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 3367/3367 non-empty)",
+          "sql_fix": "CAST(\"q2\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "qualifying",
+          "column": "q2",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "51% NULL values (3577/6967)",
+          "sql_fix": "WHERE \"q2\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "qualifying",
+          "column": "q2",
+          "type": "empty_string",
+          "severity": "warning",
+          "description": "Contains 23 empty string values in addition to NULLs",
+          "sql_fix": "WHERE \"q2\" IS NOT NULL AND \"q2\" != ''",
+          "affected_ops": [
+            "WHERE",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "qualifying",
+          "column": "q3",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 2004/2004 non-empty)",
+          "sql_fix": "CAST(\"q3\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "qualifying",
+          "column": "q3",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "71% NULL values (4935/6967)",
+          "sql_fix": "WHERE \"q3\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "qualifying",
+          "column": "q3",
+          "type": "empty_string",
+          "severity": "warning",
+          "description": "Contains 28 empty string values in addition to NULLs",
+          "sql_fix": "WHERE \"q3\" IS NOT NULL AND \"q3\" != ''",
+          "affected_ops": [
+            "WHERE",
+            "GROUP BY"
+          ]
+        }
+      ]
+    },
+    "races": {
+      "name": "races",
+      "description": "The races table stores information about individual racing events, including their identifiers, names, dates, and associated circuits or locations.",
+      "row_count": 954,
+      "columns": [
+        {
+          "name": "raceId",
+          "type": "INTEGER",
+          "nullable": true,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 954,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 2,
+              "max": 988,
+              "avg": 491.9224318658281
+            }
+          }
+        },
+        {
+          "name": "year",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 68,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1950,
+              "max": 2017,
+              "avg": 1987.9486373165619
+            }
+          }
+        },
+        {
+          "name": "round",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 21,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "7",
+                "count": 68,
+                "percent": 7.127882599580712
+              },
+              {
+                "value": "6",
+                "count": 68,
+                "percent": 7.127882599580712
+              },
+              {
+                "value": "5",
+                "count": 68,
+                "percent": 7.127882599580712
+              },
+              {
+                "value": "4",
+                "count": 68,
+                "percent": 7.127882599580712
+              },
+              {
+                "value": "3",
+                "count": 67,
+                "percent": 7.023060796645702
+              },
+              {
+                "value": "2",
+                "count": 67,
+                "percent": 7.023060796645702
+              },
+              {
+                "value": "8",
+                "count": 66,
+                "percent": 6.918238993710692
+              },
+              {
+                "value": "9",
+                "count": 61,
+                "percent": 6.39412997903564
+              },
+              {
+                "value": "10",
+                "count": 56,
+                "percent": 5.870020964360587
+              },
+              {
+                "value": "11",
+                "count": 52,
+                "percent": 5.450733752620545
+              },
+              {
+                "value": "12",
+                "count": 48,
+                "percent": 5.031446540880504
+              },
+              {
+                "value": "1",
+                "count": 48,
+                "percent": 5.031446540880504
+              },
+              {
+                "value": "13",
+                "count": 46,
+                "percent": 4.821802935010482
+              },
+              {
+                "value": "14",
+                "count": 45,
+                "percent": 4.716981132075472
+              },
+              {
+                "value": "15",
+                "count": 43,
+                "percent": 4.5073375262054505
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 21,
+              "avg": 8.336477987421384
+            }
+          }
+        },
+        {
+          "name": "circuitId",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 71,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 2,
+              "max": 73,
+              "avg": 22.171907756813418
+            }
+          }
+        },
+        {
+          "name": "name",
+          "type": "TEXT",
+          "nullable": false,
+          "default": "''",
+          "value_stats": {
+            "distinct_count": 42,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "date",
+          "type": "DATE",
+          "nullable": false,
+          "default": "'0000-00-00'",
+          "value_stats": {
+            "distinct_count": 954,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "time",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 19,
+            "null_count": 722,
+            "null_percent": 75.68134171907757,
+            "top_values": [
+              {
+                "value": "12:00:00",
+                "count": 107,
+                "percent": 11.215932914046121
+              },
+              {
+                "value": "14:00:00",
+                "count": 26,
+                "percent": 2.7253668763102725
+              },
+              {
+                "value": "06:00:00",
+                "count": 13,
+                "percent": 1.3626834381551363
+              },
+              {
+                "value": "16:00:00",
+                "count": 11,
+                "percent": 1.1530398322851152
+              },
+              {
+                "value": "13:00:00",
+                "count": 11,
+                "percent": 1.1530398322851152
+              },
+              {
+                "value": "07:00:00",
+                "count": 11,
+                "percent": 1.1530398322851152
+              },
+              {
+                "value": "19:00:00",
+                "count": 8,
+                "percent": 0.8385744234800839
+              },
+              {
+                "value": "15:00:00",
+                "count": 8,
+                "percent": 0.8385744234800839
+              },
+              {
+                "value": "18:00:00",
+                "count": 6,
+                "percent": 0.628930817610063
+              },
+              {
+                "value": "17:00:00",
+                "count": 6,
+                "percent": 0.628930817610063
+              },
+              {
+                "value": "08:00:00",
+                "count": 5,
+                "percent": 0.5241090146750524
+              },
+              {
+                "value": "05:00:00",
+                "count": 5,
+                "percent": 0.5241090146750524
+              },
+              {
+                "value": "11:00:00",
+                "count": 4,
+                "percent": 0.41928721174004197
+              },
+              {
+                "value": "09:30:00",
+                "count": 3,
+                "percent": 0.3144654088050315
+              },
+              {
+                "value": "14:30:00",
+                "count": 2,
+                "percent": 0.20964360587002098
+              }
+            ]
+          }
+        },
+        {
+          "name": "url",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 954,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "circuitId",
+          "referenced_table": "circuits",
+          "referenced_column": "circuitId"
+        },
+        {
+          "column_name": "year",
+          "referenced_table": "seasons",
+          "referenced_column": "year"
+        }
+      ],
+      "quality_issues": [
+        {
+          "table": "races",
+          "column": "time",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 232/232 non-empty)",
+          "sql_fix": "CAST(\"time\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "races",
+          "column": "time",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "76% NULL values (722/954)",
+          "sql_fix": "WHERE \"time\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        }
+      ]
+    },
+    "results": {
+      "name": "results",
+      "description": "The `results` table records detailed outcomes of Formula 1 races, including driver finishing positions, starting grid positions, points awarded, and race status codes for each entry.",
+      "row_count": 23179,
+      "columns": [
+        {
+          "name": "resultId",
+          "type": "INTEGER",
+          "nullable": true,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 23179,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 23,
+              "max": 23661,
+              "avg": 11873.628715647785
+            }
+          }
+        },
+        {
+          "name": "raceId",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 948,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 2,
+              "max": 982,
+              "avg": 486.9034902282238
+            }
+          }
+        },
+        {
+          "name": "driverId",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 839,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 841,
+              "avg": 225.85223693860823
+            }
+          }
+        },
+        {
+          "name": "constructorId",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 207,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 210,
+              "avg": 46.65593856508046
+            }
+          }
+        },
+        {
+          "name": "number",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 128,
+            "null_count": 6,
+            "null_percent": 0.025885499805858754,
+            "range": {
+              "min": 0,
+              "max": 208,
+              "avg": 16.977042247443144
+            }
+          }
+        },
+        {
+          "name": "grid",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 35,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 0,
+              "max": 34,
+              "avg": 11.27684542042366
+            }
+          }
+        },
+        {
+          "name": "position",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 33,
+            "null_count": 10326,
+            "null_percent": 44.54894516588291,
+            "range": {
+              "min": 1,
+              "max": 33,
+              "avg": 7.788687465961254
+            }
+          }
+        },
+        {
+          "name": "positionText",
+          "type": "TEXT",
+          "nullable": false,
+          "default": "''",
+          "value_stats": {
+            "distinct_count": 39,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "positionOrder",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 39,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 39,
+              "avg": 13.129298071530265
+            }
+          }
+        },
+        {
+          "name": "points",
+          "type": "REAL",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 33,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 0,
+              "max": 50,
+              "avg": 1.5620842141593685
+            }
+          }
+        },
+        {
+          "name": "laps",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 172,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 0,
+              "max": 200,
+              "avg": 45.312049700159626
+            }
+          }
+        },
+        {
+          "name": "time",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 5588,
+            "null_count": 17390,
+            "null_percent": 75.02480693731395
+          }
+        },
+        {
+          "name": "milliseconds",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 5751,
+            "null_count": 17391,
+            "null_percent": 75.02912118728159,
+            "range": {
+              "min": 1474899,
+              "max": 15090540,
+              "avg": 6329175.389253628
+            }
+          }
+        },
+        {
+          "name": "fastestLap",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 77,
+            "null_count": 18185,
+            "null_percent": 78.45463566159023,
+            "range": {
+              "min": 2,
+              "max": 78,
+              "avg": 41.1583900680817
+            }
+          }
+        },
+        {
+          "name": "rank",
+          "type": "INTEGER",
+          "nullable": true,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 25,
+            "null_count": 18057,
+            "null_percent": 77.9024116657319,
+            "top_values": [
+              {
+                "value": "6",
+                "count": 242,
+                "percent": 1.0440484921696362
+              },
+              {
+                "value": "5",
+                "count": 242,
+                "percent": 1.0440484921696362
+              },
+              {
+                "value": "4",
+                "count": 242,
+                "percent": 1.0440484921696362
+              },
+              {
+                "value": "3",
+                "count": 242,
+                "percent": 1.0440484921696362
+              },
+              {
+                "value": "2",
+                "count": 242,
+                "percent": 1.0440484921696362
+              },
+              {
+                "value": "1",
+                "count": 242,
+                "percent": 1.0440484921696362
+              },
+              {
+                "value": "15",
+                "count": 241,
+                "percent": 1.039734242201993
+              },
+              {
+                "value": "14",
+                "count": 241,
+                "percent": 1.039734242201993
+              },
+              {
+                "value": "13",
+                "count": 241,
+                "percent": 1.039734242201993
+              },
+              {
+                "value": "12",
+                "count": 241,
+                "percent": 1.039734242201993
+              },
+              {
+                "value": "11",
+                "count": 241,
+                "percent": 1.039734242201993
+              },
+              {
+                "value": "10",
+                "count": 241,
+                "percent": 1.039734242201993
+              },
+              {
+                "value": "9",
+                "count": 241,
+                "percent": 1.039734242201993
+              },
+              {
+                "value": "7",
+                "count": 241,
+                "percent": 1.039734242201993
+              },
+              {
+                "value": "16",
+                "count": 240,
+                "percent": 1.0354199922343499
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 24,
+              "avg": 10.661265130808278
+            }
+          }
+        },
+        {
+          "name": "fastestLapTime",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 4709,
+            "null_count": 18185,
+            "null_percent": 78.45463566159023
+          }
+        },
+        {
+          "name": "fastestLapSpeed",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 4794,
+            "null_count": 18185,
+            "null_percent": 78.45463566159023
+          }
+        },
+        {
+          "name": "statusId",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 131,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 136,
+              "avg": 18.441520341688598
+            }
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "statusId",
+          "referenced_table": "status",
+          "referenced_column": "statusId"
+        },
+        {
+          "column_name": "constructorId",
+          "referenced_table": "constructors",
+          "referenced_column": "constructorId"
+        },
+        {
+          "column_name": "driverId",
+          "referenced_table": "drivers",
+          "referenced_column": "driverId"
+        },
+        {
+          "column_name": "raceId",
+          "referenced_table": "races",
+          "referenced_column": "raceId"
+        }
+      ],
+      "rich_context": {
+        "grid_meaning": {
+          "content": "Starting position on the race grid; 1= pole position, higher numbers = further back on the grid",
+          "expires_at": "2026-03-31T15:01:23+08:00"
+        },
+        "points_meaning": {
+          "content": "Points follow Formula 1 scoring: 25=1st, 18=2nd, 15=3rd, 12=4th, 10=5th, 9=6th, 8=7th, 7=8th, 6=9th, 5=10th; 0=non-point finish; historical/rare values (e.g., 50, 36) from older seasons",
+          "expires_at": "2026-03-31T15:01:06+08:00"
+        },
+        "positionText_values": {
+          "content": "R=8322(35.9%), F=1360(5.9%), 4=958(4.1%), 3=958(4.1%), 2=956(4.1%), 5=954(4.1%), 1=951(4.1%), 6=947(4.1%), 7=927(4.0%), 8=899(3.9%), 9=864(3.7%), 10=806(3.5%), 11=730(3.1%), 12=632(2.7%), 13=546(2.4%)",
+          "expires_at": "2026-03-31T15:00:34+08:00"
+        },
+        "position_meaning": {
+          "content": "Finishing position in the race; 1=winner, higher numbers = lower finish; NULL or non-numeric cases handled by positionText",
+          "expires_at": "2026-03-31T15:01:36+08:00"
+        },
+        "statusId_values": {
+          "content": "1=5795(25.0%), 11=3203(13.8%), 5=1947(8.4%), 12=1461(6.3%), 81=1019(4.4%), 3=992(4.3%), 20=777(3.4%), 6=775(3.3%), 13=713(3.1%), 4=709(3.1%), 22=409(1.8%), 14=402(1.7%), 97=331(1.4%), 7=310(1.3%), 10=305(1.3%)",
+          "expires_at": "2026-03-31T15:00:48+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "results",
+          "column": "time",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "75% NULL values (17390/23179)",
+          "sql_fix": "WHERE \"time\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "results",
+          "column": "milliseconds",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "75% NULL values (17391/23179)",
+          "sql_fix": "WHERE \"milliseconds\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "results",
+          "column": "fastestLap",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "78% NULL values (18185/23179)",
+          "sql_fix": "WHERE \"fastestLap\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "results",
+          "column": "rank",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "78% NULL values (18057/23179)",
+          "sql_fix": "WHERE \"rank\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "results",
+          "column": "fastestLapTime",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 4994/4994 non-empty)",
+          "sql_fix": "CAST(\"fastestLapTime\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "results",
+          "column": "fastestLapTime",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "78% NULL values (18185/23179)",
+          "sql_fix": "WHERE \"fastestLapTime\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "results",
+          "column": "fastestLapSpeed",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 4994/4994 non-empty)",
+          "sql_fix": "CAST(\"fastestLapSpeed\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "results",
+          "column": "fastestLapSpeed",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "78% NULL values (18185/23179)",
+          "sql_fix": "WHERE \"fastestLapSpeed\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        }
+      ]
+    },
+    "seasons": {
+      "name": "seasons",
+      "description": "The seasons table stores a list of distinct seasons, likely used to categorize or reference time periods across other related data.",
+      "row_count": 68,
+      "columns": [
+        {
+          "name": "year",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 68,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1950,
+              "max": 2017,
+              "avg": 1983.5
+            }
+          }
+        },
+        {
+          "name": "url",
+          "type": "TEXT",
+          "nullable": false,
+          "default": "''",
+          "value_stats": {
+            "distinct_count": 68,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        }
+      ],
+      "indexes": []
+    },
+    "status": {
+      "name": "status",
+      "description": "The status table stores a list of possible status values used across the system to represent the current state of various entities.",
+      "row_count": 134,
+      "columns": [
+        {
+          "name": "statusId",
+          "type": "INTEGER",
+          "nullable": true,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 134,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 136,
+              "avg": 68.7089552238806
+            }
+          }
+        },
+        {
+          "name": "status",
+          "type": "TEXT",
+          "nullable": false,
+          "default": "''",
+          "value_stats": {
+            "distinct_count": 134,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        }
+      ],
+      "indexes": []
+    }
+  },
+  "total_tables": 0,
+  "total_rows": 0
+}

@@ -1,0 +1,70 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=7, pred=2",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "PostHistoryTypeId",
+        "NumberOfUsers"
+      ],
+      [
+        "2",
+        "3"
+      ],
+      [
+        "5",
+        "3"
+      ],
+      [
+        "5",
+        "3"
+      ],
+      [
+        "5",
+        "3"
+      ],
+      [
+        "5",
+        "3"
+      ],
+      [
+        "5",
+        "3"
+      ],
+      [
+        "5",
+        "3"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.PostHistoryTypeId, (SELECT COUNT(DISTINCT UserId) FROM comments WHERE PostId = 3720) AS NumberOfUsers FROM postHistory AS T1 WHERE T1.PostId = 3720",
+  "id": 600,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "PostHistoryTypeId",
+        "NumberOfUsers"
+      ],
+      [
+        "2",
+        "3"
+      ],
+      [
+        "5",
+        "3"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT ph.PostHistoryTypeId, \n       (SELECT COUNT(DISTINCT UserId) FROM comments WHERE PostId = 3720 AND UserId IS NOT NULL) AS NumberOfUsers\nFROM postHistory ph\nWHERE ph.PostId = 3720",
+  "question": "What are the post history type IDs for post ID 3720 and how many unique users have commented on the post?",
+  "thinking": ""
+}

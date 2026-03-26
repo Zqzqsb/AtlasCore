@@ -1,0 +1,16 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT AdmLName1, District, County, School FROM schools WHERE CharterNum = '0040'",
+  "id": 87,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT AdmLName1, District, County, School FROM schools WHERE CharterNum = '0040';",
+  "question": "What is the administrator's last name that oversees the school with Charter number 40? Indicate the district, the county where the school is situated, and the name of the school.",
+  "thinking": ""
+}

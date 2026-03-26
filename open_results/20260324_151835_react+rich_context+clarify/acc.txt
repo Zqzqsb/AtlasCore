@@ -1,0 +1,38 @@
+Total Queries: 1534
+Correct Count: 1171 (Exact Match: 207, Semantic Match: 964)
+Ambiguous: 0
+Error Count: 363
+Accuracy (excl. ambiguous & ref errors): 76.40%
+
+Error Type Statistics (by frequency)
+--------------------------------------
+Error Type                Count      Percentage
+----------------------------------------
+row_count_error             190           12.39%
+data_mismatch               168           10.95%
+
+Detailed Error Classification
+--------------------------------------
+Error Type                Count      Percentage
+----------------------------------------
+Syntax Error                  2            0.13%
+Reference Error               1            0.07%
+Projection Error              0            0.00%
+Row Count Error             190           12.39%
+Data Mismatch               168           10.95%
+Execution Error               2            0.13%
+Timeout Error                 2            0.13%
+Other Error                   0            0.00%
+
+Report saved to: results/bird/20260324_151835_react+rich_context+clarify/analysis_reports/summary_report.json
+
+Accuracy by Difficulty
+────────────────────────────────────────────────────────────
+Difficulty         Total  Correct   Accuracy   Error Breakdown               
+────────────────────────────────────────────────────────────
+simple               925      727      78.6%   row_count_error:119, data_mismatch:79
+moderate             464      336      72.4%   data_mismatch:71, row_count_error:53, execution_error:3, timeout_error:1
+challenging          145      108      74.5%   data_mismatch:18, row_count_error:18, timeout_error:1
+────────────────────────────────────────────────────────────
+
+⏱️  Analysis completed in 3m42.523006016s

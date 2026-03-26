@@ -1,0 +1,38 @@
+{
+  "db_id": "student_club",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "event_name"
+      ],
+      [
+        "Yearly Kickoff"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.event_name FROM budget AS T1 INNER JOIN event AS T2 ON T1.link_to_event = T2.event_id ORDER BY T1.amount DESC LIMIT 1",
+  "id": 1370,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "event_name"
+      ],
+      [
+        "Yearly Kickoff"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT e.event_name\nFROM event e\nJOIN budget b ON e.event_id = b.link_to_event\nORDER BY b.amount DESC\nLIMIT 1",
+  "question": "Which event has the highest budget amount?",
+  "thinking": ""
+}

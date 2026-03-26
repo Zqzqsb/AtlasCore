@@ -1,0 +1,38 @@
+{
+  "db_id": "superhero",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "power_name"
+      ],
+      [
+        "Super Strength"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.power_name FROM hero_power AS T1 INNER JOIN superpower AS T2 ON T1.power_id = T2.id GROUP BY T2.power_name ORDER BY COUNT(T1.hero_id) DESC LIMIT 1",
+  "id": 763,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "power_name"
+      ],
+      [
+        "Super Strength"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT sp.power_name\nFROM hero_power hp\nJOIN superpower sp ON hp.power_id = sp.id\nGROUP BY sp.power_name\nORDER BY COUNT(*) DESC\nLIMIT 1",
+  "question": "Which power do superheroes have the most of?",
+  "thinking": ""
+}

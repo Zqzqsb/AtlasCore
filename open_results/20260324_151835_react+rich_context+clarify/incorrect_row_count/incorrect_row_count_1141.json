@@ -1,0 +1,96 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=9, pred=3",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "sprint_speed",
+        "agility",
+        "acceleration"
+      ],
+      [
+        "60",
+        "61",
+        "56"
+      ],
+      [
+        "60",
+        "61",
+        "56"
+      ],
+      [
+        "60",
+        "61",
+        "56"
+      ],
+      [
+        "61",
+        "60",
+        "62"
+      ],
+      [
+        "61",
+        "60",
+        "62"
+      ],
+      [
+        "61",
+        "60",
+        "62"
+      ],
+      [
+        "49",
+        "56",
+        "52"
+      ],
+      [
+        "49",
+        "56",
+        "52"
+      ],
+      [
+        "49",
+        "56",
+        "52"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT sprint_speed, agility, acceleration FROM Player_Attributes WHERE player_api_id IN ( SELECT player_api_id FROM Player WHERE player_name = 'Alexis Blin' )",
+  "id": 1141,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "sprint_speed",
+        "agility",
+        "acceleration"
+      ],
+      [
+        "60",
+        "61",
+        "56"
+      ],
+      [
+        "61",
+        "60",
+        "62"
+      ],
+      [
+        "49",
+        "56",
+        "52"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT pa.sprint_speed, pa.agility, pa.acceleration\nFROM Player_Attributes pa\nJOIN Player p ON pa.player_api_id = p.player_api_id\nWHERE p.player_name = 'Alexis Blin';",
+  "question": "What are Alexis Blin's sprint speed, agility, and acceleration scores?",
+  "thinking": ""
+}

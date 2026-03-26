@@ -1,0 +1,38 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "DisplayName"
+      ],
+      [
+        "Harlan"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DisplayName FROM users WHERE DisplayName IN ('Harlan', 'Jarrod Dixon') AND Reputation = ( SELECT MAX(Reputation) FROM users WHERE DisplayName IN ('Harlan', 'Jarrod Dixon') )",
+  "id": 532,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "DisplayName"
+      ],
+      [
+        "Harlan"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DisplayName FROM users WHERE TRIM(DisplayName) IN ('Harlan', 'Jarrod Dixon') ORDER BY Reputation DESC LIMIT 1;",
+  "question": "Which user has a higher reputation, Harlan or Jarrod Dixon?",
+  "thinking": ""
+}

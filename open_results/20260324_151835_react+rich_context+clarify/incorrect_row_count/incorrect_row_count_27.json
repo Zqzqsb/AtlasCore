@@ -1,0 +1,67 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "moderate",
+  "error_reason": "row count mismatch: gold=5, pred=-1",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "School Name",
+        "Street",
+        "City",
+        "State",
+        "Zip"
+      ],
+      [
+        "Alisal High",
+        "777 Williams Road",
+        "Salinas",
+        "CA",
+        "93905-1907"
+      ],
+      [
+        "Everett Alvarez High",
+        "1900 Independence Boulevard",
+        "Salinas",
+        "CA",
+        "93906-5300"
+      ],
+      [
+        "North Salinas High",
+        "55 Kip Drive",
+        "Salinas",
+        "CA",
+        "93906-2908"
+      ],
+      [
+        "Salinas High",
+        "726 South Main Street",
+        "Salinas",
+        "CA",
+        "93901-3243"
+      ],
+      [
+        "Soledad High",
+        "425 Gabilan Drive",
+        "Soledad",
+        "CA",
+        "93960-3207"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.`School Name`, T2.Street, T2.City, T2.State, T2.Zip FROM frpm AS T1 INNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode WHERE T2.County = 'Monterey' AND T1.`Free Meal Count (Ages 5-17)` \u003e 800 AND T1.`School Type` = 'High Schools (Public)'",
+  "id": 27,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": []
+  },
+  "pred_sql": "SELECT \n    f.\"School Name\",\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip\nFROM schools s\nJOIN frpm f ON CAST(s.CDSCode AS INTEGER) = CAST(f.CDSCode AS INTEGER)\nWHERE s.City = 'Monterey'\n    AND f.\"School Type\" LIKE '%High%'\n    AND f.\"FRPM Count (Ages 5-17)\" \u003e 800;",
+  "question": "State the names and full communication address of high schools in Monterey which has more than 800 free or reduced price meals for ages 15-17?",
+  "thinking": ""
+}

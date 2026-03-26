@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.driverId)"
+      ],
+      [
+        "0"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T1.driverId) FROM drivers AS T1 INNER JOIN results AS T2 on T1.driverId = T2.driverId INNER JOIN status AS T3 on T2.statusId = T3.statusId WHERE T3.status = 'Puncture' AND T1.nationality = 'American'",
+  "id": 983,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.driverId)"
+      ],
+      [
+        "0"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(T1.driverId) \nFROM drivers AS T1\nJOIN results AS T2 ON T1.driverId = T2.driverId\nJOIN status AS T3 ON T2.statusId = T3.statusId\nWHERE T1.nationality = 'American' AND T3.status = 'Puncture';",
+  "question": "How many American drivers have puncture status.",
+  "thinking": ""
+}

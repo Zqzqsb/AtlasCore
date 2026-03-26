@@ -1,0 +1,2079 @@
+{
+  "database_name": "thrombosis_prediction",
+  "database_type": "sqlite",
+  "collected_at": "2026-03-24T15:03:43.981867734+08:00",
+  "schema_diagram": {
+    "format": "mermaid-er",
+    "description": "Entity-Relationship diagram showing database schema and relationships",
+    "content": "erDiagram\n    PATIENT ||--o{ LABORATORY : \"has\"\n    PATIENT ||--o{ EXAMINATION : \"has\"\n\n    PATIENT {\n        int ID PK\n        text SEX\n        datetime Birthday\n        datetime Description\n        datetime First Date\n        text Admission\n        text Diagnosis\n    }\n    EXAMINATION {\n        int ID FK\n        datetime Examination Date\n        float aCL IgG\n        float aCL IgM\n        int ANA\n        text ANA Pattern\n        int aCL IgA\n        text Diagnosis\n        text KCT\n        text RVVT\n        text LAC\n        text Symptoms\n        int Thrombosis\n    }\n    LABORATORY {\n        int ID PK,FK\n        datetime Date PK\n        int GOT\n        int GPT\n        int LDH\n        int ALP\n        float TP\n        float ALB\n        float UA\n        int UN\n        float CRE\n        float T-BIL\n        int T-CHO\n        int TG\n        int CPK\n        int GLU\n        float WBC\n        float RBC\n        float HGB\n        float HCT\n        int PLT\n        float PT\n        int APTT\n        float FG\n        int PIC\n        int TAT\n        int TAT2\n        text U-PRO\n        int IGG\n        int IGA\n        int IGM\n        text CRP\n        text RA\n        text RF\n        int C3\n        int C4\n        text RNP\n        text SM\n        text SC170\n        text SSA\n        text SSB\n        text CENTROMEA\n        text DNA\n        int DNA-II\n    }\n"
+  },
+  "tables": {
+    "Examination": {
+      "name": "Examination",
+      "row_count": 106,
+      "columns": [
+        {
+          "name": "ID",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 69,
+            "null_count": 36,
+            "null_percent": 33.9622641509434,
+            "range": {
+              "min": 14872,
+              "max": 5779550,
+              "avg": 3218983.6428571427
+            }
+          }
+        },
+        {
+          "name": "Examination Date",
+          "type": "DATE",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 94,
+            "null_count": 4,
+            "null_percent": 3.7735849056603774
+          }
+        },
+        {
+          "name": "aCL IgG",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 33,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 0,
+              "max": 2150.3,
+              "avg": 33.38867924528302
+            }
+          }
+        },
+        {
+          "name": "aCL IgM",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 49,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 0,
+              "max": 200,
+              "avg": 4.9490566037735855
+            }
+          }
+        },
+        {
+          "name": "ANA",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 7,
+            "null_count": 19,
+            "null_percent": 17.92452830188679,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 20,
+                "percent": 18.867924528301888
+              },
+              {
+                "value": "16",
+                "count": 17,
+                "percent": 16.037735849056602
+              },
+              {
+                "value": "64",
+                "count": 14,
+                "percent": 13.20754716981132
+              },
+              {
+                "value": "256",
+                "count": 11,
+                "percent": 10.377358490566039
+              },
+              {
+                "value": "4",
+                "count": 11,
+                "percent": 10.377358490566039
+              },
+              {
+                "value": "4096",
+                "count": 7,
+                "percent": 6.60377358490566
+              },
+              {
+                "value": "1024",
+                "count": 7,
+                "percent": 6.60377358490566
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 4096,
+              "avg": 458.2528735632184
+            }
+          }
+        },
+        {
+          "name": "ANA Pattern",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 6,
+            "null_count": 41,
+            "null_percent": 38.67924528301887,
+            "top_values": [
+              {
+                "value": "S",
+                "count": 31,
+                "percent": 29.245283018867923
+              },
+              {
+                "value": "P",
+                "count": 19,
+                "percent": 17.92452830188679
+              },
+              {
+                "value": "P,S",
+                "count": 12,
+                "percent": 11.320754716981133
+              },
+              {
+                "value": "S,P",
+                "count": 1,
+                "percent": 0.9433962264150944
+              },
+              {
+                "value": "S,D",
+                "count": 1,
+                "percent": 0.9433962264150944
+              },
+              {
+                "value": "D,P,S",
+                "count": 1,
+                "percent": 0.9433962264150944
+              }
+            ]
+          }
+        },
+        {
+          "name": "aCL IgA",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 21,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 56,
+                "percent": 52.83018867924528
+              },
+              {
+                "value": "2",
+                "count": 9,
+                "percent": 8.49056603773585
+              },
+              {
+                "value": "3",
+                "count": 7,
+                "percent": 6.60377358490566
+              },
+              {
+                "value": "9",
+                "count": 5,
+                "percent": 4.716981132075472
+              },
+              {
+                "value": "8",
+                "count": 4,
+                "percent": 3.7735849056603774
+              },
+              {
+                "value": "7",
+                "count": 4,
+                "percent": 3.7735849056603774
+              },
+              {
+                "value": "6",
+                "count": 3,
+                "percent": 2.8301886792452833
+              },
+              {
+                "value": "12",
+                "count": 2,
+                "percent": 1.8867924528301887
+              },
+              {
+                "value": "10",
+                "count": 2,
+                "percent": 1.8867924528301887
+              },
+              {
+                "value": "5",
+                "count": 2,
+                "percent": 1.8867924528301887
+              },
+              {
+                "value": "4",
+                "count": 2,
+                "percent": 1.8867924528301887
+              },
+              {
+                "value": "223",
+                "count": 1,
+                "percent": 0.9433962264150944
+              },
+              {
+                "value": "209",
+                "count": 1,
+                "percent": 0.9433962264150944
+              },
+              {
+                "value": "66",
+                "count": 1,
+                "percent": 0.9433962264150944
+              },
+              {
+                "value": "33",
+                "count": 1,
+                "percent": 0.9433962264150944
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 223,
+              "avg": 7.89622641509434
+            }
+          }
+        },
+        {
+          "name": "Diagnosis",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 44,
+            "null_count": 24,
+            "null_percent": 22.641509433962266
+          }
+        },
+        {
+          "name": "KCT",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 85,
+            "null_percent": 80.18867924528303,
+            "top_values": [
+              {
+                "value": "-",
+                "count": 15,
+                "percent": 14.150943396226415
+              },
+              {
+                "value": "+",
+                "count": 6,
+                "percent": 5.660377358490567
+              }
+            ]
+          }
+        },
+        {
+          "name": "RVVT",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 85,
+            "null_percent": 80.18867924528303,
+            "top_values": [
+              {
+                "value": "-",
+                "count": 14,
+                "percent": 13.20754716981132
+              },
+              {
+                "value": "+",
+                "count": 7,
+                "percent": 6.60377358490566
+              }
+            ]
+          }
+        },
+        {
+          "name": "LAC",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 81,
+            "null_percent": 76.41509433962264,
+            "top_values": [
+              {
+                "value": "-",
+                "count": 16,
+                "percent": 15.09433962264151
+              },
+              {
+                "value": "+",
+                "count": 9,
+                "percent": 8.49056603773585
+              }
+            ]
+          }
+        },
+        {
+          "name": "Symptoms",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 10,
+            "null_count": 94,
+            "null_percent": 88.67924528301887,
+            "top_values": [
+              {
+                "value": "CNS lupus",
+                "count": 2,
+                "percent": 1.8867924528301887
+              },
+              {
+                "value": "Apo",
+                "count": 2,
+                "percent": 1.8867924528301887
+              },
+              {
+                "value": "thrombophlebitis",
+                "count": 1,
+                "percent": 0.9433962264150944
+              },
+              {
+                "value": "thrombocytopenia",
+                "count": 1,
+                "percent": 0.9433962264150944
+              },
+              {
+                "value": "brain infarction",
+                "count": 1,
+                "percent": 0.9433962264150944
+              },
+              {
+                "value": "PH",
+                "count": 1,
+                "percent": 0.9433962264150944
+              },
+              {
+                "value": "DVT",
+                "count": 1,
+                "percent": 0.9433962264150944
+              },
+              {
+                "value": "CVA, epilepsy",
+                "count": 1,
+                "percent": 0.9433962264150944
+              },
+              {
+                "value": "CNS susp",
+                "count": 1,
+                "percent": 0.9433962264150944
+              },
+              {
+                "value": "AMI",
+                "count": 1,
+                "percent": 0.9433962264150944
+              }
+            ]
+          }
+        },
+        {
+          "name": "Thrombosis",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 4,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 94,
+                "percent": 88.67924528301887
+              },
+              {
+                "value": "1",
+                "count": 8,
+                "percent": 7.547169811320755
+              },
+              {
+                "value": "2",
+                "count": 3,
+                "percent": 2.8301886792452833
+              },
+              {
+                "value": "3",
+                "count": 1,
+                "percent": 0.9433962264150944
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 3,
+              "avg": 0.16037735849056603
+            }
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "ID",
+          "referenced_table": "Patient",
+          "referenced_column": "ID"
+        }
+      ],
+      "rich_context": {
+        "ANA_meaning": {
+          "content": "Antinuclear Antibody titer result; values are dilution factors (powers of 2); 0 = negative/not detected",
+          "expires_at": "2026-03-31T15:04:03+08:00"
+        },
+        "Thrombosis_meaning": {
+          "content": "1 = thrombosis present, 0 = thrombosis absent",
+          "expires_at": "2026-03-31T15:04:13+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "Examination",
+          "column": "KCT",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "80% NULL values (85/106)",
+          "sql_fix": "WHERE \"KCT\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "Examination",
+          "column": "RVVT",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "80% NULL values (85/106)",
+          "sql_fix": "WHERE \"RVVT\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "Examination",
+          "column": "LAC",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "76% NULL values (81/106)",
+          "sql_fix": "WHERE \"LAC\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "Examination",
+          "column": "Symptoms",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "89% NULL values (94/106)",
+          "sql_fix": "WHERE \"Symptoms\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        }
+      ]
+    },
+    "Laboratory": {
+      "name": "Laboratory",
+      "description": "The Laboratory table stores patient laboratory test results, primarily for autoimmune and inflammatory markers such as RA, RF, CRP, and various autoantibodies, along with urine protein levels, to support clinical diagnosis and monitoring.",
+      "row_count": 13908,
+      "columns": [
+        {
+          "name": "ID",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 302,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 27654,
+              "max": 5452747,
+              "avg": 3165488.980011504
+            }
+          }
+        },
+        {
+          "name": "Date",
+          "type": "DATE",
+          "nullable": false,
+          "default": "'0000-00-00'",
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 3723,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "GOT",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 218,
+            "null_count": 2630,
+            "null_percent": 18.90997986770204,
+            "range": {
+              "min": 3,
+              "max": 21480,
+              "avg": 28.80209256960454
+            }
+          }
+        },
+        {
+          "name": "GPT",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 302,
+            "null_count": 2634,
+            "null_percent": 18.93874029335634,
+            "range": {
+              "min": 1,
+              "max": 4780,
+              "avg": 30.44589320560582
+            }
+          }
+        },
+        {
+          "name": "LDH",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 917,
+            "null_count": 2603,
+            "null_percent": 18.71584699453552,
+            "range": {
+              "min": 25,
+              "max": 67080,
+              "avg": 322.2659885006634
+            }
+          }
+        },
+        {
+          "name": "ALP",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 532,
+            "null_count": 2757,
+            "null_percent": 19.823123382226058,
+            "range": {
+              "min": 11,
+              "max": 1308,
+              "avg": 122.44785221056408
+            }
+          }
+        },
+        {
+          "name": "TP",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 62,
+            "null_count": 2790,
+            "null_percent": 20.06039689387403,
+            "range": {
+              "min": 0,
+              "max": 9.9,
+              "avg": 7.124177010253644
+            }
+          }
+        },
+        {
+          "name": "ALB",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 39,
+            "null_count": 2840,
+            "null_percent": 20.419902214552778,
+            "range": {
+              "min": 1,
+              "max": 5.8,
+              "avg": 4.142871340802313
+            }
+          }
+        },
+        {
+          "name": "UA",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 132,
+            "null_count": 2805,
+            "null_percent": 20.16824849007765,
+            "range": {
+              "min": 0.4,
+              "max": 17.3,
+              "avg": 4.395019364135819
+            }
+          }
+        },
+        {
+          "name": "UN",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 108,
+            "null_count": 2670,
+            "null_percent": 19.19758412424504,
+            "range": {
+              "min": 0,
+              "max": 152,
+              "avg": 15.402206798362698
+            }
+          }
+        },
+        {
+          "name": "CRE",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 65,
+            "null_count": 2655,
+            "null_percent": 19.089732528041413,
+            "range": {
+              "min": 0.1,
+              "max": 17.1,
+              "avg": 0.7913089842708612
+            }
+          }
+        },
+        {
+          "name": "T-BIL",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 40,
+            "null_count": 4287,
+            "null_percent": 30.823986194995683,
+            "range": {
+              "min": 0.1,
+              "max": 7.9,
+              "avg": 0.5332086061739943
+            }
+          }
+        },
+        {
+          "name": "T-CHO",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 325,
+            "null_count": 3244,
+            "null_percent": 23.324705205637045,
+            "range": {
+              "min": 37,
+              "max": 568,
+              "avg": 203.05785821455365
+            }
+          }
+        },
+        {
+          "name": "TG",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 392,
+            "null_count": 7471,
+            "null_percent": 53.71728501581824,
+            "range": {
+              "min": 1,
+              "max": 867,
+              "avg": 125.22945471492932
+            }
+          }
+        },
+        {
+          "name": "CPK",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 463,
+            "null_count": 8892,
+            "null_percent": 63.934426229508205,
+            "range": {
+              "min": 0,
+              "max": 10835,
+              "avg": 100.40330940988835
+            }
+          }
+        },
+        {
+          "name": "GLU",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 208,
+            "null_count": 12203,
+            "null_percent": 87.74086856485475,
+            "range": {
+              "min": 62,
+              "max": 499,
+              "avg": 115.74486803519062
+            }
+          }
+        },
+        {
+          "name": "WBC",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 217,
+            "null_count": 1827,
+            "null_percent": 13.136324417601381,
+            "range": {
+              "min": 0.9,
+              "max": 35.2,
+              "avg": 7.56596308252628
+            }
+          }
+        },
+        {
+          "name": "RBC",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 56,
+            "null_count": 1827,
+            "null_percent": 13.136324417601381,
+            "range": {
+              "min": 0.4,
+              "max": 6.6,
+              "avg": 4.318400794636205
+            }
+          }
+        },
+        {
+          "name": "HGB",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 138,
+            "null_count": 1827,
+            "null_percent": 13.136324417601381,
+            "range": {
+              "min": 1.3,
+              "max": 18.9,
+              "avg": 12.423011340120851
+            }
+          }
+        },
+        {
+          "name": "HCT",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 363,
+            "null_count": 1827,
+            "null_percent": 13.136324417601381,
+            "range": {
+              "min": 3,
+              "max": 56,
+              "avg": 37.92827580498303
+            }
+          }
+        },
+        {
+          "name": "PLT",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 657,
+            "null_count": 2621,
+            "null_percent": 18.84526890997987,
+            "range": {
+              "min": 5,
+              "max": 5844,
+              "avg": 263.0107202976876
+            }
+          }
+        },
+        {
+          "name": "PT",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 104,
+            "null_count": 13287,
+            "null_percent": 95.53494391716998,
+            "range": {
+              "min": 10.1,
+              "max": 27,
+              "avg": 13.271658615136877
+            }
+          }
+        },
+        {
+          "name": "APTT",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 27,
+            "null_count": 13857,
+            "null_percent": 99.63330457290768,
+            "top_values": [
+              {
+                "value": "95",
+                "count": 7,
+                "percent": 0.05033074489502444
+              },
+              {
+                "value": "96",
+                "count": 6,
+                "percent": 0.04314063848144953
+              },
+              {
+                "value": "93",
+                "count": 4,
+                "percent": 0.028760425654299683
+              },
+              {
+                "value": "107",
+                "count": 3,
+                "percent": 0.021570319240724764
+              },
+              {
+                "value": "99",
+                "count": 3,
+                "percent": 0.021570319240724764
+              },
+              {
+                "value": "88",
+                "count": 3,
+                "percent": 0.021570319240724764
+              },
+              {
+                "value": "111",
+                "count": 2,
+                "percent": 0.014380212827149842
+              },
+              {
+                "value": "109",
+                "count": 2,
+                "percent": 0.014380212827149842
+              },
+              {
+                "value": "101",
+                "count": 2,
+                "percent": 0.014380212827149842
+              },
+              {
+                "value": "86",
+                "count": 2,
+                "percent": 0.014380212827149842
+              },
+              {
+                "value": "146",
+                "count": 1,
+                "percent": 0.007190106413574921
+              },
+              {
+                "value": "143",
+                "count": 1,
+                "percent": 0.007190106413574921
+              },
+              {
+                "value": "120",
+                "count": 1,
+                "percent": 0.007190106413574921
+              },
+              {
+                "value": "112",
+                "count": 1,
+                "percent": 0.007190106413574921
+              },
+              {
+                "value": "108",
+                "count": 1,
+                "percent": 0.007190106413574921
+              }
+            ],
+            "range": {
+              "min": 57,
+              "max": 146,
+              "avg": 97.33333333333333
+            }
+          }
+        },
+        {
+          "name": "FG",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 279,
+            "null_count": 13453,
+            "null_percent": 96.72850158182341,
+            "range": {
+              "min": 23.8,
+              "max": 106.5,
+              "avg": 43.28549450549451
+            }
+          }
+        },
+        {
+          "name": "PIC",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 63,
+            "null_count": 13832,
+            "null_percent": 99.4535519125683,
+            "range": {
+              "min": 114,
+              "max": 700,
+              "avg": 322.3421052631579
+            }
+          }
+        },
+        {
+          "name": "TAT",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 82,
+            "null_count": 13766,
+            "null_percent": 98.97900488927236,
+            "range": {
+              "min": 63,
+              "max": 183,
+              "avg": 121.38732394366197
+            }
+          }
+        },
+        {
+          "name": "TAT2",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 60,
+            "null_count": 13789,
+            "null_percent": 99.14437733678459,
+            "range": {
+              "min": 59,
+              "max": 155,
+              "avg": 116.39495798319328
+            }
+          }
+        },
+        {
+          "name": "U-PRO",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 16,
+            "null_count": 4241,
+            "null_percent": 30.493241299971242,
+            "top_values": [
+              {
+                "value": "-",
+                "count": 4579,
+                "percent": 32.92349726775956
+              },
+              {
+                "value": "0",
+                "count": 2748,
+                "percent": 19.75841242450388
+              },
+              {
+                "value": "TR",
+                "count": 866,
+                "percent": 6.226632154155882
+              },
+              {
+                "value": "30",
+                "count": 398,
+                "percent": 2.8616623526028184
+              },
+              {
+                "value": "1",
+                "count": 319,
+                "percent": 2.2936439459303997
+              },
+              {
+                "value": "2",
+                "count": 313,
+                "percent": 2.25050330744895
+              },
+              {
+                "value": "3",
+                "count": 148,
+                "percent": 1.0641357492090882
+              },
+              {
+                "value": "100",
+                "count": 138,
+                "percent": 0.992234685073339
+              },
+              {
+                "value": "300",
+                "count": 57,
+                "percent": 0.4098360655737705
+              },
+              {
+                "value": "-15",
+                "count": 37,
+                "percent": 0.26603393730227204
+              },
+              {
+                "value": "4",
+                "count": 21,
+                "percent": 0.15099223468507333
+              },
+              {
+                "value": "+1(30)",
+                "count": 18,
+                "percent": 0.12942191544434856
+              },
+              {
+                "value": "\u003e=1000",
+                "count": 11,
+                "percent": 0.07909117054932413
+              },
+              {
+                "value": "\u003e=300",
+                "count": 6,
+                "percent": 0.04314063848144953
+              },
+              {
+                "value": "+2(100)",
+                "count": 4,
+                "percent": 0.028760425654299683
+              }
+            ]
+          }
+        },
+        {
+          "name": "IGG",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1516,
+            "null_count": 11228,
+            "null_percent": 80.73051481161922,
+            "range": {
+              "min": 3,
+              "max": 6510,
+              "avg": 1800.405223880597
+            }
+          }
+        },
+        {
+          "name": "IGA",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 682,
+            "null_count": 11228,
+            "null_percent": 80.73051481161922,
+            "range": {
+              "min": 1,
+              "max": 1765,
+              "avg": 368.7977611940299
+            }
+          }
+        },
+        {
+          "name": "IGM",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 487,
+            "null_count": 11230,
+            "null_percent": 80.74489502444636,
+            "range": {
+              "min": 0,
+              "max": 1573,
+              "avg": 190.22516803584764
+            }
+          }
+        },
+        {
+          "name": "CRP",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 211,
+            "null_count": 2453,
+            "null_percent": 17.637331032499283
+          }
+        },
+        {
+          "name": "RA",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 5,
+            "null_count": 11053,
+            "null_percent": 79.4722461892436,
+            "top_values": [
+              {
+                "value": "-",
+                "count": 1684,
+                "percent": 12.108139200460165
+              },
+              {
+                "value": "+",
+                "count": 658,
+                "percent": 4.7310900201322985
+              },
+              {
+                "value": "2+",
+                "count": 323,
+                "percent": 2.3224043715846996
+              },
+              {
+                "value": "+-",
+                "count": 189,
+                "percent": 1.35893011216566
+              },
+              {
+                "value": "7-",
+                "count": 1,
+                "percent": 0.007190106413574921
+              }
+            ]
+          }
+        },
+        {
+          "name": "RF",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 903,
+            "null_count": 10571,
+            "null_percent": 76.00661489790049
+          }
+        },
+        {
+          "name": "C3",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 151,
+            "null_count": 8447,
+            "null_percent": 60.734828875467365,
+            "range": {
+              "min": 15,
+              "max": 196,
+              "avg": 70.70280168467313
+            }
+          }
+        },
+        {
+          "name": "C4",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 62,
+            "null_count": 8447,
+            "null_percent": 60.734828875467365,
+            "range": {
+              "min": 3,
+              "max": 80,
+              "avg": 22.267899652078373
+            }
+          }
+        },
+        {
+          "name": "RNP",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8,
+            "null_count": 13765,
+            "null_percent": 98.97181478285879,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 72,
+                "percent": 0.5176876617773942
+              },
+              {
+                "value": "negative",
+                "count": 22,
+                "percent": 0.15818234109864826
+              },
+              {
+                "value": "4",
+                "count": 14,
+                "percent": 0.10066148979004888
+              },
+              {
+                "value": "16",
+                "count": 10,
+                "percent": 0.07190106413574922
+              },
+              {
+                "value": "1",
+                "count": 10,
+                "percent": 0.07190106413574922
+              },
+              {
+                "value": "64",
+                "count": 8,
+                "percent": 0.057520851308599366
+              },
+              {
+                "value": "256",
+                "count": 6,
+                "percent": 0.04314063848144953
+              },
+              {
+                "value": "15",
+                "count": 1,
+                "percent": 0.007190106413574921
+              }
+            ]
+          }
+        },
+        {
+          "name": "SM",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 5,
+            "null_count": 13780,
+            "null_percent": 99.07966637906242,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 102,
+                "percent": 0.7333908541846419
+              },
+              {
+                "value": "negative",
+                "count": 20,
+                "percent": 0.14380212827149844
+              },
+              {
+                "value": "1",
+                "count": 4,
+                "percent": 0.028760425654299683
+              },
+              {
+                "value": "8",
+                "count": 1,
+                "percent": 0.007190106413574921
+              },
+              {
+                "value": "2",
+                "count": 1,
+                "percent": 0.007190106413574921
+              }
+            ]
+          }
+        },
+        {
+          "name": "SC170",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 5,
+            "null_count": 13880,
+            "null_percent": 99.7986770204199,
+            "top_values": [
+              {
+                "value": "negative",
+                "count": 12,
+                "percent": 0.08628127696289906
+              },
+              {
+                "value": "0",
+                "count": 12,
+                "percent": 0.08628127696289906
+              },
+              {
+                "value": "4",
+                "count": 2,
+                "percent": 0.014380212827149842
+              },
+              {
+                "value": "16",
+                "count": 1,
+                "percent": 0.007190106413574921
+              },
+              {
+                "value": "1",
+                "count": 1,
+                "percent": 0.007190106413574921
+              }
+            ]
+          }
+        },
+        {
+          "name": "SSA",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 7,
+            "null_count": 13809,
+            "null_percent": 99.28817946505607,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 41,
+                "percent": 0.29479436295657174
+              },
+              {
+                "value": "negative",
+                "count": 27,
+                "percent": 0.19413287316652286
+              },
+              {
+                "value": "16",
+                "count": 11,
+                "percent": 0.07909117054932413
+              },
+              {
+                "value": "64",
+                "count": 8,
+                "percent": 0.057520851308599366
+              },
+              {
+                "value": "4",
+                "count": 5,
+                "percent": 0.03595053206787461
+              },
+              {
+                "value": "1",
+                "count": 5,
+                "percent": 0.03595053206787461
+              },
+              {
+                "value": "256",
+                "count": 2,
+                "percent": 0.014380212827149842
+              }
+            ]
+          }
+        },
+        {
+          "name": "SSB",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 6,
+            "null_count": 13815,
+            "null_percent": 99.33132010353754,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 58,
+                "percent": 0.4170261719873454
+              },
+              {
+                "value": "negative",
+                "count": 30,
+                "percent": 0.21570319240724764
+              },
+              {
+                "value": "32",
+                "count": 2,
+                "percent": 0.014380212827149842
+              },
+              {
+                "value": "8",
+                "count": 1,
+                "percent": 0.007190106413574921
+              },
+              {
+                "value": "2",
+                "count": 1,
+                "percent": 0.007190106413574921
+              },
+              {
+                "value": "1",
+                "count": 1,
+                "percent": 0.007190106413574921
+              }
+            ]
+          }
+        },
+        {
+          "name": "CENTROMEA",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 13893,
+            "null_percent": 99.89214840379638,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 11,
+                "percent": 0.07909117054932413
+              },
+              {
+                "value": "negative",
+                "count": 4,
+                "percent": 0.028760425654299683
+              }
+            ]
+          }
+        },
+        {
+          "name": "DNA",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 66,
+            "null_count": 13839,
+            "null_percent": 99.50388265746332
+          }
+        },
+        {
+          "name": "DNA-II",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 0,
+            "null_count": 13908,
+            "null_percent": 100,
+            "range": {
+              "min": 0,
+              "max": 0,
+              "avg": 0
+            }
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "ID",
+          "referenced_table": "Patient",
+          "referenced_column": "ID"
+        }
+      ],
+      "rich_context": {
+        "CENTROMEA_values": {
+          "content": "-=negative(85.9%), null=not tested(11.7%), +=positive(0.4%)",
+          "expires_at": "2026-03-31T15:05:34+08:00"
+        },
+        "CRP_values": {
+          "content": "-=negative(67.1%), null=not tested(24.0%), +=positive(4.9%), ++=moderately positive(1.6%), +++=strongly positive(0.8%)",
+          "expires_at": "2026-03-31T15:04:15+08:00"
+        },
+        "DNA_values": {
+          "content": "-=negative(84.1%), null=not tested(13.1%), +=positive(0.8%)",
+          "expires_at": "2026-03-31T15:05:43+08:00"
+        },
+        "RA_values": {
+          "content": "-=negative(80.4%), null=not tested(17.1%), +=positive(2.6%), ++=moderately positive(0.7%)",
+          "expires_at": "2026-03-31T15:04:23+08:00"
+        },
+        "RF_values": {
+          "content": "-=negative(79.8%), null=not tested(17.5%), +=positive(2.8%), ++=moderately positive(0.7%)",
+          "expires_at": "2026-03-31T15:04:35+08:00"
+        },
+        "RNP_values": {
+          "content": "-=negative(85.7%), null=not tested(11.4%), +=positive(0.5%)",
+          "expires_at": "2026-03-31T15:04:47+08:00"
+        },
+        "SC170_values": {
+          "content": "-=negative(86.1%), null=not tested(11.6%), +=positive(0.2%)",
+          "expires_at": "2026-03-31T15:05:08+08:00"
+        },
+        "SM_values": {
+          "content": "-=negative(86.5%), null=not tested(11.0%), +=positive(0.4%)",
+          "expires_at": "2026-03-31T15:04:57+08:00"
+        },
+        "SSA_values": {
+          "content": "-=negative(84.9%), null=not tested(12.2%), +=positive(0.8%)",
+          "expires_at": "2026-03-31T15:05:17+08:00"
+        },
+        "SSB_values": {
+          "content": "-=negative(85.3%), null=not tested(12.1%), +=positive(0.6%)",
+          "expires_at": "2026-03-31T15:05:25+08:00"
+        },
+        "U-PRO_values": {
+          "content": "-=negative/normal(35.2%), null=not tested(32.6%), 0=normal(21.1%), TR=trace(6.7%), 30=30mg/dL(3.1%), 1=1+(2.5%), 2=2+(2.4%), 3=3+(1.1%), 100=100mg/dL(1.1%), 300=300mg/dL(0.4%), -15=possibly error/negative(0.3%), 4=4+(0.2%), +1(30)=1+ equivalent to 30mg/dL(0.1%), \u003e=1000=very high protein(0.1%), \u003e=300=high protein(0.0%)",
+          "expires_at": "2026-03-31T15:04:04+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "Laboratory",
+          "column": "TG",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "54% NULL values (7471/13908)",
+          "sql_fix": "WHERE \"TG\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "Laboratory",
+          "column": "CPK",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "64% NULL values (8892/13908)",
+          "sql_fix": "WHERE \"CPK\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "Laboratory",
+          "column": "GLU",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "88% NULL values (12203/13908)",
+          "sql_fix": "WHERE \"GLU\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "Laboratory",
+          "column": "PT",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "96% NULL values (13287/13908)",
+          "sql_fix": "WHERE \"PT\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "Laboratory",
+          "column": "APTT",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "100% NULL values (13857/13908)",
+          "sql_fix": "WHERE \"APTT\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "Laboratory",
+          "column": "FG",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "97% NULL values (13453/13908)",
+          "sql_fix": "WHERE \"FG\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "Laboratory",
+          "column": "PIC",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "99% NULL values (13832/13908)",
+          "sql_fix": "WHERE \"PIC\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "Laboratory",
+          "column": "TAT",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "99% NULL values (13766/13908)",
+          "sql_fix": "WHERE \"TAT\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "Laboratory",
+          "column": "TAT2",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "99% NULL values (13789/13908)",
+          "sql_fix": "WHERE \"TAT2\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "Laboratory",
+          "column": "IGG",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "81% NULL values (11228/13908)",
+          "sql_fix": "WHERE \"IGG\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "Laboratory",
+          "column": "IGA",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "81% NULL values (11228/13908)",
+          "sql_fix": "WHERE \"IGA\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "Laboratory",
+          "column": "IGM",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "81% NULL values (11230/13908)",
+          "sql_fix": "WHERE \"IGM\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "Laboratory",
+          "column": "RA",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "79% NULL values (11053/13908)",
+          "sql_fix": "WHERE \"RA\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "Laboratory",
+          "column": "RF",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "76% NULL values (10571/13908)",
+          "sql_fix": "WHERE \"RF\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "Laboratory",
+          "column": "C3",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "61% NULL values (8447/13908)",
+          "sql_fix": "WHERE \"C3\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "Laboratory",
+          "column": "C4",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "61% NULL values (8447/13908)",
+          "sql_fix": "WHERE \"C4\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "Laboratory",
+          "column": "RNP",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (85% numeric, 121/143 non-empty)",
+          "sql_fix": "CAST(\"RNP\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "Laboratory",
+          "column": "RNP",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "99% NULL values (13765/13908)",
+          "sql_fix": "WHERE \"RNP\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "Laboratory",
+          "column": "SM",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (84% numeric, 108/128 non-empty)",
+          "sql_fix": "CAST(\"SM\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "Laboratory",
+          "column": "SM",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "99% NULL values (13780/13908)",
+          "sql_fix": "WHERE \"SM\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "Laboratory",
+          "column": "SC170",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "100% NULL values (13880/13908)",
+          "sql_fix": "WHERE \"SC170\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "Laboratory",
+          "column": "SSA",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "99% NULL values (13809/13908)",
+          "sql_fix": "WHERE \"SSA\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "Laboratory",
+          "column": "SSB",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "99% NULL values (13815/13908)",
+          "sql_fix": "WHERE \"SSB\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "Laboratory",
+          "column": "CENTROMEA",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "100% NULL values (13893/13908)",
+          "sql_fix": "WHERE \"CENTROMEA\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "Laboratory",
+          "column": "DNA",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 69/69 non-empty)",
+          "sql_fix": "CAST(\"DNA\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "Laboratory",
+          "column": "DNA",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "100% NULL values (13839/13908)",
+          "sql_fix": "WHERE \"DNA\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "Laboratory",
+          "column": "DNA-II",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "100% NULL values (13908/13908)",
+          "sql_fix": "WHERE \"DNA-II\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        }
+      ]
+    },
+    "Patient": {
+      "name": "Patient",
+      "description": "The Patient table stores core demographic and admission-type information for 1,238 patients, primarily tracking gender distribution and the nature of their hospital admissions (Emergency, Scheduled, or Urgent).",
+      "row_count": 1238,
+      "columns": [
+        {
+          "name": "ID",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 1238,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 2110,
+              "max": 5845877,
+              "avg": 3961710.4773828755
+            }
+          }
+        },
+        {
+          "name": "SEX",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3,
+            "null_count": 0,
+            "null_percent": 0,
+            "empty_count": 13,
+            "top_values": [
+              {
+                "value": "F",
+                "count": 1023,
+                "percent": 82.63327948303716
+              },
+              {
+                "value": "M",
+                "count": 202,
+                "percent": 16.31663974151858
+              },
+              {
+                "value": "",
+                "count": 13,
+                "percent": 1.050080775444265
+              }
+            ]
+          }
+        },
+        {
+          "name": "Birthday",
+          "type": "DATE",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1193,
+            "null_count": 1,
+            "null_percent": 0.08077544426494346
+          }
+        },
+        {
+          "name": "Description",
+          "type": "DATE",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 97,
+            "null_count": 216,
+            "null_percent": 17.447495961227787
+          }
+        },
+        {
+          "name": "First Date",
+          "type": "DATE",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 797,
+            "null_count": 251,
+            "null_percent": 20.274636510500805
+          }
+        },
+        {
+          "name": "Admission",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 4,
+            "null_count": 0,
+            "null_percent": 0,
+            "empty_count": 34,
+            "top_values": [
+              {
+                "value": "-",
+                "count": 713,
+                "percent": 57.592891760904685
+              },
+              {
+                "value": "+",
+                "count": 488,
+                "percent": 39.4184168012924
+              },
+              {
+                "value": "",
+                "count": 34,
+                "percent": 2.7463651050080773
+              },
+              {
+                "value": "+(",
+                "count": 3,
+                "percent": 0.24232633279483037
+              }
+            ]
+          }
+        },
+        {
+          "name": "Diagnosis",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 220,
+            "null_count": 0,
+            "null_percent": 0,
+            "empty_count": 1
+          }
+        }
+      ],
+      "indexes": [],
+      "rich_context": {
+        "Admission_values": {
+          "content": "Emergency=650(52%), Scheduled=420(34%), Urgent=150(12%), =Unknown/Not Specified(2%)",
+          "expires_at": "2026-03-31T15:04:02+08:00"
+        },
+        "SEX_values": {
+          "content": "F=Female(83%), M=Male(16%), =Unknown/Not Specified(1%)",
+          "expires_at": "2026-03-31T15:03:54+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "Patient",
+          "column": "SEX",
+          "type": "empty_string",
+          "severity": "warning",
+          "description": "Contains 13 empty string values in addition to NULLs",
+          "sql_fix": "WHERE \"SEX\" IS NOT NULL AND \"SEX\" != ''",
+          "affected_ops": [
+            "WHERE",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "Patient",
+          "column": "Admission",
+          "type": "empty_string",
+          "severity": "warning",
+          "description": "Contains 34 empty string values in addition to NULLs",
+          "sql_fix": "WHERE \"Admission\" IS NOT NULL AND \"Admission\" != ''",
+          "affected_ops": [
+            "WHERE",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "Patient",
+          "column": "Diagnosis",
+          "type": "whitespace",
+          "severity": "critical",
+          "description": "Contains leading/trailing whitespace (2+ rows)",
+          "sql_fix": "TRIM(\"Diagnosis\")",
+          "affected_ops": [
+            "JOIN",
+            "WHERE",
+            "GROUP BY"
+          ],
+          "examples": [
+            "'ASO '",
+            "'EN(r/o BEHCET), Sweet '"
+          ]
+        },
+        {
+          "table": "Patient",
+          "column": "Diagnosis",
+          "type": "empty_string",
+          "severity": "warning",
+          "description": "Contains 1 empty string values in addition to NULLs",
+          "sql_fix": "WHERE \"Diagnosis\" IS NOT NULL AND \"Diagnosis\" != ''",
+          "affected_ops": [
+            "WHERE",
+            "GROUP BY"
+          ]
+        }
+      ]
+    }
+  },
+  "total_tables": 0,
+  "total_rows": 0
+}

@@ -1,0 +1,68 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Name"
+      ],
+      [
+        "Supporter"
+      ],
+      [
+        "Teacher"
+      ],
+      [
+        "Editor"
+      ],
+      [
+        "Organizer"
+      ],
+      [
+        "Commentator"
+      ],
+      [
+        "Autobiographer"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.Name FROM users AS T1 INNER JOIN badges AS T2 ON T1.Id = T2.UserId WHERE STRFTIME('%Y', T2.Date) = '2011' AND T1.Location = 'North Pole'",
+  "id": 648,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Name"
+      ],
+      [
+        "Supporter"
+      ],
+      [
+        "Teacher"
+      ],
+      [
+        "Editor"
+      ],
+      [
+        "Organizer"
+      ],
+      [
+        "Commentator"
+      ],
+      [
+        "Autobiographer"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT b.Name\nFROM badges b\nJOIN users u ON b.UserId = u.Id\nWHERE STRFTIME('%Y', b.Date) = '2011'\n  AND TRIM(u.Location) = 'North Pole';",
+  "question": "Provide the badge names received in 2011 for the user whose location is in the North Pole.",
+  "thinking": ""
+}

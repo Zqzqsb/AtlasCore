@@ -1,0 +1,38 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(ID)"
+      ],
+      [
+        "545"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(ID) FROM Laboratory WHERE (ALB \u003c= 6.0 OR ALB \u003e= 8.5) AND STRFTIME('%Y', Date) = '1997'",
+  "id": 1200,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(ID)"
+      ],
+      [
+        "15"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(ID) FROM Laboratory WHERE STRFTIME('%Y', Date) = '1997' AND (TP \u003c= 6 OR TP \u003e= 8.5);",
+  "question": "How many patients who underwent testing in 1997 had protein levels outside the normal range?",
+  "thinking": ""
+}

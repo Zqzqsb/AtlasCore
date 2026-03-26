@@ -1,0 +1,38 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "SUM(height) / COUNT(id)"
+      ],
+      [
+        "180"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT SUM(height) / COUNT(id) FROM Player WHERE SUBSTR(birthday, 1, 4) BETWEEN '1990' AND '1995'",
+  "id": 1034,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "SUM(height) / COUNT(id)"
+      ],
+      [
+        "180"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT SUM(height) / COUNT(id) FROM Player WHERE birthday \u003e= '1990-01-01 00:00:00' AND birthday \u003c '1996-01-01 00:00:00';",
+  "question": "What is the average height of players born between 1990 and 1995?",
+  "thinking": ""
+}

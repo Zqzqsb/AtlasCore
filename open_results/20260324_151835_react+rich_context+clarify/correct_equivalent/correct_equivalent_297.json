@@ -1,0 +1,46 @@
+{
+  "db_id": "toxicology",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "molecule_id",
+        "bond_id",
+        "atom_id"
+      ],
+      [
+        "TR000",
+        "TR000_1_2",
+        "TR000_1"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.molecule_id, T2.bond_id, T1.atom_id FROM connected AS T1 INNER JOIN bond AS T2 ON T1.bond_id = T2.bond_id WHERE T1.atom_id = 'TR000_1' AND T2.bond_id = 'TR000_1_2'",
+  "id": 297,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "molecule_id",
+        "bond_id",
+        "atom_id"
+      ],
+      [
+        "TR000",
+        "TR000_1_2",
+        "TR000_1"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT b.molecule_id, b.bond_id, \n       CASE \n         WHEN c.atom_id = 'TR000_1' THEN c.atom_id\n         WHEN c.atom_id2 = 'TR000_1' THEN c.atom_id2\n       END AS atom_id\nFROM bond b\nJOIN connected c ON b.bond_id = c.bond_id\nWHERE b.bond_id = 'TR000_1_2'\n  AND (c.atom_id = 'TR000_1' OR c.atom_id2 = 'TR000_1')",
+  "question": "Indicate the molecule id is belonging to the TR000_1_2 bond that has the first atom named TR000_1.",
+  "thinking": ""
+}

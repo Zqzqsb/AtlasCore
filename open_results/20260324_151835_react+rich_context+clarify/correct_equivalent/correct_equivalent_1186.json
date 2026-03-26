@@ -1,0 +1,38 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "challenging",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST((SUM(CASE WHEN T2.Date LIKE '1981-11-%' THEN T2.`T-CHO` ELSE 0 END) - SUM(CASE WHEN T2.Date LIKE '1981-12-%' THEN T2.`T-CHO` ELSE 0 END)) AS REAL) / SUM(CASE WHEN T2.Date LIKE '1981-12-%' THEN T2.`T-CHO` ELSE 0 END)"
+      ],
+      [
+        "0.06030150753768844"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT CAST((SUM(CASE WHEN T2.Date LIKE '1981-11-%' THEN T2.`T-CHO` ELSE 0 END) - SUM(CASE WHEN T2.Date LIKE '1981-12-%' THEN T2.`T-CHO` ELSE 0 END)) AS REAL) / SUM(CASE WHEN T2.Date LIKE '1981-12-%' THEN T2.`T-CHO` ELSE 0 END) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T1.Birthday = '1959-02-18'",
+  "id": 1186,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST((SUM(CASE WHEN T1.Date LIKE '1981-11-%' THEN T1.\"T-CHO\" ELSE 0 END) - SUM(CASE WHEN T1.Date LIKE '1981-12-%' THEN T1.\"T-CHO\" ELSE 0 END)) AS REAL) / NULLIF(SUM(CASE WHEN T1.Date LIKE '1981-12-%' THEN T1.\"T-CHO\" ELSE 0 END), 0)"
+      ],
+      [
+        "0.06030150753768844"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT CAST((SUM(CASE WHEN T1.Date LIKE '1981-11-%' THEN T1.\"T-CHO\" ELSE 0 END) - SUM(CASE WHEN T1.Date LIKE '1981-12-%' THEN T1.\"T-CHO\" ELSE 0 END)) AS REAL) / NULLIF(SUM(CASE WHEN T1.Date LIKE '1981-12-%' THEN T1.\"T-CHO\" ELSE 0 END), 0)\nFROM Laboratory AS T1\nJOIN Patient AS T2 ON T1.ID = T2.ID\nWHERE T2.Birthday = '1959-02-18'",
+  "question": "For the patient who was born on 1959/2/18, what is the decrease rate for his/her total cholesterol from November to December in 1981?",
+  "thinking": ""
+}

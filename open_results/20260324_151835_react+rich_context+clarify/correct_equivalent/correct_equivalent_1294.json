@@ -1,0 +1,38 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "ANA"
+      ],
+      [
+        "4096"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.ANA FROM Patient AS T1 INNER JOIN Examination AS T2 ON T1.ID = T2.ID INNER JOIN Laboratory AS T3 ON T1.ID = T3.ID WHERE T3.CRE \u003c 1.5 ORDER BY T2.ANA DESC LIMIT 1",
+  "id": 1294,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "ANA"
+      ],
+      [
+        "4096"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT MAX(e.ANA) AS ANA FROM Examination e JOIN Laboratory l ON e.ID = l.ID WHERE l.CRE \u003c 1.5",
+  "question": "What is the highest anti-nucleus antibody concentration level of a patient with a normal creatinine level?",
+  "thinking": ""
+}

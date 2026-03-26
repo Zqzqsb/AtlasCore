@@ -1,0 +1,38 @@
+{
+  "db_id": "card_games",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "SUM(CASE WHEN T1.power LIKE '*' OR T1.power IS NULL THEN 1 ELSE 0 END)"
+      ],
+      [
+        "6"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT SUM(CASE WHEN T1.power LIKE '*' OR T1.power IS NULL THEN 1 ELSE 0 END) FROM cards AS T1 INNER JOIN sets AS T2 ON T2.code = T1.setCode WHERE T2.name = 'Coldsnap' AND T1.convertedManaCost \u003e 5",
+  "id": 480,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "SUM(CASE WHEN T1.power LIKE '*' OR T1.power IS NULL THEN 1 ELSE 0 END)"
+      ],
+      [
+        "6"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT SUM(CASE WHEN T1.power LIKE '*' OR T1.power IS NULL THEN 1 ELSE 0 END) \nFROM cards AS T1\nJOIN sets AS T2 ON T1.setCode = T2.code\nWHERE T2.name = 'Coldsnap' \nAND T1.convertedManaCost \u003e 5;",
+  "question": "Among the cards with converted mana cost higher than 5 in the set Coldsnap, how many of them have unknown power?",
+  "thinking": ""
+}

@@ -1,0 +1,42 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "forename",
+        "surname"
+      ],
+      [
+        "Sebastian",
+        "Vettel"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.forename, T2.surname FROM lapTimes AS T1 INNER JOIN drivers AS T2 ON T2.driverId = T1.driverId WHERE T1.raceId = 348 ORDER BY T1.time ASC LIMIT 1",
+  "id": 879,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "forename",
+        "surname"
+      ],
+      [
+        "Lewis",
+        "Hamilton"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT d.forename, d.surname\nFROM lapTimes lt\nJOIN drivers d ON lt.driverId = d.driverId\nWHERE lt.raceId = 348\nORDER BY CAST(lt.time AS INTEGER) ASC\nLIMIT 1",
+  "question": "Who was the driver that got the best lap time in the race No. 348? Give his full name.",
+  "thinking": ""
+}

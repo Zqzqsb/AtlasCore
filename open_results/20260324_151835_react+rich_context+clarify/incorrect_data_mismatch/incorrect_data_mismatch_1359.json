@@ -1,0 +1,42 @@
+{
+  "db_id": "student_club",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "first_name",
+        "last_name"
+      ],
+      [
+        "Edwardo",
+        "Ing"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.first_name, T1.last_name FROM member AS T1 INNER JOIN income AS T2 ON T1.member_id = T2.link_to_member WHERE T2.source = 'Dues' ORDER BY T2.date_received LIMIT 1",
+  "id": 1359,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "first_name",
+        "last_name"
+      ],
+      [
+        "Adela",
+        "O'Gallagher"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT m.first_name, m.last_name\nFROM income i\nJOIN member m ON i.link_to_member = m.member_id\nWHERE i.source = 'Dues'\nORDER BY CAST(i.date_received AS INTEGER)\nLIMIT 1",
+  "question": "Who was the first one paid his/her dues? Tell the full name.",
+  "thinking": ""
+}

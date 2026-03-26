@@ -1,0 +1,38 @@
+{
+  "db_id": "financial",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "type"
+      ],
+      [
+        "junior"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T3.type FROM disp AS T1 INNER JOIN client AS T2 ON T1.client_id = T2.client_id INNER JOIN card AS T3 ON T1.disp_id = T3.disp_id WHERE T2.client_id = 13539",
+  "id": 162,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "type"
+      ],
+      [
+        "junior"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT card.type FROM client JOIN disp ON client.client_id = disp.client_id JOIN card ON disp.disp_id = card.disp_id WHERE client.client_id = 13539;",
+  "question": "What type of credit card does the client with the id 13539 own?",
+  "thinking": ""
+}

@@ -1,0 +1,46 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "challenging",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "SUM(T1.points)",
+        "name",
+        "nationality"
+      ],
+      [
+        "218.5",
+        "McLaren",
+        "British"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT SUM(T1.points), T2.name, T2.nationality FROM constructorResults AS T1 INNER JOIN constructors AS T2 ON T1.constructorId = T2.constructorId INNER JOIN races AS T3 ON T3.raceid = T1.raceid WHERE T3.name = 'Monaco Grand Prix' AND T3.year BETWEEN 1980 AND 2010 GROUP BY T2.name ORDER BY SUM(T1.points) DESC LIMIT 1",
+  "id": 995,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "SUM(T1.points)",
+        "name",
+        "nationality"
+      ],
+      [
+        "218.5",
+        "McLaren",
+        "British"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT SUM(T1.points), T3.name, T3.nationality\nFROM constructorResults AS T1\nJOIN races AS T2 ON T1.raceId = T2.raceId\nJOIN constructors AS T3 ON T1.constructorId = T3.constructorId\nWHERE T2.name = 'Monaco Grand Prix' \n  AND T2.year BETWEEN 1980 AND 2010\nGROUP BY T3.constructorId, T3.name, T3.nationality\nORDER BY SUM(T1.points) DESC\nLIMIT 1;",
+  "question": "Which constructor scored most points from Monaco Grand Prix between 1980 and 2010? List the score, name and nationality of this team.",
+  "thinking": ""
+}

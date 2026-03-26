@@ -1,0 +1,38 @@
+{
+  "db_id": "superhero",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CALCULATE"
+      ],
+      [
+        "351"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT ( SELECT weight_kg FROM superhero WHERE full_name LIKE 'Emil Blonsky' ) - ( SELECT weight_kg FROM superhero WHERE full_name LIKE 'Charles Chandler' ) AS CALCULATE",
+  "id": 791,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CALCULATE"
+      ],
+      [
+        "351"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT (SUM(CASE WHEN full_name = 'Emil Blonsky' THEN weight_kg ELSE 0 END) - SUM(CASE WHEN full_name = 'Charles Chandler' THEN weight_kg ELSE 0 END)) AS CALCULATE FROM superhero;",
+  "question": "Calculate the difference between Emil Blonsky's weight and Charles Chandler's weight.",
+  "thinking": ""
+}

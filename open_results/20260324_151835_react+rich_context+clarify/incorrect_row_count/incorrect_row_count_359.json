@@ -1,0 +1,47 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=1, pred=4",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "borderColor"
+      ],
+      [
+        "black"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT borderColor FROM cards WHERE name = 'Ancestor''s Chosen'",
+  "id": 359,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "borderColor"
+      ],
+      [
+        "black"
+      ],
+      [
+        "black"
+      ],
+      [
+        "black"
+      ],
+      [
+        "black"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT borderColor FROM cards WHERE name = 'Ancestor''s Chosen';",
+  "question": "What is the border color of card \"Ancestor's Chosen\"?",
+  "thinking": ""
+}

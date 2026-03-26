@@ -1,0 +1,38 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(*)"
+      ],
+      [
+        "161"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(*) FROM Patient WHERE STRFTIME('%Y', Description) = '1997' AND SEX = 'F' AND Admission = '-'",
+  "id": 1163,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(*)"
+      ],
+      [
+        "161"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(*) FROM Patient WHERE SEX = 'F' AND STRFTIME('%Y', Description) = '1997' AND Admission = '-'",
+  "question": "How many female patients who came at the hospital in 1997 was immediately followed at the outpatient clinic?",
+  "thinking": ""
+}

@@ -1,0 +1,104 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "challenging",
+  "error_reason": "row count mismatch: gold=1, pred=23",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "age"
+      ],
+      [
+        "36"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT DATETIME() - T2.birthday age FROM Player_Attributes AS t1 INNER JOIN Player AS t2 ON t1.player_api_id = t2.player_api_id WHERE STRFTIME('%Y',t1.`date`) \u003e= '2013' AND STRFTIME('%Y',t1.`date`) \u003c= '2015' AND t1.sprint_speed \u003e= 97",
+  "id": 1032,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "age"
+      ],
+      [
+        "36"
+      ],
+      [
+        "36"
+      ],
+      [
+        "36"
+      ],
+      [
+        "36"
+      ],
+      [
+        "36"
+      ],
+      [
+        "36"
+      ],
+      [
+        "36"
+      ],
+      [
+        "36"
+      ],
+      [
+        "36"
+      ],
+      [
+        "36"
+      ],
+      [
+        "36"
+      ],
+      [
+        "36"
+      ],
+      [
+        "36"
+      ],
+      [
+        "36"
+      ],
+      [
+        "36"
+      ],
+      [
+        "36"
+      ],
+      [
+        "36"
+      ],
+      [
+        "36"
+      ],
+      [
+        "36"
+      ],
+      [
+        "36"
+      ],
+      [
+        "36"
+      ],
+      [
+        "36"
+      ],
+      [
+        "36"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT CAST(strftime('%Y', 'now') AS INTEGER) - CAST(strftime('%Y', p.birthday) AS INTEGER) AS age\nFROM Player_Attributes pa\nJOIN Player p ON pa.player_api_id = p.player_api_id\nWHERE pa.sprint_speed \u003e= 97\n  AND CAST(strftime('%Y', pa.date) AS INTEGER) \u003e= 2013\n  AND CAST(strftime('%Y', pa.date) AS INTEGER) \u003c= 2015;",
+  "question": "At present, calculate for the player's age who have a sprint speed of no less than 97 between 2013 to 2015.",
+  "thinking": ""
+}

@@ -1,0 +1,62 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "challenging",
+  "error_reason": "row count mismatch: gold=1, pred=6",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AdmEmail1",
+        "AdmEmail2"
+      ],
+      [
+        "a.lucero@realjourney.org",
+        "j.hernandez@realjourney.org"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.AdmEmail1, T2.AdmEmail2 FROM frpm AS T1 INNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode WHERE T2.County = 'San Bernardino' AND T2.City = 'San Bernardino' AND T2.DOC = 54 AND strftime('%Y', T2.OpenDate) BETWEEN '2009' AND '2010' AND T2.SOC = 62",
+  "id": 88,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AdmEmail1",
+        "AdmEmail2"
+      ],
+      [
+        "a.lucero@realjourney.org",
+        "j.hernandez@realjourney.org"
+      ],
+      [
+        "jfranco@ofy.org",
+        "bgillespie@ofy.org"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ],
+      [
+        "a.lucero@realjourney.org",
+        "a.ramirez@realjourney.org"
+      ],
+      [
+        "tallen@fortuneschool.us",
+        "bbensen@fortuneschool.us"
+      ],
+      [
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT AdmEmail1, AdmEmail2 FROM schools WHERE County = 'San Bernardino' AND District = 'San Bernardino City Unified' AND OpenDate BETWEEN '2009-01-01' AND '2010-12-31' AND (CAST(\"SOC\" AS INTEGER) = 62 OR CAST(\"DOC\" AS INTEGER) = 54)",
+  "question": "What are the valid e-mail addresses of the administrator of the school located in the San Bernardino county, City of San Bernardino City Unified that opened between 1/1/2009 to 12/31/2010 whose school types are public Intermediate/Middle Schools and Unified Schools?",
+  "thinking": ""
+}

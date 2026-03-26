@@ -1,0 +1,58 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "challenging",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AdmFName1",
+        "AdmLName1",
+        "AdmFName2",
+        "AdmLName2",
+        "AdmFName3",
+        "AdmLName3"
+      ],
+      [
+        "Michelle",
+        "King",
+        "\u003cnil\u003e",
+        "\u003cnil\u003e",
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.AdmFName1, T2.AdmLName1, T2.AdmFName2, T2.AdmLName2, T2.AdmFName3, T2.AdmLName3 FROM satscores AS T1 INNER JOIN schools AS T2 ON T1.cds = T2.CDSCode ORDER BY T1.NumGE1500 DESC LIMIT 1",
+  "id": 37,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "AdmFName1",
+        "AdmLName1",
+        "AdmFName2",
+        "AdmLName2",
+        "AdmFName3",
+        "AdmLName3"
+      ],
+      [
+        "Michelle",
+        "King",
+        "\u003cnil\u003e",
+        "\u003cnil\u003e",
+        "\u003cnil\u003e",
+        "\u003cnil\u003e"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT s.AdmFName1, s.AdmLName1, s.AdmFName2, s.AdmLName2, s.AdmFName3, s.AdmLName3\nFROM satscores sat\nJOIN schools s ON CAST(sat.cds AS INTEGER) = CAST(s.CDSCode AS INTEGER)\nORDER BY sat.NumGE1500 DESC\nLIMIT 1;",
+  "question": "Under whose administration is the school with the highest number of students scoring 1500 or more on the SAT? Indicate their full names.",
+  "thinking": ""
+}

@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "MAX(T1.points)"
+      ],
+      [
+        "497"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT MAX(T1.points) FROM constructorStandings AS T1 INNER JOIN constructors AS T2 on T1.constructorId = T2.constructorId WHERE T2.nationality = 'British'",
+  "id": 949,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "MAX(T1.points)"
+      ],
+      [
+        "66"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT MAX(T1.points) \nFROM constructorResults AS T1 \nJOIN constructors AS T2 ON T1.constructorId = T2.constructorId \nWHERE T2.nationality = 'British'",
+  "question": "What are the maximum points of British constructors?",
+  "thinking": ""
+}

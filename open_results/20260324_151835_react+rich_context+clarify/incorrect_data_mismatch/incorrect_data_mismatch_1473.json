@@ -1,0 +1,38 @@
+{
+  "db_id": "debit_card_specializing",
+  "difficulty": "moderate",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CustomerID"
+      ],
+      [
+        "47273"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.CustomerID FROM customers AS T1 INNER JOIN yearmonth AS T2 ON T1.CustomerID = T2.CustomerID WHERE T1.Segment = 'LAM' AND SUBSTR(T2.Date, 1, 4) = '2012' GROUP BY T1.CustomerID ORDER BY SUM(T2.Consumption) ASC LIMIT 1",
+  "id": 1473,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CustomerID"
+      ],
+      [
+        "7653"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT y.CustomerID\nFROM yearmonth y\nJOIN customers c ON y.CustomerID = c.CustomerID\nWHERE CAST(y.Date AS INTEGER) BETWEEN 201201 AND 201212\n  AND c.Segment = 'LAM'\nORDER BY y.Consumption ASC\nLIMIT 1",
+  "question": "In 2012, who had the least consumption in LAM?",
+  "thinking": ""
+}

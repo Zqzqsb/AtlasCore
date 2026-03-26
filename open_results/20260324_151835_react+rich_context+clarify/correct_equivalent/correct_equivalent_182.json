@@ -1,0 +1,50 @@
+{
+  "db_id": "financial",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "client_id"
+      ],
+      [
+        "10997"
+      ],
+      [
+        "2823"
+      ],
+      [
+        "8506"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.client_id FROM client AS T1 INNER JOIN disp AS T4 on T1.client_id= T4.client_id INNER JOIN account AS T2 ON T4.account_id = T2.account_id  INNER JOIN loan AS T3 ON T2.account_id = T3.account_id and T4.account_id = T3.account_id WHERE T1.gender = 'F' ORDER BY T3.amount DESC LIMIT 3",
+  "id": 182,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "client_id"
+      ],
+      [
+        "10997"
+      ],
+      [
+        "2823"
+      ],
+      [
+        "8506"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT c.client_id\nFROM client c\nJOIN disp d ON c.client_id = d.client_id\nJOIN account a ON d.account_id = a.account_id\nJOIN loan l ON a.account_id = l.account_id\nWHERE c.gender = 'F'\nORDER BY l.amount DESC\nLIMIT 3;",
+  "question": "Please provide the IDs of the 3 female clients with the largest loans.",
+  "thinking": ""
+}

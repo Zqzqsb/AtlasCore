@@ -1,0 +1,38 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "DisplayName"
+      ],
+      [
+        "ars"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DisplayName FROM users WHERE Id = ( SELECT OwnerUserId FROM posts WHERE ParentId IS NOT NULL ORDER BY Score DESC LIMIT 1 )",
+  "id": 657,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "DisplayName"
+      ],
+      [
+        "ars"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT \"users\".\"DisplayName\" AS \"DisplayName\" FROM \"posts\" JOIN \"users\" ON \"posts\".\"OwnerUserId\" = \"users\".\"Id\" WHERE \"posts\".\"ParentId\" IS NOT NULL ORDER BY \"posts\".\"Score\" DESC LIMIT 1",
+  "question": "Describe the display name of the parent ID for child post with the highest score.",
+  "thinking": ""
+}

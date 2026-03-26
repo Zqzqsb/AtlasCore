@@ -1,0 +1,38 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(SUM(IIF(Age BETWEEN 13 AND 18, 1, 0)) AS REAL) * 100 / COUNT(Id)"
+      ],
+      [
+        "0.15623062616243025"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT CAST(SUM(IIF(Age BETWEEN 13 AND 18, 1, 0)) AS REAL) * 100 / COUNT(Id) FROM users",
+  "id": 685,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "percentage"
+      ],
+      [
+        "0.15623062616243025"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT CAST(COUNT(CASE WHEN Age BETWEEN 13 AND 18 THEN Id END) AS REAL) * 100 / COUNT(Id) AS percentage FROM users;",
+  "question": "Identify the percentage of teenage users.",
+  "thinking": ""
+}

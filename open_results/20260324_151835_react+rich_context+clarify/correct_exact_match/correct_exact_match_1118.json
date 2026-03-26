@@ -1,0 +1,16 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT player_api_id FROM Player ORDER BY weight DESC LIMIT 10",
+  "id": 1118,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT player_api_id FROM Player ORDER BY weight DESC LIMIT 10;",
+  "question": "What are the player api id of 10 heaviest players?",
+  "thinking": ""
+}

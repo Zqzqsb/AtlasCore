@@ -1,0 +1,62 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(T1.`FRPM Count (K-12)` AS REAL) / T1.`Enrollment (K-12)`"
+      ],
+      [
+        "0.9179476526796843"
+      ],
+      [
+        "0.9993290841999329"
+      ],
+      [
+        "0.8964987714987716"
+      ],
+      [
+        "0.8958203368683718"
+      ],
+      [
+        "0.9141803553469662"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT CAST(T1.`FRPM Count (K-12)` AS REAL) / T1.`Enrollment (K-12)` FROM frpm AS T1 INNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode WHERE T2.SOC = 66 ORDER BY T1.`FRPM Count (K-12)` DESC LIMIT 5",
+  "id": 33,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(T1.`FRPM Count (K-12)` AS REAL) / T1.`Enrollment (K-12)`"
+      ],
+      [
+        "0.9179476526796843"
+      ],
+      [
+        "0.9993290841999329"
+      ],
+      [
+        "0.8964987714987716"
+      ],
+      [
+        "0.8958203368683718"
+      ],
+      [
+        "0.9141803553469662"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT CAST(T1.`FRPM Count (K-12)` AS REAL) / T1.`Enrollment (K-12)`\nFROM frpm AS T1\nJOIN schools AS T2 ON T1.CDSCode = T2.CDSCode\nWHERE T2.SOC = '66'\nORDER BY T1.`FRPM Count (K-12)` DESC\nLIMIT 5",
+  "question": "What is the eligible free or reduced price meal rate for the top 5 schools in grades 1-12 with the highest free or reduced price meal count of the schools with the ownership code 66?",
+  "thinking": ""
+}

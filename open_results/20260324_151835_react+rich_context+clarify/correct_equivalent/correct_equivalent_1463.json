@@ -1,0 +1,66 @@
+{
+  "db_id": "student_club",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "category",
+        "amount"
+      ],
+      [
+        "Parking",
+        "10"
+      ],
+      [
+        "Speaker Gifts",
+        "25"
+      ],
+      [
+        "Advertisement",
+        "75"
+      ],
+      [
+        "Food",
+        "150"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.category, T2.amount FROM event AS T1 INNER JOIN budget AS T2 ON T1.event_id = T2.link_to_event WHERE T1.event_name = 'January Speaker'",
+  "id": 1463,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "category",
+        "amount"
+      ],
+      [
+        "Parking",
+        "10"
+      ],
+      [
+        "Speaker Gifts",
+        "25"
+      ],
+      [
+        "Advertisement",
+        "75"
+      ],
+      [
+        "Food",
+        "150"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT b.category, b.amount\nFROM event e\nJOIN budget b ON e.event_id = b.link_to_event\nWHERE e.event_name = 'January Speaker';",
+  "question": "What category was budgeted for the 'January Speaker' event and how much was the amount budgeted for that category?",
+  "thinking": ""
+}

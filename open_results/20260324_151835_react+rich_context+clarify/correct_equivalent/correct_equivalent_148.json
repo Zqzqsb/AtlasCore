@@ -1,0 +1,38 @@
+{
+  "db_id": "financial",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.client_id)"
+      ],
+      [
+        "231"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T1.client_id) FROM client AS T1 INNER JOIN district AS T2 ON T1.district_id = T2.district_id WHERE T1.gender = 'F' AND T2.A3 = 'south Bohemia'",
+  "id": 148,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.client_id)"
+      ],
+      [
+        "231"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(T1.client_id) FROM client AS T1 JOIN disp AS T2 ON T1.client_id = T2.client_id JOIN account AS T3 ON T2.account_id = T3.account_id JOIN district AS T4 ON T3.district_id = T4.district_id WHERE T1.gender = 'F' AND T4.A3 = 'south Bohemia'",
+  "question": "How many female clients' accounts are in the region of South Bohemia?",
+  "thinking": ""
+}

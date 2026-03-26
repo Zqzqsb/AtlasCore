@@ -1,0 +1,38 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "simple",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "lap_record"
+      ],
+      [
+        "1:07.411"
+      ]
+    ]
+  },
+  "gt_sql": "WITH fastest_lap_times AS ( SELECT T1.raceId, T1.fastestLapTime FROM results AS T1 WHERE T1.FastestLapTime IS NOT NULL) SELECT MIN(fastest_lap_times.fastestLapTime) as lap_record FROM fastest_lap_times INNER JOIN races AS T2 on fastest_lap_times.raceId = T2.raceId INNER JOIN circuits AS T3 on T2.circuitId = T3.circuitId WHERE T2.name = 'Austrian Grand Prix'",
+  "id": 1014,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "lap_record"
+      ],
+      [
+        "67411"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT MIN(lt.milliseconds) AS lap_record\nFROM lapTimes lt\nJOIN races r ON lt.raceId = r.raceId\nJOIN circuits c ON r.circuitId = c.circuitId\nWHERE c.country = 'Austria'",
+  "question": "What is the lap record for the Austrian Grand Prix Circuit?",
+  "thinking": ""
+}

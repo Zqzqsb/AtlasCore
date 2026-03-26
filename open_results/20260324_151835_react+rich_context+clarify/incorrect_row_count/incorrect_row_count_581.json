@@ -1,0 +1,92 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "data row count mismatch (strategy: exact_column_names)",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "DisplayName"
+      ],
+      [
+        "whuber"
+      ],
+      [
+        "whuber"
+      ],
+      [
+        "conjugateprior"
+      ],
+      [
+        "chl"
+      ],
+      [
+        "Tal Galili"
+      ],
+      [
+        "user603"
+      ],
+      [
+        "Tal Galili"
+      ],
+      [
+        "Adam"
+      ],
+      [
+        "vqv"
+      ],
+      [
+        "Ηλίας"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.DisplayName FROM users AS T1 INNER JOIN badges AS T2 ON T1.Id = T2.UserId WHERE T2.Name = 'Necromancer' LIMIT 10",
+  "id": 581,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "DisplayName"
+      ],
+      [
+        "whuber"
+      ],
+      [
+        "conjugateprior"
+      ],
+      [
+        "chl"
+      ],
+      [
+        "Tal Galili"
+      ],
+      [
+        "user603"
+      ],
+      [
+        "Adam"
+      ],
+      [
+        "vqv"
+      ],
+      [
+        "Ηλίας"
+      ],
+      [
+        "robin girard"
+      ],
+      [
+        "Ari B. Friedman"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT TRIM(u.DisplayName) AS DisplayName\nFROM users u\nJOIN badges b ON u.Id = b.UserId\nWHERE b.Name = 'Necromancer'\nLIMIT 10",
+  "question": "Name 10 users with the badge name 'Necromancer.'",
+  "thinking": ""
+}

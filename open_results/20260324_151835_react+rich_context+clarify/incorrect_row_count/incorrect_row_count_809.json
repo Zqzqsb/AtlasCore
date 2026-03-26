@@ -1,0 +1,56 @@
+{
+  "db_id": "superhero",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=2, pred=6",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "race"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Human"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T2.race FROM superhero AS T1 INNER JOIN race AS T2 ON T1.race_id = T2.id WHERE T1.weight_kg = 108 AND T1.height_cm = 188",
+  "id": 809,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "race"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Human"
+      ],
+      [
+        "-"
+      ],
+      [
+        "Human"
+      ],
+      [
+        "-"
+      ],
+      [
+        "-"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT r.race\nFROM superhero s\nJOIN race r ON s.race_id = r.id\nWHERE s.weight_kg = 108 AND s.height_cm = 188;",
+  "question": "Find the race of the superhero who weighs 108kg and is 188cm tall.",
+  "thinking": ""
+}

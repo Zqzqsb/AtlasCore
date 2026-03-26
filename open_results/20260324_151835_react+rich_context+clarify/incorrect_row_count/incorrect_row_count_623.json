@@ -1,0 +1,191 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=32, pred=21",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Name"
+      ],
+      [
+        "Student"
+      ],
+      [
+        "Editor"
+      ],
+      [
+        "Autobiographer"
+      ],
+      [
+        "Critic"
+      ],
+      [
+        "Supporter"
+      ],
+      [
+        "Commentator"
+      ],
+      [
+        "Organizer"
+      ],
+      [
+        "Teacher"
+      ],
+      [
+        "Nice Question"
+      ],
+      [
+        "Beta"
+      ],
+      [
+        "Nice Answer"
+      ],
+      [
+        "Nice Answer"
+      ],
+      [
+        "Nice Question"
+      ],
+      [
+        "Taxonomist"
+      ],
+      [
+        "Quorum"
+      ],
+      [
+        "Popular Question"
+      ],
+      [
+        "Popular Question"
+      ],
+      [
+        "Nice Answer"
+      ],
+      [
+        "Good Answer"
+      ],
+      [
+        "Yearling"
+      ],
+      [
+        "Excavator"
+      ],
+      [
+        "Notable Question"
+      ],
+      [
+        "Notable Question"
+      ],
+      [
+        "Good Question"
+      ],
+      [
+        "Famous Question"
+      ],
+      [
+        "Yearling"
+      ],
+      [
+        "Good Question"
+      ],
+      [
+        "Favorite Question"
+      ],
+      [
+        "Famous Question"
+      ],
+      [
+        "Good Answer"
+      ],
+      [
+        "Yearling"
+      ],
+      [
+        "Yearling"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.Name FROM users AS T1 INNER JOIN badges AS T2 ON T1.Id = T2.UserId WHERE T1.DisplayName = 'Sharpie'",
+  "id": 623,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Name"
+      ],
+      [
+        "Student"
+      ],
+      [
+        "Editor"
+      ],
+      [
+        "Autobiographer"
+      ],
+      [
+        "Critic"
+      ],
+      [
+        "Supporter"
+      ],
+      [
+        "Commentator"
+      ],
+      [
+        "Organizer"
+      ],
+      [
+        "Teacher"
+      ],
+      [
+        "Nice Question"
+      ],
+      [
+        "Beta"
+      ],
+      [
+        "Nice Answer"
+      ],
+      [
+        "Taxonomist"
+      ],
+      [
+        "Quorum"
+      ],
+      [
+        "Popular Question"
+      ],
+      [
+        "Good Answer"
+      ],
+      [
+        "Yearling"
+      ],
+      [
+        "Excavator"
+      ],
+      [
+        "Notable Question"
+      ],
+      [
+        "Good Question"
+      ],
+      [
+        "Famous Question"
+      ],
+      [
+        "Favorite Question"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT b.Name FROM badges b JOIN users u ON b.UserId = u.Id WHERE u.DisplayName = 'Sharpie';",
+  "question": "State the name of badge that the user whose display name is \"Sharpie\" obtained.",
+  "thinking": ""
+}

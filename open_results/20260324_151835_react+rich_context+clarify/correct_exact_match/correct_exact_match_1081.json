@@ -1,0 +1,16 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT COUNT(player_api_id) FROM Player_Attributes WHERE preferred_foot = 'left' AND attacking_work_rate = 'low'",
+  "id": 1081,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT COUNT(player_api_id) FROM Player_Attributes WHERE preferred_foot = 'left' AND attacking_work_rate = 'low';",
+  "question": "Among the players whose preferred foot was the left foot when attacking, how many of them would remain in his position when the team attacked?",
+  "thinking": ""
+}

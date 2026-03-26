@@ -1,0 +1,46 @@
+{
+  "db_id": "student_club",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "city",
+        "county",
+        "state"
+      ],
+      [
+        "Ellicott City",
+        "Howard County",
+        "Maryland"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.city, T2.county, T2.state FROM member AS T1 INNER JOIN zip_code AS T2 ON T1.zip = T2.zip_code WHERE T1.first_name = 'Amy' AND T1.last_name = 'Firth'",
+  "id": 1365,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "city",
+        "county",
+        "state"
+      ],
+      [
+        "Ellicott City",
+        "Howard County",
+        "Maryland"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT z.city, z.county, z.state FROM member m JOIN zip_code z ON m.zip = z.zip_code WHERE m.first_name = 'Amy' AND m.last_name = 'Firth';",
+  "question": "Where is Amy Firth's hometown?",
+  "thinking": ""
+}

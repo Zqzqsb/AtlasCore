@@ -1,0 +1,38 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(id)"
+      ],
+      [
+        "10"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(id) FROM cards WHERE setCode IN ( SELECT code FROM sets WHERE name = 'World Championship Decks 2004' ) AND convertedManaCost = 3",
+  "id": 505,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(cards.id)"
+      ],
+      [
+        "10"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(cards.id) FROM cards JOIN sets ON cards.setCode = sets.code WHERE sets.name = 'World Championship Decks 2004' AND cards.convertedManaCost = 3;",
+  "question": "How many cards are there in the set 'World Championship Decks 2004' with the converted mana cost as '3'.",
+  "thinking": ""
+}

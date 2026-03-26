@@ -1,0 +1,1606 @@
+{
+  "database_name": "financial",
+  "database_type": "sqlite",
+  "collected_at": "2026-03-24T15:12:52.357088727+08:00",
+  "schema_diagram": {
+    "format": "mermaid-er",
+    "description": "Entity-Relationship diagram showing database schema and relationships",
+    "content": "erDiagram\n    ACCOUNT ||--o{ LOAN : \"has\"\n    DISTRICT ||--o{ ACCOUNT : \"has\"\n    ACCOUNT ||--o{ ORDER : \"has\"\n    DISP ||--o{ CARD : \"has\"\n    CLIENT ||--o{ DISP : \"has\"\n    ACCOUNT ||--o{ DISP : \"has\"\n    DISTRICT ||--o{ CLIENT : \"has\"\n    ACCOUNT ||--o{ TRANS : \"has\"\n\n    CARD {\n        int card_id PK\n        int disp_id FK\n        text type\n        datetime issued\n    }\n    DISP {\n        int disp_id PK\n        int client_id FK\n        int account_id FK\n        text type\n    }\n    CLIENT {\n        int client_id PK\n        text gender\n        datetime birth_date\n        int district_id FK\n    }\n    TRANS {\n        int trans_id PK\n        int account_id FK\n        datetime date\n        text type\n        text operation\n        int amount\n        int balance\n        text k_symbol\n        text bank\n        int account\n    }\n    LOAN {\n        int loan_id PK\n        int account_id FK\n        datetime date\n        int amount\n        int duration\n        float payments\n        text status\n    }\n    ACCOUNT {\n        int account_id PK\n        int district_id FK\n        text frequency\n        datetime date\n    }\n    DISTRICT {\n        int district_id PK\n        text A2\n        text A3\n        text A4\n        text A5\n        text A6\n        text A7\n        int A8\n        int A9\n        float A10\n        int A11\n        float A12\n        float A13\n        int A14\n        int A15\n        int A16\n    }\n    ORDER {\n        int order_id PK\n        int account_id FK\n        text bank_to\n        int account_to\n        float amount\n        text k_symbol\n    }\n"
+  },
+  "tables": {
+    "account": {
+      "name": "account",
+      "description": "The account table stores customer account information, primarily tracking payment frequency with the majority set to monthly billing.",
+      "row_count": 4500,
+      "columns": [
+        {
+          "name": "account_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 4500,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 11382,
+              "avg": 2786.0675555555554
+            }
+          }
+        },
+        {
+          "name": "district_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 77,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 77,
+              "avg": 37.31044444444444
+            }
+          }
+        },
+        {
+          "name": "frequency",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 3,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "POPLATEK MESICNE",
+                "count": 4167,
+                "percent": 92.60000000000001
+              },
+              {
+                "value": "POPLATEK TYDNE",
+                "count": 240,
+                "percent": 5.333333333333334
+              },
+              {
+                "value": "POPLATEK PO OBRATU",
+                "count": 93,
+                "percent": 2.0666666666666664
+              }
+            ]
+          }
+        },
+        {
+          "name": "date",
+          "type": "DATE",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 1535,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "district_id",
+          "referenced_table": "district",
+          "referenced_column": "district_id"
+        }
+      ],
+      "rich_context": {
+        "frequency_values": {
+          "content": "POPLATEK MESICNE=monthly(92.6%), POPLATEK TYDNE=weekly(5.33%), POPLATEK PO OBRATU=after transaction(2.07%)",
+          "expires_at": "2026-03-31T15:13:24+08:00"
+        }
+      }
+    },
+    "card": {
+      "name": "card",
+      "description": "The card table stores information about payment cards used by customers, including details necessary for transaction processing and account management.",
+      "row_count": 892,
+      "columns": [
+        {
+          "name": "card_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 892,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 1247,
+              "avg": 480.85538116591925
+            }
+          }
+        },
+        {
+          "name": "disp_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 892,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 9,
+              "max": 13660,
+              "avg": 3511.8621076233185
+            }
+          }
+        },
+        {
+          "name": "type",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 3,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "classic",
+                "count": 659,
+                "percent": 73.87892376681614
+              },
+              {
+                "value": "junior",
+                "count": 145,
+                "percent": 16.255605381165918
+              },
+              {
+                "value": "gold",
+                "count": 88,
+                "percent": 9.865470852017937
+              }
+            ]
+          }
+        },
+        {
+          "name": "issued",
+          "type": "DATE",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 607,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "disp_id",
+          "referenced_table": "disp",
+          "referenced_column": "disp_id"
+        }
+      ]
+    },
+    "client": {
+      "name": "client",
+      "description": "The client table stores core demographic information for 5,369 customers, including gender distribution, to support customer segmentation and analysis.",
+      "row_count": 5369,
+      "columns": [
+        {
+          "name": "client_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 5369,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 13998,
+              "avg": 3359.0119202831065
+            }
+          }
+        },
+        {
+          "name": "gender",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "M",
+                "count": 2724,
+                "percent": 50.73570497299311
+              },
+              {
+                "value": "F",
+                "count": 2645,
+                "percent": 49.264295027006895
+              }
+            ]
+          }
+        },
+        {
+          "name": "birth_date",
+          "type": "DATE",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 4738,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "district_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 77,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 77,
+              "avg": 37.31011361519836
+            }
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "district_id",
+          "referenced_table": "district",
+          "referenced_column": "district_id"
+        }
+      ],
+      "rich_context": {
+        "gender_values": {
+          "content": "M=2724(50.7%), F=2645(49.3%)",
+          "expires_at": "2026-03-31T15:13:11+08:00"
+        }
+      }
+    },
+    "disp": {
+      "name": "disp",
+      "description": "The disp table likely stores disposition or assignment records, possibly linking accounts, clients, or transactions to specific representatives, statuses, or categories.",
+      "row_count": 5369,
+      "columns": [
+        {
+          "name": "disp_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 5369,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 13690,
+              "avg": 3337.0979698267834
+            }
+          }
+        },
+        {
+          "name": "client_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 5369,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 13998,
+              "avg": 3359.0119202831065
+            }
+          }
+        },
+        {
+          "name": "account_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 4500,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 11382,
+              "avg": 2767.4969268020113
+            }
+          }
+        },
+        {
+          "name": "type",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "OWNER",
+                "count": 4500,
+                "percent": 83.81449059415161
+              },
+              {
+                "value": "DISPONENT",
+                "count": 869,
+                "percent": 16.18550940584839
+              }
+            ]
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "client_id",
+          "referenced_table": "client",
+          "referenced_column": "client_id"
+        },
+        {
+          "column_name": "account_id",
+          "referenced_table": "account",
+          "referenced_column": "account_id"
+        }
+      ]
+    },
+    "district": {
+      "name": "district",
+      "description": "The district table contains demographic and regional data for 77 districts across the Czech Republic, including geographic regions (e.g., South Moravia, Prague) and coded attributes (A3, A7, A9) that likely represent socioeconomic or administrative characteristics.",
+      "row_count": 77,
+      "columns": [
+        {
+          "name": "district_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 77,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 77,
+              "avg": 39
+            }
+          }
+        },
+        {
+          "name": "A2",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 77,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "A3",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 8,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "south Moravia",
+                "count": 14,
+                "percent": 18.181818181818183
+              },
+              {
+                "value": "central Bohemia",
+                "count": 12,
+                "percent": 15.584415584415584
+              },
+              {
+                "value": "north Moravia",
+                "count": 11,
+                "percent": 14.285714285714285
+              },
+              {
+                "value": "east Bohemia",
+                "count": 11,
+                "percent": 14.285714285714285
+              },
+              {
+                "value": "west Bohemia",
+                "count": 10,
+                "percent": 12.987012987012985
+              },
+              {
+                "value": "north Bohemia",
+                "count": 10,
+                "percent": 12.987012987012985
+              },
+              {
+                "value": "south Bohemia",
+                "count": 8,
+                "percent": 10.38961038961039
+              },
+              {
+                "value": "Prague",
+                "count": 1,
+                "percent": 1.2987012987012987
+              }
+            ]
+          }
+        },
+        {
+          "name": "A4",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 77,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "A5",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 53,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "A6",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 36,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "A7",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 17,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "4",
+                "count": 12,
+                "percent": 15.584415584415584
+              },
+              {
+                "value": "6",
+                "count": 11,
+                "percent": 14.285714285714285
+              },
+              {
+                "value": "7",
+                "count": 10,
+                "percent": 12.987012987012985
+              },
+              {
+                "value": "5",
+                "count": 9,
+                "percent": 11.688311688311687
+              },
+              {
+                "value": "8",
+                "count": 5,
+                "percent": 6.493506493506493
+              },
+              {
+                "value": "3",
+                "count": 5,
+                "percent": 6.493506493506493
+              },
+              {
+                "value": "10",
+                "count": 5,
+                "percent": 6.493506493506493
+              },
+              {
+                "value": "0",
+                "count": 4,
+                "percent": 5.194805194805195
+              },
+              {
+                "value": "2",
+                "count": 3,
+                "percent": 3.896103896103896
+              },
+              {
+                "value": "1",
+                "count": 3,
+                "percent": 3.896103896103896
+              },
+              {
+                "value": "18",
+                "count": 2,
+                "percent": 2.5974025974025974
+              },
+              {
+                "value": "13",
+                "count": 2,
+                "percent": 2.5974025974025974
+              },
+              {
+                "value": "12",
+                "count": 2,
+                "percent": 2.5974025974025974
+              },
+              {
+                "value": "9",
+                "count": 1,
+                "percent": 1.2987012987012987
+              },
+              {
+                "value": "20",
+                "count": 1,
+                "percent": 1.2987012987012987
+              }
+            ]
+          }
+        },
+        {
+          "name": "A8",
+          "type": "INTEGER",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 6,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "1",
+                "count": 34,
+                "percent": 44.15584415584416
+              },
+              {
+                "value": "2",
+                "count": 23,
+                "percent": 29.87012987012987
+              },
+              {
+                "value": "3",
+                "count": 12,
+                "percent": 15.584415584415584
+              },
+              {
+                "value": "0",
+                "count": 4,
+                "percent": 5.194805194805195
+              },
+              {
+                "value": "4",
+                "count": 3,
+                "percent": 3.896103896103896
+              },
+              {
+                "value": "5",
+                "count": 1,
+                "percent": 1.2987012987012987
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 5,
+              "avg": 1.7272727272727273
+            }
+          }
+        },
+        {
+          "name": "A9",
+          "type": "INTEGER",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 11,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "6",
+                "count": 14,
+                "percent": 18.181818181818183
+              },
+              {
+                "value": "4",
+                "count": 12,
+                "percent": 15.584415584415584
+              },
+              {
+                "value": "7",
+                "count": 11,
+                "percent": 14.285714285714285
+              },
+              {
+                "value": "5",
+                "count": 10,
+                "percent": 12.987012987012985
+              },
+              {
+                "value": "10",
+                "count": 7,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "9",
+                "count": 7,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "8",
+                "count": 7,
+                "percent": 9.090909090909092
+              },
+              {
+                "value": "1",
+                "count": 4,
+                "percent": 5.194805194805195
+              },
+              {
+                "value": "11",
+                "count": 2,
+                "percent": 2.5974025974025974
+              },
+              {
+                "value": "3",
+                "count": 2,
+                "percent": 2.5974025974025974
+              },
+              {
+                "value": "2",
+                "count": 1,
+                "percent": 1.2987012987012987
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 11,
+              "avg": 6.259740259740259
+            }
+          }
+        },
+        {
+          "name": "A10",
+          "type": "REAL",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 70,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 33.9,
+              "max": 100,
+              "avg": 63.03506493506493
+            }
+          }
+        },
+        {
+          "name": "A11",
+          "type": "INTEGER",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 76,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 8110,
+              "max": 12541,
+              "avg": 9031.675324675325
+            }
+          }
+        },
+        {
+          "name": "A12",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 41,
+            "null_count": 1,
+            "null_percent": 1.2987012987012987,
+            "range": {
+              "min": 0.2,
+              "max": 7.3,
+              "avg": 3.0723684210526314
+            }
+          }
+        },
+        {
+          "name": "A13",
+          "type": "REAL",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 73,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 0.43,
+              "max": 9.4,
+              "avg": 3.787012987012987
+            }
+          }
+        },
+        {
+          "name": "A14",
+          "type": "INTEGER",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 44,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 81,
+              "max": 167,
+              "avg": 116.12987012987013
+            }
+          }
+        },
+        {
+          "name": "A15",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 75,
+            "null_count": 1,
+            "null_percent": 1.2987012987012987,
+            "range": {
+              "min": 818,
+              "max": 85677,
+              "avg": 4850.315789473684
+            }
+          }
+        },
+        {
+          "name": "A16",
+          "type": "INTEGER",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 76,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 888,
+              "max": 99107,
+              "avg": 5030.831168831169
+            }
+          }
+        }
+      ],
+      "indexes": [],
+      "rich_context": {
+        "A3_values": {
+          "content": "south Moravia=14(16.1%), central Bohemia=12(13.8%), north Moravia=11(12.6%), east Bohemia=11(12.6%), west Bohemia=10(11.5%), north Bohemia=10(11.5%), south Bohemia=8(9.2%), Prague=1(1.1%)",
+          "expires_at": "2026-03-31T15:13:33+08:00"
+        },
+        "A7_values": {
+          "content": "4=12(13.8%), 6=11(12.6%), 7=10(11.5%), 5=9(10.3%), 8=5(5.7%), 3=5(5.7%), 10=5(5.7%), 0=4(4.6%), 2=3(3.4%), 1=3(3.4%), 18=2(2.3%), 13=2(2.3%), 12=2(2.3%), 9=1(1.1%), 20=1(1.1%)",
+          "expires_at": "2026-03-31T15:14:05+08:00"
+        },
+        "A9_values": {
+          "content": "6=14(16.1%), 4=12(13.8%), 7=11(12.6%), 5=10(11.5%), 10=7(8.0%), 9=7(8.0%), 8=7(8.0%), 1=4(4.6%), 11=2(2.3%), 3=2(2.3%), 2=1(1.1%)",
+          "expires_at": "2026-03-31T15:14:23+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "district",
+          "column": "A4",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 77/77 non-empty)",
+          "sql_fix": "CAST(\"A4\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "district",
+          "column": "A5",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 77/77 non-empty)",
+          "sql_fix": "CAST(\"A5\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "district",
+          "column": "A6",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 77/77 non-empty)",
+          "sql_fix": "CAST(\"A6\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "district",
+          "column": "A7",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 77/77 non-empty)",
+          "sql_fix": "CAST(\"A7\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        }
+      ]
+    },
+    "loan": {
+      "name": "loan",
+      "description": "The loan table tracks individual loan records, including their repayment status (e.g., fully paid, defaulted, or active) and term length in months, to support credit risk analysis and portfolio management.",
+      "row_count": 682,
+      "columns": [
+        {
+          "name": "loan_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 682,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 4959,
+              "max": 7308,
+              "avg": 6172.466275659824
+            }
+          }
+        },
+        {
+          "name": "account_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 682,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 2,
+              "max": 11362,
+              "avg": 5824.162756598241
+            }
+          }
+        },
+        {
+          "name": "date",
+          "type": "DATE",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 559,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "amount",
+          "type": "INTEGER",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 645,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 4980,
+              "max": 590820,
+              "avg": 151410.1759530792
+            }
+          }
+        },
+        {
+          "name": "duration",
+          "type": "INTEGER",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 5,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "60",
+                "count": 145,
+                "percent": 21.26099706744868
+              },
+              {
+                "value": "48",
+                "count": 138,
+                "percent": 20.234604105571847
+              },
+              {
+                "value": "24",
+                "count": 138,
+                "percent": 20.234604105571847
+              },
+              {
+                "value": "12",
+                "count": 131,
+                "percent": 19.208211143695014
+              },
+              {
+                "value": "36",
+                "count": 130,
+                "percent": 19.06158357771261
+              }
+            ],
+            "range": {
+              "min": 12,
+              "max": 60,
+              "avg": 36.49266862170088
+            }
+          }
+        },
+        {
+          "name": "payments",
+          "type": "REAL",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 577,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 304,
+              "max": 9910,
+              "avg": 4190.6642228739
+            }
+          }
+        },
+        {
+          "name": "status",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 4,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "C",
+                "count": 403,
+                "percent": 59.09090909090909
+              },
+              {
+                "value": "A",
+                "count": 203,
+                "percent": 29.765395894428153
+              },
+              {
+                "value": "D",
+                "count": 45,
+                "percent": 6.598240469208211
+              },
+              {
+                "value": "B",
+                "count": 31,
+                "percent": 4.545454545454546
+              }
+            ]
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "account_id",
+          "referenced_table": "account",
+          "referenced_column": "account_id"
+        }
+      ],
+      "rich_context": {
+        "duration_meaning": {
+          "content": "Loan term in months (e.g., 12=1 year, 24=2 years, etc.)",
+          "expires_at": "2026-03-31T15:13:38+08:00"
+        },
+        "duration_values": {
+          "content": "60=145(21%), 48=138(20%), 24=138(20%), 12=131(19%), 36=130(19%)",
+          "expires_at": "2026-03-31T15:13:35+08:00"
+        },
+        "status_meaning": {
+          "content": "A=Contract signed (loan granted), B=Loan in default (not paid), C=Loan fully paid, D=Loan defaulted (unrecoverable)",
+          "expires_at": "2026-03-31T15:13:27+08:00"
+        },
+        "status_values": {
+          "content": "C=403(59%), A=203(30%), D=45(7%), B=31(5%)",
+          "expires_at": "2026-03-31T15:13:15+08:00"
+        }
+      }
+    },
+    "order": {
+      "name": "order",
+      "description": "The order table records customer transactions, primarily categorized by payment purpose (k_symbol), with the majority linked to SIPO (54.1%), followed by unspecified purposes (21.3%) and other categories like UVER, POJISTNE, and LEASING.",
+      "row_count": 6471,
+      "columns": [
+        {
+          "name": "order_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 6471,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 29401,
+              "max": 46338,
+              "avg": 33778.197496522946
+            }
+          }
+        },
+        {
+          "name": "account_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 3758,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 11362,
+              "avg": 2962.302889816103
+            }
+          }
+        },
+        {
+          "name": "bank_to",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 13,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "QR",
+                "count": 531,
+                "percent": 8.205841446453407
+              },
+              {
+                "value": "YZ",
+                "count": 521,
+                "percent": 8.051305825992891
+              },
+              {
+                "value": "AB",
+                "count": 519,
+                "percent": 8.020398701900788
+              },
+              {
+                "value": "WX",
+                "count": 515,
+                "percent": 7.958584453716582
+              },
+              {
+                "value": "ST",
+                "count": 511,
+                "percent": 7.896770205532374
+              },
+              {
+                "value": "KL",
+                "count": 500,
+                "percent": 7.726781023025807
+              },
+              {
+                "value": "UV",
+                "count": 499,
+                "percent": 7.7113274609797555
+              },
+              {
+                "value": "IJ",
+                "count": 496,
+                "percent": 7.664966774841601
+              },
+              {
+                "value": "GH",
+                "count": 487,
+                "percent": 7.525884716427137
+              },
+              {
+                "value": "OP",
+                "count": 485,
+                "percent": 7.494977592335034
+              },
+              {
+                "value": "EF",
+                "count": 483,
+                "percent": 7.464070468242929
+              },
+              {
+                "value": "MN",
+                "count": 466,
+                "percent": 7.2013599134600526
+              },
+              {
+                "value": "CD",
+                "count": 458,
+                "percent": 7.07773141709164
+              }
+            ]
+          }
+        },
+        {
+          "name": "account_to",
+          "type": "INTEGER",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 6446,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 399,
+              "max": 99994199,
+              "avg": 49399036.8511822
+            }
+          }
+        },
+        {
+          "name": "amount",
+          "type": "REAL",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 4412,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 14882,
+              "avg": 3280.6356977283267
+            }
+          }
+        },
+        {
+          "name": "k_symbol",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 5,
+            "null_count": 0,
+            "null_percent": 0,
+            "empty_count": 1379,
+            "top_values": [
+              {
+                "value": "SIPO",
+                "count": 3502,
+                "percent": 54.11837428527275
+              },
+              {
+                "value": "",
+                "count": 1379,
+                "percent": 21.310462061505177
+              },
+              {
+                "value": "UVER",
+                "count": 717,
+                "percent": 11.080203987019008
+              },
+              {
+                "value": "POJISTNE",
+                "count": 532,
+                "percent": 8.221295008499458
+              },
+              {
+                "value": "LEASING",
+                "count": 341,
+                "percent": 5.269664657703601
+              }
+            ]
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "account_id",
+          "referenced_table": "account",
+          "referenced_column": "account_id"
+        }
+      ],
+      "rich_context": {
+        "k_symbol_values": {
+          "content": "SIPO=3502(54.1%), \"\"=1379(21.3%), UVER=717(11.1%), POJISTNE=532(8.2%), LEASING=341(5.3%)",
+          "expires_at": "2026-03-31T15:13:22+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "order",
+          "column": "k_symbol",
+          "type": "empty_string",
+          "severity": "warning",
+          "description": "Contains 1379 empty string values in addition to NULLs",
+          "sql_fix": "WHERE \"k_symbol\" IS NOT NULL AND \"k_symbol\" != ''",
+          "affected_ops": [
+            "WHERE",
+            "GROUP BY"
+          ]
+        }
+      ]
+    },
+    "trans": {
+      "name": "trans",
+      "description": "The `trans` table records all financial transactions for customer accounts, including deposits, withdrawals, transfers, and payments, categorized by operation type and transaction direction.",
+      "row_count": 1056320,
+      "columns": [
+        {
+          "name": "trans_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 1056320,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 3682987,
+              "avg": 1335310.7043301272
+            }
+          }
+        },
+        {
+          "name": "account_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 4500,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 11382,
+              "avg": 2936.8672902150865
+            }
+          }
+        },
+        {
+          "name": "date",
+          "type": "DATE",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 2191,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "type",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 3,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "VYDAJ",
+                "count": 634571,
+                "percent": 60.073746591941834
+              },
+              {
+                "value": "PRIJEM",
+                "count": 405083,
+                "percent": 38.348511814601636
+              },
+              {
+                "value": "VYBER",
+                "count": 16666,
+                "percent": 1.5777415934565282
+              }
+            ]
+          }
+        },
+        {
+          "name": "operation",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 5,
+            "null_count": 183114,
+            "null_percent": 17.33508785216601,
+            "top_values": [
+              {
+                "value": "VYBER",
+                "count": 434918,
+                "percent": 41.17294001817631
+              },
+              {
+                "value": "PREVOD NA UCET",
+                "count": 208283,
+                "percent": 19.71779385034838
+              },
+              {
+                "value": "VKLAD",
+                "count": 156743,
+                "percent": 14.838590578612543
+              },
+              {
+                "value": "PREVOD Z UCTU",
+                "count": 65226,
+                "percent": 6.174833383823084
+              },
+              {
+                "value": "VYBER KARTOU",
+                "count": 8036,
+                "percent": 0.7607543168736747
+              }
+            ]
+          }
+        },
+        {
+          "name": "amount",
+          "type": "INTEGER",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 35890,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 0,
+              "max": 87400,
+              "avg": 5924.210653021812
+            }
+          }
+        },
+        {
+          "name": "balance",
+          "type": "INTEGER",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 111042,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": -41126,
+              "max": 209637,
+              "avg": 38518.379134163886
+            }
+          }
+        },
+        {
+          "name": "k_symbol",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8,
+            "null_count": 481881,
+            "null_percent": 45.618846561647985,
+            "top_values": [
+              {
+                "value": "UROK",
+                "count": 183114,
+                "percent": 17.33508785216601
+              },
+              {
+                "value": "SLUZBY",
+                "count": 155832,
+                "percent": 14.752347773402
+              },
+              {
+                "value": "SIPO",
+                "count": 118065,
+                "percent": 11.177010754316875
+              },
+              {
+                "value": " ",
+                "count": 53433,
+                "percent": 5.058410330202969
+              },
+              {
+                "value": "DUCHOD",
+                "count": 30338,
+                "percent": 2.872046349591033
+              },
+              {
+                "value": "POJISTNE",
+                "count": 18500,
+                "percent": 1.751363223265677
+              },
+              {
+                "value": "UVER",
+                "count": 13580,
+                "percent": 1.2855952741593457
+              },
+              {
+                "value": "SANKC. UROK",
+                "count": 1577,
+                "percent": 0.14929188124810663
+              }
+            ]
+          }
+        },
+        {
+          "name": "bank",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 13,
+            "null_count": 782812,
+            "null_percent": 74.10746743411087,
+            "top_values": [
+              {
+                "value": "QR",
+                "count": 22285,
+                "percent": 2.1096826719176005
+              },
+              {
+                "value": "AB",
+                "count": 21720,
+                "percent": 2.0561950923962438
+              },
+              {
+                "value": "ST",
+                "count": 21711,
+                "percent": 2.0553430778551953
+              },
+              {
+                "value": "YZ",
+                "count": 21582,
+                "percent": 2.043130869433505
+              },
+              {
+                "value": "GH",
+                "count": 21499,
+                "percent": 2.0352734019993943
+              },
+              {
+                "value": "EF",
+                "count": 21293,
+                "percent": 2.015771735837625
+              },
+              {
+                "value": "KL",
+                "count": 21234,
+                "percent": 2.010186307179642
+              },
+              {
+                "value": "UV",
+                "count": 21167,
+                "percent": 2.003843532262951
+              },
+              {
+                "value": "OP",
+                "count": 21094,
+                "percent": 1.9969327476522265
+              },
+              {
+                "value": "IJ",
+                "count": 20525,
+                "percent": 1.9430664950015146
+              },
+              {
+                "value": "WX",
+                "count": 20178,
+                "percent": 1.910216601029991
+              },
+              {
+                "value": "MN",
+                "count": 19623,
+                "percent": 1.8576757043320204
+              },
+              {
+                "value": "CD",
+                "count": 19597,
+                "percent": 1.8552143289912146
+              }
+            ]
+          }
+        },
+        {
+          "name": "account",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 7665,
+            "null_count": 760931,
+            "null_percent": 72.0360307482581,
+            "range": {
+              "min": 0,
+              "max": 99994199,
+              "avg": 45670919.374915786
+            }
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "account_id",
+          "referenced_table": "account",
+          "referenced_column": "account_id"
+        }
+      ],
+      "rich_context": {
+        "operation_values": {
+          "content": "PRIJEM=405083(38.5%), VYDAJ=292767(27.8%), VKLAD=158723(15.1%), PREVOD Z UCTU=149081(14.2%), PREVOD NA UCET=149081(14.2%), VYBER=105720(10.0%), VYBER KARTOU=16666(1.2%)",
+          "expires_at": "2026-03-31T15:13:28+08:00"
+        },
+        "type_values": {
+          "content": "VYDAJ=634571(60.3%), PRIJEM=405083(38.5%), VYBER=16666(1.2%)",
+          "expires_at": "2026-03-31T15:13:15+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "trans",
+          "column": "k_symbol",
+          "type": "whitespace",
+          "severity": "critical",
+          "description": "Contains leading/trailing whitespace (5+ rows)",
+          "sql_fix": "TRIM(\"k_symbol\")",
+          "affected_ops": [
+            "JOIN",
+            "WHERE",
+            "GROUP BY"
+          ],
+          "examples": [
+            "' '",
+            "' '",
+            "' '",
+            "' '",
+            "' '"
+          ]
+        },
+        {
+          "table": "trans",
+          "column": "bank",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "74% NULL values (782812/1056320)",
+          "sql_fix": "WHERE \"bank\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "trans",
+          "column": "account",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "72% NULL values (760931/1056320)",
+          "sql_fix": "WHERE \"account\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        }
+      ]
+    }
+  },
+  "total_tables": 0,
+  "total_rows": 0
+}

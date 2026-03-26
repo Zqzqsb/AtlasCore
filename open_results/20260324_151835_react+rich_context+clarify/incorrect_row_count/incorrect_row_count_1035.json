@@ -1,0 +1,41 @@
+{
+  "db_id": "european_football_2",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=1, pred=2",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "player_api_id"
+      ],
+      [
+        "30657"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT player_api_id FROM Player_Attributes WHERE SUBSTR(`date`, 1, 4) = '2010' ORDER BY overall_rating DESC LIMIT 1",
+  "id": 1035,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "player_api_id"
+      ],
+      [
+        "30657"
+      ],
+      [
+        "30981"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT player_api_id FROM Player_Attributes WHERE substr(date,1,4) = '2010' AND overall_rating = (SELECT MAX(overall_rating) FROM Player_Attributes WHERE substr(date,1,4) = '2010' AND overall_rating \u003e (SELECT AVG(overall_rating) FROM Player_Attributes WHERE substr(date,1,4) = '2010'))",
+  "question": "List the players' api id who had the highest above average overall ratings in 2010.",
+  "thinking": ""
+}

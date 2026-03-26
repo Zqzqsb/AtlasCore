@@ -1,0 +1,42 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "LastAccessDate",
+        "Location"
+      ],
+      [
+        "2014-09-12 17:06:49 +0000 UTC",
+        "Leuven, Belgium"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.LastAccessDate, T1.Location FROM users AS T1 INNER JOIN badges AS T2 ON T1.Id = T2.UserId WHERE T2.Name = 'outliers'",
+  "id": 651,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "LastAccessDate",
+        "Location"
+      ],
+      [
+        "2014-09-12 17:06:49 +0000 UTC",
+        "Leuven, Belgium"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT u.LastAccessDate, TRIM(u.Location) AS Location FROM badges b JOIN users u ON b.UserId = u.Id WHERE b.Name = 'outliers';",
+  "question": "Describe the last accessed date and location of the users who received the outliers badge.",
+  "thinking": ""
+}

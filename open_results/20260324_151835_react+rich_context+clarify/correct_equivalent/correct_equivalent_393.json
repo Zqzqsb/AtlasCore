@@ -1,0 +1,50 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name"
+      ],
+      [
+        "Guerrilla Tactics"
+      ],
+      [
+        "Aura of Silence"
+      ],
+      [
+        "Orcish Artillery"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T1.name FROM cards AS T1 INNER JOIN rulings AS T2 ON T1.uuid = T2.uuid WHERE T1.rarity = 'uncommon' ORDER BY T2.date ASC LIMIT 3",
+  "id": 393,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name"
+      ],
+      [
+        "Guerrilla Tactics"
+      ],
+      [
+        "Aura of Silence"
+      ],
+      [
+        "Orcish Artillery"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT c.name\nFROM cards c\nJOIN rulings r ON c.uuid = r.uuid\nWHERE c.rarity = 'uncommon'\nORDER BY r.date ASC\nLIMIT 3;",
+  "question": "Pick 3 cards with rarity of uncommon, list down name these cards according to ascending order of it's ruling date.",
+  "thinking": ""
+}

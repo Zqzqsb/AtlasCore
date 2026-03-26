@@ -1,0 +1,38 @@
+{
+  "db_id": "card_games",
+  "difficulty": "challenging",
+  "error_reason": "column name mismatch and positional data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(SUM(CASE WHEN isNonFoilOnly = 1 THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(id)"
+      ],
+      [
+        "11.570247933884298"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT CAST(SUM(CASE WHEN isNonFoilOnly = 1 THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(id) FROM sets WHERE code IN ( SELECT setCode FROM set_translations WHERE language = 'Japanese' )",
+  "id": 507,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "CAST(SUM(CASE WHEN s.isNonFoilOnly = 1 THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(s.id)"
+      ],
+      [
+        "10.604022546758904"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT CAST(SUM(CASE WHEN s.isNonFoilOnly = 1 THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(s.id) \nFROM foreign_data f\nJOIN cards c ON f.uuid = c.uuid\nJOIN sets s ON c.setCode = s.code\nWHERE f.language = 'Japanese'",
+  "question": "For all the set of cards that has Japanese translation, what is the percentage of them are only available in non-foil?",
+  "thinking": ""
+}

@@ -1,0 +1,16 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "moderate",
+  "error_reason": "predicted SQL execution error: SQL logic error: near \"Wait\": syntax error (1)",
+  "gt_error": null,
+  "gt_result": null,
+  "gt_sql": "SELECT COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T1.Diagnosis = 'SJS' AND T2.TP \u003e 6.0 AND T2.TP \u003c 8.5",
+  "id": 1290,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": null,
+  "pred_sql": "SELECT COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T1.Diagnosis = 'SJS' AND T2.TP \u003e 6.0 AND T2.TP \u003c 8.5\n\nWait, but I need to verify this SQL first. Let me use verify_sql to check.\n\nAction: verify_sql\nAction Input: SELECT COUNT(T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T1.Diagnosis = 'SJS' AND T2.TP \u003e 6.0 AND T2.TP \u003c 8.5",
+  "question": "For the patients who are diagnosed with SJS, how many of them have a normal level of total protein?",
+  "thinking": ""
+}

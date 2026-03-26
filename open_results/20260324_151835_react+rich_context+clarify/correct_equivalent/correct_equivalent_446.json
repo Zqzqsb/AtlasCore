@@ -1,0 +1,50 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "language",
+        "flavorText"
+      ],
+      [
+        "Japanese",
+        "ゼンディカーでは、今日の草原は明日の密林であり、狩場も天気と同じぐらいにすぐ変わってしまう。"
+      ],
+      [
+        "Japanese",
+        ""
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T2.language, T2.flavorText FROM cards AS T1 INNER JOIN foreign_data AS T2 ON T2.uuid = T1.uuid WHERE T1.watermark = 'colorpie'",
+  "id": 446,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "language",
+        "flavorText"
+      ],
+      [
+        "Japanese",
+        "ゼンディカーでは、今日の草原は明日の密林であり、狩場も天気と同じぐらいにすぐ変わってしまう。"
+      ],
+      [
+        "Japanese",
+        ""
+      ]
+    ]
+  },
+  "pred_sql": "SELECT fd.language, fd.flavorText FROM cards c JOIN foreign_data fd ON c.uuid = fd.uuid WHERE c.watermark = 'colorpie';",
+  "question": "What is the language and flavor text of the card that has colorpie watermark? List out the type of this card.",
+  "thinking": ""
+}

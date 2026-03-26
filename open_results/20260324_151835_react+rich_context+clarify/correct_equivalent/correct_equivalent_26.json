@@ -1,0 +1,82 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "sname",
+        "Charter Funding Type"
+      ],
+      [
+        "Arlington High",
+        "\u003cnil\u003e"
+      ],
+      [
+        "John W. North High",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Martin Luther King Jr. High",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Polytechnic High",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Ramona High",
+        "\u003cnil\u003e"
+      ],
+      [
+        "River Springs Charter",
+        "Directly funded"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.sname, T2.`Charter Funding Type` FROM satscores AS T1 INNER JOIN frpm AS T2 ON T1.cds = T2.CDSCode WHERE T2.`District Name` LIKE 'Riverside%' GROUP BY T1.sname, T2.`Charter Funding Type` HAVING CAST(SUM(T1.AvgScrMath) AS REAL) / COUNT(T1.cds) \u003e 400",
+  "id": 26,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "sname",
+        "Charter Funding Type"
+      ],
+      [
+        "River Springs Charter",
+        "Directly funded"
+      ],
+      [
+        "Arlington High",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Martin Luther King Jr. High",
+        "\u003cnil\u003e"
+      ],
+      [
+        "John W. North High",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Polytechnic High",
+        "\u003cnil\u003e"
+      ],
+      [
+        "Ramona High",
+        "\u003cnil\u003e"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT s.sname, sch.FundingType AS \"Charter Funding Type\"\nFROM satscores s\nJOIN schools sch ON CAST(s.cds AS INTEGER) = CAST(sch.CDSCode AS INTEGER)\nWHERE sch.District LIKE '%Riverside%'\nAND s.AvgScrMath \u003e 400\nAND s.rtype = 'S';",
+  "question": "Name schools in Riverside which the average of average math score for SAT is grater than 400, what is the funding type of these schools?",
+  "thinking": ""
+}

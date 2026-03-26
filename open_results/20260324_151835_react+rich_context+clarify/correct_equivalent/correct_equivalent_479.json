@@ -1,0 +1,38 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name"
+      ],
+      [
+        "Darien, King of Kjeldor"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.name FROM cards AS T1 INNER JOIN sets AS T2 ON T2.code = T1.setCode WHERE T2.name = 'Coldsnap' AND T1.number = 4",
+  "id": 479,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name"
+      ],
+      [
+        "Darien, King of Kjeldor"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT name FROM cards WHERE setCode = 'CSP' AND number = '4';",
+  "question": "What is card number 4 in the set Coldsnap?",
+  "thinking": ""
+}

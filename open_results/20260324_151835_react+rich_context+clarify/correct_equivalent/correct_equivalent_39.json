@@ -1,0 +1,50 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Website"
+      ],
+      [
+        "www.avdistrict.org"
+      ],
+      [
+        "www.lbschools.net"
+      ],
+      [
+        "www.hartdistrict.org"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.Website FROM satscores AS T1 INNER JOIN schools AS T2 ON T1.cds = T2.CDSCode WHERE T1.NumTstTakr BETWEEN 2000 AND 3000 AND T2.County = 'Los Angeles'",
+  "id": 39,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Website"
+      ],
+      [
+        "www.avdistrict.org"
+      ],
+      [
+        "www.lbschools.net"
+      ],
+      [
+        "www.hartdistrict.org"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT schools.Website \nFROM schools \nJOIN satscores ON CAST(schools.CDSCode AS INTEGER) = CAST(satscores.cds AS INTEGER)\nWHERE schools.County = 'Los Angeles'\nAND satscores.NumTstTakr BETWEEN 2000 AND 3000;",
+  "question": "What are the webpages for the Los Angeles County school that has between 2,000 and 3,000 test takers?",
+  "thinking": ""
+}

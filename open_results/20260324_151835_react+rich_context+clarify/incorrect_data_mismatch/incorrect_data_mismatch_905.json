@@ -1,0 +1,42 @@
+{
+  "db_id": "formula_1",
+  "difficulty": "moderate",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name",
+        "year"
+      ],
+      [
+        "Austrian Grand Prix",
+        "2003"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.name, T1.year FROM races AS T1 INNER JOIN lapTimes AS T2 ON T2.raceId = T1.raceId INNER JOIN drivers AS T3 ON T3.driverId = T2.driverId WHERE T3.forename = 'Michael' AND T3.surname = 'Schumacher' ORDER BY T2.milliseconds ASC LIMIT 1",
+  "id": 905,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name",
+        "year"
+      ],
+      [
+        "Belgian Grand Prix",
+        "2001"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT r.name, r.year\nFROM results res\nJOIN drivers d ON res.driverId = d.driverId\nJOIN races r ON res.raceId = r.raceId\nWHERE d.forename = 'Michael' AND d.surname = 'Schumacher'\n  AND res.milliseconds IS NOT NULL\nORDER BY res.milliseconds ASC\nLIMIT 1;",
+  "question": "State the race and year of race in which Michael Schumacher had his fastest lap.",
+  "thinking": ""
+}

@@ -1,0 +1,42 @@
+{
+  "db_id": "financial",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "amount",
+        "status"
+      ],
+      [
+        "53076",
+        "A"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T4.amount, T4.status FROM client AS T1 INNER JOIN disp AS T2 ON T1.client_id = T2.client_id INNER JOIN account AS T3 on T2.account_id = T3.account_id INNER JOIN loan AS T4 ON T3.account_id = T4.account_id WHERE T1.client_id = 992",
+  "id": 177,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "amount",
+        "status"
+      ],
+      [
+        "53076",
+        "A"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT l.amount, l.status \nFROM client c\nJOIN disp d ON c.client_id = d.client_id\nJOIN loan l ON d.account_id = l.account_id\nWHERE c.client_id = 992",
+  "question": "What is the amount of debt that client number 992 has, and how is this client doing with payments?",
+  "thinking": ""
+}

@@ -1,0 +1,38 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "baseSetSize"
+      ],
+      [
+        "145"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.baseSetSize FROM sets AS T1 INNER JOIN set_translations AS T2 ON T2.setCode = T1.code WHERE T2.translation = 'Rinascita di Alara'",
+  "id": 497,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "baseSetSize"
+      ],
+      [
+        "145"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT s.baseSetSize FROM sets s JOIN set_translations st ON s.code = st.setCode WHERE st.translation = 'Rinascita di Alara'",
+  "question": "What is the number of cards are there in the set of \"Rinascita di Alara\"?",
+  "thinking": ""
+}

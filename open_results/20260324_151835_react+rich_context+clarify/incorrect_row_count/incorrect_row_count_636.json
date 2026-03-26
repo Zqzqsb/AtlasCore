@@ -1,0 +1,71 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "moderate",
+  "error_reason": "row count mismatch: gold=12, pred=1",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.Id)"
+      ],
+      [
+        "5"
+      ],
+      [
+        "5"
+      ],
+      [
+        "5"
+      ],
+      [
+        "5"
+      ],
+      [
+        "5"
+      ],
+      [
+        "5"
+      ],
+      [
+        "5"
+      ],
+      [
+        "5"
+      ],
+      [
+        "5"
+      ],
+      [
+        "5"
+      ],
+      [
+        "5"
+      ],
+      [
+        "5"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T1.Id) FROM users AS T1 INNER JOIN postHistory AS T2 ON T1.Id = T2.UserId INNER JOIN posts AS T3 ON T2.PostId = T3.Id INNER JOIN votes AS T4 ON T4.PostId = T3.Id WHERE T1.DisplayName = 'Matt Parker' GROUP BY T2.PostId, T4.Id HAVING COUNT(T4.Id) \u003e 4",
+  "id": 636,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.Id)"
+      ],
+      [
+        "40"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(T1.Id) FROM posts AS T1 INNER JOIN users AS T2 ON T1.OwnerUserId = T2.Id WHERE T2.DisplayName = 'Matt Parker' AND T1.Id \u003e 4",
+  "question": "How many posts by Matt Parker have more than 4 votes?",
+  "thinking": ""
+}

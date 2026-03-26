@@ -1,0 +1,38 @@
+{
+  "db_id": "card_games",
+  "difficulty": "moderate",
+  "error_reason": "data mismatch",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.id)"
+      ],
+      [
+        "35"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T1.id) FROM cards AS T1 INNER JOIN legalities AS T2 ON T2.uuid = T1.uuid WHERE T1.rarity = 'rare' AND T1.types = 'Enchantment' AND T1.name = 'Abundance' AND T2.status = 'Legal'",
+  "id": 518,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.id)"
+      ],
+      [
+        "5"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(T1.id)\nFROM cards AS T1\nWHERE T1.rarity = 'rare'\n  AND T1.types = 'Enchantment'\n  AND T1.name = 'Abundance'\n  AND NOT EXISTS (\n    SELECT 1\n    FROM legalities AS T2\n    WHERE T2.uuid = T1.uuid\n      AND T2.status != 'Legal'\n  )",
+  "question": "How many rare enchantment Abundance cards are there whose play format status are all legal?",
+  "thinking": ""
+}

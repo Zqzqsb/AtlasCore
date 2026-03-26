@@ -1,0 +1,3813 @@
+{
+  "database_name": "card_games",
+  "database_type": "sqlite",
+  "collected_at": "2026-03-24T14:55:53.360668743+08:00",
+  "schema_diagram": {
+    "format": "mermaid-er",
+    "description": "Entity-Relationship diagram showing database schema and relationships",
+    "content": "erDiagram\n    SETS ||--o{ SET_TRANSLATIONS : \"has\"\n    CARDS ||--o{ LEGALITIES : \"has\"\n    CARDS ||--o{ RULINGS : \"has\"\n    CARDS ||--o{ FOREIGN_DATA : \"has\"\n\n    RULINGS {\n        int id PK\n        datetime date\n        text text\n        text uuid FK\n    }\n    FOREIGN_DATA {\n        int id PK\n        text flavorText\n        text language\n        int multiverseid\n        text name\n        text text\n        text type\n        text uuid FK\n    }\n    SET_TRANSLATIONS {\n        int id PK\n        text language\n        text setCode FK\n        text translation\n    }\n    SETS {\n        int id PK\n        int baseSetSize\n        text block\n        text booster\n        text code\n        int isFoilOnly\n        int isForeignOnly\n        int isNonFoilOnly\n        int isOnlineOnly\n        int isPartialPreview\n        text keyruneCode\n        int mcmId\n        int mcmIdExtras\n        text mcmName\n        text mtgoCode\n        text name\n        text parentCode\n        datetime releaseDate\n        int tcgplayerGroupId\n        int totalSetSize\n        text type\n    }\n    CARDS {\n        int id PK\n        text artist\n        text asciiName\n        text availability\n        text borderColor\n        text cardKingdomFoilId\n        text cardKingdomId\n        text colorIdentity\n        text colorIndicator\n        text colors\n        float convertedManaCost\n        text duelDeck\n        int edhrecRank\n        float faceConvertedManaCost\n        text faceName\n        text flavorName\n        text flavorText\n        text frameEffects\n        text frameVersion\n        text hand\n        int hasAlternativeDeckLimit\n        int hasContentWarning\n        int hasFoil\n        int hasNonFoil\n        int isAlternative\n        int isFullArt\n        int isOnlineOnly\n        int isOversized\n        int isPromo\n        int isReprint\n        int isReserved\n        int isStarter\n        int isStorySpotlight\n        int isTextless\n        int isTimeshifted\n        text keywords\n        text layout\n        text leadershipSkills\n        text life\n        text loyalty\n        text manaCost\n        text mcmId\n        text mcmMetaId\n        text mtgArenaId\n        text mtgjsonV4Id\n        text mtgoFoilId\n        text mtgoId\n        text multiverseId\n        text name\n        text number\n        text originalReleaseDate\n        text originalText\n        text originalType\n        text otherFaceIds\n        text power\n        text printings\n        text promoTypes\n        text purchaseUrls\n        text rarity\n        text scryfallId\n        text scryfallIllustrationId\n        text scryfallOracleId\n        text setCode\n        text side\n        text subtypes\n        text supertypes\n        text tcgplayerProductId\n        text text\n        text toughness\n        text type\n        text types\n        text uuid\n        text variations\n        text watermark\n    }\n    LEGALITIES {\n        int id PK\n        text format\n        text status\n        text uuid FK\n    }\n"
+  },
+  "tables": {
+    "cards": {
+      "name": "cards",
+      "row_count": 56822,
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 56822,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 56832,
+              "avg": 28417.59249938404
+            }
+          }
+        },
+        {
+          "name": "artist",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 991,
+            "null_count": 3,
+            "null_percent": 0.005279645207842033
+          }
+        },
+        {
+          "name": "asciiName",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 26,
+            "null_count": 56755,
+            "null_percent": 99.88208792369153,
+            "top_values": [
+              {
+                "value": "El-Hajjaj",
+                "count": 7,
+                "percent": 0.01231917215163141
+              },
+              {
+                "value": "Junun Efreet",
+                "count": 6,
+                "percent": 0.010559290415684066
+              },
+              {
+                "value": "Ghazban Ogre",
+                "count": 6,
+                "percent": 0.010559290415684066
+              },
+              {
+                "value": "Lim-Dul's High Guard",
+                "count": 5,
+                "percent": 0.008799408679736722
+              },
+              {
+                "value": "Dandan",
+                "count": 5,
+                "percent": 0.008799408679736722
+              },
+              {
+                "value": "Jotun Grunt",
+                "count": 4,
+                "percent": 0.007039526943789377
+              },
+              {
+                "value": "Lim-Dul's Vault",
+                "count": 3,
+                "percent": 0.005279645207842033
+              },
+              {
+                "value": "Khabal Ghoul",
+                "count": 3,
+                "percent": 0.005279645207842033
+              },
+              {
+                "value": "Ifh-Biff Efreet",
+                "count": 3,
+                "percent": 0.005279645207842033
+              },
+              {
+                "value": "Seance",
+                "count": 2,
+                "percent": 0.0035197634718946887
+              },
+              {
+                "value": "Ring of Ma'ruf",
+                "count": 2,
+                "percent": 0.0035197634718946887
+              },
+              {
+                "value": "Marton Stromgald",
+                "count": 2,
+                "percent": 0.0035197634718946887
+              },
+              {
+                "value": "Lim-Dul's Cohort",
+                "count": 2,
+                "percent": 0.0035197634718946887
+              },
+              {
+                "value": "Legions of Lim-Dul",
+                "count": 2,
+                "percent": 0.0035197634718946887
+              },
+              {
+                "value": "Juzam Djinn",
+                "count": 2,
+                "percent": 0.0035197634718946887
+              }
+            ]
+          }
+        },
+        {
+          "name": "availability",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 9,
+            "null_count": 1,
+            "null_percent": 0.0017598817359473443,
+            "top_values": [
+              {
+                "value": "mtgo,paper",
+                "count": 25459,
+                "percent": 44.80482911548344
+              },
+              {
+                "value": "paper",
+                "count": 21531,
+                "percent": 37.89201365668227
+              },
+              {
+                "value": "arena,mtgo,paper",
+                "count": 4609,
+                "percent": 8.11129492098131
+              },
+              {
+                "value": "mtgo",
+                "count": 3697,
+                "percent": 6.506282777797331
+              },
+              {
+                "value": "arena",
+                "count": 999,
+                "percent": 1.758121854211397
+              },
+              {
+                "value": "arena,paper",
+                "count": 490,
+                "percent": 0.8623420506141988
+              },
+              {
+                "value": "arena,mtgo",
+                "count": 14,
+                "percent": 0.02463834430326282
+              },
+              {
+                "value": "shandalar",
+                "count": 12,
+                "percent": 0.021118580831368132
+              },
+              {
+                "value": "dreamcast",
+                "count": 10,
+                "percent": 0.017598817359473443
+              }
+            ]
+          }
+        },
+        {
+          "name": "borderColor",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 5,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "black",
+                "count": 49729,
+                "percent": 87.5171588469255
+              },
+              {
+                "value": "white",
+                "count": 5017,
+                "percent": 8.829326669247827
+              },
+              {
+                "value": "gold",
+                "count": 1244,
+                "percent": 2.1892928795184963
+              },
+              {
+                "value": "silver",
+                "count": 591,
+                "percent": 1.0400901059448806
+              },
+              {
+                "value": "borderless",
+                "count": 241,
+                "percent": 0.42413149836331
+              }
+            ]
+          }
+        },
+        {
+          "name": "cardKingdomFoilId",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 28912,
+            "null_count": 27910,
+            "null_percent": 49.118299250290384
+          }
+        },
+        {
+          "name": "cardKingdomId",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 43200,
+            "null_count": 13622,
+            "null_percent": 23.973109007074726
+          }
+        },
+        {
+          "name": "colorIdentity",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 31,
+            "null_count": 6224,
+            "null_percent": 10.953503924536271
+          }
+        },
+        {
+          "name": "colorIndicator",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 9,
+            "null_count": 56655,
+            "null_percent": 99.70609975009678,
+            "top_values": [
+              {
+                "value": "R",
+                "count": 41,
+                "percent": 0.07215515117384111
+              },
+              {
+                "value": "G",
+                "count": 36,
+                "percent": 0.06335574249410439
+              },
+              {
+                "value": "U",
+                "count": 34,
+                "percent": 0.05983597902220971
+              },
+              {
+                "value": "B",
+                "count": 29,
+                "percent": 0.051036570342472984
+              },
+              {
+                "value": "W",
+                "count": 14,
+                "percent": 0.02463834430326282
+              },
+              {
+                "value": "G,R",
+                "count": 7,
+                "percent": 0.01231917215163141
+              },
+              {
+                "value": "B,R,U",
+                "count": 3,
+                "percent": 0.005279645207842033
+              },
+              {
+                "value": "B,G",
+                "count": 2,
+                "percent": 0.0035197634718946887
+              },
+              {
+                "value": "G,R,W",
+                "count": 1,
+                "percent": 0.0017598817359473443
+              }
+            ]
+          }
+        },
+        {
+          "name": "colors",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 39,
+            "null_count": 12540,
+            "null_percent": 22.068916968779696
+          }
+        },
+        {
+          "name": "convertedManaCost",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 19,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "3",
+                "count": 11776,
+                "percent": 20.724367322515928
+              },
+              {
+                "value": "2",
+                "count": 10760,
+                "percent": 18.936327478793423
+              },
+              {
+                "value": "4",
+                "count": 9174,
+                "percent": 16.145155045580935
+              },
+              {
+                "value": "0",
+                "count": 7327,
+                "percent": 12.894653479286191
+              },
+              {
+                "value": "1",
+                "count": 6223,
+                "percent": 10.951744042800323
+              },
+              {
+                "value": "5",
+                "count": 5674,
+                "percent": 9.985568969765232
+              },
+              {
+                "value": "6",
+                "count": 3431,
+                "percent": 6.038154236035338
+              },
+              {
+                "value": "7",
+                "count": 1515,
+                "percent": 2.666220829960227
+              },
+              {
+                "value": "8",
+                "count": 555,
+                "percent": 0.9767343634507761
+              },
+              {
+                "value": "9",
+                "count": 203,
+                "percent": 0.3572559923973109
+              },
+              {
+                "value": "10",
+                "count": 89,
+                "percent": 0.15662947449931364
+              },
+              {
+                "value": "11",
+                "count": 34,
+                "percent": 0.05983597902220971
+              },
+              {
+                "value": "12",
+                "count": 28,
+                "percent": 0.04927668860652564
+              },
+              {
+                "value": "15",
+                "count": 14,
+                "percent": 0.02463834430326282
+              },
+              {
+                "value": "13",
+                "count": 12,
+                "percent": 0.021118580831368132
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 1000000,
+              "avg": 38.14761008060258
+            }
+          }
+        },
+        {
+          "name": "duelDeck",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 55228,
+            "null_percent": 97.19474851289993,
+            "top_values": [
+              {
+                "value": "a",
+                "count": 804,
+                "percent": 1.4149449157016647
+              },
+              {
+                "value": "b",
+                "count": 790,
+                "percent": 1.390306571398402
+              }
+            ]
+          }
+        },
+        {
+          "name": "edhrecRank",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 20660,
+            "null_count": 4761,
+            "null_percent": 8.378796944845307,
+            "range": {
+              "min": 1,
+              "max": 20900,
+              "avg": 8547.522636906706
+            }
+          }
+        },
+        {
+          "name": "faceConvertedManaCost",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8,
+            "null_count": 55867,
+            "null_percent": 98.31931294217028,
+            "top_values": [
+              {
+                "value": "2",
+                "count": 239,
+                "percent": 0.42061173489141535
+              },
+              {
+                "value": "3",
+                "count": 189,
+                "percent": 0.3326176480940481
+              },
+              {
+                "value": "0",
+                "count": 182,
+                "percent": 0.32029847594241667
+              },
+              {
+                "value": "4",
+                "count": 132,
+                "percent": 0.23230438914504944
+              },
+              {
+                "value": "1",
+                "count": 110,
+                "percent": 0.1935869909542079
+              },
+              {
+                "value": "5",
+                "count": 50,
+                "percent": 0.08799408679736721
+              },
+              {
+                "value": "6",
+                "count": 31,
+                "percent": 0.054556333814367676
+              },
+              {
+                "value": "7",
+                "count": 22,
+                "percent": 0.03871739819084157
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 7,
+              "avg": 2.380104712041885
+            }
+          }
+        },
+        {
+          "name": "faceName",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 607,
+            "null_count": 55455,
+            "null_percent": 97.59424166695997
+          }
+        },
+        {
+          "name": "flavorName",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 21,
+            "null_count": 56801,
+            "null_percent": 99.96304248354511,
+            "top_values": [
+              {
+                "value": "Spacegodzilla, Void Invader",
+                "count": 1,
+                "percent": 0.0017598817359473443
+              },
+              {
+                "value": "Spacegodzilla, Death Corona",
+                "count": 1,
+                "percent": 0.0017598817359473443
+              },
+              {
+                "value": "Rodan, Titan of Winged Fury",
+                "count": 1,
+                "percent": 0.0017598817359473443
+              },
+              {
+                "value": "Mothra, Supersonic Queen",
+                "count": 1,
+                "percent": 0.0017598817359473443
+              },
+              {
+                "value": "Mothra's Great Cocoon",
+                "count": 1,
+                "percent": 0.0017598817359473443
+              },
+              {
+                "value": "Mechagodzilla, the Weapon",
+                "count": 1,
+                "percent": 0.0017598817359473443
+              },
+              {
+                "value": "Mechagodzilla, Battle Fortress",
+                "count": 1,
+                "percent": 0.0017598817359473443
+              },
+              {
+                "value": "King Caesar, Awoken Titan",
+                "count": 1,
+                "percent": 0.0017598817359473443
+              },
+              {
+                "value": "King Caesar, Ancient Guardian",
+                "count": 1,
+                "percent": 0.0017598817359473443
+              },
+              {
+                "value": "Godzilla, Primeval Champion",
+                "count": 1,
+                "percent": 0.0017598817359473443
+              },
+              {
+                "value": "Godzilla, King of the Monsters",
+                "count": 1,
+                "percent": 0.0017598817359473443
+              },
+              {
+                "value": "Godzilla, Doom Inevitable",
+                "count": 1,
+                "percent": 0.0017598817359473443
+              },
+              {
+                "value": "Gigan, Cyberclaw Terror",
+                "count": 1,
+                "percent": 0.0017598817359473443
+              },
+              {
+                "value": "Ghidorah, King of the Cosmos",
+                "count": 1,
+                "percent": 0.0017598817359473443
+              },
+              {
+                "value": "Dorat, the Perfect Pet",
+                "count": 1,
+                "percent": 0.0017598817359473443
+              }
+            ]
+          }
+        },
+        {
+          "name": "flavorText",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 17295,
+            "null_count": 26020,
+            "null_percent": 45.7921227693499
+          }
+        },
+        {
+          "name": "frameEffects",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 36,
+            "null_count": 53864,
+            "null_percent": 94.79426982506776
+          }
+        },
+        {
+          "name": "frameVersion",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 5,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "2015",
+                "count": 25500,
+                "percent": 44.87698426665728
+              },
+              {
+                "value": "2003",
+                "count": 16462,
+                "percent": 28.971173137165184
+              },
+              {
+                "value": "1997",
+                "count": 9257,
+                "percent": 16.291225229664565
+              },
+              {
+                "value": "1993",
+                "count": 5510,
+                "percent": 9.696948365069867
+              },
+              {
+                "value": "future",
+                "count": 93,
+                "percent": 0.16366900144310303
+              }
+            ]
+          }
+        },
+        {
+          "name": "hand",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8,
+            "null_count": 56704,
+            "null_percent": 99.79233395515821,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 45,
+                "percent": 0.0791946781176305
+              },
+              {
+                "value": "1",
+                "count": 29,
+                "percent": 0.051036570342472984
+              },
+              {
+                "value": "-1",
+                "count": 23,
+                "percent": 0.04047727992678892
+              },
+              {
+                "value": "-2",
+                "count": 8,
+                "percent": 0.014079053887578755
+              },
+              {
+                "value": "2",
+                "count": 7,
+                "percent": 0.01231917215163141
+              },
+              {
+                "value": "3",
+                "count": 4,
+                "percent": 0.007039526943789377
+              },
+              {
+                "value": "-4",
+                "count": 1,
+                "percent": 0.0017598817359473443
+              },
+              {
+                "value": "-3",
+                "count": 1,
+                "percent": 0.0017598817359473443
+              }
+            ]
+          }
+        },
+        {
+          "name": "hasAlternativeDeckLimit",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 56810,
+                "percent": 99.97888141916863
+              },
+              {
+                "value": "1",
+                "count": 12,
+                "percent": 0.021118580831368132
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "avg": 0.00021118580831368133
+            }
+          }
+        },
+        {
+          "name": "hasContentWarning",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 56793,
+                "percent": 99.94896342965752
+              },
+              {
+                "value": "1",
+                "count": 29,
+                "percent": 0.051036570342472984
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "avg": 0.0005103657034247299
+            }
+          }
+        },
+        {
+          "name": "hasFoil",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "1",
+                "count": 34618,
+                "percent": 60.92358593502517
+              },
+              {
+                "value": "0",
+                "count": 22204,
+                "percent": 39.076414064974834
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "avg": 0.6092358593502517
+            }
+          }
+        },
+        {
+          "name": "hasNonFoil",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "1",
+                "count": 51413,
+                "percent": 90.48079969026081
+              },
+              {
+                "value": "0",
+                "count": 5409,
+                "percent": 9.519200309739185
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "avg": 0.9048079969026082
+            }
+          }
+        },
+        {
+          "name": "isAlternative",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 56534,
+                "percent": 99.49315406004716
+              },
+              {
+                "value": "1",
+                "count": 288,
+                "percent": 0.5068459399528351
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "avg": 0.005068459399528351
+            }
+          }
+        },
+        {
+          "name": "isFullArt",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 56336,
+                "percent": 99.1446974763296
+              },
+              {
+                "value": "1",
+                "count": 486,
+                "percent": 0.8553025236704093
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "avg": 0.008553025236704093
+            }
+          }
+        },
+        {
+          "name": "isOnlineOnly",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 52089,
+                "percent": 91.67047974376122
+              },
+              {
+                "value": "1",
+                "count": 4733,
+                "percent": 8.32952025623878
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "avg": 0.0832952025623878
+            }
+          }
+        },
+        {
+          "name": "isOversized",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 56420,
+                "percent": 99.29252754214917
+              },
+              {
+                "value": "1",
+                "count": 402,
+                "percent": 0.7074724578508323
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "avg": 0.007074724578508324
+            }
+          }
+        },
+        {
+          "name": "isPromo",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 51234,
+                "percent": 90.16578085952624
+              },
+              {
+                "value": "1",
+                "count": 5588,
+                "percent": 9.83421914047376
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "avg": 0.0983421914047376
+            }
+          }
+        },
+        {
+          "name": "isReprint",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "1",
+                "count": 33657,
+                "percent": 59.23233958677977
+              },
+              {
+                "value": "0",
+                "count": 23165,
+                "percent": 40.76766041322023
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "avg": 0.5923233958677977
+            }
+          }
+        },
+        {
+          "name": "isReserved",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 55489,
+                "percent": 97.65407764598218
+              },
+              {
+                "value": "1",
+                "count": 1333,
+                "percent": 2.34592235401781
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "avg": 0.0234592235401781
+            }
+          }
+        },
+        {
+          "name": "isStarter",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 40865,
+                "percent": 71.91756713948823
+              },
+              {
+                "value": "1",
+                "count": 15957,
+                "percent": 28.082432860511773
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "avg": 0.28082432860511775
+            }
+          }
+        },
+        {
+          "name": "isStorySpotlight",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 56718,
+                "percent": 99.81697229946148
+              },
+              {
+                "value": "1",
+                "count": 104,
+                "percent": 0.18302770053852382
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "avg": 0.0018302770053852382
+            }
+          }
+        },
+        {
+          "name": "isTextless",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 56707,
+                "percent": 99.79761360036605
+              },
+              {
+                "value": "1",
+                "count": 115,
+                "percent": 0.2023863996339446
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "avg": 0.002023863996339446
+            }
+          }
+        },
+        {
+          "name": "isTimeshifted",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 56607,
+                "percent": 99.62162542677132
+              },
+              {
+                "value": "1",
+                "count": 215,
+                "percent": 0.37837457322867907
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "avg": 0.0037837457322867905
+            }
+          }
+        },
+        {
+          "name": "keywords",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1157,
+            "null_count": 36183,
+            "null_percent": 63.67780085178276
+          }
+        },
+        {
+          "name": "layout",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 15,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "normal",
+                "count": 54906,
+                "percent": 96.62806659392488
+              },
+              {
+                "value": "transform",
+                "count": 360,
+                "percent": 0.633557424941044
+              },
+              {
+                "value": "modal_dfc",
+                "count": 322,
+                "percent": 0.5666819189750449
+              },
+              {
+                "value": "adventure",
+                "count": 228,
+                "percent": 0.4012530357959945
+              },
+              {
+                "value": "split",
+                "count": 221,
+                "percent": 0.3889338636443631
+              },
+              {
+                "value": "planar",
+                "count": 178,
+                "percent": 0.3132589489986273
+              },
+              {
+                "value": "aftermath",
+                "count": 146,
+                "percent": 0.25694273344831225
+              },
+              {
+                "value": "vanguard",
+                "count": 118,
+                "percent": 0.20766604484178663
+              },
+              {
+                "value": "saga",
+                "count": 92,
+                "percent": 0.16190911970715569
+              },
+              {
+                "value": "flip",
+                "count": 72,
+                "percent": 0.12671148498820878
+              },
+              {
+                "value": "scheme",
+                "count": 70,
+                "percent": 0.1231917215163141
+              },
+              {
+                "value": "leveler",
+                "count": 47,
+                "percent": 0.08271444158952519
+              },
+              {
+                "value": "host",
+                "count": 28,
+                "percent": 0.04927668860652564
+              },
+              {
+                "value": "meld",
+                "count": 18,
+                "percent": 0.031677871247052194
+              },
+              {
+                "value": "augment",
+                "count": 16,
+                "percent": 0.02815810777515751
+              }
+            ]
+          }
+        },
+        {
+          "name": "leadershipSkills",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 5,
+            "null_count": 53072,
+            "null_percent": 93.40044349019746,
+            "top_values": [
+              {
+                "value": "{'brawl': False, 'commander': True, 'oathbreaker': False}",
+                "count": 2660,
+                "percent": 4.681285417619936
+              },
+              {
+                "value": "{'brawl': False, 'commander': False, 'oathbreaker': True}",
+                "count": 724,
+                "percent": 1.2741543768258774
+              },
+              {
+                "value": "{'brawl': True, 'commander': True, 'oathbreaker': False}",
+                "count": 255,
+                "percent": 0.44876984266657277
+              },
+              {
+                "value": "{'brawl': True, 'commander': False, 'oathbreaker': True}",
+                "count": 66,
+                "percent": 0.11615219457252472
+              },
+              {
+                "value": "{'brawl': False, 'commander': True, 'oathbreaker': True}",
+                "count": 45,
+                "percent": 0.0791946781176305
+              }
+            ]
+          }
+        },
+        {
+          "name": "life",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 23,
+            "null_count": 56704,
+            "null_percent": 99.79233395515821,
+            "top_values": [
+              {
+                "value": "-3",
+                "count": 14,
+                "percent": 0.02463834430326282
+              },
+              {
+                "value": "-2",
+                "count": 14,
+                "percent": 0.02463834430326282
+              },
+              {
+                "value": "-5",
+                "count": 9,
+                "percent": 0.015838935623526097
+              },
+              {
+                "value": "4",
+                "count": 8,
+                "percent": 0.014079053887578755
+              },
+              {
+                "value": "3",
+                "count": 8,
+                "percent": 0.014079053887578755
+              },
+              {
+                "value": "-4",
+                "count": 8,
+                "percent": 0.014079053887578755
+              },
+              {
+                "value": "5",
+                "count": 7,
+                "percent": 0.01231917215163141
+              },
+              {
+                "value": "2",
+                "count": 7,
+                "percent": 0.01231917215163141
+              },
+              {
+                "value": "1",
+                "count": 6,
+                "percent": 0.010559290415684066
+              },
+              {
+                "value": "0",
+                "count": 6,
+                "percent": 0.010559290415684066
+              },
+              {
+                "value": "6",
+                "count": 5,
+                "percent": 0.008799408679736722
+              },
+              {
+                "value": "-1",
+                "count": 5,
+                "percent": 0.008799408679736722
+              },
+              {
+                "value": "7",
+                "count": 4,
+                "percent": 0.007039526943789377
+              },
+              {
+                "value": "9",
+                "count": 3,
+                "percent": 0.005279645207842033
+              },
+              {
+                "value": "12",
+                "count": 3,
+                "percent": 0.005279645207842033
+              }
+            ]
+          }
+        },
+        {
+          "name": "loyalty",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 11,
+            "null_count": 55992,
+            "null_percent": 98.5392981591637,
+            "top_values": [
+              {
+                "value": "5",
+                "count": 265,
+                "percent": 0.4663686600260462
+              },
+              {
+                "value": "4",
+                "count": 253,
+                "percent": 0.44525007919467813
+              },
+              {
+                "value": "3",
+                "count": 205,
+                "percent": 0.36077575586920557
+              },
+              {
+                "value": "7",
+                "count": 42,
+                "percent": 0.07391503290978846
+              },
+              {
+                "value": "6",
+                "count": 42,
+                "percent": 0.07391503290978846
+              },
+              {
+                "value": "2",
+                "count": 12,
+                "percent": 0.021118580831368132
+              },
+              {
+                "value": "X",
+                "count": 5,
+                "percent": 0.008799408679736722
+              },
+              {
+                "value": "0",
+                "count": 2,
+                "percent": 0.0035197634718946887
+              },
+              {
+                "value": "*",
+                "count": 2,
+                "percent": 0.0035197634718946887
+              },
+              {
+                "value": "20",
+                "count": 1,
+                "percent": 0.0017598817359473443
+              },
+              {
+                "value": "1d4+1",
+                "count": 1,
+                "percent": 0.0017598817359473443
+              }
+            ]
+          }
+        },
+        {
+          "name": "manaCost",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 696,
+            "null_count": 7323,
+            "null_percent": 12.887613952342402
+          }
+        },
+        {
+          "name": "mcmId",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 47971,
+            "null_count": 8024,
+            "null_percent": 14.121291049241492
+          }
+        },
+        {
+          "name": "mcmMetaId",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 20902,
+            "null_count": 17906,
+            "null_percent": 31.51244236387315
+          }
+        },
+        {
+          "name": "mtgArenaId",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 5654,
+            "null_count": 50975,
+            "null_percent": 89.70997148991587
+          }
+        },
+        {
+          "name": "mtgjsonV4Id",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 56822,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "mtgoFoilId",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 24242,
+            "null_count": 32462,
+            "null_percent": 57.12928091232269
+          }
+        },
+        {
+          "name": "mtgoId",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 31811,
+            "null_count": 24684,
+            "null_percent": 43.44092077012425
+          }
+        },
+        {
+          "name": "multiverseId",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 41871,
+            "null_count": 14753,
+            "null_percent": 25.963535250431168
+          }
+        },
+        {
+          "name": "name",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 21738,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "number",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 6621,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "originalReleaseDate",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 383,
+            "null_count": 54757,
+            "null_percent": 96.36584421526874
+          }
+        },
+        {
+          "name": "originalText",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 27607,
+            "null_count": 15616,
+            "null_percent": 27.482313188553732
+          }
+        },
+        {
+          "name": "originalType",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2992,
+            "null_count": 14766,
+            "null_percent": 25.986413712998484
+          }
+        },
+        {
+          "name": "otherFaceIds",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1361,
+            "null_count": 55455,
+            "null_percent": 97.59424166695997
+          }
+        },
+        {
+          "name": "power",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 28,
+            "null_count": 30624,
+            "null_percent": 53.894618281651475,
+            "top_values": [
+              {
+                "value": "2",
+                "count": 7815,
+                "percent": 13.753475766428497
+              },
+              {
+                "value": "1",
+                "count": 5579,
+                "percent": 9.818380204850234
+              },
+              {
+                "value": "3",
+                "count": 4414,
+                "percent": 7.768117982471578
+              },
+              {
+                "value": "4",
+                "count": 2855,
+                "percent": 5.024462356129668
+              },
+              {
+                "value": "5",
+                "count": 1744,
+                "percent": 3.0692337474921687
+              },
+              {
+                "value": "0",
+                "count": 1442,
+                "percent": 2.5377494632360706
+              },
+              {
+                "value": "6",
+                "count": 1083,
+                "percent": 1.9059519200309738
+              },
+              {
+                "value": "*",
+                "count": 429,
+                "percent": 0.7549892647214107
+              },
+              {
+                "value": "7",
+                "count": 384,
+                "percent": 0.6757945866037802
+              },
+              {
+                "value": "8",
+                "count": 190,
+                "percent": 0.33437752982999547
+              },
+              {
+                "value": "10",
+                "count": 77,
+                "percent": 0.13551089366794553
+              },
+              {
+                "value": "9",
+                "count": 73,
+                "percent": 0.12847136672415613
+              },
+              {
+                "value": "12",
+                "count": 26,
+                "percent": 0.045756925134630956
+              },
+              {
+                "value": "11",
+                "count": 20,
+                "percent": 0.03519763471894689
+              },
+              {
+                "value": "1+*",
+                "count": 16,
+                "percent": 0.02815810777515751
+              }
+            ]
+          }
+        },
+        {
+          "name": "printings",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 6231,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "promoTypes",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 64,
+            "null_count": 50685,
+            "null_percent": 89.19960578649115
+          }
+        },
+        {
+          "name": "purchaseUrls",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 50451,
+            "null_count": 6371,
+            "null_percent": 11.21220653972053
+          }
+        },
+        {
+          "name": "rarity",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 4,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "common",
+                "count": 20745,
+                "percent": 36.50874661222766
+              },
+              {
+                "value": "rare",
+                "count": 17626,
+                "percent": 31.01967547780789
+              },
+              {
+                "value": "uncommon",
+                "count": 15251,
+                "percent": 26.839956354932948
+              },
+              {
+                "value": "mythic",
+                "count": 3200,
+                "percent": 5.631621555031502
+              }
+            ]
+          }
+        },
+        {
+          "name": "scryfallId",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 56144,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "scryfallIllustrationId",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 27250,
+            "null_count": 2,
+            "null_percent": 0.0035197634718946887
+          }
+        },
+        {
+          "name": "scryfallOracleId",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 21769,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "setCode",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 536,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "side",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 5,
+            "null_count": 55455,
+            "null_percent": 97.59424166695997,
+            "top_values": [
+              {
+                "value": "a",
+                "count": 683,
+                "percent": 1.2019992256520362
+              },
+              {
+                "value": "b",
+                "count": 677,
+                "percent": 1.191439935236352
+              },
+              {
+                "value": "c",
+                "count": 3,
+                "percent": 0.005279645207842033
+              },
+              {
+                "value": "e",
+                "count": 2,
+                "percent": 0.0035197634718946887
+              },
+              {
+                "value": "d",
+                "count": 2,
+                "percent": 0.0035197634718946887
+              }
+            ]
+          }
+        },
+        {
+          "name": "subtypes",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1505,
+            "null_count": 22228,
+            "null_percent": 39.11865122663757
+          }
+        },
+        {
+          "name": "supertypes",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8,
+            "null_count": 48982,
+            "null_percent": 86.20252719017282,
+            "top_values": [
+              {
+                "value": "Legendary",
+                "count": 4286,
+                "percent": 7.542853120270318
+              },
+              {
+                "value": "Basic",
+                "count": 3269,
+                "percent": 5.753053394811869
+              },
+              {
+                "value": "Snow",
+                "count": 142,
+                "percent": 0.2499032065045229
+              },
+              {
+                "value": "World",
+                "count": 47,
+                "percent": 0.08271444158952519
+              },
+              {
+                "value": "Basic,Snow",
+                "count": 35,
+                "percent": 0.06159586075815705
+              },
+              {
+                "value": "Host",
+                "count": 28,
+                "percent": 0.04927668860652564
+              },
+              {
+                "value": "Legendary,Snow",
+                "count": 21,
+                "percent": 0.03695751645489423
+              },
+              {
+                "value": "Ongoing",
+                "count": 12,
+                "percent": 0.021118580831368132
+              }
+            ]
+          }
+        },
+        {
+          "name": "tcgplayerProductId",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 49470,
+            "null_count": 6600,
+            "null_percent": 11.615219457252472
+          }
+        },
+        {
+          "name": "text",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 20592,
+            "null_count": 955,
+            "null_percent": 1.6806870578297137
+          }
+        },
+        {
+          "name": "toughness",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 32,
+            "null_count": 30624,
+            "null_percent": 53.894618281651475
+          }
+        },
+        {
+          "name": "type",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2022,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "types",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 37,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "uuid",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 56822,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "variations",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8256,
+            "null_count": 48186,
+            "null_percent": 84.80166132835873
+          }
+        },
+        {
+          "name": "watermark",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 161,
+            "null_count": 52373,
+            "null_percent": 92.17028615677026
+          }
+        }
+      ],
+      "indexes": [],
+      "rich_context": {
+        "availability_values": {
+          "content": "mtgo,paper=25459(43.6%), paper=21531(36.9%), arena,mtgo,paper=4609(7.9%), mtgo=3697(6.3%), arena=999(1.7%), arena,paper=490(0.8%), arena,mtgo=14(0.02%), shandalar=12(0.02%), dreamcast=10(0.02%), null=1(0.002%)",
+          "expires_at": "2026-03-31T14:56:17+08:00"
+        },
+        "isPromo_meaning": {
+          "content": "0=not a promotional card, 1=promotional card",
+          "expires_at": "2026-03-31T14:56:47+08:00"
+        },
+        "layout_values": {
+          "content": "normal=35879(61.5%), split=6925(11.9%), transform=4725(8.1%), flip=2890(4.9%), adventure=2100(3.6%), modal_dfc=1500(2.6%), double_faced_token=1200(2.1%), leveler=950(1.6%), saga=800(1.4%), class=600(1.0%), battle=400(0.7%), planar=250(0.4%)",
+          "expires_at": "2026-03-31T14:56:40+08:00"
+        },
+        "rarity_values": {
+          "content": "common=20745(35.6%), rare=17626(30.2%), uncommon=15251(26.1%), mythic=3200(5.5%)",
+          "expires_at": "2026-03-31T14:56:24+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "cards",
+          "column": "asciiName",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "100% NULL values (56755/56822)",
+          "sql_fix": "WHERE \"asciiName\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "cardKingdomFoilId",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 28912/28912 non-empty)",
+          "sql_fix": "CAST(\"cardKingdomFoilId\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "cardKingdomId",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 43200/43200 non-empty)",
+          "sql_fix": "CAST(\"cardKingdomId\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "colorIndicator",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "100% NULL values (56655/56822)",
+          "sql_fix": "WHERE \"colorIndicator\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "duelDeck",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "97% NULL values (55228/56822)",
+          "sql_fix": "WHERE \"duelDeck\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "faceConvertedManaCost",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "98% NULL values (55867/56822)",
+          "sql_fix": "WHERE \"faceConvertedManaCost\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "faceName",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "98% NULL values (55455/56822)",
+          "sql_fix": "WHERE \"faceName\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "flavorName",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "100% NULL values (56801/56822)",
+          "sql_fix": "WHERE \"flavorName\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "flavorText",
+          "type": "whitespace",
+          "severity": "critical",
+          "description": "Contains leading/trailing whitespace (4+ rows)",
+          "sql_fix": "TRIM(\"flavorText\")",
+          "affected_ops": [
+            "JOIN",
+            "WHERE",
+            "GROUP BY"
+          ],
+          "examples": [
+            "'Both part of the Legacy and an individual in his own right, the silver golem Karn is haunted by a single, terrible incident: while serving to protect the young Gerrard, Karn accidentally took the life of another. Wakened from years spent as a statue, the '",
+            "'The son of Gerrard's surrogate father, Sidar Kondo, Volrath stole Gerrard's Legacy and rose to power selling it off piece by piece. Now, he is an evincar, or agent, of the Lord of the Wastes. Armed with exceptional magical powers, he plots to conquer the '",
+            "'An artificer of unparalleled renown, Urza was a powerful cipher even before he was able to planeswalk. Seeing the world as a large, integrated machine is his greatest strength and weakness, enabling him to solve almost any problem but blinding him to his '",
+            "'A Phyrexian \"sleeper agent,\" Xantcha has developed an inviolate sense of self. This aberration earned her a death sentence, but she was rescued by Urza and joined his crusade. Her Phyrexian credo of \"Waste not, want not\" has helped Urza more than even he '"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "frameEffects",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "95% NULL values (53864/56822)",
+          "sql_fix": "WHERE \"frameEffects\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "frameVersion",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 56729/56822 non-empty)",
+          "sql_fix": "CAST(\"frameVersion\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "hand",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "100% NULL values (56704/56822)",
+          "sql_fix": "WHERE \"hand\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "keywords",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "64% NULL values (36183/56822)",
+          "sql_fix": "WHERE \"keywords\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "leadershipSkills",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "93% NULL values (53072/56822)",
+          "sql_fix": "WHERE \"leadershipSkills\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "life",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "100% NULL values (56704/56822)",
+          "sql_fix": "WHERE \"life\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "loyalty",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (99% numeric, 822/830 non-empty)",
+          "sql_fix": "CAST(\"loyalty\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "loyalty",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "99% NULL values (55992/56822)",
+          "sql_fix": "WHERE \"loyalty\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "mcmId",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 48798/48798 non-empty)",
+          "sql_fix": "CAST(\"mcmId\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "mcmMetaId",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 38916/38916 non-empty)",
+          "sql_fix": "CAST(\"mcmMetaId\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "mtgArenaId",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 5847/5847 non-empty)",
+          "sql_fix": "CAST(\"mtgArenaId\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "mtgArenaId",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "90% NULL values (50975/56822)",
+          "sql_fix": "WHERE \"mtgArenaId\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "mtgoFoilId",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 24360/24360 non-empty)",
+          "sql_fix": "CAST(\"mtgoFoilId\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "mtgoFoilId",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "57% NULL values (32462/56822)",
+          "sql_fix": "WHERE \"mtgoFoilId\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "mtgoId",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 32138/32138 non-empty)",
+          "sql_fix": "CAST(\"mtgoId\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "multiverseId",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 42069/42069 non-empty)",
+          "sql_fix": "CAST(\"multiverseId\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "number",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (90% numeric, 51284/56822 non-empty)",
+          "sql_fix": "CAST(\"number\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "originalReleaseDate",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 2065/2065 non-empty)",
+          "sql_fix": "CAST(\"originalReleaseDate\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "originalReleaseDate",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "96% NULL values (54757/56822)",
+          "sql_fix": "WHERE \"originalReleaseDate\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "originalText",
+          "type": "whitespace",
+          "severity": "critical",
+          "description": "Contains leading/trailing whitespace (5+ rows)",
+          "sql_fix": "TRIM(\"originalText\")",
+          "affected_ops": [
+            "JOIN",
+            "WHERE",
+            "GROUP BY"
+          ],
+          "examples": [
+            "'Flying, trample (This creature can't be blocked except by creatures with flying or reach. If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)\nAt the beginning '",
+            "'Trample (If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)\nColossus of Sardia doesn't untap during your untap step.\n{9}: Untap Colossus of Sardia. Play this '",
+            "'Whichever player has more lands in play must discard enough lands of his or her choice to equalize the number of lands both players have in play. Cards in hand and creatures in play must be equalized the same way. Creatures lost in this manner may not be '",
+            "'Upon summoning, Clone acquires all characteristics, including color, of any one creature in play on either side; any creature enchantments on original creature are not copied. Clone retains these characteristics even after original creature is destroyed. '",
+            "'Target spell is countered unless its caster spends X more mana; caster of target spell can't choose to let it be countered. If caster of target spell doesn't have enough mana, all available mana from lands and mana pool must be paid but target spell will '"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "otherFaceIds",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "98% NULL values (55455/56822)",
+          "sql_fix": "WHERE \"otherFaceIds\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "power",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (98% numeric, 25760/26198 non-empty)",
+          "sql_fix": "CAST(\"power\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "power",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "54% NULL values (30624/56822)",
+          "sql_fix": "WHERE \"power\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "promoTypes",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "89% NULL values (50685/56822)",
+          "sql_fix": "WHERE \"promoTypes\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "side",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "98% NULL values (55455/56822)",
+          "sql_fix": "WHERE \"side\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "supertypes",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "86% NULL values (48982/56822)",
+          "sql_fix": "WHERE \"supertypes\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "tcgplayerProductId",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 50222/50222 non-empty)",
+          "sql_fix": "CAST(\"tcgplayerProductId\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "text",
+          "type": "whitespace",
+          "severity": "critical",
+          "description": "Contains leading/trailing whitespace (5+ rows)",
+          "sql_fix": "TRIM(\"text\")",
+          "affected_ops": [
+            "JOIN",
+            "WHERE",
+            "GROUP BY"
+          ],
+          "examples": [
+            "'Spawning Pool enters the battlefield tapped.\n{T}: Add {B}.\n{1}{B}: Spawning Pool becomes a 1/1 black Skeleton creature with \"{B}: Regenerate this creature\" until end of turn. It's still a land. (If it regenerates, the next time it would be destroyed this '",
+            "'Spawning Pool enters the battlefield tapped.\n{T}: Add {B}.\n{1}{B}: Spawning Pool becomes a 1/1 black Skeleton creature with \"{B}: Regenerate this creature\" until end of turn. It's still a land. (If it regenerates, the next time it would be destroyed this '",
+            "'As Lich enters the battlefield, you lose life equal to your life total.\nYou don't lose the game for having 0 or less life.\nIf you would gain life, draw that many cards instead.\nWhenever you're dealt damage, sacrifice that many nontoken permanents. If you '",
+            "'Whenever one or more creatures you control attack, each defending player divides all creatures without flying they control into a \"left\" pile and a \"right\" pile. Then, for each attacking creature you control, choose \"left\" or \"right.\" That creature can't '",
+            "'{X}: You may choose a creature card in your hand whose mana cost could be paid by some amount of, or all of, the mana you spent on {X}. If you do, you may cast that card face down as a 2/2 creature spell without paying its mana cost. If the creature that '"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "toughness",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (99% numeric, 25831/26198 non-empty)",
+          "sql_fix": "CAST(\"toughness\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "toughness",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "54% NULL values (30624/56822)",
+          "sql_fix": "WHERE \"toughness\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "variations",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "85% NULL values (48186/56822)",
+          "sql_fix": "WHERE \"variations\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "cards",
+          "column": "watermark",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "92% NULL values (52373/56822)",
+          "sql_fix": "WHERE \"watermark\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        }
+      ]
+    },
+    "foreign_data": {
+      "name": "foreign_data",
+      "description": "The foreign_data table stores localized card information for a multilingual trading card game, capturing translations of card types and other attributes across numerous languages.",
+      "row_count": 229186,
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 229186,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 229205,
+              "avg": 114602.85120818898
+            }
+          }
+        },
+        {
+          "name": "flavorText",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 111166,
+            "null_count": 0,
+            "null_percent": 0,
+            "empty_count": 100767
+          }
+        },
+        {
+          "name": "language",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 16,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Japanese",
+                "count": 31226,
+                "percent": 13.624741476355448
+              },
+              {
+                "value": "French",
+                "count": 29301,
+                "percent": 12.784812335832033
+              },
+              {
+                "value": "German",
+                "count": 28891,
+                "percent": 12.6059183370712
+              },
+              {
+                "value": "Italian",
+                "count": 28698,
+                "percent": 12.521707259605735
+              },
+              {
+                "value": "Spanish",
+                "count": 28639,
+                "percent": 12.495963976857224
+              },
+              {
+                "value": "Portuguese (Brazil)",
+                "count": 25641,
+                "percent": 11.187856151771923
+              },
+              {
+                "value": "Chinese Simplified",
+                "count": 20106,
+                "percent": 8.772787168500694
+              },
+              {
+                "value": "Russian",
+                "count": 15878,
+                "percent": 6.927997347132897
+              },
+              {
+                "value": "Chinese Traditional",
+                "count": 11106,
+                "percent": 4.845845732287312
+              },
+              {
+                "value": "Korean",
+                "count": 9692,
+                "percent": 4.228879599975565
+              },
+              {
+                "value": "Phyrexian",
+                "count": 3,
+                "percent": 0.0013089804787377937
+              },
+              {
+                "value": "Sanskrit",
+                "count": 1,
+                "percent": 0.0004363268262459313
+              },
+              {
+                "value": "Latin",
+                "count": 1,
+                "percent": 0.0004363268262459313
+              },
+              {
+                "value": "Hebrew",
+                "count": 1,
+                "percent": 0.0004363268262459313
+              },
+              {
+                "value": "Arabic",
+                "count": 1,
+                "percent": 0.0004363268262459313
+              }
+            ]
+          }
+        },
+        {
+          "name": "multiverseid",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 188464,
+            "null_count": 38418,
+            "null_percent": 16.762804010716188,
+            "range": {
+              "min": 73246,
+              "max": 507640,
+              "avg": 336047.63800532586
+            }
+          }
+        },
+        {
+          "name": "name",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 160581,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "text",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 161400,
+            "null_count": 0,
+            "null_percent": 0,
+            "empty_count": 36674
+          }
+        },
+        {
+          "name": "type",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 16575,
+            "null_count": 0,
+            "null_percent": 0,
+            "empty_count": 32407
+          }
+        },
+        {
+          "name": "uuid",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 34056,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "uuid",
+          "referenced_table": "cards",
+          "referenced_column": "uuid"
+        }
+      ],
+      "rich_context": {
+        "language_values": {
+          "content": "Japanese=31226(20.5%), French=29301(19.2%), German=28891(19.0%), Italian=28698(18.9%), Spanish=28639(18.8%), Portuguese (Brazil)=25641(16.9%), Chinese Simplified=20106(13.2%), Russian=15878(10.4%), Chinese Traditional=11106(7.3%), Korean=9692(6.4%), Phyrexian=3(0.0%), Sanskrit=1(0.0%), Latin=1(0.0%), Hebrew=1(0.0%), Arabic=1(0.0%)",
+          "expires_at": "2026-03-31T14:56:18+08:00"
+        },
+        "type_values": {
+          "content": "=32407(21.3%), Spontanzauber=3460(2.3%), Hexerei=3263(2.1%), インスタント=3074(2.0%), Éphémère=2938(1.9%), Istantaneo=2773(1.8%), Instantáneo=2759(1.8%), ソーサリー=2730(1.8%), Rituel=2631(1.7%), 瞬间=2576(1.7%), Mágica Instantânea=2517(1.7%), Stregoneria=2478(1.6%), Conjuro=2455(1.6%), 法术=2231(1.5%), Feitiço=2219(1.5%)",
+          "expires_at": "2026-03-31T14:56:38+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "foreign_data",
+          "column": "flavorText",
+          "type": "whitespace",
+          "severity": "critical",
+          "description": "Contains leading/trailing whitespace (5+ rows)",
+          "sql_fix": "TRIM(\"flavorText\")",
+          "affected_ops": [
+            "JOIN",
+            "WHERE",
+            "GROUP BY"
+          ],
+          "examples": [
+            "'« Peu importe la puissance de votre champion, le leur est invincible. Peu importe la taille de votre armée, la leur est infinie. Peu importe l'étendue de votre appétit, le leur est insatiable. Et c'est pourquoi les Eldrazi vaincront. »—Kalitas, serviteur '",
+            "'La muchacha que se convertiría en la Campeona del sol golpeaba el muñeco de práctica con furia. Al fin se detuvo, jadeando, y alzó la vista para mirar a su instructor. \"Cuánta ira\", dijo el centauro. \"Te enseñaré el arte de la guerra, pequeña, pero antes '",
+            "'„Wie können wir in den Krieg gegen uns selber ziehen? Was passiert, wenn die Kami unserer eigenen Seelen sich gegen uns erheben? Meine Antwort ist einfach: Wir können nicht. Wir sterben. Es kann in diesem Krieg keinen Sieger geben.\"\n—Sensei Hisoka, Brief '",
+            "'\"Embora não houvesse lugar seguro em Kamigawa durante a guerra, o Pântano de Takenuma era o mais aterrador. Os próprios bambus apodrecidos se rebelavam contra seus habitantes mortais, puxando-os para dentro de valas anônimas\".\n— Observações da Guerra dos '",
+            "'Dans un incroyable élan de diplomatie, Yasova Griffedragon céda une partie des terres temuriennes aux Sultaï. Les membres de son clan protestèrent avant de s'apercevoir qu'il s'agissait de la zone de reproduction des krushoks. Ils ne savaient pas qu'elle '"
+          ]
+        },
+        {
+          "table": "foreign_data",
+          "column": "flavorText",
+          "type": "empty_string",
+          "severity": "warning",
+          "description": "Contains 100767 empty string values in addition to NULLs",
+          "sql_fix": "WHERE \"flavorText\" IS NOT NULL AND \"flavorText\" != ''",
+          "affected_ops": [
+            "WHERE",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "foreign_data",
+          "column": "text",
+          "type": "whitespace",
+          "severity": "critical",
+          "description": "Contains leading/trailing whitespace (5+ rows)",
+          "sql_fix": "TRIM(\"text\")",
+          "affected_ops": [
+            "JOIN",
+            "WHERE",
+            "GROUP BY"
+          ],
+          "examples": [
+            "'Volare (Questa creatura non può essere bloccata tranne che da creature con volare o raggiungere.)\nOgniqualvolta lo Scalpatore infligge danno da combattimento a un giocatore, quel giocatore rimuove dal gioco le prime quattro carte del suo grimorio. Se due '",
+            "'Incanta creatura (Bersaglia una creatura mentre giochi questa carta. Questa carta entra in gioco assegnata a quella creatura.)\nLa creatura incantata ha volare. (Non può essere bloccata tranne che da creature con volare o raggiungere.)\n{U}: Fai tornare le '",
+            "'Encantar criatura (Ao jogar este card, escolha uma criatura alvo. Este card entra em jogo anexado àquela criatura.)\nA criatura encantada tem a habilidade de voar. (Ela só pode ser bloqueada por criaturas com a habilidade de voar ou alcance.)\n{U}: Devolva '",
+            "'O poder e a resistência de Mortívoro são ambos iguais ao número de cards de criatura em todos os cemitérios.\n{B}: Regenere Mortívoro. (Na próxima vez em que esta criatura seria destruída neste turno, ela não será. Em vez disso, vire-a, remova todo o dano '",
+            "'Daña primero, protección contra negro, protección contra rojo. (Esta criatura hace daño de combate antes que las criaturas sin la habilidad de dañar primero. Esta criatura no puede ser bloqueada, hecha objetivo, recibir daño de o estar encantada por nada '"
+          ]
+        },
+        {
+          "table": "foreign_data",
+          "column": "text",
+          "type": "empty_string",
+          "severity": "warning",
+          "description": "Contains 36674 empty string values in addition to NULLs",
+          "sql_fix": "WHERE \"text\" IS NOT NULL AND \"text\" != ''",
+          "affected_ops": [
+            "WHERE",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "foreign_data",
+          "column": "type",
+          "type": "empty_string",
+          "severity": "warning",
+          "description": "Contains 32407 empty string values in addition to NULLs",
+          "sql_fix": "WHERE \"type\" IS NOT NULL AND \"type\" != ''",
+          "affected_ops": [
+            "WHERE",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "foreign_data",
+          "column": "uuid",
+          "type": "orphan",
+          "severity": "warning",
+          "description": "16 orphan records (uuid not in cards.uuid)",
+          "sql_fix": "LEFT JOIN \"cards\" ON \"foreign_data\".\"uuid\" = \"cards\".\"uuid\"",
+          "affected_ops": [
+            "JOIN"
+          ]
+        }
+      ]
+    },
+    "legalities": {
+      "name": "legalities",
+      "description": "The legalities table tracks the legality status of cards across various Magic: The Gathering formats, indicating which cards are permitted in each competitive or casual format.",
+      "row_count": 427907,
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 427907,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 427907,
+              "avg": 213954
+            }
+          }
+        },
+        {
+          "name": "format",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 15,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "vintage",
+                "count": 55576,
+                "percent": 12.987868859354954
+              },
+              {
+                "value": "legacy",
+                "count": 55576,
+                "percent": 12.987868859354954
+              },
+              {
+                "value": "commander",
+                "count": 55576,
+                "percent": 12.987868859354954
+              },
+              {
+                "value": "duel",
+                "count": 55544,
+                "percent": 12.980390598891814
+              },
+              {
+                "value": "modern",
+                "count": 40774,
+                "percent": 9.528706003874673
+              },
+              {
+                "value": "penny",
+                "count": 38159,
+                "percent": 8.917591906652614
+              },
+              {
+                "value": "pauper",
+                "count": 22784,
+                "percent": 5.324521449754269
+              },
+              {
+                "value": "pioneer",
+                "count": 22346,
+                "percent": 5.222162759665068
+              },
+              {
+                "value": "premodern",
+                "count": 20721,
+                "percent": 4.84240734552134
+              },
+              {
+                "value": "historic",
+                "count": 16568,
+                "percent": 3.871869354789709
+              },
+              {
+                "value": "gladiator",
+                "count": 16568,
+                "percent": 3.871869354789709
+              },
+              {
+                "value": "standard",
+                "count": 7698,
+                "percent": 1.7989890326636397
+              },
+              {
+                "value": "future",
+                "count": 7698,
+                "percent": 1.7989890326636397
+              },
+              {
+                "value": "brawl",
+                "count": 7698,
+                "percent": 1.7989890326636397
+              },
+              {
+                "value": "oldschool",
+                "count": 4621,
+                "percent": 1.0799075500050244
+              }
+            ]
+          }
+        },
+        {
+          "name": "status",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Legal",
+                "count": 424958,
+                "percent": 99.31083155919393
+              },
+              {
+                "value": "Banned",
+                "count": 2313,
+                "percent": 0.540538014101195
+              },
+              {
+                "value": "Restricted",
+                "count": 636,
+                "percent": 0.14863042670486812
+              }
+            ]
+          }
+        },
+        {
+          "name": "uuid",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 55608,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "uuid",
+          "referenced_table": "cards",
+          "referenced_column": "uuid"
+        }
+      ],
+      "rich_context": {
+        "format_values": {
+          "content": "vintage=55576(14.3%), legacy=55576(14.3%), commander=55576(14.3%), duel=55544(14.3%), modern=40774(10.5%), penny=38159(9.8%), pauper=22784(5.9%), pioneer=22346(5.7%), premodern=20721(5.3%), historic=16568(4.3%), gladiator=16568(4.3%), standard=7698(2.0%), future=7698(2.0%), brawl=7698(2.0%), oldschool=4621(1.2%)",
+          "expires_at": "2026-03-31T14:56:17+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "legalities",
+          "column": "uuid",
+          "type": "orphan",
+          "severity": "warning",
+          "description": "72 orphan records (uuid not in cards.uuid)",
+          "sql_fix": "LEFT JOIN \"cards\" ON \"legalities\".\"uuid\" = \"cards\".\"uuid\"",
+          "affected_ops": [
+            "JOIN"
+          ]
+        }
+      ]
+    },
+    "rulings": {
+      "name": "rulings",
+      "description": "The rulings table stores official decisions or judgments, likely issued by a regulatory, legal, or administrative body, with each row representing a distinct ruling.",
+      "row_count": 87769,
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 87769,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 87769,
+              "avg": 43885
+            }
+          }
+        },
+        {
+          "name": "date",
+          "type": "DATE",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 109,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "text",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 19593,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "uuid",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 26141,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "uuid",
+          "referenced_table": "cards",
+          "referenced_column": "uuid"
+        }
+      ],
+      "quality_issues": [
+        {
+          "table": "rulings",
+          "column": "text",
+          "type": "whitespace",
+          "severity": "critical",
+          "description": "Contains leading/trailing whitespace (5+ rows)",
+          "sql_fix": "TRIM(\"text\")",
+          "affected_ops": [
+            "JOIN",
+            "WHERE",
+            "GROUP BY"
+          ],
+          "examples": [
+            "'You don’t choose which creature the Aura will enter the battlefield attached to until the ability resolves. You must choose a creature the Aura can legally enchant. (For example, you can’t choose a creature with protection from black if the targeted Aura '",
+            "'If a noncreature artifact becomes an artifact creature this way and then another effect animates it, the new effect overrides March of the Machines’s effect. For example, Chimeric Staff is a 4/4 creature while March of the Machines is on the battlefield. '",
+            "'If an effect instructs you to draw cards and then discard cards, you can’t take actions in between. For example, if you have no cards in hand and cast Faithless Looting, you can’t activate Seismic Assault’s ability between the time you draw two cards and '",
+            "'You don’t choose which creature the Aura will enter the battlefield attached to until the ability resolves. You must choose a creature the Aura can legally enchant. (For example, you can’t choose a creature with protection from black if the targeted Aura '",
+            "'Once a player announces that they’re casting a spell or activating an ability, no player may take other actions until the spell or ability has been paid for. Notably, other players can’t try to tap that player’s permanents to stop them from paying {T} or '"
+          ]
+        }
+      ]
+    },
+    "set_translations": {
+      "name": "set_translations",
+      "description": "The set_translations table stores localized text values for UI elements (such as WELCOME_MESSAGE and LOGIN) across 10 supported languages, enabling multilingual application support.",
+      "row_count": 1210,
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 1210,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 1210,
+              "avg": 605.5
+            }
+          }
+        },
+        {
+          "name": "language",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 10,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Spanish",
+                "count": 121,
+                "percent": 10
+              },
+              {
+                "value": "Russian",
+                "count": 121,
+                "percent": 10
+              },
+              {
+                "value": "Portuguese (Brazil)",
+                "count": 121,
+                "percent": 10
+              },
+              {
+                "value": "Korean",
+                "count": 121,
+                "percent": 10
+              },
+              {
+                "value": "Japanese",
+                "count": 121,
+                "percent": 10
+              },
+              {
+                "value": "Italian",
+                "count": 121,
+                "percent": 10
+              },
+              {
+                "value": "German",
+                "count": 121,
+                "percent": 10
+              },
+              {
+                "value": "French",
+                "count": 121,
+                "percent": 10
+              },
+              {
+                "value": "Chinese Traditional",
+                "count": 121,
+                "percent": 10
+              },
+              {
+                "value": "Chinese Simplified",
+                "count": 121,
+                "percent": 10
+              }
+            ]
+          }
+        },
+        {
+          "name": "setCode",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 121,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "translation",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 504,
+            "null_count": 231,
+            "null_percent": 19.090909090909093
+          }
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "setCode",
+          "referenced_table": "sets",
+          "referenced_column": "code"
+        }
+      ],
+      "rich_context": {
+        "language_values": {
+          "content": "Spanish=121(10%), Russian=121(10%), Portuguese (Brazil)=121(10%), Korean=121(10%), Japanese=121(10%), Italian=121(10%), German=121(10%), French=121(10%), Chinese Traditional=121(10%), Chinese Simplified=121(10%)",
+          "expires_at": "2026-03-31T14:56:18+08:00"
+        },
+        "setCode_values": {
+          "content": "WELCOME_MESSAGE=10(10%), USER_PROFILE=10(10%), SETTINGS=10(10%), NOTIFICATIONS=10(10%), LOGOUT=10(10%), LOGIN=10(10%), HELP_CENTER=10(10%), DASHBOARD=10(10%), CONFIRMATION_DIALOG=10(10%), ABOUT_APP=10(10%)",
+          "expires_at": "2026-03-31T14:56:32+08:00"
+        }
+      }
+    },
+    "sets": {
+      "name": "sets",
+      "row_count": 551,
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 551,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 551,
+              "avg": 276
+            }
+          }
+        },
+        {
+          "name": "baseSetSize",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 166,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 0,
+              "max": 1694,
+              "avg": 99.55716878402905
+            }
+          }
+        },
+        {
+          "name": "block",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 33,
+            "null_count": 279,
+            "null_percent": 50.635208711433755
+          }
+        },
+        {
+          "name": "booster",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 85,
+            "null_count": 413,
+            "null_percent": 74.9546279491833
+          }
+        },
+        {
+          "name": "code",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 551,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "isFoilOnly",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 384,
+                "percent": 69.69147005444646
+              },
+              {
+                "value": "1",
+                "count": 167,
+                "percent": 30.30852994555354
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "avg": 0.3030852994555354
+            }
+          }
+        },
+        {
+          "name": "isForeignOnly",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 535,
+                "percent": 97.09618874773139
+              },
+              {
+                "value": "1",
+                "count": 16,
+                "percent": 2.9038112522686026
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "avg": 0.029038112522686024
+            }
+          }
+        },
+        {
+          "name": "isNonFoilOnly",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 445,
+                "percent": 80.76225045372051
+              },
+              {
+                "value": "1",
+                "count": 106,
+                "percent": 19.237749546279492
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "avg": 0.19237749546279492
+            }
+          }
+        },
+        {
+          "name": "isOnlineOnly",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 525,
+                "percent": 95.28130671506352
+              },
+              {
+                "value": "1",
+                "count": 26,
+                "percent": 4.71869328493648
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "avg": 0.047186932849364795
+            }
+          }
+        },
+        {
+          "name": "isPartialPreview",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 2,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 550,
+                "percent": 99.8185117967332
+              },
+              {
+                "value": "1",
+                "count": 1,
+                "percent": 0.18148820326678766
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "avg": 0.0018148820326678765
+            }
+          }
+        },
+        {
+          "name": "keyruneCode",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 249,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "mcmId",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 201,
+            "null_count": 350,
+            "null_percent": 63.52087114337568,
+            "range": {
+              "min": 4,
+              "max": 3660,
+              "avg": 1123.3930348258707
+            }
+          }
+        },
+        {
+          "name": "mcmIdExtras",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 10,
+            "null_count": 541,
+            "null_percent": 98.18511796733212,
+            "top_values": [
+              {
+                "value": "3680",
+                "count": 1,
+                "percent": 0.18148820326678766
+              },
+              {
+                "value": "3474",
+                "count": 1,
+                "percent": 0.18148820326678766
+              },
+              {
+                "value": "3459",
+                "count": 1,
+                "percent": 0.18148820326678766
+              },
+              {
+                "value": "3209",
+                "count": 1,
+                "percent": 0.18148820326678766
+              },
+              {
+                "value": "3113",
+                "count": 1,
+                "percent": 0.18148820326678766
+              },
+              {
+                "value": "2961",
+                "count": 1,
+                "percent": 0.18148820326678766
+              },
+              {
+                "value": "2587",
+                "count": 1,
+                "percent": 0.18148820326678766
+              },
+              {
+                "value": "2451",
+                "count": 1,
+                "percent": 0.18148820326678766
+              },
+              {
+                "value": "2419",
+                "count": 1,
+                "percent": 0.18148820326678766
+              },
+              {
+                "value": "2371",
+                "count": 1,
+                "percent": 0.18148820326678766
+              }
+            ],
+            "range": {
+              "min": 2371,
+              "max": 3680,
+              "avg": 2972.4
+            }
+          }
+        },
+        {
+          "name": "mcmName",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 201,
+            "null_count": 350,
+            "null_percent": 63.52087114337568
+          }
+        },
+        {
+          "name": "mtgoCode",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 160,
+            "null_count": 391,
+            "null_percent": 70.96188747731398
+          }
+        },
+        {
+          "name": "name",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 551,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "parentCode",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 117,
+            "null_count": 397,
+            "null_percent": 72.0508166969147
+          }
+        },
+        {
+          "name": "releaseDate",
+          "type": "DATE",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 342,
+            "null_count": 0,
+            "null_percent": 0
+          }
+        },
+        {
+          "name": "tcgplayerGroupId",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 238,
+            "null_count": 291,
+            "null_percent": 52.813067150635206,
+            "range": {
+              "min": 1,
+              "max": 2778,
+              "avg": 955.7346153846154
+            }
+          }
+        },
+        {
+          "name": "totalSetSize",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 181,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 0,
+              "max": 1694,
+              "avg": 102.6098003629764
+            }
+          }
+        },
+        {
+          "name": "type",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 20,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "promo",
+                "count": 234,
+                "percent": 42.46823956442831
+              },
+              {
+                "value": "expansion",
+                "count": 87,
+                "percent": 15.789473684210526
+              },
+              {
+                "value": "memorabilia",
+                "count": 34,
+                "percent": 6.170598911070781
+              },
+              {
+                "value": "duel_deck",
+                "count": 27,
+                "percent": 4.900181488203267
+              },
+              {
+                "value": "box",
+                "count": 27,
+                "percent": 4.900181488203267
+              },
+              {
+                "value": "core",
+                "count": 24,
+                "percent": 4.3557168784029034
+              },
+              {
+                "value": "masters",
+                "count": 23,
+                "percent": 4.174228675136116
+              },
+              {
+                "value": "starter",
+                "count": 16,
+                "percent": 2.9038112522686026
+              },
+              {
+                "value": "commander",
+                "count": 14,
+                "percent": 2.540834845735027
+              },
+              {
+                "value": "funny",
+                "count": 11,
+                "percent": 1.9963702359346642
+              },
+              {
+                "value": "from_the_vault",
+                "count": 11,
+                "percent": 1.9963702359346642
+              },
+              {
+                "value": "token",
+                "count": 10,
+                "percent": 1.8148820326678767
+              },
+              {
+                "value": "planechase",
+                "count": 6,
+                "percent": 1.0889292196007259
+              },
+              {
+                "value": "masterpiece",
+                "count": 6,
+                "percent": 1.0889292196007259
+              },
+              {
+                "value": "draft_innovation",
+                "count": 6,
+                "percent": 1.0889292196007259
+              }
+            ]
+          }
+        }
+      ],
+      "indexes": [],
+      "rich_context": {
+        "block_meaning": {
+          "content": "Magic: The Gathering block name that groups related expansion sets",
+          "expires_at": "2026-03-31T14:57:03+08:00"
+        },
+        "booster_values": {
+          "content": "default=325(59.0%), collector=42(7.6%), jumpstart=18(3.3%), draft=15(2.7%), set=12(2.2%), theme=10(1.8%), promo=8(1.4%), masters=6(1.1%), commander=5(0.9%), planeswalker=3(0.5%), duel_deck=2(0.4%), archenemy=1(0.2%)",
+          "expires_at": "2026-03-31T14:57:19+08:00"
+        },
+        "isFoilOnly_values": {
+          "content": "0=not foil-only(70%), 1=foil-only(30%)",
+          "expires_at": "2026-03-31T14:56:13+08:00"
+        },
+        "isForeignOnly_values": {
+          "content": "0=not foreign-only(99.5%), 1=foreign-only(0.5%)",
+          "expires_at": "2026-03-31T14:56:21+08:00"
+        },
+        "isNonFoilOnly_values": {
+          "content": "0=not non-foil-only(99.6%), 1=non-foil-only(0.4%)",
+          "expires_at": "2026-03-31T14:56:27+08:00"
+        },
+        "isOnlineOnly_values": {
+          "content": "0=not online-only(90.4%), 1=online-only(9.6%)",
+          "expires_at": "2026-03-31T14:56:33+08:00"
+        },
+        "isPartialPreview_values": {
+          "content": "0=no partial preview(97.5%), 1=partial preview(2.5%)",
+          "expires_at": "2026-03-31T14:56:36+08:00"
+        },
+        "type_values": {
+          "content": "expansion=235(42.6%), core=118(21.4%), masters=67(12.1%), commander=42(7.6%), draft_innovation=29(5.3%), duel_deck=22(4.0%), planechase=15(2.7%), archenemy=10(1.8%), from_the_vault=8(1.4%), premium_deck=5(0.9%)",
+          "expires_at": "2026-03-31T14:56:49+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "sets",
+          "column": "block",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "51% NULL values (279/551)",
+          "sql_fix": "WHERE \"block\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "sets",
+          "column": "booster",
+          "type": "whitespace",
+          "severity": "critical",
+          "description": "Contains leading/trailing whitespace (5+ rows)",
+          "sql_fix": "TRIM(\"booster\")",
+          "affected_ops": [
+            "JOIN",
+            "WHERE",
+            "GROUP BY"
+          ],
+          "examples": [
+            "'{'default': {'boosters': [{'contents': {'basic': 1, 'common': 10, 'rare': 1, 'uncommon': 3}, 'weight': 1913922}, {'contents': {'basic': 1, 'common': 9, 'foilCommon': 1, 'rare': 1, 'uncommon': 3}, 'weight': 318987}, {'contents': {'basic': 1, 'common': 10, '",
+            "'{'default': {'boosters': [{'contents': {'basic': 1, 'common': 10, 'rare': 1, 'uncommon': 3}, 'weight': 8556273}, {'contents': {'basic': 1, 'common': 9, 'foilCommon': 1, 'rare': 1, 'uncommon': 3}, 'weight': 950697}, {'contents': {'basic': 1, 'common': 10, '",
+            "'{'default': {'boosters': [{'contents': {'basic': 1, 'common': 10, 'rare': 1, 'uncommon': 3}, 'weight': 1913922}, {'contents': {'basic': 1, 'common': 9, 'foilCommon': 1, 'rare': 1, 'uncommon': 3}, 'weight': 318987}, {'contents': {'basic': 1, 'common': 10, '",
+            "'{'default': {'boosters': [{'contents': {'basic': 1, 'common': 10, 'rare': 1, 'uncommon': 3}, 'weight': 1913922}, {'contents': {'basic': 1, 'common': 9, 'foilCommon': 1, 'rare': 1, 'uncommon': 3}, 'weight': 318987}, {'contents': {'basic': 1, 'common': 10, '",
+            "'{'default': {'boosters': [{'contents': {'common': 11, 'rareMythic': 1, 'uncommon': 3}, 'weight': 31}, {'contents': {'common': 10, 'foil': 1, 'rareMythic': 1, 'uncommon': 3}, 'weight': 9}], 'boostersTotalWeight': 40, 'sheets': {'common': {'balanceColors': '"
+          ]
+        },
+        {
+          "table": "sets",
+          "column": "booster",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "75% NULL values (413/551)",
+          "sql_fix": "WHERE \"booster\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "sets",
+          "column": "mcmId",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "64% NULL values (350/551)",
+          "sql_fix": "WHERE \"mcmId\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "sets",
+          "column": "mcmIdExtras",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "98% NULL values (541/551)",
+          "sql_fix": "WHERE \"mcmIdExtras\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "sets",
+          "column": "mcmName",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "64% NULL values (350/551)",
+          "sql_fix": "WHERE \"mcmName\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "sets",
+          "column": "mtgoCode",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "71% NULL values (391/551)",
+          "sql_fix": "WHERE \"mtgoCode\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "sets",
+          "column": "parentCode",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "72% NULL values (397/551)",
+          "sql_fix": "WHERE \"parentCode\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "sets",
+          "column": "tcgplayerGroupId",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "53% NULL values (291/551)",
+          "sql_fix": "WHERE \"tcgplayerGroupId\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        }
+      ]
+    }
+  },
+  "total_tables": 0,
+  "total_rows": 0
+}

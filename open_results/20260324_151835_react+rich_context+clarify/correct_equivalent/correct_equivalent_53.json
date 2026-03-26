@@ -1,0 +1,38 @@
+{
+  "db_id": "california_schools",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.cds)"
+      ],
+      [
+        "2"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT COUNT(T1.cds) FROM satscores AS T1 INNER JOIN schools AS T2 ON T1.cds = T2.CDSCode WHERE T2.MailCity = 'Lakeport' AND (T1.AvgScrRead + T1.AvgScrMath + T1.AvgScrWrite) \u003e= 1500",
+  "id": 53,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "COUNT(T1.cds)"
+      ],
+      [
+        "2"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT COUNT(T1.cds)\nFROM satscores AS T1\nJOIN schools AS T2 ON CAST(T1.cds AS INTEGER) = CAST(T2.CDSCode AS INTEGER)\nWHERE T2.MailCity = 'Lakeport'\nAND (T1.AvgScrRead + T1.AvgScrMath + T1.AvgScrWrite) \u003e= 1500",
+  "question": "What is the total number of schools whose total SAT scores are greater or equal to 1500 whose mailing city is Lakeport?",
+  "thinking": ""
+}

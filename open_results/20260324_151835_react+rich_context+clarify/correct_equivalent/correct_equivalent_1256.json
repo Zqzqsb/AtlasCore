@@ -1,0 +1,38 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "moderate",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Diagnosis"
+      ],
+      [
+        "RA"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.Diagnosis FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.IGM NOT BETWEEN 40 AND 400 GROUP BY T1.Diagnosis ORDER BY COUNT(T1.Diagnosis) DESC LIMIT 1",
+  "id": 1256,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Diagnosis"
+      ],
+      [
+        "RA"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT p.Diagnosis FROM Laboratory l JOIN Patient p ON l.ID = p.ID WHERE l.IGM IS NOT NULL AND (l.IGM \u003c= 40 OR l.IGM \u003e= 400) GROUP BY p.Diagnosis ORDER BY COUNT(*) DESC LIMIT 1",
+  "question": "For the patients with an abnormal Ig M level, what is the most common disease they are diagnosed with?",
+  "thinking": ""
+}

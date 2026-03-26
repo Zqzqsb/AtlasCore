@@ -1,0 +1,47 @@
+{
+  "db_id": "student_club",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=4, pred=1",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "category"
+      ],
+      [
+        "Food"
+      ],
+      [
+        "Speaker Gifts"
+      ],
+      [
+        "Advertisement"
+      ],
+      [
+        "Parking"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T2.category FROM event AS T1 INNER JOIN budget AS T2 ON T1.event_id = T2.link_to_event WHERE T1.event_date = '2020-03-24T12:00:00'",
+  "id": 1420,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "category"
+      ],
+      [
+        "Guest Speaker"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT type AS category FROM event WHERE event_date = '2020-03-24T12:00:00';",
+  "question": "What is the category of event which was taken place in 2020-03-24T12:00:00?",
+  "thinking": ""
+}

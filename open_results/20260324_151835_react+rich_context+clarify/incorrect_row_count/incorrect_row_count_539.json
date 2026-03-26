@@ -1,0 +1,431 @@
+{
+  "db_id": "codebase_community",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=121, pred=12",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Title"
+      ],
+      [
+        "Eliciting priors from experts"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Examples for teaching: Correlation does not mean causation"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "What statistical blogs would you recommend?"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Choosing a bandwidth for kernel density estimators"
+      ],
+      [
+        "Free statistical textbooks"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Alternative graphics to \"handle bar\" plots"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "What type of post-fit analysis of residuals do you use?"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Metropolis-Hastings algorithms used in practice"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Reviewing statistics in papers"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Random numbers and the multicore package"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "How to annoy a statistical referee?"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "Removing factors from a 3-way ANOVA table"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ],
+      [
+        "\u003cnil\u003e"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT T1.Title FROM posts AS T1 INNER JOIN users AS T2 ON T1.OwnerUserId = T2.Id WHERE T2.DisplayName = 'csgillespie'",
+  "id": 539,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "Title"
+      ],
+      [
+        "Eliciting priors from experts"
+      ],
+      [
+        "Examples for teaching: Correlation does not mean causation"
+      ],
+      [
+        "What statistical blogs would you recommend?"
+      ],
+      [
+        "Choosing a bandwidth for kernel density estimators"
+      ],
+      [
+        "Free statistical textbooks"
+      ],
+      [
+        "Alternative graphics to \"handle bar\" plots"
+      ],
+      [
+        "What type of post-fit analysis of residuals do you use?"
+      ],
+      [
+        "Metropolis-Hastings algorithms used in practice"
+      ],
+      [
+        "Reviewing statistics in papers"
+      ],
+      [
+        "Random numbers and the multicore package"
+      ],
+      [
+        "How to annoy a statistical referee?"
+      ],
+      [
+        "Removing factors from a 3-way ANOVA table"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT p.Title \nFROM posts p\nJOIN users u ON p.OwnerUserId = u.Id\nWHERE TRIM(u.DisplayName) = 'csgillespie'\nAND p.Title IS NOT NULL",
+  "question": "Please list the titles of the posts owned by the user csgillespie?",
+  "thinking": ""
+}

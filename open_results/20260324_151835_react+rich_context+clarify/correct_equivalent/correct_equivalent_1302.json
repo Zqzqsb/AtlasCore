@@ -1,0 +1,128 @@
+{
+  "db_id": "thrombosis_prediction",
+  "difficulty": "simple",
+  "error_reason": "",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "ID"
+      ],
+      [
+        "48473"
+      ],
+      [
+        "102490"
+      ],
+      [
+        "108788"
+      ],
+      [
+        "122405"
+      ],
+      [
+        "283032"
+      ],
+      [
+        "933793"
+      ],
+      [
+        "1043570"
+      ],
+      [
+        "1180510"
+      ],
+      [
+        "1787610"
+      ],
+      [
+        "2352510"
+      ],
+      [
+        "4861720"
+      ],
+      [
+        "5400270"
+      ],
+      [
+        "5404650"
+      ],
+      [
+        "5408290"
+      ],
+      [
+        "5440870"
+      ],
+      [
+        "5452460"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T1.ID FROM Laboratory AS T1 INNER JOIN Examination AS T2 ON T1.ID = T2.ID WHERE T2.Thrombosis = 0 AND T1.CPK \u003c 250",
+  "id": 1302,
+  "is_correct": true,
+  "is_equivalent": true,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "ID"
+      ],
+      [
+        "48473"
+      ],
+      [
+        "102490"
+      ],
+      [
+        "108788"
+      ],
+      [
+        "122405"
+      ],
+      [
+        "283032"
+      ],
+      [
+        "933793"
+      ],
+      [
+        "1043570"
+      ],
+      [
+        "1180510"
+      ],
+      [
+        "1787610"
+      ],
+      [
+        "2352510"
+      ],
+      [
+        "4861720"
+      ],
+      [
+        "5400270"
+      ],
+      [
+        "5404650"
+      ],
+      [
+        "5408290"
+      ],
+      [
+        "5440870"
+      ],
+      [
+        "5452460"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT DISTINCT e.ID FROM Examination e JOIN Laboratory l ON e.ID = l.ID WHERE e.Thrombosis = 0 AND l.CPK \u003c 250;",
+  "question": "Please list the IDs of the patients with no thrombosis and an abnormal level of creatinine phosphokinase.",
+  "thinking": ""
+}

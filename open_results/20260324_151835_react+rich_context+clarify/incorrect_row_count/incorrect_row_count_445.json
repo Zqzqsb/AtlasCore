@@ -1,0 +1,4622 @@
+{
+  "db_id": "card_games",
+  "difficulty": "simple",
+  "error_reason": "row count mismatch: gold=95, pred=1052",
+  "gt_error": null,
+  "gt_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name",
+        "type"
+      ],
+      [
+        "Boros Mastiff",
+        "Creature — Dog"
+      ],
+      [
+        "Blaze Commando",
+        "Creature — Minotaur Soldier"
+      ],
+      [
+        "Boros Battleshaper",
+        "Creature — Minotaur Soldier"
+      ],
+      [
+        "Gleam of Battle",
+        "Enchantment"
+      ],
+      [
+        "Legion's Initiative",
+        "Enchantment"
+      ],
+      [
+        "Tajic, Blade of the Legion",
+        "Legendary Creature — Human Soldier"
+      ],
+      [
+        "Viashino Firstblade",
+        "Creature — Viashino Soldier"
+      ],
+      [
+        "Warleader's Helix",
+        "Instant"
+      ],
+      [
+        "Boros Cluestone",
+        "Artifact"
+      ],
+      [
+        "Boros Guildgate",
+        "Land — Gate"
+      ],
+      [
+        "Hide // Seek",
+        "Instant"
+      ],
+      [
+        "Aurelia, the Warleader",
+        "Legendary Creature — Angel"
+      ],
+      [
+        "Boros Elite",
+        "Creature — Human Soldier"
+      ],
+      [
+        "Daring Skyjek",
+        "Creature — Human Knight"
+      ],
+      [
+        "Bomber Corps",
+        "Creature — Human Soldier"
+      ],
+      [
+        "Legion Loyalist",
+        "Creature — Goblin Soldier"
+      ],
+      [
+        "Agrus Kos, Wojek Veteran",
+        "Legendary Creature — Human Soldier"
+      ],
+      [
+        "Boros Charm",
+        "Instant"
+      ],
+      [
+        "Boros Reckoner",
+        "Creature — Minotaur Wizard"
+      ],
+      [
+        "Boros Swiftblade",
+        "Creature — Human Soldier"
+      ],
+      [
+        "Brightflame",
+        "Sorcery"
+      ],
+      [
+        "Firemane Angel",
+        "Creature — Angel"
+      ],
+      [
+        "Firemane Avenger",
+        "Creature — Angel"
+      ],
+      [
+        "Lightning Helix",
+        "Instant"
+      ],
+      [
+        "Martial Glory",
+        "Instant"
+      ],
+      [
+        "Master Warcraft",
+        "Instant"
+      ],
+      [
+        "Razia, Boros Archangel",
+        "Legendary Creature — Angel"
+      ],
+      [
+        "Spark Trooper",
+        "Creature — Elemental Soldier"
+      ],
+      [
+        "Sunhome Guildmage",
+        "Creature — Human Wizard"
+      ],
+      [
+        "Boros Keyrune",
+        "Artifact"
+      ],
+      [
+        "Boros Signet",
+        "Artifact"
+      ],
+      [
+        "Boros Garrison",
+        "Land"
+      ],
+      [
+        "Sunhome, Fortress of the Legion",
+        "Land"
+      ],
+      [
+        "Blade Instructor",
+        "Creature — Human Soldier"
+      ],
+      [
+        "Light of the Legion",
+        "Creature — Angel"
+      ],
+      [
+        "Parhelion Patrol",
+        "Creature — Human Knight"
+      ],
+      [
+        "Sunhome Stalwart",
+        "Creature — Human Soldier"
+      ],
+      [
+        "Barging Sergeant",
+        "Creature — Minotaur Soldier"
+      ],
+      [
+        "Goblin Banneret",
+        "Creature — Goblin Soldier"
+      ],
+      [
+        "Legion Warboss",
+        "Creature — Goblin Soldier"
+      ],
+      [
+        "Wojek Bodyguard",
+        "Creature — Human Soldier"
+      ],
+      [
+        "Aurelia, Exemplar of Justice",
+        "Legendary Creature — Angel"
+      ],
+      [
+        "Boros Challenger",
+        "Creature — Human Soldier"
+      ],
+      [
+        "Chance for Glory",
+        "Instant"
+      ],
+      [
+        "Deafening Clarion",
+        "Sorcery"
+      ],
+      [
+        "Garrison Sergeant",
+        "Creature — Viashino Soldier"
+      ],
+      [
+        "Hammer Dropper",
+        "Creature — Giant Soldier"
+      ],
+      [
+        "Justice Strike",
+        "Instant"
+      ],
+      [
+        "Legion Guildmage",
+        "Creature — Human Wizard"
+      ],
+      [
+        "Skyknight Legionnaire",
+        "Creature — Human Knight"
+      ],
+      [
+        "Swathcutter Giant",
+        "Creature — Giant Soldier"
+      ],
+      [
+        "Swiftblade Vindicator",
+        "Creature — Human Soldier"
+      ],
+      [
+        "Tajic, Legion's Edge",
+        "Legendary Creature — Human Soldier"
+      ],
+      [
+        "Truefire Captain",
+        "Creature — Human Knight"
+      ],
+      [
+        "Fresh-Faced Recruit",
+        "Creature — Human Soldier"
+      ],
+      [
+        "Integrity // Intervention",
+        "Instant"
+      ],
+      [
+        "Response // Resurgence",
+        "Instant"
+      ],
+      [
+        "Response // Resurgence",
+        "Sorcery"
+      ],
+      [
+        "Boros Locket",
+        "Artifact"
+      ],
+      [
+        "Sacred Foundry",
+        "Land — Mountain Plains"
+      ],
+      [
+        "Frontline Medic",
+        "Creature — Human Cleric"
+      ],
+      [
+        "Nav Squad Commandos",
+        "Creature — Human Soldier"
+      ],
+      [
+        "Firefist Striker",
+        "Creature — Human Soldier"
+      ],
+      [
+        "Towering Thunderfist",
+        "Creature — Giant Soldier"
+      ],
+      [
+        "Warmind Infantry",
+        "Creature — Elemental Soldier"
+      ],
+      [
+        "Assemble the Legion",
+        "Enchantment"
+      ],
+      [
+        "Aurelia's Fury",
+        "Instant"
+      ],
+      [
+        "Fortress Cyclops",
+        "Creature — Cyclops Soldier"
+      ],
+      [
+        "Foundry Champion",
+        "Creature — Elemental Soldier"
+      ],
+      [
+        "Ordruun Veteran",
+        "Creature — Minotaur Soldier"
+      ],
+      [
+        "Truefire Paladin",
+        "Creature — Human Knight"
+      ],
+      [
+        "Wojek Halberdiers",
+        "Creature — Human Soldier"
+      ],
+      [
+        "Arrows of Justice",
+        "Instant"
+      ],
+      [
+        "Shattering Blow",
+        "Instant"
+      ],
+      [
+        "Bathe in Light",
+        "Instant"
+      ],
+      [
+        "Boros Fury-Shield",
+        "Instant"
+      ],
+      [
+        "Leave No Trace",
+        "Instant"
+      ],
+      [
+        "Screeching Griffin",
+        "Creature — Griffin"
+      ],
+      [
+        "Wojek Apothecary",
+        "Creature — Human Cleric"
+      ],
+      [
+        "Wojek Siren",
+        "Instant"
+      ],
+      [
+        "Cleansing Beam",
+        "Instant"
+      ],
+      [
+        "Flash Conscription",
+        "Instant"
+      ],
+      [
+        "Incite Hysteria",
+        "Sorcery"
+      ],
+      [
+        "Ordruun Commando",
+        "Creature — Minotaur Soldier"
+      ],
+      [
+        "Surge of Zeal",
+        "Instant"
+      ],
+      [
+        "Wojek Embermage",
+        "Creature — Human Wizard"
+      ],
+      [
+        "Flame-Kin Zealot",
+        "Creature — Elemental Berserker"
+      ],
+      [
+        "Rally the Righteous",
+        "Instant"
+      ],
+      [
+        "Razia's Purification",
+        "Sorcery"
+      ],
+      [
+        "Searing Meditation",
+        "Enchantment"
+      ],
+      [
+        "Sunhome Enforcer",
+        "Creature — Giant Soldier"
+      ],
+      [
+        "Thundersong Trumpeter",
+        "Creature — Human Soldier"
+      ],
+      [
+        "Boros Guildmage",
+        "Creature — Human Wizard"
+      ],
+      [
+        "Boros Recruit",
+        "Creature — Goblin Soldier"
+      ],
+      [
+        "Sunforger",
+        "Artifact — Equipment"
+      ]
+    ]
+  },
+  "gt_sql": "SELECT DISTINCT T1.name, T1.type FROM cards AS T1 INNER JOIN foreign_data AS T2 ON T2.uuid = T1.uuid WHERE T1.watermark = 'boros'",
+  "id": 445,
+  "is_correct": false,
+  "is_equivalent": false,
+  "pred_error": null,
+  "pred_result": {
+    "Success": true,
+    "Error": "",
+    "Rows": [
+      [
+        "name",
+        "type"
+      ],
+      [
+        "Boros-Mastiff",
+        "Kreatur — Hund"
+      ],
+      [
+        "Mastín boros",
+        "Criatura — Perro"
+      ],
+      [
+        "Dogue de Boros",
+        "Créature : chien de chasse"
+      ],
+      [
+        "Mastino Boros",
+        "Creatura — Segugio"
+      ],
+      [
+        "ボロスの猛犬",
+        "クリーチャー — 猟犬"
+      ],
+      [
+        "보로스 마스티프",
+        "생물 — 사냥개"
+      ],
+      [
+        "Мастиф Боросов",
+        "Существо — Пес"
+      ],
+      [
+        "波洛斯獒犬",
+        "生物～猎犬"
+      ],
+      [
+        "波洛斯獒犬",
+        "生物～獵犬"
+      ],
+      [
+        "Brandkommando",
+        "Kreatur — Minotaurus, Soldat"
+      ],
+      [
+        "Comando de llamaradas",
+        "Criatura — Soldado minotauro"
+      ],
+      [
+        "Commando du brasier",
+        "Créature : minotaure et soldat"
+      ],
+      [
+        "Commando Infuocato",
+        "Creatura — Soldato Minotauro"
+      ],
+      [
+        "猛火の猛士",
+        "クリーチャー — ミノタウルス・兵士"
+      ],
+      [
+        "불길 특공대",
+        "생물 — 미노타우로스 병사"
+      ],
+      [
+        "Пламенный Коммандос",
+        "Существо — Минотавр Солдат"
+      ],
+      [
+        "火光突击兵",
+        "生物～牛头怪／士兵"
+      ],
+      [
+        "火光突擊兵",
+        "生物～牛頭怪／士兵"
+      ],
+      [
+        "Schlachtenformer der Boros",
+        "Kreatur — Minotaurus, Soldat"
+      ],
+      [
+        "Moldeabatalla boros",
+        "Criatura — Soldado minotauro"
+      ],
+      [
+        "Forge-bataille de Boros",
+        "Créature : minotaure et soldat"
+      ],
+      [
+        "Plasmabattaglia Boros",
+        "Creatura — Soldato Minotauro"
+      ],
+      [
+        "ボロスの布陣者",
+        "クリーチャー — ミノタウルス・兵士"
+      ],
+      [
+        "보로스 전투 조성자",
+        "생물 — 미노타우로스 병사"
+      ],
+      [
+        "Боевой Творец Боросов",
+        "Существо — Минотавр Солдат"
+      ],
+      [
+        "波洛斯战塑师",
+        "生物～牛头怪／士兵"
+      ],
+      [
+        "波洛斯戰塑師",
+        "生物～牛頭怪／士兵"
+      ],
+      [
+        "Glänzen der Schlacht",
+        "Verzauberung"
+      ],
+      [
+        "Destello de batalla",
+        "Encantamiento"
+      ],
+      [
+        "Scintillation de bataille",
+        "Enchantement"
+      ],
+      [
+        "Bagliore della Battaglia",
+        "Incantesimo"
+      ],
+      [
+        "戦いの烈光",
+        "エンチャント"
+      ],
+      [
+        "전장의 번뜩임",
+        "부여마법"
+      ],
+      [
+        "Вспышка Битвы",
+        "Чары"
+      ],
+      [
+        "战令闪光",
+        "结界"
+      ],
+      [
+        "戰令閃光",
+        "結界"
+      ],
+      [
+        "Initiative der Legion",
+        "Verzauberung"
+      ],
+      [
+        "Iniciativa de la Legión",
+        "Encantamiento"
+      ],
+      [
+        "Initiative pour la légion",
+        "Enchantement"
+      ],
+      [
+        "Iniziativa della Legione",
+        "Incantesimo"
+      ],
+      [
+        "軍団の戦略",
+        "エンチャント"
+      ],
+      [
+        "보로스의 패기",
+        "부여마법"
+      ],
+      [
+        "Инициатива Легиона",
+        "Чары"
+      ],
+      [
+        "教团先击",
+        "结界"
+      ],
+      [
+        "教團先擊",
+        "結界"
+      ],
+      [
+        "Tajic, Schwert der Legion",
+        "Legendäre Kreatur — Mensch, Soldat"
+      ],
+      [
+        "Tájic, Espada de la Legión",
+        "Criatura legendaria — Soldado humano"
+      ],
+      [
+        "Tajic, lame de la Légion",
+        "Créature légendaire : humain et soldat"
+      ],
+      [
+        "Tajic, Lama della Legione",
+        "Creatura Leggendaria — Soldato Umano"
+      ],
+      [
+        "軍勢の刃、タージク",
+        "伝説のクリーチャー — 人間・兵士"
+      ],
+      [
+        "보로스의 검 타직",
+        "전설적 생물 — 인간 병사"
+      ],
+      [
+        "Тажик, Клинок Легиона",
+        "Легендарное Существо — Человек Солдат"
+      ],
+      [
+        "教团之刃塔疾克",
+        "传奇生物～人类／士兵"
+      ],
+      [
+        "教團之刃塔疾克",
+        "傳奇生物～人類／士兵"
+      ],
+      [
+        "Viashino-Erstkämpfer",
+        "Kreatur — Viashino, Soldat"
+      ],
+      [
+        "Espada prima viashino",
+        "Criatura — Soldado viashino"
+      ],
+      [
+        "Primelame viashino",
+        "Créature : viashino et soldat"
+      ],
+      [
+        "Primalama Viashino",
+        "Creatura — Soldato Viashino"
+      ],
+      [
+        "ヴィーアシーノの初太刀",
+        "クリーチャー — ヴィーアシーノ・兵士"
+      ],
+      [
+        "비아시노 제일검",
+        "생물 — 비아시노 병사"
+      ],
+      [
+        "Виашино-Первый Клинок",
+        "Существо — Виашино Солдат"
+      ],
+      [
+        "凡尔西诺尖兵",
+        "生物～凡尔西诺／士兵"
+      ],
+      [
+        "凡爾西諾尖兵",
+        "生物～凡爾西諾／士兵"
+      ],
+      [
+        "Helix der Kriegsführerin",
+        "Spontanzauber"
+      ],
+      [
+        "Hélice de la líder de guerra",
+        "Instantáneo"
+      ],
+      [
+        "Hélice de la Meneuse de guerre",
+        "Éphémère"
+      ],
+      [
+        "Spirale della Condottiera",
+        "Istantaneo"
+      ],
+      [
+        "戦導者のらせん",
+        "インスタント"
+      ],
+      [
+        "영도자의 나선",
+        "순간마법"
+      ],
+      [
+        "Витой Луч Предводительницы",
+        "Мгновенное заклинание"
+      ],
+      [
+        "战领旋咒",
+        "瞬间"
+      ],
+      [
+        "戰領旋咒",
+        "瞬間"
+      ],
+      [
+        "Boros-Rätselstein",
+        "Artefakt"
+      ],
+      [
+        "Clave pétrea boros",
+        "Artefacto"
+      ],
+      [
+        "Pierre indiciale de Boros",
+        "Artefact"
+      ],
+      [
+        "Pietraindice Boros",
+        "Artefatto"
+      ],
+      [
+        "ボロスの導き石",
+        "アーティファクト"
+      ],
+      [
+        "보로스 단서석",
+        "마법물체"
+      ],
+      [
+        "Ключ-Камень Боросов",
+        "Артефакт"
+      ],
+      [
+        "波洛斯示石",
+        "神器"
+      ],
+      [
+        "波洛斯示石",
+        "神器"
+      ],
+      [
+        "Boros-Gildeneingang",
+        "Land — Tor"
+      ],
+      [
+        "Portal del Gremio Boros",
+        "Tierra — Portal"
+      ],
+      [
+        "Porte de la guilde de Boros",
+        "Terrain : porte"
+      ],
+      [
+        "Cancello della Gilda Boros",
+        "Terra — Cancello"
+      ],
+      [
+        "ボロスのギルド門",
+        "土地 — 門"
+      ],
+      [
+        "보로스 길드관문",
+        "대지 — 관문"
+      ],
+      [
+        "Врата Гильдии Боросов",
+        "Земля — Врата"
+      ],
+      [
+        "波洛斯公会门",
+        "地～门"
+      ],
+      [
+        "波洛斯公會門",
+        "地～門"
+      ],
+      [
+        "Hide // Seek",
+        "Spontanzauber"
+      ],
+      [
+        "Hide // Seek",
+        "Instantáneo"
+      ],
+      [
+        "Hide // Seek",
+        "Éphémère"
+      ],
+      [
+        "Hide // Seek",
+        "Istantaneo"
+      ],
+      [
+        "Hide // Seek",
+        "インスタント"
+      ],
+      [
+        "Hide // Seek",
+        "Mágica Instantânea"
+      ],
+      [
+        "Hide // Seek",
+        "Мгновенное заклинание"
+      ],
+      [
+        "Hide // Seek",
+        "瞬间"
+      ],
+      [
+        "Hide // Seek",
+        "Spontanzauber"
+      ],
+      [
+        "Hide // Seek",
+        "Instantáneo"
+      ],
+      [
+        "Hide // Seek",
+        "Éphémère"
+      ],
+      [
+        "Hide // Seek",
+        "Istantaneo"
+      ],
+      [
+        "Hide // Seek",
+        "インスタント"
+      ],
+      [
+        "Hide // Seek",
+        "Mágica Instantânea"
+      ],
+      [
+        "Hide // Seek",
+        "Мгновенное заклинание"
+      ],
+      [
+        "Hide // Seek",
+        "瞬间"
+      ],
+      [
+        "Kriegsführerin Aurelia",
+        "Legendäre Kreatur — Engel"
+      ],
+      [
+        "Aurelia, la líder de guerra",
+        "Criatura legendaria — Ángel"
+      ],
+      [
+        "Aurélia, la Meneuse de guerre",
+        "Créature légendaire : ange"
+      ],
+      [
+        "Aurelia, la Condottiera",
+        "Creatura Leggendaria — Angelo"
+      ],
+      [
+        "戦導者オレリア",
+        "伝説のクリーチャー — 天使"
+      ],
+      [
+        "Boros-Elite",
+        "Kreatur — Mensch, Soldat"
+      ],
+      [
+        "Élite boros",
+        "Criatura — Soldado humano"
+      ],
+      [
+        "Élite de Boros",
+        "Créature : humain et soldat"
+      ],
+      [
+        "Elite Boros",
+        "Creatura — Soldato Umano"
+      ],
+      [
+        "ボロスの精鋭",
+        "クリーチャー — 人間・兵士"
+      ],
+      [
+        "Wagemutiger Luftjek",
+        "Kreatur — Mensch, Ritter"
+      ],
+      [
+        "Jek celeste temerario",
+        "Criatura — Caballero humano"
+      ],
+      [
+        "Airjek audacieux",
+        "Créature : humain et chevalier"
+      ],
+      [
+        "Skyjek Audace",
+        "Creatura — Cavaliere Umano"
+      ],
+      [
+        "果敢なスカイジェク",
+        "クリーチャー — 人間・騎士"
+      ],
+      [
+        "Bomberkorps",
+        "Kreatur — Mensch, Soldat"
+      ],
+      [
+        "Cuerpo de bombarderos",
+        "Criatura — Soldado humano"
+      ],
+      [
+        "Corps de bombardiers",
+        "Créature : humain et soldat"
+      ],
+      [
+        "Bombardiera",
+        "Creatura — Soldato Umano"
+      ],
+      [
+        "爆弾部隊",
+        "クリーチャー — 人間・兵士"
+      ],
+      [
+        "Getreuer der Legion",
+        "Kreatur — Goblin, Soldat"
+      ],
+      [
+        "Partidario de la Legión",
+        "Criatura — Soldado trasgo"
+      ],
+      [
+        "Loyaliste de la Légion",
+        "Créature : gobelin et soldat"
+      ],
+      [
+        "Lealista della Legione",
+        "Creatura — Soldato Goblin"
+      ],
+      [
+        "軍勢の忠節者",
+        "クリーチャー — ゴブリン・兵士"
+      ],
+      [
+        "Agrus Kos, Wojek-Veteran",
+        "Legendäre Kreatur — Mensch, Soldat"
+      ],
+      [
+        "Agrus Kos, veterano wojek",
+        "Criatura legendaria — Soldado humano"
+      ],
+      [
+        "Agrus Kos, vétéran wojek",
+        "Créature légendaire : humain et soldat"
+      ],
+      [
+        "Agrus Kos, Veterano Wojek",
+        "Creatura Leggendaria — Soldato Umano"
+      ],
+      [
+        "ウォジェクの古参兵、アグルス・コス",
+        "伝説のクリーチャー — 人間・兵士"
+      ],
+      [
+        "Boros-Amulett",
+        "Spontanzauber"
+      ],
+      [
+        "Amuleto boros",
+        "Instantáneo"
+      ],
+      [
+        "Charme de Boros",
+        "Éphémère"
+      ],
+      [
+        "Talismano Boros",
+        "Istantaneo"
+      ],
+      [
+        "ボロスの魔除け",
+        "インスタント"
+      ],
+      [
+        "Boros-Abwäger",
+        "Kreatur — Minotaurus, Zauberer"
+      ],
+      [
+        "Vengador boros",
+        "Criatura — Hechicero minotauro"
+      ],
+      [
+        "Héliaste de Boros",
+        "Créature : minotaure et sorcier"
+      ],
+      [
+        "Censore Boros",
+        "Creatura — Mago Minotauro"
+      ],
+      [
+        "ボロスの反攻者",
+        "クリーチャー — ミノタウルス・ウィザード"
+      ],
+      [
+        "Boros-Flinkklingen",
+        "Kreatur — Mensch, Soldat"
+      ],
+      [
+        "Filoveloz boros",
+        "Criatura — Soldado humano"
+      ],
+      [
+        "Filelame boros",
+        "Créature : humain et soldat"
+      ],
+      [
+        "Lamalesta Boros",
+        "Creatura — Soldato Umano"
+      ],
+      [
+        "ボロスの速太刀",
+        "クリーチャー — 人間・兵士"
+      ],
+      [
+        "Helle Flamme",
+        "Hexerei"
+      ],
+      [
+        "Flama brillante",
+        "Conjuro"
+      ],
+      [
+        "Claireflamme",
+        "Rituel"
+      ],
+      [
+        "Fiamma Radiosa",
+        "Stregoneria"
+      ],
+      [
+        "光り輝く炎",
+        "ソーサリー"
+      ],
+      [
+        "Feuerschweif-Engel",
+        "Kreatur — Engel"
+      ],
+      [
+        "Ángel melenafuego",
+        "Criatura — Ángel"
+      ],
+      [
+        "Ange crinefeu",
+        "Créature : ange"
+      ],
+      [
+        "Angelo Chioma di Fuoco",
+        "Creatura — Angelo"
+      ],
+      [
+        "炎まといの天使",
+        "クリーチャー — 天使"
+      ],
+      [
+        "Feuerschweif-Rächerin",
+        "Kreatur — Engel"
+      ],
+      [
+        "Vengadora melenafuego",
+        "Criatura — Ángel"
+      ],
+      [
+        "Vengeresse crinefeu",
+        "Créature : ange"
+      ],
+      [
+        "Vendicatrice Chioma di Fuoco",
+        "Creatura — Angelo"
+      ],
+      [
+        "炎まといの報復者",
+        "クリーチャー — 天使"
+      ],
+      [
+        "Blitzhelix",
+        "Spontanzauber"
+      ],
+      [
+        "Hélice de relámpagos",
+        "Instantáneo"
+      ],
+      [
+        "Hélice d'éclairs",
+        "Éphémère"
+      ],
+      [
+        "Spirale Fulminante",
+        "Istantaneo"
+      ],
+      [
+        "稲妻のらせん",
+        "インスタント"
+      ],
+      [
+        "Soldatische Pracht",
+        "Spontanzauber"
+      ],
+      [
+        "Gloria marcial",
+        "Instantáneo"
+      ],
+      [
+        "Gloire martiale",
+        "Éphémère"
+      ],
+      [
+        "Gloria Marziale",
+        "Istantaneo"
+      ],
+      [
+        "軍部の栄光",
+        "インスタント"
+      ],
+      [
+        "Meisterhafte Kriegskunst",
+        "Spontanzauber"
+      ],
+      [
+        "Maestría estratégica",
+        "Instantáneo"
+      ],
+      [
+        "Maîtrise de l'art de la guerre",
+        "Éphémère"
+      ],
+      [
+        "Maestro di Tattiche",
+        "Istantaneo"
+      ],
+      [
+        "手練れの戦術",
+        "インスタント"
+      ],
+      [
+        "Razia, Boros-Erzengel",
+        "Legendäre Kreatur — Engel"
+      ],
+      [
+        "Razia, arcángel boros",
+        "Criatura legendaria — Ángel"
+      ],
+      [
+        "Razia, archange de Boros",
+        "Créature légendaire : ange"
+      ],
+      [
+        "Razia, Arcangelo Boros",
+        "Creatura Leggendaria — Angelo"
+      ],
+      [
+        "ボロスの大天使、ラジア",
+        "伝説のクリーチャー — 天使"
+      ],
+      [
+        "Funkengardist",
+        "Kreatur — Elementarwesen, Soldat"
+      ],
+      [
+        "Tropa de asalto de chispas",
+        "Criatura — Soldado elemental"
+      ],
+      [
+        "Troupier d'étincelles",
+        "Créature : élémental et soldat"
+      ],
+      [
+        "Truppe Scintilla",
+        "Creatura — Soldato Elementale"
+      ],
+      [
+        "火花の強兵",
+        "クリーチャー — エレメンタル・兵士"
+      ],
+      [
+        "Sonnenheim-Gildenmagier",
+        "Kreatur — Mensch, Zauberer"
+      ],
+      [
+        "Mago del gremio de Casa Solar",
+        "Criatura — Hechicero humano"
+      ],
+      [
+        "Ghildmage de Solcastel",
+        "Créature : humain et sorcier"
+      ],
+      [
+        "Mago della Gilda di Sol-Dimora",
+        "Creatura — Mago Umano"
+      ],
+      [
+        "サンホームのギルド魔道士",
+        "クリーチャー — 人間・ウィザード"
+      ],
+      [
+        "Boros-Runenschlüssel",
+        "Artefakt"
+      ],
+      [
+        "Llave rúnica boros",
+        "Artefacto"
+      ],
+      [
+        "Runeclé de Boros",
+        "Artefact"
+      ],
+      [
+        "Runachiave Boros",
+        "Artefatto"
+      ],
+      [
+        "ボロスの魔鍵",
+        "アーティファクト"
+      ],
+      [
+        "Boros-Petschaft",
+        "Artefakt"
+      ],
+      [
+        "Sello boros",
+        "Artefacto"
+      ],
+      [
+        "Cachet de Boros",
+        "Artefact"
+      ],
+      [
+        "Sigillo Boros",
+        "Artefatto"
+      ],
+      [
+        "ボロスの印鑑",
+        "アーティファクト"
+      ],
+      [
+        "Boros-Garnison",
+        "Land"
+      ],
+      [
+        "Fuerte boros",
+        "Tierra"
+      ],
+      [
+        "Garnison de Boros",
+        "Terrain"
+      ],
+      [
+        "Presidio Boros",
+        "Terra"
+      ],
+      [
+        "ボロスの駐屯地",
+        "土地"
+      ],
+      [
+        "Sonnenheim, Festung der Legion",
+        "Land"
+      ],
+      [
+        "Casa Solar, base de la Legión",
+        "Tierra"
+      ],
+      [
+        "Solcastel, forteresse de la Légion",
+        "Terrain"
+      ],
+      [
+        "Sol-Dimora, Rocca della Legione",
+        "Terra"
+      ],
+      [
+        "軍の要塞、サンホーム",
+        "土地"
+      ],
+      [
+        "Klingen-Ausbilderin",
+        "Kreatur — Mensch, Soldat"
+      ],
+      [
+        "Instructora de filos",
+        "Criatura — Soldado humano"
+      ],
+      [
+        "Instructrice de lame",
+        "Créature : humain et soldat"
+      ],
+      [
+        "Istruttrice delle Lame",
+        "Creatura — Soldato Umano"
+      ],
+      [
+        "刃の教官",
+        "クリーチャー — 人間・兵士"
+      ],
+      [
+        "검술 지도관",
+        "생물 — 인간 병사"
+      ],
+      [
+        "Instrutora de Lâminas",
+        "Criatura — Humano Soldado"
+      ],
+      [
+        "Инструктор-Мечник",
+        "Существо — Человек Солдат"
+      ],
+      [
+        "舞剑教官",
+        "生物 ～人类／士兵"
+      ],
+      [
+        "舞劍教官",
+        "生物 ～人類／士兵"
+      ],
+      [
+        "Licht der Legion",
+        "Kreatur — Engel"
+      ],
+      [
+        "Luz de la Legión",
+        "Criatura — Ángel"
+      ],
+      [
+        "Lumière de la Légion",
+        "Créature : ange"
+      ],
+      [
+        "Luce della Legione",
+        "Creatura — Angelo"
+      ],
+      [
+        "軍勢の光",
+        "クリーチャー — 天使"
+      ],
+      [
+        "군단의 빛",
+        "생물 — 천사"
+      ],
+      [
+        "Luz da Legião",
+        "Criatura — Anjo"
+      ],
+      [
+        "Свет Легиона",
+        "Существо — Ангел"
+      ],
+      [
+        "教团辉光使",
+        "生物 ～天使"
+      ],
+      [
+        "教團輝光使",
+        "生物 ～天使"
+      ],
+      [
+        "Parhelion-Patrouille",
+        "Kreatur — Mensch, Ritter"
+      ],
+      [
+        "Patrulla del Parhelio",
+        "Criatura — Caballero humano"
+      ],
+      [
+        "Patrouille du Parhélion",
+        "Créature : humain et chevalier"
+      ],
+      [
+        "Pattuglia della Parhelion",
+        "Creatura — Cavaliere Umano"
+      ],
+      [
+        "パルヘリオンの巡視兵",
+        "クリーチャー — 人間・騎士"
+      ],
+      [
+        "파헬리온 경비대",
+        "생물 — 인간 기사"
+      ],
+      [
+        "Patrulheira do Parélio",
+        "Criatura — Humano Cavaleiro"
+      ],
+      [
+        "Патруль Паргелиона",
+        "Существо — Человек Рыцарь"
+      ],
+      [
+        "炫日巡卫",
+        "生物 ～人类／骑士"
+      ],
+      [
+        "炫日巡衛",
+        "生物 ～人類／騎士"
+      ],
+      [
+        "Sonnenheim-Getreuer",
+        "Kreatur — Mensch, Soldat"
+      ],
+      [
+        "Valiente de Casa Solar",
+        "Criatura — Soldado humano"
+      ],
+      [
+        "Vaillant de Solcastel",
+        "Créature : humain et soldat"
+      ],
+      [
+        "Temerario di Sol-Dimora",
+        "Creatura — Soldato Umano"
+      ],
+      [
+        "サンホームの重鎮",
+        "クリーチャー — 人間・兵士"
+      ],
+      [
+        "선홈 숙련병",
+        "생물 — 인간 병사"
+      ],
+      [
+        "Destemido da Morada do Sol",
+        "Criatura — Humano Soldado"
+      ],
+      [
+        "Поборник Дома Солнца",
+        "Существо — Человек Солдат"
+      ],
+      [
+        "阳园坚兵",
+        "生物 ～人类／士兵"
+      ],
+      [
+        "陽園堅兵",
+        "生物 ～人類／士兵"
+      ],
+      [
+        "Brachialer Feldwebel",
+        "Kreatur — Minotaurus, Soldat"
+      ],
+      [
+        "Sargento corneador",
+        "Criatura — Soldado minotauro"
+      ],
+      [
+        "Sergent bousculeur",
+        "Créature : minotaure et soldat"
+      ],
+      [
+        "Sergente Irrompente",
+        "Creatura — Soldato Minotauro"
+      ],
+      [
+        "突発的な兵長",
+        "クリーチャー — ミノタウルス・兵士"
+      ],
+      [
+        "들이미는 하사관",
+        "생물 — 미노타우로스 병사"
+      ],
+      [
+        "Sargento Cambaleante",
+        "Criatura — Minotauro Soldado"
+      ],
+      [
+        "Бесцеремонный Сержант",
+        "Существо — Минотавр Солдат"
+      ],
+      [
+        "莽撞军士长",
+        "生物 ～牛头怪／士兵"
+      ],
+      [
+        "莽撞軍士長",
+        "生物 ～牛頭怪／士兵"
+      ],
+      [
+        "Goblin-Bannerträger",
+        "Kreatur — Goblin, Soldat"
+      ],
+      [
+        "Trasgo portaestandarte",
+        "Criatura — Soldado trasgo"
+      ],
+      [
+        "Banneret gobelin",
+        "Créature : gobelin et soldat"
+      ],
+      [
+        "Goblin Stendardiere",
+        "Creatura — Soldato Goblin"
+      ],
+      [
+        "ゴブリンの旗持ち",
+        "クリーチャー — ゴブリン・兵士"
+      ],
+      [
+        "고블린 깃발잡이",
+        "생물 — 고블린 병사"
+      ],
+      [
+        "Porta-estandarte Goblin",
+        "Criatura — Goblin Soldado"
+      ],
+      [
+        "Гоблин-Знаменосец",
+        "Существо — Гоблин Солдат"
+      ],
+      [
+        "鬼怪掌旗",
+        "生物 ～鬼怪／士兵"
+      ],
+      [
+        "鬼怪掌旗",
+        "生物 ～鬼怪／士兵"
+      ],
+      [
+        "Kriegsboss der Legion",
+        "Kreatur — Goblin, Soldat"
+      ],
+      [
+        "Jefe de guerra de la Legión",
+        "Criatura — Soldado trasgo"
+      ],
+      [
+        "Patron de guerre de la Légion",
+        "Créature : gobelin et soldat"
+      ],
+      [
+        "Capoguerra della Legione",
+        "Creatura — Soldato Goblin"
+      ],
+      [
+        "軍勢の戦親分",
+        "クリーチャー — ゴブリン・兵士"
+      ],
+      [
+        "군단 전쟁대장",
+        "생물 — 고블린 병사"
+      ],
+      [
+        "Chefe-de-guerra da Legião",
+        "Criatura — Goblin Soldado"
+      ],
+      [
+        "Воевода Легиона",
+        "Существо — Гоблин Солдат"
+      ],
+      [
+        "教团战首",
+        "生物 ～鬼怪／士兵"
+      ],
+      [
+        "教團戰首",
+        "生物 ～鬼怪／士兵"
+      ],
+      [
+        "Wojek-Leibwache",
+        "Kreatur — Mensch, Soldat"
+      ],
+      [
+        "Guardaespaldas wojek",
+        "Criatura — Soldado humano"
+      ],
+      [
+        "Garde du corps wojek",
+        "Créature : humain et soldat"
+      ],
+      [
+        "Guardia del Corpo Wojek",
+        "Creatura — Soldato Umano"
+      ],
+      [
+        "ウォジェクの護衛",
+        "クリーチャー — 人間・兵士"
+      ],
+      [
+        "워젝 경호원",
+        "생물 — 인간 병사"
+      ],
+      [
+        "Guarda-costas Wojek",
+        "Criatura — Humano Soldado"
+      ],
+      [
+        "Войек-Телохранитель",
+        "Существо — Человек Солдат"
+      ],
+      [
+        "沃耶克保镖",
+        "生物 ～人类／士兵"
+      ],
+      [
+        "沃耶克保鏢",
+        "生物 ～人類／士兵"
+      ],
+      [
+        "Aurelia, Verfechterin des Rechts",
+        "Legendäre Kreatur — Engel"
+      ],
+      [
+        "Aurelia, parangón de la justicia",
+        "Criatura legendaria — Ángel"
+      ],
+      [
+        "Aurélia, archétype de justice",
+        "Créature légendaire : ange"
+      ],
+      [
+        "Aurelia, Esempio di Giustizia",
+        "Creatura Leggendaria — Angelo"
+      ],
+      [
+        "正義の模範、オレリア",
+        "伝説のクリーチャー — 天使"
+      ],
+      [
+        "정의의 모범, 아우렐리아",
+        "전설적 생물 — 천사"
+      ],
+      [
+        "Aurélia, Exemplo da Justiça",
+        "Criatura Lendária — Anjo"
+      ],
+      [
+        "Аурелия, Образец Правосудия",
+        "Легендарное Существо — Ангел"
+      ],
+      [
+        "正义模范欧瑞梨",
+        "传奇生物 ～天使"
+      ],
+      [
+        "正義模範歐瑞梨",
+        "傳奇生物 ～天使"
+      ],
+      [
+        "Boros-Herausforderer",
+        "Kreatur — Mensch, Soldat"
+      ],
+      [
+        "Contendiente boros",
+        "Criatura — Soldado humano"
+      ],
+      [
+        "Défieur de Boros",
+        "Créature : humain et soldat"
+      ],
+      [
+        "Sfidante Boros",
+        "Creatura — Soldato Umano"
+      ],
+      [
+        "ボロスの挑戦者",
+        "クリーチャー — 人間・兵士"
+      ],
+      [
+        "보로스 도전자",
+        "생물 — 인간 병사"
+      ],
+      [
+        "Desafiante Boros",
+        "Criatura — Humano Soldado"
+      ],
+      [
+        "Поединщик Боросов",
+        "Существо — Человек Солдат"
+      ],
+      [
+        "波洛斯好斗者",
+        "生物 ～人类／士兵"
+      ],
+      [
+        "波洛斯好鬥者",
+        "生物 ～人類／士兵"
+      ],
+      [
+        "Alles auf eine Karte",
+        "Spontanzauber"
+      ],
+      [
+        "Oportunidad para la gloria",
+        "Instantáneo"
+      ],
+      [
+        "Chance de gloire",
+        "Éphémère"
+      ],
+      [
+        "Occasione di Gloria",
+        "Istantaneo"
+      ],
+      [
+        "栄光の好機",
+        "インスタント"
+      ],
+      [
+        "영광의 기회",
+        "순간마법"
+      ],
+      [
+        "Chance de Glória",
+        "Mágica Instantânea"
+      ],
+      [
+        "Шанс на Подвиг",
+        "Мгновенное заклинание"
+      ],
+      [
+        "成仁拼搏",
+        "瞬间"
+      ],
+      [
+        "成仁拚搏",
+        "瞬間"
+      ],
+      [
+        "Schmetterndes Signalhorn",
+        "Hexerei"
+      ],
+      [
+        "Clarín ensordecedor",
+        "Conjuro"
+      ],
+      [
+        "Clairon assourdissant",
+        "Rituel"
+      ],
+      [
+        "Chiarina Assordante",
+        "Stregoneria"
+      ],
+      [
+        "轟音のクラリオン",
+        "ソーサリー"
+      ],
+      [
+        "귀를 멀게 하는 나팔 소리",
+        "집중마법"
+      ],
+      [
+        "Clarim Ensurdecedor",
+        "Feitiço"
+      ],
+      [
+        "Оглушительный Рог",
+        "Волшебство"
+      ],
+      [
+        "震耳号角",
+        "法术"
+      ],
+      [
+        "震耳號角",
+        "巫術"
+      ],
+      [
+        "Feldwebel der Garnison",
+        "Kreatur — Viashino, Soldat"
+      ],
+      [
+        "Sargento de la guarnición",
+        "Criatura — Soldado viashino"
+      ],
+      [
+        "Sergent de la garnison",
+        "Créature : viashino et soldat"
+      ],
+      [
+        "Sergente della Guarnigione",
+        "Creatura — Soldato Viashino"
+      ],
+      [
+        "駐屯地の兵長",
+        "クリーチャー — ヴィーアシーノ・兵士"
+      ],
+      [
+        "요새 부사관",
+        "생물 — 비아시노 병사"
+      ],
+      [
+        "Sargento da Fortaleza",
+        "Criatura — Viashino Soldado"
+      ],
+      [
+        "Гарнизонный Сержант",
+        "Существо — Виашино Солдат"
+      ],
+      [
+        "驻防地军士长",
+        "生物 ～凡尔西诺／士兵"
+      ],
+      [
+        "駐防地軍士長",
+        "生物 ～凡爾西諾／士兵"
+      ],
+      [
+        "Hammerkämpfer",
+        "Kreatur — Riese, Soldat"
+      ],
+      [
+        "Manejamartillo",
+        "Criatura — Gigante soldado"
+      ],
+      [
+        "Buteur au marteau",
+        "Créature : géant et soldat"
+      ],
+      [
+        "Picchiatore del Martello",
+        "Creatura — Soldato Gigante"
+      ],
+      [
+        "槌落とし",
+        "クリーチャー — 巨人・兵士"
+      ],
+      [
+        "망치잡이 거인",
+        "생물 — 거인 병사"
+      ],
+      [
+        "Marreteiro",
+        "Criatura — Gigante Soldado"
+      ],
+      [
+        "Молотобоец",
+        "Существо — Гигант Солдат"
+      ],
+      [
+        "重锤巨人",
+        "生物 ～巨人／士兵"
+      ],
+      [
+        "重鎚巨人",
+        "生物 ～巨人／士兵"
+      ],
+      [
+        "Gerechter Schlag",
+        "Spontanzauber"
+      ],
+      [
+        "Golpe de justicia",
+        "Instantáneo"
+      ],
+      [
+        "Frappe de la justice",
+        "Éphémère"
+      ],
+      [
+        "Colpo della Giustizia",
+        "Istantaneo"
+      ],
+      [
+        "裁きの一撃",
+        "インスタント"
+      ],
+      [
+        "정의의 일격",
+        "순간마법"
+      ],
+      [
+        "Golpe da Justiça",
+        "Mágica Instantânea"
+      ],
+      [
+        "Удар Правосудия",
+        "Мгновенное заклинание"
+      ],
+      [
+        "正义一击",
+        "瞬间"
+      ],
+      [
+        "正義一擊",
+        "瞬間"
+      ],
+      [
+        "Gildenmagierin der Legion",
+        "Kreatur — Mensch, Zauberer"
+      ],
+      [
+        "Maga del gremio de la Legión",
+        "Criatura — Hechicero humano"
+      ],
+      [
+        "Ghildmage de la Légion",
+        "Créature : humain et sorcier"
+      ],
+      [
+        "Maga della Gilda della Legione",
+        "Creatura — Mago Umano"
+      ],
+      [
+        "軍勢のギルド魔道士",
+        "クリーチャー — 人間・ウィザード"
+      ],
+      [
+        "군단 길드마도사",
+        "생물 — 인간 마법사"
+      ],
+      [
+        "Maga da Guilda da Legião",
+        "Criatura — Humano Mago"
+      ],
+      [
+        "Маг Гильдии Легиона",
+        "Существо — Человек Чародей"
+      ],
+      [
+        "教团公会法师",
+        "生物 ～人类／法术师"
+      ],
+      [
+        "教團公會法師",
+        "生物 ～人類／魔法師"
+      ],
+      [
+        "Himmelsritter-Legionär",
+        "Kreatur — Mensch, Ritter"
+      ],
+      [
+        "Legionario caballero celeste",
+        "Criatura — Caballero humano"
+      ],
+      [
+        "Légionnaire chevalier céleste",
+        "Créature : humain et chevalier"
+      ],
+      [
+        "Legionaria Cavaliera dei Cieli",
+        "Creatura — Cavaliere Umano"
+      ],
+      [
+        "空騎士の軍団兵",
+        "クリーチャー — 人間・騎士"
+      ],
+      [
+        "창공기사 단원",
+        "생물 — 인간 기사"
+      ],
+      [
+        "Legionário Cavaleiro Celeste",
+        "Criatura — Humano Cavaleiro"
+      ],
+      [
+        "Небесный Рыцарь-Легионер",
+        "Существо — Человек Рыцарь"
+      ],
+      [
+        "空骑士军团兵",
+        "生物 ～人类／骑士"
+      ],
+      [
+        "空騎士軍團兵",
+        "生物 ～人類／騎士"
+      ],
+      [
+        "Schneisenschläger-Riese",
+        "Kreatur — Riese, Soldat"
+      ],
+      [
+        "Gigante tajamultitudes",
+        "Criatura — Soldado gigante"
+      ],
+      [
+        "Géant ouvreur de brèche",
+        "Créature : géant et soldat"
+      ],
+      [
+        "Gigante Falciavarchi",
+        "Creatura — Soldato Gigante"
+      ],
+      [
+        "薙ぎ払いの巨人",
+        "クリーチャー — 巨人・兵士"
+      ],
+      [
+        "마구 베는 거인",
+        "생물 — 거인 병사"
+      ],
+      [
+        "Gigante Abre-claros",
+        "Criatura — Gigante Soldado"
+      ],
+      [
+        "Гигант-Скашиватель",
+        "Существо — Гигант Солдат"
+      ],
+      [
+        "劈扫巨人",
+        "生物 ～巨人／士兵"
+      ],
+      [
+        "劈掃巨人",
+        "生物 ～巨人／士兵"
+      ],
+      [
+        "Blitzklingen-Verfechterin",
+        "Kreatur — Mensch, Soldat"
+      ],
+      [
+        "Defensora filoveloz",
+        "Criatura — Soldado humano"
+      ],
+      [
+        "Justificatrice filelame",
+        "Créature : humain et soldat"
+      ],
+      [
+        "Vendicatrice Lamalesta",
+        "Creatura — Soldato Umano"
+      ],
+      [
+        "速太刀の擁護者",
+        "クリーチャー — 人間・兵士"
+      ],
+      [
+        "쾌검 변호자",
+        "생물 — 인간 병사"
+      ],
+      [
+        "Vingadora Espada Veloz",
+        "Criatura — Humano Soldado"
+      ],
+      [
+        "Защитница Быстрого Клинка",
+        "Существо — Человек Солдат"
+      ],
+      [
+        "雪恨快剑手",
+        "生物 ～人类／士兵"
+      ],
+      [
+        "雪恨快劍手",
+        "生物 ～人類／士兵"
+      ],
+      [
+        "Tajic, Klinge der Legion",
+        "Legendäre Kreatur — Mensch, Soldat"
+      ],
+      [
+        "Tájic, Filo de la Legión",
+        "Criatura legendaria — Soldado humano"
+      ],
+      [
+        "Tajic, tranchant de la Légion",
+        "Créature légendaire : humain et soldat"
+      ],
+      [
+        "Tajic, Spada della Legione",
+        "Creatura Leggendaria — Soldato Umano"
+      ],
+      [
+        "軍勢の切先、タージク",
+        "伝説のクリーチャー — 人間・兵士"
+      ],
+      [
+        "군단의 칼날, 타직",
+        "전설적 생물 — 인간 병사"
+      ],
+      [
+        "Tajic, Fio da Legião",
+        "Criatura Lendária — Humano Soldado"
+      ],
+      [
+        "Тажик, Лезвие Легиона",
+        "Легендарное Существо — Человек Солдат"
+      ],
+      [
+        "教团尖锋塔疾克",
+        "传奇生物 ～人类／士兵"
+      ],
+      [
+        "教團尖鋒塔疾克",
+        "傳奇生物 ～人類／士兵"
+      ],
+      [
+        "Feuertreu-Feldherrin",
+        "Kreatur — Mensch, Ritter"
+      ],
+      [
+        "Capitana Fuego Auténtico",
+        "Criatura — Caballero humano"
+      ],
+      [
+        "Capitaine de Feuréal",
+        "Créature : humain et chevalier"
+      ],
+      [
+        "Capitana del Fuocovero",
+        "Creatura — Cavaliere Umano"
+      ],
+      [
+        "真火の隊長",
+        "クリーチャー — 人間・騎士"
+      ],
+      [
+        "진리화염 대장",
+        "생물 — 인간 기사"
+      ],
+      [
+        "Capitã do Fogo Genuíno",
+        "Criatura — Humano Cavaleiro"
+      ],
+      [
+        "Капитан Истинного Огня",
+        "Существо — Человек Рыцарь"
+      ],
+      [
+        "精炎队长",
+        "生物 ～人类／骑士"
+      ],
+      [
+        "精炎隊長",
+        "生物 ～人類／騎士"
+      ],
+      [
+        "Junger Rekrut",
+        "Kreatur — Mensch, Soldat"
+      ],
+      [
+        "Recluta novato",
+        "Criatura — Soldado humano"
+      ],
+      [
+        "Recrue au teint frais",
+        "Créature : humain et soldat"
+      ],
+      [
+        "Recluta Imberbe",
+        "Creatura — Soldato Umano"
+      ],
+      [
+        "初々しい補充兵",
+        "クリーチャー — 人間・兵士"
+      ],
+      [
+        "홍안의 신병",
+        "생물 — 인간 병사"
+      ],
+      [
+        "Recruta Novato",
+        "Criatura — Humano Soldado"
+      ],
+      [
+        "Безусый Новобранец",
+        "Существо — Человек Солдат"
+      ],
+      [
+        "稚嫩新兵",
+        "生物 ～人类／士兵"
+      ],
+      [
+        "稚嫩新兵",
+        "生物 ～人類／士兵"
+      ],
+      [
+        "Integrität // Intervention",
+        "Spontanzauber"
+      ],
+      [
+        "Integridad // Intervención",
+        "Instantáneo"
+      ],
+      [
+        "Intégrité // Interposition",
+        "Éphémère"
+      ],
+      [
+        "Integrità // Intervento",
+        "Istantaneo"
+      ],
+      [
+        "完全 // 間隙",
+        "インスタント"
+      ],
+      [
+        "무결 // 개입",
+        "순간마법"
+      ],
+      [
+        "Integridade // Intervenção",
+        "Mágica Instantânea"
+      ],
+      [
+        "Полнота // Прерывание",
+        "Мгновенное заклинание"
+      ],
+      [
+        "致全 // 致善",
+        "瞬间"
+      ],
+      [
+        "致全 // 致善",
+        "瞬間"
+      ],
+      [
+        "Integrität // Intervention",
+        "Spontanzauber"
+      ],
+      [
+        "Integridad // Intervención",
+        "Instantáneo"
+      ],
+      [
+        "Intégrité // Interposition",
+        "Éphémère"
+      ],
+      [
+        "Integrità // Intervento",
+        "Istantaneo"
+      ],
+      [
+        "完全 // 間隙",
+        "インスタント"
+      ],
+      [
+        "무결 // 개입",
+        "순간마법"
+      ],
+      [
+        "Integridade // Intervenção",
+        "Mágica Instantânea"
+      ],
+      [
+        "Полнота // Прерывание",
+        "Мгновенное заклинание"
+      ],
+      [
+        "致全 // 致善",
+        "瞬间"
+      ],
+      [
+        "致全 // 致善",
+        "瞬間"
+      ],
+      [
+        "Widerstand // Wiederaufflammen",
+        "Spontanzauber"
+      ],
+      [
+        "Respuesta // Resurgimiento",
+        "Instantáneo"
+      ],
+      [
+        "Réaction // Résurgence",
+        "Éphémère"
+      ],
+      [
+        "Risposta // Riscatto",
+        "Istantaneo"
+      ],
+      [
+        "反応 // 反正",
+        "インスタント"
+      ],
+      [
+        "응답 // 재기",
+        "순간마법"
+      ],
+      [
+        "Resposta // Ressurgimento",
+        "Mágica Instantânea"
+      ],
+      [
+        "Ответ // Обновление",
+        "Мгновенное заклинание"
+      ],
+      [
+        "回击 // 回神",
+        "瞬间"
+      ],
+      [
+        "回擊 // 回神",
+        "瞬間"
+      ],
+      [
+        "Widerstand // Wiederaufflammen",
+        "Hexerei"
+      ],
+      [
+        "Respuesta // Resurgimiento",
+        "Conjuro"
+      ],
+      [
+        "Réaction // Résurgence",
+        "Rituel"
+      ],
+      [
+        "Risposta // Riscatto",
+        "Stregoneria"
+      ],
+      [
+        "反応 // 反正",
+        "ソーサリー"
+      ],
+      [
+        "응답 // 재기",
+        "집중마법"
+      ],
+      [
+        "Resposta // Ressurgimento",
+        "Feitiço"
+      ],
+      [
+        "Ответ // Обновление",
+        "Волшебство"
+      ],
+      [
+        "回击 // 回神",
+        "法术"
+      ],
+      [
+        "回擊 // 回神",
+        "巫術"
+      ],
+      [
+        "Boros-Medaillon",
+        "Artefakt"
+      ],
+      [
+        "Relicario boros",
+        "Artefacto"
+      ],
+      [
+        "Médaillon de Boros",
+        "Artefact"
+      ],
+      [
+        "Medaglione Boros",
+        "Artefatto"
+      ],
+      [
+        "ボロスのロケット",
+        "アーティファクト"
+      ],
+      [
+        "보로스 로켓",
+        "마법물체"
+      ],
+      [
+        "Medalhão Boros",
+        "Artefato"
+      ],
+      [
+        "Медальон Боросов",
+        "Артефакт"
+      ],
+      [
+        "波洛斯坠饰",
+        "神器"
+      ],
+      [
+        "波洛斯墜飾",
+        "神器"
+      ],
+      [
+        "Heilige Schmelze",
+        "Land — Gebirge, Ebene"
+      ],
+      [
+        "Fundición sagrada",
+        "Tierra — Montaña llanura"
+      ],
+      [
+        "Fonderie sacrée",
+        "Terrain : montagne et plaine"
+      ],
+      [
+        "Fonderia Sacra",
+        "Terra — Montagna Pianura"
+      ],
+      [
+        "聖なる鋳造所",
+        "土地 — 山・平地"
+      ],
+      [
+        "신성한 주조소",
+        "대지 — 산 들"
+      ],
+      [
+        "Fundição Sagrada",
+        "Terreno — Montanha Planície"
+      ],
+      [
+        "Священная Кузня",
+        "Земля — Гора Равнина"
+      ],
+      [
+        "圣洁锻炉",
+        "地 ～山脉／平原"
+      ],
+      [
+        "聖潔鍛爐",
+        "地 ～山脈／平原"
+      ],
+      [
+        "Boros-Elite",
+        "Kreatur — Mensch, Soldat"
+      ],
+      [
+        "Élite boros",
+        "Criatura — Soldado humano"
+      ],
+      [
+        "Élite de Boros",
+        "Créature : humain et soldat"
+      ],
+      [
+        "Elite Boros",
+        "Creatura — Soldato Umano"
+      ],
+      [
+        "ボロスの精鋭",
+        "クリーチャー — 人間・兵士"
+      ],
+      [
+        "보로스 정예병",
+        "생물 — 인간 병사"
+      ],
+      [
+        "Elite Boros",
+        "Criatura — Humano Soldado"
+      ],
+      [
+        "Элита Боросов",
+        "Существо — Человек Солдат"
+      ],
+      [
+        "波洛斯精兵",
+        "生物～人类／士兵"
+      ],
+      [
+        "波洛斯精兵",
+        "生物～人類／士兵"
+      ],
+      [
+        "Wagemutiger Luftjek",
+        "Kreatur — Mensch, Ritter"
+      ],
+      [
+        "Jek celeste temerario",
+        "Criatura — Caballero humano"
+      ],
+      [
+        "Airjek audacieux",
+        "Créature : humain et chevalier"
+      ],
+      [
+        "Skyjek Audace",
+        "Creatura — Cavaliere Umano"
+      ],
+      [
+        "果敢なスカイジェク",
+        "クリーチャー — 人間・騎士"
+      ],
+      [
+        "대담한 스카이젝",
+        "생물 — 인간 기사"
+      ],
+      [
+        "Aerojek Audaz",
+        "Criatura — Humano Cavaleiro"
+      ],
+      [
+        "Отважный Скайек",
+        "Существо — Человек Рыцарь"
+      ],
+      [
+        "大胆空耶克",
+        "生物～人类／骑士"
+      ],
+      [
+        "大膽空耶克",
+        "生物～人類／騎士"
+      ],
+      [
+        "Frontarzt",
+        "Kreatur — Mensch, Kleriker"
+      ],
+      [
+        "Médico de primera línea",
+        "Criatura — Clérigo humano"
+      ],
+      [
+        "Carabin du front",
+        "Créature : humain et clerc"
+      ],
+      [
+        "Medico in Prima Linea",
+        "Creatura — Chierico Umano"
+      ],
+      [
+        "前線の衛生兵",
+        "クリーチャー — 人間・クレリック"
+      ],
+      [
+        "최전방 위생병",
+        "생물 — 인간 성직자"
+      ],
+      [
+        "Médico da Linha de Frente",
+        "Criatura — Humano Clérigo"
+      ],
+      [
+        "Фронтовой Медик",
+        "Существо — Человек Священник"
+      ],
+      [
+        "前线医士",
+        "生物～人类／僧侣"
+      ],
+      [
+        "前線醫士",
+        "生物～人類／僧侶"
+      ],
+      [
+        "Navigationstrupp",
+        "Kreatur — Mensch, Soldat"
+      ],
+      [
+        "Comandos del navescuadrón",
+        "Criatura — Soldado humano"
+      ],
+      [
+        "Commandos de l'escouade Nav",
+        "Créature : humain et soldat"
+      ],
+      [
+        "Commando della Squadra Esploratori",
+        "Creatura — Soldato Umano"
+      ],
+      [
+        "航行隊の猛士",
+        "クリーチャー — 人間・兵士"
+      ],
+      [
+        "나브 분대 특공대",
+        "생물 — 인간 병사"
+      ],
+      [
+        "Comandos do Esquadrão de Navegação",
+        "Criatura — Humano Soldado"
+      ],
+      [
+        "Навигаторы-Коммандос",
+        "Существо — Человек Солдат"
+      ],
+      [
+        "奈夫突击小组",
+        "生物～人类／士兵"
+      ],
+      [
+        "奈夫突擊小組",
+        "生物～人類／士兵"
+      ],
+      [
+        "Bomberkorps",
+        "Kreatur — Mensch, Soldat"
+      ],
+      [
+        "Cuerpo de bombarderos",
+        "Criatura — Soldado humano"
+      ],
+      [
+        "Corps de bombardiers",
+        "Créature : humain et soldat"
+      ],
+      [
+        "Bombardiera",
+        "Creatura — Soldato Umano"
+      ],
+      [
+        "爆弾部隊",
+        "クリーチャー — 人間・兵士"
+      ],
+      [
+        "폭격 군단",
+        "생물 — 인간 병사"
+      ],
+      [
+        "Esquadrão de Bombardeiros",
+        "Criatura — Humano Soldado"
+      ],
+      [
+        "Корпус Бомбометателей",
+        "Существо — Человек Солдат"
+      ],
+      [
+        "轰炸队",
+        "生物～人类／士兵"
+      ],
+      [
+        "轟炸隊",
+        "生物～人類／士兵"
+      ],
+      [
+        "Anstürmende Feuerfaust",
+        "Kreatur — Mensch, Soldat"
+      ],
+      [
+        "Golpeador Puño Ardiente",
+        "Criatura — Soldado humano"
+      ],
+      [
+        "Frappeur Poingdefeu",
+        "Créature : humain et soldat"
+      ],
+      [
+        "Picchiatore di Pugno Infuocato",
+        "Creatura — Soldato Umano"
+      ],
+      [
+        "火拳の打撃者",
+        "クリーチャー — 人間・兵士"
+      ],
+      [
+        "불꽃주먹 타격병",
+        "생물 — 인간 병사"
+      ],
+      [
+        "Golpeador Punho de Fogo",
+        "Criatura — Humano Soldado"
+      ],
+      [
+        "Боец Огненного Кулака",
+        "Существо — Человек Солдат"
+      ],
+      [
+        "炎拳打击手",
+        "生物～人类／士兵"
+      ],
+      [
+        "炎拳打擊手",
+        "生物～人類／士兵"
+      ],
+      [
+        "Getreuer der Legion",
+        "Kreatur — Goblin, Soldat"
+      ],
+      [
+        "Partidario de la Legión",
+        "Criatura — Soldado trasgo"
+      ],
+      [
+        "Loyaliste de la Légion",
+        "Créature : gobelin et soldat"
+      ],
+      [
+        "Lealista della Legione",
+        "Creatura — Soldato Goblin"
+      ],
+      [
+        "軍勢の忠節者",
+        "クリーチャー — ゴブリン・兵士"
+      ],
+      [
+        "충성스런 군단병",
+        "생물 — 고블린 병사"
+      ],
+      [
+        "Lealista da Legião",
+        "Criatura — Goblin Soldado"
+      ],
+      [
+        "Приверженец Легиона",
+        "Существо — Гоблин Солдат"
+      ],
+      [
+        "忠贞军团兵",
+        "生物～鬼怪／士兵"
+      ],
+      [
+        "忠貞軍團兵",
+        "生物～鬼怪／士兵"
+      ],
+      [
+        "Aufragende Donnerfaust",
+        "Kreatur — Riese, Soldat"
+      ],
+      [
+        "Puñotrueno imponente",
+        "Criatura — Soldado gigante"
+      ],
+      [
+        "Poing-de-foudre imposant",
+        "Créature : géant et soldat"
+      ],
+      [
+        "Pugno Tonante Imponente",
+        "Creatura — Soldato Gigante"
+      ],
+      [
+        "そびえ立つ雷拳",
+        "クリーチャー — 巨人・兵士"
+      ],
+      [
+        "거대한 천둥주먹",
+        "생물 — 거인 병사"
+      ],
+      [
+        "Punhos Trovejantes Altaneiro",
+        "Criatura — Gigante Soldado"
+      ],
+      [
+        "Громобой",
+        "Существо — Гигант Солдат"
+      ],
+      [
+        "雄立雷拳",
+        "生物～巨人／士兵"
+      ],
+      [
+        "雄立雷拳",
+        "生物～巨人／士兵"
+      ],
+      [
+        "Kriegshüter-Infanterie",
+        "Kreatur — Elementarwesen, Soldat"
+      ],
+      [
+        "Infantería Mente de Guerra",
+        "Criatura — Soldado elemental"
+      ],
+      [
+        "Infanterie du Génie de guerre",
+        "Créature : élémental et soldat"
+      ],
+      [
+        "Fanteria di Mente Guerriera",
+        "Creatura — Soldato Elementale"
+      ],
+      [
+        "戦心の歩兵",
+        "クリーチャー — エレメンタル・兵士"
+      ],
+      [
+        "천재전사 보병",
+        "생물 — 정령 병사"
+      ],
+      [
+        "Infantaria Mente Bélica",
+        "Criatura — Elemental Soldado"
+      ],
+      [
+        "Пехотинец Воинствующего Духа",
+        "Существо — Элементаль Солдат"
+      ],
+      [
+        "战灵步兵",
+        "生物～元素／士兵"
+      ],
+      [
+        "戰靈步兵",
+        "生物～元素／士兵"
+      ],
+      [
+        "Aufmarsch der Legion",
+        "Verzauberung"
+      ],
+      [
+        "Reunir a la Legión",
+        "Encantamiento"
+      ],
+      [
+        "Rassemblez la légion !",
+        "Enchantement"
+      ],
+      [
+        "Radunare la Legione",
+        "Incantesimo"
+      ],
+      [
+        "軍勢の集結",
+        "エンチャント"
+      ],
+      [
+        "군단 소집",
+        "부여마법"
+      ],
+      [
+        "Reunir a Legião",
+        "Encantamento"
+      ],
+      [
+        "Созыв Легиона",
+        "Чары"
+      ],
+      [
+        "召集战团",
+        "结界"
+      ],
+      [
+        "召集戰團",
+        "結界"
+      ],
+      [
+        "Kriegsführerin Aurelia",
+        "Legendäre Kreatur — Engel"
+      ],
+      [
+        "Aurelia, la líder de guerra",
+        "Criatura legendaria — Ángel"
+      ],
+      [
+        "Aurélia, la Meneuse de guerre",
+        "Créature légendaire : ange"
+      ],
+      [
+        "Aurelia, la Condottiera",
+        "Creatura Leggendaria — Angelo"
+      ],
+      [
+        "戦導者オレリア",
+        "伝説のクリーチャー — 天使"
+      ],
+      [
+        "전장의 영도자 아우렐리아",
+        "전설적 생물 — 천사"
+      ],
+      [
+        "Aurélia, Líder de Guerra",
+        "Criatura Lendária — Anjo"
+      ],
+      [
+        "Аурелия, Предводительница Войск",
+        "Легендарное Существо — Ангел"
+      ],
+      [
+        "战领欧瑞梨",
+        "传奇生物～天使"
+      ],
+      [
+        "戰領歐瑞梨",
+        "傳奇生物～天使"
+      ],
+      [
+        "Aurelias Wildheit",
+        "Spontanzauber"
+      ],
+      [
+        "Furia de Aurelia",
+        "Instantáneo"
+      ],
+      [
+        "Furie d'Aurélia",
+        "Éphémère"
+      ],
+      [
+        "Furia di Aurelia",
+        "Istantaneo"
+      ],
+      [
+        "オレリアの憤怒",
+        "インスタント"
+      ],
+      [
+        "아우렐리아의 광분",
+        "순간마법"
+      ],
+      [
+        "Fúria de Aurélia",
+        "Mágica Instantânea"
+      ],
+      [
+        "Ярость Аурелии",
+        "Мгновенное заклинание"
+      ],
+      [
+        "欧瑞梨的怒火",
+        "瞬间"
+      ],
+      [
+        "歐瑞梨的怒火",
+        "瞬間"
+      ],
+      [
+        "Boros-Amulett",
+        "Spontanzauber"
+      ],
+      [
+        "Amuleto boros",
+        "Instantáneo"
+      ],
+      [
+        "Charme de Boros",
+        "Éphémère"
+      ],
+      [
+        "Talismano Boros",
+        "Istantaneo"
+      ],
+      [
+        "ボロスの魔除け",
+        "インスタント"
+      ],
+      [
+        "보로스 부적",
+        "순간마법"
+      ],
+      [
+        "Amuleto Boros",
+        "Mágica Instantânea"
+      ],
+      [
+        "Талисман Боросов",
+        "Мгновенное заклинание"
+      ],
+      [
+        "波洛斯护符",
+        "瞬间"
+      ],
+      [
+        "波洛斯護符",
+        "瞬間"
+      ],
+      [
+        "Feuerschweif-Rächerin",
+        "Kreatur — Engel"
+      ],
+      [
+        "Vengadora melenafuego",
+        "Criatura — Ángel"
+      ],
+      [
+        "Vengeresse crinefeu",
+        "Créature : ange"
+      ],
+      [
+        "Vendicatrice Chioma di Fuoco",
+        "Creatura — Angelo"
+      ],
+      [
+        "炎まといの報復者",
+        "クリーチャー — 天使"
+      ],
+      [
+        "불꽃갈기 응징자",
+        "생물 — 천사"
+      ],
+      [
+        "Vingador Cabeleira de Fogo",
+        "Criatura — Anjo"
+      ],
+      [
+        "Огнегривая Мстительница",
+        "Существо — Ангел"
+      ],
+      [
+        "炎鬃复仇者",
+        "生物～天使"
+      ],
+      [
+        "炎鬃復仇者",
+        "生物～天使"
+      ],
+      [
+        "Festungszyklop",
+        "Kreatur — Zyklop, Soldat"
+      ],
+      [
+        "Cíclope de la fortaleza",
+        "Criatura — Soldado cíclope"
+      ],
+      [
+        "Cyclope de forteresse",
+        "Créature : cyclope et soldat"
+      ],
+      [
+        "Ciclope della Fortezza",
+        "Creatura — Soldato Ciclope"
+      ],
+      [
+        "要塞のサイクロプス",
+        "クリーチャー — サイクロプス・兵士"
+      ],
+      [
+        "요새 키클롭스",
+        "생물 — 키클롭스 병사"
+      ],
+      [
+        "Ciclope da Fortaleza",
+        "Criatura — Ciclope Soldado"
+      ],
+      [
+        "Циклоп Крепости",
+        "Существо — Циклоп Солдат"
+      ],
+      [
+        "要塞独眼巨人",
+        "生物～独眼巨人／士兵"
+      ],
+      [
+        "要塞獨眼巨人",
+        "生物～獨眼巨人／士兵"
+      ],
+      [
+        "Champion der Schmelze",
+        "Kreatur — Elementarwesen, Soldat"
+      ],
+      [
+        "Campeón de la Fundición",
+        "Criatura — Soldado elemental"
+      ],
+      [
+        "Champion de la fonderie",
+        "Créature : élémental et soldat"
+      ],
+      [
+        "Campione della Fonderia",
+        "Creatura — Soldato Elementale"
+      ],
+      [
+        "鋳造所の勇者",
+        "クリーチャー — エレメンタル・兵士"
+      ],
+      [
+        "주조소 투사",
+        "생물 — 정령 병사"
+      ],
+      [
+        "Campeão da Fundição",
+        "Criatura — Elemental Soldado"
+      ],
+      [
+        "Защитник Кузни",
+        "Существо — Элементаль Солдат"
+      ],
+      [
+        "锻炉斗士",
+        "生物～元素／士兵"
+      ],
+      [
+        "鍛爐鬥士",
+        "生物～元素／士兵"
+      ],
+      [
+        "Soldatische Pracht",
+        "Spontanzauber"
+      ],
+      [
+        "Gloria marcial",
+        "Instantáneo"
+      ],
+      [
+        "Gloire martiale",
+        "Éphémère"
+      ],
+      [
+        "Gloria Marziale",
+        "Istantaneo"
+      ],
+      [
+        "軍部の栄光",
+        "インスタント"
+      ],
+      [
+        "전장의 영광",
+        "순간마법"
+      ],
+      [
+        "Glória Marcial",
+        "Mágica Instantânea"
+      ],
+      [
+        "Военная Слава",
+        "Мгновенное заклинание"
+      ],
+      [
+        "尚武荣光",
+        "瞬间"
+      ],
+      [
+        "尚武榮光",
+        "瞬間"
+      ],
+      [
+        "Ordruun-Veteran",
+        "Kreatur — Minotaurus, Soldat"
+      ],
+      [
+        "Veterano ordrúun",
+        "Criatura — Soldado minotauro"
+      ],
+      [
+        "Vétéran ordruun",
+        "Créature : minotaure et soldat"
+      ],
+      [
+        "Veterano Ordruun",
+        "Creatura — Soldato Minotauro"
+      ],
+      [
+        "オルドルーンの古参兵",
+        "クリーチャー — ミノタウルス・兵士"
+      ],
+      [
+        "오르드룬 고참병",
+        "생물 — 미노타우로스 병사"
+      ],
+      [
+        "Veterano Ordruun",
+        "Criatura — Minotauro Soldado"
+      ],
+      [
+        "Ордруунский Ветеран",
+        "Существо — Минотавр Солдат"
+      ],
+      [
+        "欧度鲁老兵",
+        "生物～牛头怪／士兵"
+      ],
+      [
+        "歐度魯老兵",
+        "生物～牛頭怪／士兵"
+      ],
+      [
+        "Himmelsritter-Legionär",
+        "Kreatur — Mensch, Ritter"
+      ],
+      [
+        "Legionario caballero celeste",
+        "Criatura — Caballero humano"
+      ],
+      [
+        "Légionnaire chevalier céleste",
+        "Créature : humain et chevalier"
+      ],
+      [
+        "Legionaria Cavaliera dei Cieli",
+        "Creatura — Cavaliere Umano"
+      ],
+      [
+        "空騎士の軍団兵",
+        "クリーチャー — 人間・騎士"
+      ],
+      [
+        "창공기사 단원",
+        "생물 — 인간 기사"
+      ],
+      [
+        "Legionário Cavaleiro Celeste",
+        "Criatura — Humano Cavaleiro"
+      ],
+      [
+        "Небесный Рыцарь-Легионер",
+        "Существо — Человек Рыцарь"
+      ],
+      [
+        "空骑士军团兵",
+        "生物～人类／骑士"
+      ],
+      [
+        "空騎士軍團兵",
+        "生物～人類／騎士"
+      ],
+      [
+        "Funkengardist",
+        "Kreatur — Elementarwesen, Soldat"
+      ],
+      [
+        "Tropa de asalto de chispas",
+        "Criatura — Soldado elemental"
+      ],
+      [
+        "Troupier d'étincelles",
+        "Créature : élémental et soldat"
+      ],
+      [
+        "Truppe Scintilla",
+        "Creatura — Soldato Elementale"
+      ],
+      [
+        "火花の強兵",
+        "クリーチャー — エレメンタル・兵士"
+      ],
+      [
+        "번쩍이는 돌격병",
+        "생물 — 정령 병사"
+      ],
+      [
+        "Infante da Centelha",
+        "Criatura — Elemental Soldado"
+      ],
+      [
+        "Солдат-Искра",
+        "Существо — Элементаль Солдат"
+      ],
+      [
+        "电光装甲兵",
+        "生物～元素／士兵"
+      ],
+      [
+        "電光裝甲兵",
+        "生物～元素／士兵"
+      ],
+      [
+        "Sonnenheim-Gildenmagier",
+        "Kreatur — Mensch, Zauberer"
+      ],
+      [
+        "Mago del gremio de Casa Solar",
+        "Criatura — Hechicero humano"
+      ],
+      [
+        "Ghildmage de Solcastel",
+        "Créature : humain et sorcier"
+      ],
+      [
+        "Mago della Gilda di Sol-Dimora",
+        "Creatura — Mago Umano"
+      ],
+      [
+        "サンホームのギルド魔道士",
+        "クリーチャー — 人間・ウィザード"
+      ],
+      [
+        "선홈의 길드 마도사",
+        "생물 — 인간 마법사"
+      ],
+      [
+        "Mago de Guilda da Morada do Sol",
+        "Criatura — Humano Mago"
+      ],
+      [
+        "Маг Гильдии из Дома Солнца",
+        "Существо — Человек Чародей"
+      ],
+      [
+        "阳园公会法师",
+        "生物～人类／法术师"
+      ],
+      [
+        "陽園公會法師",
+        "生物～人類／魔法師"
+      ],
+      [
+        "Feuertreu-Paladin",
+        "Kreatur — Mensch, Ritter"
+      ],
+      [
+        "Paladín Fuego Auténtico",
+        "Criatura — Caballero humano"
+      ],
+      [
+        "Paladin de Feuréal",
+        "Créature : humain et chevalier"
+      ],
+      [
+        "Paladino del Fuocovero",
+        "Creatura — Cavaliere Umano"
+      ],
+      [
+        "真火の聖騎士",
+        "クリーチャー — 人間・騎士"
+      ],
+      [
+        "진리화염 성기사",
+        "생물 — 인간 기사"
+      ],
+      [
+        "Paladino do Fogo Genuíno",
+        "Criatura — Humano Cavaleiro"
+      ],
+      [
+        "Паладин Истинного Огня",
+        "Существо — Человек Рыцарь"
+      ],
+      [
+        "精炎神圣武士",
+        "生物～人类／骑士"
+      ],
+      [
+        "精炎神聖武士",
+        "生物～人類／騎士"
+      ],
+      [
+        "Wojek-Hellebardiere",
+        "Kreatur — Mensch, Soldat"
+      ],
+      [
+        "Alabarderos Wojek",
+        "Criatura — Soldado humano"
+      ],
+      [
+        "Hallebardiers wojek",
+        "Créature : humain et soldat"
+      ],
+      [
+        "Alabardieri Wojek",
+        "Creatura — Soldato Umano"
+      ],
+      [
+        "ウォジェクの矛槍兵",
+        "クリーチャー — 人間・兵士"
+      ],
+      [
+        "워젝 미늘창병",
+        "생물 — 인간 병사"
+      ],
+      [
+        "Alabardeiros Wojek",
+        "Criatura — Humano Soldado"
+      ],
+      [
+        "Войеки-Алебардисты",
+        "Существо — Человек Солдат"
+      ],
+      [
+        "沃耶克戟队",
+        "生物～人类／士兵"
+      ],
+      [
+        "沃耶克戟隊",
+        "生物～人類／士兵"
+      ],
+      [
+        "Pfeile der Justiz",
+        "Spontanzauber"
+      ],
+      [
+        "Flechas de justicia",
+        "Instantáneo"
+      ],
+      [
+        "Flèches de la justice",
+        "Éphémère"
+      ],
+      [
+        "Frecce della Giustizia",
+        "Istantaneo"
+      ],
+      [
+        "正義の矢",
+        "インスタント"
+      ],
+      [
+        "정의의 화살",
+        "순간마법"
+      ],
+      [
+        "Flechas da Justiça",
+        "Mágica Instantânea"
+      ],
+      [
+        "Стрелы Правосудия",
+        "Мгновенное заклинание"
+      ],
+      [
+        "正义之箭",
+        "瞬间"
+      ],
+      [
+        "正義之箭",
+        "瞬間"
+      ],
+      [
+        "Boros-Abwäger",
+        "Kreatur — Minotaurus, Zauberer"
+      ],
+      [
+        "Vengador boros",
+        "Criatura — Hechicero minotauro"
+      ],
+      [
+        "Héliaste de Boros",
+        "Créature : minotaure et sorcier"
+      ],
+      [
+        "Censore Boros",
+        "Creatura — Mago Minotauro"
+      ],
+      [
+        "ボロスの反攻者",
+        "クリーチャー — ミノタウルス・ウィザード"
+      ],
+      [
+        "보로스 심판자",
+        "생물 — 미노타우로스 마법사"
+      ],
+      [
+        "Víndice dos Boros",
+        "Criatura — Minotauro Mago"
+      ],
+      [
+        "Каратель Боросов",
+        "Существо — Минотавр Чародей"
+      ],
+      [
+        "波洛斯裁定师",
+        "生物～牛头怪／法术师"
+      ],
+      [
+        "波洛斯裁定師",
+        "生物～牛頭怪／魔法師"
+      ],
+      [
+        "Zertrümmernder Schlag",
+        "Spontanzauber"
+      ],
+      [
+        "Impacto quebrador",
+        "Instantáneo"
+      ],
+      [
+        "Coup fracassant",
+        "Éphémère"
+      ],
+      [
+        "Colpo Frantumante",
+        "Istantaneo"
+      ],
+      [
+        "破壊的一撃",
+        "インスタント"
+      ],
+      [
+        "깨부수는 일격",
+        "순간마법"
+      ],
+      [
+        "Golpe Despedaçador",
+        "Mágica Instantânea"
+      ],
+      [
+        "Раскалывающий Удар",
+        "Мгновенное заклинание"
+      ],
+      [
+        "粉碎霆击",
+        "瞬间"
+      ],
+      [
+        "粉碎霆擊",
+        "瞬間"
+      ],
+      [
+        "Boros-Runenschlüssel",
+        "Artefakt"
+      ],
+      [
+        "Llave rúnica boros",
+        "Artefacto"
+      ],
+      [
+        "Runeclé de Boros",
+        "Artefact"
+      ],
+      [
+        "Runachiave Boros",
+        "Artefatto"
+      ],
+      [
+        "ボロスの魔鍵",
+        "アーティファクト"
+      ],
+      [
+        "보로스 열쇠룬",
+        "마법물체"
+      ],
+      [
+        "Chave Rúnica Boros",
+        "Artefato"
+      ],
+      [
+        "Рунный Ключ Боросов",
+        "Артефакт"
+      ],
+      [
+        "波洛斯符镇兵",
+        "神器"
+      ],
+      [
+        "波洛斯符鎮兵",
+        "神器"
+      ],
+      [
+        "Boros-Gildeneingang",
+        "Land — Tor"
+      ],
+      [
+        "Portal del Gremio Boros",
+        "Tierra — Portal"
+      ],
+      [
+        "Porte de la guilde de Boros",
+        "Terrain : porte"
+      ],
+      [
+        "Cancello della Gilda Boros",
+        "Terra — Cancello"
+      ],
+      [
+        "ボロスのギルド門",
+        "土地 — 門"
+      ],
+      [
+        "보로스 길드관문",
+        "대지 — 관문"
+      ],
+      [
+        "Portão da Guilda Boros",
+        "Terreno — Portão"
+      ],
+      [
+        "Врата Гильдии Боросов",
+        "Земля — Врата"
+      ],
+      [
+        "波洛斯公会门",
+        "地～门"
+      ],
+      [
+        "波洛斯公會門",
+        "地～門"
+      ],
+      [
+        "Heilige Schmelze",
+        "Land — Gebirge, Ebene"
+      ],
+      [
+        "Fundición sagrada",
+        "Tierra — Montaña llanura"
+      ],
+      [
+        "Fonderie sacrée",
+        "Terrain : montagne et plaine"
+      ],
+      [
+        "Fonderia Sacra",
+        "Terra — Montagna Pianura"
+      ],
+      [
+        "聖なる鋳造所",
+        "土地 — 山・平地"
+      ],
+      [
+        "신성한 주조소",
+        "대지 — 산 들"
+      ],
+      [
+        "Fundição Sagrada",
+        "Terreno — Montanha Planície"
+      ],
+      [
+        "Священная Кузня",
+        "Земля — Гора Равнина"
+      ],
+      [
+        "圣洁锻炉",
+        "地～山脉／平原"
+      ],
+      [
+        "聖潔鍛爐",
+        "地～山脈／平原"
+      ],
+      [
+        "Response // Resurgence",
+        ""
+      ],
+      [
+        "Response // Resurgence",
+        ""
+      ],
+      [
+        "Im Licht baden",
+        "Spontanzauber"
+      ],
+      [
+        "Bañar en luz",
+        "Instantáneo"
+      ],
+      [
+        "Bain de lumière",
+        "Éphémère"
+      ],
+      [
+        "Crogiolarsi nella Luce",
+        "Istantaneo"
+      ],
+      [
+        "照らす光",
+        "インスタント"
+      ],
+      [
+        "Banho de luz",
+        "Mágica Instantânea"
+      ],
+      [
+        "Купание в свете",
+        "Мгновенное заклинание"
+      ],
+      [
+        "浸浴明光",
+        "瞬间"
+      ],
+      [
+        "Furienschild der Boros",
+        "Spontanzauber"
+      ],
+      [
+        "Escudo de furia boros",
+        "Instantáneo"
+      ],
+      [
+        "Bouclier-furie de Boros",
+        "Éphémère"
+      ],
+      [
+        "Scudo di Furia Boros",
+        "Istantaneo"
+      ],
+      [
+        "ボロスの怒りの盾",
+        "インスタント"
+      ],
+      [
+        "Escudo de Fúria Boros",
+        "Mágica Instantânea"
+      ],
+      [
+        "Щит ярости Боросов",
+        "Мгновенное заклинание"
+      ],
+      [
+        "波洛斯怒火盾",
+        "瞬间"
+      ],
+      [
+        "Keine Spur hinterlassen",
+        "Spontanzauber"
+      ],
+      [
+        "Sin dejar huella",
+        "Instantáneo"
+      ],
+      [
+        "Sans laisser de traces",
+        "Éphémère"
+      ],
+      [
+        "Senza Tracce",
+        "Istantaneo"
+      ],
+      [
+        "痕跡消し",
+        "インスタント"
+      ],
+      [
+        "Sem vestígios",
+        "Mágica Instantânea"
+      ],
+      [
+        "Без следов",
+        "Мгновенное заклинание"
+      ],
+      [
+        "不留痕迹",
+        "瞬间"
+      ],
+      [
+        "Krächzender Greif",
+        "Kreatur — Greif"
+      ],
+      [
+        "Grifo chillón",
+        "Criatura — Grifo"
+      ],
+      [
+        "Griffon grinçant",
+        "Créature : griffon"
+      ],
+      [
+        "Grifone Stridente",
+        "Creatura — Grifone"
+      ],
+      [
+        "金切り声のグリフィン",
+        "クリーチャー — グリフィン"
+      ],
+      [
+        "Grifo Chilreante",
+        "Criatura — Grifo"
+      ],
+      [
+        "Скрежещущий грифон",
+        "Существо — Грифон"
+      ],
+      [
+        "尖鸣狮鹫",
+        "生物～狮鹫"
+      ],
+      [
+        "Wojek-Apotheker",
+        "Kreatur — Mensch, Kleriker"
+      ],
+      [
+        "Boticario wojek",
+        "Criatura — Clérigo humano"
+      ],
+      [
+        "Apothicaire wojek",
+        "Créature : humain et clerc"
+      ],
+      [
+        "Speziale Wojek",
+        "Creatura — Chierico Umano"
+      ],
+      [
+        "ウォジェクの薬剤師",
+        "クリーチャー — 人間・クレリック"
+      ],
+      [
+        "Boticário Wojek",
+        "Criatura — Clérigo Humano"
+      ],
+      [
+        "Аптекарь Войеков",
+        "Существо — Человек Священник"
+      ],
+      [
+        "沃耶克药剂师",
+        "生物～人类／僧侣"
+      ],
+      [
+        "Wojek-Sirene",
+        "Spontanzauber"
+      ],
+      [
+        "Sirena wojek",
+        "Instantáneo"
+      ],
+      [
+        "Sirène wojek",
+        "Éphémère"
+      ],
+      [
+        "Sirena Wojek",
+        "Istantaneo"
+      ],
+      [
+        "ウォジェクの号笛",
+        "インスタント"
+      ],
+      [
+        "Sirene Wojek",
+        "Mágica Instantânea"
+      ],
+      [
+        "Сирена Войеков",
+        "Мгновенное заклинание"
+      ],
+      [
+        "沃耶克警笛",
+        "瞬间"
+      ],
+      [
+        "Reinigender Strahl",
+        "Spontanzauber"
+      ],
+      [
+        "Haz purificador",
+        "Instantáneo"
+      ],
+      [
+        "Rayon purificateur",
+        "Éphémère"
+      ],
+      [
+        "Raggio Purificatore",
+        "Istantaneo"
+      ],
+      [
+        "浄化の光線",
+        "インスタント"
+      ],
+      [
+        "Raio Purificador",
+        "Mágica Instantânea"
+      ],
+      [
+        "Очищающий луч",
+        "Мгновенное заклинание"
+      ],
+      [
+        "净化光束",
+        "瞬间"
+      ],
+      [
+        "Blitzartige Zwangsverpflichtung",
+        "Spontanzauber"
+      ],
+      [
+        "Conscripción repentina",
+        "Instantáneo"
+      ],
+      [
+        "Conscription immédiate",
+        "Éphémère"
+      ],
+      [
+        "Coscrizione Fulminea",
+        "Istantaneo"
+      ],
+      [
+        "緊急徴兵",
+        "インスタント"
+      ],
+      [
+        "Conscrição Relâmpago",
+        "Mágica Instantânea"
+      ],
+      [
+        "Мгновенный призыв",
+        "Мгновенное заклинание"
+      ],
+      [
+        "快速征召",
+        "瞬间"
+      ],
+      [
+        "Hysterie hervorrufen",
+        "Hexerei"
+      ],
+      [
+        "Incitar a la histeria",
+        "Conjuro"
+      ],
+      [
+        "Incitation à l'hystérie",
+        "Rituel"
+      ],
+      [
+        "Spingere all'Isteria",
+        "Stregoneria"
+      ],
+      [
+        "恐慌の扇動",
+        "ソーサリー"
+      ],
+      [
+        "Incitar Histeria",
+        "Feitiço"
+      ],
+      [
+        "Приступ истерии",
+        "Волшебство"
+      ],
+      [
+        "煽动歇斯底里",
+        "法术"
+      ],
+      [
+        "Ordruun-Kommando",
+        "Kreatur — Minotaurus, Soldat"
+      ],
+      [
+        "Comando ordrúun",
+        "Criatura — Soldado minotauro"
+      ],
+      [
+        "Commando ordruun",
+        "Créature : minotaure et soldat"
+      ],
+      [
+        "Commando Ordruun",
+        "Creatura — Soldato Minotauro"
+      ],
+      [
+        "オルドルーンの猛士",
+        "クリーチャー — ミノタウルス・兵士"
+      ],
+      [
+        "Comando de Ordruun",
+        "Criatura — Soldado Minotauro"
+      ],
+      [
+        "Ордруунский коммандо",
+        "Существо — Минотавр Солдат"
+      ],
+      [
+        "欧度鲁突击兵",
+        "生物～牛头怪／士兵"
+      ],
+      [
+        "Eiferschub",
+        "Spontanzauber"
+      ],
+      [
+        "Oleada de fanatismo",
+        "Instantáneo"
+      ],
+      [
+        "Déferlement de zèle",
+        "Éphémère"
+      ],
+      [
+        "Impeto di Fanatismo",
+        "Istantaneo"
+      ],
+      [
+        "盲信のうねり",
+        "インスタント"
+      ],
+      [
+        "Surto de Zelo",
+        "Mágica Instantânea"
+      ],
+      [
+        "Прилив рвения",
+        "Мгновенное заклинание"
+      ],
+      [
+        "狂热波涛",
+        "瞬间"
+      ],
+      [
+        "Wojek-Funkenmagier",
+        "Kreatur — Mensch, Zauberer"
+      ],
+      [
+        "Mago ígneo wojek",
+        "Criatura — Hechicero humano"
+      ],
+      [
+        "Ambremage wojek",
+        "Créature : humain et sorcier"
+      ],
+      [
+        "Mago delle Braci Wojek",
+        "Creatura — Mago Umano"
+      ],
+      [
+        "ウォジェクの燃えさし魔道士",
+        "クリーチャー — 人間・ウィザード"
+      ],
+      [
+        "Mago Ígneo Wojek",
+        "Criatura — Mago Humano"
+      ],
+      [
+        "Пылающий маг Войеков",
+        "Существо — Человек Чародей"
+      ],
+      [
+        "沃耶克烬法师",
+        "生物～人类／法术师"
+      ],
+      [
+        "Agrus Kos, Wojek-Veteran",
+        "Legendäre Kreatur — Mensch, Soldat"
+      ],
+      [
+        "Agrus Kos, veterano wojek",
+        "Criatura legendaria — Soldado humano"
+      ],
+      [
+        "Agrus Kos, vétéran wojek",
+        "Créature légendaire : humain et soldat"
+      ],
+      [
+        "Agrus Kos, Veterano Wojek",
+        "Creatura Leggendaria — Soldato Umano"
+      ],
+      [
+        "ウォジェクの古参兵、アグルス・コス",
+        "伝説のクリーチャー — 人間・兵士"
+      ],
+      [
+        "Agrus Kos, Veterano Wojek",
+        "Criatura Lendária — Soldado Humano"
+      ],
+      [
+        "Агрус Кос, ветеран Войеков",
+        "Легендарное существо — Человек Солдат"
+      ],
+      [
+        "沃耶克老将阿固寇斯",
+        "传奇生物～人类／士兵"
+      ],
+      [
+        "Boros-Flinkklingen",
+        "Kreatur — Mensch, Soldat"
+      ],
+      [
+        "Filoveloz boros",
+        "Criatura — Soldado humano"
+      ],
+      [
+        "Filelame boros",
+        "Créature : humain et soldat"
+      ],
+      [
+        "Lamalesta Boros",
+        "Creatura — Soldato Umano"
+      ],
+      [
+        "ボロスの速太刀",
+        "クリーチャー — 人間・兵士"
+      ],
+      [
+        "Espada Veloz Boros",
+        "Criatura — Soldado Humano"
+      ],
+      [
+        "Рубака Боросов",
+        "Существо — Человек Солдат"
+      ],
+      [
+        "波洛斯快剑手",
+        "生物～人类／士兵"
+      ],
+      [
+        "Helle Flamme",
+        "Hexerei"
+      ],
+      [
+        "Flama brillante",
+        "Conjuro"
+      ],
+      [
+        "Claireflamme",
+        "Rituel"
+      ],
+      [
+        "Fiamma Radiosa",
+        "Stregoneria"
+      ],
+      [
+        "光り輝く炎",
+        "ソーサリー"
+      ],
+      [
+        "Chama de Luz",
+        "Feitiço"
+      ],
+      [
+        "Яркое пламя",
+        "Волшебство"
+      ],
+      [
+        "眩目烈焰",
+        "法术"
+      ],
+      [
+        "Feuerschweif-Engel",
+        "Kreatur — Engel"
+      ],
+      [
+        "Ángel melenafuego",
+        "Criatura — Ángel"
+      ],
+      [
+        "Ange crinefeu",
+        "Créature : ange"
+      ],
+      [
+        "Angelo Chioma di Fuoco",
+        "Creatura — Angelo"
+      ],
+      [
+        "炎まといの天使",
+        "クリーチャー — 天使"
+      ],
+      [
+        "Anjo Cabeleira de Fogo",
+        "Criatura — Anjo"
+      ],
+      [
+        "Ангел с огненной гривой",
+        "Существо — Ангел"
+      ],
+      [
+        "炎鬃天使",
+        "生物～天使"
+      ],
+      [
+        "Flammensippen-Eiferer",
+        "Kreatur — Elementarwesen, Berserker"
+      ],
+      [
+        "Fanático llameante",
+        "Criatura — Berserker elemental"
+      ],
+      [
+        "Zélateur sangpyre",
+        "Créature : élémental et berserker"
+      ],
+      [
+        "Zelota Figlio del Fuoco",
+        "Creatura — Berserker Elementale"
+      ],
+      [
+        "炎の血族の盲信者",
+        "クリーチャー — エレメンタル・狂戦士"
+      ],
+      [
+        "Zelote do Clã das Chamas",
+        "Criatura — Elemental Amoque"
+      ],
+      [
+        "Пламенник-фанатик",
+        "Существо — Элементаль Берсерк"
+      ],
+      [
+        "炎身狂信者",
+        "生物～元素／狂战士"
+      ],
+      [
+        "Blitzhelix",
+        "Spontanzauber"
+      ],
+      [
+        "Hélice de relámpagos",
+        "Instantáneo"
+      ],
+      [
+        "Hélice d'éclairs",
+        "Éphémère"
+      ],
+      [
+        "Spirale Fulminante",
+        "Istantaneo"
+      ],
+      [
+        "稲妻のらせん",
+        "インスタント"
+      ],
+      [
+        "Hélice de Raios",
+        "Mágica Instantânea"
+      ],
+      [
+        "Спираль молний",
+        "Мгновенное заклинание"
+      ],
+      [
+        "闪电螺旋",
+        "瞬间"
+      ],
+      [
+        "Sammeln der Gerechten",
+        "Spontanzauber"
+      ],
+      [
+        "Agrupar a los justos",
+        "Instantáneo"
+      ],
+      [
+        "Ralliement des justes",
+        "Éphémère"
+      ],
+      [
+        "Riorganizzare i Giusti",
+        "Istantaneo"
+      ],
+      [
+        "正義の再興",
+        "インスタント"
+      ],
+      [
+        "Reúna os Justos",
+        "Mágica Instantânea"
+      ],
+      [
+        "Праведный сбор",
+        "Мгновенное заклинание"
+      ],
+      [
+        "动员义士",
+        "瞬间"
+      ],
+      [
+        "Razia, Boros-Erzengel",
+        "Legendäre Kreatur — Engel"
+      ],
+      [
+        "Razia, arcángel boros",
+        "Criatura legendaria — Ángel"
+      ],
+      [
+        "Razia, archange de Boros",
+        "Créature légendaire : ange"
+      ],
+      [
+        "Razia, Arcangelo Boros",
+        "Creatura Leggendaria — Angelo"
+      ],
+      [
+        "ボロスの大天使、ラジア",
+        "伝説のクリーチャー — 天使"
+      ],
+      [
+        "Razia, arcanjo dos Boros",
+        "Criatura Lendária — Anjo"
+      ],
+      [
+        "Разия, архангел Боросов",
+        "Легендарное существо — Ангел"
+      ],
+      [
+        "波洛斯大天使拉基雅",
+        "传奇生物～天使"
+      ],
+      [
+        "Razias Läuterung",
+        "Hexerei"
+      ],
+      [
+        "Purificación de Razia",
+        "Conjuro"
+      ],
+      [
+        "Purification selon Razia",
+        "Rituel"
+      ],
+      [
+        "Purificazione di Razia",
+        "Stregoneria"
+      ],
+      [
+        "ラジアの浄化",
+        "ソーサリー"
+      ],
+      [
+        "Purificação de Razia",
+        "Feitiço"
+      ],
+      [
+        "Очищение Разии",
+        "Волшебство"
+      ],
+      [
+        "拉基雅的净化",
+        "法术"
+      ],
+      [
+        "Sengende Meditation",
+        "Verzauberung"
+      ],
+      [
+        "Meditación abrasadora",
+        "Encantamiento"
+      ],
+      [
+        "Méditation corrosive",
+        "Enchantement"
+      ],
+      [
+        "Meditazione Bruciante",
+        "Incantesimo"
+      ],
+      [
+        "焼尽の瞑想",
+        "エンチャント"
+      ],
+      [
+        "Meditação Cauterizante",
+        "Encantamento"
+      ],
+      [
+        "Обжигающая медитация",
+        "Чары"
+      ],
+      [
+        "炙热冥思",
+        "结界"
+      ],
+      [
+        "Himmelsritter-Legionär",
+        "Kreatur — Mensch, Ritter"
+      ],
+      [
+        "Legionario caballero celeste",
+        "Criatura — Caballero humano"
+      ],
+      [
+        "Légionnaire chevalier céleste",
+        "Créature : humain et chevalier"
+      ],
+      [
+        "Legionario Cavaliere dei Cieli",
+        "Creatura — Cavaliere Umano"
+      ],
+      [
+        "空騎士の軍団兵",
+        "クリーチャー — 人間・騎士"
+      ],
+      [
+        "Legionário Cavaleiro da Noite",
+        "Criatura — Cavaleiro Humano"
+      ],
+      [
+        "Небесный рыцарь-легионер",
+        "Существо — Человек Рыцарь"
+      ],
+      [
+        "空骑士军团兵",
+        "生物～人类／骑士"
+      ],
+      [
+        "Sonnenheim-Vollstrecker",
+        "Kreatur — Riese, Soldat"
+      ],
+      [
+        "Coaccionador de Casa Solar",
+        "Criatura — Soldado gigante"
+      ],
+      [
+        "Argousin de Solcastel",
+        "Créature : géant et soldat"
+      ],
+      [
+        "Tutore di Sol-Dimora",
+        "Creatura — Soldato Gigante"
+      ],
+      [
+        "サンホームの処罰者",
+        "クリーチャー — 巨人・兵士"
+      ],
+      [
+        "Impositor da Morada do Sol",
+        "Criatura — Soldado Gigante"
+      ],
+      [
+        "Воитель Дома Солнца",
+        "Существо — Гигант Солдат"
+      ],
+      [
+        "阳园执法者",
+        "生物～巨人／士兵"
+      ],
+      [
+        "Trompeter des Donnerlieds",
+        "Kreatur — Mensch, Soldat"
+      ],
+      [
+        "Trompetista cancióntrueno",
+        "Criatura — Soldado humano"
+      ],
+      [
+        "Joueur de trompe chantonnerre",
+        "Créature : humain et soldat"
+      ],
+      [
+        "Trombettiere Rombosuono",
+        "Creatura — Soldato Umano"
+      ],
+      [
+        "雷楽のラッパ吹き",
+        "クリーチャー — 人間・兵士"
+      ],
+      [
+        "Trombeteiro Trovoada",
+        "Criatura — Soldado Humano"
+      ],
+      [
+        "Громовой трубач",
+        "Существо — Человек Солдат"
+      ],
+      [
+        "雷动号兵",
+        "生物～人类／士兵"
+      ],
+      [
+        "Boros-Gildenmagier",
+        "Kreatur — Mensch, Zauberer"
+      ],
+      [
+        "Maga del Gremio Boros",
+        "Criatura — Hechicero humano"
+      ],
+      [
+        "Ghildmage de Boros",
+        "Créature : humain et sorcier"
+      ],
+      [
+        "Maga della Gilda Boros",
+        "Creatura — Mago Umano"
+      ],
+      [
+        "ボロスのギルド魔道士",
+        "クリーチャー — 人間・ウィザード"
+      ],
+      [
+        "Maga da Guilda Boros",
+        "Criatura — Mago Humano"
+      ],
+      [
+        "Маг гильдии Боросов",
+        "Существо — Человек Чародей"
+      ],
+      [
+        "波洛斯公会法师",
+        "生物～人类／法术师"
+      ],
+      [
+        "Boros-Rekrut",
+        "Kreatur — Goblin, Soldat"
+      ],
+      [
+        "Recluta boros",
+        "Criatura — Soldado trasgo"
+      ],
+      [
+        "Recrue boros",
+        "Créature : gobelin et soldat"
+      ],
+      [
+        "Recluta Boros",
+        "Creatura — Soldato Goblin"
+      ],
+      [
+        "ボロスの補充兵",
+        "クリーチャー — ゴブリン・兵士"
+      ],
+      [
+        "Recruta Boros",
+        "Criatura — Soldado Goblin"
+      ],
+      [
+        "Рекрут Боросов",
+        "Существо — Гоблин Солдат"
+      ],
+      [
+        "波洛斯新兵",
+        "生物～精灵／士兵"
+      ],
+      [
+        "Meisterhafte Kriegskunst",
+        "Spontanzauber"
+      ],
+      [
+        "Maestría estratégica",
+        "Instantáneo"
+      ],
+      [
+        "Maîtrise de l'art de la guerre",
+        "Éphémère"
+      ],
+      [
+        "Maestro di Tattiche",
+        "Istantaneo"
+      ],
+      [
+        "戦場操作",
+        "インスタント"
+      ],
+      [
+        "Plano de Guerra Magistral",
+        "Mágica Instantânea"
+      ],
+      [
+        "Мастер боевого искусства",
+        "Мгновенное заклинание"
+      ],
+      [
+        "神妙兵法",
+        "瞬间"
+      ],
+      [
+        "Boros-Petschaft",
+        "Artefakt"
+      ],
+      [
+        "Sello boros",
+        "Artefacto"
+      ],
+      [
+        "Cachet de Boros",
+        "Artefact"
+      ],
+      [
+        "Sigillo Boros",
+        "Artefatto"
+      ],
+      [
+        "ボロスの印鑑",
+        "アーティファクト"
+      ],
+      [
+        "Sinete Boros",
+        "Artefato"
+      ],
+      [
+        "Печать Боросов",
+        "Артефакт"
+      ],
+      [
+        "波洛斯印记",
+        "神器"
+      ],
+      [
+        "Sonnenschmieder",
+        "Artefakt — Ausrüstung"
+      ],
+      [
+        "Forjasol",
+        "Artefacto — Equipo"
+      ],
+      [
+        "Forgeur de soleil",
+        "Artefact : équipement"
+      ],
+      [
+        "Plasmasole",
+        "Artefatto — Equipaggiamento"
+      ],
+      [
+        "太陽打ちの槌",
+        "アーティファクト — 装備品"
+      ],
+      [
+        "Forjador de Sol",
+        "Artefato — Equipamento"
+      ],
+      [
+        "Солнечный молот",
+        "Артефакт — Снаряжение"
+      ],
+      [
+        "铸阳锤",
+        "神器～武具"
+      ],
+      [
+        "Boros-Garnison",
+        "Land"
+      ],
+      [
+        "Fuerte boros",
+        "Tierra"
+      ],
+      [
+        "Garnison de Boros",
+        "Terrain"
+      ],
+      [
+        "Guarnigione Boros",
+        "Terra"
+      ],
+      [
+        "ボロスの駐屯地",
+        "土地"
+      ],
+      [
+        "Guarnição Boros",
+        "Terreno"
+      ],
+      [
+        "Гарнизон Боросов",
+        "Земля"
+      ],
+      [
+        "波洛斯驻防地",
+        "地"
+      ],
+      [
+        "Heilige Schmelze",
+        "Land — Gebirge, Ebene"
+      ],
+      [
+        "Fundición sagrada",
+        "Tierra — Montaña llanura"
+      ],
+      [
+        "Fonderie sacrée",
+        "Terrain : montagne et plaine"
+      ],
+      [
+        "Fonderia Sacra",
+        "Terra — Montagna Pianura"
+      ],
+      [
+        "聖なる鋳造所",
+        "土地 — 山・平地"
+      ],
+      [
+        "Fundição Sagrada",
+        "Terreno — Montanha Planície"
+      ],
+      [
+        "Священная кузня",
+        "Земля — Гора Равнины"
+      ],
+      [
+        "圣洁锻炉",
+        "地～山脉／平原"
+      ],
+      [
+        "Sonnenheim, Festung der Legion",
+        "Land"
+      ],
+      [
+        "Casa Solar, base de la Legión",
+        "Tierra"
+      ],
+      [
+        "Solcastel, forteresse de la Légion",
+        "Terrain"
+      ],
+      [
+        "Sol-Dimora, Rocca della Legione",
+        "Terra"
+      ],
+      [
+        "軍の要塞、サンホーム",
+        "土地"
+      ],
+      [
+        "Morada do Sol, Fortaleza da Legião",
+        "Terreno"
+      ],
+      [
+        "Дом Солнца, крепость Легиона",
+        "Земля"
+      ],
+      [
+        "教团要塞阳园",
+        "地"
+      ]
+    ]
+  },
+  "pred_sql": "SELECT fd.name, fd.type FROM cards c JOIN foreign_data fd ON c.uuid = fd.uuid WHERE c.watermark = 'boros';",
+  "question": "Name the foreign name of the card that has boros watermark? List out the type of this card.",
+  "thinking": ""
+}
