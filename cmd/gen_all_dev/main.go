@@ -13,11 +13,11 @@ import (
 	"strings"
 	"sync"
 
-	"reactsql/internal/adapter"
-	"reactsql/internal/agent"
-	contextpkg "reactsql/internal/context"
-	"reactsql/internal/llm"
-	"reactsql/internal/logger"
+	"github.com/Zqzqsb/AtlasCore/internal/adapter"
+	"github.com/Zqzqsb/AtlasCore/internal/agent"
+	contextpkg "github.com/Zqzqsb/AtlasCore/internal/context"
+	"github.com/Zqzqsb/AtlasCore/internal/llm"
+	"github.com/Zqzqsb/AtlasCore/internal/logger"
 )
 
 // devQueryEntry represents one entry in the Spider dev JSON file

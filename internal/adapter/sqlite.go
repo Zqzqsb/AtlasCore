@@ -119,7 +119,7 @@ func (a *SQLiteAdapter) GetDatabaseVersion(ctx context.Context) (string, error) 
 		return "", err
 	}
 	if result.Error != "" {
-		return "", fmt.Errorf(result.Error)
+		return "", fmt.Errorf("%s", result.Error)
 	}
 	if len(result.Rows) > 0 {
 		if version, ok := result.Rows[0]["version"].(string); ok {

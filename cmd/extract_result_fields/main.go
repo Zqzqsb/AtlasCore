@@ -10,7 +10,7 @@ import (
 	"strings"
 
 	"github.com/tmc/langchaingo/llms"
-	"reactsql/internal/llm"
+	"github.com/Zqzqsb/AtlasCore/internal/llm"
 )
 
 // SpiderCase represents a case from Spider dataset

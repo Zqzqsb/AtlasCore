@@ -31,11 +31,18 @@ Thumbs.db
 
 # Config files with secrets
 llm_config.json
+**/llm_config.json
 *.env
 .env.local
 
+# Certificates and keys
+*.pem
+*.key
+*.p12
+*.pfx
+
 # Logs
-/*.log
+**/*.log
 logs/
 
 # Build output

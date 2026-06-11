@@ -14,8 +14,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"reactsql/internal/adapter"
-	"reactsql/internal/llm"
+	"github.com/Zqzqsb/AtlasCore/internal/adapter"
+	"github.com/Zqzqsb/AtlasCore/internal/llm"
 
 	langllm "github.com/tmc/langchaingo/llms"
 )

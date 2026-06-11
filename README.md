@@ -21,7 +21,7 @@
 
 ```bash
 # 1. Clone & download datasets
-git clone <repo-url> && cd ReActSqlExp
+git clone https://github.com/Zqzqsb/AtlasCore.git && cd AtlasCore
 bash scripts/download_datasets.sh
 
 # 2. Configure LLM API

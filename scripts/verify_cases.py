@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-对候选 case 验证 DAIL-SQL 是否做错。
-直接用已有的 BIRD 全量预测文件，在数据库上执行比对。
+Verify whether DAIL-SQL gets specific candidate cases wrong.
+Uses existing BIRD full prediction files, executing and comparing on the database.
 """
 import json
 import sqlite3
 import signal
 
-# 候选 idx 列表（我们正确 + 步数高的）
+# Candidate indices (we got correct + high step count)
 CANDIDATES = [860, 595, 935, 24, 77, 936, 944, 616, 871, 943, 1009,
               481, 705, 1525, 32, 86, 88, 271, 411, 689, 861, 870,
               33, 482, 605, 765, 890, 1039, 1350, 1391]
@@ -19,7 +19,7 @@ def timeout_handler(signum, frame):
     raise QueryTimeout()
 
 def safe_exec(conn, sql, timeout=5):
-    """执行 SQL，带超时保护"""
+    """Execute SQL with timeout protection"""
     signal.signal(signal.SIGALRM, timeout_handler)
     signal.alarm(timeout)
     try:
@@ -31,7 +31,7 @@ def safe_exec(conn, sql, timeout=5):
         return None, str(e)
 
 def main():
-    # 加载数据
+    # Load data
     with open('benchmarks/bird/dev/dev.json') as f:
         bird_dev = json.load(f)
 
@@ -83,11 +83,11 @@ def main():
             'reason': reason,
         })
 
-    # 汇总
+    # Summary
     wrong = [r for r in results if not r['dail_correct']]
     print(f"\n{'='*60}")
-    print(f"总计验证: {len(results)} 个候选")
-    print(f"DAIL-SQL 做错: {len(wrong)} 个（我们做对、DAIL做错 → 可用于 case study）")
+    print(f"Total verified: {len(results)} candidates")
+    print(f"DAIL-SQL wrong: {len(wrong)} (we got correct, DAIL got wrong -> suitable for case study)")
     print(f"{'='*60}")
     for r in wrong:
         print(f"  #{r['idx']:4d} [{r['db_id']}] {r['question'][:80]}")

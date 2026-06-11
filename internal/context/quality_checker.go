@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"reactsql/internal/adapter"
+	"github.com/Zqzqsb/AtlasCore/internal/adapter"
 )
 
 // QualityChecker performs deterministic data quality checks on a table.

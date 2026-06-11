@@ -6,7 +6,7 @@ import (
 	"regexp"
 	"strings"
 
-	"reactsql/internal/adapter"
+	"github.com/Zqzqsb/AtlasCore/internal/adapter"
 )
 
 // VerifySQLTool SQL syntax verification tool

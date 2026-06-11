@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"reactsql/internal/adapter"
+	"github.com/Zqzqsb/AtlasCore/internal/adapter"
 
 	"github.com/tmc/langchaingo/agents"
 	"github.com/tmc/langchaingo/tools"

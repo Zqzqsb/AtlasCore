@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"strings"
 
-	"reactsql/internal/adapter"
+	"github.com/Zqzqsb/AtlasCore/internal/adapter"
 )
 
 // LoadInputFile loads input results from file

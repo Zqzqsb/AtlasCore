@@ -10,11 +10,11 @@ import (
 	"path/filepath"
 	"strings"
 
-	"reactsql/internal/adapter"
-	"reactsql/internal/agent"
-	contextpkg "reactsql/internal/context"
-	"reactsql/internal/inference"
-	"reactsql/internal/llm"
+	"github.com/Zqzqsb/AtlasCore/internal/adapter"
+	"github.com/Zqzqsb/AtlasCore/internal/agent"
+	contextpkg "github.com/Zqzqsb/AtlasCore/internal/context"
+	"github.com/Zqzqsb/AtlasCore/internal/inference"
+	"github.com/Zqzqsb/AtlasCore/internal/llm"
 )
 
 // ─────────────────────────────────────────────────────

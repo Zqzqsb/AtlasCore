@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-import sqlite3, json
+import sqlite3, json, os
 
-BASE = '/home/zq/Projects/ReActSqlExp'
+BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 with open(f'{BASE}/benchmarks/bird/dev/dev.json') as f:
     bird = json.load(f)

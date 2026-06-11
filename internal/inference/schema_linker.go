@@ -10,8 +10,8 @@ import (
 	"github.com/tmc/langchaingo/llms"
 	"github.com/tmc/langchaingo/tools"
 
-	"reactsql/internal/adapter"
-	contextpkg "reactsql/internal/context"
+	"github.com/Zqzqsb/AtlasCore/internal/adapter"
+	contextpkg "github.com/Zqzqsb/AtlasCore/internal/context"
 )
 
 // SchemaLinkResult holds the output of Schema Linking

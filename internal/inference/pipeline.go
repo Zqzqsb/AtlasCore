@@ -11,8 +11,8 @@ import (
 	"github.com/pkoukk/tiktoken-go"
 	"github.com/tmc/langchaingo/llms"
 
-	"reactsql/internal/adapter"
-	contextpkg "reactsql/internal/context"
+	"github.com/Zqzqsb/AtlasCore/internal/adapter"
+	contextpkg "github.com/Zqzqsb/AtlasCore/internal/context"
 )
 
 // Config inference pipeline configuration

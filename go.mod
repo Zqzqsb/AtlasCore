@@ -1,4 +1,4 @@
-module reactsql
+module github.com/Zqzqsb/AtlasCore
 
 go 1.24.4
 

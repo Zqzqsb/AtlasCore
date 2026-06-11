@@ -14,7 +14,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"reactsql/internal/adapter"
+	"github.com/Zqzqsb/AtlasCore/internal/adapter"
 )
 
 // ─────────────────────────────────────────────────────

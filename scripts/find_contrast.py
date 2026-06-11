@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Find cases where our method is correct but DAIL-SQL is wrong (BIRD dev set)."""
-import json, sqlite3, os
+import json, sqlite3, os, signal
 
-BASE = '/home/zq/Projects/ReActSqlExp'
+BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 with open(f'{BASE}/results/bird/20260301_180516_react+rich_context+clarify/results.json') as f:
     our_bird = json.load(f)
@@ -13,7 +13,6 @@ with open(f'{BASE}/third_party/DAIL-SQL/results/DAIL-SQL+GPT-4.txt') as f:
 with open(f'{BASE}/benchmarks/bird/dev/dev.json') as f:
     bird_dev = json.load(f)
 
-import signal
 
 class TimeoutError(Exception):
     pass
@@ -44,7 +43,7 @@ def exec_and_compare(db_path, gold_sql, pred_sql, timeout=5):
         if conn: conn.close()
         return None, False, str(e)
 
-import sys
+
 contrast = []
 total = min(len(our_bird), len(dail_preds), len(bird_dev))
 for i in range(total):

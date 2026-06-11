@@ -15,9 +15,9 @@ import (
 	"syscall"
 	"time"
 
-	"reactsql/internal/adapter"
-	"reactsql/internal/inference"
-	"reactsql/internal/llm"
+	"github.com/Zqzqsb/AtlasCore/internal/adapter"
+	"github.com/Zqzqsb/AtlasCore/internal/inference"
+	"github.com/Zqzqsb/AtlasCore/internal/llm"
 
 	"github.com/tmc/langchaingo/llms"
 )
