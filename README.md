@@ -7,7 +7,7 @@
 <p align="center">
   The standalone experiment framework for the inference engine of
   <b><a href="https://github.com/Zqzqsb/Lucid">ATLAS</a></b>,
-  a lake-based Text-to-SQL system presented at VLDB 2025 Demo Track.<br/>
+  a Text-to-SQL system presented at VLDB 2026 Demo Track.<br/>
   This repository isolates the core <b>ReAct + Rich Context</b> pipeline for reproducible benchmark evaluation.
 </p>
 
