@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <b>75.55%</b> EX on BIRD dev · <b>94.39%</b> EX on Spider dev (calibrated) · DeepSeek-V3
+  <b>76.40%</b> EX on BIRD dev · <b>94.39%</b> EX on Spider dev (calibrated)
 </p>
 
 ---
@@ -63,6 +63,54 @@ go run ./cmd/gen_all_dev
 
 Pre-generated contexts for 20 Spider + 2 BIRD databases are included in `contexts/sqlite/`.
 
+## ReAct Loop Example
+
+The following is a representative ReAct reasoning loop from a BIRD moderate-difficulty question, demonstrating **self-correction**: the agent detects NULL results from its first attempt and fixes the query by adding null-safety filters.
+
+```
+[2/1534] DB: california_schools (difficulty: moderate)
+Question: Please list the lowest three eligible free rates for students aged 5-17
+         in continuation schools.
+Evidence: Eligible free rates for students aged 5-17 =
+          `Free Meal Count (Ages 5-17)` / `Enrollment (Ages 5-17)`
+
+┌─ Iteration 1 ─────────────────────────────────────────────────────
+│ 💭 Thought: I need to find the lowest three eligible free rates
+│    for students aged 5-17 in continuation schools ...
+│ 🎯 Action: verify_sql
+│ 📥 SELECT CAST("Free Meal Count (Ages 5-17)" AS REAL)
+│       / "Enrollment (Ages 5-17)" AS rate
+│    FROM frpm
+│    WHERE "Educational Option Type" = 'Continuation School'
+│    ORDER BY rate ASC LIMIT 3;
+│
+│ 🔍 Output: ✓ SQL is valid!  Row count: 3
+│    Row 1: <nil>   Row 2: <nil>   Row 3: <nil>
+│    ⚠️  100% of result values are NULL. This may indicate a wrong
+│        JOIN or missing table. Double-check.
+
+┌─ Iteration 2 (Effective: 1/5) ────────────────────────────────────
+│ 💭 Thought: All results are NULL. I need to filter out rows where
+│    either the numerator or denominator is NULL ...
+│ 🎯 Action: verify_sql
+│ 📥 SELECT CAST("Free Meal Count (Ages 5-17)" AS REAL)
+│       / "Enrollment (Ages 5-17)" AS rate
+│    FROM frpm
+│    WHERE "Educational Option Type" = 'Continuation School'
+│      AND "Free Meal Count (Ages 5-17)" IS NOT NULL
+│      AND "Enrollment (Ages 5-17)" IS NOT NULL
+│      AND "Enrollment (Ages 5-17)" > 0
+│    ORDER BY rate ASC LIMIT 3;
+│
+│ 🔍 Output: ✓ SQL is valid!  Row count: 3
+│    Row 1: 0.0435   Row 2: 0.0704   Row 3: 0.1136
+
+┌─ Iteration 3 (Effective: 2/5) ────────────────────────────────────
+│ 💭 Thought: Verification shows valid non-NULL results ...
+└─ ✅ Final Answer ──────────────────────────────────
+   SELECT ... FROM frpm WHERE ... IS NOT NULL AND ... > 0 ORDER BY ... ASC LIMIT 3;
+```
+
 ## Result Analysis
 
 ```bash
@@ -84,18 +132,20 @@ All commands support both **interactive mode** (no args) and **CLI mode** (with 
 
 ## Key Results
 
-### BIRD Dev Set (1,534 questions, 11 databases, DeepSeek-V3)
+> 📄 **Latest run**: [open_results/20260324_151835_react+rich_context+clarify/summary.txt](open_results/20260324_151835_react+rich_context+clarify/summary.txt)
+
+### BIRD Dev Set (1,534 questions, 11 databases)
 
 #### Overall Accuracy
 
 | Configuration                     | EX (%)    | Avg Iters | Δ EX    |
 | --------------------------------- | --------- | --------- | ------- |
-| **Full ATLAS pipeline**           | **75.55** | **3.37**  | —       |
-| − ReAct Loop (one-shot + RC)      | 68.71     | 1.00      | −6.84   |
-| − Business rules & value mappings | 72.04     | 3.62      | −3.51   |
-| − Sample values & synonyms        | 70.86     | 3.91      | −4.69   |
-| Schema only (no Rich Context)     | 65.45     | 4.49      | −10.10  |
-| Baseline (direct generation)      | 58.93     | 1.00      | −16.62  |
+| **Full ATLAS pipeline**           | **76.40** | **3.37**  | —       |
+| − ReAct Loop (one-shot + RC)      | 68.71     | 1.00      | −7.69   |
+| − Business rules & value mappings | 72.04     | 3.62      | −4.36   |
+| − Sample values & synonyms        | 70.86     | 3.91      | −5.54   |
+| Schema only (no Rich Context)     | 65.45     | 4.49      | −10.95  |
+| Baseline (direct generation)      | 58.93     | 1.00      | −17.47  |
 
 > **Reading guide**: "− X" means removing component X from the full pipeline.
 > *Avg Iters* = average ReAct reasoning iterations per query (1.00 = one-shot, no self-correction).
@@ -106,18 +156,18 @@ Each row removes one Rich Context layer from the full pipeline, isolating the co
 
 | Configuration                     | EX (%)    | Avg Iters |
 | --------------------------------- | --------- | --------- |
-| Full ATLAS pipeline               | **75.55** | **3.37**  |
+| Full ATLAS pipeline               | **76.40** | **3.37**  |
 | − Business rules & value mappings | 72.04     | 3.62      |
 | − Sample values & synonyms        | 70.86     | 3.91      |
 | Schema only (no Rich Context)     | 65.45     | 4.49      |
 
 #### Accuracy by Difficulty
 
-| Difficulty  | Total | Correct | EX (%)    | Primary Error Types                        |
-| ----------- | ----- | ------- | --------- | ------------------------------------------ |
-| Simple      | 925   | 725     | **78.4%** | row_count: 111, data_mismatch: 79          |
-| Moderate    | 464   | 332     | **71.6%** | data_mismatch: 70, row_count: 56           |
-| Challenging | 145   | 101     | **69.7%** | row_count: 20, data_mismatch: 20           |
+| Difficulty  | Total | Correct | EX (%)    | Primary Error Types                                           |
+| ----------- | ----- | ------- | --------- | ------------------------------------------------------------ |
+| Simple      | 925   | 727     | **78.6%** | row_count: 119, data_mismatch: 79                            |
+| Moderate    | 464   | 336     | **72.4%** | data_mismatch: 71, row_count: 53, execution: 3, timeout: 1   |
+| Challenging | 145   | 108     | **74.5%** | data_mismatch: 18, row_count: 18, timeout: 1                 |
 
 ## Prerequisites
 
