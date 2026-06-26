@@ -6,7 +6,7 @@
 
 <p align="center">
   The standalone experiment framework for the inference engine of
-  <b><a href="https://github.com/Zqzqsb/Lucid">ATLAS</a></b>,
+  <b><a href="https://github.com/zqzqsb/atlas">ATLAS</a></b>,
   a Text-to-SQL system presented at VLDB 2026 Demo Track.<br/>
   This repository isolates the core <b>ReAct + Rich Context</b> pipeline for reproducible benchmark evaluation.
 </p>
@@ -21,7 +21,7 @@
 
 ```bash
 # 1. Clone & download datasets
-git clone https://github.com/Zqzqsb/AtlasCore.git && cd AtlasCore
+git clone https://github.com/zqzqsb/AtlasCore.git && cd AtlasCore
 bash scripts/download_datasets.sh
 
 # 2. Configure LLM API
