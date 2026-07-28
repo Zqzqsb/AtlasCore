@@ -645,6 +645,10 @@ func parseModelType(modelType string) llm.ModelType {
 		return llm.ModelDeepSeekV3
 	case "deepseek-v3.2":
 		return llm.ModelDeepSeekV32
+	case "deepseek-v4-pro":
+		return llm.ModelDeepSeekV4Pro
+	case "deepseek-v4-flash":
+		return llm.ModelDeepSeekV4Flash
 	case "qwen-max":
 		return llm.ModelQwenMax
 	case "qwen3-max":

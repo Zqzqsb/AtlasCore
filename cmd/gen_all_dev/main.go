@@ -40,7 +40,7 @@ var defaultGenPaths = map[string]map[string]string{
 
 func main() {
 	benchmark := flag.String("benchmark", "", "Benchmark: spider | bird (if empty, will ask interactively)")
-	modelType := flag.String("model", "deepseek-v3", "Model: deepseek-v3 | deepseek-v3.2 | qwen-max | qwen3-max | qwen3.5 | doubao-seed2-pro | qwen3-coder-plus | ali-deepseek-v3.2")
+	modelType := flag.String("model", "deepseek-v4-pro", "Model: deepseek-v3 | deepseek-v3.2 | deepseek-v4-pro | deepseek-v4-flash | qwen-max | qwen3-max | qwen3.5 | doubao-seed2-pro | qwen3-coder-plus | ali-deepseek-v3.2")
 	workers := flag.Int("workers", 2, "Number of concurrent workers")
 	skipExisting := flag.Bool("skip-existing", true, "Skip databases that already have Rich Context")
 	devFile := flag.String("dev-file", "", "Spider dev dataset JSON file path (auto-detected)")
@@ -96,7 +96,7 @@ func main() {
 	}
 
 	// ── Step 2: Select model (if not provided via flag) ──
-	if *modelType == "deepseek-v3" && flag.NFlag() == 0 {
+	if *modelType == "deepseek-v4-pro" && flag.NFlag() == 0 {
 		// Only show interactive menu if no flags were provided (pure interactive mode)
 		fmt.Println()
 		fmt.Println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
@@ -110,6 +110,8 @@ func main() {
 			displayName string
 			modelName   string
 		}{
+			{"deepseek-v4-pro", "DeepSeek-V4-Pro (Volcano)", cfg.DeepSeekV4Pro.ModelName},
+			{"deepseek-v4-flash", "DeepSeek-V4-Flash (Volcano)", cfg.DeepSeekV4Flash.ModelName},
 			{"deepseek-v3", "DeepSeek-V3 (Volcano)", cfg.DeepSeekV3.ModelName},
 			{"deepseek-v3.2", "DeepSeek-V3.2 (Volcano)", cfg.DeepSeekV32.ModelName},
 			{"qwen-max", "Qwen-Max (Aliyun)", cfg.QwenMax.ModelName},
@@ -193,6 +195,10 @@ func parseModelType(modelType string) llm.ModelType {
 		return llm.ModelDeepSeekV3
 	case "deepseek-v3.2":
 		return llm.ModelDeepSeekV32
+	case "deepseek-v4-pro":
+		return llm.ModelDeepSeekV4Pro
+	case "deepseek-v4-flash":
+		return llm.ModelDeepSeekV4Flash
 	case "qwen-max":
 		return llm.ModelQwenMax
 	case "qwen3-max":
@@ -206,7 +212,7 @@ func parseModelType(modelType string) llm.ModelType {
 	case "qwen3-coder-plus":
 		return llm.ModelQwen3CoderPlus
 	default:
-		log.Fatalf("Unknown model type: %s. Available: deepseek-v3, deepseek-v3.2, qwen-max, qwen3-max, qwen3.5, doubao-seed2-pro, qwen3-coder-plus, ali-deepseek-v3.2", modelType)
+		log.Fatalf("Unknown model type: %s. Available: deepseek-v3, deepseek-v3.2, deepseek-v4-pro, deepseek-v4-flash, qwen-max, qwen3-max, qwen3.5, doubao-seed2-pro, qwen3-coder-plus, ali-deepseek-v3.2", modelType)
 		return ""
 	}
 }
