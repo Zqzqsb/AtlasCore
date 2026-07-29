@@ -68,13 +68,16 @@ type EvalResult struct {
 
 // EvalMode predefined evaluation mode
 type EvalMode struct {
-	Name            string
-	Description     string
-	UseReact        bool
-	UseRichContext  bool
-	ReactLinking    bool
-	EnableClarify   string
-	EnableProofread bool
+	Name                 string
+	Description          string
+	UseReact             bool
+	UseRichContext       bool
+	ReactLinking         bool
+	EnableClarify        string
+	EnableProofread      bool
+	EnableOutputContract bool
+	EnableProposeFields  bool
+	ScaleCandidates      int
 }
 
 // ─────────────────────────────────────────────────────
@@ -141,6 +144,20 @@ var evalModes = []EvalMode{
 		UseReact:    true, UseRichContext: true, ReactLinking: true,
 		EnableClarify: "force", EnableProofread: true,
 	},
+	{
+		Name:        "leaderboard",
+		Description: "Black-box leaderboard baseline — ReAct+RC, clarify=off, output contract + propose_fields",
+		UseReact:    true, UseRichContext: true, ReactLinking: false,
+		EnableClarify: "off", EnableProofread: false,
+		EnableOutputContract: true, EnableProposeFields: true, ScaleCandidates: 0,
+	},
+	{
+		Name:        "leaderboard_scale",
+		Description: "Leaderboard + scale_light (6 candidates, execution vote)",
+		UseReact:    true, UseRichContext: true, ReactLinking: false,
+		EnableClarify: "off", EnableProofread: false,
+		EnableOutputContract: true, EnableProposeFields: true, ScaleCandidates: 6,
+	},
 }
 
 func main() {
@@ -154,6 +171,11 @@ func main() {
 	outputDir := flag.String("output-dir", "", "Output directory (auto-generated if empty)")
 	logMode := flag.String("log-mode", "simple", "Log mode: simple | full")
 	difficulty := flag.String("difficulty", "", "BIRD only: filter by difficulty (simple/moderate/challenging)")
+	dataPath := flag.String("data", "", "Override questions JSON (e.g. heldout test.json; SQL may be empty)")
+	dbDirFlag := flag.String("db-dir", "", "Override database directory")
+	contextDirFlag := flag.String("context-dir", "", "Override rich context directory")
+	columnMeaningPath := flag.String("column-meaning", "", "Optional column_meaning.json (official / held-out)")
+	ignoreGoldFields := flag.Bool("ignore-gold-fields", false, "Do not pass result_fields even if present in JSON (black-box)")
 
 	flag.Parse()
 
@@ -238,10 +260,19 @@ func main() {
 	devPath := paths["dev"]
 	dbDir := paths["db-dir"]
 	contextDir := paths["context"]
+	if *dataPath != "" {
+		devPath = *dataPath
+	}
+	if *dbDirFlag != "" {
+		dbDir = *dbDirFlag
+	}
+	if *contextDirFlag != "" {
+		contextDir = *contextDirFlag
+	}
 
 	// Check dev file
 	if _, err := os.Stat(devPath); os.IsNotExist(err) {
-		log.Fatalf("❌ Dev file not found: %s\n   Please download the %s benchmark first.\n   See README.md for instructions.", devPath, *benchmark)
+		log.Fatalf("❌ Dev/test file not found: %s\n   Please download the %s benchmark first.\n   See README.md for instructions.", devPath, *benchmark)
 	}
 
 	// Check database directory
@@ -459,6 +490,12 @@ func main() {
 	fmt.Printf("  React Linking:  %v\n", selectedMode.ReactLinking)
 	fmt.Printf("  Clarify Mode:   %s\n", selectedMode.EnableClarify)
 	fmt.Printf("  Proofread:      %v\n", selectedMode.EnableProofread)
+	fmt.Printf("  OutputContract: %v\n", selectedMode.EnableOutputContract)
+	fmt.Printf("  ProposeFields:  %v\n", selectedMode.EnableProposeFields)
+	fmt.Printf("  ScaleCands:     %d\n", selectedMode.ScaleCandidates)
+	if *columnMeaningPath != "" {
+		fmt.Printf("  ColumnMeaning:  %s\n", *columnMeaningPath)
+	}
 	if *difficulty != "" {
 		fmt.Printf("  Difficulty:     %s\n", *difficulty)
 	}
@@ -470,6 +507,17 @@ func main() {
 	if err != nil {
 		log.Fatalf("Failed to create LLM: %v", err)
 	}
+
+	var columnMeaning inference.ColumnMeaningStore
+	if *columnMeaningPath != "" {
+		columnMeaning, err = inference.LoadColumnMeaningJSON(*columnMeaningPath)
+		if err != nil {
+			log.Fatalf("Failed to load column_meaning: %v", err)
+		}
+		fmt.Printf("📚 Loaded column_meaning entries: %d\n", len(columnMeaning))
+	}
+
+	stripGoldFields := *ignoreGoldFields || selectedMode.Name == "leaderboard" || selectedMode.Name == "leaderboard_scale"
 
 	// Ask model identity
 	fmt.Println("🤖 Asking LLM to identify itself...")
@@ -638,8 +686,12 @@ func main() {
 			if e.Evidence != "" {
 				fmt.Printf("Evidence: %s\n", e.Evidence)
 			}
-			fmt.Printf("Gold SQL: %s\n", e.SQL)
-			result = evaluateBird(ctx, llmModel, e, dbDir, contextDir, selectedMode, *logMode, evalLogger)
+			if e.SQL != "" {
+				fmt.Printf("Gold SQL: %s\n", e.SQL)
+			} else {
+				fmt.Printf("Gold SQL: (hidden / empty — black-box)\n")
+			}
+			result = evaluateBird(ctx, llmModel, e, dbDir, contextDir, selectedMode, *logMode, evalLogger, columnMeaning, stripGoldFields)
 		}
 
 		// Update stats
@@ -875,6 +927,8 @@ func evaluateBird(
 	mode EvalMode,
 	logMode string,
 	logger *inference.InferenceLogger,
+	columnMeaning inference.ColumnMeaningStore,
+	stripGoldFields bool,
 ) (result EvalResult) {
 	result = EvalResult{
 		QuestionID: example.QuestionID,
@@ -923,6 +977,13 @@ func evaluateBird(
 		question = fmt.Sprintf("%s\n\nEvidence (MUST follow these constraints):\n%s", example.Question, example.Evidence)
 	}
 
+	resultFields := example.ResultFields
+	resultFieldsDesc := example.ResultFieldsDescription
+	if stripGoldFields || mode.EnableClarify == "off" {
+		resultFields = nil
+		resultFieldsDesc = ""
+	}
+
 	// Pipeline
 	pipelineConfig := &inference.Config{
 		UseRichContext:          mode.UseRichContext && contextFile != "",
@@ -933,12 +994,16 @@ func evaluateBird(
 		ContextFile:             contextFile,
 		ClarifyMode:             mode.EnableClarify,
 		LogMode:                 logMode,
-		ResultFields:            example.ResultFields,
-		ResultFieldsDescription: example.ResultFieldsDescription,
+		ResultFields:            resultFields,
+		ResultFieldsDescription: resultFieldsDesc,
 		EnableProofread:         mode.EnableProofread,
 		DBName:                  example.DbID,
 		DBType:                  "sqlite",
 		Benchmark:               "bird",
+		EnableOutputContract:    mode.EnableOutputContract,
+		EnableProposeFields:     mode.EnableProposeFields,
+		ColumnMeaning:           columnMeaning,
+		ScaleCandidates:         mode.ScaleCandidates,
 	}
 
 	pipeline := inference.NewPipeline(llm, dbAdapter, pipelineConfig)

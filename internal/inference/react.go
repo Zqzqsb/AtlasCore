@@ -87,6 +87,9 @@ func (p *Pipeline) reactLoop(ctx context.Context, query string, contextPrompt st
 	// Create verify_sql tool
 	verifySQLTool := NewVerifySQLTool(p.adapter, p.config.DBType)
 	verifySQLTool.logger = p.Logger
+	if p.config.OutputContract != nil {
+		verifySQLTool.contract = p.config.OutputContract
+	}
 
 	// Create ReAct Agent
 	var toolsList []tools.Tool
@@ -94,6 +97,11 @@ func (p *Pipeline) reactLoop(ctx context.Context, query string, contextPrompt st
 
 	if p.config.ClarifyMode == "on" {
 		toolsList = append(toolsList, clarifyTool)
+	}
+
+	if p.config.EnableProposeFields {
+		proposeTool := &ProposeFieldsTool{logger: p.Logger}
+		toolsList = append(toolsList, proposeTool)
 	}
 
 	if p.config.EnableProofread {
@@ -255,6 +263,8 @@ func (p *Pipeline) buildPrompt(query string, contextPrompt string, crossTableSum
 		}
 		sb.WriteString("\nCRITICAL: The SELECT output column names must match these fields. You may still use table.column syntax in the SQL body for disambiguation.\n")
 		sb.WriteString("Any deviation from this field list will be considered INCORRECT.\n\n")
+	} else if p.config.EnableOutputContract && p.config.OutputContract != nil {
+		sb.WriteString(p.config.OutputContract.FormatForPrompt())
 	}
 
 	if isReact {
@@ -265,6 +275,10 @@ func (p *Pipeline) buildPrompt(query string, contextPrompt string, crossTableSum
 		if p.config.ClarifyMode == "on" {
 			sb.WriteString(`
 - clarify_fields: Ask which fields to return (when question doesn't specify)`)
+		}
+		if p.config.EnableProposeFields {
+			sb.WriteString(`
+- propose_output_fields: Propose output columns yourself (gold-free substitute for clarify)`)
 		}
 		if p.config.EnableProofread {
 			sb.WriteString(`
@@ -279,6 +293,10 @@ Workflow:
 		if p.config.ClarifyMode == "on" {
 			sb.WriteString(`
 2. If unclear which columns needed → use clarify_fields
+3. If string values missing from Rich Context → use execute_sql to find them`)
+		} else if p.config.EnableProposeFields {
+			sb.WriteString(`
+2. If output columns are ambiguous → use propose_output_fields, then verify_sql
 3. If string values missing from Rich Context → use execute_sql to find them`)
 		} else {
 			sb.WriteString(`

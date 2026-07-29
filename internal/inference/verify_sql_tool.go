@@ -11,9 +11,10 @@ import (
 
 // VerifySQLTool SQL syntax verification tool
 type VerifySQLTool struct {
-	adapter adapter.DBAdapter
-	dbType  string
-	logger  *InferenceLogger
+	adapter  adapter.DBAdapter
+	dbType   string
+	logger   *InferenceLogger
+	contract *OutputContract
 }
 
 // Name returns tool name
@@ -110,7 +111,17 @@ func (t *VerifySQLTool) Call(ctx context.Context, input string) (string, error) 
 		warnings = append(warnings, duplicateWarning)
 	}
 
-	// 7. Build final result
+	// 7. Projection / output-contract checks (gold-free)
+	if t.contract != nil && len(data.Columns) > 0 {
+		if w := t.checkProjectionAgainstContract(data.Columns); w != "" {
+			warnings = append(warnings, w)
+		}
+	}
+	if len(data.Columns) > 8 {
+		warnings = append(warnings, fmt.Sprintf("⚠️  Result has %d columns — question may ask for fewer. Drop unrelated SELECT columns.", len(data.Columns)))
+	}
+
+	// 8. Build final result
 	if len(warnings) > 0 {
 		report.WriteString(strings.Join(warnings, "\n"))
 		report.WriteString("\n")
@@ -121,6 +132,28 @@ func (t *VerifySQLTool) Call(ctx context.Context, input string) (string, error) 
 	result := report.String()
 	logf("Output: %s\n", result)
 	return result, nil
+}
+
+func (t *VerifySQLTool) checkProjectionAgainstContract(columns []string) string {
+	if t.contract == nil || len(t.contract.Keywords) == 0 {
+		return ""
+	}
+	joined := strings.ToLower(strings.Join(columns, " "))
+	var hit []string
+	for _, kw := range t.contract.Keywords {
+		k := strings.ToLower(kw)
+		if len(k) < 3 {
+			continue
+		}
+		if strings.Contains(joined, k) {
+			hit = append(hit, kw)
+		}
+	}
+	// Soft signal only — missing keywords are common with aliases
+	if len(hit) == 0 && len(t.contract.Keywords) >= 2 {
+		return fmt.Sprintf("⚠️  Output columns %v do not obviously match contract keywords %v. Re-check SELECT vs question/evidence.", columns, t.contract.Keywords)
+	}
+	return ""
 }
 
 // quickCheck quick static check

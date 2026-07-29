@@ -67,6 +67,10 @@ benchmarks/spider/database/
 benchmarks/bird/dev/dev_databases/
 benchmarks/bird/dev/dev_databases.zip
 benchmarks/bird/dev/minidev/
+benchmarks/bird/train/
+benchmarks/bird/heldout_v1_*/test_databases/
+benchmarks/bird/heldout_v1_*/test_databases
+benchmarks/bird/heldout_v1_*_private/
 
 # Generated contexts (can be regenerated via gen_rich_context_*)
 contexts/sqlite/

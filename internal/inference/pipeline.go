@@ -37,6 +37,15 @@ type Config struct {
 
 	// Benchmark-specific config
 	Benchmark string // "spider" | "bird" — controls prompt strategy
+
+	// Leaderboard / black-box helpers (no gold SQL)
+	EnableOutputContract bool               // Derive projection hints from question+evidence
+	EnableProposeFields  bool               // Expose propose_output_fields tool
+	ColumnMeaning        ColumnMeaningStore // Optional official column_meaning.json
+	ScaleCandidates      int                // 0/1 = off; >=2 enables scale_light vote
+
+	// Filled per Execute() — not a user-facing flag
+	OutputContract *OutputContract
 }
 
 // StepCallback is called for each ReAct step update during streaming
@@ -269,6 +278,22 @@ func (p *Pipeline) Execute(ctx context.Context, query string) (*Result, error) {
 		p.Logger.Printf("📋 Using Basic Schema for %d tables\n", len(tables))
 	}
 
+	// 2b. Gold-free output contract (leaderboard)
+	if p.config.EnableOutputContract {
+		// query may already include "Evidence (...)" suffix from eval
+		qOnly, evOnly := splitQuestionEvidence(query)
+		p.config.OutputContract = BuildOutputContract(qOnly, evOnly)
+		p.Logger.Printf("📝 Output contract keywords: %v\n", p.config.OutputContract.Keywords)
+	}
+
+	// Inject column meanings into context prompt when available
+	if len(p.config.ColumnMeaning) > 0 {
+		cmBlock := p.config.ColumnMeaning.FormatForDB(p.config.DBName, tables)
+		if cmBlock != "" {
+			contextPrompt = contextPrompt + "\n" + cmBlock
+		}
+	}
+
 	// 3. Generate SQL
 	var sql string
 	if p.config.UseReact {
@@ -280,6 +305,17 @@ func (p *Pipeline) Execute(ctx context.Context, query string) (*Result, error) {
 
 	if err != nil {
 		return nil, fmt.Errorf("SQL generation failed: %w", err)
+	}
+
+	// 3b. Optional scale_light: extra one-shot variants + execution vote
+	if p.config.ScaleCandidates >= 2 {
+		chosen, cands, scaleErr := p.RunScaleLight(ctx, query, contextPrompt, crossTableSummary, sql, result)
+		if scaleErr != nil {
+			p.Logger.Printf("⚠️  scale_light failed: %v (keeping primary SQL)\n", scaleErr)
+		} else if chosen != "" {
+			p.Logger.Printf("🗳️  scale_light selected from %d candidates\n", len(cands))
+			sql = chosen
+		}
 	}
 
 	result.GeneratedSQL = sql

@@ -1,0 +1,3202 @@
+[
+  {
+    "question_id": 0,
+    "db_id": "legislator",
+    "question": "What is the average number of terms served for a current legislator that's famous or impact?",
+    "evidence": "average = DIVIDE(COUNT(bioguide), COUNT(bioguide_id)); legislator that's famous or impact refers to wikipedia_id is not null;",
+    "SQL": "",
+    "_src_idx": 4567
+  },
+  {
+    "question_id": 1,
+    "db_id": "disney",
+    "question": "Who directed the movie with the most voice actors?",
+    "evidence": "who directed refers director;",
+    "SQL": "",
+    "_src_idx": 1840
+  },
+  {
+    "question_id": 2,
+    "db_id": "public_review_platform",
+    "question": "Does Yelp business No.\"4960\" have TV?",
+    "evidence": "business No. refers to business_id; have TV refers to attribute_name = 'Has TV';",
+    "SQL": "",
+    "_src_idx": 1450
+  },
+  {
+    "question_id": 3,
+    "db_id": "video_games",
+    "question": "Tell the number of games whose publisher id is 352.",
+    "evidence": "number of games refers to count(game_id)",
+    "SQL": "",
+    "_src_idx": 5425
+  },
+  {
+    "question_id": 4,
+    "db_id": "law_episode",
+    "question": "Who played the role of a teleplay in the episode that won \"Best Television Episode\"?",
+    "evidence": "the role of a teleplay refers to role = 'teleplay'; won refers to result = 'Winner'; \"Best Television Episode\" refers to award = 'Best Television Episode'",
+    "SQL": "",
+    "_src_idx": 537
+  },
+  {
+    "question_id": 5,
+    "db_id": "codebase_comments",
+    "question": "Give the repository Url of the one with most solutions.",
+    "evidence": "repository URL refers to Url; repository Url with most solutions refers to MAX(COUNT(Solution.Id));",
+    "SQL": "",
+    "_src_idx": 5866
+  },
+  {
+    "question_id": 6,
+    "db_id": "trains",
+    "question": "How many eastbound trains have rectangular-shaped head cars?",
+    "evidence": "eastbound refers to direction = 'east'; head cars refers to position = 1",
+    "SQL": "",
+    "_src_idx": 3886
+  },
+  {
+    "question_id": 7,
+    "db_id": "european_football_1",
+    "question": "How many home victories does the Bundesliga division have in more or less than the Premier League division in the 2021 season?",
+    "evidence": "Bundesliga and the Premier League are names of division; home victories refer to FTR = 'H', where H stands for home victory; SUBTRACT(COUNT(FTR = 'H' where season = 2021, name = 'Bundesliga'), COUNT(FTR = 'H' where season = 2021, name = 'Premier League'));",
+    "SQL": "",
+    "_src_idx": 4232
+  },
+  {
+    "question_id": 8,
+    "db_id": "image_and_language",
+    "question": "State the width and height of the object with the class of 'van' in image 1.",
+    "evidence": "The bounding box's W and H abbreviations stand for the object's width and height respectively; class of 'van' in image 1 refers to OBJ_CLASS = 'van' where IMG_ID = 1;",
+    "SQL": "",
+    "_src_idx": 2994
+  },
+  {
+    "question_id": 9,
+    "db_id": "works_cycles",
+    "question": "How many products are out of stock?",
+    "evidence": "out of stock product refers to OnOrderQty = 0;",
+    "SQL": "",
+    "_src_idx": 4870
+  },
+  {
+    "question_id": 10,
+    "db_id": "synthea",
+    "question": "Provide the full names of patients who have been taking Penicillin V Potassium 250 MG since 1948.",
+    "evidence": "full names = first, last; Penicillin V Potassium 250 MG refers to medications.DESCRIPTION = 'Penicillin V Potassium 250 MG'; since 1948 refers to substr(medications.START, 1, 4) > = '1948';",
+    "SQL": "",
+    "_src_idx": 619
+  },
+  {
+    "question_id": 11,
+    "db_id": "soccer_2016",
+    "question": "How many seasons did Pune Warriors participate in?",
+    "evidence": "Pune Warriors refers to Team_Name = 'Pune Warriors'",
+    "SQL": "",
+    "_src_idx": 4128
+  },
+  {
+    "question_id": 12,
+    "db_id": "retail_world",
+    "question": "Name the products where the suppliers come from Finland.",
+    "evidence": "'Finland' is a Country; product refers to ProductName; suppliers refers to SupplierID",
+    "SQL": "",
+    "_src_idx": 2582
+  },
+  {
+    "question_id": 13,
+    "db_id": "superstore",
+    "question": "Which customer ordered 'Global High-Back Leather Tilter, Burgundy' on 10/13/2013 in the East region?",
+    "evidence": "'Global High-Back Leather Tilter, Burgundy' is the \"Product Name\"; on 10/13/2013 refers to \"Order Date\" = Date('2013-10-13'); Region = 'East'",
+    "SQL": "",
+    "_src_idx": 951
+  },
+  {
+    "question_id": 14,
+    "db_id": "image_and_language",
+    "question": "Find the object in image 5 where the object with the coordinate of (634, 468).",
+    "evidence": "object in image 5 refers to OBJ_SAMPLE_ID where IMG_ID = 5; coordinates of (634, 468) refer to X and Y coordinates of the bounding box in which X = 634 and Y = 468;",
+    "SQL": "",
+    "_src_idx": 6489
+  },
+  {
+    "question_id": 15,
+    "db_id": "superstore",
+    "question": "What is the name of the corporate customer from Rhode Island who had the highest number of orders in 2016 from the east superstore?",
+    "evidence": "corporate customer refers to Segment = 'Corporate'; Rhode Island refers to State = 'Rhode Island'; in 2016 refers to \"Order Date\" BETWEEN '2016-01-01' AND '2016-12-31'; east superstore refers to Region = 'East'; highest number of orders refers to max(order_number); name of corporate customer refers to \"Customer Name\"",
+    "SQL": "",
+    "_src_idx": 4172
+  },
+  {
+    "question_id": 16,
+    "db_id": "talkingdata",
+    "question": "How many apps are labeled 7?",
+    "evidence": "labeled 7 refers to label_id = 7;",
+    "SQL": "",
+    "_src_idx": 3979
+  },
+  {
+    "question_id": 17,
+    "db_id": "law_episode",
+    "question": "List out all award titles nominated for episode 20.",
+    "evidence": "award title refers to title; nominated refers to result = 'Winner' or result = 'Nominee'",
+    "SQL": "",
+    "_src_idx": 530
+  },
+  {
+    "question_id": 18,
+    "db_id": "movie_3",
+    "question": "How many films did actor Daryl Wahlberg appear in?",
+    "evidence": "",
+    "SQL": "",
+    "_src_idx": 3651
+  },
+  {
+    "question_id": 19,
+    "db_id": "university",
+    "question": "Please list the IDs of the universities with the top 3 female students percentage in 2011.",
+    "evidence": "in 2011 refers to year 2011; top 3 female students percentage refers to MAX(pct_female_students) LIMIT 3; ID of the university refers to university_id",
+    "SQL": "",
+    "_src_idx": 3194
+  },
+  {
+    "question_id": 20,
+    "db_id": "public_review_platform",
+    "question": "Provide the list of user ID along with review star of which has the review length of medium with business ID of 35.",
+    "evidence": ";",
+    "SQL": "",
+    "_src_idx": 5471
+  },
+  {
+    "question_id": 21,
+    "db_id": "soccer_2016",
+    "question": "How many matches were played in Season 7?",
+    "evidence": "Season 7 refers to Season_Id = 7",
+    "SQL": "",
+    "_src_idx": 4095
+  },
+  {
+    "question_id": 22,
+    "db_id": "public_review_platform",
+    "question": "List the city of the business where they open from 1 pm to 6 pm on Saturday.",
+    "evidence": "1 pm refers to opening_time = '1PM'; 6 pm refers to closing_time = '6PM'; on Saturday refers to day_of_week = 'Saturday'",
+    "SQL": "",
+    "_src_idx": 1509
+  },
+  {
+    "question_id": 23,
+    "db_id": "soccer_2016",
+    "question": "What is the venue for the match ID 829768?",
+    "evidence": "\nvenue refers to Venue_Name",
+    "SQL": "",
+    "_src_idx": 5955
+  },
+  {
+    "question_id": 24,
+    "db_id": "public_review_platform",
+    "question": "How many users have \"uber\" number of fans?",
+    "evidence": "uber number of fans refers to user_fans = 'uber';",
+    "SQL": "",
+    "_src_idx": 4344
+  },
+  {
+    "question_id": 25,
+    "db_id": "software_company",
+    "question": "How many of the customers are male?",
+    "evidence": "SEX = 'Male';",
+    "SQL": "",
+    "_src_idx": 5080
+  },
+  {
+    "question_id": 26,
+    "db_id": "university",
+    "question": "Give the name of the country that has the most universities.",
+    "evidence": "has the most universities refers to MAX(COUNT(id)); name of the country refers to country_name",
+    "SQL": "",
+    "_src_idx": 3155
+  },
+  {
+    "question_id": 27,
+    "db_id": "student_loan",
+    "question": "How many students in the Air Force?",
+    "evidence": "Air Force refers to organ = 'air_force';",
+    "SQL": "",
+    "_src_idx": 4480
+  },
+  {
+    "question_id": 28,
+    "db_id": "movielens",
+    "question": "Please list the ID of the movie that has been mostly rated by female users.",
+    "evidence": "Female users refers to u_gender = 'F'",
+    "SQL": "",
+    "_src_idx": 6018
+  },
+  {
+    "question_id": 29,
+    "db_id": "social_media",
+    "question": "What is the gender of the user who has posted the tweet that is seen by the most number of unique users?",
+    "evidence": "seen by the most number of unique users refers to Max(Reach)",
+    "SQL": "",
+    "_src_idx": 328
+  },
+  {
+    "question_id": 30,
+    "db_id": "works_cycles",
+    "question": "Who are the employees that submitted resume to Human Resource Department and got hired? State the last name.",
+    "evidence": "employees that submitted resume to Human Resource Department and got hired refers to BusinessEntittyID NOT null;",
+    "SQL": "",
+    "_src_idx": 4861
+  },
+  {
+    "question_id": 31,
+    "db_id": "chicago_crime",
+    "question": "What is the FBI description of the crime for report number 23778?",
+    "evidence": "\"23778\" is the report_no; FBI description refers to description",
+    "SQL": "",
+    "_src_idx": 3508
+  },
+  {
+    "question_id": 32,
+    "db_id": "chicago_crime",
+    "question": "What kind of location in Austin reported the most number of crimes?",
+    "evidence": "\"Austin\" is the district_name; the most number of crime refers to Max(Count(case_number)); kind of location refers to location_description",
+    "SQL": "",
+    "_src_idx": 3480
+  },
+  {
+    "question_id": 33,
+    "db_id": "beer_factory",
+    "question": "How many stars did Urijah Faber rate for Frostie?",
+    "evidence": "stars refers to StarRating; Frostie refers to BrandName = 'Frostie';",
+    "SQL": "",
+    "_src_idx": 2194
+  },
+  {
+    "question_id": 34,
+    "db_id": "professional_basketball",
+    "question": "From 1960 to 1970, what is the total point of all-star players who are still alive?",
+    "evidence": "from 1960 to 1970 refers to season_id between 1960 and 1970; still alive refers to deathDate = '0000-00-00'",
+    "SQL": "",
+    "_src_idx": 1129
+  },
+  {
+    "question_id": 35,
+    "db_id": "airline",
+    "question": "Which flight carrier operator flies from Atlantic City to Fort Lauderdale?",
+    "evidence": "flight carrier operator refers to OP_CARRIER_AIRLINE_ID; from Atlantic City refers to ORIGIN = 'ACY'; to Fort Lauderdale refers to DEST = 'FLL';",
+    "SQL": "",
+    "_src_idx": 2339
+  },
+  {
+    "question_id": 36,
+    "db_id": "authors",
+    "question": "Write down the author's name and IDs who are affiliated with Univeristiy of Oulu.",
+    "evidence": "\"University of Oulu\" is the Affiliation Organization",
+    "SQL": "",
+    "_src_idx": 5441
+  },
+  {
+    "question_id": 37,
+    "db_id": "student_loan",
+    "question": "How many students have been absents for more than 6 months?",
+    "evidence": "absents for more than 6 months refers to month > 6",
+    "SQL": "",
+    "_src_idx": 5506
+  },
+  {
+    "question_id": 38,
+    "db_id": "movie_platform",
+    "question": "What's the average rating score of the movie \"A Way of Life\"?",
+    "evidence": "A Way of Life' is movie_title; average rating score = Divide (Sum(rating_score), Count(rating_id));",
+    "SQL": "",
+    "_src_idx": 5827
+  },
+  {
+    "question_id": 39,
+    "db_id": "mondial_geo",
+    "question": "What is the population of African in 'Turks and Caicos Islands'?",
+    "evidence": "African is the name of enthic groups in the country; Population of (African in Turks and Calcos Island) = (percentage of African) * (population of Turks and Calcos Island)",
+    "SQL": "",
+    "_src_idx": 6533
+  },
+  {
+    "question_id": 40,
+    "db_id": "works_cycles",
+    "question": "Please show the credit card number of David Bradley.",
+    "evidence": "credit card number refers to CardNumber;",
+    "SQL": "",
+    "_src_idx": 2915
+  },
+  {
+    "question_id": 41,
+    "db_id": "synthea",
+    "question": "Name the reason Walter Bahringer visited medical professionals in July 2009.",
+    "evidence": "reason for visiting medical professionals refers to encounters.REASONDESCRIPTION;  in July 2009 refers to  substr(encounters.DATE, 1, 7) = '2009-07' ;",
+    "SQL": "",
+    "_src_idx": 603
+  },
+  {
+    "question_id": 42,
+    "db_id": "student_loan",
+    "question": "How many female students joined a marines and air force organization?",
+    "evidence": "joined a marines refers to organ = 'marines'; air force organization refers to organ = 'air_force';",
+    "SQL": "",
+    "_src_idx": 4451
+  },
+  {
+    "question_id": 43,
+    "db_id": "codebase_comments",
+    "question": "Please provide the id of the respository that received the most forks among the respositories that receive 21 stars.",
+    "evidence": "repository that received the most forks refers to MAX(Forks);",
+    "SQL": "",
+    "_src_idx": 279
+  },
+  {
+    "question_id": 44,
+    "db_id": "cars",
+    "question": "Among the cars with an engine displacement of no less than 400 cubic millimeter, how many cars cost at least 30,000?",
+    "evidence": "engine displacement of no less than 400 cubic millimeter refers to displacement > 400; cost at least 30,000 refers to price > 30000",
+    "SQL": "",
+    "_src_idx": 5418
+  },
+  {
+    "question_id": 45,
+    "db_id": "car_retails",
+    "question": "How many employees are there in Sydney?",
+    "evidence": "sales agent and sales representative are synonyms; Sydney is a city;",
+    "SQL": "",
+    "_src_idx": 631
+  },
+  {
+    "question_id": 46,
+    "db_id": "cs_semester",
+    "question": "List the full name of the professors who advised students with intelligence 1.",
+    "evidence": "full name of the professors = first_name, last_name;",
+    "SQL": "",
+    "_src_idx": 398
+  },
+  {
+    "question_id": 47,
+    "db_id": "regional_sales",
+    "question": "List the name of all customers who had made orders online.",
+    "evidence": "orders online refer to Sales Channel = 'Online';",
+    "SQL": "",
+    "_src_idx": 1033
+  },
+  {
+    "question_id": 48,
+    "db_id": "address",
+    "question": "What percentage of households are in \"Coroyell\" out of its state?",
+    "evidence": "DIVIDE(SUM(households where county = 'CORYELL'), SUM(households)) as percentage;",
+    "SQL": "",
+    "_src_idx": 5557
+  },
+  {
+    "question_id": 49,
+    "db_id": "shakespeare",
+    "question": "Please list all of the paragraphs that have the character name Aedile.",
+    "evidence": "paragraphs  refers to ParagraphNum; character name Aedile refers to CharName = 'Aedile'",
+    "SQL": "",
+    "_src_idx": 1209
+  },
+  {
+    "question_id": 50,
+    "db_id": "address",
+    "question": "How many post offices are there in New York?",
+    "evidence": "\"New York\" refers to state = 'NY' and name = 'New York'; 'Post Office' is the type",
+    "SQL": "",
+    "_src_idx": 5554
+  },
+  {
+    "question_id": 51,
+    "db_id": "shipping",
+    "question": "Among the shipments delivered by Maria Craft, how many shipments were delivered in 2017?",
+    "evidence": "delivered in 2017 refers to Cast(ship_date AS DATE) = 2017",
+    "SQL": "",
+    "_src_idx": 2286
+  },
+  {
+    "question_id": 52,
+    "db_id": "address",
+    "question": "Give the alias of the cities with an Asian population of 7.",
+    "evidence": "Asian population of 7 refers to asian_population = 7;",
+    "SQL": "",
+    "_src_idx": 2121
+  },
+  {
+    "question_id": 53,
+    "db_id": "computer_student",
+    "question": "Describe the year in program and in phase status for the student with most number in advisor.",
+    "evidence": "student refers to advisedBy.p_id; most number in advisor refers to max(count(p_id_dummy))",
+    "SQL": "",
+    "_src_idx": 5910
+  },
+  {
+    "question_id": 54,
+    "db_id": "talkingdata",
+    "question": "Among the app users who were not active when event no.2 happened, how many of them belong to the category Property Industry 1.0?",
+    "evidence": "not active refers to is_active = 0; event no. refers to event_id; event_id = 2;",
+    "SQL": "",
+    "_src_idx": 459
+  },
+  {
+    "question_id": 55,
+    "db_id": "retails",
+    "question": "Which ship mode has more \"deliver in person\" instructions, rail or mail?",
+    "evidence": "ship mode refers to l_shipmode; \"deliver in person\" instruction refers to l_shipinstruct = 'DELIVER IN PERSON'",
+    "SQL": "",
+    "_src_idx": 6454
+  },
+  {
+    "question_id": 56,
+    "db_id": "authors",
+    "question": "What is the homepage address for paper \"Energy-efficiency bounds for noise-tolerant dynamic circuits\"?",
+    "evidence": "\"Energy-efficiency bounds for noise-tolerant dynamic circuits\" is the Title of paper",
+    "SQL": "",
+    "_src_idx": 6152
+  },
+  {
+    "question_id": 57,
+    "db_id": "menu",
+    "question": "Which dish lasted longer, Anchovies or Fresh lobsters in every style?",
+    "evidence": "if (SUBTRACT(last_appeared, first_appeared) WHERE name = 'Anchovies') > (SUBTRACT(last_appeared, first_appeared) WHERE name = 'Fresh lobsters in every style'), it means 'Anchovies' lasted longer; if (SUBTRACT(last_appeared , first_appeared) WHERE name = 'Fresh lobsters in every style') > (SUBTRACT(last_appeared , first_appeared) WHERE name = 'Anchovies') it means 'Fresh lobsters in every style' last longer;",
+    "SQL": "",
+    "_src_idx": 2218
+  },
+  {
+    "question_id": 58,
+    "db_id": "legislator",
+    "question": "What is the contact URL of Claire McCaskill?",
+    "evidence": "contact URL refers to contact_form; Claire McCaskill is an official_full_name",
+    "SQL": "",
+    "_src_idx": 6234
+  },
+  {
+    "question_id": 59,
+    "db_id": "works_cycles",
+    "question": "What was the first job position that the company needed, and who was hired? Indicate his/her full name.",
+    "evidence": "job position and job title are synonyms; full name = FirstName+MiddleName+LastName;",
+    "SQL": "",
+    "_src_idx": 2833
+  },
+  {
+    "question_id": 60,
+    "db_id": "professional_basketball",
+    "question": "How many players received Most Valuable Player award from 1969 to 1975?",
+    "evidence": "Most Valuable Player award refers to award = 'Most Valuable Player'; from 1969 to 1975 refers to year between 1969 and 1975",
+    "SQL": "",
+    "_src_idx": 1145
+  },
+  {
+    "question_id": 61,
+    "db_id": "cs_semester",
+    "question": "How many students took the hardest course?",
+    "evidence": "diff refers to difficulty; diff is higher means the course is more difficult in which hardest difficulty is expressed as diff = 5;",
+    "SQL": "",
+    "_src_idx": 360
+  },
+  {
+    "question_id": 62,
+    "db_id": "hockey",
+    "question": "Which NHL award was most frequently won by the coach with the most wins?",
+    "evidence": "",
+    "SQL": "",
+    "_src_idx": 3060
+  },
+  {
+    "question_id": 63,
+    "db_id": "professional_basketball",
+    "question": "For team who has more home won than home lost more than 80%, list the team name and the offense points.",
+    "evidence": "home won than home lost more than 80% refers to Divide(Subtract(homeWon, homeLost), games) > 0.8; offense point refers to o_fgm",
+    "SQL": "",
+    "_src_idx": 6045
+  },
+  {
+    "question_id": 64,
+    "db_id": "works_cycles",
+    "question": "Among the vendors with maximum orders betweeen 500 to 750, which vendor has the 10th highest profit on net?",
+    "evidence": "maximum orders refers to MaxOrderQty; MaxOrderQty BETWEEN '500' AND '750'; profit on net = SUBTRACT(LastReceiptCost, StandardPrice);",
+    "SQL": "",
+    "_src_idx": 2831
+  },
+  {
+    "question_id": 65,
+    "db_id": "professional_basketball",
+    "question": "Please list the birth date of the player who has won the most MVPs.",
+    "evidence": "won the most MVP refers to Max(Count(award = 'Most Valuable Player'))",
+    "SQL": "",
+    "_src_idx": 1117
+  },
+  {
+    "question_id": 66,
+    "db_id": "sales",
+    "question": "List down the first name of customers who placed order for product id 1.",
+    "evidence": "",
+    "SQL": "",
+    "_src_idx": 6262
+  },
+  {
+    "question_id": 67,
+    "db_id": "donor",
+    "question": "For the all donations to the project 'Bringing Drama to Life', what is the percentage of the donation is paid by credit card?",
+    "evidence": "Bringing Drama to Life' is the title; Percentage = Divide(Count(payment_method = 'creditcard'), Count(projectid))*100;",
+    "SQL": "",
+    "_src_idx": 6104
+  },
+  {
+    "question_id": 68,
+    "db_id": "cs_semester",
+    "question": "Which student has the highest gpa? Give the full name.",
+    "evidence": "GPA is an abbreviated name of Grade Point Average where highest GPA = MAX(gpa); full name refers to f_name and l_name;",
+    "SQL": "",
+    "_src_idx": 358
+  },
+  {
+    "question_id": 69,
+    "db_id": "retails",
+    "question": "How many part supplies are close to being out of stock?",
+    "evidence": "close to being out of stock refers to ps_availqty < 10",
+    "SQL": "",
+    "_src_idx": 6458
+  },
+  {
+    "question_id": 70,
+    "db_id": "craftbeer",
+    "question": "Of all the beer styles produced by Stevens Point Brewery, how many percent do they allot for American Adjunct Lager?",
+    "evidence": "Percent allotted = count(American Adjunct Lager beer styles) / count(styles) * 100%",
+    "SQL": "",
+    "_src_idx": 3562
+  },
+  {
+    "question_id": 71,
+    "db_id": "ice_hockey_draft",
+    "question": "Name the Chilliwack Chiefs players who have scored 100 points or more in the NHL.",
+    "evidence": "name of the player refers to PlayerName; Chilliwack Chiefs refers to TEAM = 'Chilliwack Chiefs'; scored 100 points or more in the NHL refers to P > 100;",
+    "SQL": "",
+    "_src_idx": 2656
+  },
+  {
+    "question_id": 72,
+    "db_id": "menu",
+    "question": "How many menus with the name \"Waldorf Astoria\" have 4 pages?",
+    "evidence": "4 pages refers to page_count = 4;",
+    "SQL": "",
+    "_src_idx": 5578
+  },
+  {
+    "question_id": 73,
+    "db_id": "simpson_episodes",
+    "question": "How many episodes were aired between October and November 2008?",
+    "evidence": "between October and November 2008 refers to air_date BETWEEN '2008-10-01' and '2008-11-30'",
+    "SQL": "",
+    "_src_idx": 5487
+  },
+  {
+    "question_id": 74,
+    "db_id": "mondial_geo",
+    "question": "Where is the capital of country which has the largest percentage of Malay people?",
+    "evidence": "Malay is one of country names",
+    "SQL": "",
+    "_src_idx": 5044
+  },
+  {
+    "question_id": 75,
+    "db_id": "books",
+    "question": "How many books were published by Brava in 2006?",
+    "evidence": "\"Brava\" is the publisher_name; in 2006 refers to SUBSTR(publication_date, 1, 4) = '2006'",
+    "SQL": "",
+    "_src_idx": 2482
+  },
+  {
+    "question_id": 76,
+    "db_id": "soccer_2016",
+    "question": "How many victory matches were there in 2008?",
+    "evidence": "in 2008 refers to Match_Date like '2008%'",
+    "SQL": "",
+    "_src_idx": 4122
+  },
+  {
+    "question_id": 77,
+    "db_id": "talkingdata",
+    "question": "How many category names start with the word \"game\"?",
+    "evidence": "category names refers to category; start with the word game refers to category like 'game%';",
+    "SQL": "",
+    "_src_idx": 5282
+  },
+  {
+    "question_id": 78,
+    "db_id": "books",
+    "question": "How many books were published by publisher \"Thomas Nelson\"?",
+    "evidence": "\"Thomas Nelson\" is the publisher_name",
+    "SQL": "",
+    "_src_idx": 2347
+  },
+  {
+    "question_id": 79,
+    "db_id": "social_media",
+    "question": "What is the code of Gwynedd State?",
+    "evidence": "code refers to StateCode",
+    "SQL": "",
+    "_src_idx": 330
+  },
+  {
+    "question_id": 80,
+    "db_id": "world_development_indicators",
+    "question": "How many low-income countries under the lending category of the International Development Associations have a note on the series code SM.POP.TOTL?",
+    "evidence": "low-income countries are where the incomegroup = Low income",
+    "SQL": "",
+    "_src_idx": 872
+  },
+  {
+    "question_id": 81,
+    "db_id": "address",
+    "question": "List all the zip codes in the county of New Castle in Delaware.",
+    "evidence": "\"NEW CASTLE\" is the county; 'Delaware' is the name of state",
+    "SQL": "",
+    "_src_idx": 2060
+  },
+  {
+    "question_id": 82,
+    "db_id": "hockey",
+    "question": "What is the number of players whose last name is Green that played in the league but not coached?",
+    "evidence": "played in the league but not coached means playerID is not NULL and coachID is NULL;",
+    "SQL": "",
+    "_src_idx": 5702
+  },
+  {
+    "question_id": 83,
+    "db_id": "disney",
+    "question": "Among Frank Welker's voice-acted movies, list the movie titles and the total gross when the estimated inflation rate was less than 2.",
+    "evidence": "Frank Welker refers to voice-actor = 'Frank Welker'; estimated inflation rate was less than 2 can be computed as follows DIVIDE(inflation_adjusted_gross, total_gross) as percentage < 2;",
+    "SQL": "",
+    "_src_idx": 1849
+  },
+  {
+    "question_id": 84,
+    "db_id": "simpson_episodes",
+    "question": "How many crews were born in the USA?",
+    "evidence": "born in the USA refers to birth_country = 'USA'",
+    "SQL": "",
+    "_src_idx": 4421
+  },
+  {
+    "question_id": 85,
+    "db_id": "works_cycles",
+    "question": "What profit will the company gain if they sell 10 items of the product that has the lightest weight?",
+    "evidence": "Lightest product refers to Min(Weight); profit if they sell 10 items refers to Subtract (ListPrice , StandardCost) *10;",
+    "SQL": "",
+    "_src_idx": 5679
+  },
+  {
+    "question_id": 86,
+    "db_id": "citeseer",
+    "question": "Which paper ID cited the most word? In which class label does it belongs to?",
+    "evidence": "most cited word refers to max(word_cited_id);",
+    "SQL": "",
+    "_src_idx": 1612
+  },
+  {
+    "question_id": 87,
+    "db_id": "movie_3",
+    "question": "Among the payments made by Mary Smith, how many of them are over 4.99?",
+    "evidence": "over 4.99 refers to amount > 4.99",
+    "SQL": "",
+    "_src_idx": 3779
+  },
+  {
+    "question_id": 88,
+    "db_id": "language_corpus",
+    "question": "List the titles for all Catalan language wikipedia page from revision page id 106600 to 106700.",
+    "evidence": "from revision page id 106600 to 106700 refers to revision BETWEEN 106600 AND 106700",
+    "SQL": "",
+    "_src_idx": 2297
+  },
+  {
+    "question_id": 89,
+    "db_id": "genes",
+    "question": "What type of interactions occurs in genes whose function is cellular transport and transport medicine and are classified as non-essential?",
+    "evidence": "",
+    "SQL": "",
+    "_src_idx": 1010
+  },
+  {
+    "question_id": 90,
+    "db_id": "public_review_platform",
+    "question": "What are the attribute numbers that are related to payment?",
+    "evidence": "attribute numbers refers to attribute_id; related to payment refers to attribute_name like '%payment%';",
+    "SQL": "",
+    "_src_idx": 1462
+  },
+  {
+    "question_id": 91,
+    "db_id": "university",
+    "question": "Give the name and score of the university ID 124.",
+    "evidence": "name of university refers to university_name;",
+    "SQL": "",
+    "_src_idx": 5728
+  },
+  {
+    "question_id": 92,
+    "db_id": "image_and_language",
+    "question": "What is the most common object class of image ID 56?",
+    "evidence": "the most common object class of image ID 56 refers to MAX(COUNT(OBJ_CLASS_ID)) where IMG_ID = 56;",
+    "SQL": "",
+    "_src_idx": 3004
+  },
+  {
+    "question_id": 93,
+    "db_id": "retail_world",
+    "question": "Tell the country name of the supplier for \"Scottish Longbreads\".",
+    "evidence": "\"Scottish Longbreads\" refers to ProductName = 'Scottish Longbreads'",
+    "SQL": "",
+    "_src_idx": 2568
+  },
+  {
+    "question_id": 94,
+    "db_id": "mondial_geo",
+    "question": "What is the average area of Asian countries?",
+    "evidence": "Asia is a continent",
+    "SQL": "",
+    "_src_idx": 3338
+  },
+  {
+    "question_id": 95,
+    "db_id": "college_completion",
+    "question": "What is the institution's name of american students within the number of degree-seeking students in the cohort that ranges from 1 to 3?",
+    "evidence": "institution's name refers to chronname; american refers to race = 'Ai'; number of degree-seeking students in the cohort refers to grad_cohort; grad_cohort < = 3;",
+    "SQL": "",
+    "_src_idx": 1430
+  },
+  {
+    "question_id": 96,
+    "db_id": "language_corpus",
+    "question": "Among the wikipedia pages on Catalan with more than 300 different words, how many of them have a revision ID of over 28330000?",
+    "evidence": "lid = 1 means it's Catalan language; more than 300 different words refers to words > 300; revision ID of over 28330000 refers to revision > 28330000",
+    "SQL": "",
+    "_src_idx": 2314
+  },
+  {
+    "question_id": 97,
+    "db_id": "retail_complains",
+    "question": "What is the oldest age of male clients?",
+    "evidence": "oldest age refers to max(age); male refers to sex = 'Male'",
+    "SQL": "",
+    "_src_idx": 5848
+  },
+  {
+    "question_id": 98,
+    "db_id": "movielens",
+    "question": "How many female actresses appeared in the movie 2312852, what country was it in, and what was it's running time?",
+    "evidence": "female actresses mean that a_gender = 'F'",
+    "SQL": "",
+    "_src_idx": 4167
+  },
+  {
+    "question_id": 99,
+    "db_id": "works_cycles",
+    "question": "List all product name from Australia Bike Retailer order by product ID.",
+    "evidence": "Australia Bike Retailer is name of vendor",
+    "SQL": "",
+    "_src_idx": 5671
+  },
+  {
+    "question_id": 100,
+    "db_id": "food_inspection_2",
+    "question": "List down the names of the establishments with the highest risk level and failed the inspection.",
+    "evidence": "name of establishment refers to dba_name; the highest risk level refers to max(risk_level); failed the inspection refers to results = 'Fail'",
+    "SQL": "",
+    "_src_idx": 2559
+  },
+  {
+    "question_id": 101,
+    "db_id": "car_retails",
+    "question": "What's the postal code of the office the VP Sales is at?",
+    "evidence": "VP Sales refers to jobTitle",
+    "SQL": "",
+    "_src_idx": 677
+  },
+  {
+    "question_id": 102,
+    "db_id": "regional_sales",
+    "question": "Calculate the average net profit for bakeware product.",
+    "evidence": "net profit can be computed as SUBTRACT(Unit Price, Unit Cost); AVG(net profit) where Product Name = 'Bakeware';",
+    "SQL": "",
+    "_src_idx": 1034
+  },
+  {
+    "question_id": 103,
+    "db_id": "codebase_comments",
+    "question": "Which solution contains files within a more popular repository, the solution ID18 or solution ID19?",
+    "evidence": "more watchers mean that this repository is more popular;",
+    "SQL": "",
+    "_src_idx": 273
+  },
+  {
+    "question_id": 104,
+    "db_id": "donor",
+    "question": "What is the name of the vendors serving material for projects for grades 9-12?",
+    "evidence": "for grades 9-12 refers to grade_level = 'Grades 9-12'",
+    "SQL": "",
+    "_src_idx": 6122
+  },
+  {
+    "question_id": 105,
+    "db_id": "legislator",
+    "question": "How many current legislators have both accounts on both VoteView.com and maplight.org?",
+    "evidence": "have both accounts on both VoteView.com and maplight.org refers to icpsr_id is not null AND maplight_id is not null;",
+    "SQL": "",
+    "_src_idx": 4564
+  },
+  {
+    "question_id": 106,
+    "db_id": "airline",
+    "question": "What is the percentage of flights from Los Angeles International airport that were cancelled due to a type C cancellation code?",
+    "evidence": "percentage = MULTIPLY(DIVIDE(SUM(CANCELLATION_CODE = 'C'), COUNT(Code)), 100); flights from refers to ORIGIN; Los Angeles International airport refers to Description = 'Los Angeles, CA: Los Angeles International'; cancelled refers to Cancelled = 1; cancelled due to a type C cancellation code refers to CANCELLATION_CODE = 'C';",
+    "SQL": "",
+    "_src_idx": 4709
+  },
+  {
+    "question_id": 107,
+    "db_id": "trains",
+    "question": "How many cars running east have double-sided tail cars?",
+    "evidence": "east is an direction; double-sided refers to sides = 'double'; tail refers to carsposition = trailPosi",
+    "SQL": "",
+    "_src_idx": 291
+  },
+  {
+    "question_id": 108,
+    "db_id": "social_media",
+    "question": "Is 3751 the location ID for tweet with ID tw-682714048199311366?",
+    "evidence": "\"tw-682714048199311366\" is the TweetID",
+    "SQL": "",
+    "_src_idx": 338
+  },
+  {
+    "question_id": 109,
+    "db_id": "address",
+    "question": "What is the CBSA name and type in York, ME?",
+    "evidence": "\"York\" is the city; 'ME' is the state; type refers to CBSA_type",
+    "SQL": "",
+    "_src_idx": 4591
+  },
+  {
+    "question_id": 110,
+    "db_id": "public_review_platform",
+    "question": "How many reviews have the user whose ID is 3 posted?",
+    "evidence": "",
+    "SQL": "",
+    "_src_idx": 4361
+  },
+  {
+    "question_id": 111,
+    "db_id": "law_episode",
+    "question": "How many episodes are credited to Jerry Orbach?",
+    "evidence": "",
+    "SQL": "",
+    "_src_idx": 528
+  },
+  {
+    "question_id": 112,
+    "db_id": "books",
+    "question": "Provide the title of the books published in British-English.",
+    "evidence": "\"British English\" is the language_name of the book",
+    "SQL": "",
+    "_src_idx": 2481
+  },
+  {
+    "question_id": 113,
+    "db_id": "works_cycles",
+    "question": "What is the average standard cost of product number CA-1098?",
+    "evidence": "Average cost = AVG(StandardCost)",
+    "SQL": "",
+    "_src_idx": 2682
+  },
+  {
+    "question_id": 114,
+    "db_id": "codebase_comments",
+    "question": "How many XML format does the github address \"https://github.com/dogeth/vss2git.git\" have?",
+    "evidence": "Xml format refers to CommentisXml, github address refers to Url; Url = 'https://github.com/dogeth/vss2git.git';",
+    "SQL": "",
+    "_src_idx": 5893
+  },
+  {
+    "question_id": 115,
+    "db_id": "professional_basketball",
+    "question": "Please list the coach IDs who received the award twice from 1970 to 1990.",
+    "evidence": "from 1970 to 1990 refers to year between 1970 and 1990;  received award twice refers to coachID where Count(coachID) = 2",
+    "SQL": "",
+    "_src_idx": 1125
+  },
+  {
+    "question_id": 116,
+    "db_id": "human_resources",
+    "question": "What is the required education for the position of regional manager?",
+    "evidence": "required education refers to educationrequired; position of regional manager refers to  positiontitle = 'Regional Manager'",
+    "SQL": "",
+    "_src_idx": 3595
+  },
+  {
+    "question_id": 117,
+    "db_id": "chicago_crime",
+    "question": "List down the report number of crimes associated with the district commander named Jill M. Stevens.",
+    "evidence": "report number refers report_no; 'Jill M. Stevens\" is the commander",
+    "SQL": "",
+    "_src_idx": 5129
+  },
+  {
+    "question_id": 118,
+    "db_id": "public_review_platform",
+    "question": "Calculate the percentage of medium tip length in the list. List out the time when users of medium tip length join Yelp.",
+    "evidence": "medium tip length refers to tip_length = 'Medium'; percentage = divide(count(tips where tip_length = 'Medium'), count(tips))*100%; the time when users join Yelp refers to user_yelping_since_year",
+    "SQL": "",
+    "_src_idx": 5468
+  },
+  {
+    "question_id": 119,
+    "db_id": "ice_hockey_draft",
+    "question": "What is the height of David Bornhammar in inches?",
+    "evidence": "heigh in inches refers to height_in_inch;",
+    "SQL": "",
+    "_src_idx": 5646
+  },
+  {
+    "question_id": 120,
+    "db_id": "public_review_platform",
+    "question": "How many compliments received from medium users that Phoenix city achieved?",
+    "evidence": "medium refers to number_of_compliments = 'Medium';",
+    "SQL": "",
+    "_src_idx": 1457
+  },
+  {
+    "question_id": 121,
+    "db_id": "language_corpus",
+    "question": "Which Wikipedia page number does the Catalan language's name, Acampada, appear on?",
+    "evidence": "Wikipedia page number refers to page; title = 'Acampada';",
+    "SQL": "",
+    "_src_idx": 6333
+  },
+  {
+    "question_id": 122,
+    "db_id": "olympics",
+    "question": "Which cities hosted at least 3 Olympic games?",
+    "evidence": "cities refer to city_name; hosted at least 3 Olympic games refers to COUNT(games_id) > = 3;",
+    "SQL": "",
+    "_src_idx": 1948
+  },
+  {
+    "question_id": 123,
+    "db_id": "movie_platform",
+    "question": "When was the movie Cops released?",
+    "evidence": "Cops' is movie_title; released refers to movie_release_year;",
+    "SQL": "",
+    "_src_idx": 3785
+  },
+  {
+    "question_id": 124,
+    "db_id": "mental_health_survey",
+    "question": "What is the oldest age of the users in 2014's survey?",
+    "evidence": "what is your age? refer to QuestionText; 2014 refer to SurveyID; oldest age refers to MAX(AnswerText)\n\n",
+    "SQL": "",
+    "_src_idx": 1803
+  },
+  {
+    "question_id": 125,
+    "db_id": "superstore",
+    "question": "How many orders were made by Alan Barnes in 2015 at the Central superstore?",
+    "evidence": "in 2015 refers to \"Order Date\" = '2015%'",
+    "SQL": "",
+    "_src_idx": 5366
+  },
+  {
+    "question_id": 126,
+    "db_id": "shipping",
+    "question": "How many of the shipments bound for New York City were shipped to Harry's Hot Rod Auto and Truck Accessories?",
+    "evidence": "\"New York\" is the city_name; 'Harry's Hot Rod Auto & Truck Accessories' is the cust_name",
+    "SQL": "",
+    "_src_idx": 4672
+  },
+  {
+    "question_id": 127,
+    "db_id": "retails",
+    "question": "Indicate the name of the product that is close to being sold out and that has the lowest cost price.",
+    "evidence": "name of the product refers to p_name; close to being sold out refers to ps_availqty < 10; the lowest cost price refers to min(ps_supplycost)",
+    "SQL": "",
+    "_src_idx": 6450
+  },
+  {
+    "question_id": 128,
+    "db_id": "airline",
+    "question": "What is the scheduled local departure time and the actual departure time of the flight from Philadelphia to Harrisburg with the plane's tail number N627AE on the 13th of August 2018?",
+    "evidence": "scheduled local departure time refers to CRS_DEP_TIME; actual departure time refers to DEP_TIME; from Philadelphia refers to ORIGIN = 'PHL'; to Harrisburg refers to DEST = 'MDT'; tail number refers to TAIL_NUM; TAIL_NUM = 'N627AE'; on the 13th of August 2018 refers to FL_DATE = '2018/8/13';",
+    "SQL": "",
+    "_src_idx": 5606
+  },
+  {
+    "question_id": 129,
+    "db_id": "computer_student",
+    "question": "How many professional or master/graduate courses are there?",
+    "evidence": "professional or master/graduate courses refers to courseLevel = 'Level_500'",
+    "SQL": "",
+    "_src_idx": 5913
+  },
+  {
+    "question_id": 130,
+    "db_id": "works_cycles",
+    "question": "How many departments have David Bradley been in?",
+    "evidence": "",
+    "SQL": "",
+    "_src_idx": 2916
+  },
+  {
+    "question_id": 131,
+    "db_id": "hockey",
+    "question": "Name the goalies who played for more than two teams from Year 2000 to 2005.",
+    "evidence": "goalie who played for more than 2 teams refers to COUNT(DISTINCT(T2.tmID))>2",
+    "SQL": "",
+    "_src_idx": 3011
+  },
+  {
+    "question_id": 132,
+    "db_id": "college_completion",
+    "question": "Among the race of all students, what is the control of institution and level of institution with highest number of students?",
+    "evidence": "highest number of students refers to student_count; all students refer to race = 'X'.",
+    "SQL": "",
+    "_src_idx": 1428
+  },
+  {
+    "question_id": 133,
+    "db_id": "professional_basketball",
+    "question": "List out all the coach ID who have served more than 2 different teams.",
+    "evidence": "more than 2 different teams refers to count(tmID) > 2",
+    "SQL": "",
+    "_src_idx": 1147
+  },
+  {
+    "question_id": 134,
+    "db_id": "works_cycles",
+    "question": "List the full name of all the 'Production Technician - WC50'",
+    "evidence": "full name = FirstName+MiddleName+LastName; Production Technician - WC50 is a job title;",
+    "SQL": "",
+    "_src_idx": 2813
+  },
+  {
+    "question_id": 135,
+    "db_id": "mondial_geo",
+    "question": "What is the capital of Australia? Is the capital a headquarter to any organization? Name the organization(s).",
+    "evidence": "",
+    "SQL": "",
+    "_src_idx": 5741
+  },
+  {
+    "question_id": 136,
+    "db_id": "synthea",
+    "question": "Among observations in 2011, provide the names and ages of patients whose Systolic Blood Pressures are 200mmHg.",
+    "evidence": "name implies the patient's full name which refers to first, last; age refers to deathdate is null then SUBTRACT(strftime('%Y', DATE), strftime('%Y', birthdate)); Systolic Blood Pressures are 200mmHg refers to DESCRIPTION = 'Systolic Blood Pressure' and VALUE = 200 and UNITS = 'mmHg' from observations; in 2011 refers to DATE like '2011%';",
+    "SQL": "",
+    "_src_idx": 582
+  },
+  {
+    "question_id": 137,
+    "db_id": "software_company",
+    "question": "What is the total number of widowed customers with an age below 50?",
+    "evidence": "widowed customers with an age below 50 refer to MARITAL_STATUS = 'Widowed' where age < 50;",
+    "SQL": "",
+    "_src_idx": 5088
+  },
+  {
+    "question_id": 138,
+    "db_id": "cars",
+    "question": "Which is the most fuel efficient car in 1975?",
+    "evidence": "car's name refers to car_name; the most fuel efficient refers to max(mpg); in 1975 refers to model_year = 1975",
+    "SQL": "",
+    "_src_idx": 4286
+  },
+  {
+    "question_id": 139,
+    "db_id": "student_loan",
+    "question": "How many disabled students have been absent for 3 months from school?",
+    "evidence": "have been absent for 3 months from school refers to month = 3",
+    "SQL": "",
+    "_src_idx": 1740
+  },
+  {
+    "question_id": 140,
+    "db_id": "airline",
+    "question": "Among the flights on 2018/8/1, how many of them were scheduled to depart from John F. Kennedy International in New York?",
+    "evidence": "on 2018/8/1 refers to FL_DATE = '2018/8/1'; depart from refers to ORIGIN; John F. Kennedy International in New York refers to Description = 'New York, NY: John F. Kennedy International';",
+    "SQL": "",
+    "_src_idx": 2315
+  },
+  {
+    "question_id": 141,
+    "db_id": "sales",
+    "question": "Calculate the percentage of sold blades in the total number of transactions.",
+    "evidence": "percentage = MULTIPLY(DIVIDE(SUM(Quantity WHERE Name = 'Blade'), SUM(Quantity)), 1.0); 'blades' refers to name of product;",
+    "SQL": "",
+    "_src_idx": 6279
+  },
+  {
+    "question_id": 142,
+    "db_id": "cars",
+    "question": "How many cars were released in the USA in 1981?",
+    "evidence": "in the USA refers to country = 'USA'; in 1981 refers to model_year = 1981",
+    "SQL": "",
+    "_src_idx": 1244
+  },
+  {
+    "question_id": 143,
+    "db_id": "public_review_platform",
+    "question": "How many businesses that are registered in the database can be attributed to 'Good for Kids'?",
+    "evidence": "can be attributed to 'Good for Kids' refers to attribute_name = 'Good for Kids' and attribute_value = 'true'",
+    "SQL": "",
+    "_src_idx": 1543
+  },
+  {
+    "question_id": 144,
+    "db_id": "human_resources",
+    "question": "What is the average salary of the employees who work as a Trainee?",
+    "evidence": "average = DIVIDE( SUM(salary), COUNT(positiontitle) where positiontitle = 'Trainee'; Trainee is a position title",
+    "SQL": "",
+    "_src_idx": 3603
+  },
+  {
+    "question_id": 145,
+    "db_id": "food_inspection_2",
+    "question": "How many restaurants with the highest risk level still passed the inspection?",
+    "evidence": "restaurant refers to facility_type = 'Restaurant'; the highest risk level refers to max(risk_level); pass the inspection refers to results = 'Pass'",
+    "SQL": "",
+    "_src_idx": 2520
+  },
+  {
+    "question_id": 146,
+    "db_id": "movies_4",
+    "question": "What keyword can the user use to search for the movie Finding Nemo?",
+    "evidence": "What keyword refers to keyword_name; Finding Nemo refers to title = 'Finding Nemo'",
+    "SQL": "",
+    "_src_idx": 259
+  },
+  {
+    "question_id": 147,
+    "db_id": "regional_sales",
+    "question": "What is the unit cost of order SO - 000103?",
+    "evidence": "OrderNumber = 'SO - 000103';",
+    "SQL": "",
+    "_src_idx": 4206
+  },
+  {
+    "question_id": 148,
+    "db_id": "shipping",
+    "question": "What is the model year of the truck used in shipment id 1003?",
+    "evidence": "shipment id 1003 refers to ship_id = 1003",
+    "SQL": "",
+    "_src_idx": 2267
+  },
+  {
+    "question_id": 149,
+    "db_id": "hockey",
+    "question": "Who is the heaviest player? State player ID of 5 heaviest players.",
+    "evidence": "5 heaviest players refer to MAX(weight) limit to 5 playerID;",
+    "SQL": "",
+    "_src_idx": 3109
+  },
+  {
+    "question_id": 150,
+    "db_id": "restaurant",
+    "question": "What is the percentage of restaurants in the Bay Area region that scored over 4 for the review rating?",
+    "evidence": "scored over 4 refers to review > 4; percentage = divide(count(id_restaurant where region = 'bay area' and review > 4), count(id_restaurant where region = 'Bay Area')) * 100%",
+    "SQL": "",
+    "_src_idx": 712
+  },
+  {
+    "question_id": 151,
+    "db_id": "legislator",
+    "question": "Find the difference between the number of female senators and representatives born between 1930 to 1970.",
+    "evidence": "difference = SUBTRACT(SUM(type = 'sen' WHERE gender_bio = 'F' AND strftime('%Y', birthday_bio) between '1930' and '1970'), SUM(type = 'rep' WHERE gender_bio = 'F' AND strftime('%Y', birthday_bio) between '1930' and '1970')); female refers to gender_bio = 'F'; senators refers to type = 'sen'; representatives refers to type = 'rep'; born between 1930 to 1970 strftime('%Y', birthday_bio) between '1930' and '1970';",
+    "SQL": "",
+    "_src_idx": 1902
+  },
+  {
+    "question_id": 152,
+    "db_id": "book_publishing_company",
+    "question": "What is the title that have at least 10% royalty without minimum range amount.",
+    "evidence": "at least 10% royalty refers to royalty > = 10; minimum range is synonym for low range which refers to lorange; without minimum range amount refers to lorange <> 0",
+    "SQL": "",
+    "_src_idx": 37
+  },
+  {
+    "question_id": 153,
+    "db_id": "sales_in_weather",
+    "question": "On February 8, 2014, what is the minimum temperature in the station where store 29 belongs?",
+    "evidence": "On February 8, 2014 refers to date = '2014-02-08'; store 29 refers to store_nbr = 29; minimum temperature refers to tmin; station refers to station_nbr",
+    "SQL": "",
+    "_src_idx": 3254
+  },
+  {
+    "question_id": 154,
+    "db_id": "book_publishing_company",
+    "question": "Please list the first names of the employees who work as Managing Editor.",
+    "evidence": "Managing Editor is a job description which refers to job_desc",
+    "SQL": "",
+    "_src_idx": 3800
+  },
+  {
+    "question_id": 155,
+    "db_id": "hockey",
+    "question": "Please list the names of all the teams that have played against the Buffalo Sabres.",
+    "evidence": "teams that have played against refer to oppID; Buffalo Sabres is the name of team;",
+    "SQL": "",
+    "_src_idx": 3093
+  },
+  {
+    "question_id": 156,
+    "db_id": "movies_4",
+    "question": "Give the number of movies with \"saving the world\" as the keyword.",
+    "evidence": "\"saving the world\" as the keyword refers to keyword_name = 'saving the world'",
+    "SQL": "",
+    "_src_idx": 174
+  },
+  {
+    "question_id": 157,
+    "db_id": "mental_health_survey",
+    "question": "Please list all the questions in the mental health survey for 2014.",
+    "evidence": "mental health survey for 2014 refers to SurveyID = 2014",
+    "SQL": "",
+    "_src_idx": 1808
+  },
+  {
+    "question_id": 158,
+    "db_id": "image_and_language",
+    "question": "What is the relationship between \"feathers\" and \"onion\" in image no.2345528?",
+    "evidence": "relationship refers to PRED_CLASS; \"feathers\" and \"onion\" in image no.2345528 refers to IMG_ID = 2345528 and OBJ_CLASS = 'feathers' and OBJ_CLASS = 'onion'",
+    "SQL": "",
+    "_src_idx": 6486
+  },
+  {
+    "question_id": 159,
+    "db_id": "simpson_episodes",
+    "question": "What are the keywords of the episodes which have the air date in 2008?",
+    "evidence": "have air date in 2008 refers to air_date LIKE '2008%'",
+    "SQL": "",
+    "_src_idx": 1700
+  },
+  {
+    "question_id": 160,
+    "db_id": "food_inspection",
+    "question": "Please list the descriptions of all the high risk violations of Tiramisu Kitchen.",
+    "evidence": "Tiramisu Kitchen is the name of the business; high risk violations refer to risk_category = 'High Risk';",
+    "SQL": "",
+    "_src_idx": 3516
+  },
+  {
+    "question_id": 161,
+    "db_id": "food_inspection",
+    "question": "Which business was the first one to get a low risk violation because of \"Permit license or inspection report not posted\"? Give the name of the business.",
+    "evidence": "low risk violation because of \"Permit license or inspection report not posted\" refers to risk_category = 'Low Risk' where description = 'Permit license or inspection report not posted'; business was the first one refers to name where MIN(date);",
+    "SQL": "",
+    "_src_idx": 3529
+  },
+  {
+    "question_id": 162,
+    "db_id": "chicago_crime",
+    "question": "How many percent of domestic violence cases were arrested in West Pullman?",
+    "evidence": "domestic violence refers to domestic = 'TRUE'; arrested refers to arrest = 'TRUE'; West Pullman refers to community_area_name = 'West Pullman'; percent = divide(count(report_no where arrest = 'TRUE'), count(report_no)) where domestic = 'TRUE' and community_area_name = 'West Pullman' * 100%",
+    "SQL": "",
+    "_src_idx": 3472
+  },
+  {
+    "question_id": 163,
+    "db_id": "university",
+    "question": "How many universities got less than 50 scores under ranking criteria ID 6 in 2011?",
+    "evidence": "in 2011 refers to year 2011; less than 50 scores refers to score < 50;",
+    "SQL": "",
+    "_src_idx": 5725
+  },
+  {
+    "question_id": 164,
+    "db_id": "law_episode",
+    "question": "How many times was episode 20 of the Law and Order series nominated for the Primetime Emmy Awards in 1999?",
+    "evidence": "nominated refers to result = 'nominee'; the Law and Order series refers to series = 'Law and Order'; the Primetime Emmy Awards refers to organization = 'Primetime Emmy Awards'; in 1999 refers to year = 1999",
+    "SQL": "",
+    "_src_idx": 522
+  },
+  {
+    "question_id": 165,
+    "db_id": "car_retails",
+    "question": "Determine the email and Code of employee who are working at United State, state CA",
+    "evidence": "United States of America refers to country = 'USA'; code of employee refers to employeeNumber;",
+    "SQL": "",
+    "_src_idx": 645
+  },
+  {
+    "question_id": 166,
+    "db_id": "retail_complains",
+    "question": "Which city in West North Central has the highest number of customers over the age of 60?",
+    "evidence": "in North Central refers to Region = 'North Central'; highest number of customers refers to max(count(client_id)); over the age of 60 refers to age > 60",
+    "SQL": "",
+    "_src_idx": 142
+  },
+  {
+    "question_id": 167,
+    "db_id": "app_store",
+    "question": "What are the top 5 installed free apps?",
+    "evidence": "free app refers to price = 0; most installed app refers to MAX(Installs);",
+    "SQL": "",
+    "_src_idx": 1012
+  },
+  {
+    "question_id": 168,
+    "db_id": "works_cycles",
+    "question": "Among the products with an average lead time of 60, which vendor has the highest profit on net? Indicate the credit rating of such vendor.",
+    "evidence": "profit on net = SUBTRACT(LastReceiptCost, StandardPrice);",
+    "SQL": "",
+    "_src_idx": 4883
+  },
+  {
+    "question_id": 169,
+    "db_id": "olympics",
+    "question": "How many Olympic events did Michael Phelps II join in total? Find the percentage of the events where he won a gold medal.",
+    "evidence": "DIVIDE(COUNT(event_id where medal_name = 'Gold'), COUNT(event_id)) as percentage where full_name = 'Michael Fred Phelps, II';",
+    "SQL": "",
+    "_src_idx": 6241
+  },
+  {
+    "question_id": 170,
+    "db_id": "retails",
+    "question": "Please indicate the total price of order key 32.",
+    "evidence": "total price refers to o_totalprice; order key 32 refers to o_orderkey = 32",
+    "SQL": "",
+    "_src_idx": 5641
+  },
+  {
+    "question_id": 171,
+    "db_id": "restaurant",
+    "question": "List every city in San Mateo County.",
+    "evidence": "",
+    "SQL": "",
+    "_src_idx": 4072
+  },
+  {
+    "question_id": 172,
+    "db_id": "synthea",
+    "question": "How many conditions did Tyree Eichmann have?",
+    "evidence": "conditions refer to DESCRIPTION from conditions;",
+    "SQL": "",
+    "_src_idx": 569
+  },
+  {
+    "question_id": 173,
+    "db_id": "european_football_1",
+    "question": "Which away team in the division of Bundesliga has the highest final time goals?",
+    "evidence": "Bundesliga is a name of division; the highest final time goals refers to MAX(FTAG);",
+    "SQL": "",
+    "_src_idx": 1086
+  },
+  {
+    "question_id": 174,
+    "db_id": "movie_3",
+    "question": "How many films did a customer named Francis Sikes rent?",
+    "evidence": "'Francis Sikes' is a full name of a customer; full name refers to first_name, last_name;",
+    "SQL": "",
+    "_src_idx": 3718
+  },
+  {
+    "question_id": 175,
+    "db_id": "soccer_2016",
+    "question": "Where was the ID 336005 match held? Please give me the venue and the city.",
+    "evidence": "ID 336005 match refers to Match_Id = '336005'; venue refers to Venue_Name; city refers to City_Name",
+    "SQL": "",
+    "_src_idx": 805
+  },
+  {
+    "question_id": 176,
+    "db_id": "restaurant",
+    "question": "List all cities in the Northern California Region.",
+    "evidence": "",
+    "SQL": "",
+    "_src_idx": 4062
+  },
+  {
+    "question_id": 177,
+    "db_id": "olympics",
+    "question": "Who is the heaviest athlete?",
+    "evidence": "Who refers to full_name; the heaviest refers to MAX(weight);",
+    "SQL": "",
+    "_src_idx": 4583
+  },
+  {
+    "question_id": 178,
+    "db_id": "european_football_1",
+    "question": "How many Scottish League One games took place on the day that \"Pro Vercelli\" and \"Pescara\"had a 5-2 game?",
+    "evidence": "Pro Vercelli and Pescara are names of teams; HomeTeam = 'Pro Vercelli'; AwayTeam = 'Pescara'; 5-2 is a score where FTHG = '5' and FTAG = '2'; Scottish League One is a name of division; games refer to Div;",
+    "SQL": "",
+    "_src_idx": 1092
+  },
+  {
+    "question_id": 179,
+    "db_id": "beer_factory",
+    "question": "List the brand IDs of the beers whose star rating is more than 3.",
+    "evidence": "star rating is more than 3 refers to StarRating > 3;",
+    "SQL": "",
+    "_src_idx": 4626
+  },
+  {
+    "question_id": 180,
+    "db_id": "menu",
+    "question": "Please list the names of all the dishes on page 1 of menu ID12882.",
+    "evidence": "page 1 refers to page_number = 1;",
+    "SQL": "",
+    "_src_idx": 2232
+  },
+  {
+    "question_id": 181,
+    "db_id": "language_corpus",
+    "question": "How many more times does the first word in the biwords pair \"àbac-xinès\" occur than the biwords pair itself?",
+    "evidence": "àbac refers to word = 'àbac'; xinès refers to word = 'xinès'; How many more times the first word in the biwords occur than the biwords pair itself means SUBTRACT(words.occurrence, biwords.occurrences)",
+    "SQL": "",
+    "_src_idx": 4697
+  },
+  {
+    "question_id": 182,
+    "db_id": "public_review_platform",
+    "question": "Among the businesses with a category of Food, what is the percentage of the business with greater than 3 stars?",
+    "evidence": "category of food refers to category_name = 'Food'; calculation = DIVIDE(COUNT(stars > 3), SUM(stars))",
+    "SQL": "",
+    "_src_idx": 1606
+  },
+  {
+    "question_id": 183,
+    "db_id": "world_development_indicators",
+    "question": "Mention the series code of countries using pound sterling as their currency unit. Which country belongs to high income group among them.",
+    "evidence": "",
+    "SQL": "",
+    "_src_idx": 881
+  },
+  {
+    "question_id": 184,
+    "db_id": "address",
+    "question": "Name 10 cities with their states that are under the Lexington-Fayette, KY office of the Canada Border Services Agency.",
+    "evidence": "\"Lexington-Fayette, KY\" is the CBSA_name",
+    "SQL": "",
+    "_src_idx": 2074
+  },
+  {
+    "question_id": 185,
+    "db_id": "movies_4",
+    "question": "List the genres of Forrest Gump movie.",
+    "evidence": "genres refers to genre_name; Forrest Gump movie refers to title = 'Forrest Gump'",
+    "SQL": "",
+    "_src_idx": 254
+  },
+  {
+    "question_id": 186,
+    "db_id": "movies_4",
+    "question": "Calculate the average budget of the movies directed by Jaume Collet-Serra.",
+    "evidence": "directed by refers to job = 'Director'; average budget = AVG(budget)",
+    "SQL": "",
+    "_src_idx": 177
+  },
+  {
+    "question_id": 187,
+    "db_id": "simpson_episodes",
+    "question": "Name the organization which hold the award id 328.",
+    "evidence": "",
+    "SQL": "",
+    "_src_idx": 1691
+  },
+  {
+    "question_id": 188,
+    "db_id": "talkingdata",
+    "question": "What are the labels' IDs of online shopping and online malls categories?",
+    "evidence": "",
+    "SQL": "",
+    "_src_idx": 5274
+  },
+  {
+    "question_id": 189,
+    "db_id": "social_media",
+    "question": "How many tweets in French were posted from Australia?",
+    "evidence": "\"French\" is the language and refers to Lang = 'fr'; 'Australia' is the Country",
+    "SQL": "",
+    "_src_idx": 5261
+  },
+  {
+    "question_id": 190,
+    "db_id": "computer_student",
+    "question": "List the advisor IDs for students with eighth year of program and position status in faculty of those professors.",
+    "evidence": "advisor IDs refers to p_id_dummy and person.p_id where professor = 1; eighth year of program refers to yearsInprogram = 'Year_8'; position status in faculty of those professors refers to hasPosition",
+    "SQL": "",
+    "_src_idx": 5911
+  },
+  {
+    "question_id": 191,
+    "db_id": "student_loan",
+    "question": "Mention the status of payment of student 299.",
+    "evidence": "status of payment is mentioned in no_payment_due; bool = 'pos' means the student has payment due; bool = 'neg' means the student has no payment due; student299 is a name of student;",
+    "SQL": "",
+    "_src_idx": 5514
+  },
+  {
+    "question_id": 192,
+    "db_id": "video_games",
+    "question": "What are the names of the games that were published by 505 Games?",
+    "evidence": "name of game refers to game_name; published by 505 Games refers to publisher_name = '505 Games'",
+    "SQL": "",
+    "_src_idx": 1321
+  },
+  {
+    "question_id": 193,
+    "db_id": "world",
+    "question": "Among the languages used in Baltic Countries, provide the languages which are used by over 80%.\n\n",
+    "evidence": "Baltic Countries refers to Region = 'Baltic Countries'; languages which are used by over 80% refers to Percentage > 80;",
+    "SQL": "",
+    "_src_idx": 4952
+  },
+  {
+    "question_id": 194,
+    "db_id": "software_company",
+    "question": "How many customers have never married?",
+    "evidence": "MARITAL_STATUS = 'Never-married';",
+    "SQL": "",
+    "_src_idx": 5746
+  },
+  {
+    "question_id": 195,
+    "db_id": "car_retails",
+    "question": "List out full name of employees who are working in Tokyo?",
+    "evidence": "Tokyo is a city; full name = firstName+lastName;",
+    "SQL": "",
+    "_src_idx": 641
+  },
+  {
+    "question_id": 196,
+    "db_id": "simpson_episodes",
+    "question": "In between the episode 5 and10 of season 2, how many of them are credited for casting?",
+    "evidence": "between the episode 5 and 10 of season 20 refers to episode_id IN('S20-E5', 'S20-E6', 'S20-E7', 'S20-E8', 'S20-E9', 'S20-E10'); credited refers to credited = 'true'; for casting refers to role = 'casting'",
+    "SQL": "",
+    "_src_idx": 5496
+  },
+  {
+    "question_id": 197,
+    "db_id": "movie_platform",
+    "question": "Which title list has not been updated for the longest period of time? State how long it has not been updated?",
+    "evidence": "not been updated for the longest period of time refers to MIN(list_update_timestamp_utc); how long it has not been updated refers to SUBTRACT(CURRENT_TIMESTAMP, list_update_timestamp_utc)",
+    "SQL": "",
+    "_src_idx": 3791
+  },
+  {
+    "question_id": 198,
+    "db_id": "movie_3",
+    "question": "What is the average rental rate for PG-13 rated movies?",
+    "evidence": "PG-13 rated movie refers to rating = 'PG-13'; average rental rate = avg(rental_rate)",
+    "SQL": "",
+    "_src_idx": 5219
+  },
+  {
+    "question_id": 199,
+    "db_id": "authors",
+    "question": "Among the papers published in the journal \"Molecular Brain\", how many of them were published in the year 2011?",
+    "evidence": "\"Molecular Brain\" is the FullName of journal",
+    "SQL": "",
+    "_src_idx": 6139
+  },
+  {
+    "question_id": 200,
+    "db_id": "works_cycles",
+    "question": "What is the employee of company number 1's full name?",
+    "evidence": "company number 1 refers to BusinessEntityId = 1; employee refers to PersonType = 'EM'; full name refers to FirstName + MiddleName + LastName",
+    "SQL": "",
+    "_src_idx": 2747
+  },
+  {
+    "question_id": 201,
+    "db_id": "shipping",
+    "question": "Who is the driver that transported the lightest weight of shipment? Provide the full name of the driver.",
+    "evidence": "lightest weight refers to Min(weight); full name refers to first_name, last_name",
+    "SQL": "",
+    "_src_idx": 2278
+  },
+  {
+    "question_id": 202,
+    "db_id": "retail_complains",
+    "question": "Please list the full name, date of birth, and email id of the elderly clients in descending order of age.",
+    "evidence": "full name = first, middle, last; date of birth = year, month, day; elderly clients refers to age > 65;",
+    "SQL": "",
+    "_src_idx": 5236
+  },
+  {
+    "question_id": 203,
+    "db_id": "disney",
+    "question": "Which actor voices Akela from The Jungle Book?",
+    "evidence": "Akela refers character = 'Akela'; which actor voices refers to voice-actor;",
+    "SQL": "",
+    "_src_idx": 4527
+  },
+  {
+    "question_id": 204,
+    "db_id": "food_inspection",
+    "question": "In businesses with a score lower than 95 and located around the postal code of 94110, what is the percentage of businesses with a risk category of low risk?",
+    "evidence": "DIVIDE(COUNT(business_id where risk_category = 'Low Risk', score < 95 and postal_code = 94110), COUNT(business_id where score < 95 and postal_code = 94110)) as percentage;",
+    "SQL": "",
+    "_src_idx": 5147
+  },
+  {
+    "question_id": 205,
+    "db_id": "video_games",
+    "question": "Calculate the total number of IDs for the game published by Capcom and Sony Computer Entertainment.",
+    "evidence": "Capcom refers to publisher_name = 'Capcom';  Sony Computer Entertainment refers to publisher_name = 'Sony Computer Entertainment';",
+    "SQL": "",
+    "_src_idx": 1376
+  },
+  {
+    "question_id": 206,
+    "db_id": "mondial_geo",
+    "question": "Name the first organisation established in the Paris city. State its abbreviation, full name and date of establishment.",
+    "evidence": "Paris is a city",
+    "SQL": "",
+    "_src_idx": 3396
+  },
+  {
+    "question_id": 207,
+    "db_id": "law_episode",
+    "question": "For the episode with the most votes, give its air date.",
+    "evidence": "the most votes refers to max(votes)",
+    "SQL": "",
+    "_src_idx": 489
+  },
+  {
+    "question_id": 208,
+    "db_id": "coinmarketcap",
+    "question": "What was the average price of a Bitcoin in the year 2013?",
+    "evidence": "average price refers SUM(price)/COUNT(named = 'Bitcoin'); in the year 2013 refers to year(date) = 2013",
+    "SQL": "",
+    "_src_idx": 6393
+  },
+  {
+    "question_id": 209,
+    "db_id": "superstore",
+    "question": "How many orders were made by customers who live in Texas at the Central superstore?",
+    "evidence": "customer live in Texas refers to State = 'Texas'",
+    "SQL": "",
+    "_src_idx": 986
+  },
+  {
+    "question_id": 210,
+    "db_id": "cars",
+    "question": "Calculate the average price of cars from Europe.",
+    "evidence": "from Europe refers to country = 'Europe'; average price = avg(price) where country = 'Europe'",
+    "SQL": "",
+    "_src_idx": 1254
+  },
+  {
+    "question_id": 211,
+    "db_id": "movies_4",
+    "question": "Please list the names of the production company of the movie \"Four Rooms\".",
+    "evidence": "names of the production company refers to movie_company; movie \"Four Rooms\" refers to title = 'Four Rooms'",
+    "SQL": "",
+    "_src_idx": 155
+  },
+  {
+    "question_id": 212,
+    "db_id": "sales",
+    "question": "Among all the customers who have purchased ML Bottom Bracket, identify the percentage of sales by Albert I. Ringer?",
+    "evidence": "ML Bottom Bracket' is name of product; percentage = MULTIPLY(DIVIDE(SUM(CustomerID WHERE FirstName = 'Albert' AND MiddleInitial = 'I' AND LastName = 'Ringer'), COUNT(CustomerID)), 1.0);",
+    "SQL": "",
+    "_src_idx": 6270
+  },
+  {
+    "question_id": 213,
+    "db_id": "chicago_crime",
+    "question": "How many crime against property are there?",
+    "evidence": "",
+    "SQL": "",
+    "_src_idx": 5117
+  },
+  {
+    "question_id": 214,
+    "db_id": "retails",
+    "question": "What are the top 2 order keys of the item with the highest amount of extended price?",
+    "evidence": "the highest amount of extended price refers to MAX(l_extendedprice);",
+    "SQL": "",
+    "_src_idx": 6418
+  },
+  {
+    "question_id": 215,
+    "db_id": "donor",
+    "question": "Name all the project titles whereby project materials are intended mainly for literary.",
+    "evidence": "intended mainly for literary refers to primary_focus_subject = 'Literacy'",
+    "SQL": "",
+    "_src_idx": 6059
+  },
+  {
+    "question_id": 216,
+    "db_id": "food_inspection_2",
+    "question": "Please list the location coordinates of all the facilities that had an inspection on 2010/5/11.",
+    "evidence": "location coordinates refers to latitude, longitude; on 2010/5/11 refers to inspection_date = '2010-05-11'",
+    "SQL": "",
+    "_src_idx": 2496
+  },
+  {
+    "question_id": 217,
+    "db_id": "books",
+    "question": "Among the books published by publisher ID 1929, how many of them have over 500 pages?",
+    "evidence": "books have over 500 pages refers to num_pages > 500",
+    "SQL": "",
+    "_src_idx": 5608
+  },
+  {
+    "question_id": 218,
+    "db_id": "world_development_indicators",
+    "question": "What is the average value of Adjusted net enrolment rate, primary, both sexes (%) indicator in Algeria from 1975 to 1980?",
+    "evidence": "the average value of Adjusted net enrolment rate, primary, both sexes (%) is DIVIDE(SUM(Value), SUM(IndicatorName = 'Adjusted net enrolment rate, primary, both sexes (%)')); Year BETWEEN 1975 AND 1980; Algeria is the name of country where CountryName = 'Algeria'",
+    "SQL": "",
+    "_src_idx": 5960
+  },
+  {
+    "question_id": 219,
+    "db_id": "university",
+    "question": "How many universities are there in the United States of America?",
+    "evidence": "in the United States of America refers to country_name = 'United States of America';",
+    "SQL": "",
+    "_src_idx": 3158
+  },
+  {
+    "question_id": 220,
+    "db_id": "university",
+    "question": "Provide the number of international students and number of students in 2013 in university ID 20.",
+    "evidence": "number of international students refers to DIVIDE(MULTIPLY(pct_international_students, num_students), 100); in 2013 refers to year = 2013",
+    "SQL": "",
+    "_src_idx": 4990
+  },
+  {
+    "question_id": 221,
+    "db_id": "world",
+    "question": "What country declared its independence in 1994?",
+    "evidence": "declared independence in 1994 refers to IndepYear = 1994;",
+    "SQL": "",
+    "_src_idx": 4956
+  },
+  {
+    "question_id": 222,
+    "db_id": "sales_in_weather",
+    "question": "How many stores belong to the most windy station?",
+    "evidence": "most windy station refers to Max(avgspeed)",
+    "SQL": "",
+    "_src_idx": 5024
+  },
+  {
+    "question_id": 223,
+    "db_id": "address",
+    "question": "Provide the alias and elevation of the city with zip code 1028.",
+    "evidence": "",
+    "SQL": "",
+    "_src_idx": 4596
+  },
+  {
+    "question_id": 224,
+    "db_id": "movie_3",
+    "question": "What is the largest number of films rented per customer?",
+    "evidence": "the largest number of films refers to MAX(rental_id)",
+    "SQL": "",
+    "_src_idx": 3717
+  },
+  {
+    "question_id": 225,
+    "db_id": "works_cycles",
+    "question": "What is the person's business ID with a vista credit card number \"11113366963373\"?",
+    "evidence": "business id refers to BusinessEntityID",
+    "SQL": "",
+    "_src_idx": 2815
+  },
+  {
+    "question_id": 226,
+    "db_id": "world_development_indicators",
+    "question": "In Sub-Saharan Africa, how many female out-of-school children of primary school age are there in the country with the higest number of female out-of-school children of primary school age? Indicate the year of when it was recorded.",
+    "evidence": "in Sub-Saharan Africa refers to Region = 'Sub-Saharan Africa'; the higest number of female out-of-school children of primary school age refers to max(value where IndicatorName = 'Out-of-school children of primary school age, female (number)')",
+    "SQL": "",
+    "_src_idx": 6009
+  },
+  {
+    "question_id": 227,
+    "db_id": "video_games",
+    "question": "Which game has sold the fewest units?",
+    "evidence": "which game refers to game_name; sold the fewest units refers to MIN(num_sales);",
+    "SQL": "",
+    "_src_idx": 4307
+  },
+  {
+    "question_id": 228,
+    "db_id": "bike_share_1",
+    "question": "Which city is Townsend at 7th Station located and how many bikes could it hold?",
+    "evidence": "Townsend at 7th Station refers to city = 'Townsend at 7th Station'; number of bikes a station can hold refers to SUM(dock_count);",
+    "SQL": "",
+    "_src_idx": 5778
+  },
+  {
+    "question_id": 229,
+    "db_id": "talkingdata",
+    "question": "How many devices belong to model \"A51\"?",
+    "evidence": "model refers to device_model; device_model = 'A51';",
+    "SQL": "",
+    "_src_idx": 5936
+  },
+  {
+    "question_id": 230,
+    "db_id": "soccer_2016",
+    "question": "Who was the captain-keeper of Rising Pune Supergiants?",
+    "evidence": "captain-keeper refers to Role_Desc = 'CaptainKeeper'; Rising Pune Supergiants refers to Role_Desc = 'CaptainKeeper'",
+    "SQL": "",
+    "_src_idx": 5331
+  },
+  {
+    "question_id": 231,
+    "db_id": "retail_complains",
+    "question": "Among the female clients that age between 20 to 40, list the date when their complaints were received.",
+    "evidence": "female refers to sex = 'Female'",
+    "SQL": "",
+    "_src_idx": 146
+  },
+  {
+    "question_id": 232,
+    "db_id": "ice_hockey_draft",
+    "question": "Mention the type of game that Matthias Trattnig played.",
+    "evidence": "type of game refers to GAMETYPE;",
+    "SQL": "",
+    "_src_idx": 4818
+  },
+  {
+    "question_id": 233,
+    "db_id": "olympics",
+    "question": "What age of the competitors is the most numerous?",
+    "evidence": "age is the most numerous refers to age where MAX(COUNT(person_id));",
+    "SQL": "",
+    "_src_idx": 1953
+  },
+  {
+    "question_id": 234,
+    "db_id": "sales_in_weather",
+    "question": "State the max temperature of the weather station which has the no.21 store on 2012/11/9.",
+    "evidence": "no.21 store refers to store_nbr = 21; on 2012/11/9 refers to date = '2012-11-09'; max temperature refers to tmax",
+    "SQL": "",
+    "_src_idx": 3237
+  },
+  {
+    "question_id": 235,
+    "db_id": "legislator",
+    "question": "How many official social media does Mark Warner have?",
+    "evidence": "official social media refers to facebook is not null, instagram is not null, twitter is not null, youtube is not null; Mark Warner is an official_full_name; official_full_name refers to first_name, last_name",
+    "SQL": "",
+    "_src_idx": 4537
+  },
+  {
+    "question_id": 236,
+    "db_id": "legislator",
+    "question": "What is the google entity ID of Benjamin Hawkins?",
+    "evidence": "",
+    "SQL": "",
+    "_src_idx": 4550
+  },
+  {
+    "question_id": 237,
+    "db_id": "movie_3",
+    "question": "State the number of films that are 178 minutes long.",
+    "evidence": "178 min long refers to length = '178'",
+    "SQL": "",
+    "_src_idx": 6595
+  },
+  {
+    "question_id": 238,
+    "db_id": "mondial_geo",
+    "question": "Which countries have more than 90% of African? List the name of the country in full.",
+    "evidence": "Percentage = 90 means 90% of the population",
+    "SQL": "",
+    "_src_idx": 3268
+  },
+  {
+    "question_id": 239,
+    "db_id": "works_cycles",
+    "question": "What is the PreferredVendorStatus for the company which has the rowguid of \"684F328D-C185-43B9-AF9A-37ACC680D2AF\"?",
+    "evidence": "PreferredVendorStatus = 1 means 'Do not use if another vendor is available'; CreditRating = 2 means 'Preferred over other vendors supplying the same product'",
+    "SQL": "",
+    "_src_idx": 2782
+  },
+  {
+    "question_id": 240,
+    "db_id": "donor",
+    "question": "Find out if the project with the title Team More Books! has a New York teaching fellow.",
+    "evidence": "title Team More Books! Refers to title = 'Team More Books!'; as a New York teaching fellow refers to teacher_ny_teaching_fellow = 't'",
+    "SQL": "",
+    "_src_idx": 1283
+  },
+  {
+    "question_id": 241,
+    "db_id": "authors",
+    "question": "List down the author ID of authors with a name of \"Peter\".",
+    "evidence": "\"Peter\" is the name of author",
+    "SQL": "",
+    "_src_idx": 6143
+  },
+  {
+    "question_id": 242,
+    "db_id": "works_cycles",
+    "question": "List all products with the color yellow.",
+    "evidence": "",
+    "SQL": "",
+    "_src_idx": 2926
+  },
+  {
+    "question_id": 243,
+    "db_id": "music_tracker",
+    "question": "What are the average download times for the a release tagged \"1980s\"?",
+    "evidence": "AVG(totalSnatched where tag = '1980s');",
+    "SQL": "",
+    "_src_idx": 4137
+  },
+  {
+    "question_id": 244,
+    "db_id": "talkingdata",
+    "question": "Please list any five app categories that are related to games, along with their label ID.",
+    "evidence": "app categories refers to category; related to games refers to category like '%game%';",
+    "SQL": "",
+    "_src_idx": 5291
+  },
+  {
+    "question_id": 245,
+    "db_id": "retail_complains",
+    "question": "How many clients have an email account other than gmail.com?",
+    "evidence": "email account other than gmail.com refers to email not like '%@gmail.com';",
+    "SQL": "",
+    "_src_idx": 3814
+  },
+  {
+    "question_id": 246,
+    "db_id": "synthea",
+    "question": "How many patients with a body weight of more than 100 kg have a 'diabetes self-management plan' care plan?",
+    "evidence": "body weight of more than 100 kg refers to observations.DESCRIPTION = 'Body Weight' AND observations.VALUE > 100 AND observations.UNITS = 'kg'; diabetes self-management plan refers to careplans.DESCRIPTION = 'Diabetes self management plan';",
+    "SQL": "",
+    "_src_idx": 587
+  },
+  {
+    "question_id": 247,
+    "db_id": "hockey",
+    "question": "How many hall of famers both played and coached in the league?",
+    "evidence": "hall of famers refers to hofID; both played and coached means playerID is not NULL and coachID is not NULL;",
+    "SQL": "",
+    "_src_idx": 3099
+  },
+  {
+    "question_id": 248,
+    "db_id": "college_completion",
+    "question": "Tell the abbreviation for \"Delaware\" state.",
+    "evidence": "abbreviation for state refers to state_abbr;",
+    "SQL": "",
+    "_src_idx": 6198
+  },
+  {
+    "question_id": 249,
+    "db_id": "simpson_episodes",
+    "question": "List all keywords associated with the episode 'Take My Life, Please'.",
+    "evidence": "episode 'Take My Life, Please' refers to title =   'Take My Life, Please'",
+    "SQL": "",
+    "_src_idx": 1651
+  },
+  {
+    "question_id": 250,
+    "db_id": "movie_platform",
+    "question": "How many movie lists were still updated 10 years after it was created?",
+    "evidence": "updated 10 years after it was created refers to list_update_timestamp_utc > (list_creation_timestamp_utc+10);",
+    "SQL": "",
+    "_src_idx": 4
+  },
+  {
+    "question_id": 251,
+    "db_id": "movie_3",
+    "question": "What is the category of the film Agent Truman?",
+    "evidence": "'Agent Truman' is a title of a film; category refers to name",
+    "SQL": "",
+    "_src_idx": 3710
+  },
+  {
+    "question_id": 252,
+    "db_id": "books",
+    "question": "Please list the titles of all the books in British English.",
+    "evidence": "\"British English\" is the language_name of the book",
+    "SQL": "",
+    "_src_idx": 2353
+  },
+  {
+    "question_id": 253,
+    "db_id": "authors",
+    "question": "List author affiliation for papers whose topic is Quantum Physics.",
+    "evidence": "topic is Quantum Physics refers to Keyword = 'Quantum Physics'",
+    "SQL": "",
+    "_src_idx": 5442
+  },
+  {
+    "question_id": 254,
+    "db_id": "public_review_platform",
+    "question": "Among the Yelp_Businesses in Arizona, how many of them do not provide alcohol?",
+    "evidence": "Arizona refers to state = 'AZ'; do not provide alcohol refers to attribute_name = 'Alcohol' and attribute_value = 'none'",
+    "SQL": "",
+    "_src_idx": 6202
+  },
+  {
+    "question_id": 255,
+    "db_id": "retail_complains",
+    "question": "What is the percentage of male clients complaining about their credit cards?",
+    "evidence": "percentage = MULTIPLY(DIVIDE(SUM(sex = 'Male'), COUNT(client_id)), 1.0); male refers to sex = 'Male'; credit cards refers to Product = 'Credit card';",
+    "SQL": "",
+    "_src_idx": 121
+  },
+  {
+    "question_id": 256,
+    "db_id": "mondial_geo",
+    "question": "State all countries with border greater than 4,000. List the full country name.",
+    "evidence": "",
+    "SQL": "",
+    "_src_idx": 3399
+  },
+  {
+    "question_id": 257,
+    "db_id": "olympics",
+    "question": "Please list all competitors' names who participated in 1936 Summer.",
+    "evidence": "competitors' names refer to full_name; in 1936 Summer refers to games_name = '1936 Summer';",
+    "SQL": "",
+    "_src_idx": 2006
+  },
+  {
+    "question_id": 258,
+    "db_id": "car_retails",
+    "question": "Determine the email and Code of employee who are working at United State, state MA",
+    "evidence": "code of employee refers to employeeNumber; United States of America refers to country = 'USA';",
+    "SQL": "",
+    "_src_idx": 642
+  },
+  {
+    "question_id": 259,
+    "db_id": "soccer_2016",
+    "question": "List the first team's name in the match with the highest winning margin.",
+    "evidence": "team's name refers to Team_Name; first team refers to Team_Id = Team_1; the highest winning margin refers to max(Win_Margin)",
+    "SQL": "",
+    "_src_idx": 758
+  },
+  {
+    "question_id": 260,
+    "db_id": "olympics",
+    "question": "Who is the heaviest athlete from Russia?",
+    "evidence": "the heaviest athlete refers to full_name where MAX(weight); from Russia refers to region_name = 'Russia';",
+    "SQL": "",
+    "_src_idx": 1993
+  },
+  {
+    "question_id": 261,
+    "db_id": "image_and_language",
+    "question": "How many images have \"keyboard\" as their object class?",
+    "evidence": "images refer to IMG_ID; \"keyboard\" as object class refers to OBJ_CLASS = 'keyboard';",
+    "SQL": "",
+    "_src_idx": 2996
+  },
+  {
+    "question_id": 262,
+    "db_id": "food_inspection",
+    "question": "Give the description of the moderate risk violation which \"Chez Fayala, Inc.\" had on 2016/7/1.",
+    "evidence": "\"Chez Fayala, Inc.\" is the name of the business; moderate risk violation refers to risk_category = 'Moderate Risk'; date = '2016-07-01';",
+    "SQL": "",
+    "_src_idx": 3525
+  },
+  {
+    "question_id": 263,
+    "db_id": "retails",
+    "question": "What is the total price of all orders from the customer with the phone number \"627-220-3983\"?",
+    "evidence": "total price = sum(o_totalprice); phone number \"627-220-3983\" refers to c_phone = '627-220-3983'",
+    "SQL": "",
+    "_src_idx": 6459
+  },
+  {
+    "question_id": 264,
+    "db_id": "beer_factory",
+    "question": "Between Sac State Union and Sac State American River Courtyard, which location sold the most Dog n Suds root beer?",
+    "evidence": "Between Sac State Union and Sac State American River Courtyard refers to LocationName IN('Sac State American River Courtyard', 'Sac State Union'); Dog n Suds refers to BrandName = 'Dog n Suds'; sold the most root beer refers to MAX(COUNT(BrandID));",
+    "SQL": "",
+    "_src_idx": 2160
+  },
+  {
+    "question_id": 265,
+    "db_id": "student_loan",
+    "question": "What is the school and organization enrolled by student211?",
+    "evidence": "organization refers to organ; student211 is a name of student;",
+    "SQL": "",
+    "_src_idx": 1770
+  },
+  {
+    "question_id": 266,
+    "db_id": "movielens",
+    "question": "List the different director IDs of the movies whose user rating is more than 4.",
+    "evidence": "",
+    "SQL": "",
+    "_src_idx": 4154
+  },
+  {
+    "question_id": 267,
+    "db_id": "movie_3",
+    "question": "Among the customers who have rented the film ACADEMY DINOSAUR, how many of them are active?",
+    "evidence": "\"ACADEMY DINOSAUR\" is the title of film; customer refers to customer_id; active refers to active = 1",
+    "SQL": "",
+    "_src_idx": 3644
+  },
+  {
+    "question_id": 268,
+    "db_id": "law_episode",
+    "question": "What roles have not been credited at the end of the episodes?",
+    "evidence": "have not been credited refers to credited = ''",
+    "SQL": "",
+    "_src_idx": 510
+  },
+  {
+    "question_id": 269,
+    "db_id": "works_cycles",
+    "question": "How many work orders with quantities ranging from 100 to 250 have a reorder point of no more than 375?",
+    "evidence": "work order refers to TransactionType = 'W'; Quantity BETWEEN 100 AND 250; ReorderPoint< = 375;",
+    "SQL": "",
+    "_src_idx": 2834
+  },
+  {
+    "question_id": 270,
+    "db_id": "donor",
+    "question": "How much donations have been collected for project 'Whistle While We Work!'?",
+    "evidence": "donations collected refers to sum(donation_to_project); project 'Whistle While We Work!' refers to title = 'Whistle While We Work!'",
+    "SQL": "",
+    "_src_idx": 6064
+  },
+  {
+    "question_id": 271,
+    "db_id": "olympics",
+    "question": "Which summer Olympic have the highest and lowest number of participants?",
+    "evidence": "the highest number of participants refers to MAX(COUNT(person_id)); the lowest number of participants refers to MIN(COUNT(person_id)); Which summer Olympic refers to games_name where season = 'Summer';",
+    "SQL": "",
+    "_src_idx": 1972
+  },
+  {
+    "question_id": 272,
+    "db_id": "student_loan",
+    "question": "How many unemployed students filed for bankruptcy?",
+    "evidence": "unemployed students who filed for bankruptcy refers to unemployed.name who are IN filed_for_bankrupcy.name;",
+    "SQL": "",
+    "_src_idx": 4472
+  },
+  {
+    "question_id": 273,
+    "db_id": "cookbook",
+    "question": "Which recipe needs the most frozen raspberries in light syrup? State its title.",
+    "evidence": "frozen raspberries in light syrup is a name of an ingredient; max_qty = min_qty",
+    "SQL": "",
+    "_src_idx": 3571
+  },
+  {
+    "question_id": 274,
+    "db_id": "menu",
+    "question": "Among the menus with over 10 pages, how many of them have over 20 dishes?",
+    "evidence": "menus with over 10 pages refers to page_count > 10; over 20 dishes refers to dish_count > 20;",
+    "SQL": "",
+    "_src_idx": 5589
+  },
+  {
+    "question_id": 275,
+    "db_id": "disney",
+    "question": "Name the director of Disney's lowest grossing movie.",
+    "evidence": "lowest grossing movie refers to movie_title where MIN(total_gross);",
+    "SQL": "",
+    "_src_idx": 1856
+  },
+  {
+    "question_id": 276,
+    "db_id": "beer_factory",
+    "question": "What is the amount difference between the bottles of root beer sold from Louisiana and Missouri?",
+    "evidence": "difference = SUBTRACT(COUNT(ContainerType = 'Bottle' WHERE State = 'LA'), COUNT(ContainerType = 'Bottle' State = 'MO')); bottles refers to ContainerType = 'Bottle'; Louisiana refers to State = 'LA'; Missouri refers to State = 'MO';",
+    "SQL": "",
+    "_src_idx": 2188
+  },
+  {
+    "question_id": 277,
+    "db_id": "olympics",
+    "question": "How many different football events are there?",
+    "evidence": "events refer to event_name; football refers to sport_name = 'Football';",
+    "SQL": "",
+    "_src_idx": 2022
+  },
+  {
+    "question_id": 278,
+    "db_id": "world",
+    "question": "What is the capital city of the country with largest population?",
+    "evidence": "capital city refers to Capital; largest population refers to MAX(Population);",
+    "SQL": "",
+    "_src_idx": 3132
+  },
+  {
+    "question_id": 279,
+    "db_id": "beer_factory",
+    "question": "How many canned A&W were purchased in 2016?",
+    "evidence": "canned refers to ContainerType = 'Can'; A&W refers to BrandName = 'A&W'; in 2016 refers to PurchaseDate > = '2016-01-01' AND PurchaseDate < = '2016-12-31';",
+    "SQL": "",
+    "_src_idx": 4622
+  },
+  {
+    "question_id": 280,
+    "db_id": "mondial_geo",
+    "question": "For the third largest country, which ethinic group has the most population?",
+    "evidence": "",
+    "SQL": "",
+    "_src_idx": 5045
+  },
+  {
+    "question_id": 281,
+    "db_id": "hockey",
+    "question": "How many penalty minutes did the Montreal Canadiens have in the 1918's Stanley Cup Finals?",
+    "evidence": "penalty minutes refer to PIM; year = 1918; Montreal Canadiens is name of team;",
+    "SQL": "",
+    "_src_idx": 3094
+  },
+  {
+    "question_id": 282,
+    "db_id": "movies_4",
+    "question": "Who played Captain Jack Sparrow in all of the Pirates of the Caribbean movies?",
+    "evidence": "Captain Jack Sparrow refers to character_name = 'Captain Jack Sparrow'; Pirates of the Caribbean movies refers to title LIKE 'Pirates of the Carribbean%'",
+    "SQL": "",
+    "_src_idx": 180
+  },
+  {
+    "question_id": 283,
+    "db_id": "legislator",
+    "question": "What is the party of the legislator named Susan M. Collins?",
+    "evidence": "legislator's name refers to offical_full_name;",
+    "SQL": "",
+    "_src_idx": 1899
+  },
+  {
+    "question_id": 284,
+    "db_id": "synthea",
+    "question": "Who is the 44-year-old patient diagnosed with drug overdose?",
+    "evidence": "44-year-old = DIVIDE(SUBTRACT(julianday(conditions.START), julianday(patients.birthdate)), 365, 0) = 44;",
+    "SQL": "",
+    "_src_idx": 5943
+  },
+  {
+    "question_id": 285,
+    "db_id": "soccer_2016",
+    "question": "Which teams have had a player awarded the Purple Cap and another with the Orange Cap in the same season?",
+    "evidence": "",
+    "SQL": "",
+    "_src_idx": 798
+  },
+  {
+    "question_id": 286,
+    "db_id": "superstore",
+    "question": "Among the orders from 2016 in the Central region, what is the product with the lowest profit?",
+    "evidence": "orders from 2016 refers to \"Order Date\" = '2016%'; product refers to \"Product Name\"; lowest profit refers to min(Profit)",
+    "SQL": "",
+    "_src_idx": 5368
+  },
+  {
+    "question_id": 287,
+    "db_id": "books",
+    "question": "Provide the number of orders by Daisey Lamball in 2021.",
+    "evidence": "in 2021 refers to order_date LIKE '2021%'",
+    "SQL": "",
+    "_src_idx": 2404
+  },
+  {
+    "question_id": 288,
+    "db_id": "image_and_language",
+    "question": "Calculate the average number of images with an attribute class of \"keyboard\".",
+    "evidence": "AVG(IMG_ID) where OBJ_CLASS = 'keyboard';",
+    "SQL": "",
+    "_src_idx": 3001
+  },
+  {
+    "question_id": 289,
+    "db_id": "simpson_episodes",
+    "question": "Write down the award ID, award name and winner for character named \"Homer simpson 20\".",
+    "evidence": "\"Homer simpson 20\" is the character; \"Winner\" is the result; award name refers to award",
+    "SQL": "",
+    "_src_idx": 6210
+  },
+  {
+    "question_id": 290,
+    "db_id": "beer_factory",
+    "question": "How many sweet bottled root beers that do not contain cane sugar were purchased in 2015 through the selling company located in Sac State American River Courtyard?",
+    "evidence": "sweet refers to Honey = 'TRUE'; bottled refers to ContainerType = 'Bottle'; do not contain cane sugar refers to CaneSugar = 'FALSE'; in 2015 refers to PurchaseDate < = '2015-12-31'; Sac State American River Courtyard refers to LocationName = 'Sac State American River Courtyard';",
+    "SQL": "",
+    "_src_idx": 6257
+  },
+  {
+    "question_id": 291,
+    "db_id": "simpson_episodes",
+    "question": "Which character did the \"Outstanding Voice-Over Performance\" winner voice?",
+    "evidence": "the \"Outstanding Voice-Over Performance\" refers to award = 'Outstanding Voice-Over Performance'; winner refers to result = 'Winner';",
+    "SQL": "",
+    "_src_idx": 1673
+  },
+  {
+    "question_id": 292,
+    "db_id": "professional_basketball",
+    "question": "Player from which team has the highest point per minute in NBA from 1991 to 2000?",
+    "evidence": "team refers to tmID; the highest point per minute refers to max(divide(points, minutes)); NBA refers to lgID = 'NBA'; from 1991 to 2000 refers to year BETWEEN 1991 AND 2000",
+    "SQL": "",
+    "_src_idx": 6049
+  },
+  {
+    "question_id": 293,
+    "db_id": "video_games",
+    "question": "How many games were released in 2001?",
+    "evidence": "released in 2001 refers to release_year = 2001",
+    "SQL": "",
+    "_src_idx": 4299
+  },
+  {
+    "question_id": 294,
+    "db_id": "works_cycles",
+    "question": "What is the price for the AWC Logo Cap?",
+    "evidence": "price refers to ListPrice; price of 3 products = MULTIPLY(ListPrice, 3); Lock Washer 6 is a name of a product;",
+    "SQL": "",
+    "_src_idx": 2947
+  },
+  {
+    "question_id": 295,
+    "db_id": "hockey",
+    "question": "State the player ID and coach ID of person who have become coach after retirement.",
+    "evidence": "after retirement means playerID Iis not NULL and coachID is not NULL;",
+    "SQL": "",
+    "_src_idx": 3107
+  },
+  {
+    "question_id": 296,
+    "db_id": "shakespeare",
+    "question": "How many characters are there in Twelfth Night?",
+    "evidence": "Twelfth Night refers to Title = 'Twelfth Night'",
+    "SQL": "",
+    "_src_idx": 1185
+  },
+  {
+    "question_id": 297,
+    "db_id": "movies_4",
+    "question": "What is the name of the production company that made the most movies?",
+    "evidence": "name of the production company refers to company_name; most movies refers to max(count(company_name))",
+    "SQL": "",
+    "_src_idx": 179
+  },
+  {
+    "question_id": 298,
+    "db_id": "sales",
+    "question": "Calculate the total number of sales closed by Michel E. DeFrance?",
+    "evidence": "",
+    "SQL": "",
+    "_src_idx": 6266
+  },
+  {
+    "question_id": 299,
+    "db_id": "university",
+    "question": "What are the top three universities with the most international students?",
+    "evidence": "most international students refers to MAX(SUM(DIVIDE(MULTIPLE(pct_international_students, num_students), 100))); name of university refers to university_name;",
+    "SQL": "",
+    "_src_idx": 4999
+  },
+  {
+    "question_id": 300,
+    "db_id": "works_cycles",
+    "question": "Name all products that started selling in 2013. State its respective vendor's name.",
+    "evidence": "Started selling in 2013 refers to year(SellStartDate) = 2013;",
+    "SQL": "",
+    "_src_idx": 2869
+  },
+  {
+    "question_id": 301,
+    "db_id": "shipping",
+    "question": "List the weight of the customer's shipment with annual revenue of 39448581.",
+    "evidence": "",
+    "SQL": "",
+    "_src_idx": 2292
+  },
+  {
+    "question_id": 302,
+    "db_id": "synthea",
+    "question": "List down the last name of patients who are allergic to dairy products.",
+    "evidence": "allergic to dairy products refers to allergies where DESCRIPTION = 'Allergy to dairy product';",
+    "SQL": "",
+    "_src_idx": 584
+  },
+  {
+    "question_id": 303,
+    "db_id": "chicago_crime",
+    "question": "How many crimes were committed at 018XX S KOMENSKY AVEin May 2018?",
+    "evidence": " in May 2018 refers to date LIKE '5/%/2018%'",
+    "SQL": "",
+    "_src_idx": 3459
+  },
+  {
+    "question_id": 304,
+    "db_id": "video_games",
+    "question": "List the game IDs of the games produced by Abylight.",
+    "evidence": "Abylight refers to publisher_name = 'Abylight';",
+    "SQL": "",
+    "_src_idx": 1384
+  },
+  {
+    "question_id": 305,
+    "db_id": "mondial_geo",
+    "question": "What is the average percentage of agriculture of GDP in countries on the African Continent?",
+    "evidence": "",
+    "SQL": "",
+    "_src_idx": 3319
+  },
+  {
+    "question_id": 306,
+    "db_id": "works_cycles",
+    "question": "What is the longest assembly item duration for bicycles?",
+    "evidence": "longest assembly item duration = max(subtract(EndDate,StartDate))",
+    "SQL": "",
+    "_src_idx": 4831
+  },
+  {
+    "question_id": 307,
+    "db_id": "retails",
+    "question": "List the names of customers whose accounts are in debt.",
+    "evidence": "name of customer refers to c_name; account in debt refers to c_acctbal < 0",
+    "SQL": "",
+    "_src_idx": 5642
+  },
+  {
+    "question_id": 308,
+    "db_id": "bike_share_1",
+    "question": "Count the number of subscribers who started their trips in Market at 4th.",
+    "evidence": "subsscriber refers to subscription_type = subscriber; started their trips in refers to start_station_name; start_station_name = 'Market at 4th';",
+    "SQL": "",
+    "_src_idx": 6587
+  },
+  {
+    "question_id": 309,
+    "db_id": "retail_complains",
+    "question": "How many times does the consumer have no dispute over a non-timely response from the company?",
+    "evidence": "no dispute refers to Consumer disputed? = 'No'; non-timely response refers to Timely response? = 'No'",
+    "SQL": "",
+    "_src_idx": 3822
+  },
+  {
+    "question_id": 310,
+    "db_id": "movie_platform",
+    "question": "How many users liked the movie \"A Way of Life\" to the highest extent?",
+    "evidence": "like the movie highest to the extent refers to rating_score = 5; A Way of Life refers to movie_title;",
+    "SQL": "",
+    "_src_idx": 5816
+  },
+  {
+    "question_id": 311,
+    "db_id": "sales_in_weather",
+    "question": "How many stores are in weather station 12?",
+    "evidence": "weather station 12 refers to station_nbr = 12; number of stores refers to Count(store_nbr)",
+    "SQL": "",
+    "_src_idx": 3245
+  },
+  {
+    "question_id": 312,
+    "db_id": "disney",
+    "question": "Who is the director of the adventure movie which was released on 2007/3/30?",
+    "evidence": "released on 2007/3/30 refers to release_date = 'Mar 30, 2007'; adventure movie refers to genre = 'Adventure' ;",
+    "SQL": "",
+    "_src_idx": 1830
+  },
+  {
+    "question_id": 313,
+    "db_id": "public_review_platform",
+    "question": "Please list all the categories of the Yelp_Business in Arizona.",
+    "evidence": "categories refers to category_name; in Arizona refers to state = 'AZ'",
+    "SQL": "",
+    "_src_idx": 4364
+  },
+  {
+    "question_id": 314,
+    "db_id": "student_loan",
+    "question": "List out the number of students who filed for bankruptcy and enlisted in navy.",
+    "evidence": "navy refers to organ = 'navy';",
+    "SQL": "",
+    "_src_idx": 6224
+  },
+  {
+    "question_id": 315,
+    "db_id": "world",
+    "question": "Give the cities and district names that belong to the country with Hajastan as its local name.",
+    "evidence": "",
+    "SQL": "",
+    "_src_idx": 3122
+  },
+  {
+    "question_id": 316,
+    "db_id": "hockey",
+    "question": "How old was the goaltender who scored the fewest goals while on the ice when he retired from the NHL?",
+    "evidence": "goaltender' and 'goalie' are synonyms; fewest goals while on the ice refers to min(GA); How old = subtract(lastNHL(playerID(min(GA))), birthYear(playerID(min(GA)))))",
+    "SQL": "",
+    "_src_idx": 3070
+  },
+  {
+    "question_id": 317,
+    "db_id": "codebase_comments",
+    "question": "What is the task method of the tokenized name \"string extensions to pascal case\n\"?",
+    "evidence": "method refers to Name; task of the method refers to the second part of the Name after the \".\"; tokenized name refers to NameTokenized; NameTokenized = 'string extensions to pascal case';",
+    "SQL": "",
+    "_src_idx": 5890
+  },
+  {
+    "question_id": 318,
+    "db_id": "video_games",
+    "question": "What is the diffrence between the number of games produced by Culture Brain that can be played on SNES and DS?",
+    "evidence": "difference = SUBTRACT(SUM(platform_name = 'SNES'), SUM(platform_name = 'DS')); SNES refers to platform_name = SNES ; DS refers to platform_name = 'DS' ;",
+    "SQL": "",
+    "_src_idx": 1390
+  },
+  {
+    "question_id": 319,
+    "db_id": "address",
+    "question": "Among the cities with alias St Thomas, provide the type of postal point for each city.",
+    "evidence": "",
+    "SQL": "",
+    "_src_idx": 2115
+  },
+  {
+    "question_id": 320,
+    "db_id": "music_platform_2",
+    "question": "List the urls for all the \"fiction-science-fiction\" podcasts.",
+    "evidence": "fiction-science-fiction podcasts refers to category = 'fiction-science-fiction'; urls refers to itunes_url",
+    "SQL": "",
+    "_src_idx": 4984
+  },
+  {
+    "question_id": 321,
+    "db_id": "regional_sales",
+    "question": "Among the sales team in South region, write down the numbers of orders made by the sales team ID of one digit.",
+    "evidence": "sales team ID of one digit refers to _SalesTeamID BETWEEN 1 AND 9; numbers of orders refer to COUNT(OrderNumber);",
+    "SQL": "",
+    "_src_idx": 1040
+  },
+  {
+    "question_id": 322,
+    "db_id": "regional_sales",
+    "question": "List all the name of products with the ID of 30 to 40.",
+    "evidence": "products with the ID of 30 to 40 refer to Product Name WHERE ProductID BETWEEN 30 AND 40;",
+    "SQL": "",
+    "_src_idx": 1052
+  },
+  {
+    "question_id": 323,
+    "db_id": "shakespeare",
+    "question": "Which of Shakespeare's work has chapter description of \"A field near Windsor\"?",
+    "evidence": "",
+    "SQL": "",
+    "_src_idx": 6052
+  },
+  {
+    "question_id": 324,
+    "db_id": "chicago_crime",
+    "question": "Give the detailed description of all the crimes against society.",
+    "evidence": "crime against society refers to crime_against = 'Society'",
+    "SQL": "",
+    "_src_idx": 5100
+  },
+  {
+    "question_id": 325,
+    "db_id": "simpson_episodes",
+    "question": "Which character won the Outstanding Voice-Over Performance award in 2009?",
+    "evidence": "won refers to result = 'Winner'",
+    "SQL": "",
+    "_src_idx": 4403
+  },
+  {
+    "question_id": 326,
+    "db_id": "books",
+    "question": "How many orders were returned in the year 2020?",
+    "evidence": "returned refers to status_value = 'Returned'; in the year 2020 refers to status_date LIKE '%2020%'",
+    "SQL": "",
+    "_src_idx": 2416
+  },
+  {
+    "question_id": 327,
+    "db_id": "public_review_platform",
+    "question": "Which year has the most elite users?",
+    "evidence": "year has the most elite users refers to year_id with MAX(user_id);",
+    "SQL": "",
+    "_src_idx": 1558
+  },
+  {
+    "question_id": 328,
+    "db_id": "student_loan",
+    "question": "Mention the name of unemployed students who have never been absent from school.",
+    "evidence": "have never been absent from school refers to month = 0",
+    "SQL": "",
+    "_src_idx": 1739
+  },
+  {
+    "question_id": 329,
+    "db_id": "movie",
+    "question": "What is the name of the character played by Tom Cruise in the movie Born on the Fourth of July?",
+    "evidence": "played by Tom Cruise refers to name = 'Tom Cruise'; movie Born on the Fourth of July refers to title = 'Born on the Fourth of July'",
+    "SQL": "",
+    "_src_idx": 301
+  },
+  {
+    "question_id": 330,
+    "db_id": "synthea",
+    "question": "Calculate the average period of Mr. Wesley Lemke's care plans.",
+    "evidence": "DIVIDE(SUBTRACT(stop time - start time), COUNT(ID)));",
+    "SQL": "",
+    "_src_idx": 4008
+  },
+  {
+    "question_id": 331,
+    "db_id": "book_publishing_company",
+    "question": "List all the titles and year to date sales by author who are not on contract.",
+    "evidence": "year to date sales refers to ytd_sales; not on contract refers to contract = 0",
+    "SQL": "",
+    "_src_idx": 51
+  },
+  {
+    "question_id": 332,
+    "db_id": "retails",
+    "question": "Please list the phone numbers of all the customers in the household segment and are in Brazil.",
+    "evidence": "phone numbers refer to c_phone; Brazil is the name of the nation which refers to n_name = 'BRAZIL'; household segment refers to c_mktsegment = 'HOUSEHOLD';",
+    "SQL": "",
+    "_src_idx": 2588
+  },
+  {
+    "question_id": 333,
+    "db_id": "retails",
+    "question": "What is the order priority of the order with the highest total price?",
+    "evidence": "order with the highest total price refers to MAX(o_totalprice);",
+    "SQL": "",
+    "_src_idx": 6435
+  },
+  {
+    "question_id": 334,
+    "db_id": "movie_3",
+    "question": "Which customer has rented more movies, RUTH MARTINEZ or LINDA WILLIAMS?",
+    "evidence": "rented more movie Max(Count(customer_id)); \"RUTH MARTINEZ\" and \"LINDA WILLIAMS\" are both full name of customer",
+    "SQL": "",
+    "_src_idx": 3646
+  },
+  {
+    "question_id": 335,
+    "db_id": "chicago_crime",
+    "question": "What is the neighborhood name in the community area of Lake View?",
+    "evidence": "\"Lake View\" is the community_area_name",
+    "SQL": "",
+    "_src_idx": 3507
+  },
+  {
+    "question_id": 336,
+    "db_id": "human_resources",
+    "question": "Who is the employee with the highest salary? Specify his/her full name.",
+    "evidence": "the highest salary refers to MAX(salary); full name = firstname, lastname",
+    "SQL": "",
+    "_src_idx": 3611
+  },
+  {
+    "question_id": 337,
+    "db_id": "music_platform_2",
+    "question": "Which category is the podcast \"Scaling Global\" under?",
+    "evidence": "\"Scaling Global\" is the title of podcast",
+    "SQL": "",
+    "_src_idx": 3153
+  },
+  {
+    "question_id": 338,
+    "db_id": "movie",
+    "question": "Please list the names of the characters in the movie Look Who's Talking.",
+    "evidence": "movie Look Who's Talking refers to title = 'Look Who's Talking'",
+    "SQL": "",
+    "_src_idx": 296
+  },
+  {
+    "question_id": 339,
+    "db_id": "movie_3",
+    "question": "How many times was \"Blanket Beverly\" rented?",
+    "evidence": "\"BLANKET BEVERLY\" is the title of film; rented times refers to count(rental_id)",
+    "SQL": "",
+    "_src_idx": 3671
+  },
+  {
+    "question_id": 340,
+    "db_id": "mondial_geo",
+    "question": "Which country has the highest GDP?",
+    "evidence": "",
+    "SQL": "",
+    "_src_idx": 5037
+  },
+  {
+    "question_id": 341,
+    "db_id": "soccer_2016",
+    "question": "What is the total number of players born between 1970 to 1975?",
+    "evidence": "born between 1970 to 1975 refers to strftime('%Y',DOB) between '1970' and '1975'",
+    "SQL": "",
+    "_src_idx": 4132
+  },
+  {
+    "question_id": 342,
+    "db_id": "student_loan",
+    "question": "How many students have never been absent in school?",
+    "evidence": "never been absent in school refers to month = 0;",
+    "SQL": "",
+    "_src_idx": 5515
+  },
+  {
+    "question_id": 343,
+    "db_id": "coinmarketcap",
+    "question": "Which crytocurrency was ranked the first by CoinMarketCap on 2013/4/28?",
+    "evidence": "ranked the first refers to cmc_rank = 1; on 2013/4/28 refers to date = '2013-04-28'",
+    "SQL": "",
+    "_src_idx": 6384
+  },
+  {
+    "question_id": 344,
+    "db_id": "world_development_indicators",
+    "question": "Which countries use Euro as their currency? List down the table name.",
+    "evidence": "CurrencyUnit = 'Euro';",
+    "SQL": "",
+    "_src_idx": 4148
+  },
+  {
+    "question_id": 345,
+    "db_id": "works_cycles",
+    "question": "What is the total sick leave hours of employees who do not wish to receive any e-mail promotion?",
+    "evidence": "Employees who do not wish to receive any e-mail promotions are marked as EmailPromotion = 0",
+    "SQL": "",
+    "_src_idx": 2794
+  },
+  {
+    "question_id": 346,
+    "db_id": "soccer_2016",
+    "question": "Indicate the name of the most versatile players of the Delhi Daredevils.",
+    "evidence": "if a player has multiple roles in a match, it means this player is versatile; name refers to Player_Name; most versatile player refers to MAX(COUNT(Role_id)); Delhi Daredevils refers to Team_Name = 'Delhi Daredevils'",
+    "SQL": "",
+    "_src_idx": 5327
+  },
+  {
+    "question_id": 347,
+    "db_id": "books",
+    "question": "How many books were published in Japanese?",
+    "evidence": "published in Japanese refers to language_name = 'Japanese'",
+    "SQL": "",
+    "_src_idx": 2402
+  },
+  {
+    "question_id": 348,
+    "db_id": "shakespeare",
+    "question": "Calculate average scene per act in Antony and Cleopatra.",
+    "evidence": "Antony and Cleopatra refers to Title = 'Antony and Cleopatra'; average scene per act = divide(sum(Scene), count(act))\n",
+    "SQL": "",
+    "_src_idx": 5412
+  },
+  {
+    "question_id": 349,
+    "db_id": "food_inspection_2",
+    "question": "Provide the categories and fines for the inspections done by Lisa Tillman in January 2014.",
+    "evidence": "in January 2014 refers to inspection_date like '2014-01%'",
+    "SQL": "",
+    "_src_idx": 2530
+  },
+  {
+    "question_id": 350,
+    "db_id": "books",
+    "question": "Give the number of Ukrainian addresses in the database.",
+    "evidence": "Ukrainian address refers to country_name = 'Ukraine'",
+    "SQL": "",
+    "_src_idx": 2369
+  },
+  {
+    "question_id": 351,
+    "db_id": "simpson_episodes",
+    "question": "What are the keywords for episode 426 of the series?",
+    "evidence": "episode 426 refers to number_in_series = 426",
+    "SQL": "",
+    "_src_idx": 1679
+  },
+  {
+    "question_id": 352,
+    "db_id": "public_review_platform",
+    "question": "In businesses with a category of \"DJs\", how many businesses are rated less than 5?",
+    "evidence": "category of \"DJs\" refers to category_name = 'DJs'; rated less than 5 refers to stars < 5; businesses refer to business_id;",
+    "SQL": "",
+    "_src_idx": 1570
+  },
+  {
+    "question_id": 353,
+    "db_id": "regional_sales",
+    "question": "What is the percentage of total orders of Stephen Payne that had a net profit of over 1000?",
+    "evidence": "Sales Team = 'Stephen Payne'; net profit can be computed as SUBTRACT(Unit Price, Unit Cost); DIVIDE(COUNT(OrderNumber where Sales Team = 'Stephen Payne' and Net Profit > 1000)), (COUNT(OrderNumber where Sales Team = 'Stephen Payne')) as percentage;",
+    "SQL": "",
+    "_src_idx": 1050
+  },
+  {
+    "question_id": 354,
+    "db_id": "works_cycles",
+    "question": "What is the location of business number 1?",
+    "evidence": "Location refers to AddressLine1; business number refers to the BusinessEntityID where BusinessEntityID = 1",
+    "SQL": "",
+    "_src_idx": 2762
+  },
+  {
+    "question_id": 355,
+    "db_id": "language_corpus",
+    "question": "Among the biwords pairs with \"àbac\" as its first word, how many of them have an occurrence of over 10?",
+    "evidence": "àbac refers to word = 'àbac'; as first word refers to w1st; occurrence of over 10 refers to occurrences > 10",
+    "SQL": "",
+    "_src_idx": 6362
+  },
+  {
+    "question_id": 356,
+    "db_id": "cs_semester",
+    "question": "Name the professor who got graduation from the University of Boston.",
+    "evidence": "Name the professor refers to full name which includes f_name and l_name;",
+    "SQL": "",
+    "_src_idx": 3930
+  },
+  {
+    "question_id": 357,
+    "db_id": "book_publishing_company",
+    "question": "Name the store with ID 7066 and calculate the percentage of the the quantity ordered that were on 'Net 30' payment terms.",
+    "evidence": "store with ID 7066 refers to stor_ID = '7066'; 'Net 60' payment terms refers to payterm = 'Net 60'; qty is abbreviation for quantity; percentage = DIVIDE(payterms = 'Net 60', sum(qty))*100",
+    "SQL": "",
+    "_src_idx": 42
+  },
+  {
+    "question_id": 358,
+    "db_id": "shooting",
+    "question": "From the cases where the subject were deceased, list the subject's last name, gender, race and case number.",
+    "evidence": "subject were deceased refers to subject_statuses = 'Deceased'",
+    "SQL": "",
+    "_src_idx": 998
+  },
+  {
+    "question_id": 359,
+    "db_id": "legislator",
+    "question": "List the full names, Twitter IDs, and YouTube IDs of legislators who have Richard as their first name.",
+    "evidence": "full names refers to official_full_name; Richard as their first name refers to first_name = 'Richard'",
+    "SQL": "",
+    "_src_idx": 1889
+  },
+  {
+    "question_id": 360,
+    "db_id": "public_review_platform",
+    "question": "How many reviews of businesses that are still open received an uber rating on the funny vote?",
+    "evidence": "businesses that still open refers to active = 'true'; business received an uber rating on the funny vote refers to review_votes_funny = 'Uber'",
+    "SQL": "",
+    "_src_idx": 4395
+  },
+  {
+    "question_id": 361,
+    "db_id": "movies_4",
+    "question": "In Movie No. 19, how many people are there in Department No. 7? Please give me their job.",
+    "evidence": "Movie No. 19 refers to movie_id = 19; Department No. 7 refers to department_id = 7",
+    "SQL": "",
+    "_src_idx": 191
+  },
+  {
+    "question_id": 362,
+    "db_id": "shakespeare",
+    "question": "List the paragraph number and paragraphs said by the character named \"Sir Andrew Aguecheek\".",
+    "evidence": "paragraph number refers to ParagraphNum; character named \"Sir Andrew Aguecheek\" refers to CharName = 'Sir Andrew Aguecheek'",
+    "SQL": "",
+    "_src_idx": 1212
+  },
+  {
+    "question_id": 363,
+    "db_id": "works_cycles",
+    "question": "How many letters are there in Catherine Ward's e-mail account passwords?",
+    "evidence": "Catherine Ward refers to the name of BusinessEntityID; how many letters in password for the e-mail account refers to LENGTH(PasswordHash)",
+    "SQL": "",
+    "_src_idx": 2776
+  },
+  {
+    "question_id": 364,
+    "db_id": "cookbook",
+    "question": "How many recipes include the ingredient \"graham cracker crumbs\"?",
+    "evidence": "'graham cracker crumbs' is a name of an ingredient",
+    "SQL": "",
+    "_src_idx": 3568
+  },
+  {
+    "question_id": 365,
+    "db_id": "movie_3",
+    "question": "Who is the customer with the largest payment for rental films?",
+    "evidence": "Who refers to first_name, last_name; the largest payment for rental refers to MAX(SUM(amount))",
+    "SQL": "",
+    "_src_idx": 3723
+  },
+  {
+    "question_id": 366,
+    "db_id": "food_inspection_2",
+    "question": "Among the facilities that had undergone at least one inspection in 2010, how many of them have the most serious food safety issues?",
+    "evidence": "in 2010 refers to inspection_date like '2010%'; the most serious food safety issues refers to risk_level = 3",
+    "SQL": "",
+    "_src_idx": 2502
+  },
+  {
+    "question_id": 367,
+    "db_id": "cs_semester",
+    "question": "Name the students of the Advanced Database Systems course with the highest satisfaction.",
+    "evidence": "full the students = f_name, l_name; course refers to name; satisfaction refers to sat; highest satisfaction refers to MAX(sat);",
+    "SQL": "",
+    "_src_idx": 384
+  },
+  {
+    "question_id": 368,
+    "db_id": "olympics",
+    "question": "How many kinds of events belong to the sport of cycling?",
+    "evidence": "kinds of events refer to event_name; sport of cycling refers to sport_name = 'Cycling';",
+    "SQL": "",
+    "_src_idx": 1987
+  },
+  {
+    "question_id": 369,
+    "db_id": "books",
+    "question": "What is the price of the book with ISBN 9780763628321?",
+    "evidence": "\"9780763628321\" is the isbn13",
+    "SQL": "",
+    "_src_idx": 2479
+  },
+  {
+    "question_id": 370,
+    "db_id": "synthea",
+    "question": "How old was Mr. Stacy Morar at the time of his first emergency room admission due to a drug overdose?",
+    "evidence": "how old = SUBTRACT(MIN(encounters.DATE), patients.birthdate); his first emergency room admission refers to MIN(encounters.DATE); drug overdose refers to encounters.REASONDESCRIPTION = 'Drug overdose' ;",
+    "SQL": "",
+    "_src_idx": 604
+  },
+  {
+    "question_id": 371,
+    "db_id": "sales",
+    "question": "List down product ids that were purchased by customers called Abby.",
+    "evidence": "",
+    "SQL": "",
+    "_src_idx": 6263
+  },
+  {
+    "question_id": 372,
+    "db_id": "ice_hockey_draft",
+    "question": "List out the name of players who weight 190 lbs.",
+    "evidence": "name of players refers to PlayerName; weight 190 lbs refers to weight_in_lbs = 190;",
+    "SQL": "",
+    "_src_idx": 2665
+  },
+  {
+    "question_id": 373,
+    "db_id": "mondial_geo",
+    "question": "What is the name of Anguilla's capital, and where is it located?",
+    "evidence": "Anguilla is a country",
+    "SQL": "",
+    "_src_idx": 5065
+  },
+  {
+    "question_id": 374,
+    "db_id": "works_cycles",
+    "question": "Add the number of businesses that indicate their home address as their address and those whose address corresponds to the shipping address.",
+    "evidence": "their home address as their address refers to AddressTypeID = 2; address corresponds to the shipping address refers to AddressTypeID = 5",
+    "SQL": "",
+    "_src_idx": 2741
+  },
+  {
+    "question_id": 375,
+    "db_id": "soccer_2016",
+    "question": "How many players were born before 10/16/1975, and have a bowling skill of less than 3?",
+    "evidence": "born before 10/16/1975 refers to DOB < 1975-10-16; bowling skill of less than 3 refers to Bowling_skill < 3",
+    "SQL": "",
+    "_src_idx": 5328
+  },
+  {
+    "question_id": 376,
+    "db_id": "movielens",
+    "question": "Among the actors who acted in UK movies, what percentage of actors received a rating of at least 3?",
+    "evidence": "UK is a country",
+    "SQL": "",
+    "_src_idx": 5356
+  },
+  {
+    "question_id": 377,
+    "db_id": "restaurant",
+    "question": "Indicate the street numbers where Aux Delices Vietnamese Restaurant are located.",
+    "evidence": "street numbers refers to street_num; Aux Delices Vietnamese Restaurant refers to label = 'aux delices vietnamese restaurant'",
+    "SQL": "",
+    "_src_idx": 4068
+  },
+  {
+    "question_id": 378,
+    "db_id": "food_inspection_2",
+    "question": "How many inspections were done under the personnel category?",
+    "evidence": "under the personnel category refers to category = 'Personnel'",
+    "SQL": "",
+    "_src_idx": 2528
+  },
+  {
+    "question_id": 379,
+    "db_id": "video_games",
+    "question": "How many times more is the number of games which were published by Atari than Athena?",
+    "evidence": "published by Atari refers to publisher_name = 'Atari'; published by  Athena refers to publisher_name = 'Athena'; times = divide(sum(publisher_id where publisher_name = 'Atari'), sum(publisher_id where publisher_name = 'Athena'))",
+    "SQL": "",
+    "_src_idx": 4294
+  },
+  {
+    "question_id": 380,
+    "db_id": "car_retails",
+    "question": "How many sales representatives who have office code is 1?",
+    "evidence": "sales representative refers to jobTitle = 'Sales Rep';",
+    "SQL": "",
+    "_src_idx": 5945
+  },
+  {
+    "question_id": 381,
+    "db_id": "authors",
+    "question": "How many authors is affiliated to the organization \"Otterbein University\"?",
+    "evidence": "Otterbein University is an Affiliation",
+    "SQL": "",
+    "_src_idx": 1404
+  },
+  {
+    "question_id": 382,
+    "db_id": "movie_platform",
+    "question": "For all movies where users left a critic, find the movie name, user, rating and critics comments from the user.",
+    "evidence": "movies where users left a critic refers to critic IS NOT NULL; critic comments refers to critic;",
+    "SQL": "",
+    "_src_idx": 5799
+  },
+  {
+    "question_id": 383,
+    "db_id": "movie_3",
+    "question": "How many films are in English?",
+    "evidence": "\"English\" is the name of language",
+    "SQL": "",
+    "_src_idx": 3653
+  },
+  {
+    "question_id": 384,
+    "db_id": "bike_share_1",
+    "question": "In 2006, how many trips ended at stations in Mountain View?",
+    "evidence": "in 2006 refers to start_date LIKE'%2006%'; ended at station refers to end_station_name; Mountain View refers to city = 'Mountain View';",
+    "SQL": "",
+    "_src_idx": 6567
+  },
+  {
+    "question_id": 385,
+    "db_id": "soccer_2016",
+    "question": "What is the percentage of all right-handed batting players among all the other players?",
+    "evidence": "right-handed batting refers to Batting_hand = 'Right-hand bat'; percentage = divide(count(Player_Id where Batting_hand = 'Right-hand bat'), count(Player_Id)) * 100%",
+    "SQL": "",
+    "_src_idx": 755
+  },
+  {
+    "question_id": 386,
+    "db_id": "public_review_platform",
+    "question": "Calculate the percentage of business with attribute name of \"Accepts Credit Cards\".",
+    "evidence": "percentage refers to DIVIDE(COUNT(attribute_name = 'Accepts Credit Cards'), COUNT(business_id))*100%",
+    "SQL": "",
+    "_src_idx": 1530
+  },
+  {
+    "question_id": 387,
+    "db_id": "talkingdata",
+    "question": "How many categories in total do the app users who were not active when event no.2 happened belong to?",
+    "evidence": "not active refers to is_active = 0; event no. refers to event_id; event_id = 2;",
+    "SQL": "",
+    "_src_idx": 460
+  },
+  {
+    "question_id": 388,
+    "db_id": "mondial_geo",
+    "question": "Provide a list of all organisations with headquarters in London?",
+    "evidence": "London is a city",
+    "SQL": "",
+    "_src_idx": 5070
+  },
+  {
+    "question_id": 389,
+    "db_id": "app_store",
+    "question": "List out genre that have downloads more than 1000000000.",
+    "evidence": "downloads and installs are synonyms; Installs = '1,000,000,000+';",
+    "SQL": "",
+    "_src_idx": 4186
+  },
+  {
+    "question_id": 390,
+    "db_id": "cookbook",
+    "question": "How many cups of 1% lowfat milk should be added to no.1436 recipe?",
+    "evidence": "1% lowfat milk is a name of an ingredient; no.1436 recipe refers to recipe_id = 1436; max_qty = min_qty",
+    "SQL": "",
+    "_src_idx": 5150
+  },
+  {
+    "question_id": 391,
+    "db_id": "movies_4",
+    "question": "List the names of camera supervisors in the crew.",
+    "evidence": "names refers to person_name; camera supervisors refers to job = 'Camera Supervisor';",
+    "SQL": "",
+    "_src_idx": 250
+  },
+  {
+    "question_id": 392,
+    "db_id": "movie_3",
+    "question": "How many of the actors are named \"Dan\"?",
+    "evidence": "'Dan' is a first_name of an actor",
+    "SQL": "",
+    "_src_idx": 5207
+  },
+  {
+    "question_id": 393,
+    "db_id": "books",
+    "question": "List all of the books that were published in 1995.",
+    "evidence": "published in 1995 refers to publication_date LIKE '1995%'; ; list of book refers to title",
+    "SQL": "",
+    "_src_idx": 5611
+  },
+  {
+    "question_id": 394,
+    "db_id": "mondial_geo",
+    "question": "Where country does Baghdad belongs to?",
+    "evidence": "Baghdad is one of provinces",
+    "SQL": "",
+    "_src_idx": 5042
+  },
+  {
+    "question_id": 395,
+    "db_id": "regional_sales",
+    "question": "Among the sales with 40% discount via in-store channel, how many products were shipped from warehouse code of WARE-NMK1003?",
+    "evidence": "40% discount refers to Discount Applied = 0.4; in-store channel refers to Sales Channel = 'In-Store'; orders refer to OrderNumber;",
+    "SQL": "",
+    "_src_idx": 1036
+  },
+  {
+    "question_id": 396,
+    "db_id": "music_tracker",
+    "question": "How many albums and Single-Tables were released by the artist named '50 cent' between 2010 and 2015?",
+    "evidence": "albums refer to releaseType = 'album'; releaseType = 'single'; between 2010 and 2015 refers to groupYear between 2010 and 2015;",
+    "SQL": "",
+    "_src_idx": 859
+  },
+  {
+    "question_id": 397,
+    "db_id": "movie_3",
+    "question": "List at least 3 cities under the country of Philippines.",
+    "evidence": "",
+    "SQL": "",
+    "_src_idx": 3765
+  },
+  {
+    "question_id": 398,
+    "db_id": "video_games",
+    "question": "What is the name of the publisher that has published the most puzzle games?",
+    "evidence": "name of publisher refers to publisher_name; puzzle refers to genre_name = 'Puzzle'; the most puzzle games refers to max(count(game_id where genre_name = 'Puzzle'))",
+    "SQL": "",
+    "_src_idx": 1297
+  },
+  {
+    "question_id": 399,
+    "db_id": "food_inspection_2",
+    "question": "Please list the full names of all the sanitarians who have inspected the facility Burbank.",
+    "evidence": "full name refers to first_name, last_name; the facility Burbank refers to dba_name = 'Burbank'",
+    "SQL": "",
+    "_src_idx": 2497
+  }
+]
