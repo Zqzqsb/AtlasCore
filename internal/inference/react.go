@@ -2,6 +2,7 @@ package inference
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"strings"
 	"time"
@@ -138,6 +139,9 @@ func (p *Pipeline) reactLoop(ctx context.Context, query string, contextPrompt st
 		agents.ZeroShotReactDescription,
 		agents.WithMaxIterations(actualMaxIterations),
 		agents.WithCallbacksHandler(reactHandler),
+		// When the model dumps bare SQL (no Action / Final Answer), feed a format hint
+		// and let it retry instead of killing the loop immediately.
+		agents.WithParserErrorHandler(agents.NewParserErrorHandler(formatReactParseError)),
 	)
 	if err != nil {
 		return "", err
@@ -153,16 +157,8 @@ func (p *Pipeline) reactLoop(ctx context.Context, query string, contextPrompt st
 	p.Logger.Println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 
 	agentResult, err := executor.Call(ctx, map[string]any{"input": prompt})
-	if err != nil {
-		p.Logger.Printf("\n❌ ReAct Loop failed: %v\n\n", err)
-		return "", err
-	}
 
-	p.Logger.Println("\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-	p.Logger.Println("✅ ReAct Loop completed successfully")
-	p.Logger.Println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-
-	// Collect ReAct steps from handler
+	// Collect ReAct steps from handler (also needed for parse-failure recovery)
 	collectedSteps := reactHandler.GetCollectedSteps()
 	for _, step := range collectedSteps {
 		result.ReActSteps = append(result.ReActSteps, ReActStep{
@@ -173,11 +169,22 @@ func (p *Pipeline) reactLoop(ctx context.Context, query string, contextPrompt st
 			Phase:       "sql_generation",
 		})
 	}
-
-	// Update statistics
-	result.LLMCalls += len(collectedSteps) // Use actual iteration count
+	result.LLMCalls += len(collectedSteps)
 	result.SQLExecutions += sqlTool.ExecutionCount
 	result.ClarifyCount = clarifyTool.ClarifyCount
+
+	if err != nil {
+		if sql := recoverSQLAfterReactFailure(err, verifySQLTool); sql != "" {
+			p.Logger.Printf("\n⚠️  ReAct parse/format failed; recovered SQL fallback:\n%s\n\n", sql)
+			return sql, nil
+		}
+		p.Logger.Printf("\n❌ ReAct Loop failed: %v\n\n", err)
+		return "", err
+	}
+
+	p.Logger.Println("\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+	p.Logger.Println("✅ ReAct Loop completed successfully")
+	p.Logger.Println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 
 	// Extract final SQL
 	if output, ok := agentResult["output"].(string); ok {
@@ -186,6 +193,102 @@ func (p *Pipeline) reactLoop(ctx context.Context, query string, contextPrompt st
 	}
 
 	return "", fmt.Errorf("no SQL generated")
+}
+
+// formatReactParseError turns a langchaingo parse error into an observation that
+// steers the model back to Final Answer / Action format (esp. bare-SQL dumps).
+func formatReactParseError(errStr string) string {
+	raw := unwrapParseErrorOutput(errStr)
+	raw = stripOuterQuotes(raw)
+	if looksLikeSQL(raw) {
+		return fmt.Sprintf(
+			"Parse error: output was not in Action/Final Answer format.\n"+
+				"If the following SQL is your final answer, reply EXACTLY:\n"+
+				"Final Answer: %s\n"+
+				"Otherwise use:\nAction: verify_sql\nAction Input: <sql>",
+			raw,
+		)
+	}
+	return "Parse error: use format \"Thought: ...\\nAction: <tool>\\nAction Input: <input>\" " +
+		"or \"Final Answer: <SQL only>\". Do not output bare SQL without the Final Answer: prefix."
+}
+
+// recoverSQLAfterReactFailure salvages SQL when the executor still fails after retries
+// (bare SQL dump, or last successful verify_sql).
+func recoverSQLAfterReactFailure(err error, verify *VerifySQLTool) string {
+	if err == nil {
+		return ""
+	}
+	if !errors.Is(err, agents.ErrUnableToParseOutput) &&
+		!strings.Contains(err.Error(), agents.ErrUnableToParseOutput.Error()) {
+		return ""
+	}
+	if raw := unwrapParseErrorOutput(err.Error()); looksLikeSQL(raw) {
+		return normalizeRecoveredSQL(raw)
+	}
+	if verify != nil && looksLikeSQL(verify.LastValidSQL) {
+		return normalizeRecoveredSQL(verify.LastValidSQL)
+	}
+	return ""
+}
+
+func unwrapParseErrorOutput(errStr string) string {
+	const marker = "unable to parse agent output:"
+	idx := strings.Index(strings.ToLower(errStr), marker)
+	if idx >= 0 {
+		return strings.TrimSpace(errStr[idx+len(marker):])
+	}
+	return strings.TrimSpace(errStr)
+}
+
+func stripOuterQuotes(s string) string {
+	s = strings.TrimSpace(s)
+	if len(s) >= 2 {
+		if (s[0] == '"' && s[len(s)-1] == '"') || (s[0] == '\'' && s[len(s)-1] == '\'') {
+			return strings.TrimSpace(s[1 : len(s)-1])
+		}
+	}
+	return s
+}
+
+func looksLikeSQL(s string) bool {
+	s = normalizeRecoveredSQL(s)
+	if s == "" {
+		return false
+	}
+	upper := strings.ToUpper(s)
+	return strings.HasPrefix(upper, "SELECT") ||
+		strings.HasPrefix(upper, "WITH") ||
+		strings.HasPrefix(upper, "INSERT") ||
+		strings.HasPrefix(upper, "UPDATE") ||
+		strings.HasPrefix(upper, "DELETE")
+}
+
+func normalizeRecoveredSQL(s string) string {
+	s = strings.TrimSpace(s)
+	s = stripOuterQuotes(s)
+	// Strip markdown fences (```sql ... ``` / ``` ... ```)
+	if strings.HasPrefix(s, "```") {
+		s = strings.TrimPrefix(s, "```")
+		s = strings.TrimSpace(s)
+		if len(s) >= 3 && strings.EqualFold(s[:3], "sql") {
+			s = strings.TrimSpace(s[3:])
+		}
+		if idx := strings.Index(s, "```"); idx >= 0 {
+			s = s[:idx]
+		}
+	}
+	s = strings.TrimSpace(s)
+	s = stripOuterQuotes(s)
+	// If still contaminated, take from first SELECT/WITH
+	upper := strings.ToUpper(s)
+	for _, kw := range []string{"SELECT ", "SELECT\n", "SELECT\t", "WITH ", "WITH\n"} {
+		if idx := strings.Index(upper, kw); idx > 0 {
+			s = strings.TrimSpace(s[idx:])
+			break
+		}
+	}
+	return strings.TrimSpace(s)
 }
 
 // buildPrompt builds prompt
