@@ -20,9 +20,9 @@
 ## Quick Start
 
 ```bash
-# 1. Clone & download datasets
+# 1. Clone & download Dev databases (Spider + BIRD dev)
 git clone https://github.com/zqzqsb/AtlasCore.git && cd AtlasCore
-bash scripts/download_datasets.sh
+bash scripts/download_datasets.sh          # optional: --proxy 127.0.0.1:7890
 
 # 2. Configure LLM API
 cp llm_config.json.example llm_config.json
@@ -32,21 +32,118 @@ cp llm_config.json.example llm_config.json
 go run ./cmd/eval
 ```
 
-The interactive menu will guide you through benchmark selection (Spider / BIRD) and evaluation mode:
+The interactive menu covers Spider / BIRD **dev** and research modes. For black-box held-out / leaderboard evaluation, see [Datasets](#datasets--bird-held-out) below.
 
 ```
 📦 Select Benchmark
   1. spider  — Spider dev set (1034 examples)
   2. bird    — BIRD dev set (1534 examples)
 
-🎯 Select Evaluation Mode
-  1. baseline                   Direct SQL generation
-  2. react                      Multi-step reasoning with tool use
-  3. rich_context               Enhanced schema context
-  4. react+rich_context         ReAct + Rich Context
-  5. react+rich_context+linking Full pipeline with schema linking
-  6. full                       All features enabled
+🎯 Select Evaluation Mode (subset)
+  … research modes (baseline / react / rich_context / …)
+  leaderboard         Black-box: ReAct+RC, clarify=off, output contract
+  leaderboard_scale   leaderboard + 6-candidate execution vote
 ```
+
+> `react+rich_context+clarify` uses gold-derived result fields — **Dev research only**, not for leaderboard claims.
+
+## Datasets & BIRD Held-out
+
+### What ships where
+
+| Asset | In git? | How to get it |
+| ----- | ------- | ------------- |
+| Spider / BIRD **dev** questions | mostly yes | DBs via `scripts/download_datasets.sh` |
+| BIRD **dev** sqlite | no | `download_datasets.sh` → `benchmarks/bird/dev/dev_databases/` |
+| Held-out **public** packs (`test.json`, …) | yes | `benchmarks/bird/heldout_v1_{smoke,standard}/` |
+| Held-out **private** gold | **no** (gitignore) | rebuild or copy from validation host — see below |
+| BIRD **train** sqlite (~69 DBs used) | no | `scripts/download_bird_train_dbs.sh` |
+| Train questions jsonl + column_meaning | no | HuggingFace / rebuild inputs — see below |
+| Rich Context for held-out DBs | no | `go run ./cmd/gen_all_dev` (or use a shared `contexts/` dump) |
+
+Pack details: [heldout_v1_smoke/README.md](benchmarks/bird/heldout_v1_smoke/README.md) · [heldout_v1_standard/README.md](benchmarks/bird/heldout_v1_standard/README.md)
+
+### BIRD Dev (ablation / paper numbers)
+
+```bash
+bash scripts/download_datasets.sh --proxy 127.0.0.1:7890
+go run ./cmd/eval --benchmark bird   # interactive, or pass --mode …
+```
+
+### Held-out packs (smoke / standard) — how they were cut
+
+Official BIRD **test** is hidden. We build local held-out sets from the filtered **train** questions in official-test shape (`SQL` empty at inference).
+
+| Tier | N | Role |
+| ---- | - | ---- |
+| **smoke** | 400 | Fast iteration / CI feel |
+| **standard** | 1500 | Main local validation (~official test 1789) |
+
+- **Source**: HuggingFace `birdsql/bird23-train-filtered` → `benchmarks/bird/train/data/train-00000-of-00001.jsonl` (**6601** rows)
+- **Sampler**: `scripts/build_heldout_bird.py` — `seed=42`, **stratified by `db_id`** (proportional share, at least one question per DB when possible), then shuffled
+- **DBs**: **69** train databases (same set for smoke and standard → one download covers both)
+- **Public** `test.json`: `question_id`, `db_id`, `question`, `evidence`, `SQL=""` (+ `_src_idx` for audit)
+- **Private** `*_private/gold.json`: gold SQL for `eval_ex` only — **never** pass into the agent / `ClarifyMode=force`
+- Train has **no** official `difficulty` labels (those exist on Dev only)
+
+Rebuild (overwrites packs; only do this for a new version):
+
+```bash
+# Place under benchmarks/bird/train/ (gitignored):
+#   data/train-00000-of-00001.jsonl
+#   train_column_meaning.json   # e.g. from TA-SQL / project dump
+python3 scripts/build_heldout_bird.py          # both tiers
+# python3 scripts/build_heldout_bird.py --tiers smoke
+```
+
+Frozen name: `heldout_v1_*`. Changing the sample → bump to `v2`.
+
+### Download train databases & wire held-out
+
+```bash
+# Needs: python3, huggingface_hub, unzip, rsync
+# Downloads Sudnya/bird-sql databases/train_databases.zip, extracts to
+# benchmarks/bird/train/train_databases/, then runs fetch_databases.sh for smoke+standard.
+bash scripts/download_bird_train_dbs.sh --proxy 127.0.0.1:7890
+```
+
+If you already have `train_databases/{db}/{db}.sqlite`:
+
+```bash
+bash benchmarks/bird/heldout_v1_smoke/fetch_databases.sh \
+  benchmarks/bird/train/train_databases
+# same for standard if needed
+```
+
+> HF can be slow. Alternatives: official BIRD train release / other mirrors — unpack so the layout is `train_databases/<db_id>/<db_id>.sqlite`, then run `fetch_databases.sh`.
+
+### Private gold on a fresh clone
+
+`benchmarks/bird/heldout_v1_*_private/` is gitignored. Options:
+
+1. Re-run `build_heldout_bird.py` with the **same** train jsonl (same seed → same split; verify `manifest.json` sha256), or  
+2. Copy private packs from the validation machine (recommended for EX continuity).
+
+### Black-box eval (smoke example)
+
+```bash
+# Optional: Rich Context for the 69 DBs → contexts/sqlite/bird_heldout_v1/
+go run ./cmd/gen_all_dev
+
+go run ./cmd/eval --benchmark bird --mode leaderboard \
+  --data benchmarks/bird/heldout_v1_smoke/test.json \
+  --db-dir benchmarks/bird/heldout_v1_smoke/test_databases \
+  --context-dir contexts/sqlite/bird_heldout_v1 \
+  --column-meaning benchmarks/bird/heldout_v1_smoke/column_meaning.json \
+  --output-dir results/bird/heldout_v1_smoke_leaderboard
+
+go run ./cmd/eval_ex \
+  --predict results/bird/heldout_v1_smoke_leaderboard/predict.sql \
+  --gold benchmarks/bird/heldout_v1_smoke_private/gold.json \
+  --db-dir benchmarks/bird/heldout_v1_smoke/test_databases
+```
+
+Experiment status / EX numbers for the current branch live in `iters/7. Handoff-*.md` (handoff; not a download guide).
 
 ## Rich Context Generation
 
@@ -120,15 +217,18 @@ go run ./cmd/analyze_results
 
 ## CLI Overview
 
-| Command                               | Description                                                 |
-| ------------------------------------- | ----------------------------------------------------------- |
-| `go run ./cmd/eval`                   | Run evaluation (Spider / BIRD, interactive)                 |
-| `go run ./cmd/gen_all_dev`            | Generate Rich Context (interactive)                         |
-| `go run ./cmd/analyze_results`        | Analyze evaluation results (interactive)                    |
-| `go run ./cmd/gen_field_descriptions` | Generate result field descriptions for BIRD/Spider datasets |
-| `go run ./cmd/extract_result_fields`  | (Legacy) Extract result field descriptions from Gold SQL    |
+| Command                               | Description                                                                 |
+| ------------------------------------- | --------------------------------------------------------------------------- |
+| `go run ./cmd/eval`                   | Run evaluation (Spider / BIRD; modes include `leaderboard`)                 |
+| `go run ./cmd/eval_ex`                | Score `predict.sql` vs **private** gold (EX only; no gold in inference)   |
+| `go run ./cmd/gen_all_dev`            | Generate Rich Context (interactive)                                         |
+| `go run ./cmd/analyze_results`        | Analyze evaluation results (interactive)                                    |
+| `go run ./cmd/gen_field_descriptions` | Generate result field descriptions for BIRD/Spider datasets                 |
+| `go run ./cmd/extract_result_fields`  | (Legacy) Extract result field descriptions from Gold SQL                    |
+| `python3 scripts/build_heldout_bird.py` | Rebuild held-out smoke/standard packs from train jsonl                   |
+| `bash scripts/download_bird_train_dbs.sh` | Download train sqlite + wire held-out `test_databases/`                |
 
-All commands support both **interactive mode** (no args) and **CLI mode** (with flags). Run with `--help` for details.
+All Go commands support both **interactive mode** (no args, where applicable) and **CLI mode** (with flags). Run with `--help` for details.
 
 ## Key Results
 
@@ -171,9 +271,10 @@ Each row removes one Rich Context layer from the full pipeline, isolating the co
 
 ## Prerequisites
 
-- **Go** >= 1.21
-- **LLM API**: Any OpenAI-compatible endpoint (DeepSeek-V3, Qwen-3 Max, etc.)
-- **curl** + **unzip**: For dataset download
+- **Go** >= 1.21 (this branch develops against **1.24.x**; use a matching toolchain if builds fail)
+- **LLM API**: Any OpenAI-compatible endpoint (DeepSeek, Qwen, etc.)
+- **curl** / **unzip** / **rsync**: dataset download & held-out DB wiring
+- **python3** + `huggingface_hub` (+ `sqlglot` if washing projection SFT data): train DB / held-out tooling
 
 ## License
 

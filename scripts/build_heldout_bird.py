@@ -217,28 +217,61 @@ echo "Done -> $DST"
     fetch.chmod(0o755)
 
     readme = public_dir / "README.md"
+    role = (
+        "Fast iteration / CI feel"
+        if tier == "smoke"
+        else "Main local validation (~official test 1789)"
+    )
     readme.write_text(
         f"""# BIRD held-out v1 — {tier}
 
-- **N**: {len(test_items)} (seed={SEED}, stratified by db_id)
-- **Source**: birdsql/bird23-train-filtered ({len(rows)} rows)
-- **Official test size (reference)**: 1789
-- **DBs used**: {len(db_ids)}
+Black-box pack mimicking official BIRD **test** shape (questions without gold SQL).
+
+| | |
+|--|--|
+| **N** | **{len(test_items)}** |
+| **Seed** | `{SEED}` (tier offset in `scripts/build_heldout_bird.py`) |
+| **Sampling** | Stratified by `db_id` |
+| **Source** | `birdsql/bird23-train-filtered` → train jsonl (**{len(rows)}** rows) |
+| **DBs** | **{len(db_ids)}** (`db_ids.txt`) |
+| **Role** | {role} |
+
+> Full download / eval flow: root [README.md](../../../README.md) → **Datasets**.
 
 ## Layout
 
-- `test.json` — official-test shape (`SQL` empty); for inference only
+- `test.json` — `SQL=""`; inference only
 - `column_meaning.json` — subset for used DBs
-- `db_ids.txt` / `fetch_databases.sh` — pull sqlite into `test_databases/`
-- Private gold: `../heldout_v1_{tier}_private/` (do not feed to the agent)
+- `db_ids.txt` / `fetch_databases.sh` → `test_databases/` (not in git)
+- Private gold: `../heldout_v1_{tier}_private/` (**never** feed to the agent)
 
-## Inference
+## Rebuild
+
+```bash
+python3 scripts/build_heldout_bird.py --tiers {tier}
+```
+
+## Wire databases
+
+```bash
+bash scripts/download_bird_train_dbs.sh --proxy 127.0.0.1:7890
+# or: bash benchmarks/bird/heldout_v1_{tier}/fetch_databases.sh /path/to/train_databases
+```
+
+## Inference / EX
 
 ```bash
 go run ./cmd/eval --benchmark bird --mode leaderboard \\
   --data benchmarks/bird/heldout_v1_{tier}/test.json \\
   --db-dir benchmarks/bird/heldout_v1_{tier}/test_databases \\
-  --column-meaning benchmarks/bird/heldout_v1_{tier}/column_meaning.json
+  --context-dir contexts/sqlite/bird_heldout_v1 \\
+  --column-meaning benchmarks/bird/heldout_v1_{tier}/column_meaning.json \\
+  --output-dir results/bird/heldout_v1_{tier}_leaderboard
+
+go run ./cmd/eval_ex \\
+  --predict results/bird/heldout_v1_{tier}_leaderboard/predict.sql \\
+  --gold benchmarks/bird/heldout_v1_{tier}_private/gold.json \\
+  --db-dir benchmarks/bird/heldout_v1_{tier}/test_databases
 ```
 """
     )
