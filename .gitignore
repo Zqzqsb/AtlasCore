@@ -80,4 +80,7 @@ contexts/sqlite/
 
 iters/
 
+# Projection-field SFT wash (regenerate via scripts/wash_proj_fields.py)
+data/proj_fields/
+
 third_party/
