@@ -124,6 +124,9 @@ func (t *VerifySQLTool) Call(ctx context.Context, input string) (string, error) 
 	if len(data.Columns) > 8 {
 		warnings = append(warnings, fmt.Sprintf("⚠️  Result has %d columns — question may ask for fewer. Drop unrelated SELECT columns.", len(data.Columns)))
 	}
+	if HasProjectionConcat(sql) {
+		warnings = append(warnings, "⚠️  SELECT uses || or CONCAT — BIRD often wants separate columns. Prefer comma-separated SELECT fields unless evidence requires one string.")
+	}
 
 	// 8. Build final result
 	if len(warnings) > 0 {

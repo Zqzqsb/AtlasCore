@@ -44,6 +44,10 @@ type Config struct {
 	ColumnMeaning        ColumnMeaningStore // Optional official column_meaning.json
 	ScaleCandidates      int                // 0/1 = off; >=2 enables scale_light vote
 
+	// Linker / sampling enhancements (WiseCat + DeepEye + DataGallery distill)
+	EnableLinkEnhance bool // FK expand + column refine + evidence literal hints
+	EnableProbeTool   bool // Expose probe_column_values in ReAct
+
 	// Filled per Execute() — not a user-facing flag
 	OutputContract *OutputContract
 }
@@ -240,17 +244,32 @@ func (p *Pipeline) Execute(ctx context.Context, query string) (*Result, error) {
 
 	p.Logger.Printf("📋 Selected Tables: %v\n\n", tables)
 
+	// 1b. Link enhance: FK expand + relevant columns + evidence literal hints
+	var linkInject string
+	if p.config.EnableLinkEnhance {
+		expanded, inject, enhErr := p.ApplyLinkEnhance(ctx, query, tables, allTableInfo)
+		if enhErr != nil {
+			p.Logger.Printf("⚠️  link enhance failed: %v\n", enhErr)
+		} else {
+			if len(expanded) > 0 {
+				tables = expanded
+				result.SelectedTables = tables
+			}
+			linkInject = inject
+			result.LLMCalls++ // column refine (best-effort; may no-op on error)
+		}
+	}
+
 	// 2. Build Schema Context for SQL generation
 	var contextPrompt string
 	var crossTableSummary string
 
 	if p.config.UseRichContext && p.context != nil {
-		// Prefer Schema Linker's focused context (LLM-filtered)
-		if linkResult.ContextPrompt != "" {
+		useFocused := linkResult.ContextPrompt != "" && !p.config.EnableLinkEnhance
+		if useFocused {
 			contextPrompt = linkResult.ContextPrompt
 			p.Logger.Printf("📚 Using Schema Linker's focused context (%d chars)\n", len(contextPrompt))
 		} else {
-			// Fallback: export full RC for selected tables
 			opts := &contextpkg.ExportOptions{
 				Tables:             tables,
 				IncludeColumns:     true,
@@ -259,13 +278,11 @@ func (p *Pipeline) Execute(ctx context.Context, query string) (*Result, error) {
 				IncludeStats:       true,
 			}
 			contextPrompt = p.context.ExportToCompactPrompt(opts)
-			p.Logger.Printf("📚 Using full Rich Context for %d tables (linker had no focused context)\n", len(tables))
+			p.Logger.Printf("📚 Using Rich Context for %d tables\n", len(tables))
 		}
 
-		// Build cross-table quality summary from ALL tables (smart injection)
 		crossTableSummary = p.context.BuildCrossTableQualitySummary(tables)
 
-		// Dump context content to log file only (for post-analysis)
 		p.Logger.FileOnly("\n┌─ Rich Context Content ───────────────────────────────────\n")
 		p.Logger.FileOnly("%s", contextPrompt)
 		if crossTableSummary != "" {
@@ -273,9 +290,12 @@ func (p *Pipeline) Execute(ctx context.Context, query string) (*Result, error) {
 		}
 		p.Logger.FileOnly("└──────────────────────────────────────────────────────────\n\n")
 	} else {
-		// Use basic Schema (table+column names only)
 		contextPrompt = p.buildBasicSchema(ctx, tables)
 		p.Logger.Printf("📋 Using Basic Schema for %d tables\n", len(tables))
+	}
+
+	if linkInject != "" {
+		contextPrompt = contextPrompt + "\n" + linkInject
 	}
 
 	// 2b. Gold-free output contract (leaderboard)

@@ -78,6 +78,8 @@ type EvalMode struct {
 	EnableOutputContract bool
 	EnableProposeFields  bool
 	ScaleCandidates      int
+	EnableLinkEnhance    bool // FK expand + column refine + evidence literals
+	EnableProbeTool      bool // probe_column_values tool
 }
 
 // ─────────────────────────────────────────────────────
@@ -146,17 +148,19 @@ var evalModes = []EvalMode{
 	},
 	{
 		Name:        "leaderboard",
-		Description: "Black-box leaderboard baseline — ReAct+RC, clarify=off, output contract + propose_fields",
+		Description: "Black-box leaderboard — ReAct+RC + link enhance + probe + output contract",
 		UseReact:    true, UseRichContext: true, ReactLinking: false,
 		EnableClarify: "off", EnableProofread: false,
 		EnableOutputContract: true, EnableProposeFields: true, ScaleCandidates: 0,
+		EnableLinkEnhance: true, EnableProbeTool: true,
 	},
 	{
 		Name:        "leaderboard_scale",
-		Description: "Leaderboard + scale_light (6 candidates, execution vote)",
+		Description: "Leaderboard + scale_light (6 candidates, order-aware execution vote)",
 		UseReact:    true, UseRichContext: true, ReactLinking: false,
 		EnableClarify: "off", EnableProofread: false,
 		EnableOutputContract: true, EnableProposeFields: true, ScaleCandidates: 6,
+		EnableLinkEnhance: true, EnableProbeTool: true,
 	},
 }
 
@@ -493,6 +497,8 @@ func main() {
 	fmt.Printf("  OutputContract: %v\n", selectedMode.EnableOutputContract)
 	fmt.Printf("  ProposeFields:  %v\n", selectedMode.EnableProposeFields)
 	fmt.Printf("  ScaleCands:     %d\n", selectedMode.ScaleCandidates)
+	fmt.Printf("  LinkEnhance:    %v\n", selectedMode.EnableLinkEnhance)
+	fmt.Printf("  ProbeTool:      %v\n", selectedMode.EnableProbeTool)
 	if *columnMeaningPath != "" {
 		fmt.Printf("  ColumnMeaning:  %s\n", *columnMeaningPath)
 	}
@@ -1004,6 +1010,8 @@ func evaluateBird(
 		EnableProposeFields:     mode.EnableProposeFields,
 		ColumnMeaning:           columnMeaning,
 		ScaleCandidates:         mode.ScaleCandidates,
+		EnableLinkEnhance:       mode.EnableLinkEnhance,
+		EnableProbeTool:         mode.EnableProbeTool,
 	}
 
 	pipeline := inference.NewPipeline(llm, dbAdapter, pipelineConfig)

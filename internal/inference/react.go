@@ -105,6 +105,12 @@ func (p *Pipeline) reactLoop(ctx context.Context, query string, contextPrompt st
 		toolsList = append(toolsList, proposeTool)
 	}
 
+	if p.config.EnableProbeTool {
+		probeTool := NewProbeColumnTool(p.adapter, p.config.DBType)
+		probeTool.logger = p.Logger
+		toolsList = append(toolsList, probeTool)
+	}
+
 	if p.config.EnableProofread {
 		updateTool := NewUpdateRichContextTool(p.config.DBName, p.config.DBType, p.config.Benchmark)
 		updateTool.logger = p.Logger
@@ -383,6 +389,10 @@ func (p *Pipeline) buildPrompt(query string, contextPrompt string, crossTableSum
 			sb.WriteString(`
 - propose_output_fields: Propose output columns yourself (gold-free substitute for clarify)`)
 		}
+		if p.config.EnableProbeTool {
+			sb.WriteString(`
+- probe_column_values: Probe DISTINCT values of table.column before using string literals (input: table.column or table.column|limit)`)
+		}
 		if p.config.EnableProofread {
 			sb.WriteString(`
 - update_rich_context: Update expired/incorrect Rich Context`)
@@ -396,11 +406,15 @@ Workflow:
 		if p.config.ClarifyMode == "on" {
 			sb.WriteString(`
 2. If unclear which columns needed → use clarify_fields
-3. If string values missing from Rich Context → use execute_sql to find them`)
+3. If string values uncertain → use probe_column_values (preferred) or execute_sql`)
 		} else if p.config.EnableProposeFields {
 			sb.WriteString(`
 2. If output columns are ambiguous → use propose_output_fields, then verify_sql
-3. If string values missing from Rich Context → use execute_sql to find them`)
+3. If string/enum literals uncertain (see Value Probe Hints) → use probe_column_values BEFORE writing WHERE`)
+		} else if p.config.EnableProbeTool {
+			sb.WriteString(`
+2. If string/enum literals uncertain → use probe_column_values BEFORE writing WHERE
+3. Use execute_sql only for broader exploration`)
 		} else {
 			sb.WriteString(`
 2. If string values missing from Rich Context → use execute_sql to find them`)
@@ -789,8 +803,10 @@ func (p *Pipeline) buildBirdBestPractices() string {
 
 3. Projection (SELECT columns):
    - Return ONLY the columns the question asks for — no extra columns
+   - Keep the SAME ORDER as the question asks (column order matters)
    - When question asks for a name/description, JOIN to get the text — do NOT return IDs
-   - Do NOT concatenate columns unless evidence explicitly requires it
+   - Do NOT concatenate columns with || or CONCAT unless evidence explicitly requires a single string
+   - Prefer separate SELECT columns over concat (BIRD often grades split columns)
 
 4. DISTINCT — THIS IS CRITICAL, follow these rules precisely:
    ★ DEFAULT: Do NOT add DISTINCT unless you have a specific reason below.
