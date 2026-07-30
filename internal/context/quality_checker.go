@@ -91,11 +91,13 @@ func (qc *QualityChecker) RunAll(ctx context.Context) error {
 		}
 	}
 
-	// 2. Check orphan records for each foreign key
-	for _, fk := range table.ForeignKeys {
+	// 2. Check orphan records + cardinality for each foreign key
+	for i, fk := range table.ForeignKeys {
 		if issue := qc.checkOrphanRecords(ctx, fk); issue != nil {
 			allIssues = append(allIssues, *issue)
 		}
+		enriched := qc.analyzeFKCardinality(ctx, fk, table.RowCount)
+		table.ForeignKeys[i] = enriched
 	}
 
 	// Save to SharedContext
@@ -270,7 +272,7 @@ func (qc *QualityChecker) collectValueStats(ctx context.Context, colName, colTyp
 		}
 	}
 
-	// 3. If enumeration type (distinct < 30), collect top values
+	// 3. If enumeration type (distinct <= 30), collect top values with frequency
 	if stats.DistinctCount > 0 && stats.DistinctCount <= 30 {
 		topSQL := fmt.Sprintf(
 			`SELECT %s as val, COUNT(*) as cnt FROM %s WHERE %s IS NOT NULL GROUP BY %s ORDER BY cnt DESC LIMIT 15`,
@@ -287,6 +289,36 @@ func (qc *QualityChecker) collectValueStats(ctx context.Context, colName, colTyp
 					Count:   cnt,
 					Percent: float64(cnt) / float64(totalRows) * 100,
 				})
+			}
+		}
+	}
+
+	// 3b. High-cardinality TEXT: still collect dense sample values (WiseCat-style)
+	// Skip obvious unique keys / very long identifiers when distinct ≈ row count.
+	if isTextType(strings.ToUpper(colType)) && stats.DistinctCount > 30 {
+		skipSamples := false
+		if totalRows > 0 && float64(stats.DistinctCount)/float64(totalRows) > 0.95 {
+			// Near-unique text (ids, hashes) — keep a few samples only for format hint
+			skipSamples = false
+		}
+		if !skipSamples {
+			sampleSQL := fmt.Sprintf(
+				`SELECT DISTINCT %s as val FROM %s WHERE %s IS NOT NULL AND CAST(%s AS TEXT) != '' LIMIT 12`,
+				quoteIdent(colName), quoteIdent(qc.tableName),
+				quoteIdent(colName), quoteIdent(colName),
+			)
+			sampleResult, err := qc.adapter.ExecuteQuery(ctx, sampleSQL)
+			if err == nil {
+				for _, row := range sampleResult.Rows {
+					val := fmt.Sprintf("%v", row["val"])
+					if len(val) > 80 {
+						val = val[:77] + "..."
+					}
+					stats.SampleValues = append(stats.SampleValues, val)
+					if len(stats.SampleValues) >= 10 {
+						break
+					}
+				}
 			}
 		}
 	}
@@ -313,6 +345,76 @@ func (qc *QualityChecker) collectValueStats(ctx context.Context, colName, colTyp
 	}
 
 	return stats
+}
+
+// analyzeFKCardinality estimates child→parent cardinality with deterministic SQL
+// (WiseCat classifyAssetRelation style: FK side non-unique → parent 1:N).
+func (qc *QualityChecker) analyzeFKCardinality(ctx context.Context, fk ForeignKeyMetadata, childRows int64) ForeignKeyMetadata {
+	out := fk
+	if childRows == 0 {
+		return out
+	}
+
+	sql := fmt.Sprintf(
+		`SELECT COUNT(*) as row_cnt,
+		        COUNT(DISTINCT %s) as dist_cnt,
+		        SUM(CASE WHEN %s IS NULL THEN 1 ELSE 0 END) as null_cnt
+		 FROM %s`,
+		quoteIdent(fk.ColumnName), quoteIdent(fk.ColumnName), quoteIdent(qc.tableName),
+	)
+	result, err := qc.adapter.ExecuteQuery(ctx, sql)
+	if err != nil || result.RowCount == 0 {
+		// Fall back to PK heuristic without SQL
+		return applyCardinalityHeuristic(out, qc.sharedCtx, qc.tableName)
+	}
+	row := result.Rows[0]
+	rowCnt := toInt(row["row_cnt"])
+	distCnt := toInt(row["dist_cnt"])
+	nullCnt := toInt(row["null_cnt"])
+	nonNull := rowCnt - nullCnt
+	out.ChildRows = nonNull
+	out.ChildDistinctFK = distCnt
+
+	if nonNull <= 0 || distCnt <= 0 {
+		return applyCardinalityHeuristic(out, qc.sharedCtx, qc.tableName)
+	}
+
+	avg := float64(nonNull) / float64(distCnt)
+	out.AvgChildren = avg
+
+	// Unique FK values ≈ unique non-null rows → 1:1 (or N:1 with at most one child each)
+	if distCnt >= nonNull-1 && avg <= 1.05 {
+		out.Cardinality = "1:1"
+		out.ParentToChild = "1:1"
+		return out
+	}
+	// Multiple child rows share parent keys → classic N:1 from child, 1:N from parent
+	if avg > 1.05 {
+		out.Cardinality = "N:1"
+		out.ParentToChild = "1:N"
+		return out
+	}
+	out.Cardinality = "N:1"
+	out.ParentToChild = "1:N"
+	return out
+}
+
+func applyCardinalityHeuristic(fk ForeignKeyMetadata, shared *SharedContext, childTable string) ForeignKeyMetadata {
+	// WiseCat-style: if FK column is not a sole PK of child → treat as N:1 / parent 1:N
+	fk.Cardinality = "N:1"
+	fk.ParentToChild = "1:N"
+	if shared == nil {
+		return fk
+	}
+	table, ok := shared.Tables[childTable]
+	if !ok {
+		return fk
+	}
+	if len(table.PrimaryKey) == 1 && strings.EqualFold(table.PrimaryKey[0], fk.ColumnName) {
+		fk.Cardinality = "1:1"
+		fk.ParentToChild = "1:1"
+	}
+	return fk
 }
 
 // --- helper functions ---

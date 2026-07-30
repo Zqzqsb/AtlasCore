@@ -136,7 +136,8 @@ type ValueStats struct {
 	NullCount     int              `json:"null_count"`
 	NullPercent   float64          `json:"null_percent"`
 	EmptyCount    int              `json:"empty_count,omitempty"`    // For TEXT columns: count of ''
-	TopValues     []ValueFrequency `json:"top_values,omitempty"`    // Enumeration values (distinct < 30)
+	TopValues     []ValueFrequency `json:"top_values,omitempty"`    // Enumeration values (distinct <= 30)
+	SampleValues  []string         `json:"sample_values,omitempty"` // Dense samples for high-card text (WiseCat-style)
 	Range         *NumericRange    `json:"range,omitempty"`         // For numeric columns
 }
 
@@ -191,18 +192,24 @@ type IndexMetadata struct {
 
 // ForeignKeyMetadata foreign key metadata
 type ForeignKeyMetadata struct {
-	ColumnName       string `json:"column_name"`       // Local column name
-	ReferencedTable  string `json:"referenced_table"`  // Referenced table name
-	ReferencedColumn string `json:"referenced_column"` // Referenced column name
+	ColumnName       string  `json:"column_name"`                 // Local column name
+	ReferencedTable  string  `json:"referenced_table"`            // Referenced table name
+	ReferencedColumn string  `json:"referenced_column"`           // Referenced column name
+	Cardinality      string  `json:"cardinality,omitempty"`       // From this table: "N:1" | "1:1" | "N:M"
+	ParentToChild    string  `json:"parent_to_child,omitempty"`   // Reverse view: "1:N" | "1:1" | "M:N"
+	AvgChildren      float64 `json:"avg_children,omitempty"`      // Avg child rows per parent key (if 1:N)
+	ChildDistinctFK  int     `json:"child_distinct_fk,omitempty"` // COUNT(DISTINCT fk) on this table
+	ChildRows        int     `json:"child_rows,omitempty"`        // COUNT(*) with non-null fk
 }
 
 // JoinPath JOIN path info
 type JoinPath struct {
-	FromTable   string   `json:"from_table"`   // Source table
-	ToTable     string   `json:"to_table"`     // Target table
-	Path        []string `json:"path"`         // Full path (including intermediate tables)
-	JoinClauses []string `json:"join_clauses"` // JOIN clause list
-	Description string   `json:"description"`  // Path description
+	FromTable   string   `json:"from_table"`             // Source table
+	ToTable     string   `json:"to_table"`               // Target table
+	Path        []string `json:"path"`                   // Full path (including intermediate tables)
+	JoinClauses []string `json:"join_clauses"`           // JOIN clause list
+	Description string   `json:"description"`            // Path description
+	Cardinality string   `json:"cardinality,omitempty"`  // e.g. "N:1" / "1:N" along the edge
 }
 
 // FieldSemantic field semantic info

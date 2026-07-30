@@ -5,22 +5,109 @@ import (
 	"strings"
 )
 
-// AnalyzeJoinPaths analyzes JOIN paths between tables
+// AnalyzeJoinPaths builds direct FK join edges (1-hop) with cardinality labels.
+// Full pairwise BFS is avoided — only catalog FK edges, so prompts stay compact
+// while still teaching 1:N / N:1 for DISTINCT decisions.
 func (c *SharedContext) AnalyzeJoinPaths() {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 
-	// No longer generates verbose JOIN path and field semantic info
-	// This info bloats Rich Context and distracts attention
-	// Foreign key relationships are sufficient for JOIN info
-	// LLM can infer JOIN paths from foreign key relationships
+	c.JoinPaths = make(map[string]*JoinPath)
+	c.FieldSemantics = make(map[string]*FieldSemantic)
 
-	// Keep data structure init to avoid nil pointers
-	if c.JoinPaths == nil {
-		c.JoinPaths = make(map[string]*JoinPath)
+	for tableName, table := range c.Tables {
+		for _, fk := range table.ForeignKeys {
+			card := fk.Cardinality
+			if card == "" {
+				card = "N:1"
+			}
+			parentCard := fk.ParentToChild
+			if parentCard == "" {
+				parentCard = "1:N"
+			}
+
+			// Child → Parent (N:1 typical)
+			forwardKey := fmt.Sprintf("%s→%s", tableName, fk.ReferencedTable)
+			clause := fmt.Sprintf("%s.%s = %s.%s",
+				tableName, fk.ColumnName, fk.ReferencedTable, fk.ReferencedColumn)
+			desc := fmt.Sprintf("%s.%s → %s.%s [%s]",
+				tableName, fk.ColumnName, fk.ReferencedTable, fk.ReferencedColumn, card)
+			if fk.AvgChildren > 1.05 {
+				desc += fmt.Sprintf("; avg %.1f child rows/parent — JOIN may multiply rows; use DISTINCT when listing unique parents", fk.AvgChildren)
+			}
+			c.JoinPaths[forwardKey] = &JoinPath{
+				FromTable:   tableName,
+				ToTable:     fk.ReferencedTable,
+				Path:        []string{tableName, fk.ReferencedTable},
+				JoinClauses: []string{clause},
+				Description: desc,
+				Cardinality: card,
+			}
+
+			// Parent → Child reverse view (1:N)
+			reverseKey := fmt.Sprintf("%s→%s", fk.ReferencedTable, tableName)
+			if _, exists := c.JoinPaths[reverseKey]; !exists {
+				revDesc := fmt.Sprintf("%s 1→N %s via %s.%s [%s]",
+					fk.ReferencedTable, tableName, tableName, fk.ColumnName, parentCard)
+				if fk.AvgChildren > 1.05 {
+					revDesc += "; selecting child after JOIN can duplicate parent rows"
+				}
+				c.JoinPaths[reverseKey] = &JoinPath{
+					FromTable:   fk.ReferencedTable,
+					ToTable:     tableName,
+					Path:        []string{fk.ReferencedTable, tableName},
+					JoinClauses: []string{clause},
+					Description: revDesc,
+					Cardinality: parentCard,
+				}
+			}
+		}
 	}
-	if c.FieldSemantics == nil {
-		c.FieldSemantics = make(map[string]*FieldSemantic)
+
+	c.analyzeFieldSemanticsLocked()
+}
+
+// analyzeFieldSemanticsLocked assumes c.mu is held.
+func (c *SharedContext) analyzeFieldSemanticsLocked() {
+	for tableName, table := range c.Tables {
+		for _, fk := range table.ForeignKeys {
+			key := fmt.Sprintf("%s.%s", tableName, fk.ColumnName)
+			cardNote := fk.Cardinality
+			if cardNote == "" {
+				cardNote = "N:1"
+			}
+			note := fmt.Sprintf("FK → %s.%s [%s]. Stores ID, not display name — JOIN parent to get names.",
+				fk.ReferencedTable, fk.ReferencedColumn, cardNote)
+			if fk.ParentToChild == "1:N" || (fk.AvgChildren > 1.05) {
+				note += " Parent→child is 1:N: JOIN from parent multiplies rows; DISTINCT if listing unique parents."
+			}
+			c.FieldSemantics[key] = &FieldSemantic{
+				TableName:   tableName,
+				ColumnName:  fk.ColumnName,
+				StorageType: "foreign_key",
+				References:  fmt.Sprintf("%s.%s", fk.ReferencedTable, fk.ReferencedColumn),
+				Note:        note,
+			}
+		}
+
+		for _, col := range table.Columns {
+			colLower := strings.ToLower(col.Name)
+			if !(strings.HasSuffix(colLower, "_id") || strings.HasSuffix(colLower, "id")) {
+				continue
+			}
+			key := fmt.Sprintf("%s.%s", tableName, col.Name)
+			if _, exists := c.FieldSemantics[key]; exists {
+				continue
+			}
+			if col.IsPrimaryKey {
+				c.FieldSemantics[key] = &FieldSemantic{
+					TableName:   tableName,
+					ColumnName:  col.Name,
+					StorageType: "primary_key",
+					Note:        fmt.Sprintf("Primary key of %s", tableName),
+				}
+			}
+		}
 	}
 }
 
@@ -34,7 +121,6 @@ func (c *SharedContext) buildForeignKeyGraph() map[string][]string {
 		}
 
 		for _, fk := range table.ForeignKeys {
-			// Add bidirectional edges (JOIN works both ways)
 			graph[tableName] = append(graph[tableName], fk.ReferencedTable)
 			if _, exists := graph[fk.ReferencedTable]; !exists {
 				graph[fk.ReferencedTable] = []string{}
@@ -77,7 +163,7 @@ func (c *SharedContext) findShortestPath(graph map[string][]string, from, to str
 		}
 	}
 
-	return nil // no path found
+	return nil
 }
 
 // buildJoinPath builds JoinPath from path
@@ -87,20 +173,14 @@ func (c *SharedContext) buildJoinPath(path []string) *JoinPath {
 	}
 
 	joinClauses := []string{}
-	description := ""
-
 	for i := 0; i < len(path)-1; i++ {
-		fromTable := path[i]
-		toTable := path[i+1]
-
-		// Find join condition
-		joinClause := c.findJoinClause(fromTable, toTable)
+		joinClause := c.findJoinClause(path[i], path[i+1])
 		if joinClause != "" {
 			joinClauses = append(joinClauses, joinClause)
 		}
 	}
 
-	// Generate description
+	description := ""
 	if len(path) == 2 {
 		description = fmt.Sprintf("Direct join between %s and %s", path[0], path[1])
 	} else {
@@ -119,7 +199,6 @@ func (c *SharedContext) buildJoinPath(path []string) *JoinPath {
 
 // findJoinClause finds JOIN condition between two tables
 func (c *SharedContext) findJoinClause(table1, table2 string) string {
-	// Check if table1 has FK to table2
 	if t1, exists := c.Tables[table1]; exists {
 		for _, fk := range t1.ForeignKeys {
 			if fk.ReferencedTable == table2 {
@@ -130,7 +209,6 @@ func (c *SharedContext) findJoinClause(table1, table2 string) string {
 		}
 	}
 
-	// Check if table2 has FK to table1
 	if t2, exists := c.Tables[table2]; exists {
 		for _, fk := range t2.ForeignKeys {
 			if fk.ReferencedTable == table1 {
@@ -144,59 +222,6 @@ func (c *SharedContext) findJoinClause(table1, table2 string) string {
 	return ""
 }
 
-// reversePath reverses path
-func (c *SharedContext) reversePath(path []string) []string {
-	reversed := make([]string, len(path))
-	for i := 0; i < len(path); i++ {
-		reversed[i] = path[len(path)-1-i]
-	}
-	return reversed
-}
-
-// analyzeFieldSemantics analyzes field semantics
-func (c *SharedContext) analyzeFieldSemantics() {
-	for tableName, table := range c.Tables {
-		// Analyze FK fields
-		for _, fk := range table.ForeignKeys {
-			key := fmt.Sprintf("%s.%s", tableName, fk.ColumnName)
-			c.FieldSemantics[key] = &FieldSemantic{
-				TableName:   tableName,
-				ColumnName:  fk.ColumnName,
-				StorageType: "foreign_key",
-				References:  fmt.Sprintf("%s.%s", fk.ReferencedTable, fk.ReferencedColumn),
-				Note:        fmt.Sprintf("Stores %s ID, not %s name. Use JOIN to get related data.", fk.ReferencedTable, fk.ReferencedTable),
-			}
-		}
-
-		// Analyze possible ID fields (not FK)
-		for _, col := range table.Columns {
-			colLower := strings.ToLower(col.Name)
-			if strings.HasSuffix(colLower, "_id") || strings.HasSuffix(colLower, "id") {
-				key := fmt.Sprintf("%s.%s", tableName, col.Name)
-
-				// Check if already handled as FK
-				if _, exists := c.FieldSemantics[key]; !exists {
-					if col.IsPrimaryKey {
-						c.FieldSemantics[key] = &FieldSemantic{
-							TableName:   tableName,
-							ColumnName:  col.Name,
-							StorageType: "primary_key",
-							Note:        fmt.Sprintf("Primary key of %s table", tableName),
-						}
-					} else {
-						c.FieldSemantics[key] = &FieldSemantic{
-							TableName:   tableName,
-							ColumnName:  col.Name,
-							StorageType: "id_field",
-							Note:        "Likely an identifier field, may need special handling",
-						}
-					}
-				}
-			}
-		}
-	}
-}
-
 // FormatJoinPathsForPrompt formats JOIN path info for Prompt
 func (c *SharedContext) FormatJoinPathsForPrompt() string {
 	if len(c.JoinPaths) == 0 {
@@ -204,22 +229,20 @@ func (c *SharedContext) FormatJoinPathsForPrompt() string {
 	}
 
 	var sb strings.Builder
-	sb.WriteString("\n## Join Path Guidelines\n")
-	sb.WriteString("When joining tables, refer to these pre-analyzed join paths:\n\n")
+	sb.WriteString("\n## Join Relationships (with cardinality)\n")
+	sb.WriteString("Use these FK edges. N:1 / 1:N means JOIN can multiply rows — add DISTINCT when listing unique entities on the '1' side.\n\n")
 
-	// Sort output by table name
 	for key, joinPath := range c.JoinPaths {
-		sb.WriteString(fmt.Sprintf("**%s**:\n", key))
-		sb.WriteString(fmt.Sprintf("  - Path: %s\n", strings.Join(joinPath.Path, " → ")))
-		sb.WriteString(fmt.Sprintf("  - Description: %s\n", joinPath.Description))
-		if len(joinPath.JoinClauses) > 0 {
-			sb.WriteString("  - Join clauses:\n")
-			for _, clause := range joinPath.JoinClauses {
-				sb.WriteString(fmt.Sprintf("    * %s\n", clause))
-			}
+		card := joinPath.Cardinality
+		if card == "" {
+			card = "?"
 		}
-		sb.WriteString("\n")
+		sb.WriteString(fmt.Sprintf("- **%s** [%s]: %s\n", key, card, joinPath.Description))
+		if len(joinPath.JoinClauses) > 0 {
+			sb.WriteString(fmt.Sprintf("  ON %s\n", strings.Join(joinPath.JoinClauses, " AND ")))
+		}
 	}
+	sb.WriteString("\n")
 
 	return sb.String()
 }
@@ -234,7 +257,6 @@ func (c *SharedContext) FormatFieldSemanticsForPrompt() string {
 	sb.WriteString("\n## Field Semantics\n")
 	sb.WriteString("Important field storage information:\n\n")
 
-	// Group by table name
 	tableFields := make(map[string][]*FieldSemantic)
 	for _, fs := range c.FieldSemantics {
 		tableFields[fs.TableName] = append(tableFields[fs.TableName], fs)

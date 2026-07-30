@@ -99,13 +99,17 @@ func GetModelName(useV32 bool) string {
 	return "DeepSeek-V3"
 }
 
-// CreateLLM creates LLM instance
+// CreateLLM creates LLM instance (with process-wide TPM gate + 429 backoff).
 func CreateLLM(config ModelConfig) (llms.Model, error) {
-	return openai.New(
+	inner, err := openai.New(
 		openai.WithModel(config.ModelName),
 		openai.WithToken(config.Token),
 		openai.WithBaseURL(config.BaseURL),
 	)
+	if err != nil {
+		return nil, err
+	}
+	return WrapWithRateLimit(inner, DefaultRateLimitConfig()), nil
 }
 
 // CreateLLMWithFlag creates LLM by flag

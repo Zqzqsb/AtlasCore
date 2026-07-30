@@ -64,8 +64,10 @@ func (c *SharedContext) ExportToPrompt(opts *ExportOptions) string {
 			sb.WriteString(fmt.Sprintf("- **Indexes**: %d\n\n", len(table.Indexes)))
 		}
 
-		// Table comment
-		if table.Comment != "" {
+		// Table comment / LLM description
+		if table.Description != "" {
+			sb.WriteString(fmt.Sprintf("**Description**: %s\n\n", table.Description))
+		} else if table.Comment != "" {
 			sb.WriteString(fmt.Sprintf("**Description**: %s\n\n", table.Comment))
 		}
 
@@ -160,8 +162,16 @@ func (c *SharedContext) ExportToPrompt(opts *ExportOptions) string {
 		if len(table.ForeignKeys) > 0 {
 			sb.WriteString("### Foreign Keys\n\n")
 			for _, fk := range table.ForeignKeys {
-				sb.WriteString(fmt.Sprintf("- `%s` → `%s.%s`\n",
-					fk.ColumnName, fk.ReferencedTable, fk.ReferencedColumn))
+				card := fk.Cardinality
+				if card == "" {
+					card = "?"
+				}
+				extra := ""
+				if fk.AvgChildren > 1.05 {
+					extra = fmt.Sprintf(" (avg %.1f children/parent)", fk.AvgChildren)
+				}
+				sb.WriteString(fmt.Sprintf("- `%s` → `%s.%s` [%s]%s\n",
+					fk.ColumnName, fk.ReferencedTable, fk.ReferencedColumn, card, extra))
 			}
 			sb.WriteString("\n")
 		}
@@ -197,8 +207,14 @@ func (c *SharedContext) ExportToCompactPrompt(opts *ExportOptions) string {
 			continue
 		}
 
-		// Table name and row count
-		sb.WriteString(fmt.Sprintf("Table %s (%d rows):\n", table.Name, table.RowCount))
+		// Table name, row count, description
+		if table.Description != "" {
+			sb.WriteString(fmt.Sprintf("Table %s (%d rows): %s\n", table.Name, table.RowCount, table.Description))
+		} else if table.Comment != "" {
+			sb.WriteString(fmt.Sprintf("Table %s (%d rows): %s\n", table.Name, table.RowCount, table.Comment))
+		} else {
+			sb.WriteString(fmt.Sprintf("Table %s (%d rows):\n", table.Name, table.RowCount))
+		}
 
 		// Column info (compact format with inline value stats)
 		if opts.IncludeColumns {
@@ -207,11 +223,18 @@ func (c *SharedContext) ExportToCompactPrompt(opts *ExportOptions) string {
 				if col.IsPrimaryKey {
 					pk = " [PK]"
 				}
-				// Check if foreign key
+				// Check if foreign key (+ cardinality)
 				fkInfo := ""
 				for _, fk := range table.ForeignKeys {
 					if fk.ColumnName == col.Name {
-						fkInfo = fmt.Sprintf(" → %s.%s", fk.ReferencedTable, fk.ReferencedColumn)
+						card := fk.Cardinality
+						if card == "" {
+							card = "N:1"
+						}
+						fkInfo = fmt.Sprintf(" → %s.%s [%s]", fk.ReferencedTable, fk.ReferencedColumn, card)
+						if fk.AvgChildren > 1.05 {
+							fkInfo += fmt.Sprintf(" ~%.1fx", fk.AvgChildren)
+						}
 						break
 					}
 				}
@@ -220,8 +243,8 @@ func (c *SharedContext) ExportToCompactPrompt(opts *ExportOptions) string {
 				statsInfo := ""
 				if col.ValueStats != nil {
 					vs := col.ValueStats
-					if vs.DistinctCount > 0 && vs.DistinctCount <= 15 && len(vs.TopValues) > 0 {
-						// Compact enum display
+					if vs.DistinctCount > 0 && vs.DistinctCount <= 30 && len(vs.TopValues) > 0 {
+						// Enum display (aligned with storage threshold)
 						vals := make([]string, 0, len(vs.TopValues))
 						for _, tv := range vs.TopValues {
 							if len(vals) >= 8 {
@@ -231,12 +254,39 @@ func (c *SharedContext) ExportToCompactPrompt(opts *ExportOptions) string {
 							vals = append(vals, fmt.Sprintf("%s(%d)", tv.Value, tv.Count))
 						}
 						statsInfo = fmt.Sprintf(" values=[%s]", strings.Join(vals, ", "))
+					} else if len(vs.SampleValues) > 0 {
+						vals := make([]string, 0, len(vs.SampleValues))
+						for _, s := range vs.SampleValues {
+							if len(vals) >= 6 {
+								vals = append(vals, "...")
+								break
+							}
+							vals = append(vals, s)
+						}
+						statsInfo = fmt.Sprintf(" samples=[%s]", strings.Join(vals, ", "))
 					} else if vs.Range != nil {
 						statsInfo = fmt.Sprintf(" range=[%.0f..%.0f]", vs.Range.Min, vs.Range.Max)
 					}
 				}
 
 				sb.WriteString(fmt.Sprintf("  - %s: %s%s%s%s\n", col.Name, col.Type, pk, fkInfo, statsInfo))
+			}
+		}
+
+		// Relationship summary for this table (1:N awareness)
+		if len(table.ForeignKeys) > 0 {
+			sb.WriteString("  Relationships:\n")
+			for _, fk := range table.ForeignKeys {
+				card := fk.Cardinality
+				if card == "" {
+					card = "N:1"
+				}
+				line := fmt.Sprintf("    * %s.%s → %s.%s [%s]",
+					table.Name, fk.ColumnName, fk.ReferencedTable, fk.ReferencedColumn, card)
+				if fk.ParentToChild == "1:N" {
+					line += " (parent 1:N — JOIN may multiply rows; DISTINCT if unique parents needed)"
+				}
+				sb.WriteString(line + "\n")
 			}
 		}
 
