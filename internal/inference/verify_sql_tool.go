@@ -15,6 +15,10 @@ type VerifySQLTool struct {
 	dbType   string
 	logger   *InferenceLogger
 	contract *OutputContract
+	// question is the user question (+ optional evidence) for join/DISTINCT heuristics.
+	question string
+	// joinHints are 1:N FK edges from Rich Context for selected tables.
+	joinHints []JoinCardHint
 	// LastValidSQL is the most recent SQL that passed DB execution in this tool.
 	// Used as a ReAct parse-failure fallback when the model dumps bare SQL.
 	LastValidSQL string
@@ -111,8 +115,15 @@ func (t *VerifySQLTool) Call(ctx context.Context, input string) (string, error) 
 
 	// 6. Check duplicate rows
 	rows := convertQueryResultFormat(data.Rows)
+	hasDupRows := false
 	if duplicateWarning := t.checkDuplicateRows(rows); duplicateWarning != "" {
+		hasDupRows = true
 		warnings = append(warnings, duplicateWarning)
+	}
+
+	// 6b. JOIN / DISTINCT / 1:N cardinality heuristics (gold-free)
+	if joinWarns := AnalyzeJoinDistinctIssues(sql, t.question, t.joinHints, hasDupRows, data.RowCount); len(joinWarns) > 0 {
+		warnings = append(warnings, joinWarns...)
 	}
 
 	// 7. Projection / output-contract checks (gold-free)
@@ -241,7 +252,7 @@ func (t *VerifySQLTool) checkDuplicateRows(rows [][]string) string {
 		rowKey := strings.Join(row, "||<SEP>||")
 		if seen[rowKey] {
 			// Duplicate found
-			return fmt.Sprintf("Warning: The query returned duplicate rows (e.g., %v). Review the question to determine if duplicates should be removed using DISTINCT.", row)
+			return fmt.Sprintf("⚠️  The query returned duplicate rows (e.g., %v). If the question wants unique entities after a 1:N JOIN, add SELECT DISTINCT; if it wants all instances, keep duplicates.", row)
 		}
 		seen[rowKey] = true
 	}

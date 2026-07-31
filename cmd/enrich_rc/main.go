@@ -28,6 +28,8 @@ func main() {
 	dbDir := flag.String("db-dir", "benchmarks/bird/heldout_v1_smoke/test_databases", "Directory of sqlite DBs (<db>/<db>.sqlite)")
 	limit := flag.Int("limit", 0, "Max DBs to enrich (0 = all)")
 	dbFilter := flag.String("db", "", "Only enrich this db_id")
+	resumeAfter := flag.String("resume-after", "", "Skip DBs with name <= this (lexicographic), e.g. ice_hockey_draft")
+	skipEnriched := flag.Bool("skip-enriched", false, "Skip DBs that already have non-empty join_paths")
 	quiet := flag.Bool("quiet", false, "Less logging")
 	flag.Parse()
 
@@ -37,7 +39,7 @@ func main() {
 	}
 
 	ctx := context.Background()
-	done, fail := 0, 0
+	done, fail, skipped := 0, 0, 0
 	start := time.Now()
 
 	for _, ent := range entries {
@@ -48,11 +50,25 @@ func main() {
 		if *dbFilter != "" && dbID != *dbFilter {
 			continue
 		}
+		if *resumeAfter != "" && dbID <= *resumeAfter {
+			skipped++
+			continue
+		}
 		if *limit > 0 && done+fail >= *limit {
 			break
 		}
 
 		jsonPath := filepath.Join(*contextDir, ent.Name())
+		if *skipEnriched {
+			if sharedPeek, err := contextpkg.LoadContextFromFile(jsonPath); err == nil && len(sharedPeek.JoinPaths) > 0 {
+				skipped++
+				if !*quiet {
+					fmt.Printf("skip %s (already has join_paths)\n", dbID)
+				}
+				continue
+			}
+		}
+
 		sqlitePath := filepath.Join(*dbDir, dbID, dbID+".sqlite")
 		if _, err := os.Stat(sqlitePath); err != nil {
 			// try flat layout
@@ -106,7 +122,8 @@ func main() {
 		done++
 	}
 
-	fmt.Printf("\nDone: %d ok, %d fail, elapsed %s\n", done, fail, time.Since(start).Round(time.Second))
+	fmt.Printf("\nDone: %d ok, %d fail, %d skipped, elapsed %s\n",
+		done, fail, skipped, time.Since(start).Round(time.Second))
 }
 
 func countEnrichSignals(shared *contextpkg.SharedContext) (fkCard, joinPaths, sampleCols int) {

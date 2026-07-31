@@ -8,6 +8,13 @@ import (
 	"github.com/Zqzqsb/AtlasCore/internal/adapter"
 )
 
+// heavyTableRowLimit: above this, avoid full-table COUNT(DISTINCT)/GROUP BY/orphan JOIN.
+// Still does LIMIT-based sampling — 1M rows is fine; unbounded DISTINCT is not.
+const heavyTableRowLimit int64 = 100_000
+
+// sampleScanLimit: max rows to pull for light stats / FK cardinality estimates.
+const sampleScanLimit = 20000
+
 // QualityChecker performs deterministic data quality checks on a table.
 // All checks are pure SQL — no LLM involved.
 type QualityChecker struct {
@@ -37,6 +44,11 @@ func (qc *QualityChecker) RunAll(ctx context.Context) error {
 
 	if table.RowCount == 0 {
 		return nil // skip empty tables
+	}
+
+	// Huge tables: do NOT skip sampling — use LIMIT scans (O(limit)), not full COUNT(DISTINCT).
+	if table.RowCount > heavyTableRowLimit {
+		return qc.runAllLight(ctx, table)
 	}
 
 	var allIssues []QualityIssue
@@ -109,6 +121,145 @@ func (qc *QualityChecker) RunAll(ctx context.Context) error {
 	}
 
 	return nil
+}
+
+// runAllLight profiles large tables with LIMIT-based sampling only.
+// Avoids full-table COUNT(DISTINCT), GROUP BY, MIN/MAX, and orphan LEFT JOIN.
+func (qc *QualityChecker) runAllLight(ctx context.Context, table *TableMetadata) error {
+	for i, col := range table.Columns {
+		stats := qc.collectValueStatsLight(ctx, col.Name, col.Type, table.RowCount)
+		if stats != nil {
+			table.Columns[i].ValueStats = stats
+		}
+	}
+	for i, fk := range table.ForeignKeys {
+		table.ForeignKeys[i] = qc.analyzeFKCardinalitySampled(ctx, fk, table.RowCount)
+	}
+	if !qc.quiet {
+		fmt.Printf("[QualityChecker] %s: LIGHT sample stats (rows=%d > %d; LIMIT %d, no full DISTINCT)\n",
+			qc.tableName, table.RowCount, heavyTableRowLimit, sampleScanLimit)
+	}
+	return nil
+}
+
+// collectValueStatsLight pulls a prefix sample (SQLite stops after LIMIT) and
+// derives sample_values / rough distinct estimate in Go — no full table scan.
+func (qc *QualityChecker) collectValueStatsLight(ctx context.Context, colName, colType string, totalRows int64) *ValueStats {
+	stats := &ValueStats{}
+	limit := 500
+	if isTextType(strings.ToUpper(colType)) {
+		limit = 800
+	}
+
+	// Fast path: sequential scan stops after LIMIT rows (no ORDER BY / no DISTINCT).
+	sql := fmt.Sprintf(
+		`SELECT %s as val FROM %s WHERE %s IS NOT NULL LIMIT %d`,
+		quoteIdent(colName), quoteIdent(qc.tableName), quoteIdent(colName), limit,
+	)
+	result, err := qc.adapter.ExecuteQuery(ctx, sql)
+	if err != nil {
+		return nil
+	}
+
+	seen := map[string]int{}
+	order := make([]string, 0, 16)
+	for _, row := range result.Rows {
+		val := fmt.Sprintf("%v", row["val"])
+		if val == "" || val == "<nil>" {
+			stats.EmptyCount++
+			continue
+		}
+		if len(val) > 80 {
+			val = val[:77] + "..."
+		}
+		if _, ok := seen[val]; !ok {
+			order = append(order, val)
+		}
+		seen[val]++
+	}
+
+	sampleN := len(result.Rows)
+	stats.DistinctCount = len(seen) // distinct within sample (lower bound if sample saturated)
+	if sampleN > 0 && len(seen) <= 30 {
+		// Looks low-card in sample → export as enum frequencies over the sample
+		for _, v := range order {
+			if len(stats.TopValues) >= 15 {
+				break
+			}
+			cnt := seen[v]
+			stats.TopValues = append(stats.TopValues, ValueFrequency{
+				Value:   v,
+				Count:   cnt,
+				Percent: float64(cnt) / float64(sampleN) * 100,
+			})
+		}
+	} else {
+		for _, v := range order {
+			stats.SampleValues = append(stats.SampleValues, v)
+			if len(stats.SampleValues) >= 10 {
+				break
+			}
+		}
+	}
+
+	// Numeric range over the same limited sample
+	upperType := strings.ToUpper(colType)
+	if strings.Contains(upperType, "INT") || strings.Contains(upperType, "REAL") ||
+		strings.Contains(upperType, "FLOAT") || strings.Contains(upperType, "DOUBLE") ||
+		strings.Contains(upperType, "NUMERIC") || strings.Contains(upperType, "DECIMAL") {
+		rangeSQL := fmt.Sprintf(
+			`SELECT MIN(val) as min_val, MAX(val) as max_val, AVG(val) as avg_val FROM (
+				SELECT CAST(%s AS REAL) as val FROM %s WHERE %s IS NOT NULL LIMIT %d
+			)`,
+			quoteIdent(colName), quoteIdent(qc.tableName), quoteIdent(colName), limit,
+		)
+		if rangeResult, err := qc.adapter.ExecuteQuery(ctx, rangeSQL); err == nil && rangeResult.RowCount > 0 {
+			row := rangeResult.Rows[0]
+			stats.Range = &NumericRange{
+				Min: toFloat64(row["min_val"]),
+				Max: toFloat64(row["max_val"]),
+				Avg: toFloat64(row["avg_val"]),
+			}
+		}
+	}
+
+	_ = totalRows
+	return stats
+}
+
+// analyzeFKCardinalitySampled estimates cardinality from a LIMIT sample of FK values.
+func (qc *QualityChecker) analyzeFKCardinalitySampled(ctx context.Context, fk ForeignKeyMetadata, childRows int64) ForeignKeyMetadata {
+	out := applyCardinalityHeuristic(fk, qc.sharedCtx, qc.tableName)
+	sql := fmt.Sprintf(
+		`SELECT %s as val FROM %s WHERE %s IS NOT NULL LIMIT %d`,
+		quoteIdent(fk.ColumnName), quoteIdent(qc.tableName), quoteIdent(fk.ColumnName), sampleScanLimit,
+	)
+	result, err := qc.adapter.ExecuteQuery(ctx, sql)
+	if err != nil || result.RowCount == 0 {
+		return out
+	}
+
+	seen := map[string]struct{}{}
+	for _, row := range result.Rows {
+		seen[fmt.Sprintf("%v", row["val"])] = struct{}{}
+	}
+	n := result.RowCount
+	d := len(seen)
+	out.ChildRows = n
+	out.ChildDistinctFK = d
+	if d == 0 {
+		return out
+	}
+	avg := float64(n) / float64(d)
+	out.AvgChildren = avg
+	if d >= n-1 && avg <= 1.05 {
+		out.Cardinality = "1:1"
+		out.ParentToChild = "1:1"
+		return out
+	}
+	out.Cardinality = "N:1"
+	out.ParentToChild = "1:N"
+	return out
 }
 
 // checkWhitespace checks if a TEXT column contains leading/trailing whitespace
@@ -293,31 +444,29 @@ func (qc *QualityChecker) collectValueStats(ctx context.Context, colName, colTyp
 		}
 	}
 
-	// 3b. High-cardinality TEXT: still collect dense sample values (WiseCat-style)
-	// Skip obvious unique keys / very long identifiers when distinct ≈ row count.
+	// 3b. High-cardinality TEXT samples — LIMIT without DISTINCT (early stop).
+	// SELECT DISTINCT … LIMIT can still scan far on unique columns; plain LIMIT is O(k).
 	if isTextType(strings.ToUpper(colType)) && stats.DistinctCount > 30 {
-		skipSamples := false
-		if totalRows > 0 && float64(stats.DistinctCount)/float64(totalRows) > 0.95 {
-			// Near-unique text (ids, hashes) — keep a few samples only for format hint
-			skipSamples = false
-		}
-		if !skipSamples {
-			sampleSQL := fmt.Sprintf(
-				`SELECT DISTINCT %s as val FROM %s WHERE %s IS NOT NULL AND CAST(%s AS TEXT) != '' LIMIT 12`,
-				quoteIdent(colName), quoteIdent(qc.tableName),
-				quoteIdent(colName), quoteIdent(colName),
-			)
-			sampleResult, err := qc.adapter.ExecuteQuery(ctx, sampleSQL)
-			if err == nil {
-				for _, row := range sampleResult.Rows {
-					val := fmt.Sprintf("%v", row["val"])
-					if len(val) > 80 {
-						val = val[:77] + "..."
-					}
-					stats.SampleValues = append(stats.SampleValues, val)
-					if len(stats.SampleValues) >= 10 {
-						break
-					}
+		sampleSQL := fmt.Sprintf(
+			`SELECT %s as val FROM %s WHERE %s IS NOT NULL AND CAST(%s AS TEXT) != '' LIMIT 40`,
+			quoteIdent(colName), quoteIdent(qc.tableName),
+			quoteIdent(colName), quoteIdent(colName),
+		)
+		sampleResult, err := qc.adapter.ExecuteQuery(ctx, sampleSQL)
+		if err == nil {
+			seen := map[string]struct{}{}
+			for _, row := range sampleResult.Rows {
+				val := fmt.Sprintf("%v", row["val"])
+				if len(val) > 80 {
+					val = val[:77] + "..."
+				}
+				if _, ok := seen[val]; ok {
+					continue
+				}
+				seen[val] = struct{}{}
+				stats.SampleValues = append(stats.SampleValues, val)
+				if len(stats.SampleValues) >= 10 {
+					break
 				}
 			}
 		}

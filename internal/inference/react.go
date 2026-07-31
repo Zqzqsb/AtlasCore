@@ -88,8 +88,15 @@ func (p *Pipeline) reactLoop(ctx context.Context, query string, contextPrompt st
 	// Create verify_sql tool
 	verifySQLTool := NewVerifySQLTool(p.adapter, p.config.DBType)
 	verifySQLTool.logger = p.Logger
+	verifySQLTool.question = query
 	if p.config.OutputContract != nil {
 		verifySQLTool.contract = p.config.OutputContract
+	}
+	if p.context != nil {
+		verifySQLTool.joinHints = CollectJoinCardHints(p.context, result.SelectedTables)
+		if len(verifySQLTool.joinHints) > 0 {
+			p.Logger.Printf("🔗 verify_sql join cardinality hints: %d 1:N edges\n", len(verifySQLTool.joinHints))
+		}
 	}
 
 	// Create ReAct Agent
@@ -810,26 +817,29 @@ func (p *Pipeline) buildBirdBestPractices() string {
 
 4. DISTINCT — THIS IS CRITICAL, follow these rules precisely:
    ★ DEFAULT: Do NOT add DISTINCT unless you have a specific reason below.
+   ★ Use schema Relationships / [N:1] / [1:N] / avg children hints in Rich Context before deciding.
    USE DISTINCT when:
    - Question explicitly says "different", "unique", "distinct", "how many types/kinds"
-   - JOIN creates duplicates and question asks for unique entities:
+   - JOIN crosses a 1:N edge (parent→many children) and question asks for unique parents/entities:
      e.g., "list patient diagnoses" after JOIN Patient→Laboratory (1:many) → SELECT DISTINCT Diagnosis
      e.g., COUNT patients → COUNT(DISTINCT Patient.ID) after JOIN
    - Question asks "what are the X" (implying unique values): "what colors exist", "which cities"
+   - verify_sql warns about duplicate rows or 1:N multiplication — fix with DISTINCT / COUNT(DISTINCT)
    DO NOT use DISTINCT when:
    - Question says "list all", "list the records", "list entries" (wants all rows including repeats)
-   - Query on a single table with no JOIN (no duplicates possible)
+   - Query on a single table with no JOIN (no duplicates possible) — especially avoid COUNT(DISTINCT)
    - Already using GROUP BY (GROUP BY implies uniqueness)
    - Question asks about occurrences/instances: "list badges obtained", "show all transactions"
    - Aggregation queries (SUM, AVG, MAX, MIN) — DISTINCT inside aggregation changes the result
    ★ WHEN IN DOUBT: Omit DISTINCT. It is safer to return extra rows than to lose valid rows.
-   ★ VERIFY: After writing SQL, check — does this JOIN create 1:many expansion? If yes AND question wants unique entities, add DISTINCT. Otherwise, remove it.
+   ★ VERIFY: After writing SQL, run verify_sql — if it flags 1:N multiplication and the question wants unique entities, add DISTINCT; otherwise remove it.
 
 5. JOIN — use the minimum JOINs needed:
    - Before writing SQL, trace which tables are needed: question mentions X → column is in table A → filter needs table B → JOIN A to B
    - If question needs data from table A but filters on a concept in table B, you MUST JOIN both tables
    - Do NOT skip JOINs by querying a single table when the answer requires cross-table data
    - Do NOT add extra JOINs "just in case" — each unnecessary JOIN can multiply rows and change results
+   - Prefer documented FK join paths; when Relationships mark 1:N, expect row multiplication
    - After JOIN, check: does the JOIN create row multiplication? If so, consider DISTINCT or aggregation
 
 6. CAST/Type — be extremely conservative:
