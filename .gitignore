@@ -82,5 +82,7 @@ iters/
 
 # Projection-field SFT wash (regenerate via scripts/wash_proj_fields.py)
 data/proj_fields/
+data/proj_fields_v2/*.jsonl
+scripts/__pycache__/
 
 third_party/
