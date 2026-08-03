@@ -48,6 +48,10 @@ type Config struct {
 	EnableLinkEnhance bool // FK expand + column refine + evidence literal hints
 	EnableProbeTool   bool // Expose probe_column_values in ReAct
 
+	// Projection Taste Aligner (soft tool → remote HTTP; context over control)
+	EnableProjAlignTool bool   // Expose align_projection ReAct tool
+	ProjAlignURL        string // Base URL; empty → PROJALIGN_URL env → default Mac MPS
+
 	// Filled per Execute() — not a user-facing flag
 	OutputContract *OutputContract
 }

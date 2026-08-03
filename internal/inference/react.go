@@ -118,6 +118,16 @@ func (p *Pipeline) reactLoop(ctx context.Context, query string, contextPrompt st
 		toolsList = append(toolsList, probeTool)
 	}
 
+	if p.config.EnableProjAlignTool {
+		qOnly, evOnly := splitQuestionEvidence(query)
+		schemaTxt := BuildAlignerSchemaText(p.context, p.config.DBName, result.SelectedTables)
+		alignTool := NewProjAlignTool(p.config.ProjAlignURL, p.config.DBName, qOnly, evOnly, schemaTxt)
+		alignTool.logger = p.Logger
+		toolsList = append(toolsList, alignTool)
+		p.Logger.Printf("🎨 align_projection tool ready (url=%s, tables=%v)\n",
+			alignTool.baseURL, result.SelectedTables)
+	}
+
 	if p.config.EnableProofread {
 		updateTool := NewUpdateRichContextTool(p.config.DBName, p.config.DBType, p.config.Benchmark)
 		updateTool.logger = p.Logger
@@ -400,9 +410,25 @@ func (p *Pipeline) buildPrompt(query string, contextPrompt string, crossTableSum
 			sb.WriteString(`
 - probe_column_values: Probe DISTINCT values of table.column before using string literals (input: table.column or table.column|limit)`)
 		}
+		if p.config.EnableProjAlignTool {
+			sb.WriteString(`
+- align_projection: Consult BIRD projection taste aligner (soft shape/fields hint; input: auto)`)
+		}
 		if p.config.EnableProofread {
 			sb.WriteString(`
 - update_rich_context: Update expired/incorrect Rich Context`)
+		}
+
+		if p.config.EnableProjAlignTool {
+			sb.WriteString(`
+
+Projection Taste Aligner — CONTEXT OVER CONTROL:
+- After schema linking, call align_projection ONCE (Action Input: auto) before drafting final SQL.
+- It is a specialist model trained on BIRD gold *projection taste* (shape + ordered fields), NOT a SQL writer.
+- Treat its JSON as soft context / taste reference — helpful for count-vs-list quirks and which columns to return.
+- You remain in control: OVERRIDE when it conflicts with Evidence, linked schema, or verify_sql.
+- Do NOT treat it as a forced SELECT list. JOIN/filters/SQL correctness stay your responsibility.
+`)
 		}
 
 		// Workflow
@@ -410,33 +436,49 @@ func (p *Pipeline) buildPrompt(query string, contextPrompt string, crossTableSum
 
 Workflow:
 1. Analyze question and schema`)
+		step := 2
+		if p.config.EnableProjAlignTool {
+			sb.WriteString(fmt.Sprintf(`
+%d. Call align_projection (input: auto) for soft projection taste — then decide whether to follow it`, step))
+			step++
+		}
 		if p.config.ClarifyMode == "on" {
-			sb.WriteString(`
-2. If unclear which columns needed → use clarify_fields
-3. If string values uncertain → use probe_column_values (preferred) or execute_sql`)
+			sb.WriteString(fmt.Sprintf(`
+%d. If unclear which columns needed → use clarify_fields`, step))
+			step++
+			sb.WriteString(fmt.Sprintf(`
+%d. If string values uncertain → use probe_column_values (preferred) or execute_sql`, step))
+			step++
 		} else if p.config.EnableProposeFields {
-			sb.WriteString(`
-2. If output columns are ambiguous → use propose_output_fields, then verify_sql
-3. If string/enum literals uncertain (see Value Probe Hints) → use probe_column_values BEFORE writing WHERE`)
+			sb.WriteString(fmt.Sprintf(`
+%d. If output columns are still ambiguous after align_projection → optional propose_output_fields`, step))
+			step++
+			if p.config.EnableProbeTool {
+				sb.WriteString(fmt.Sprintf(`
+%d. If string/enum literals uncertain (see Value Probe Hints) → use probe_column_values BEFORE writing WHERE`, step))
+				step++
+			}
 		} else if p.config.EnableProbeTool {
-			sb.WriteString(`
-2. If string/enum literals uncertain → use probe_column_values BEFORE writing WHERE
-3. Use execute_sql only for broader exploration`)
+			sb.WriteString(fmt.Sprintf(`
+%d. If string/enum literals uncertain → use probe_column_values BEFORE writing WHERE`, step))
+			step++
 		} else {
-			sb.WriteString(`
-2. If string values missing from Rich Context → use execute_sql to find them`)
+			sb.WriteString(fmt.Sprintf(`
+%d. If string values missing from Rich Context → use execute_sql to find them`, step))
+			step++
 		}
 		if p.config.EnableProofread {
-			sb.WriteString(`
-3. If Rich Context conflicts with actual data → use update_rich_context`)
+			sb.WriteString(fmt.Sprintf(`
+%d. If Rich Context conflicts with actual data → use update_rich_context`, step))
+			step++
 		}
-		sb.WriteString(`
-4. Write SQL following best practices
-5. MANDATORY: Use verify_sql to check your SQL before giving Final Answer
-6. If verify_sql reports issues → fix and re-verify
-7. Provide Final Answer
+		sb.WriteString(fmt.Sprintf(`
+%d. Write SQL following best practices
+%d. MANDATORY: Use verify_sql to check your SQL before giving Final Answer
+%d. If verify_sql reports issues → fix and re-verify
+%d. Provide Final Answer
 
-`)
+`, step, step+1, step+2, step+3))
 
 		// Output format
 		sb.WriteString(`Output Format (choose ONE):

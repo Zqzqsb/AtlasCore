@@ -80,6 +80,7 @@ type EvalMode struct {
 	ScaleCandidates      int
 	EnableLinkEnhance    bool // FK expand + column refine + evidence literals
 	EnableProbeTool      bool // probe_column_values tool
+	EnableProjAlignTool  bool // align_projection → remote taste aligner (soft)
 }
 
 // ─────────────────────────────────────────────────────
@@ -148,11 +149,11 @@ var evalModes = []EvalMode{
 	},
 	{
 		Name:        "leaderboard",
-		Description: "Black-box leaderboard — ReAct+RC + link enhance + probe + output contract",
+		Description: "Black-box leaderboard — ReAct+RC + link enhance + probe + align_projection (soft)",
 		UseReact:    true, UseRichContext: true, ReactLinking: false,
 		EnableClarify: "off", EnableProofread: false,
 		EnableOutputContract: true, EnableProposeFields: true, ScaleCandidates: 0,
-		EnableLinkEnhance: true, EnableProbeTool: true,
+		EnableLinkEnhance: true, EnableProbeTool: true, EnableProjAlignTool: true,
 	},
 	{
 		Name:        "leaderboard_scale",
@@ -160,7 +161,7 @@ var evalModes = []EvalMode{
 		UseReact:    true, UseRichContext: true, ReactLinking: false,
 		EnableClarify: "off", EnableProofread: false,
 		EnableOutputContract: true, EnableProposeFields: true, ScaleCandidates: 6,
-		EnableLinkEnhance: true, EnableProbeTool: true,
+		EnableLinkEnhance: true, EnableProbeTool: true, EnableProjAlignTool: true,
 	},
 }
 
@@ -499,6 +500,10 @@ func main() {
 	fmt.Printf("  ScaleCands:     %d\n", selectedMode.ScaleCandidates)
 	fmt.Printf("  LinkEnhance:    %v\n", selectedMode.EnableLinkEnhance)
 	fmt.Printf("  ProbeTool:      %v\n", selectedMode.EnableProbeTool)
+	fmt.Printf("  ProjAlignTool:  %v\n", selectedMode.EnableProjAlignTool)
+	if selectedMode.EnableProjAlignTool {
+		fmt.Printf("  ProjAlignURL:   %s\n", inference.ProjAlignURLFromEnv())
+	}
 	if *columnMeaningPath != "" {
 		fmt.Printf("  ColumnMeaning:  %s\n", *columnMeaningPath)
 	}
@@ -1012,6 +1017,8 @@ func evaluateBird(
 		ScaleCandidates:         mode.ScaleCandidates,
 		EnableLinkEnhance:       mode.EnableLinkEnhance,
 		EnableProbeTool:         mode.EnableProbeTool,
+		EnableProjAlignTool:     mode.EnableProjAlignTool,
+		ProjAlignURL:            inference.ProjAlignURLFromEnv(),
 	}
 
 	pipeline := inference.NewPipeline(llm, dbAdapter, pipelineConfig)
