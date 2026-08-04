@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"flag"
 	"fmt"
 	"log"
@@ -15,23 +16,37 @@ import (
 )
 
 // enrich_rc re-runs deterministic RC enrichment (sample values, FK cardinality,
-// join paths) on existing context JSON — no LLM. Use after RC gen upgrades
-// without regenerating LLM Phase 2/3.
+// join paths, text-shape ProfileNL) on existing context JSON — no LLM.
+// Optionally bake official column_meaning into ColumnMetadata.OfficialMeaning.
 //
 // Example (held-out):
 //
 //	go run ./cmd/enrich_rc \
 //	  --context-dir contexts/sqlite/bird_heldout_v1 \
-//	  --db-dir benchmarks/bird/heldout_v1_smoke/test_databases
+//	  --db-dir benchmarks/bird/heldout_v1_smoke/test_databases \
+//	  --column-meaning benchmarks/bird/heldout_v1_smoke/column_meaning.json
 func main() {
 	contextDir := flag.String("context-dir", "contexts/sqlite/bird_heldout_v1", "Directory of RC JSON files")
 	dbDir := flag.String("db-dir", "benchmarks/bird/heldout_v1_smoke/test_databases", "Directory of sqlite DBs (<db>/<db>.sqlite)")
+	columnMeaningPath := flag.String("column-meaning", "", "Optional column_meaning.json to bake into OfficialMeaning")
 	limit := flag.Int("limit", 0, "Max DBs to enrich (0 = all)")
 	dbFilter := flag.String("db", "", "Only enrich this db_id")
 	resumeAfter := flag.String("resume-after", "", "Skip DBs with name <= this (lexicographic), e.g. ice_hockey_draft")
 	skipEnriched := flag.Bool("skip-enriched", false, "Skip DBs that already have non-empty join_paths")
 	quiet := flag.Bool("quiet", false, "Less logging")
 	flag.Parse()
+
+	var meaningRaw map[string]string
+	if *columnMeaningPath != "" {
+		data, err := os.ReadFile(*columnMeaningPath)
+		if err != nil {
+			log.Fatalf("read column-meaning: %v", err)
+		}
+		if err := json.Unmarshal(data, &meaningRaw); err != nil {
+			log.Fatalf("parse column-meaning: %v", err)
+		}
+		fmt.Printf("📚 Loaded column_meaning entries: %d\n", len(meaningRaw))
+	}
 
 	entries, err := os.ReadDir(*contextDir)
 	if err != nil {
@@ -110,15 +125,23 @@ func main() {
 		}
 		_ = dbAdapter.Close()
 
+		nMeaning := 0
+		if len(meaningRaw) > 0 {
+			lookup := contextpkg.ParseColumnMeaningForDB(meaningRaw, dbID)
+			nMeaning = shared.ApplyOfficialMeanings(lookup)
+			// ProfileNL already from EnrichDeterministic; re-run cheaply after meaning bake
+			shared.RefreshColumnGrounding()
+		}
+
 		if err := shared.SaveToFile(jsonPath); err != nil {
 			log.Printf("save %s: %v", dbID, err)
 			fail++
 			continue
 		}
 
-		nFK, nJoin, nSample := countEnrichSignals(shared)
-		fmt.Printf("✓ %s  fk_card=%d  join_paths=%d  cols_with_samples=%d\n",
-			dbID, nFK, nJoin, nSample)
+		nFK, nJoin, nSample, nProfile := countEnrichSignals(shared)
+		fmt.Printf("✓ %s  fk_card=%d  join_paths=%d  samples=%d  profile_nl=%d  meaning=%d\n",
+			dbID, nFK, nJoin, nSample, nProfile, nMeaning)
 		done++
 	}
 
@@ -126,7 +149,7 @@ func main() {
 		done, fail, skipped, time.Since(start).Round(time.Second))
 }
 
-func countEnrichSignals(shared *contextpkg.SharedContext) (fkCard, joinPaths, sampleCols int) {
+func countEnrichSignals(shared *contextpkg.SharedContext) (fkCard, joinPaths, sampleCols, profileCols int) {
 	joinPaths = len(shared.JoinPaths)
 	for _, t := range shared.Tables {
 		for _, fk := range t.ForeignKeys {
@@ -137,6 +160,9 @@ func countEnrichSignals(shared *contextpkg.SharedContext) (fkCard, joinPaths, sa
 		for _, col := range t.Columns {
 			if col.ValueStats != nil && len(col.ValueStats.SampleValues) > 0 {
 				sampleCols++
+			}
+			if strings.TrimSpace(col.ProfileNL) != "" {
+				profileCols++
 			}
 		}
 	}

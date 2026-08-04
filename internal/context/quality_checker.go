@@ -224,6 +224,7 @@ func (qc *QualityChecker) collectValueStatsLight(ctx context.Context, colName, c
 	}
 
 	_ = totalRows
+	AnnotateTextProfile(stats)
 	return stats
 }
 
@@ -493,6 +494,7 @@ func (qc *QualityChecker) collectValueStats(ctx context.Context, colName, colTyp
 		}
 	}
 
+	AnnotateTextProfile(stats)
 	return stats
 }
 

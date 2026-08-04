@@ -8,7 +8,8 @@ import (
 )
 
 // EnrichDeterministic re-runs value stats (incl. dense samples), FK cardinality,
-// quality issues, and direct join paths — no LLM. Safe to apply on existing RC JSON.
+// join paths, text-shape profiles, and ProfileNL — no LLM.
+// Safe to apply on existing RC JSON. Call ApplyOfficialMeanings separately to bake meanings.
 func (c *SharedContext) EnrichDeterministic(ctx context.Context, dbAdapter adapter.DBAdapter) error {
 	if c == nil || dbAdapter == nil {
 		return fmt.Errorf("EnrichDeterministic: nil context or adapter")
@@ -35,5 +36,6 @@ func (c *SharedContext) EnrichDeterministic(ctx context.Context, dbAdapter adapt
 	}
 
 	c.AnalyzeJoinPaths()
+	c.RefreshColumnGrounding()
 	return firstErr
 }

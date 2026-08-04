@@ -31,6 +31,26 @@ func DefaultExportOptions() *ExportOptions {
 	}
 }
 
+// formatColumnGrounding appends baked official meaning + profile_nl (from RC JSON).
+// No inference-time dual dump: meanings must already live on ColumnMetadata.
+func formatColumnGrounding(col ColumnMetadata) string {
+	var parts []string
+	if m := strings.TrimSpace(col.OfficialMeaning); m != "" {
+		parts = append(parts, m)
+	}
+	if p := strings.TrimSpace(col.ProfileNL); p != "" {
+		parts = append(parts, p)
+	}
+	if len(parts) == 0 {
+		return ""
+	}
+	s := strings.Join(parts, " | ")
+	if len(s) > 220 {
+		s = s[:217] + "..."
+	}
+	return " // " + s
+}
+
 // ExportToPrompt exports to LLM-friendly Prompt format
 func (c *SharedContext) ExportToPrompt(opts *ExportOptions) string {
 	if opts == nil {
@@ -269,7 +289,10 @@ func (c *SharedContext) ExportToCompactPrompt(opts *ExportOptions) string {
 					}
 				}
 
-				sb.WriteString(fmt.Sprintf("  - %s: %s%s%s%s\n", col.Name, col.Type, pk, fkInfo, statsInfo))
+				// Grounding note: prefer baked official meaning; append profile_nl when useful
+				groundInfo := formatColumnGrounding(col)
+
+				sb.WriteString(fmt.Sprintf("  - %s: %s%s%s%s%s\n", col.Name, col.Type, pk, fkInfo, statsInfo, groundInfo))
 			}
 		}
 

@@ -179,10 +179,30 @@ func NewPipeline(llm llms.Model, adapter adapter.DBAdapter, config *Config) *Pip
 	if config.ContextFile != "" {
 		if ctx, err := p.loadContext(config.ContextFile); err == nil {
 			p.context = ctx
+			p.bakeOfficialMeaningsIntoRC()
 		}
 	}
 
 	return p
+}
+
+// bakeOfficialMeaningsIntoRC writes column_meaning into ColumnMetadata.OfficialMeaning
+// so ExportToCompactPrompt can show one fused column line (no second FormatForDB dump).
+// Prefer enrich_rc --column-meaning to bake offline; this is the same API in-memory.
+func (p *Pipeline) bakeOfficialMeaningsIntoRC() {
+	if p == nil || p.context == nil || len(p.config.ColumnMeaning) == 0 || p.config.DBName == "" {
+		return
+	}
+	lookup := contextpkg.ParseColumnMeaningForDB(map[string]string(p.config.ColumnMeaning), p.config.DBName)
+	if len(lookup) == 0 {
+		return
+	}
+	if n := p.context.ApplyOfficialMeanings(lookup); n > 0 {
+		p.context.RefreshColumnGrounding()
+		if p.Logger != nil {
+			p.Logger.Printf("📚 Baked %d official_meaning into RC columns for %s\n", n, p.config.DBName)
+		}
+	}
 }
 
 // countTokens counts text token count
@@ -317,8 +337,9 @@ func (p *Pipeline) Execute(ctx context.Context, query string) (*Result, error) {
 		p.Logger.Printf("📝 Output contract keywords: %v\n", p.config.OutputContract.Keywords)
 	}
 
-	// Inject column meanings into context prompt when available
-	if len(p.config.ColumnMeaning) > 0 {
+	// Official meanings: baked into RC columns (NewPipeline / enrich_rc). Fallback
+	// FormatForDB only when there is no SharedContext (basic-schema path).
+	if len(p.config.ColumnMeaning) > 0 && p.context == nil {
 		cmBlock := p.config.ColumnMeaning.FormatForDB(p.config.DBName, tables)
 		if cmBlock != "" {
 			contextPrompt = contextPrompt + "\n" + cmBlock

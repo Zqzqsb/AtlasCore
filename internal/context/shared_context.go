@@ -139,6 +139,11 @@ type ValueStats struct {
 	TopValues     []ValueFrequency `json:"top_values,omitempty"`    // Enumeration values (distinct <= 30)
 	SampleValues  []string         `json:"sample_values,omitempty"` // Dense samples for high-card text (WiseCat-style)
 	Range         *NumericRange    `json:"range,omitempty"`         // For numeric columns
+
+	// Text shape profiling (deterministic; filled in quality check / enrich)
+	DominantShape      string   `json:"dominant_shape,omitempty"`      // digits|alpha|alnum|dateish|emailish|mixed|empty
+	AvgLen             float64  `json:"avg_len,omitempty"`             // mean length over profiled non-empty values
+	SuspiciousDefaults []string `json:"suspicious_defaults,omitempty"` // placeholder-like frequent values
 }
 
 // ValueFrequency value with frequency
@@ -180,6 +185,10 @@ type ColumnMetadata struct {
 	DefaultValue string      `json:"default,omitempty"`
 	IsPrimaryKey bool        `json:"is_primary_key,omitempty"`
 	ValueStats   *ValueStats `json:"value_stats,omitempty"` // Deterministic value statistics
+
+	// Grounding baked at enrich time (export only reads these — no inference dual-dump)
+	OfficialMeaning string `json:"official_meaning,omitempty"` // from column_meaning.json
+	ProfileNL       string `json:"profile_nl,omitempty"`       // deterministic NL from ValueStats
 }
 
 // IndexMetadata index metadata
