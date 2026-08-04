@@ -118,14 +118,20 @@ func (p *Pipeline) reactLoop(ctx context.Context, query string, contextPrompt st
 		toolsList = append(toolsList, probeTool)
 	}
 
+	p.projAlignShape = ""
 	if p.config.EnableProjAlignTool {
 		qOnly, evOnly := splitQuestionEvidence(query)
 		schemaTxt := BuildAlignerSchemaText(p.context, p.config.DBName, result.SelectedTables)
-		alignTool := NewProjAlignTool(p.config.ProjAlignURL, p.config.DBName, qOnly, evOnly, schemaTxt)
-		alignTool.logger = p.Logger
-		toolsList = append(toolsList, alignTool)
-		p.Logger.Printf("🎨 align_projection tool ready (url=%s, tables=%v)\n",
-			alignTool.baseURL, result.SelectedTables)
+		switch p.projAlignMode() {
+		case projAlignModeTool:
+			alignTool := NewProjAlignTool(p.config.ProjAlignURL, p.config.DBName, qOnly, evOnly, schemaTxt)
+			alignTool.logger = p.Logger
+			toolsList = append(toolsList, alignTool)
+			p.Logger.Printf("🎨 align_projection tool ready (url=%s, tables=%v)\n",
+				alignTool.baseURL, result.SelectedTables)
+		case projAlignModeShape:
+			p.projAlignShape = FetchProjAlignShape(ctx, p.config.ProjAlignURL, qOnly, evOnly, schemaTxt, p.Logger)
+		}
 	}
 
 	if p.config.EnableProofread {
@@ -377,6 +383,20 @@ func (p *Pipeline) buildPrompt(query string, contextPrompt string, crossTableSum
 		}
 	}
 
+	// Static projection few-shot (optional ablation; no tool / no workflow change)
+	fsPath := ""
+	if p.config != nil {
+		fsPath = strings.TrimSpace(p.config.ProjFewShotPath)
+	}
+	if fsPath == "" {
+		fsPath = ProjFewShotPathFromEnv()
+	}
+	if blk := FormatProjFewShotForPrompt(fsPath); blk != "" {
+		sb.WriteString(blk)
+	}
+
+	sb.WriteString(FormatShapeHintForPrompt(p.projAlignShape))
+
 	sb.WriteString(fmt.Sprintf("Question: %s\n\n", query))
 
 	// force mode: mandatory field info in prompt
@@ -410,7 +430,7 @@ func (p *Pipeline) buildPrompt(query string, contextPrompt string, crossTableSum
 			sb.WriteString(`
 - probe_column_values: Probe DISTINCT values of table.column before using string literals (input: table.column or table.column|limit)`)
 		}
-		if p.config.EnableProjAlignTool {
+		if p.projAlignToolActive() {
 			sb.WriteString(`
 - align_projection: Consult BIRD projection taste aligner (soft shape/fields hint; input: auto)`)
 		}
@@ -419,7 +439,7 @@ func (p *Pipeline) buildPrompt(query string, contextPrompt string, crossTableSum
 - update_rich_context: Update expired/incorrect Rich Context`)
 		}
 
-		if p.config.EnableProjAlignTool {
+		if p.projAlignToolActive() {
 			sb.WriteString(`
 
 Projection Taste Aligner — CONTEXT OVER CONTROL:
@@ -437,7 +457,7 @@ Projection Taste Aligner — CONTEXT OVER CONTROL:
 Workflow:
 1. Analyze question and schema`)
 		step := 2
-		if p.config.EnableProjAlignTool {
+		if p.projAlignToolActive() {
 			sb.WriteString(fmt.Sprintf(`
 %d. Call align_projection (input: auto) for soft projection taste — then decide whether to follow it`, step))
 			step++
@@ -450,8 +470,13 @@ Workflow:
 %d. If string values uncertain → use probe_column_values (preferred) or execute_sql`, step))
 			step++
 		} else if p.config.EnableProposeFields {
-			sb.WriteString(fmt.Sprintf(`
+			if p.projAlignToolActive() {
+				sb.WriteString(fmt.Sprintf(`
 %d. If output columns are still ambiguous after align_projection → optional propose_output_fields`, step))
+			} else {
+				sb.WriteString(fmt.Sprintf(`
+%d. If output columns are ambiguous → use propose_output_fields, then verify_sql`, step))
+			}
 			step++
 			if p.config.EnableProbeTool {
 				sb.WriteString(fmt.Sprintf(`
@@ -856,6 +881,8 @@ func (p *Pipeline) buildBirdBestPractices() string {
    - When question asks for a name/description, JOIN to get the text — do NOT return IDs
    - Do NOT concatenate columns with || or CONCAT unless evidence explicitly requires a single string
    - Prefer separate SELECT columns over concat (BIRD often grades split columns)
+   - ★ Full name: if evidence writes FirstName+MiddleName+LastName (or first/middle/last),
+     SELECT those as SEPARATE columns — never First||' '||Last / CONCAT as one "full_name" column
 
 4. DISTINCT — THIS IS CRITICAL, follow these rules precisely:
    ★ DEFAULT: Do NOT add DISTINCT unless you have a specific reason below.

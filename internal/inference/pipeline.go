@@ -48,9 +48,13 @@ type Config struct {
 	EnableLinkEnhance bool // FK expand + column refine + evidence literal hints
 	EnableProbeTool   bool // Expose probe_column_values in ReAct
 
-	// Projection Taste Aligner (soft tool → remote HTTP; context over control)
-	EnableProjAlignTool bool   // Expose align_projection ReAct tool
+	// Projection Taste Aligner (remote HTTP; context over control)
+	EnableProjAlignTool bool   // Master switch for the aligner
+	ProjAlignMode       string // "shape" (static shape prior) | "tool" (ReAct tool) | "off"
 	ProjAlignURL        string // Base URL; empty → PROJALIGN_URL env → default Mac MPS
+
+	// Static projection few-shot (ablation; empty path = off)
+	ProjFewShotPath string // JSON pool path; empty → PROJ_FEWSHOT_PATH env → off
 
 	// Filled per Execute() — not a user-facing flag
 	OutputContract *OutputContract
@@ -75,6 +79,9 @@ type Pipeline struct {
 
 	// Streaming callback
 	stepCallback StepCallback
+
+	// Projection shape prior for the current question ("" = no hint)
+	projAlignShape string
 
 	// Logger for structured output (stdout + file)
 	Logger *InferenceLogger

@@ -1,0 +1,46 @@
+{
+  "version": "probe_v1",
+  "note": "Hand-picked projection-taste exemplars for oracle probe. Held-out questions excluded. Pluggable via PROJ_FEWSHOT_PATH.",
+  "examples": [
+    {
+      "tag": "how_many_to_list",
+      "db_id": "world",
+      "question": "How many cities are there in the country with the largest surface area?",
+      "evidence": "largest surface area refers to MAX(SurfaceArea);",
+      "SQL": "SELECT T2.ID FROM Country AS T1 INNER JOIN City AS T2 ON T1.Code = T2.CountryCode WHERE T1.SurfaceArea = ( SELECT MAX(SurfaceArea) FROM Country )",
+      "lesson": "Question says 'how many' but gold returns the city ID list, NOT COUNT(*)."
+    },
+    {
+      "tag": "how_many_to_list",
+      "db_id": "student_loan",
+      "question": "How many students from SMC are unemployed?",
+      "evidence": "from SMC refers to school = 'smc';",
+      "SQL": "SELECT T2.name FROM enrolled AS T1 INNER JOIN unemployed AS T2 ON T1.`name` = T2.`name` WHERE T1.school = 'smc'",
+      "lesson": "Question says 'how many' but gold returns student names, NOT COUNT(*)."
+    },
+    {
+      "tag": "how_many_to_names",
+      "db_id": "college_completion",
+      "question": "How many 4-year public institutions are there in the state of Florida? Give all of their names.",
+      "evidence": "4-year refers to level = '4-year'; public refers to control = 'Public'; names refers to chronname;",
+      "SQL": "SELECT T1.chronname FROM institution_details AS T1 INNER JOIN state_sector_details AS T2 WHERE T2.level = '4-year' AND T2.control = 'Public' AND T2.state = 'Florida'",
+      "lesson": "When the question also asks for names/ids, return those columns as a list — do not wrap in COUNT."
+    },
+    {
+      "tag": "split_fullname_no_concat",
+      "db_id": "professional_basketball",
+      "question": "List the full name of players who are born outside USA.",
+      "evidence": "full name refers to firstName, middleName, lastName; born outside USA refers to birthCountry != 'USA'",
+      "SQL": "SELECT firstName, middleName, lastName FROM players WHERE birthCountry != 'USA'",
+      "lesson": "BIRD 'full name' means separate SELECT columns — never First||Middle||Last / CONCAT."
+    },
+    {
+      "tag": "split_fullname_no_concat",
+      "db_id": "sales",
+      "question": "What is the full name of customers who dealt with sales person with id 5?",
+      "evidence": "full name = FirstName, MiddleInitial, LastName;",
+      "SQL": "SELECT T1.FirstName, T1.MiddleInitial, T1.LastName FROM Customers AS T1 INNER JOIN Sales AS T2 ON T1.CustomerID = T2.CustomerID WHERE T2.SalesPersonID = 5",
+      "lesson": "Evidence spelling out First/Middle/Last ⇒ emit those columns separately."
+    }
+  ]
+}

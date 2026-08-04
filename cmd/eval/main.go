@@ -149,11 +149,11 @@ var evalModes = []EvalMode{
 	},
 	{
 		Name:        "leaderboard",
-		Description: "Black-box leaderboard — ReAct+RC + link enhance + probe + align_projection (soft)",
+		Description: "Black-box leaderboard — ReAct+RC + link enhance + probe (aligner off by default)",
 		UseReact:    true, UseRichContext: true, ReactLinking: false,
 		EnableClarify: "off", EnableProofread: false,
 		EnableOutputContract: true, EnableProposeFields: true, ScaleCandidates: 0,
-		EnableLinkEnhance: true, EnableProbeTool: true, EnableProjAlignTool: true,
+		EnableLinkEnhance: true, EnableProbeTool: true, EnableProjAlignTool: false,
 	},
 	{
 		Name:        "leaderboard_scale",
@@ -161,7 +161,7 @@ var evalModes = []EvalMode{
 		UseReact:    true, UseRichContext: true, ReactLinking: false,
 		EnableClarify: "off", EnableProofread: false,
 		EnableOutputContract: true, EnableProposeFields: true, ScaleCandidates: 6,
-		EnableLinkEnhance: true, EnableProbeTool: true, EnableProjAlignTool: true,
+		EnableLinkEnhance: true, EnableProbeTool: true, EnableProjAlignTool: false,
 	},
 }
 
@@ -502,7 +502,11 @@ func main() {
 	fmt.Printf("  ProbeTool:      %v\n", selectedMode.EnableProbeTool)
 	fmt.Printf("  ProjAlignTool:  %v\n", selectedMode.EnableProjAlignTool)
 	if selectedMode.EnableProjAlignTool {
+		fmt.Printf("  ProjAlignMode:  %s\n", inference.ProjAlignModeFromEnv())
 		fmt.Printf("  ProjAlignURL:   %s\n", inference.ProjAlignURLFromEnv())
+	}
+	if p := inference.ProjFewShotPathFromEnv(); p != "" {
+		fmt.Printf("  ProjFewShot:    %s\n", p)
 	}
 	if *columnMeaningPath != "" {
 		fmt.Printf("  ColumnMeaning:  %s\n", *columnMeaningPath)
@@ -1018,7 +1022,9 @@ func evaluateBird(
 		EnableLinkEnhance:       mode.EnableLinkEnhance,
 		EnableProbeTool:         mode.EnableProbeTool,
 		EnableProjAlignTool:     mode.EnableProjAlignTool,
+		ProjAlignMode:           inference.ProjAlignModeFromEnv(),
 		ProjAlignURL:            inference.ProjAlignURLFromEnv(),
+		ProjFewShotPath:         inference.ProjFewShotPathFromEnv(),
 	}
 
 	pipeline := inference.NewPipeline(llm, dbAdapter, pipelineConfig)
