@@ -81,6 +81,8 @@ type EvalMode struct {
 	EnableLinkEnhance    bool // FK expand + column refine + evidence literals
 	EnableProbeTool      bool // probe_column_values tool
 	EnableProjAlignTool  bool // align_projection → remote taste aligner (soft)
+	EnableColumnCardFusion bool // inline column_meaning into RC (no second dump)
+	DraftMineN             int  // draft-SQL column mine count (0=off)
 }
 
 // ─────────────────────────────────────────────────────
@@ -149,11 +151,12 @@ var evalModes = []EvalMode{
 	},
 	{
 		Name:        "leaderboard",
-		Description: "Black-box leaderboard — ReAct+RC + link enhance + probe (aligner off by default)",
+		Description: "Black-box leaderboard — RC column-card fusion + link enhance + draft-mine + probe",
 		UseReact:    true, UseRichContext: true, ReactLinking: false,
 		EnableClarify: "off", EnableProofread: false,
 		EnableOutputContract: true, EnableProposeFields: true, ScaleCandidates: 0,
 		EnableLinkEnhance: true, EnableProbeTool: true, EnableProjAlignTool: false,
+		EnableColumnCardFusion: true, DraftMineN: 1,
 	},
 	{
 		Name:        "leaderboard_scale",
@@ -162,6 +165,7 @@ var evalModes = []EvalMode{
 		EnableClarify: "off", EnableProofread: false,
 		EnableOutputContract: true, EnableProposeFields: true, ScaleCandidates: 6,
 		EnableLinkEnhance: true, EnableProbeTool: true, EnableProjAlignTool: false,
+		EnableColumnCardFusion: true, DraftMineN: 1,
 	},
 }
 
@@ -500,6 +504,8 @@ func main() {
 	fmt.Printf("  ScaleCands:     %d\n", selectedMode.ScaleCandidates)
 	fmt.Printf("  LinkEnhance:    %v\n", selectedMode.EnableLinkEnhance)
 	fmt.Printf("  ProbeTool:      %v\n", selectedMode.EnableProbeTool)
+	fmt.Printf("  ColumnCard:     %v\n", selectedMode.EnableColumnCardFusion)
+	fmt.Printf("  DraftMineN:     %d\n", selectedMode.DraftMineN)
 	fmt.Printf("  ProjAlignTool:  %v\n", selectedMode.EnableProjAlignTool)
 	if selectedMode.EnableProjAlignTool {
 		fmt.Printf("  ProjAlignMode:  %s\n", inference.ProjAlignModeFromEnv())
@@ -1021,6 +1027,8 @@ func evaluateBird(
 		ScaleCandidates:         mode.ScaleCandidates,
 		EnableLinkEnhance:       mode.EnableLinkEnhance,
 		EnableProbeTool:         mode.EnableProbeTool,
+		EnableColumnCardFusion:  mode.EnableColumnCardFusion,
+		DraftMineN:              mode.DraftMineN,
 		EnableProjAlignTool:     mode.EnableProjAlignTool,
 		ProjAlignMode:           inference.ProjAlignModeFromEnv(),
 		ProjAlignURL:            inference.ProjAlignURLFromEnv(),
