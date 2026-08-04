@@ -18,9 +18,6 @@ type ExportOptions struct {
 	IncludeRichContext bool
 	// Include statistics
 	IncludeStats bool
-	// ColumnMeanings optional official meanings keyed by "table|column" (lowercase).
-	// When set, each column line appends ` // meaning` (column-card fusion).
-	ColumnMeanings map[string]string
 }
 
 // DefaultExportOptions default export options
@@ -272,15 +269,7 @@ func (c *SharedContext) ExportToCompactPrompt(opts *ExportOptions) string {
 					}
 				}
 
-				meaningInfo := ""
-				if opts.ColumnMeanings != nil {
-					key := strings.ToLower(table.Name) + "|" + strings.ToLower(col.Name)
-					if m := opts.ColumnMeanings[key]; m != "" {
-						meaningInfo = " // " + m
-					}
-				}
-
-				sb.WriteString(fmt.Sprintf("  - %s: %s%s%s%s%s\n", col.Name, col.Type, pk, fkInfo, statsInfo, meaningInfo))
+				sb.WriteString(fmt.Sprintf("  - %s: %s%s%s%s\n", col.Name, col.Type, pk, fkInfo, statsInfo))
 			}
 		}
 

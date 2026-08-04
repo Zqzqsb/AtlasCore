@@ -48,12 +48,6 @@ type Config struct {
 	EnableLinkEnhance bool // FK expand + column refine + evidence literal hints
 	EnableProbeTool   bool // Expose probe_column_values in ReAct
 
-	// Column-card fusion: inline column_meaning into RC export (no second dump)
-	EnableColumnCardFusion bool
-
-	// Draft-SQL column mine (AskData-style task-aligned linking); 0 = off
-	DraftMineN int // number of draft SQLs to sample for column recall (1–2 typical)
-
 	// Projection Taste Aligner (remote HTTP; context over control)
 	EnableProjAlignTool bool   // Master switch for the aligner
 	ProjAlignMode       string // "shape" (static shape prior) | "tool" (ReAct tool) | "off"
@@ -294,18 +288,7 @@ func (p *Pipeline) Execute(ctx context.Context, query string) (*Result, error) {
 				IncludeRichContext: true,
 				IncludeStats:       true,
 			}
-			fused := false
-			if p.config.EnableColumnCardFusion && len(p.config.ColumnMeaning) > 0 {
-				if mm := p.config.ColumnMeaning.MeaningsForTables(p.config.DBName, tables); len(mm) > 0 {
-					opts.ColumnMeanings = mm
-					fused = true
-					p.Logger.Printf("🃏 Column-card fusion: %d meanings inlined for %d tables\n", len(mm), len(tables))
-				}
-			}
 			contextPrompt = p.context.ExportToCompactPrompt(opts)
-			if fused {
-				contextPrompt = FormatColumnCardNote() + contextPrompt
-			}
 			p.Logger.Printf("📚 Using Rich Context for %d tables\n", len(tables))
 		}
 
@@ -334,8 +317,8 @@ func (p *Pipeline) Execute(ctx context.Context, query string) (*Result, error) {
 		p.Logger.Printf("📝 Output contract keywords: %v\n", p.config.OutputContract.Keywords)
 	}
 
-	// Inject column meanings only when NOT already fused into RC cards
-	if len(p.config.ColumnMeaning) > 0 && !p.config.EnableColumnCardFusion {
+	// Inject column meanings into context prompt when available
+	if len(p.config.ColumnMeaning) > 0 {
 		cmBlock := p.config.ColumnMeaning.FormatForDB(p.config.DBName, tables)
 		if cmBlock != "" {
 			contextPrompt = contextPrompt + "\n" + cmBlock
