@@ -2,6 +2,7 @@ package context
 
 import (
 	"fmt"
+	"sort"
 	"strings"
 	"time"
 )
@@ -18,28 +19,59 @@ type ExportOptions struct {
 	IncludeRichContext bool
 	// Include statistics
 	IncludeStats bool
+	// Include inline value samples/enums/ranges.
+	IncludeValueStats bool
+	// Include baked official column meanings.
+	IncludeOfficialMeaning bool
+	// Include deterministic sparse profile notes.
+	IncludeProfileNL bool
+	// Include per-table FK relationship summaries.
+	IncludeRelationships bool
+	// Restrict meaning/profile to these lower-case "table.column" keys.
+	// Nil means all columns; a non-nil empty map means no columns.
+	GroundingColumns map[string]struct{}
 }
 
 // DefaultExportOptions default export options
 func DefaultExportOptions() *ExportOptions {
 	return &ExportOptions{
-		Tables:             nil, // Export all tables
-		IncludeColumns:     true,
-		IncludeIndexes:     true,
-		IncludeRichContext: true,
-		IncludeStats:       true,
+		Tables:                 nil, // Export all tables
+		IncludeColumns:         true,
+		IncludeIndexes:         true,
+		IncludeRichContext:     true,
+		IncludeStats:           true,
+		IncludeValueStats:      true,
+		IncludeOfficialMeaning: true,
+		IncludeProfileNL:       true,
+		IncludeRelationships:   true,
 	}
 }
 
-// formatColumnGrounding appends baked official meaning + profile_nl (from RC JSON).
-// No inference-time dual dump: meanings must already live on ColumnMetadata.
-func formatColumnGrounding(col ColumnMetadata) string {
-	var parts []string
-	if m := strings.TrimSpace(col.OfficialMeaning); m != "" {
-		parts = append(parts, m)
+func groundingColumnSelected(opts *ExportOptions, tableName, columnName string) bool {
+	if opts == nil || opts.GroundingColumns == nil {
+		return true
 	}
-	if p := strings.TrimSpace(col.ProfileNL); p != "" {
-		parts = append(parts, p)
+	_, ok := opts.GroundingColumns[strings.ToLower(tableName+"."+columnName)]
+	return ok
+}
+
+// formatColumnGrounding appends baked meaning and sparse, actionable profile notes.
+func formatColumnGrounding(tableName string, col ColumnMetadata, opts *ExportOptions) string {
+	if opts == nil || !groundingColumnSelected(opts, tableName, col.Name) {
+		return ""
+	}
+	var parts []string
+	if opts.IncludeOfficialMeaning {
+		m := strings.TrimSpace(col.OfficialMeaning)
+		if m != "" {
+			parts = append(parts, m)
+		}
+	}
+	if opts.IncludeProfileNL {
+		p := BuildSparseProfileNL(col)
+		if p != "" {
+			parts = append(parts, p)
+		}
 	}
 	if len(parts) == 0 {
 		return ""
@@ -49,6 +81,30 @@ func formatColumnGrounding(col ColumnMetadata) string {
 		s = s[:217] + "..."
 	}
 	return " // " + s
+}
+
+func sortedRichContextKeys(notes map[string]RichContextValue) []string {
+	keys := make([]string, 0, len(notes))
+	for key := range notes {
+		keys = append(keys, key)
+	}
+	sort.Strings(keys)
+	return keys
+}
+
+// appendRichContextNotes keeps prompt order deterministic across runs.
+func appendRichContextNotes(sb *strings.Builder, notes map[string]RichContextValue, indent string) {
+	for _, key := range sortedRichContextKeys(notes) {
+		note := notes[key]
+		expiredTag := ""
+		if note.ExpiresAt != "" {
+			expiresAt, err := time.Parse(time.RFC3339, note.ExpiresAt)
+			if err == nil && time.Now().After(expiresAt) {
+				expiredTag = " [EXPIRED]"
+			}
+		}
+		sb.WriteString(fmt.Sprintf("%s* %s: %s%s\n", indent, formatKey(key), note.Content, expiredTag))
+	}
 }
 
 // ExportToPrompt exports to LLM-friendly Prompt format
@@ -120,8 +176,8 @@ func (c *SharedContext) ExportToPrompt(opts *ExportOptions) string {
 
 				if len(businessContext) > 0 {
 					sb.WriteString("### Business Context\n\n")
-					for key, note := range businessContext {
-						sb.WriteString(fmt.Sprintf("- **%s**: %s\n", formatKey(key), note.Content))
+					for _, key := range sortedRichContextKeys(businessContext) {
+						sb.WriteString(fmt.Sprintf("- **%s**: %s\n", formatKey(key), businessContext[key].Content))
 					}
 					sb.WriteString("\n")
 				}
@@ -261,7 +317,7 @@ func (c *SharedContext) ExportToCompactPrompt(opts *ExportOptions) string {
 
 				// Inline value stats annotation
 				statsInfo := ""
-				if col.ValueStats != nil {
+				if opts.IncludeValueStats && col.ValueStats != nil {
 					vs := col.ValueStats
 					if vs.DistinctCount > 0 && vs.DistinctCount <= 30 && len(vs.TopValues) > 0 {
 						// Enum display (aligned with storage threshold)
@@ -290,14 +346,14 @@ func (c *SharedContext) ExportToCompactPrompt(opts *ExportOptions) string {
 				}
 
 				// Grounding note: prefer baked official meaning; append profile_nl when useful
-				groundInfo := formatColumnGrounding(col)
+				groundInfo := formatColumnGrounding(table.Name, col, opts)
 
 				sb.WriteString(fmt.Sprintf("  - %s: %s%s%s%s%s\n", col.Name, col.Type, pk, fkInfo, statsInfo, groundInfo))
 			}
 		}
 
 		// Relationship summary for this table (1:N awareness)
-		if len(table.ForeignKeys) > 0 {
+		if opts.IncludeRelationships && len(table.ForeignKeys) > 0 {
 			sb.WriteString("  Relationships:\n")
 			for _, fk := range table.ForeignKeys {
 				card := fk.Cardinality
@@ -340,16 +396,7 @@ func (c *SharedContext) ExportToCompactPrompt(opts *ExportOptions) string {
 
 			if len(businessNotes) > 0 {
 				sb.WriteString("  Business Notes:\n")
-				for key, note := range businessNotes {
-					expiredTag := ""
-					if note.ExpiresAt != "" {
-						expiresAt, err := time.Parse(time.RFC3339, note.ExpiresAt)
-						if err == nil && time.Now().After(expiresAt) {
-							expiredTag = " [EXPIRED]"
-						}
-					}
-					sb.WriteString(fmt.Sprintf("    * %s: %s%s\n", formatKey(key), note.Content, expiredTag))
-				}
+				appendRichContextNotes(&sb, businessNotes, "    ")
 			}
 		}
 

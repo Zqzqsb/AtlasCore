@@ -190,6 +190,48 @@ func BuildProfileNL(colName, colType string, stats *ValueStats) string {
 	return s
 }
 
+// BuildSparseProfileNL emits only facts likely to change SQL decisions.
+// Generic distinct/range/average-length facts remain structured in ValueStats
+// and are intentionally not repeated in the prompt.
+func BuildSparseProfileNL(col ColumnMetadata) string {
+	stats := col.ValueStats
+	if stats == nil {
+		return ""
+	}
+
+	var parts []string
+	if stats.NullPercent >= 20 {
+		parts = append(parts, fmt.Sprintf("%.0f%% NULL", stats.NullPercent))
+	}
+	if stats.EmptyCount > 0 {
+		parts = append(parts, fmt.Sprintf("%d empty-string", stats.EmptyCount))
+	}
+	if len(stats.SuspiciousDefaults) > 0 {
+		parts = append(parts, "placeholder-like=["+strings.Join(stats.SuspiciousDefaults, ",")+"]")
+	}
+
+	// A non-native shape in a text column can affect CASTs and literal matching.
+	if isTextTypeLocal(col.Type) {
+		switch stats.DominantShape {
+		case "digits", "dateish", "emailish":
+			shape := "stored-as-text shape=" + stats.DominantShape
+			if stats.AvgLen > 0 {
+				shape += fmt.Sprintf("(~%.0f chars)", stats.AvgLen)
+			}
+			parts = append(parts, shape)
+		}
+	}
+
+	if len(parts) == 0 {
+		return ""
+	}
+	s := strings.Join(parts, "; ")
+	if len(s) > 120 {
+		s = s[:117] + "..."
+	}
+	return s
+}
+
 func isTextTypeLocal(colType string) bool {
 	u := strings.ToUpper(colType)
 	return strings.Contains(u, "CHAR") || strings.Contains(u, "TEXT") || strings.Contains(u, "CLOB") || u == "VARCHAR"

@@ -43,6 +43,7 @@ type Config struct {
 	EnableProposeFields  bool               // Expose propose_output_fields tool
 	ColumnMeaning        ColumnMeaningStore // Optional official column_meaning.json
 	ScaleCandidates      int                // 0/1 = off; >=2 enables scale_light vote
+	GroundingMode        string             // sparse (default) | all | meaning | profile | legacy | off
 
 	// Linker / sampling enhancements (WiseCat + DeepEye + DataGallery distill)
 	EnableLinkEnhance bool // FK expand + column refine + evidence literal hints
@@ -107,7 +108,7 @@ type Result struct {
 
 // ReActStep represents a ReAct step
 type ReActStep struct {
-	Step        int         `json:"step,omitempty"`              // Step number for streaming
+	Step        int         `json:"step,omitempty"` // Step number for streaming
 	Thought     string      `json:"thought"`
 	Action      string      `json:"action"`
 	ActionInput interface{} `json:"action_input,omitempty"` // Supports string and map[string]interface{}
@@ -193,6 +194,13 @@ func (p *Pipeline) bakeOfficialMeaningsIntoRC() {
 	if p == nil || p.context == nil || len(p.config.ColumnMeaning) == 0 || p.config.DBName == "" {
 		return
 	}
+	mode := p.normalizedGroundingMode()
+	if mode == "off" || mode == "profile" || mode == "legacy" {
+		if p.Logger != nil {
+			p.Logger.Printf("📚 Skip official_meaning bake (grounding-mode=%s)\n", mode)
+		}
+		return
+	}
 	lookup := contextpkg.ParseColumnMeaningForDB(map[string]string(p.config.ColumnMeaning), p.config.DBName)
 	if len(lookup) == 0 {
 		return
@@ -203,6 +211,64 @@ func (p *Pipeline) bakeOfficialMeaningsIntoRC() {
 			p.Logger.Printf("📚 Baked %d official_meaning into RC columns for %s\n", n, p.config.DBName)
 		}
 	}
+}
+
+func (p *Pipeline) normalizedGroundingMode() string {
+	if p == nil || p.config == nil {
+		return "sparse"
+	}
+	switch strings.ToLower(strings.TrimSpace(p.config.GroundingMode)) {
+	case "off", "all", "meaning", "profile", "legacy", "sparse":
+		return strings.ToLower(strings.TrimSpace(p.config.GroundingMode))
+	default:
+		return "sparse"
+	}
+}
+
+func (p *Pipeline) compactExportOptions(tables []string, relevant map[string]struct{}, schemaLinking bool) *contextpkg.ExportOptions {
+	opts := &contextpkg.ExportOptions{
+		Tables:                 tables,
+		IncludeColumns:         true,
+		IncludeIndexes:         true,
+		IncludeRichContext:     true,
+		IncludeStats:           true,
+		IncludeValueStats:      true,
+		IncludeRelationships:   !schemaLinking,
+		IncludeOfficialMeaning: false,
+		IncludeProfileNL:       false,
+	}
+	if schemaLinking {
+		return opts
+	}
+	switch p.normalizedGroundingMode() {
+	case "all":
+		opts.IncludeOfficialMeaning = true
+		opts.IncludeProfileNL = true
+	case "meaning":
+		opts.IncludeOfficialMeaning = true
+		opts.GroundingColumns = relevant // nil fallback = all selected table columns
+	case "profile":
+		opts.IncludeProfileNL = true
+		if relevant == nil {
+			opts.GroundingColumns = map[string]struct{}{}
+		} else {
+			opts.GroundingColumns = relevant
+		}
+	case "legacy", "off":
+		// legacy appends FormatForDB later; off emits no grounding.
+	default: // sparse
+		opts.IncludeOfficialMeaning = true
+		if relevant == nil {
+			// Column refine can fail. Preserve official semantics without
+			// falling back to full-column ProfileNL.
+			opts.IncludeProfileNL = false
+			opts.GroundingColumns = nil
+		} else {
+			opts.IncludeProfileNL = true
+			opts.GroundingColumns = relevant
+		}
+	}
+	return opts
 }
 
 // countTokens counts text token count
@@ -244,13 +310,7 @@ func (p *Pipeline) Execute(ctx context.Context, query string) (*Result, error) {
 	// Build full RC prompt for Schema Linker (so it can read everything and output focused context)
 	var fullRCPrompt string
 	if p.config.UseRichContext && p.context != nil {
-		fullRCOpts := &contextpkg.ExportOptions{
-			Tables:             nil, // all tables
-			IncludeColumns:     true,
-			IncludeIndexes:     true,
-			IncludeRichContext: true,
-			IncludeStats:       true,
-		}
+		fullRCOpts := p.compactExportOptions(nil, nil, true)
 		fullRCPrompt = p.context.ExportToCompactPrompt(fullRCOpts)
 	}
 
@@ -277,8 +337,9 @@ func (p *Pipeline) Execute(ctx context.Context, query string) (*Result, error) {
 
 	// 1b. Link enhance: FK expand + relevant columns + evidence literal hints
 	var linkInject string
+	var relevantColumns map[string]struct{}
 	if p.config.EnableLinkEnhance {
-		expanded, inject, enhErr := p.ApplyLinkEnhance(ctx, query, tables, allTableInfo)
+		expanded, inject, relevant, enhErr := p.ApplyLinkEnhance(ctx, query, tables, allTableInfo)
 		if enhErr != nil {
 			p.Logger.Printf("⚠️  link enhance failed: %v\n", enhErr)
 		} else {
@@ -287,6 +348,7 @@ func (p *Pipeline) Execute(ctx context.Context, query string) (*Result, error) {
 				result.SelectedTables = tables
 			}
 			linkInject = inject
+			relevantColumns = relevant
 			result.LLMCalls++ // column refine (best-effort; may no-op on error)
 		}
 	}
@@ -301,15 +363,11 @@ func (p *Pipeline) Execute(ctx context.Context, query string) (*Result, error) {
 			contextPrompt = linkResult.ContextPrompt
 			p.Logger.Printf("📚 Using Schema Linker's focused context (%d chars)\n", len(contextPrompt))
 		} else {
-			opts := &contextpkg.ExportOptions{
-				Tables:             tables,
-				IncludeColumns:     true,
-				IncludeIndexes:     true,
-				IncludeRichContext: true,
-				IncludeStats:       true,
-			}
+			opts := p.compactExportOptions(tables, relevantColumns, false)
 			contextPrompt = p.context.ExportToCompactPrompt(opts)
 			p.Logger.Printf("📚 Using Rich Context for %d tables\n", len(tables))
+			p.Logger.Printf("🧭 Grounding mode=%s relevant_columns=%d context_chars=%d\n",
+				p.normalizedGroundingMode(), len(relevantColumns), len(contextPrompt))
 		}
 
 		crossTableSummary = p.context.BuildCrossTableQualitySummary(tables)
@@ -337,9 +395,8 @@ func (p *Pipeline) Execute(ctx context.Context, query string) (*Result, error) {
 		p.Logger.Printf("📝 Output contract keywords: %v\n", p.config.OutputContract.Keywords)
 	}
 
-	// Official meanings: baked into RC columns (NewPipeline / enrich_rc). Fallback
-	// FormatForDB only when there is no SharedContext (basic-schema path).
-	if len(p.config.ColumnMeaning) > 0 && p.context == nil {
+	// No-RC and explicit legacy mode retain the separate meaning block.
+	if len(p.config.ColumnMeaning) > 0 && (p.context == nil || p.normalizedGroundingMode() == "legacy") {
 		cmBlock := p.config.ColumnMeaning.FormatForDB(p.config.DBName, tables)
 		if cmBlock != "" {
 			contextPrompt = contextPrompt + "\n" + cmBlock

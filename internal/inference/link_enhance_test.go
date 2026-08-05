@@ -49,6 +49,49 @@ func TestExtractEvidenceLiterals(t *testing.T) {
 	}
 }
 
+func TestRelevantColumnSet(t *testing.T) {
+	got := relevantColumnSet([]string{
+		"- orders.customer_id | join key",
+		"- `customers`.`name` | projection",
+		"invalid",
+	})
+	for _, key := range []string{"orders.customer_id", "customers.name"} {
+		if _, ok := got[key]; !ok {
+			t.Fatalf("missing %s in %v", key, got)
+		}
+	}
+	if len(got) != 2 {
+		t.Fatalf("unexpected parsed columns: %v", got)
+	}
+}
+
+func TestCompactExportOptionsSparseGrounding(t *testing.T) {
+	p := &Pipeline{config: &Config{GroundingMode: "sparse"}}
+	relevant := map[string]struct{}{"orders.status": {}}
+	opts := p.compactExportOptions([]string{"orders"}, relevant, false)
+	if !opts.IncludeOfficialMeaning || !opts.IncludeProfileNL {
+		t.Fatalf("sparse mode should enable selected grounding: %+v", opts)
+	}
+	if _, ok := opts.GroundingColumns["orders.status"]; !ok {
+		t.Fatalf("missing relevant column: %+v", opts.GroundingColumns)
+	}
+
+	linkerOpts := p.compactExportOptions(nil, nil, true)
+	if linkerOpts.IncludeOfficialMeaning || linkerOpts.IncludeProfileNL || linkerOpts.IncludeRelationships {
+		t.Fatalf("schema linker should not receive duplicate grounding: %+v", linkerOpts)
+	}
+
+	fallback := p.compactExportOptions([]string{"orders"}, nil, false)
+	if !fallback.IncludeOfficialMeaning || fallback.IncludeProfileNL || fallback.GroundingColumns != nil {
+		t.Fatalf("missing refine should fall back to meanings only: %+v", fallback)
+	}
+
+	off := (&Pipeline{config: &Config{GroundingMode: "off"}}).compactExportOptions([]string{"orders"}, relevant, false)
+	if off.IncludeOfficialMeaning || off.IncludeProfileNL {
+		t.Fatalf("off mode must emit no grounding: %+v", off)
+	}
+}
+
 func TestFingerprintPreservesColumnOrder(t *testing.T) {
 	rows := []map[string]interface{}{{"b": 1, "a": 2}}
 	k1 := FingerprintQueryResult([]string{"a", "b"}, rows, 10)

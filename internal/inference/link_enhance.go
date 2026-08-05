@@ -124,9 +124,9 @@ func FormatEvidenceLiteralHints(literals []string) string {
 
 // RefineRelevantColumns asks the LLM for question-relevant columns + short hints
 // (WiseCat RelevantColumns lite — no vector store).
-func (p *Pipeline) RefineRelevantColumns(ctx context.Context, query string, tables []string, allTables map[string]*TableInfo) (string, error) {
+func (p *Pipeline) RefineRelevantColumns(ctx context.Context, query string, tables []string, allTables map[string]*TableInfo) (string, map[string]struct{}, error) {
 	if len(tables) == 0 {
-		return "", nil
+		return "", nil, nil
 	}
 	var schema strings.Builder
 	for _, name := range tables {
@@ -158,15 +158,16 @@ Output:`, schema.String(), query)
 
 	resp, err := p.llm.Call(ctx, prompt)
 	if err != nil {
-		return "", err
+		return "", nil, err
 	}
 	p.promptTexts = append(p.promptTexts, prompt)
 	p.responseTexts = append(p.responseTexts, resp)
 
 	lines := parseRelevantColumnLines(resp, tables, allTables)
 	if len(lines) == 0 {
-		return "", nil
+		return "", nil, nil
 	}
+	relevant := relevantColumnSet(lines)
 	var b strings.Builder
 	b.WriteString("## Relevant Columns (linker refine)\n")
 	b.WriteString("Prefer these columns for filters/joins/projection; still verify values with probe when literals are uncertain:\n")
@@ -175,7 +176,25 @@ Output:`, schema.String(), query)
 		b.WriteString("\n")
 	}
 	b.WriteString("\n")
-	return b.String(), nil
+	return b.String(), relevant, nil
+}
+
+func relevantColumnSet(lines []string) map[string]struct{} {
+	out := make(map[string]struct{})
+	for _, line := range lines {
+		line = strings.TrimSpace(strings.TrimPrefix(line, "- "))
+		left := strings.TrimSpace(strings.SplitN(line, "|", 2)[0])
+		left = strings.ReplaceAll(left, "`", "")
+		parts := strings.Split(left, ".")
+		if len(parts) != 2 {
+			continue
+		}
+		key := strings.ToLower(strings.TrimSpace(parts[0]) + "." + strings.TrimSpace(parts[1]))
+		if key != "." {
+			out[key] = struct{}{}
+		}
+	}
+	return out
 }
 
 func parseRelevantColumnLines(resp string, tables []string, allTables map[string]*TableInfo) []string {
@@ -250,8 +269,8 @@ func parseRelevantColumnLines(resp string, tables []string, allTables map[string
 }
 
 // ApplyLinkEnhance expands FK neighbors, refines columns, injects evidence literal hints.
-// Returns possibly expanded tables and an extra context block to append.
-func (p *Pipeline) ApplyLinkEnhance(ctx context.Context, query string, tables []string, allTables map[string]*TableInfo) (expanded []string, inject string, err error) {
+// Returns expanded tables, an extra context block, and validated relevant columns.
+func (p *Pipeline) ApplyLinkEnhance(ctx context.Context, query string, tables []string, allTables map[string]*TableInfo) (expanded []string, inject string, relevant map[string]struct{}, err error) {
 	expanded = ExpandTablesWithFK(tables, allTables)
 	if len(expanded) > len(tables) {
 		p.Logger.Printf("🔗 FK expand: %v → %v\n", tables, expanded)
@@ -264,7 +283,7 @@ func (p *Pipeline) ApplyLinkEnhance(ctx context.Context, query string, tables []
 		parts = append(parts, block)
 	}
 
-	colBlock, refineErr := p.RefineRelevantColumns(ctx, query, expanded, allTables)
+	colBlock, relevant, refineErr := p.RefineRelevantColumns(ctx, query, expanded, allTables)
 	if refineErr != nil {
 		p.Logger.Printf("⚠️  column refine failed: %v\n", refineErr)
 	} else if colBlock != "" {
@@ -272,5 +291,5 @@ func (p *Pipeline) ApplyLinkEnhance(ctx context.Context, query string, tables []
 		p.Logger.Printf("📌 Relevant columns refine injected (%d chars)\n", len(colBlock))
 	}
 
-	return expanded, strings.Join(parts, ""), nil
+	return expanded, strings.Join(parts, ""), relevant, nil
 }

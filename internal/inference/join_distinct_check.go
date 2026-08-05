@@ -13,7 +13,8 @@ type JoinCardHint struct {
 	ChildTable    string
 	ParentTable   string
 	ChildColumn   string
-	ParentToChild string  // "1:N" etc.
+	ParentColumn  string
+	ParentToChild string // "1:N" etc.
 	AvgChildren   float64
 }
 
@@ -23,9 +24,12 @@ var (
 	reSQLCountDist = regexp.MustCompile(`(?i)\bcount\s*\(\s*distinct\b`)
 	reSQLGroupBy   = regexp.MustCompile(`(?i)\bgroup\s+by\b`)
 	reSQLAggOnly   = regexp.MustCompile(`(?i)\b(count|sum|avg|min|max)\s*\(`)
-	reAskUnique    = regexp.MustCompile(`(?i)\b(list|show|display|what are|which|names?|titles?|unique|distinct|different|codes?|ids?\b)`)
-	reAskCount     = regexp.MustCompile(`(?i)\b(how many|number of|count of|total number)\b`)
 	reAskUniqueKW  = regexp.MustCompile(`(?i)\b(unique|distinct|different)\b`)
+	reAskEntity    = regexp.MustCompile(`(?i)\b(what are|which|who|names?|titles?|codes?|ids?)\b`)
+	reAskAll       = regexp.MustCompile(`(?i)\b(list|show|display)\s+all\b|\b(every|each)\b`)
+	reAskCount     = regexp.MustCompile(`(?i)\b(how many|number of|count of|total number)\b`)
+	reTableRef     = regexp.MustCompile(`(?i)\b(?:from|join)\s+(?:[` + "`" + `"]?[A-Za-z_][A-Za-z0-9_-]*[` + "`" + `"]?\.)?([` + "`" + `"]?[A-Za-z_][A-Za-z0-9_-]*[` + "`" + `"]?)(?:\s+(?:as\s+)?([A-Za-z_][A-Za-z0-9_]*))?`)
+	reQualifiedEq  = regexp.MustCompile(`(?i)([` + "`" + `"]?[A-Za-z_][A-Za-z0-9_-]*[` + "`" + `"]?)\.([` + "`" + `"]?[A-Za-z_][A-Za-z0-9_-]*[` + "`" + `"]?)\s*=\s*([` + "`" + `"]?[A-Za-z_][A-Za-z0-9_-]*[` + "`" + `"]?)\.([` + "`" + `"]?[A-Za-z_][A-Za-z0-9_-]*[` + "`" + `"]?)`)
 )
 
 // CollectJoinCardHints pulls 1:N-ish FK edges from Rich Context for selected tables.
@@ -61,6 +65,7 @@ func CollectJoinCardHints(shared *contextpkg.SharedContext, tables []string) []J
 				ChildTable:    tname,
 				ParentTable:   fk.ReferencedTable,
 				ChildColumn:   fk.ColumnName,
+				ParentColumn:  fk.ReferencedColumn,
 				ParentToChild: ptc,
 				AvgChildren:   fk.AvgChildren,
 			})
@@ -81,21 +86,21 @@ func AnalyzeJoinDistinctIssues(sql, question string, hints []JoinCardHint, hasDu
 	hasCountDistinct := reSQLCountDist.MatchString(sqlU)
 	hasGroupBy := reSQLGroupBy.MatchString(sqlU)
 	hasAgg := reSQLAggOnly.MatchString(sqlU)
-	wantsUnique := reAskUnique.MatchString(q) || reAskUniqueKW.MatchString(q)
+	wantsUnique := reAskUniqueKW.MatchString(q) || (reAskEntity.MatchString(q) && !reAskAll.MatchString(q))
 	wantsCount := reAskCount.MatchString(q)
+	wantsAllRows := reAskAll.MatchString(q)
 
 	var warns []string
 
 	var hit1N []JoinCardHint
-	sqlLower := strings.ToLower(sqlU)
 	for _, h := range hints {
-		if strings.Contains(sqlLower, strings.ToLower(h.ChildTable)) &&
-			strings.Contains(sqlLower, strings.ToLower(h.ParentTable)) {
+		if sqlUsesJoinEdge(sqlU, h) {
 			hit1N = append(hit1N, h)
 		}
 	}
 
-	if hasJoin && len(hit1N) > 0 && !hasSelectDistinct && !hasGroupBy {
+	if hasJoin && len(hit1N) > 0 && !hasSelectDistinct && !hasGroupBy &&
+		(wantsCount || (!wantsAllRows && (wantsUnique || hasDupRows))) {
 		aggOnly := hasAgg && !wantsUnique
 		if !aggOnly || hasDupRows {
 			ex := hit1N[0]
@@ -133,10 +138,55 @@ func AnalyzeJoinDistinctIssues(sql, question string, hints []JoinCardHint, hasDu
 				"If counting parents/entities (not child rows), use COUNT(DISTINCT parent_key).")
 	}
 
-	return uniqueWarns(warns)
+	return uniqueWarns(warns, 2)
 }
 
-func uniqueWarns(in []string) []string {
+func sqlUsesJoinEdge(sqlText string, hint JoinCardHint) bool {
+	aliases := map[string]string{}
+	reserved := map[string]struct{}{
+		"on": {}, "where": {}, "inner": {}, "left": {}, "right": {}, "full": {},
+		"cross": {}, "join": {}, "group": {}, "order": {}, "limit": {}, "having": {},
+	}
+	for _, m := range reTableRef.FindAllStringSubmatch(sqlText, -1) {
+		table := normalizeSQLIdent(m[1])
+		aliases[table] = table
+		if len(m) > 2 {
+			alias := normalizeSQLIdent(m[2])
+			if _, blocked := reserved[alias]; alias != "" && !blocked {
+				aliases[alias] = table
+			}
+		}
+	}
+	resolve := func(name string) string {
+		name = normalizeSQLIdent(name)
+		if table, ok := aliases[name]; ok {
+			return table
+		}
+		return name
+	}
+	childTable := strings.ToLower(hint.ChildTable)
+	parentTable := strings.ToLower(hint.ParentTable)
+	childColumn := strings.ToLower(hint.ChildColumn)
+	parentColumn := strings.ToLower(hint.ParentColumn)
+	for _, m := range reQualifiedEq.FindAllStringSubmatch(sqlText, -1) {
+		leftTable, leftCol := resolve(m[1]), normalizeSQLIdent(m[2])
+		rightTable, rightCol := resolve(m[3]), normalizeSQLIdent(m[4])
+		forward := leftTable == childTable && leftCol == childColumn &&
+			rightTable == parentTable && rightCol == parentColumn
+		reverse := rightTable == childTable && rightCol == childColumn &&
+			leftTable == parentTable && leftCol == parentColumn
+		if forward || reverse {
+			return true
+		}
+	}
+	return false
+}
+
+func normalizeSQLIdent(s string) string {
+	return strings.ToLower(strings.Trim(strings.TrimSpace(s), "`\""))
+}
+
+func uniqueWarns(in []string, max int) []string {
 	seen := map[string]struct{}{}
 	var out []string
 	for _, w := range in {
@@ -145,6 +195,9 @@ func uniqueWarns(in []string) []string {
 		}
 		seen[w] = struct{}{}
 		out = append(out, w)
+		if max > 0 && len(out) >= max {
+			break
+		}
 	}
 	return out
 }

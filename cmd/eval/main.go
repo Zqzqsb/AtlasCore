@@ -37,14 +37,14 @@ type SpiderExample struct {
 
 // BirdExample BIRD dataset example
 type BirdExample struct {
-	QuestionID int    `json:"question_id"`
-	DbID       string `json:"db_id"`
-	Question   string `json:"question"`
-	Evidence   string `json:"evidence"`
-	SQL        string `json:"SQL"`
-	Difficulty string `json:"difficulty"`
-	ResultFields           []string `json:"result_fields"`
-	ResultFieldsDescription string  `json:"result_fields_description"`
+	QuestionID              int      `json:"question_id"`
+	DbID                    string   `json:"db_id"`
+	Question                string   `json:"question"`
+	Evidence                string   `json:"evidence"`
+	SQL                     string   `json:"SQL"`
+	Difficulty              string   `json:"difficulty"`
+	ResultFields            []string `json:"result_fields"`
+	ResultFieldsDescription string   `json:"result_fields_description"`
 }
 
 // EvalResult unified evaluation result
@@ -180,9 +180,16 @@ func main() {
 	dbDirFlag := flag.String("db-dir", "", "Override database directory")
 	contextDirFlag := flag.String("context-dir", "", "Override rich context directory")
 	columnMeaningPath := flag.String("column-meaning", "", "Optional column_meaning.json (official / held-out)")
+	groundingMode := flag.String("grounding-mode", "sparse", "Column grounding: sparse | all | meaning | profile | legacy | off")
 	ignoreGoldFields := flag.Bool("ignore-gold-fields", false, "Do not pass result_fields even if present in JSON (black-box)")
 
 	flag.Parse()
+	switch strings.ToLower(strings.TrimSpace(*groundingMode)) {
+	case "sparse", "all", "meaning", "profile", "legacy", "off":
+		*groundingMode = strings.ToLower(strings.TrimSpace(*groundingMode))
+	default:
+		log.Fatalf("Invalid --grounding-mode %q (want sparse|all|meaning|profile|legacy|off)", *groundingMode)
+	}
 
 	reader := bufio.NewReader(os.Stdin)
 
@@ -511,6 +518,7 @@ func main() {
 	if *columnMeaningPath != "" {
 		fmt.Printf("  ColumnMeaning:  %s\n", *columnMeaningPath)
 	}
+	fmt.Printf("  GroundingMode:  %s\n", *groundingMode)
 	if *difficulty != "" {
 		fmt.Printf("  Difficulty:     %s\n", *difficulty)
 	}
@@ -693,7 +701,7 @@ func main() {
 			fmt.Printf("[%d/%d] DB: %s\n", i+1, totalCount, e.DbID)
 			fmt.Printf("Question: %s\n", e.Question)
 			fmt.Printf("Gold SQL: %s\n", e.Query)
-			result = evaluateSpider(ctx, llmModel, e, dbDir, contextDir, selectedMode, *logMode, evalLogger)
+			result = evaluateSpider(ctx, llmModel, e, dbDir, contextDir, selectedMode, *logMode, evalLogger, *groundingMode)
 
 		case BirdExample:
 			fmt.Printf("[%d/%d] DB: %s (difficulty: %s)\n", i+1, totalCount, e.DbID, e.Difficulty)
@@ -706,7 +714,7 @@ func main() {
 			} else {
 				fmt.Printf("Gold SQL: (hidden / empty — black-box)\n")
 			}
-			result = evaluateBird(ctx, llmModel, e, dbDir, contextDir, selectedMode, *logMode, evalLogger, columnMeaning, stripGoldFields)
+			result = evaluateBird(ctx, llmModel, e, dbDir, contextDir, selectedMode, *logMode, evalLogger, columnMeaning, *groundingMode, stripGoldFields)
 		}
 
 		// Update stats
@@ -852,6 +860,7 @@ func evaluateSpider(
 	mode EvalMode,
 	logMode string,
 	logger *inference.InferenceLogger,
+	groundingMode string,
 ) (result EvalResult) {
 	result = EvalResult{
 		DbID:     example.DbID,
@@ -907,6 +916,7 @@ func evaluateSpider(
 		DBName:                  example.DbID,
 		DBType:                  "sqlite",
 		Benchmark:               "spider",
+		GroundingMode:           groundingMode,
 	}
 
 	pipeline := inference.NewPipeline(llm, dbAdapter, pipelineConfig)
@@ -943,6 +953,7 @@ func evaluateBird(
 	logMode string,
 	logger *inference.InferenceLogger,
 	columnMeaning inference.ColumnMeaningStore,
+	groundingMode string,
 	stripGoldFields bool,
 ) (result EvalResult) {
 	result = EvalResult{
@@ -1018,6 +1029,7 @@ func evaluateBird(
 		EnableOutputContract:    mode.EnableOutputContract,
 		EnableProposeFields:     mode.EnableProposeFields,
 		ColumnMeaning:           columnMeaning,
+		GroundingMode:           groundingMode,
 		ScaleCandidates:         mode.ScaleCandidates,
 		EnableLinkEnhance:       mode.EnableLinkEnhance,
 		EnableProbeTool:         mode.EnableProbeTool,

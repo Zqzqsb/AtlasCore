@@ -233,10 +233,14 @@ func main() {
 		header("Phase: Exported Rich Context (Compact Prompt)")
 
 		opts := &contextpkg.ExportOptions{
-			IncludeColumns:     true,
-			IncludeIndexes:     true,
-			IncludeRichContext: true,
-			IncludeStats:       true,
+			IncludeColumns:         true,
+			IncludeIndexes:         true,
+			IncludeRichContext:     true,
+			IncludeStats:           true,
+			IncludeValueStats:      true,
+			IncludeRelationships:   true,
+			IncludeOfficialMeaning: true,
+			IncludeProfileNL:       true,
 		}
 		compactPrompt := sharedCtx.ExportToCompactPrompt(opts)
 		codeBlock("Compact Prompt (all tables)", compactPrompt)
@@ -457,11 +461,15 @@ func showMockPrompt(question string, sharedCtx *contextpkg.SharedContext, benchm
 	}
 
 	opts := &contextpkg.ExportOptions{
-		Tables:             allTables,
-		IncludeColumns:     true,
-		IncludeIndexes:     true,
-		IncludeRichContext: true,
-		IncludeStats:       true,
+		Tables:                 allTables,
+		IncludeColumns:         true,
+		IncludeIndexes:         true,
+		IncludeRichContext:     true,
+		IncludeStats:           true,
+		IncludeValueStats:      true,
+		IncludeRelationships:   true,
+		IncludeOfficialMeaning: true,
+		IncludeProfileNL:       true,
 	}
 	contextPrompt := sharedCtx.ExportToCompactPrompt(opts)
 

@@ -25,6 +25,7 @@ func main() {
 	predictPath := flag.String("predict", "", "predict.sql (SQL\\tdb_id per line) or results.json")
 	goldPath := flag.String("gold", "", "private gold.json")
 	dbDir := flag.String("db-dir", "", "sqlite root: {db}/{db}.sqlite")
+	start := flag.Int("start", 0, "gold row offset for sharded predictions")
 	timeout := flag.Duration("timeout", 30*time.Second, "per-query timeout budget (best-effort)")
 	flag.Parse()
 	_ = timeout
@@ -41,10 +42,14 @@ func main() {
 	if err != nil {
 		log.Fatalf("predict: %v", err)
 	}
-	if len(preds) != len(gold) {
-		fmt.Printf("⚠️  predict n=%d gold n=%d (scoring min length)\n", len(preds), len(gold))
+	if *start < 0 || *start >= len(gold) {
+		log.Fatalf("start=%d outside gold rows [0,%d)", *start, len(gold))
 	}
-	n := len(gold)
+	remainingGold := len(gold) - *start
+	if len(preds) != remainingGold {
+		fmt.Printf("⚠️  predict n=%d gold remaining=%d (start=%d; scoring min length)\n", len(preds), remainingGold, *start)
+	}
+	n := remainingGold
 	if len(preds) < n {
 		n = len(preds)
 	}
@@ -53,7 +58,7 @@ func main() {
 	empty := 0
 	execErr := 0
 	for i := 0; i < n; i++ {
-		g := gold[i]
+		g := gold[*start+i]
 		pSQL, pDB := preds[i].sql, preds[i].db
 		if pDB == "" {
 			pDB = g.DbID

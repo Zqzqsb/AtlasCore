@@ -2,6 +2,7 @@ package context
 
 import (
 	"fmt"
+	"sort"
 	"strings"
 )
 
@@ -27,7 +28,7 @@ func (c *SharedContext) AnalyzeJoinPaths() {
 			}
 
 			// Child → Parent (N:1 typical)
-			forwardKey := fmt.Sprintf("%s→%s", tableName, fk.ReferencedTable)
+			forwardKey := joinEdgeKey(tableName, fk.ColumnName, fk.ReferencedTable, fk.ReferencedColumn)
 			clause := fmt.Sprintf("%s.%s = %s.%s",
 				tableName, fk.ColumnName, fk.ReferencedTable, fk.ReferencedColumn)
 			desc := fmt.Sprintf("%s.%s → %s.%s [%s]",
@@ -45,26 +46,28 @@ func (c *SharedContext) AnalyzeJoinPaths() {
 			}
 
 			// Parent → Child reverse view (1:N)
-			reverseKey := fmt.Sprintf("%s→%s", fk.ReferencedTable, tableName)
-			if _, exists := c.JoinPaths[reverseKey]; !exists {
-				revDesc := fmt.Sprintf("%s 1→N %s via %s.%s [%s]",
-					fk.ReferencedTable, tableName, tableName, fk.ColumnName, parentCard)
-				if fk.AvgChildren > 1.05 {
-					revDesc += "; selecting child after JOIN can duplicate parent rows"
-				}
-				c.JoinPaths[reverseKey] = &JoinPath{
-					FromTable:   fk.ReferencedTable,
-					ToTable:     tableName,
-					Path:        []string{fk.ReferencedTable, tableName},
-					JoinClauses: []string{clause},
-					Description: revDesc,
-					Cardinality: parentCard,
-				}
+			reverseKey := joinEdgeKey(fk.ReferencedTable, fk.ReferencedColumn, tableName, fk.ColumnName)
+			revDesc := fmt.Sprintf("%s → %s via %s.%s [%s]",
+				fk.ReferencedTable, tableName, tableName, fk.ColumnName, parentCard)
+			if fk.AvgChildren > 1.05 {
+				revDesc += "; selecting child after JOIN can duplicate parent rows"
+			}
+			c.JoinPaths[reverseKey] = &JoinPath{
+				FromTable:   fk.ReferencedTable,
+				ToTable:     tableName,
+				Path:        []string{fk.ReferencedTable, tableName},
+				JoinClauses: []string{clause},
+				Description: revDesc,
+				Cardinality: parentCard,
 			}
 		}
 	}
 
 	c.analyzeFieldSemanticsLocked()
+}
+
+func joinEdgeKey(fromTable, fromColumn, toTable, toColumn string) string {
+	return fmt.Sprintf("%s.%s→%s.%s", fromTable, fromColumn, toTable, toColumn)
 }
 
 // analyzeFieldSemanticsLocked assumes c.mu is held.
@@ -232,7 +235,13 @@ func (c *SharedContext) FormatJoinPathsForPrompt() string {
 	sb.WriteString("\n## Join Relationships (with cardinality)\n")
 	sb.WriteString("Use these FK edges. N:1 / 1:N means JOIN can multiply rows — add DISTINCT when listing unique entities on the '1' side.\n\n")
 
-	for key, joinPath := range c.JoinPaths {
+	keys := make([]string, 0, len(c.JoinPaths))
+	for key := range c.JoinPaths {
+		keys = append(keys, key)
+	}
+	sort.Strings(keys)
+	for _, key := range keys {
+		joinPath := c.JoinPaths[key]
 		card := joinPath.Cardinality
 		if card == "" {
 			card = "?"

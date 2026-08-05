@@ -7,13 +7,13 @@ import (
 
 func TestClassifyValueShape(t *testing.T) {
 	cases := map[string]string{
-		"":              "empty",
-		"12345":         "digits",
-		"ABC":           "alpha",
-		"A1_b":          "alnum",
-		"2020-01-02":    "dateish",
-		"a@b.com":       "emailish",
-		"hello world!":  "mixed",
+		"":             "empty",
+		"12345":        "digits",
+		"ABC":          "alpha",
+		"A1_b":         "alnum",
+		"2020-01-02":   "dateish",
+		"a@b.com":      "emailish",
+		"hello world!": "mixed",
 	}
 	for in, want := range cases {
 		if got := ClassifyValueShape(in); got != want {
@@ -24,7 +24,7 @@ func TestClassifyValueShape(t *testing.T) {
 
 func TestAnnotateTextProfileAndNL(t *testing.T) {
 	stats := &ValueStats{
-		SampleValues: []string{"123-456-7890", "555-0100", "555-0101", "n/a"},
+		SampleValues:  []string{"123-456-7890", "555-0100", "555-0101", "n/a"},
 		DistinctCount: 4,
 		NullPercent:   8,
 	}
@@ -77,13 +77,46 @@ func TestParseAndApplyOfficialMeanings(t *testing.T) {
 func TestFormatColumnGrounding(t *testing.T) {
 	col := ColumnMetadata{
 		OfficialMeaning: "school code",
-		ProfileNL:       "shape=digits(~5 chars)",
+		Type:            "TEXT",
+		ValueStats: &ValueStats{
+			DominantShape: "digits",
+			AvgLen:        5,
+		},
 	}
-	got := formatColumnGrounding(col)
-	if !strings.Contains(got, "school code") || !strings.Contains(got, "shape=digits") {
+	opts := DefaultExportOptions()
+	got := formatColumnGrounding("schools", col, opts)
+	if !strings.Contains(got, "school code") || !strings.Contains(got, "stored-as-text shape=digits") {
 		t.Fatalf("got=%q", got)
 	}
-	if formatColumnGrounding(ColumnMetadata{}) != "" {
+	if formatColumnGrounding("schools", ColumnMetadata{}, opts) != "" {
 		t.Fatal("expected empty")
+	}
+}
+
+func TestBuildSparseProfileNLDropsGenericStats(t *testing.T) {
+	col := ColumnMetadata{
+		Name: "score",
+		Type: "REAL",
+		ValueStats: &ValueStats{
+			DistinctCount: 100,
+			AvgLen:        4,
+			Range:         &NumericRange{Min: 1, Max: 100},
+		},
+	}
+	if got := BuildSparseProfileNL(col); got != "" {
+		t.Fatalf("generic stats should remain structured, got %q", got)
+	}
+}
+
+func TestGroundingColumnsRestrictInlineNotes(t *testing.T) {
+	col := ColumnMetadata{Name: "code", OfficialMeaning: "school code"}
+	opts := DefaultExportOptions()
+	opts.GroundingColumns = map[string]struct{}{"schools.name": {}}
+	if got := formatColumnGrounding("schools", col, opts); got != "" {
+		t.Fatalf("unselected column should not be grounded, got %q", got)
+	}
+	opts.GroundingColumns["schools.code"] = struct{}{}
+	if got := formatColumnGrounding("schools", col, opts); !strings.Contains(got, "school code") {
+		t.Fatalf("selected column missing meaning: %q", got)
 	}
 }

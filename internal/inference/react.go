@@ -38,7 +38,7 @@ func (p *Pipeline) oneShotGeneration(ctx context.Context, query string, contextP
 		// If retries left, wait and retry
 		if attempt < maxRetries {
 			delay := backoffDelays[attempt]
-		p.Logger.Printf("⚠️  SQL Generation failed (attempt %d/%d): %v\n", attempt+1, maxRetries+1, err)
+			p.Logger.Printf("⚠️  SQL Generation failed (attempt %d/%d): %v\n", attempt+1, maxRetries+1, err)
 			p.Logger.Printf("⏳ Retrying after %v...\n\n", delay)
 			time.Sleep(delay)
 		}
@@ -364,16 +364,8 @@ func (p *Pipeline) buildPrompt(query string, contextPrompt string, crossTableSum
 	// SQL Best Practices (only added with Rich Context)
 	// These are enhanced hints from onboarding, should not be used in baseline
 	if p.config.UseRichContext {
-		// JOIN paths and field semantics (only in Rich Context mode)
-		if p.context != nil {
-			if joinPathsPrompt := p.context.FormatJoinPathsForPrompt(); joinPathsPrompt != "" {
-				sb.WriteString(joinPathsPrompt)
-			}
-			if fieldSemanticsPrompt := p.context.FormatFieldSemanticsForPrompt(); fieldSemanticsPrompt != "" {
-				sb.WriteString(fieldSemanticsPrompt)
-			}
-		}
-
+		// Selected-table FK relationships are already emitted by the compact
+		// context. Do not dump the full database join graph a second time.
 		sb.WriteString("IMPORTANT: Rich Context may be outdated or incorrect. When Rich Context conflicts with actual database data, trust the database.\n\n")
 
 		if p.config.Benchmark == "bird" {
@@ -948,4 +940,3 @@ func (p *Pipeline) buildBirdBestPractices() string {
 
 `
 }
-
