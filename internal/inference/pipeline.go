@@ -385,6 +385,8 @@ func (p *Pipeline) Execute(ctx context.Context, query string) (*Result, error) {
 
 	if linkInject != "" {
 		contextPrompt = contextPrompt + "\n" + linkInject
+		p.Logger.Printf("📎 Link inject appended (%d chars)\n", len(linkInject))
+		p.Logger.FileOnly("\n┌─ Link Enhance Inject ────────────────────────────────────\n%s\n└──────────────────────────────────────────────────────────\n\n", linkInject)
 	}
 
 	// 2b. Gold-free output contract (leaderboard)

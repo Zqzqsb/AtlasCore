@@ -11,30 +11,45 @@ import (
 	"strings"
 	"time"
 
+	"github.com/tmc/langchaingo/llms"
+
 	"github.com/Zqzqsb/AtlasCore/internal/adapter"
 	contextpkg "github.com/Zqzqsb/AtlasCore/internal/context"
+	"github.com/Zqzqsb/AtlasCore/internal/llm"
 )
 
 // enrich_rc re-runs deterministic RC enrichment (sample values, FK cardinality,
-// join paths, text-shape ProfileNL) on existing context JSON — no LLM.
-// Optionally bake official column_meaning into ColumnMetadata.OfficialMeaning.
+// join paths, text-shape ProfileNL) on existing context JSON.
+// Optionally bake official column_meaning, label value-index columns, and build
+// a per-DB business-value inverted index sidecar (iter14).
 //
-// Example (held-out):
+// Example (held-out offline build):
 //
 //	go run ./cmd/enrich_rc \
-//	  --context-dir contexts/sqlite/bird_heldout_v1 \
+//	  --context-dir contexts/sqlite/bird_heldout_v1_vi \
 //	  --db-dir benchmarks/bird/heldout_v1_smoke/test_databases \
-//	  --column-meaning benchmarks/bird/heldout_v1_smoke/column_meaning.json
+//	  --column-meaning benchmarks/bird/heldout_v1_smoke/column_meaning.json \
+//	  --value-index --value-index-label heuristic
 func main() {
 	contextDir := flag.String("context-dir", "contexts/sqlite/bird_heldout_v1", "Directory of RC JSON files")
 	dbDir := flag.String("db-dir", "benchmarks/bird/heldout_v1_smoke/test_databases", "Directory of sqlite DBs (<db>/<db>.sqlite)")
 	columnMeaningPath := flag.String("column-meaning", "", "Optional column_meaning.json to bake into OfficialMeaning")
+	valueIndex := flag.Bool("value-index", true, "Build per-DB business-value inverted index sidecar under <context-dir>/value_index/")
+	valueIndexLabel := flag.String("value-index-label", "heuristic", "Column policy labeling: heuristic | llm | off")
+	labelModel := flag.String("label-model", "deepseek-v4-flash", "LLM for --value-index-label=llm")
 	limit := flag.Int("limit", 0, "Max DBs to enrich (0 = all)")
 	dbFilter := flag.String("db", "", "Only enrich this db_id")
 	resumeAfter := flag.String("resume-after", "", "Skip DBs with name <= this (lexicographic), e.g. ice_hockey_draft")
 	skipEnriched := flag.Bool("skip-enriched", false, "Skip DBs that already have non-empty join_paths")
 	quiet := flag.Bool("quiet", false, "Less logging")
 	flag.Parse()
+
+	labelMode := strings.ToLower(strings.TrimSpace(*valueIndexLabel))
+	switch labelMode {
+	case "heuristic", "llm", "off":
+	default:
+		log.Fatalf("invalid --value-index-label %q (want heuristic|llm|off)", *valueIndexLabel)
+	}
 
 	var meaningRaw map[string]string
 	if *columnMeaningPath != "" {
@@ -46,6 +61,16 @@ func main() {
 			log.Fatalf("parse column-meaning: %v", err)
 		}
 		fmt.Printf("📚 Loaded column_meaning entries: %d\n", len(meaningRaw))
+	}
+
+	var labelLLM llms.Model
+	if labelMode == "llm" {
+		m, err := llm.CreateLLMByType(llm.ModelType(*labelModel))
+		if err != nil {
+			log.Fatalf("label-model: %v", err)
+		}
+		labelLLM = m
+		fmt.Printf("🏷️  Value-index label model: %s\n", *labelModel)
 	}
 
 	entries, err := os.ReadDir(*contextDir)
@@ -86,7 +111,6 @@ func main() {
 
 		sqlitePath := filepath.Join(*dbDir, dbID, dbID+".sqlite")
 		if _, err := os.Stat(sqlitePath); err != nil {
-			// try flat layout
 			alt := filepath.Join(*dbDir, dbID+".sqlite")
 			if _, err2 := os.Stat(alt); err2 == nil {
 				sqlitePath = alt
@@ -129,8 +153,35 @@ func main() {
 		if len(meaningRaw) > 0 {
 			lookup := contextpkg.ParseColumnMeaningForDB(meaningRaw, dbID)
 			nMeaning = shared.ApplyOfficialMeanings(lookup)
-			// ProfileNL already from EnrichDeterministic; re-run cheaply after meaning bake
 			shared.RefreshColumnGrounding()
+		}
+
+		nInc, nExc, nUnk := 0, 0, 0
+		switch labelMode {
+		case "heuristic":
+			nInc, nExc, nUnk = shared.LabelValueIndexHeuristic()
+		case "llm":
+			var lerr error
+			nInc, nExc, nUnk, lerr = shared.LabelValueIndexWithLLM(ctx, labelLLM)
+			if lerr != nil {
+				log.Printf("value-index label %s: %v (fallback heuristic)", dbID, lerr)
+				nInc, nExc, nUnk = shared.LabelValueIndexHeuristic()
+			}
+		}
+
+		nVIDocs, nVICols := 0, 0
+		if *valueIndex {
+			outPath := contextpkg.ValueIndexSidecarPath(*contextDir, dbID)
+			rel := filepath.ToSlash(filepath.Join("value_index", dbID+".sqlite"))
+			rep, err := shared.BuildValueIndex(ctx, sqlitePath, outPath, rel, contextpkg.DefaultValueIndexOptions())
+			if err != nil {
+				log.Printf("value-index %s: %v", dbID, err)
+				fail++
+				continue
+			}
+			if rep != nil {
+				nVIDocs, nVICols = rep.Documents, rep.ColumnsIndexed
+			}
 		}
 
 		if err := shared.SaveToFile(jsonPath); err != nil {
@@ -140,8 +191,8 @@ func main() {
 		}
 
 		nFK, nJoin, nSample, nProfile := countEnrichSignals(shared)
-		fmt.Printf("✓ %s  fk_card=%d  join_paths=%d  samples=%d  profile_nl=%d  meaning=%d\n",
-			dbID, nFK, nJoin, nSample, nProfile, nMeaning)
+		fmt.Printf("✓ %s  fk_card=%d  join_paths=%d  samples=%d  profile_nl=%d  meaning=%d  label=%s(+%d/-%d/?%d)  value_index=%dcols/%ddocs\n",
+			dbID, nFK, nJoin, nSample, nProfile, nMeaning, labelMode, nInc, nExc, nUnk, nVICols, nVIDocs)
 		done++
 	}
 

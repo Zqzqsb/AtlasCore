@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"regexp"
 	"strings"
+
+	"github.com/Zqzqsb/AtlasCore/internal/valueindex"
 )
 
 var (
@@ -268,7 +270,8 @@ func parseRelevantColumnLines(resp string, tables []string, allTables map[string
 	return out
 }
 
-// ApplyLinkEnhance expands FK neighbors, refines columns, injects evidence literal hints.
+// ApplyLinkEnhance expands FK neighbors, refines columns, injects evidence literal hints
+// and (when present) business-value inverted-index matches.
 // Returns expanded tables, an extra context block, and validated relevant columns.
 func (p *Pipeline) ApplyLinkEnhance(ctx context.Context, query string, tables []string, allTables map[string]*TableInfo) (expanded []string, inject string, relevant map[string]struct{}, err error) {
 	expanded = ExpandTablesWithFK(tables, allTables)
@@ -279,6 +282,27 @@ func (p *Pipeline) ApplyLinkEnhance(ctx context.Context, query string, tables []
 	qOnly, evOnly := splitQuestionEvidence(query)
 	literals := ExtractEvidenceLiterals(qOnly, evOnly)
 	var parts []string
+
+	// Value index: high-precision positive evidence only.
+	// Hits are restricted to linker-selected + FK-expanded tables — never expand
+	// the table set from noisy index matches.
+	if hits, lerr := p.LookupValueIndexHits(ctx, qOnly, evOnly); lerr != nil {
+		p.Logger.Printf("⚠️  value index lookup failed: %v\n", lerr)
+	} else if len(hits) > 0 {
+		rawN := len(hits)
+		hits = filterHitsByAllowedTables(hits, expanded)
+		if len(hits) > 0 {
+			if block := valueindex.FormatHitsCompact(hits); block != "" {
+				parts = append(parts, block+"\n")
+			}
+			p.Logger.Printf("🔎 Value index exact/strong hits=%d (raw=%d, in-schema only; no table expand)\n",
+				len(hits), rawN)
+			literals = filterLiteralsWithoutExactHit(literals, hits)
+		} else if rawN > 0 {
+			p.Logger.Printf("🔎 Value index raw hits=%d dropped (outside selected/FK tables)\n", rawN)
+		}
+	}
+
 	if block := FormatEvidenceLiteralHints(literals); block != "" {
 		parts = append(parts, block)
 	}

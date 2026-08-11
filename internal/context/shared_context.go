@@ -75,6 +75,9 @@ type SharedContext struct {
 	// Field semantic info
 	FieldSemantics map[string]*FieldSemantic `json:"field_semantics,omitempty"`
 
+	// Business-value inverted index sidecar (metadata only; values live on disk)
+	ValueIndex *ValueIndexInfo `json:"value_index,omitempty"`
+
 	// Task registry (not saved to JSON)
 	tasks map[string]*TaskInfo `json:"-"`
 
@@ -189,6 +192,23 @@ type ColumnMetadata struct {
 	// Grounding baked at enrich time (export only reads these — no inference dual-dump)
 	OfficialMeaning string `json:"official_meaning,omitempty"` // from column_meaning.json
 	ProfileNL       string `json:"profile_nl,omitempty"`       // deterministic NL from ValueStats
+
+	// Value-index policy metadata (no postings / values in RC JSON)
+	ValueIndexPolicy       string `json:"value_index_policy,omitempty"`        // include|exclude|unknown
+	ValueIndexPolicySource string `json:"value_index_policy_source,omitempty"` // heuristic|llm
+	ValueIndexPolicyReason string `json:"value_index_policy_reason,omitempty"`
+	ValueIndexStatus       string `json:"value_index_status,omitempty"` // indexed|hard_gate|ndv_cap|budget|non_text|excluded
+	ValueIndexKind         string `json:"value_index_kind,omitempty"`   // entity|category
+}
+
+// ValueIndexInfo points at the per-DB sidecar built by enrich_rc / valueindex.Build.
+type ValueIndexInfo struct {
+	Path           string    `json:"path"` // relative to context dir, e.g. value_index/foo.sqlite
+	Documents      int       `json:"documents"`
+	Postings       int       `json:"postings"`
+	ColumnsIndexed int       `json:"columns_indexed"`
+	BuiltAt        time.Time `json:"built_at"`
+	LabelSource    string    `json:"label_source,omitempty"` // heuristic|llm
 }
 
 // IndexMetadata index metadata
