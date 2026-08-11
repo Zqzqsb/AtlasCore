@@ -596,11 +596,8 @@ func (p *Pipeline) extractSQL(response string) string {
 			var sqlLines []string
 			for _, line := range lines {
 				trimmed := strings.TrimSpace(line)
-				// If explanatory text encountered (e.g. "This query"), stop
-				if strings.HasPrefix(trimmed, "This ") ||
-					strings.HasPrefix(trimmed, "The ") ||
-					strings.HasPrefix(trimmed, "Since ") ||
-					strings.HasPrefix(trimmed, "Note:") {
+				// If explanatory / ReAct text encountered, stop
+				if isSQLTrailingProseLine(trimmed) {
 					break
 				}
 				sqlLines = append(sqlLines, line)
@@ -609,7 +606,7 @@ func (p *Pipeline) extractSQL(response string) string {
 		}
 	}
 
-	result := strings.TrimSpace(response)
+	result := trimToFirstSQLStatement(strings.TrimSpace(response))
 
 	// Sanitize give-up patterns: if LLM output a comment, placeholder, or empty string,
 	// try to extract any SELECT statement from the full response as fallback
@@ -625,6 +622,107 @@ func (p *Pipeline) extractSQL(response string) string {
 	}
 
 	return result
+}
+
+// isSQLTrailingProseLine reports lines that are clearly not part of a SQL statement.
+func isSQLTrailingProseLine(trimmed string) bool {
+	if trimmed == "" {
+		return false
+	}
+	upper := strings.ToUpper(trimmed)
+	switch {
+	case strings.HasPrefix(trimmed, "This "),
+		strings.HasPrefix(trimmed, "The "),
+		strings.HasPrefix(trimmed, "Since "),
+		strings.HasPrefix(trimmed, "Note:"),
+		strings.HasPrefix(trimmed, "But "),
+		strings.HasPrefix(trimmed, "Thus "),
+		strings.HasPrefix(trimmed, "Otherwise"),
+		strings.HasPrefix(trimmed, "I'll "),
+		strings.HasPrefix(trimmed, "I must "),
+		strings.HasPrefix(trimmed, "I will "),
+		strings.HasPrefix(upper, "ACTION:"),
+		strings.HasPrefix(upper, "ACTION INPUT:"),
+		strings.HasPrefix(upper, "THOUGHT:"),
+		strings.HasPrefix(upper, "FINAL ANSWER:"),
+		strings.HasPrefix(trimmed, "```"):
+		return true
+	}
+	return false
+}
+
+// trimToFirstSQLStatement keeps a single executable statement.
+// Cuts at the first ';' outside quotes (drops trailing ReAct chatter glued after
+// the statement — the usual cause of "You can only execute one statement at a time").
+func trimToFirstSQLStatement(sql string) string {
+	sql = strings.TrimSpace(sql)
+	if sql == "" {
+		return sql
+	}
+
+	inS, inD := false, false
+	for i := 0; i < len(sql); i++ {
+		ch := sql[i]
+		switch {
+		case ch == '\'' && !inD:
+			// SQL escaped quote: ''
+			if inS && i+1 < len(sql) && sql[i+1] == '\'' {
+				i++
+				continue
+			}
+			inS = !inS
+		case ch == '"' && !inS:
+			inD = !inD
+		case ch == ';' && !inS && !inD:
+			sql = strings.TrimSpace(sql[:i])
+			goto afterSemi
+		}
+	}
+afterSemi:
+
+	// Same-line prose with no semicolon (or leftover after cut).
+	type marker struct {
+		needle string
+		fold   bool
+	}
+	markers := []marker{
+		{" Action:", true},
+		{"\nAction:", true},
+		{" Action Input:", true},
+		{"\nAction Input:", true},
+		{" Thought:", true},
+		{"\nThought:", true},
+		{" Final Answer:", true},
+		{"\nFinal Answer:", true},
+		{" But ", false},
+		{"\nBut ", false},
+		{" Thus ", false},
+		{"\nThus ", false},
+		{" Otherwise", false},
+		{"\nOtherwise", false},
+		{" I'll ", false},
+		{"\nI'll ", false},
+		{" I must ", false},
+		{"\nI must ", false},
+		{"```", false},
+	}
+	lower := strings.ToLower(sql)
+	cutAt := -1
+	for _, m := range markers {
+		var idx int
+		if m.fold {
+			idx = strings.Index(lower, strings.ToLower(m.needle))
+		} else {
+			idx = strings.Index(sql, m.needle)
+		}
+		if idx >= 0 && (cutAt < 0 || idx < cutAt) {
+			cutAt = idx
+		}
+	}
+	if cutAt >= 0 {
+		sql = strings.TrimSpace(sql[:cutAt])
+	}
+	return sql
 }
 
 // isGiveUpSQL detects if the SQL is a give-up pattern (empty, comment, placeholder)
@@ -668,17 +766,13 @@ func (p *Pipeline) extractFallbackSQL(response string) string {
 		if trimmed == "" && len(sqlLines) > 0 {
 			break
 		}
-		if strings.HasPrefix(trimmed, "This ") || strings.HasPrefix(trimmed, "The ") ||
-			strings.HasPrefix(trimmed, "Note:") || strings.HasPrefix(trimmed, "Thought:") {
+		if isSQLTrailingProseLine(trimmed) {
 			break
 		}
 		sqlLines = append(sqlLines, line)
 	}
 
-	sql := strings.TrimSpace(strings.Join(sqlLines, "\n"))
-	sql = strings.TrimSuffix(sql, ";")
-	sql = strings.TrimSpace(sql)
-
+	sql := trimToFirstSQLStatement(strings.TrimSpace(strings.Join(sqlLines, "\n")))
 	if sql != "" && !p.isGiveUpSQL(sql) {
 		return sql
 	}
