@@ -13,20 +13,26 @@ type OutputContract struct {
 	Keywords   []string // tokens useful for verify_sql column checks
 	Hints      []string // structured hints (count / name / list / …)
 	RawBullets []string // bullet lines injected into the prompt
+	MaxCols    int      // >0 → verify warns when SELECT returns more columns
+	NeedsLimit bool     // ranking / top-N / Nth → expect ORDER BY + LIMIT
 }
 
 var (
 	reHowMany   = regexp.MustCompile(`(?i)\b(how many|number of|count of|total number)\b`)
-	reList      = regexp.MustCompile(`(?i)\b(list|show|display|what are|which|find all|give me)\b`)
+	reList      = regexp.MustCompile(`(?i)\b(list|show|display|what are|find all|give me)\b`)
+	reWhichWho  = regexp.MustCompile(`(?i)\b(which|who|whom)\b`)
 	reName      = regexp.MustCompile(`(?i)\b(name|names|title|titles)\b`)
 	reID        = regexp.MustCompile(`(?i)\b(id|ids|identifier)\b`)
 	reAvg       = regexp.MustCompile(`(?i)\b(average|avg|mean)\b`)
 	reMaxMin    = regexp.MustCompile(`(?i)\b(maximum|minimum|max|min|highest|lowest|largest|smallest)\b`)
 	rePercent   = regexp.MustCompile(`(?i)\b(percent|percentage|ratio|proportion)\b`)
 	reDistinct  = regexp.MustCompile(`(?i)\b(distinct|unique|different)\b`)
-	reTopN      = regexp.MustCompile(`(?i)\b(top\s+\d+|first\s+\d+|most|least)\b`)
+	reTopN      = regexp.MustCompile(`(?i)\b(top\s+\d+|first\s+\d+|bottom\s+\d+)\b`)
+	reNth       = regexp.MustCompile(`(?i)\b\d+(st|nd|rd|th)\b`)
+	reMostLeast = regexp.MustCompile(`(?i)\b(the\s+)?(most|least|fewest)\b`)
 	reQuoted    = regexp.MustCompile(`'([^']{2,80})'|"([^"]{2,80})"`)
 	reEvidenceK = regexp.MustCompile(`(?i)(?:refers to|means|stands for|equals|=)\s*([A-Za-z_][A-Za-z0-9_\.]*)`)
+	reMultiAttr = regexp.MustCompile(`(?i)\b(and|,)\b.*\b(name|id|title|score|date|city|country)\b`)
 )
 
 // BuildOutputContract derives an output contract from question and evidence only.
@@ -40,10 +46,14 @@ func BuildOutputContract(question, evidence string) *OutputContract {
 	if reHowMany.MatchString(text) {
 		c.Hints = append(c.Hints, "return a single aggregate COUNT (or equivalent numeric total), not raw row dumps")
 		c.Keywords = append(c.Keywords, "count", "total", "number")
+		c.MaxCols = 1
 	}
 	if reAvg.MatchString(text) {
 		c.Hints = append(c.Hints, "return an AVERAGE / mean metric as requested")
 		c.Keywords = append(c.Keywords, "average", "avg", "mean")
+		if c.MaxCols == 0 {
+			c.MaxCols = 1
+		}
 	}
 	if reMaxMin.MatchString(text) {
 		c.Hints = append(c.Hints, "return the MAX/MIN (or highest/lowest) value asked for")
@@ -52,9 +62,17 @@ func BuildOutputContract(question, evidence string) *OutputContract {
 	if rePercent.MatchString(text) {
 		c.Hints = append(c.Hints, "return a percentage/ratio; keep the computation faithful to evidence formulas")
 		c.Keywords = append(c.Keywords, "percent", "ratio", "proportion")
+		if c.MaxCols == 0 {
+			c.MaxCols = 1
+		}
 	}
 	if reList.MatchString(text) {
 		c.Hints = append(c.Hints, "return the entities/attributes asked for as result columns (not only IDs unless the question asks for IDs)")
+	}
+	// Single-entity who/which questions usually want one column (not id+name dumps).
+	if reWhichWho.MatchString(question) && !reMultiAttr.MatchString(question) && c.MaxCols == 0 {
+		c.MaxCols = 1
+		c.Hints = append(c.Hints, "prefer a SINGLE result column unless the question explicitly asks for multiple attributes")
 	}
 	if reName.MatchString(text) && !reID.MatchString(strings.ToLower(question)) {
 		c.Hints = append(c.Hints, "prefer human-readable names over opaque IDs when the question asks for names")
@@ -64,8 +82,9 @@ func BuildOutputContract(question, evidence string) *OutputContract {
 		c.Hints = append(c.Hints, "use DISTINCT when the question asks for unique/distinct values")
 		c.Keywords = append(c.Keywords, "distinct")
 	}
-	if reTopN.MatchString(text) {
-		c.Hints = append(c.Hints, "apply ORDER BY + LIMIT when ranking / top-N is requested")
+	if reTopN.MatchString(text) || reNth.MatchString(text) || reMostLeast.MatchString(question) {
+		c.NeedsLimit = true
+		c.Hints = append(c.Hints, "apply ORDER BY + LIMIT when ranking / top-N / Nth is requested (do not rely on MAX alone when asking who/which)")
 	}
 
 	// Pull evidence formula / column hints
@@ -109,6 +128,12 @@ func (c *OutputContract) FormatForPrompt() string {
 	sb.WriteString("⚠️ OUTPUT CONTRACT (derived from question/evidence only — no gold fields):\n")
 	sb.WriteString("Your SQL result projection MUST satisfy:\n")
 	sb.WriteString(c.Summary)
+	if c.MaxCols > 0 {
+		sb.WriteString(fmt.Sprintf("\n★ SELECT at most %d column(s) unless evidence requires more.", c.MaxCols))
+	}
+	if c.NeedsLimit {
+		sb.WriteString("\n★ Ranking answers need ORDER BY + LIMIT.")
+	}
 	sb.WriteString("\nDo NOT invent extra unrelated columns. Match the question's asked attributes.\n\n")
 	return sb.String()
 }

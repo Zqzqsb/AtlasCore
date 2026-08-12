@@ -42,7 +42,8 @@ Use this tool BEFORE giving your final answer to ensure SQL correctness.`
 
 // Call executes verification
 func (t *VerifySQLTool) Call(ctx context.Context, input string) (string, error) {
-	sql := strings.TrimSpace(input)
+	raw := strings.TrimSpace(input)
+	sql := SanitizeGeneratedSQL(raw)
 
 	logf := func(format string, a ...interface{}) {
 		if t.logger != nil {
@@ -53,7 +54,10 @@ func (t *VerifySQLTool) Call(ctx context.Context, input string) (string, error) 
 	}
 
 	logf("\n🔍 Tool Call [verify_sql]:\n")
-	logf("Input SQL: %s\n", sql)
+	logf("Input SQL: %s\n", raw)
+	if sql != raw {
+		logf("Sanitized SQL: %s\n", sql)
+	}
 
 	// 1. Quick static check (avoid obvious errors)
 	if err := t.quickCheck(sql); err != nil {
@@ -65,7 +69,15 @@ func (t *VerifySQLTool) Call(ctx context.Context, input string) (string, error) 
 	// 2. Execute SQL for validation and result analysis
 	data, err := t.adapter.ExecuteQuery(ctx, sql)
 	if err != nil {
-		result := fmt.Sprintf("❌ SQL validation failed (database check):\n%v\n\nPlease fix the error and try again.", err)
+		hint := ""
+		low := strings.ToLower(err.Error())
+		if strings.Contains(low, "iif") {
+			hint = "\nHint: use CASE WHEN … THEN … ELSE … END instead of IIF (older SQLite)."
+		}
+		if strings.Contains(low, "right") || strings.Contains(low, "full outer") {
+			hint += "\nHint: SQLite has no RIGHT/FULL JOIN — rewrite as LEFT JOIN."
+		}
+		result := fmt.Sprintf("❌ SQL validation failed (database check):\n%v%s\n\nPlease fix the error and try again.", err, hint)
 		logf("Output: %s\n", result)
 		return result, nil
 	}
@@ -73,6 +85,9 @@ func (t *VerifySQLTool) Call(ctx context.Context, input string) (string, error) 
 
 	var report strings.Builder
 	report.WriteString("✓ SQL is valid!\n")
+	if sql != raw {
+		report.WriteString("Note: auto-rewrote IIF→CASE and/or RIGHT|FULL JOIN→LEFT JOIN for SQLite.\n")
+	}
 
 	// 3. Row count analysis
 	report.WriteString(fmt.Sprintf("Row count: %d\n", data.RowCount))
@@ -80,7 +95,7 @@ func (t *VerifySQLTool) Call(ctx context.Context, input string) (string, error) 
 	var warnings []string
 
 	if data.RowCount == 0 {
-		warnings = append(warnings, "⚠️  Query returned 0 rows. Check:\n  - Are JOIN conditions correct?\n  - Are WHERE conditions too restrictive?\n  - Does the data exist? Try relaxing conditions.")
+		warnings = append(warnings, t.emptyResultWarning(sql))
 	}
 
 	// 4. Sample results (first 3 rows)
@@ -138,6 +153,9 @@ func (t *VerifySQLTool) Call(ctx context.Context, input string) (string, error) 
 	if HasProjectionConcat(sql) {
 		warnings = append(warnings, "⚠️  SELECT uses || or CONCAT — BIRD often wants separate columns. Prefer comma-separated SELECT fields unless evidence requires one string.")
 	}
+	if w := t.checkRankingLimit(sql); w != "" {
+		warnings = append(warnings, w)
+	}
 
 	// 8. Build final result
 	if len(warnings) > 0 {
@@ -153,8 +171,17 @@ func (t *VerifySQLTool) Call(ctx context.Context, input string) (string, error) 
 }
 
 func (t *VerifySQLTool) checkProjectionAgainstContract(columns []string) string {
-	if t.contract == nil || len(t.contract.Keywords) == 0 {
+	if t.contract == nil {
 		return ""
+	}
+	var parts []string
+	if t.contract.MaxCols > 0 && len(columns) > t.contract.MaxCols {
+		parts = append(parts, fmt.Sprintf(
+			"⚠️  Projection too wide: got %d columns %v but contract expects ≤%d. Drop extra SELECT columns (keep only what the question asks).",
+			len(columns), columns, t.contract.MaxCols))
+	}
+	if len(t.contract.Keywords) == 0 {
+		return strings.Join(parts, "\n")
 	}
 	joined := strings.ToLower(strings.Join(columns, " "))
 	var hit []string
@@ -169,9 +196,61 @@ func (t *VerifySQLTool) checkProjectionAgainstContract(columns []string) string 
 	}
 	// Soft signal only — missing keywords are common with aliases
 	if len(hit) == 0 && len(t.contract.Keywords) >= 2 {
-		return fmt.Sprintf("⚠️  Output columns %v do not obviously match contract keywords %v. Re-check SELECT vs question/evidence.", columns, t.contract.Keywords)
+		parts = append(parts, fmt.Sprintf("⚠️  Output columns %v do not obviously match contract keywords %v. Re-check SELECT vs question/evidence.", columns, t.contract.Keywords))
+	}
+	return strings.Join(parts, "\n")
+}
+
+func (t *VerifySQLTool) checkRankingLimit(sql string) string {
+	needs := t.contract != nil && t.contract.NeedsLimit
+	if !needs {
+		q, _ := splitQuestionEvidence(t.question)
+		needs = reTopN.MatchString(q) || reNth.MatchString(q) || reMostLeast.MatchString(q)
+	}
+	if !needs {
+		return ""
+	}
+	up := strings.ToUpper(sql)
+	hasLimit := strings.Contains(up, " LIMIT ")
+	hasOrder := strings.Contains(up, " ORDER BY ")
+	switch {
+	case !hasLimit && !hasOrder:
+		return "⚠️  Ranking/top-N/Nth question but SQL has neither ORDER BY nor LIMIT. Add ORDER BY … LIMIT N (avoid WHERE col = (SELECT MAX…))."
+	case !hasLimit:
+		return "⚠️  Ranking question has ORDER BY but no LIMIT — add LIMIT to return only the requested top/Nth rows."
 	}
 	return ""
+}
+
+func (t *VerifySQLTool) emptyResultWarning(sql string) string {
+	var b strings.Builder
+	b.WriteString("⚠️  Query returned 0 rows — do NOT Final Answer yet. Retry checklist:\n")
+	b.WriteString("  1) JOIN keys / table choice wrong?\n")
+	b.WriteString("  2) WHERE too strict (case/spelling/extra filters)?\n")
+	b.WriteString("  3) Call probe_column_values on filter columns to confirm stored literals.\n")
+	q, ev := splitQuestionEvidence(t.question)
+	lits := ExtractEvidenceLiterals(q, ev)
+	if len(lits) > 0 {
+		show := lits
+		if len(show) > 6 {
+			show = show[:6]
+		}
+		b.WriteString(fmt.Sprintf("  4) Evidence/question literals to probe or soften: %v\n", show))
+		// Soft hint when literal appears in SQL but still 0 rows — likely dirty string mismatch.
+		upSQL := strings.ToLower(sql)
+		var missing []string
+		for _, lit := range show {
+			if !strings.Contains(upSQL, strings.ToLower(lit)) {
+				missing = append(missing, lit)
+			}
+		}
+		if len(missing) > 0 {
+			b.WriteString(fmt.Sprintf("  5) These literals are NOT in the SQL yet — consider adding them (or their DB spelling): %v\n", missing))
+		} else {
+			b.WriteString("  5) Literals are present but matched 0 rows — probe for alternate spellings / case / punctuation.\n")
+		}
+	}
+	return b.String()
 }
 
 // quickCheck quick static check

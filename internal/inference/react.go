@@ -614,14 +614,14 @@ func (p *Pipeline) extractSQL(response string) string {
 		// Try to find any SELECT statement in the original response
 		if fallback := p.extractFallbackSQL(response); fallback != "" {
 			p.Logger.Printf("⚠️  extractSQL: LLM gave up (%q), using fallback: %s\n", result[:min(len(result), 50)], fallback[:min(len(fallback), 100)])
-			return fallback
+			return SanitizeGeneratedSQL(fallback)
 		}
 		// If truly nothing, return SELECT 1 (better than empty which crashes evaluation)
 		p.Logger.Printf("⚠️  extractSQL: LLM gave up with no fallback, returning SELECT 1\n")
 		return "SELECT 1"
 	}
 
-	return result
+	return SanitizeGeneratedSQL(result)
 }
 
 // isSQLTrailingProseLine reports lines that are clearly not part of a SQL statement.
@@ -1027,10 +1027,17 @@ func (p *Pipeline) buildBirdBestPractices() string {
    - Use EXACT names as shown in the schema — preserve capitalization and pluralization
    - If schema shows 'Patient', write 'Patient', NOT 'patients'
 
-11. ABSOLUTE RULES:
+11. SQLite dialect (critical for execution):
+   - Prefer CASE WHEN … THEN … ELSE … END — do NOT use IIF (unsupported on older SQLite)
+   - Do NOT use RIGHT JOIN or FULL OUTER JOIN — only LEFT JOIN / INNER JOIN
+   - If verify_sql fails on IIF/RIGHT/FULL, rewrite immediately and re-verify
+
+12. ABSOLUTE RULES:
    - You MUST always output a valid executable SQL query
    - NEVER output empty strings, SQL comments, or placeholder values (SELECT 0/1)
    - NEVER hardcode result values — let the database compute the answer
+   - If verify_sql returns 0 rows, fix filters/joins (probe literals) before Final Answer
+   - If verify_sql warns about too many SELECT columns, drop extras before Final Answer
 
 `
 }

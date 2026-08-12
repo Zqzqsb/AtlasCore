@@ -49,9 +49,21 @@ go build -o /tmp/eval_bird_vi ./cmd/eval
   --limit "$LIMIT" \
   --output-dir "$OUTPUT_DIR"
 
+# Local Go EX (multiset bag) — quick sanity
 go run ./cmd/eval_ex \
   --predict "$OUTPUT_DIR/predict.sql" \
   --gold benchmarks/bird/heldout_v1_smoke_private/gold.json \
   --db-dir benchmarks/bird/heldout_v1_smoke/test_databases \
   --start "$START" \
   | tee "$OUTPUT_DIR/ex.txt"
+
+# Official BIRD EX (third_party/bird_eval; set-equality) — report this for comparisons
+LIMIT_OFFICIAL="$LIMIT"
+if [[ "$LIMIT_OFFICIAL" -le 0 ]]; then
+  LIMIT_OFFICIAL=0
+fi
+PREDICT="$OUTPUT_DIR/predict.sql" \
+OUT_DIR="$OUTPUT_DIR/bird_official_ex" \
+START="$START" \
+LIMIT="$LIMIT_OFFICIAL" \
+  bash scripts/run_bird_official_ex.sh || true
