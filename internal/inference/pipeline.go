@@ -429,9 +429,10 @@ func (p *Pipeline) Execute(ctx context.Context, query string) (*Result, error) {
 		}
 	}
 
-	// 3c. Deterministic SQLite-safe rewrites (IIF→CASE, RIGHT/FULL→LEFT)
-	if cleaned := SanitizeGeneratedSQL(sql); cleaned != sql {
-		p.Logger.Printf("🧹 Sanitized generated SQL (IIF/JOIN rewrites)\n")
+	// 3c. Deterministic rewrites: dialect + projection (name split, drop ranking metric)
+	qOnly, evOnly := splitQuestionEvidence(query)
+	if cleaned := SanitizeGeneratedSQLWithQuery(sql, qOnly, evOnly); cleaned != sql {
+		p.Logger.Printf("🧹 Sanitized generated SQL (dialect + projection)\n")
 		sql = cleaned
 	}
 

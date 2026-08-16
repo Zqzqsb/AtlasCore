@@ -14,6 +14,11 @@
     "token": "YOUR_TOKEN_HERE",
     "base_url": "https://ark.cn-beijing.volces.com/api/v3"
   },
+  "deepseek_v4_pro_official": {
+    "model_name": "deepseek-v4-pro",
+    "token": "YOUR_TOKEN_HERE",
+    "base_url": "https://api.deepseek.com"
+  },
   "deepseek_v4_flash": {
     "model_name": "deepseek-v4-flash-260425",
     "token": "YOUR_TOKEN_HERE",

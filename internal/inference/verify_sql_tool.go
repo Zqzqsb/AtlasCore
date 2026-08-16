@@ -43,7 +43,8 @@ Use this tool BEFORE giving your final answer to ensure SQL correctness.`
 // Call executes verification
 func (t *VerifySQLTool) Call(ctx context.Context, input string) (string, error) {
 	raw := strings.TrimSpace(input)
-	sql := SanitizeGeneratedSQL(raw)
+	qOnly, evOnly := splitQuestionEvidence(t.question)
+	sql := SanitizeGeneratedSQLWithQuery(raw, qOnly, evOnly)
 
 	logf := func(format string, a ...interface{}) {
 		if t.logger != nil {
@@ -86,7 +87,7 @@ func (t *VerifySQLTool) Call(ctx context.Context, input string) (string, error) 
 	var report strings.Builder
 	report.WriteString("✓ SQL is valid!\n")
 	if sql != raw {
-		report.WriteString("Note: auto-rewrote IIF→CASE and/or RIGHT|FULL JOIN→LEFT JOIN for SQLite.\n")
+		report.WriteString("Note: auto-rewrote IIF→CASE and/or RIGHT|FULL JOIN→LEFT JOIN for SQLite; also projection (name split / ranking metric).\n")
 	}
 
 	// 3. Row count analysis
@@ -147,6 +148,12 @@ func (t *VerifySQLTool) Call(ctx context.Context, input string) (string, error) 
 			warnings = append(warnings, w)
 		}
 	}
+	if w := t.checkNameVsID(data); w != "" {
+		warnings = append(warnings, w)
+	}
+	if w := t.checkCountDistinctDivergence(ctx, sql, data); w != "" {
+		warnings = append(warnings, w)
+	}
 	if len(data.Columns) > 8 {
 		warnings = append(warnings, fmt.Sprintf("⚠️  Result has %d columns — question may ask for fewer. Drop unrelated SELECT columns.", len(data.Columns)))
 	}
@@ -180,6 +187,11 @@ func (t *VerifySQLTool) checkProjectionAgainstContract(columns []string) string 
 			"⚠️  Projection too wide: got %d columns %v but contract expects ≤%d. Drop extra SELECT columns (keep only what the question asks).",
 			len(columns), columns, t.contract.MaxCols))
 	}
+	if t.contract.MinCols > 0 && len(columns) < t.contract.MinCols {
+		parts = append(parts, fmt.Sprintf(
+			"⚠️  Projection too narrow: got %d columns %v but the question asks for ≥%d metrics/attributes. Return each asked metric as its own column in ONE row — do not collapse into a single number or two rows.",
+			len(columns), columns, t.contract.MinCols))
+	}
 	if len(t.contract.Keywords) == 0 {
 		return strings.Join(parts, "\n")
 	}
@@ -199,6 +211,159 @@ func (t *VerifySQLTool) checkProjectionAgainstContract(columns []string) string 
 		parts = append(parts, fmt.Sprintf("⚠️  Output columns %v do not obviously match contract keywords %v. Re-check SELECT vs question/evidence.", columns, t.contract.Keywords))
 	}
 	return strings.Join(parts, "\n")
+}
+
+func (t *VerifySQLTool) checkCountDistinctDivergence(ctx context.Context, sql string, data *adapter.QueryResult) string {
+	if t.adapter == nil || data == nil {
+		return ""
+	}
+	q, ev := splitQuestionEvidence(t.question)
+	if asksTwoOutputMetrics(q, ev) {
+		return ""
+	}
+	if !reHowMany.MatchString(q) && !reAskUniqueKW.MatchString(q) && !reDistinct.MatchString(q) {
+		return ""
+	}
+	alt, ok := flipCountDistinct(sql)
+	if !ok || alt == sql {
+		return ""
+	}
+	altData, err := t.adapter.ExecuteQuery(ctx, alt)
+	if err != nil || altData == nil {
+		return ""
+	}
+	cur, altV, same := compareVerifyResults(data, altData)
+	if same {
+		return ""
+	}
+	return fmt.Sprintf(
+		"⚠️  COUNT vs COUNT(DISTINCT) diverge: current %s vs flipped %s. If counting unique entities use COUNT(DISTINCT …); if counting rows/mentions drop DISTINCT. Do not Final Answer until you pick.",
+		cur, altV)
+}
+
+func compareVerifyResults(a, b *adapter.QueryResult) (sa, sb string, same bool) {
+	if a.RowCount != 1 || b.RowCount != 1 || len(a.Columns) != 1 || len(b.Columns) != 1 {
+		sa = fmt.Sprintf("%d rows", a.RowCount)
+		sb = fmt.Sprintf("%d rows", b.RowCount)
+		return sa, sb, a.RowCount == b.RowCount
+	}
+	sa = stringifyFirstCell(a)
+	sb = stringifyFirstCell(b)
+	return sa, sb, sa == sb
+}
+
+func stringifyFirstCell(data *adapter.QueryResult) string {
+	if data == nil || len(data.Rows) == 0 || len(data.Columns) == 0 {
+		return ""
+	}
+	v := data.Rows[0][data.Columns[0]]
+	if v == nil {
+		return "NULL"
+	}
+	return fmt.Sprintf("%v", v)
+}
+
+func (t *VerifySQLTool) checkNameVsID(data *adapter.QueryResult) string {
+	if data == nil || len(data.Rows) == 0 || len(data.Columns) == 0 {
+		return ""
+	}
+	q, _ := splitQuestionEvidence(t.question)
+	asksName := reName.MatchString(q) && !reID.MatchString(strings.ToLower(q))
+	asksID := reID.MatchString(strings.ToLower(q)) && !reName.MatchString(q)
+	if !asksName && !asksID {
+		return ""
+	}
+	kind := firstColKind(data)
+	if asksName && kind == "id" {
+		return "⚠️  Result looks like opaque IDs but the question asks for names/titles. SELECT the name/title column instead of the identifier."
+	}
+	if asksID && kind == "name" {
+		return "⚠️  Result looks like names but the question asks for IDs. SELECT the identifier column instead of the display name."
+	}
+	return ""
+}
+
+func firstColKind(data *adapter.QueryResult) string {
+	if data == nil || len(data.Rows) == 0 || len(data.Columns) == 0 {
+		return "empty"
+	}
+	col := data.Columns[0]
+	n := len(data.Rows)
+	if n > 20 {
+		n = 20
+	}
+	ids, names := 0, 0
+	for i := 0; i < n; i++ {
+		v := data.Rows[i][col]
+		if looksIDCell(v) {
+			ids++
+		}
+		if looksNameCell(v) {
+			names++
+		}
+	}
+	if ids >= maxInt(2, n*7/10) && names == 0 {
+		return "id"
+	}
+	if names >= maxInt(1, n/2) {
+		return "name"
+	}
+	return "other"
+}
+
+func looksIDCell(v interface{}) bool {
+	if v == nil {
+		return false
+	}
+	switch x := v.(type) {
+	case int, int32, int64:
+		return true
+	case float64:
+		return x == float64(int64(x))
+	case string:
+		s := strings.TrimSpace(x)
+		if s == "" || len(s) > 12 {
+			return false
+		}
+		for _, ch := range s {
+			if ch < '0' || ch > '9' {
+				return false
+			}
+		}
+		return true
+	}
+	return false
+}
+
+func looksNameCell(v interface{}) bool {
+	if v == nil {
+		return false
+	}
+	s, ok := v.(string)
+	if !ok {
+		return false
+	}
+	s = strings.TrimSpace(s)
+	if s == "" {
+		return false
+	}
+	letters := 0
+	for _, ch := range s {
+		if (ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z') {
+			letters++
+		}
+	}
+	if letters < 2 {
+		return false
+	}
+	return !looksIDCell(s)
+}
+
+func maxInt(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
 
 func (t *VerifySQLTool) checkRankingLimit(sql string) string {

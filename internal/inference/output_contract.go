@@ -14,6 +14,7 @@ type OutputContract struct {
 	Hints      []string // structured hints (count / name / list / …)
 	RawBullets []string // bullet lines injected into the prompt
 	MaxCols    int      // >0 → verify warns when SELECT returns more columns
+	MinCols    int      // >0 → verify warns when SELECT returns fewer columns
 	NeedsLimit bool     // ranking / top-N / Nth → expect ORDER BY + LIMIT
 }
 
@@ -43,15 +44,25 @@ func BuildOutputContract(question, evidence string) *OutputContract {
 	}
 	c := &OutputContract{}
 
+	two := asksTwoOutputMetrics(question, evidence)
+	multi := two || asksMultipleOutputAttrs(question, evidence)
 	if reHowMany.MatchString(text) {
-		c.Hints = append(c.Hints, "return a single aggregate COUNT (or equivalent numeric total), not raw row dumps")
+		if two {
+			c.Hints = append(c.Hints, "question asks TWO metrics — return TWO columns in ONE row (e.g. count(A), count(B) or count + percentage), not a single collapsed number")
+		} else {
+			c.Hints = append(c.Hints, "return a single aggregate COUNT (or equivalent numeric total), not raw row dumps")
+		}
 		c.Keywords = append(c.Keywords, "count", "total", "number")
-		c.MaxCols = 1
+		if two {
+			c.MinCols, c.MaxCols = 2, 2
+		} else if !multi {
+			c.MaxCols = 1
+		}
 	}
 	if reAvg.MatchString(text) {
 		c.Hints = append(c.Hints, "return an AVERAGE / mean metric as requested")
 		c.Keywords = append(c.Keywords, "average", "avg", "mean")
-		if c.MaxCols == 0 {
+		if c.MaxCols == 0 && !multi && !reWhichWho.MatchString(question) {
 			c.MaxCols = 1
 		}
 	}
@@ -59,20 +70,26 @@ func BuildOutputContract(question, evidence string) *OutputContract {
 		c.Hints = append(c.Hints, "return the MAX/MIN (or highest/lowest) value asked for")
 		c.Keywords = append(c.Keywords, "max", "min", "highest", "lowest")
 	}
+	if two && reHighAndLow.MatchString(question) {
+		c.Hints = append(c.Hints, "highest and lowest (or max and min) are TWO columns of ONE row, not two rows")
+		if c.MinCols < 2 {
+			c.MinCols, c.MaxCols = 2, 2
+		}
+	}
 	if rePercent.MatchString(text) {
 		c.Hints = append(c.Hints, "return a percentage/ratio; keep the computation faithful to evidence formulas")
 		c.Keywords = append(c.Keywords, "percent", "ratio", "proportion")
-		if c.MaxCols == 0 {
+		if c.MaxCols == 0 && !multi && !reWhichWho.MatchString(question) {
 			c.MaxCols = 1
 		}
 	}
 	if reList.MatchString(text) {
 		c.Hints = append(c.Hints, "return the entities/attributes asked for as result columns (not only IDs unless the question asks for IDs)")
 	}
-	// Single-entity who/which questions usually want one column (not id+name dumps).
-	if reWhichWho.MatchString(question) && !reMultiAttr.MatchString(question) && c.MaxCols == 0 {
-		c.MaxCols = 1
-		c.Hints = append(c.Hints, "prefer a SINGLE result column unless the question explicitly asks for multiple attributes")
+	// who/which: do NOT force MaxCols=1 (full name is first+last; "A and B" is two cols).
+	// Ranking: return the entity, not the ORDER BY metric.
+	if reWhichWho.MatchString(question) || reTopN.MatchString(text) {
+		c.Hints = append(c.Hints, "for who/which/top-N, SELECT only the asked entity — do not also SELECT the ranking metric (count/sum/gdp/…) used in ORDER BY")
 	}
 	if reName.MatchString(text) && !reID.MatchString(strings.ToLower(question)) {
 		c.Hints = append(c.Hints, "prefer human-readable names over opaque IDs when the question asks for names")
@@ -128,8 +145,12 @@ func (c *OutputContract) FormatForPrompt() string {
 	sb.WriteString("⚠️ OUTPUT CONTRACT (derived from question/evidence only — no gold fields):\n")
 	sb.WriteString("Your SQL result projection MUST satisfy:\n")
 	sb.WriteString(c.Summary)
-	if c.MaxCols > 0 {
+	if c.MinCols > 0 && c.MaxCols == c.MinCols {
+		sb.WriteString(fmt.Sprintf("\n★ SELECT exactly %d column(s) in one row.", c.MinCols))
+	} else if c.MaxCols > 0 {
 		sb.WriteString(fmt.Sprintf("\n★ SELECT at most %d column(s) unless evidence requires more.", c.MaxCols))
+	} else if c.MinCols > 0 {
+		sb.WriteString(fmt.Sprintf("\n★ SELECT at least %d column(s) — the question asks for multiple metrics.", c.MinCols))
 	}
 	if c.NeedsLimit {
 		sb.WriteString("\n★ Ranking answers need ORDER BY + LIMIT.")
@@ -166,4 +187,38 @@ func splitQuestionEvidence(query string) (question, evidence string) {
 		return strings.TrimSpace(query[:i]), strings.TrimSpace(query[i+len(marker2):])
 	}
 	return strings.TrimSpace(query), ""
+}
+
+var (
+	reFullNameAsk    = regexp.MustCompile(`(?i)\bfull\s*names?\b`)
+	reFirstLast      = regexp.MustCompile(`(?i)\b(first\s*name|lastname|last\s*name|firstname)\b`)
+	reBothAnd        = regexp.MustCompile(`(?i)\b(both|as well as)\b`)
+	reHowManyNounAnd = regexp.MustCompile(`(?i)\bhow many\s+\w+(?:\s+\w+)?\s+and\s+\w+`)
+	reHighAndLow     = regexp.MustCompile(`(?i)\b(highest|lowest|maximum|minimum|largest|smallest)\b.+\band\b.+\b(highest|lowest|maximum|minimum|largest|smallest)\b`)
+)
+
+func asksMultipleOutputAttrs(question, evidence string) bool {
+	q := question
+	if reMultiAttr.MatchString(q) || reBothAnd.MatchString(q) || reFullNameAsk.MatchString(q) || reFirstLast.MatchString(q+" "+evidence) {
+		return true
+	}
+	// "how many albums and singles" / "highest and lowest"
+	if strings.Contains(strings.ToLower(q), " and ") {
+		return true
+	}
+	return false
+}
+
+// asksTwoOutputMetrics is a tighter dual-metric detector than a bare " and ".
+func asksTwoOutputMetrics(question, evidence string) bool {
+	if reHowMany.MatchString(question) && rePercent.MatchString(question+" "+evidence) {
+		return true
+	}
+	if reHowManyNounAnd.MatchString(question) {
+		return true
+	}
+	if reHighAndLow.MatchString(question) {
+		return true
+	}
+	return false
 }

@@ -168,7 +168,7 @@ var evalModes = []EvalMode{
 func main() {
 	// Command line flags
 	benchmark := flag.String("benchmark", "", "Benchmark: spider | bird (if empty, will ask interactively)")
-	modelType := flag.String("model", "deepseek-v4-pro", "Model: deepseek-v3 | deepseek-v3.2 | deepseek-v4-pro | deepseek-v4-flash | qwen-max | qwen3-max | qwen3.5 | doubao-seed2-pro | qwen3-coder-plus | ali-deepseek-v3.2")
+	modelType := flag.String("model", "deepseek-v4-pro", "Model: deepseek-v3 | deepseek-v3.2 | deepseek-v4-pro | deepseek-v4-pro-official | deepseek-v4-flash | qwen-max | qwen3-max | qwen3.5 | doubao-seed2-pro | qwen3-coder-plus | ali-deepseek-v3.2")
 	mode := flag.String("mode", "", "Evaluation mode (if empty, will show interactive menu)")
 	limit := flag.Int("limit", 0, "Limit number of examples (0 = all)")
 	startIdx := flag.Int("start", 0, "Start index")
@@ -1125,6 +1125,8 @@ func parseModelType(modelType string) llm.ModelType {
 		return llm.ModelDeepSeekV32
 	case "deepseek-v4-pro":
 		return llm.ModelDeepSeekV4Pro
+	case "deepseek-v4-pro-official":
+		return llm.ModelDeepSeekV4ProOfficial
 	case "deepseek-v4-flash":
 		return llm.ModelDeepSeekV4Flash
 	case "qwen-max":
@@ -1140,7 +1142,7 @@ func parseModelType(modelType string) llm.ModelType {
 	case "qwen3-coder-plus":
 		return llm.ModelQwen3CoderPlus
 	default:
-		log.Fatalf("Unknown model type: %s. Available: deepseek-v3, deepseek-v3.2, deepseek-v4-pro, deepseek-v4-flash, qwen-max, qwen3-max, qwen3.5, doubao-seed2-pro, qwen3-coder-plus, ali-deepseek-v3.2", modelType)
+		log.Fatalf("Unknown model type: %s. Available: deepseek-v3, deepseek-v3.2, deepseek-v4-pro, deepseek-v4-pro-official, deepseek-v4-flash, qwen-max, qwen3-max, qwen3.5, doubao-seed2-pro, qwen3-coder-plus, ali-deepseek-v3.2", modelType)
 		return ""
 	}
 }

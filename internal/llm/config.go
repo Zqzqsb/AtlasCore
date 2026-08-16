@@ -20,8 +20,9 @@ type ModelConfig struct {
 type ConfigFile struct {
 	DeepSeekV3     ModelConfig `json:"deepseek_v3"`
 	DeepSeekV32    ModelConfig `json:"deepseek_v3_2"`
-	DeepSeekV4Pro  ModelConfig `json:"deepseek_v4_pro"`
-	DeepSeekV4Flash ModelConfig `json:"deepseek_v4_flash"`
+	DeepSeekV4Pro         ModelConfig `json:"deepseek_v4_pro"`
+	DeepSeekV4ProOfficial ModelConfig `json:"deepseek_v4_pro_official"`
+	DeepSeekV4Flash       ModelConfig `json:"deepseek_v4_flash"`
 	QwenMax        ModelConfig `json:"qwen_max"`
 	Qwen3Max       ModelConfig `json:"qwen3_max"`
 	Qwen35         ModelConfig `json:"qwen3.5"`
@@ -124,8 +125,9 @@ type ModelType string
 const (
 	ModelDeepSeekV3     ModelType = "deepseek-v3"
 	ModelDeepSeekV32    ModelType = "deepseek-v3.2"
-	ModelDeepSeekV4Pro  ModelType = "deepseek-v4-pro"
-	ModelDeepSeekV4Flash ModelType = "deepseek-v4-flash"
+	ModelDeepSeekV4Pro         ModelType = "deepseek-v4-pro"
+	ModelDeepSeekV4ProOfficial ModelType = "deepseek-v4-pro-official"
+	ModelDeepSeekV4Flash       ModelType = "deepseek-v4-flash"
 	ModelQwenMax        ModelType = "qwen-max"
 	ModelQwen3Max       ModelType = "qwen3-max"
 	ModelQwen35         ModelType = "qwen3.5"
@@ -144,6 +146,8 @@ func GetModelByType(modelType ModelType) ModelConfig {
 		return cfg.DeepSeekV32
 	case ModelDeepSeekV4Pro:
 		return cfg.DeepSeekV4Pro
+	case ModelDeepSeekV4ProOfficial:
+		return cfg.DeepSeekV4ProOfficial
 	case ModelDeepSeekV4Flash:
 		return cfg.DeepSeekV4Flash
 	case ModelQwenMax:
@@ -172,6 +176,8 @@ func GetModelDisplayName(modelType ModelType) string {
 		return "DeepSeek-V3.2 (Volcano)"
 	case ModelDeepSeekV4Pro:
 		return "DeepSeek-V4-Pro (Volcano)"
+	case ModelDeepSeekV4ProOfficial:
+		return "DeepSeek-V4-Pro-0813 (Official)"
 	case ModelDeepSeekV4Flash:
 		return "DeepSeek-V4-Flash (Volcano)"
 	case ModelQwenMax:
