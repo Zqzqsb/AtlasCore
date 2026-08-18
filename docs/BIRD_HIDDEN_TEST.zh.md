@@ -28,7 +28,7 @@ git checkout prepare_for_bird_test
 cp llm_config.json.example llm_config.json
 ```
 
-把两把 key 分别填进 `llm_config.json` 对应块的 `"token"`。跑的时候用 `--model` 选一把，后面每步用同一个。
+把两把 key 分别填进 `llm_config.json` 对应块的 `"token"`。跑的时候用 `--model` 选一把，后面每步用同一个。思考默认关闭（`"thinking": "disabled"`）。要开 DeepSeek-V4 推理链再设 `"thinking": "enabled"`。
 
 | `--model` | `llm_config.json` 块 |
 | --------- | -------------------- |

@@ -12,17 +12,20 @@
   "deepseek_v4_pro": {
     "model_name": "deepseek-v4-pro-260425",
     "token": "YOUR_TOKEN_HERE",
-    "base_url": "https://ark.cn-beijing.volces.com/api/v3"
+    "base_url": "https://ark.cn-beijing.volces.com/api/v3",
+    "thinking": "disabled"
   },
   "deepseek_v4_pro_official": {
     "model_name": "deepseek-v4-pro",
     "token": "YOUR_TOKEN_HERE",
-    "base_url": "https://api.deepseek.com"
+    "base_url": "https://api.deepseek.com",
+    "thinking": "disabled"
   },
   "deepseek_v4_flash": {
     "model_name": "deepseek-v4-flash-260425",
     "token": "YOUR_TOKEN_HERE",
-    "base_url": "https://ark.cn-beijing.volces.com/api/v3"
+    "base_url": "https://ark.cn-beijing.volces.com/api/v3",
+    "thinking": "disabled"
   },
   "qwen_max": {
     "model_name": "qwen-max",

@@ -28,7 +28,7 @@ git checkout prepare_for_bird_test
 cp llm_config.json.example llm_config.json
 ```
 
-Paste both keys into the `"token"` fields of the matching blocks in `llm_config.json`. Pick one with `--model` and use the same value in every later step.
+Paste both keys into the `"token"` fields of the matching blocks in `llm_config.json`. Pick one with `--model` and use the same value in every later step. Thinking is off by default (`"thinking": "disabled"`). Set `"thinking": "enabled"` only if you want DeepSeek-V4 reasoning.
 
 | `--model` | `llm_config.json` block |
 | --------- | ----------------------- |

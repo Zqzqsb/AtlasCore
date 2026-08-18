@@ -2,6 +2,7 @@ package llm
 
 import (
 	"encoding/json"
+	"net/http"
 	"os"
 
 	"github.com/tmc/langchaingo/llms"
@@ -14,6 +15,10 @@ type ModelConfig struct {
 	Token           string `json:"token"`
 	BaseURL         string `json:"base_url"`
 	ReasoningEffort string `json:"reasoning_effort,omitempty"`
+	// Thinking is sent as Chat Completions top-level {"thinking":{"type": ...}}.
+	// Empty / "disabled" (default) turns thinking off. "enabled" / "auto" leaves
+	// the provider default. "omit" does not send the field.
+	Thinking string `json:"thinking,omitempty"`
 }
 
 // ConfigFile config file structure
@@ -102,11 +107,18 @@ func GetModelName(useV32 bool) string {
 
 // CreateLLM creates LLM instance (with process-wide TPM gate + 429 backoff).
 func CreateLLM(config ModelConfig) (llms.Model, error) {
-	inner, err := openai.New(
+	opts := []openai.Option{
 		openai.WithModel(config.ModelName),
 		openai.WithToken(config.Token),
 		openai.WithBaseURL(config.BaseURL),
-	)
+	}
+	if t := thinkingTypeForConfig(config); t != "" {
+		opts = append(opts, openai.WithHTTPClient(&thinkingDoer{
+			inner:        http.DefaultClient,
+			thinkingType: t,
+		}))
+	}
+	inner, err := openai.New(opts...)
 	if err != nil {
 		return nil, err
 	}
