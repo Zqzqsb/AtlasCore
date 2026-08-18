@@ -15,6 +15,7 @@ import (
 
 	"github.com/Zqzqsb/AtlasCore/internal/adapter"
 	"github.com/Zqzqsb/AtlasCore/internal/agent"
+	"github.com/Zqzqsb/AtlasCore/internal/birddesc"
 	contextpkg "github.com/Zqzqsb/AtlasCore/internal/context"
 	"github.com/Zqzqsb/AtlasCore/internal/llm"
 	"github.com/Zqzqsb/AtlasCore/internal/logger"
@@ -416,6 +417,11 @@ func processDatabase(model llm.ModelType, dbDir, outputDir, dbName string, loadS
 	if mp != nil {
 		sharedCtx.Quiet = true
 	}
+	if desc, err := birddesc.LoadForDB(dbDir, dbName); err != nil && mp == nil {
+		fmt.Printf("[%s] ⚠️  official description: %v\n", dbName, err)
+	} else if desc != nil {
+		sharedCtx.SetOfficialDesc(desc)
+	}
 
 	// 2.1 Load schema.sql if available
 	if loadSchema {
@@ -527,6 +533,8 @@ func processDatabase(model llm.ModelType, dbDir, outputDir, dbName string, loadS
 	}
 
 	wg.Wait()
+
+	sharedCtx.BakeOfficialDesc()
 
 	// 6. Analyze JOIN paths
 	update("Analyzing JOIN paths", 92)

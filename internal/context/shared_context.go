@@ -7,6 +7,8 @@ import (
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/Zqzqsb/AtlasCore/internal/birddesc"
 )
 
 // TaskStatus task status enum
@@ -83,6 +85,9 @@ type SharedContext struct {
 
 	// Temp data (not saved to JSON)
 	tempData map[string]interface{} `json:"-"`
+
+	// Official BIRD database_description (not saved; used at gen/enrich)
+	officialDesc *birddesc.Database `json:"-"`
 
 	// Concurrency control
 	mu sync.RWMutex `json:"-"`

@@ -33,6 +33,9 @@ func (c *SharedContext) BuildValueIndex(
 		return nil, fmt.Errorf("BuildValueIndex: nil context")
 	}
 	cols := c.columnSpecsForValueIndex()
+	if aliases := c.officialAliases(); len(aliases) > 0 {
+		opt.Aliases = aliases
+	}
 	dbID := c.DatabaseName
 	if dbID == "" {
 		dbID = strings.TrimSuffix(filepath.Base(outPath), ".sqlite")
@@ -89,6 +92,10 @@ func (c *SharedContext) BuildValueIndex(
 func (c *SharedContext) columnSpecsForValueIndex() []valueindex.ColumnSpec {
 	c.mu.RLock()
 	defer c.mu.RUnlock()
+	var maps map[string]struct{}
+	if c.officialDesc != nil {
+		maps = c.officialDesc.MappingColumns()
+	}
 	var out []valueindex.ColumnSpec
 	for tName, table := range c.Tables {
 		if table == nil {
@@ -105,6 +112,11 @@ func (c *SharedContext) columnSpecsForValueIndex() []valueindex.ColumnSpec {
 			}
 			if col.ValueStats != nil {
 				spec.NDV = col.ValueStats.DistinctCount
+			}
+			key := strings.ToLower(tName) + "|" + strings.ToLower(col.Name)
+			if _, ok := maps[key]; ok {
+				spec.ForceIndex = true
+				spec.Policy = valueindex.PolicyInclude
 			}
 			out = append(out, spec)
 		}

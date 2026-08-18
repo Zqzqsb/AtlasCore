@@ -3,6 +3,7 @@ package llm
 import (
 	"context"
 	"errors"
+	"os"
 	"testing"
 	"time"
 
@@ -157,5 +158,27 @@ func TestBackoffWaitCaps(t *testing.T) {
 	}
 	if cfg.backoffWait(5) != 3*time.Second {
 		t.Fatalf("cap: %v", cfg.backoffWait(5))
+	}
+}
+
+func TestApplyTPMControl(t *testing.T) {
+	t.Cleanup(func() {
+		_ = os.Unsetenv("LLM_TPM_LIMIT")
+		GlobalTPMLimiter().SetLimit(defaultTPMLimit)
+	})
+	if err := ApplyTPMControl("none"); err != nil {
+		t.Fatal(err)
+	}
+	if _, lim := GlobalTPMLimiter().Usage(); lim != 0 {
+		t.Fatalf("none: limit=%d", lim)
+	}
+	if err := ApplyTPMControl("50"); err != nil {
+		t.Fatal(err)
+	}
+	if _, lim := GlobalTPMLimiter().Usage(); lim != defaultTPMLimit/2 {
+		t.Fatalf("50: limit=%d", lim)
+	}
+	if err := ApplyTPMControl("bogus"); err == nil {
+		t.Fatal("expected error")
 	}
 }

@@ -74,3 +74,52 @@ INSERT INTO customers VALUES
 		t.Fatal("expected token/exact hit for Acme")
 	}
 }
+
+func TestBuildValueAliases(t *testing.T) {
+	dir := t.TempDir()
+	src := filepath.Join(dir, "src.sqlite")
+	db, err := sql.Open("sqlite", src)
+	if err != nil {
+		t.Fatal(err)
+	}
+	_, err = db.Exec(`
+CREATE TABLE sets (id INTEGER PRIMARY KEY, is_foil_only INTEGER);
+INSERT INTO sets VALUES (1, 0), (2, 1), (3, 1);
+`)
+	if err != nil {
+		t.Fatal(err)
+	}
+	_ = db.Close()
+
+	out := filepath.Join(dir, "idx.sqlite")
+	opt := DefaultOptions()
+	opt.Aliases = map[string][]string{
+		"sets|is_foil_only|1": {"Y", "foil only"},
+		"sets|is_foil_only|0": {"N"},
+	}
+	cols := []ColumnSpec{{
+		Table: "sets", Column: "is_foil_only", DeclType: "INTEGER",
+		ForceIndex: true, Policy: PolicyInclude, NDV: 2, NRows: 3,
+	}}
+	if _, err := Build(context.Background(), src, out, "demo", cols, opt); err != nil {
+		t.Fatal(err)
+	}
+	store, err := OpenStore(out)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer store.Close()
+	hits, err := store.Lookup(context.Background(), "Y", 8)
+	if err != nil {
+		t.Fatal(err)
+	}
+	found := false
+	for _, h := range hits {
+		if h.Table == "sets" && h.Column == "is_foil_only" && h.DisplayValue == "1" {
+			found = true
+		}
+	}
+	if !found {
+		t.Fatalf("expected alias Y → is_foil_only=1, hits=%+v", hits)
+	}
+}

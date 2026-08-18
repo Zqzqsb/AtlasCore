@@ -70,6 +70,28 @@ func tpmLimitFromEnv() int64 {
 	return n
 }
 
+// ApplyTPMControl sets the process TPM gate from --tpm-control 50|100|none.
+// 50 / 100 are percent of the 20M default; none disables the gate (429 backoff stays on).
+func ApplyTPMControl(mode string) error {
+	mode = strings.ToLower(strings.TrimSpace(mode))
+	var limit int64
+	switch mode {
+	case "50":
+		limit = defaultTPMLimit / 2
+	case "100", "":
+		limit = defaultTPMLimit
+	case "none", "off":
+		limit = 0
+	default:
+		return fmt.Errorf("invalid --tpm-control %q (want 50|100|none)", mode)
+	}
+	if err := os.Setenv("LLM_TPM_LIMIT", strconv.FormatInt(limit, 10)); err != nil {
+		return err
+	}
+	GlobalTPMLimiter().SetLimit(limit)
+	return nil
+}
+
 func completionReserveFromEnv() int {
 	v := strings.TrimSpace(os.Getenv("LLM_TPM_RESERVE"))
 	if v == "" {
@@ -316,9 +338,7 @@ func WrapWithRateLimit(m llms.Model, cfg RateLimitConfig) llms.Model {
 		return nil
 	}
 	lim := globalTPMLimiter
-	if cfg.TPMLimit > 0 {
-		lim.SetLimit(cfg.TPMLimit)
-	}
+	lim.SetLimit(cfg.TPMLimit)
 	return &rateLimitedModel{inner: m, cfg: cfg, lim: lim}
 }
 

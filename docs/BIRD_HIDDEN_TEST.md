@@ -1,29 +1,171 @@
 # BIRD hidden-test reproduction
 
+Chinese version: [BIRD_HIDDEN_TEST.zh.md](BIRD_HIDDEN_TEST.zh.md)
+
 Repo: https://github.com/Zqzqsb/AtlasCore  
 Branch: `prepare_for_bird_test` (latest)
 
-We provide the repo + an LLM key. You provide `test.json` and sqlite databases. Gold is not used at inference.
+Requires Go 1.24+. Replace the paths in the commands with yours.
+
+---
+
+## 1. Clone
 
 ```bash
-git clone https://github.com/Zqzqsb/AtlasCore.git && cd AtlasCore
+git clone https://github.com/Zqzqsb/AtlasCore.git
+cd AtlasCore
+```
+
+## 2. Switch branch
+
+```bash
 git checkout prepare_for_bird_test
-cp llm_config.json.example llm_config.json   # paste the emailed token into the matching model block
 ```
 
-Needs Go 1.24+. Questions JSON: `question_id`, `db_id`, `question`, `evidence`, `SQL=""`.  
-SQLite layout: `<DB_DIR>/<db_id>/<db_id>.sqlite`. Optional `column_meaning.json` keys: `db|table|column`.
+## 3. Paste key
 
 ```bash
-TEST_JSON=/path/to/test.json \
-DB_DIR=/path/to/test_databases \
-COLUMN_MEANING=/path/to/column_meaning.json \   # omit if absent
-MODEL=deepseek-v4-pro \
-  bash scripts/run_bird_hidden_test.sh
+cp llm_config.json.example llm_config.json
 ```
 
-`MODEL=deepseek-v4-pro` for Ark/TokenHub; `deepseek-v4-pro-official` for api.deepseek.com.
+Paste both keys into the `"token"` fields of the matching blocks in `llm_config.json`. Pick one with `--model` and use the same value in every later step.
 
-Outputs (question order): `results/bird/official_test/predict.sql` (`SQL<TAB>db_id`) and `predict.json` (official BIRD shape). Score with your gold + `evaluation.py`.
+| `--model` | `llm_config.json` block |
+| --------- | ----------------------- |
+| `deepseek-v4-pro` | `deepseek_v4_pro` |
+| `deepseek-v4-pro-official` | `deepseek_v4_pro_official` |
 
-Inference is sequential (~100s/question). RC generation uses `WORKERS` (default 2). Shard inference with `START`/`LIMIT` and separate `OUTPUT_DIR`s, then concat `predict.sql` in order — only if you have separate keys; one key in parallel will 429.
+## 4. Gen RC and index
+
+Build Rich Context per database, then the value index.
+
+Point `--db-dir` at your sqlite root. Use the same `--model` as step 3.
+
+```bash
+go run ./cmd/gen_all_dev \
+  --benchmark bird \
+  --model deepseek-v4-pro \
+  --db-dir /path/to/test_databases \
+  --output-dir contexts/sqlite/bird_official_test \
+  --workers 2
+
+go run ./cmd/enrich_rc \
+  --context-dir contexts/sqlite/bird_official_test \
+  --db-dir /path/to/test_databases \
+  --value-index \
+  --value-index-label heuristic
+```
+
+## 5. Prepare and confirm dataset
+
+The questions file is a JSON array. Leave `SQL` empty. Extra fields are ignored.
+
+```json
+[
+  {
+    "question_id": 0,
+    "db_id": "california_schools",
+    "question": "What is the highest eligible free rate for K-12 students in schools in Alameda County?",
+    "evidence": "Eligible free rate for K-12 = `Free Meal Count (K-12)` / `Enrollment (K-12)`",
+    "SQL": ""
+  }
+]
+```
+
+SQLite layout (official BIRD tree; `database_description/*.csv` is read automatically when present):
+
+```text
+/path/to/test_databases/
+  california_schools/california_schools.sqlite
+  california_schools/database_description/*.csv
+  <db_id>/<db_id>.sqlite
+```
+
+Confirm every `db_id` has a matching sqlite file, and that step 4 produced `contexts/sqlite/bird_official_test/<db_id>.json`.
+
+## 6. Smoke test
+
+Run 3 questions first to check wiring. Default inference is sequential; full-run flags are in **Reference** below.
+
+Point `--data` / `--db-dir` at the files from step 5.
+
+```bash
+go run ./cmd/eval \
+  --benchmark bird \
+  --mode leaderboard \
+  --model deepseek-v4-pro \
+  --data /path/to/test.json \
+  --db-dir /path/to/test_databases \
+  --context-dir contexts/sqlite/bird_official_test \
+  --grounding-mode off \
+  --limit 3 \
+  --output-dir results/bird/official_test_smoke
+```
+
+Success: `results/bird/official_test_smoke/predict.sql` with one `SQL<TAB>db_id` line per question.
+
+## 7. Run full test
+
+Use a fresh `--output-dir` (an existing `predict.sql` is not overwritten). `--limit 0` means all questions.
+
+```bash
+go run ./cmd/eval \
+  --benchmark bird \
+  --mode leaderboard \
+  --model deepseek-v4-pro \
+  --data /path/to/test.json \
+  --db-dir /path/to/test_databases \
+  --context-dir contexts/sqlite/bird_official_test \
+  --grounding-mode off \
+  --limit 0 \
+  --parallel 4 \
+  --tpm-control none \
+  --output-dir results/bird/official_test
+```
+
+Outputs (same order as `test.json`):
+
+- `results/bird/official_test/predict.sql` — `SQL<TAB>db_id`
+- Official `predict.json`:
+
+```bash
+python3 - <<'PY'
+import json
+from pathlib import Path
+lines = Path("results/bird/official_test/predict.sql").read_text().splitlines()
+obj = {}
+for i, line in enumerate(lines):
+    line = line.strip()
+    if not line:
+        continue
+    sql, _, db = line.partition("\t")
+    obj[str(i)] = f"{sql}\t----- bird -----\t{db}"
+Path("results/bird/official_test/predict.json").write_text(json.dumps(obj, ensure_ascii=False, indent=2) + "\n")
+print(len(obj), "preds")
+PY
+```
+
+Score with your gold and the official `evaluation.py`.
+
+---
+
+## Reference
+
+### Official `database_description/*.csv`
+
+Place them next to each sqlite (official BIRD train/dev/test layout). `gen_all_dev` and `enrich_rc` **read them automatically**. No `column_meaning.json` is required. Descriptions are used as reference; RC generation still runs.
+
+| CSV field | Used for |
+| --- | --- |
+| `column_description` | Referenced during RC gen; stored as column meaning |
+| Value encodings / closed enums (`0: N; 1: Y`, `"commander"` lists) | Aliases on the matching value-index entries; recalled by the linker at inference |
+| NULL / commonsense rules | Merged into that table's `business_rules` |
+
+CSV filename = table name. Column names match `original_column_name`.
+
+### Inference flags
+
+| Flag | Values | Meaning |
+| --- | --- | --- |
+| `--parallel` | integer, default `1` | Split questions into N shards under `output-dir/p0`…`p{N-1}`, then merge `predict.sql` / `results.json` / `logs/` |
+| `--tpm-control` | `50` / `100` / `none`, default `100` | Internal TPM gate: 50% or 100% of 20M tokens/min; `none` disables the gate (429 backoff stays on) |

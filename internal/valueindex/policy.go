@@ -40,6 +40,8 @@ type Options struct {
 	ExactDistinctMaxRows int64
 	SampleDistinctCap    int
 	ColumnQueryTimeout   time.Duration
+	// Aliases: lower(table)|lower(column)|display → extra strings tokenized onto that value.
+	Aliases map[string][]string
 }
 
 // DefaultOptions returns iter14 recommended caps.
@@ -102,13 +104,14 @@ const (
 
 // ColumnSpec describes one physical column considered for indexing.
 type ColumnSpec struct {
-	Table    string
-	Column   string
-	DeclType string
-	IsPK     bool
-	NRows    int64
-	NDV      int    // 0 unknown; prefer ValueStats.DistinctCount when available
-	Policy   string // include|exclude|unknown (empty = unknown)
+	Table      string
+	Column     string
+	DeclType   string
+	IsPK       bool
+	NRows      int64
+	NDV        int    // 0 unknown; prefer ValueStats.DistinctCount when available
+	Policy     string // include|exclude|unknown (empty = unknown)
+	ForceIndex bool   // official value encoding: index even if non-text
 }
 
 // Lane is entity vs category selection pool.
@@ -150,6 +153,9 @@ func IsTextDecl(decl string) bool {
 func ClassifyLane(col ColumnSpec) (Lane, string, string) {
 	if col.IsPK {
 		return "", "hard_gate", "primary_key"
+	}
+	if col.ForceIndex {
+		return LaneCategory, "", "official_value_desc"
 	}
 	if !IsTextDecl(col.DeclType) {
 		return "", "non_text", "non_text_type"

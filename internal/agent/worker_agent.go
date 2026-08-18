@@ -219,6 +219,7 @@ func (a *WorkerAgent) exploreRichContext(ctx context.Context) error {
 
 	prompt := fmt.Sprintf(`You are analyzing table "%s" in %s database.
 %s
+%s
 
 Phase 2: Discover BUSINESS MEANING and VALUE PATTERNS.
 
@@ -249,7 +250,7 @@ Action: set_rich_context
 Action Input: business_rules|dept_id=0 means unassigned department
 
 Continue exploring. Say "Phase 2 complete" when done.`,
-		a.tableName, dbType, sqlHint, a.tableName)
+		a.tableName, dbType, sqlHint, a.sharedCtx.OfficialTablePrompt(a.tableName), a.tableName)
 
 	_, err := a.executor.Call(ctx, map[string]any{"input": prompt})
 	return err

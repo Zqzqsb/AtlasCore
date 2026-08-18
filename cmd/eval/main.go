@@ -182,8 +182,16 @@ func main() {
 	columnMeaningPath := flag.String("column-meaning", "", "Optional column_meaning.json (official / held-out)")
 	groundingMode := flag.String("grounding-mode", "sparse", "Column grounding: sparse | all | meaning | profile | legacy | off")
 	ignoreGoldFields := flag.Bool("ignore-gold-fields", false, "Do not pass result_fields even if present in JSON (black-box)")
+	parallel := flag.Int("parallel", 1, "Concurrent question shards (1 = sequential). Writes output-dir/p0.. then merges.")
+	tpmControl := flag.String("tpm-control", "100", "TPM gate: 50 | 100 | none (percent of 20M tokens/min; none disables the gate)")
 
 	flag.Parse()
+	if err := llm.ApplyTPMControl(*tpmControl); err != nil {
+		log.Fatal(err)
+	}
+	if *parallel < 1 {
+		log.Fatalf("--parallel must be >= 1")
+	}
 	switch strings.ToLower(strings.TrimSpace(*groundingMode)) {
 	case "sparse", "all", "meaning", "profile", "legacy", "off":
 		*groundingMode = strings.ToLower(strings.TrimSpace(*groundingMode))
@@ -519,6 +527,8 @@ func main() {
 		fmt.Printf("  ColumnMeaning:  %s\n", *columnMeaningPath)
 	}
 	fmt.Printf("  GroundingMode:  %s\n", *groundingMode)
+	fmt.Printf("  Parallel:       %d\n", *parallel)
+	fmt.Printf("  TPM control:    %s\n", *tpmControl)
 	if *difficulty != "" {
 		fmt.Printf("  Difficulty:     %s\n", *difficulty)
 	}
@@ -551,6 +561,20 @@ func main() {
 		fmt.Printf("📋 Using configured model name: %s\n\n", modelDisplayName)
 	} else {
 		fmt.Printf("🤖 %s\n\n", strings.TrimSpace(identityResponse))
+	}
+
+	if *parallel > 1 {
+		if err := os.MkdirAll(*outputDir, 0755); err != nil {
+			log.Fatalf("Failed to create output dir: %v", err)
+		}
+		if _, err := os.Stat(filepath.Join(*outputDir, "predict.sql")); err == nil {
+			log.Fatalf("refusing to overwrite: %s/predict.sql", *outputDir)
+		}
+		stats := runParallelEval(context.Background(), examples, *outputDir,
+			*benchmark, dbDir, contextDir, *logMode, *groundingMode, selectedMode.Name,
+			selectedMode, llmModel, columnMeaning, stripGoldFields, *parallel)
+		printEvalSummary(*benchmark, selectedMode.Name, modelDisplayName, *outputDir, totalCount, stats)
+		return
 	}
 
 	// ── Step 9: Create output files ──

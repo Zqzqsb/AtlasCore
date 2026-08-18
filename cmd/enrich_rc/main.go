@@ -14,6 +14,7 @@ import (
 	"github.com/tmc/langchaingo/llms"
 
 	"github.com/Zqzqsb/AtlasCore/internal/adapter"
+	"github.com/Zqzqsb/AtlasCore/internal/birddesc"
 	contextpkg "github.com/Zqzqsb/AtlasCore/internal/context"
 	"github.com/Zqzqsb/AtlasCore/internal/llm"
 )
@@ -129,6 +130,12 @@ func main() {
 		}
 		shared.Quiet = *quiet
 
+		if desc, err := birddesc.LoadForDB(*dbDir, dbID); err != nil {
+			log.Printf("official desc %s: %v", dbID, err)
+		} else if desc != nil {
+			shared.SetOfficialDesc(desc)
+		}
+
 		dbAdapter, err := adapter.NewAdapter(&adapter.DBConfig{
 			Type:     "sqlite",
 			FilePath: sqlitePath,
@@ -149,11 +156,13 @@ func main() {
 		}
 		_ = dbAdapter.Close()
 
-		nMeaning := 0
+		nMeaning := shared.BakeOfficialDesc()
 		if len(meaningRaw) > 0 {
 			lookup := contextpkg.ParseColumnMeaningForDB(meaningRaw, dbID)
-			nMeaning = shared.ApplyOfficialMeanings(lookup)
-			shared.RefreshColumnGrounding()
+			if n := shared.ApplyOfficialMeanings(lookup); n > 0 {
+				nMeaning += n
+				shared.RefreshColumnGrounding()
+			}
 		}
 
 		nInc, nExc, nUnk := 0, 0, 0

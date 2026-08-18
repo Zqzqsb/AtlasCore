@@ -96,6 +96,10 @@ func Build(ctx context.Context, sourceDBPath, outPath, dbID string, columns []Co
 			}
 			norm := Normalize(display)
 			toks := Tokens(norm)
+			aliasKey := strings.ToLower(d.Spec.Table) + "|" + strings.ToLower(d.Spec.Column) + "|" + display
+			for _, extra := range aliasesFor(opt.Aliases, aliasKey, display) {
+				toks = mergeTokens(toks, Tokens(Normalize(extra)))
+			}
 			if norm == "" || len(toks) == 0 {
 				continue
 			}
@@ -124,6 +128,27 @@ func Build(ctx context.Context, sourceDBPath, outPath, dbID string, columns []Co
 
 func qident(name string) string {
 	return `"` + strings.ReplaceAll(name, `"`, `""`) + `"`
+}
+
+func aliasesFor(all map[string][]string, exactKey, display string) []string {
+	if len(all) == 0 {
+		return nil
+	}
+	if extra, ok := all[exactKey]; ok {
+		return extra
+	}
+	// display case fold: last segment after the second '|'
+	idx := strings.LastIndex(exactKey, "|")
+	if idx < 0 {
+		return nil
+	}
+	prefix := exactKey[:idx+1]
+	for k, v := range all {
+		if strings.HasPrefix(k, prefix) && strings.EqualFold(k[len(prefix):], display) {
+			return v
+		}
+	}
+	return nil
 }
 
 func discoverColumns(ctx context.Context, db *sql.DB) ([]ColumnSpec, error) {

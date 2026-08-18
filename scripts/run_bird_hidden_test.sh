@@ -1,31 +1,59 @@
 #!/usr/bin/env bash
-# External BIRD hidden-test (or a local dry-run of the same flow).
-# Generates RC + heuristic value-index if needed, then leaderboard inference.
-# Does NOT score EX (no gold). See docs/BIRD_HIDDEN_TEST.md.
+# Optional wrapper: RC + value-index + leaderboard infer + predict.json.
+# Prefer the step-by-step commands in docs/BIRD_HIDDEN_TEST.md (EN) / docs/BIRD_HIDDEN_TEST.zh.md (ZH).
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
-TEST_JSON="${TEST_JSON:-}"
-DB_DIR="${DB_DIR:-}"
-COLUMN_MEANING="${COLUMN_MEANING:-}"
-CONTEXT_DIR="${CONTEXT_DIR:-contexts/sqlite/bird_official_test}"
-OUTPUT_DIR="${OUTPUT_DIR:-results/bird/official_test}"
-MODEL="${MODEL:-deepseek-v4-pro}"
-GROUNDING_MODE="${GROUNDING_MODE:-off}"
-START="${START:-0}"
-LIMIT="${LIMIT:-0}"
-WORKERS="${WORKERS:-2}"
-SKIP_PREP="${SKIP_PREP:-0}"
+DATA=""
+DB_DIR=""
+COLUMN_MEANING=""
+CONTEXT_DIR="contexts/sqlite/bird_official_test"
+OUTPUT_DIR="results/bird/official_test"
+MODEL="deepseek-v4-pro"
+GROUNDING_MODE="off"
+START=0
+LIMIT=0
+WORKERS=2
+SKIP_PREP=0
+PARALLEL=1
+TPM_CONTROL="100"
 PYTHON="${PYTHON:-python3}"
 
-if [[ -z "$TEST_JSON" || ! -f "$TEST_JSON" ]]; then
-  echo "set TEST_JSON to the questions JSON (official BIRD test.json)" >&2
+usage() {
+  echo "usage: $0 --data TEST.json --db-dir DIR [options]" >&2
+  echo "  --data --db-dir --context-dir --output-dir --model" >&2
+  echo "  --column-meaning --start --limit --workers --skip-prep" >&2
+  exit 2
+}
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --data) DATA="$2"; shift 2 ;;
+    --db-dir) DB_DIR="$2"; shift 2 ;;
+    --column-meaning) COLUMN_MEANING="$2"; shift 2 ;;
+    --context-dir) CONTEXT_DIR="$2"; shift 2 ;;
+    --output-dir) OUTPUT_DIR="$2"; shift 2 ;;
+    --model) MODEL="$2"; shift 2 ;;
+    --grounding-mode) GROUNDING_MODE="$2"; shift 2 ;;
+    --start) START="$2"; shift 2 ;;
+    --limit) LIMIT="$2"; shift 2 ;;
+    --workers) WORKERS="$2"; shift 2 ;;
+    --parallel) PARALLEL="$2"; shift 2 ;;
+    --tpm-control) TPM_CONTROL="$2"; shift 2 ;;
+    --skip-prep) SKIP_PREP=1; shift ;;
+    -h|--help) usage ;;
+    *) echo "unknown arg: $1" >&2; usage ;;
+  esac
+done
+
+if [[ -z "$DATA" || ! -f "$DATA" ]]; then
+  echo "missing --data TEST.json" >&2
   exit 2
 fi
 if [[ -z "$DB_DIR" || ! -d "$DB_DIR" ]]; then
-  echo "set DB_DIR to the sqlite tree (<db_id>/<db_id>.sqlite)" >&2
+  echo "missing --db-dir sqlite tree" >&2
   exit 2
 fi
 if [[ ! -f llm_config.json ]]; then
@@ -61,14 +89,14 @@ if [[ "$SKIP_PREP" != "1" ]]; then
 fi
 
 if [[ ! -d "$CONTEXT_DIR" ]]; then
-  echo "missing context dir: $CONTEXT_DIR (run without SKIP_PREP=1 first)" >&2
+  echo "missing context dir: $CONTEXT_DIR" >&2
   exit 2
 fi
 
 mkdir -p "$OUTPUT_DIR"
 {
   echo "commit=$(git rev-parse HEAD 2>/dev/null || echo unknown)"
-  echo "test_json=$TEST_JSON"
+  echo "data=$DATA"
   echo "db_dir=$DB_DIR"
   echo "context_dir=$CONTEXT_DIR"
   echo "column_meaning=${COLUMN_MEANING:-}"
@@ -85,12 +113,14 @@ EVAL_ARGS=(
   --benchmark bird
   --mode leaderboard
   --model "$MODEL"
-  --data "$TEST_JSON"
+  --data "$DATA"
   --db-dir "$DB_DIR"
   --context-dir "$CONTEXT_DIR"
   --grounding-mode "$GROUNDING_MODE"
   --start "$START"
   --limit "$LIMIT"
+  --parallel "$PARALLEL"
+  --tpm-control "$TPM_CONTROL"
   --output-dir "$OUTPUT_DIR"
 )
 if [[ -n "$COLUMN_MEANING" && -f "$COLUMN_MEANING" ]]; then
@@ -128,4 +158,3 @@ echo
 echo "Done."
 echo "  native:  $PREDICT"
 echo "  official json: $OUTPUT_DIR/predict.json"
-echo "Score with your gold + BIRD evaluation.py (see docs/BIRD_HIDDEN_TEST.md)."

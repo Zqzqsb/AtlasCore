@@ -112,6 +112,26 @@ func Tokens(normalized string) []Token {
 	return out
 }
 
+func mergeTokens(base, extra []Token) []Token {
+	if len(extra) == 0 {
+		return base
+	}
+	seen := map[string]struct{}{}
+	for _, t := range base {
+		seen[t.Type+"\x00"+t.Token] = struct{}{}
+	}
+	out := append([]Token{}, base...)
+	for _, t := range extra {
+		key := t.Type + "\x00" + t.Token
+		if _, ok := seen[key]; ok {
+			continue
+		}
+		seen[key] = struct{}{}
+		out = append(out, t)
+	}
+	return out
+}
+
 type tokenRun struct {
 	text string
 	cjk  bool
