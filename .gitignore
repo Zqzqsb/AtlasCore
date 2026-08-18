@@ -79,6 +79,10 @@ contexts/sqlite/
 .data_stash/
 
 iters/
+My-Iterations
+
+# Official bird_eval staging (gold + predict dumps; regenerate via scripts/run_bird_official_ex.sh)
+open_results/**/bird_official_ex/
 
 # Projection-field SFT wash (regenerate via scripts/wash_proj_fields.py)
 data/proj_fields/
