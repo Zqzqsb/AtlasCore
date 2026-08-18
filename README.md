@@ -15,6 +15,12 @@
   <b>76.40%</b> EX on BIRD dev · <b>94.39%</b> EX on Spider dev (calibrated)
 </p>
 
+<p align="center">
+  Scores in this README and <code>open_results/</code> use our local EX scorer
+  (<code>cmd/eval_ex</code>), which is slightly stricter than official BIRD EX.
+  See <a href="#evaluators">Evaluators</a>.
+</p>
+
 ---
 
 ## Quick Start
@@ -137,10 +143,17 @@ go run ./cmd/eval --benchmark bird --mode leaderboard \
   --column-meaning benchmarks/bird/heldout_v1_smoke/column_meaning.json \
   --output-dir results/bird/heldout_v1_smoke_leaderboard
 
+# Local EX (slightly stricter; same scorer as open_results/)
 go run ./cmd/eval_ex \
   --predict results/bird/heldout_v1_smoke_leaderboard/predict.sql \
   --gold benchmarks/bird/heldout_v1_smoke_private/gold.json \
   --db-dir benchmarks/bird/heldout_v1_smoke/test_databases
+
+# Official BIRD EX — vendor evaluation.py, then:
+#   git clone --depth 1 https://github.com/AlibabaResearch/DAMO-ConvAI.git /tmp/DAMO-ConvAI
+#   mkdir -p third_party && ln -s /tmp/DAMO-ConvAI/bird third_party/bird_eval
+PREDICT=results/bird/heldout_v1_smoke_leaderboard/predict.sql \
+  bash scripts/run_bird_official_ex.sh
 ```
 
 Experiment status / EX numbers for the current branch live in `iters/7. Handoff-*.md` (handoff; not a download guide).
@@ -220,7 +233,8 @@ go run ./cmd/analyze_results
 | Command                               | Description                                                                 |
 | ------------------------------------- | --------------------------------------------------------------------------- |
 | `go run ./cmd/eval`                   | Run evaluation (Spider / BIRD; modes include `leaderboard`)                 |
-| `go run ./cmd/eval_ex`                | Score `predict.sql` vs **private** gold (EX only; no gold in inference)   |
+| `go run ./cmd/eval_ex`                | Local EX vs **private** gold (no gold in inference; slightly stricter than official) |
+| `bash scripts/run_bird_official_ex.sh` | Official BIRD EX wrapper around [`evaluation.py`](https://github.com/AlibabaResearch/DAMO-ConvAI/blob/main/bird/llm/src/evaluation.py) |
 | `go run ./cmd/gen_all_dev`            | Generate Rich Context (interactive)                                         |
 | `go run ./cmd/analyze_results`        | Analyze evaluation results (interactive)                                    |
 | `go run ./cmd/gen_field_descriptions` | Generate result field descriptions for BIRD/Spider datasets                 |
@@ -229,6 +243,23 @@ go run ./cmd/analyze_results
 | `bash scripts/download_bird_train_dbs.sh` | Download train sqlite + wire held-out `test_databases/`                |
 
 All Go commands support both **interactive mode** (no args, where applicable) and **CLI mode** (with flags). Run with `--help` for details.
+
+## Evaluators
+
+Two EX scorers are available. Official BIRD EX is usually a bit **higher**.
+
+| Scorer | Source | How it compares rows |
+| ------ | ------ | -------------------- |
+| **Official BIRD EX** | [`bird/llm/src/evaluation.py`](https://github.com/AlibabaResearch/DAMO-ConvAI/blob/main/bird/llm/src/evaluation.py) in [AlibabaResearch/DAMO-ConvAI](https://github.com/AlibabaResearch/DAMO-ConvAI/tree/main/bird) | Set equality (duplicate rows collapse) |
+| **Local EX** | `go run ./cmd/eval_ex` | Order-insensitive **multiset** of row tuples — stricter, so the number is slightly lower |
+
+Local wrapper for the official script (expects `third_party/bird_eval/llm/src/evaluation.py`):
+
+```bash
+PREDICT=results/.../predict.sql bash scripts/run_bird_official_ex.sh
+```
+
+**Every published number in `open_results/` and in the tables below was scored with the local evaluator**, not `evaluation.py`. Use the official script when comparing to the BIRD leaderboard / hidden test.
 
 ## Key Results
 
