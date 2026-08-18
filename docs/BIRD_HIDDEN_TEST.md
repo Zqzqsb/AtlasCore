@@ -106,7 +106,13 @@ Success: `results/bird/official_test_smoke/predict.sql` with one `SQL<TAB>db_id`
 
 ## 7. Run full test
 
-Use a fresh `--output-dir` (an existing `predict.sql` is not overwritten). `--limit 0` means all questions.
+Use a fresh `--output-dir` (an existing `predict.sql` is not overwritten). `--limit 0` means all questions. Steps 4 and 7 take a long time — run them in tmux.
+
+```bash
+tmux new -s bird_eval
+# paste the go run … command below
+# detach: Ctrl-b d    reattach: tmux attach -t bird_eval
+```
 
 ```bash
 go run ./cmd/eval \
@@ -169,3 +175,15 @@ CSV filename = table name. Column names match `original_column_name`.
 | --- | --- | --- |
 | `--parallel` | integer, default `1` | Split questions into N shards under `output-dir/p0`…`p{N-1}`, then merge `predict.sql` / `results.json` / `logs/` |
 | `--tpm-control` | `50` / `100` / `none`, default `100` | Internal TPM gate: 50% or 100% of 20M tokens/min; `none` disables the gate (429 backoff stays on) |
+
+### tmux and logs
+
+Run step 4 (RC) and step 7 (full infer) inside tmux (`tmux new -s bird_eval`) so an SSH drop does not kill the job.
+
+| Check | Command |
+| --- | --- |
+| Still running | `tmux ls` / `tmux attach -t bird_eval` |
+| Questions written so far (while `--parallel` is running) | `wc -l results/bird/official_test/p0/predict.sql` |
+| Final predictions | `wc -l results/bird/official_test/predict.sql` |
+| Compact progress | `tail -f results/bird/official_test/inference.log` (use `p0/inference.log` during a parallel run) |
+| One example | `results/bird/official_test/logs/0001_*.log` |

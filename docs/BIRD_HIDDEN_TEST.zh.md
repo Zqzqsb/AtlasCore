@@ -106,7 +106,13 @@ go run ./cmd/eval \
 
 ## 7. 全量测试
 
-换一个空的 `--output-dir`（已有 `predict.sql` 的目录不会被覆盖）。`--limit 0` 表示全部。
+换一个空的 `--output-dir`（已有 `predict.sql` 的目录不会被覆盖）。`--limit 0` 表示全部。第 4 步和第 7 步耗时长，请放在 tmux 里跑。
+
+```bash
+tmux new -s bird_eval
+# 粘贴下面的 go run … 命令
+# 断开：Ctrl-b d    回来：tmux attach -t bird_eval
+```
 
 ```bash
 go run ./cmd/eval \
@@ -169,3 +175,15 @@ csv 文件名 = 表名。列名对 `original_column_name`。
 | --- | --- | --- |
 | `--parallel` | 正整数，默认 `1` | `N` 把题目切成 N 段，写到 `output-dir/p0`…`p{N-1}`，再合成 `predict.sql` / `results.json` / `logs/` |
 | `--tpm-control` | `50` / `100` / `none`，默认 `100` | 内部 TPM 闸：默认预算 20M tokens/分钟的 50% 或 100%；`none` 关掉闸（429 退避仍在） |
+
+### tmux 与日志
+
+第 4 步 RC 和第 7 步全量推理都请挂在 tmux（`tmux new -s bird_eval`），避免 SSH 断开把进程带走。
+
+| 看什么 | 命令 |
+| --- | --- |
+| 是否还在跑 | `tmux ls` / `tmux attach -t bird_eval` |
+| 已写出多少题（并发进行中看分片） | `wc -l results/bird/official_test/p0/predict.sql` |
+| 跑完后的总预测 | `wc -l results/bird/official_test/predict.sql` |
+| 压缩进度 | `tail -f results/bird/official_test/inference.log`（并发进行中用 `p0/inference.log`） |
+| 单题详情 | `results/bird/official_test/logs/0001_*.log` |
