@@ -58,7 +58,7 @@ go run ./cmd/enrich_rc \
 
 ## 5. 准备并确认数据集
 
-题目 JSON 必须是数组，字段如下（`SQL` 留空）。多余字段会忽略。
+直接用官方题目 JSON。数组字段为 `question_id`、`db_id`、`question`、`evidence`。多余字段会忽略。官方 test 里 `SQL` 为空，直接用即可。
 
 ```json
 [
@@ -151,7 +151,7 @@ print(len(obj), "preds")
 PY
 ```
 
-用你们的 gold 和官方 `evaluation.py` 打分。
+产出 `predict.sql` 之后，用你们的 gold 和官方 `evaluation.py` 打分。
 
 ---
 

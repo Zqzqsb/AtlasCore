@@ -58,7 +58,7 @@ go run ./cmd/enrich_rc \
 
 ## 5. Prepare and confirm dataset
 
-The questions file is a JSON array. Leave `SQL` empty. Extra fields are ignored.
+Use the official BIRD questions JSON as-is. It is an array with `question_id`, `db_id`, `question`, `evidence`. Extra fields are ignored. Official test leaves `SQL` empty — that is fine.
 
 ```json
 [
@@ -151,7 +151,7 @@ print(len(obj), "preds")
 PY
 ```
 
-Score with your gold and the official `evaluation.py`.
+After `predict.sql` is ready, score with your gold and the official `evaluation.py`.
 
 ---
 
