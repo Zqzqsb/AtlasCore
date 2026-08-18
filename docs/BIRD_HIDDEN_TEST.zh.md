@@ -52,9 +52,12 @@ go run ./cmd/gen_all_dev \
 go run ./cmd/enrich_rc \
   --context-dir contexts/sqlite/bird_official_test \
   --db-dir /path/to/test_databases \
+  --phase build \
   --value-index \
-  --value-index-label heuristic
+  --value-index-label existing
 ```
+
+`gen_all_dev` 会记录 exact/sampled 值统计，并把采样统计驱动的 value-index plan 写进每个 RC。后续 `build` 阶段直接消费该计划，不重复扫库统计。若要在不访问数据库的情况下检查或调整策略，运行 `enrich_rc --phase plan --value-index-label sampled`，汇总会写到 `value_index/plan.json`；`sampled+llm` 只让 LLM 仲裁 `review` 列。
 
 ## 5. 准备并确认数据集
 

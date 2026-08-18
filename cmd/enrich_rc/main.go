@@ -30,13 +30,14 @@ import (
 //	  --context-dir contexts/sqlite/bird_heldout_v1_vi \
 //	  --db-dir benchmarks/bird/heldout_v1_smoke/test_databases \
 //	  --column-meaning benchmarks/bird/heldout_v1_smoke/column_meaning.json \
-//	  --value-index --value-index-label heuristic
+//	  --value-index --value-index-label sampled
 func main() {
 	contextDir := flag.String("context-dir", "contexts/sqlite/bird_heldout_v1", "Directory of RC JSON files")
 	dbDir := flag.String("db-dir", "benchmarks/bird/heldout_v1_smoke/test_databases", "Directory of sqlite DBs (<db>/<db>.sqlite)")
 	columnMeaningPath := flag.String("column-meaning", "", "Optional column_meaning.json to bake into OfficialMeaning")
 	valueIndex := flag.Bool("value-index", true, "Build per-DB business-value inverted index sidecar under <context-dir>/value_index/")
-	valueIndexLabel := flag.String("value-index-label", "heuristic", "Column policy labeling: heuristic | llm | off")
+	phase := flag.String("phase", "all", "Phase: stats | plan | build | all")
+	valueIndexLabel := flag.String("value-index-label", "sampled", "Column planning: sampled | sampled+llm | heuristic | llm | existing | off")
 	labelModel := flag.String("label-model", "deepseek-v4-flash", "LLM for --value-index-label=llm")
 	limit := flag.Int("limit", 0, "Max DBs to enrich (0 = all)")
 	dbFilter := flag.String("db", "", "Only enrich this db_id")
@@ -45,11 +46,21 @@ func main() {
 	quiet := flag.Bool("quiet", false, "Less logging")
 	flag.Parse()
 
+	phaseName := strings.ToLower(strings.TrimSpace(*phase))
+	switch phaseName {
+	case "stats", "plan", "build", "all":
+	default:
+		log.Fatalf("invalid --phase %q (want stats|plan|build|all)", *phase)
+	}
+	needStats := phaseName == "stats" || phaseName == "all"
+	needPlan := phaseName == "plan" || phaseName == "all"
+	needBuild := phaseName == "build" || phaseName == "all"
+
 	labelMode := strings.ToLower(strings.TrimSpace(*valueIndexLabel))
 	switch labelMode {
-	case "heuristic", "llm", "off":
+	case "sampled", "sampled+llm", "heuristic", "llm", "existing", "off":
 	default:
-		log.Fatalf("invalid --value-index-label %q (want heuristic|llm|off)", *valueIndexLabel)
+		log.Fatalf("invalid --value-index-label %q", *valueIndexLabel)
 	}
 
 	var meaningRaw map[string]string
@@ -65,7 +76,7 @@ func main() {
 	}
 
 	var labelLLM llms.Model
-	if labelMode == "llm" {
+	if labelMode == "llm" || labelMode == "sampled+llm" {
 		m, err := llm.CreateLLMByType(llm.ModelType(*labelModel))
 		if err != nil {
 			log.Fatalf("label-model: %v", err)
@@ -82,6 +93,7 @@ func main() {
 	ctx := context.Background()
 	done, fail, skipped := 0, 0, 0
 	start := time.Now()
+	var planReport []planSummary
 
 	for _, ent := range entries {
 		if ent.IsDir() || !strings.HasSuffix(ent.Name(), ".json") {
@@ -100,7 +112,7 @@ func main() {
 		}
 
 		jsonPath := filepath.Join(*contextDir, ent.Name())
-		if *skipEnriched {
+		if needStats && *skipEnriched {
 			if sharedPeek, err := contextpkg.LoadContextFromFile(jsonPath); err == nil && len(sharedPeek.JoinPaths) > 0 {
 				skipped++
 				if !*quiet {
@@ -111,14 +123,16 @@ func main() {
 		}
 
 		sqlitePath := filepath.Join(*dbDir, dbID, dbID+".sqlite")
-		if _, err := os.Stat(sqlitePath); err != nil {
-			alt := filepath.Join(*dbDir, dbID+".sqlite")
-			if _, err2 := os.Stat(alt); err2 == nil {
-				sqlitePath = alt
-			} else {
-				log.Printf("skip %s: sqlite not found under %s", dbID, *dbDir)
-				fail++
-				continue
+		if needStats || needBuild {
+			if _, err := os.Stat(sqlitePath); err != nil {
+				alt := filepath.Join(*dbDir, dbID+".sqlite")
+				if _, err2 := os.Stat(alt); err2 == nil {
+					sqlitePath = alt
+				} else {
+					log.Printf("skip %s: sqlite not found under %s", dbID, *dbDir)
+					fail++
+					continue
+				}
 			}
 		}
 
@@ -136,28 +150,32 @@ func main() {
 			shared.SetOfficialDesc(desc)
 		}
 
-		dbAdapter, err := adapter.NewAdapter(&adapter.DBConfig{
-			Type:     "sqlite",
-			FilePath: sqlitePath,
-		})
-		if err != nil {
-			log.Printf("adapter %s: %v", dbID, err)
-			fail++
-			continue
-		}
-		if err := dbAdapter.Connect(ctx); err != nil {
-			log.Printf("connect %s: %v", dbID, err)
-			fail++
-			continue
+		if needStats {
+			dbAdapter, err := adapter.NewAdapter(&adapter.DBConfig{
+				Type:     "sqlite",
+				FilePath: sqlitePath,
+			})
+			if err != nil {
+				log.Printf("adapter %s: %v", dbID, err)
+				fail++
+				continue
+			}
+			if err := dbAdapter.Connect(ctx); err != nil {
+				log.Printf("connect %s: %v", dbID, err)
+				fail++
+				continue
+			}
+			if err := shared.EnrichDeterministic(ctx, dbAdapter); err != nil && !*quiet {
+				log.Printf("enrich warn %s: %v", dbID, err)
+			}
+			_ = dbAdapter.Close()
 		}
 
-		if err := shared.EnrichDeterministic(ctx, dbAdapter); err != nil && !*quiet {
-			log.Printf("enrich warn %s: %v", dbID, err)
+		nMeaning := 0
+		if needStats || needPlan {
+			nMeaning = shared.BakeOfficialDesc()
 		}
-		_ = dbAdapter.Close()
-
-		nMeaning := shared.BakeOfficialDesc()
-		if len(meaningRaw) > 0 {
+		if (needStats || needPlan) && len(meaningRaw) > 0 {
 			lookup := contextpkg.ParseColumnMeaningForDB(meaningRaw, dbID)
 			if n := shared.ApplyOfficialMeanings(lookup); n > 0 {
 				nMeaning += n
@@ -165,21 +183,43 @@ func main() {
 			}
 		}
 
-		nInc, nExc, nUnk := 0, 0, 0
-		switch labelMode {
-		case "heuristic":
-			nInc, nExc, nUnk = shared.LabelValueIndexHeuristic()
-		case "llm":
-			var lerr error
-			nInc, nExc, nUnk, lerr = shared.LabelValueIndexWithLLM(ctx, labelLLM)
-			if lerr != nil {
-				log.Printf("value-index label %s: %v (fallback heuristic)", dbID, lerr)
-				nInc, nExc, nUnk = shared.LabelValueIndexHeuristic()
+		nInc, nExc, nReview := 0, 0, 0
+		if needPlan || (needBuild && labelMode != "existing" && labelMode != "off") {
+			switch labelMode {
+			case "sampled":
+				nInc, nExc, nReview = shared.LabelValueIndexSampled()
+			case "sampled+llm":
+				var lerr error
+				nInc, nExc, nReview, lerr = shared.LabelValueIndexSampledWithLLM(ctx, labelLLM)
+				if lerr != nil {
+					log.Printf("sampled+llm plan %s: %v (keeping sampled review)", dbID, lerr)
+					nInc, nExc, nReview = shared.LabelValueIndexSampled()
+				}
+			case "heuristic":
+				nInc, nExc, nReview = shared.LabelValueIndexHeuristic()
+			case "llm":
+				var lerr error
+				nInc, nExc, nReview, lerr = shared.LabelValueIndexWithLLM(ctx, labelLLM)
+				if lerr != nil {
+					log.Printf("value-index label %s: %v (fallback sampled)", dbID, lerr)
+					nInc, nExc, nReview = shared.LabelValueIndexSampled()
+				}
 			}
+		}
+		if needBuild && labelMode == "existing" {
+			nInc, nExc, nReview = countExistingPlan(shared)
+			if nInc+nExc+nReview == 0 {
+				log.Printf("value-index %s: no existing plan; run --phase plan first", dbID)
+				fail++
+				continue
+			}
+		}
+		if needPlan {
+			planReport = append(planReport, summarizePlan(dbID, shared, nInc, nExc, nReview))
 		}
 
 		nVIDocs, nVICols := 0, 0
-		if *valueIndex {
+		if needBuild && *valueIndex {
 			outPath := contextpkg.ValueIndexSidecarPath(*contextDir, dbID)
 			rel := filepath.ToSlash(filepath.Join("value_index", dbID+".sqlite"))
 			rep, err := shared.BuildValueIndex(ctx, sqlitePath, outPath, rel, contextpkg.DefaultValueIndexOptions())
@@ -200,13 +240,71 @@ func main() {
 		}
 
 		nFK, nJoin, nSample, nProfile := countEnrichSignals(shared)
-		fmt.Printf("✓ %s  fk_card=%d  join_paths=%d  samples=%d  profile_nl=%d  meaning=%d  label=%s(+%d/-%d/?%d)  value_index=%dcols/%ddocs\n",
-			dbID, nFK, nJoin, nSample, nProfile, nMeaning, labelMode, nInc, nExc, nUnk, nVICols, nVIDocs)
+		fmt.Printf("✓ %s phase=%s  fk_card=%d  join_paths=%d  samples=%d  profile_nl=%d  meaning=%d  plan=%s(+%d/-%d/review%d)  value_index=%dcols/%ddocs\n",
+			dbID, phaseName, nFK, nJoin, nSample, nProfile, nMeaning, labelMode, nInc, nExc, nReview, nVICols, nVIDocs)
 		done++
 	}
 
+	if needPlan {
+		if err := savePlanReport(*contextDir, labelMode, planReport); err != nil {
+			log.Printf("save plan report: %v", err)
+		}
+	}
 	fmt.Printf("\nDone: %d ok, %d fail, %d skipped, elapsed %s\n",
 		done, fail, skipped, time.Since(start).Round(time.Second))
+}
+
+type planSummary struct {
+	DBID               string `json:"db_id"`
+	Include            int    `json:"include"`
+	Exclude            int    `json:"exclude"`
+	Review             int    `json:"review"`
+	EstimatedDocuments int    `json:"estimated_documents"`
+}
+
+func summarizePlan(dbID string, shared *contextpkg.SharedContext, include, exclude, review int) planSummary {
+	out := planSummary{DBID: dbID, Include: include, Exclude: exclude, Review: review}
+	for _, table := range shared.Tables {
+		for _, col := range table.Columns {
+			if col.ValueIndexPolicy == "include" {
+				out.EstimatedDocuments += col.ValueIndexEstimatedDocs
+			}
+		}
+	}
+	return out
+}
+
+func countExistingPlan(shared *contextpkg.SharedContext) (include, exclude, review int) {
+	for _, table := range shared.Tables {
+		for _, col := range table.Columns {
+			switch col.ValueIndexPolicy {
+			case "include":
+				include++
+			case "exclude":
+				exclude++
+			case "review", "unknown":
+				review++
+			}
+		}
+	}
+	return
+}
+
+func savePlanReport(contextDir, mode string, rows []planSummary) error {
+	dir := filepath.Join(contextDir, "value_index")
+	if err := os.MkdirAll(dir, 0o755); err != nil {
+		return err
+	}
+	payload := struct {
+		Planner   string        `json:"planner"`
+		CreatedAt time.Time     `json:"created_at"`
+		Databases []planSummary `json:"databases"`
+	}{Planner: mode, CreatedAt: time.Now().UTC(), Databases: rows}
+	data, err := json.MarshalIndent(payload, "", "  ")
+	if err != nil {
+		return err
+	}
+	return os.WriteFile(filepath.Join(dir, "plan.json"), append(data, '\n'), 0o644)
 }
 
 func countEnrichSignals(shared *contextpkg.SharedContext) (fkCard, joinPaths, sampleCols, profileCols int) {

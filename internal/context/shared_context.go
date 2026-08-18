@@ -130,8 +130,8 @@ func (r *RichContextValue) UnmarshalJSON(data []byte) error {
 type QualityIssue struct {
 	Table       string   `json:"table"`
 	Column      string   `json:"column"`
-	Type        string   `json:"type"`         // whitespace/type_mismatch/orphan/null_heavy/empty_string
-	Severity    string   `json:"severity"`     // critical/warning/info
+	Type        string   `json:"type"`     // whitespace/type_mismatch/orphan/null_heavy/empty_string
+	Severity    string   `json:"severity"` // critical/warning/info
 	Description string   `json:"description"`
 	SQLFix      string   `json:"sql_fix"`      // Recommended SQL fix snippet
 	AffectedOps []string `json:"affected_ops"` // ["JOIN", "WHERE", "GROUP BY", "ORDER BY"]
@@ -141,9 +141,13 @@ type QualityIssue struct {
 // ValueStats column value statistics
 type ValueStats struct {
 	DistinctCount int              `json:"distinct_count"`
+	DistinctMode  string           `json:"distinct_mode,omitempty"` // exact|sampled; sampled count is a lower bound
+	SampleRows    int              `json:"sample_rows,omitempty"`
+	ObservedNDV   int              `json:"observed_ndv,omitempty"`
+	Uniqueness    float64          `json:"uniqueness_ratio,omitempty"` // observed distinct / sampled non-empty rows
 	NullCount     int              `json:"null_count"`
 	NullPercent   float64          `json:"null_percent"`
-	EmptyCount    int              `json:"empty_count,omitempty"`    // For TEXT columns: count of ''
+	EmptyCount    int              `json:"empty_count,omitempty"`   // For TEXT columns: count of ''
 	TopValues     []ValueFrequency `json:"top_values,omitempty"`    // Enumeration values (distinct <= 30)
 	SampleValues  []string         `json:"sample_values,omitempty"` // Dense samples for high-card text (WiseCat-style)
 	Range         *NumericRange    `json:"range,omitempty"`         // For numeric columns
@@ -199,11 +203,14 @@ type ColumnMetadata struct {
 	ProfileNL       string `json:"profile_nl,omitempty"`       // deterministic NL from ValueStats
 
 	// Value-index policy metadata (no postings / values in RC JSON)
-	ValueIndexPolicy       string `json:"value_index_policy,omitempty"`        // include|exclude|unknown
-	ValueIndexPolicySource string `json:"value_index_policy_source,omitempty"` // heuristic|llm
-	ValueIndexPolicyReason string `json:"value_index_policy_reason,omitempty"`
-	ValueIndexStatus       string `json:"value_index_status,omitempty"` // indexed|hard_gate|ndv_cap|budget|non_text|excluded
-	ValueIndexKind         string `json:"value_index_kind,omitempty"`   // entity|category
+	ValueIndexPolicy        string   `json:"value_index_policy,omitempty"`        // include|exclude|review|unknown
+	ValueIndexPolicySource  string   `json:"value_index_policy_source,omitempty"` // heuristic|sampled-v1|llm
+	ValueIndexPolicyReason  string   `json:"value_index_policy_reason,omitempty"`
+	ValueIndexConfidence    float64  `json:"value_index_confidence,omitempty"`
+	ValueIndexEvidence      []string `json:"value_index_evidence,omitempty"`
+	ValueIndexEstimatedDocs int      `json:"value_index_estimated_docs,omitempty"`
+	ValueIndexStatus        string   `json:"value_index_status,omitempty"` // indexed|indexed_truncated|review|budget|build_cap|excluded
+	ValueIndexKind          string   `json:"value_index_kind,omitempty"`   // entity|category
 }
 
 // ValueIndexInfo points at the per-DB sidecar built by enrich_rc / valueindex.Build.
@@ -214,6 +221,8 @@ type ValueIndexInfo struct {
 	ColumnsIndexed int       `json:"columns_indexed"`
 	BuiltAt        time.Time `json:"built_at"`
 	LabelSource    string    `json:"label_source,omitempty"` // heuristic|llm
+	PlannerVersion string    `json:"planner_version,omitempty"`
+	PlannedAt      time.Time `json:"planned_at,omitempty"`
 }
 
 // IndexMetadata index metadata
@@ -238,12 +247,12 @@ type ForeignKeyMetadata struct {
 
 // JoinPath JOIN path info
 type JoinPath struct {
-	FromTable   string   `json:"from_table"`             // Source table
-	ToTable     string   `json:"to_table"`               // Target table
-	Path        []string `json:"path"`                   // Full path (including intermediate tables)
-	JoinClauses []string `json:"join_clauses"`           // JOIN clause list
-	Description string   `json:"description"`            // Path description
-	Cardinality string   `json:"cardinality,omitempty"`  // e.g. "N:1" / "1:N" along the edge
+	FromTable   string   `json:"from_table"`            // Source table
+	ToTable     string   `json:"to_table"`              // Target table
+	Path        []string `json:"path"`                  // Full path (including intermediate tables)
+	JoinClauses []string `json:"join_clauses"`          // JOIN clause list
+	Description string   `json:"description"`           // Path description
+	Cardinality string   `json:"cardinality,omitempty"` // e.g. "N:1" / "1:N" along the edge
 }
 
 // FieldSemantic field semantic info

@@ -24,20 +24,24 @@ type Document struct {
 
 // Report summarizes a build.
 type Report struct {
-	DBID            string    `json:"db_id"`
-	Path            string    `json:"path"`
-	Documents       int       `json:"documents"`
-	Postings        int       `json:"postings"`
-	ColumnsIndexed  int       `json:"columns_indexed"`
-	ColumnsSkipped  int       `json:"columns_skipped"`
-	EntityIndexed   int       `json:"entity_indexed"`
-	CategoryIndexed int       `json:"category_indexed"`
-	HardGate        int       `json:"hard_gate"`
-	BudgetRejected  int       `json:"budget_rejected"`
-	NDVCapRejected  int       `json:"ndv_cap_rejected"`
-	QueryFailures   int       `json:"query_failures"`
-	BuiltAt         time.Time `json:"built_at"`
-	ElapsedMS       int64     `json:"elapsed_ms"`
+	DBID                string    `json:"db_id"`
+	Path                string    `json:"path"`
+	Documents           int       `json:"documents"`
+	Postings            int       `json:"postings"`
+	ColumnsIndexed      int       `json:"columns_indexed"`
+	ColumnsSelected     int       `json:"columns_selected,omitempty"`
+	IndexedColumnKeys   []string  `json:"indexed_column_keys,omitempty"`
+	TruncatedColumnKeys []string  `json:"truncated_column_keys,omitempty"`
+	ColumnsSkipped      int       `json:"columns_skipped"`
+	EntityIndexed       int       `json:"entity_indexed"`
+	CategoryIndexed     int       `json:"category_indexed"`
+	HardGate            int       `json:"hard_gate"`
+	BudgetRejected      int       `json:"budget_rejected"`
+	NDVCapRejected      int       `json:"ndv_cap_rejected"`
+	QueryFailures       int       `json:"query_failures"`
+	PostingCapReached   bool      `json:"posting_cap_reached,omitempty"`
+	BuiltAt             time.Time `json:"built_at"`
+	ElapsedMS           int64     `json:"elapsed_ms"`
 }
 
 const schemaSQL = `

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"regexp"
 	"strings"
+	"sync"
 
 	"github.com/Zqzqsb/AtlasCore/internal/adapter"
 )
@@ -17,6 +18,9 @@ type ProbeColumnTool struct {
 	adapter adapter.DBAdapter
 	dbType  string
 	logger  *InferenceLogger
+
+	mu     sync.Mutex
+	probed map[string]string // table.column (lower) → last DISTINCT dump
 }
 
 // NewProbeColumnTool builds the probe tool bound to the business DB adapter.
@@ -31,6 +35,7 @@ func (t *ProbeColumnTool) Description() string {
 Input format: table.column   OR   table.column|limit
 Examples: status_type.status   OR   accounts.frequency|30
 Use when evidence/question mentions enum-like values, dirty strings, or you are unsure of the exact stored literal.
+Probe each table.column at most once, then write SQL and verify_sql. Do not repeat the same probe.
 Do NOT invent literals from column names.`
 }
 
@@ -52,12 +57,28 @@ func (t *ProbeColumnTool) Call(ctx context.Context, input string) (string, error
 		return msg, nil
 	}
 
+	key := strings.ToLower(table) + "." + strings.ToLower(column)
+	t.mu.Lock()
+	if t.probed == nil {
+		t.probed = map[string]string{}
+	}
+	if prev, ok := t.probed[key]; ok {
+		t.mu.Unlock()
+		msg := prev + "\n⚠️  Already probed " + table + "." + column + ". Do NOT probe it again. Write SQL now and call verify_sql."
+		logf("Output: %s\n", msg)
+		return msg, nil
+	}
+	t.mu.Unlock()
+
 	out, err := ProbeColumn(ctx, t.adapter, t.dbType, table, column, limit)
 	if err != nil {
 		msg := fmt.Sprintf("❌ probe failed: %v", err)
 		logf("Output: %s\n", msg)
 		return msg, nil
 	}
+	t.mu.Lock()
+	t.probed[key] = out
+	t.mu.Unlock()
 	logf("Output: %s\n", out)
 	return out, nil
 }

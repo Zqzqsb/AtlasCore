@@ -52,9 +52,12 @@ go run ./cmd/gen_all_dev \
 go run ./cmd/enrich_rc \
   --context-dir contexts/sqlite/bird_official_test \
   --db-dir /path/to/test_databases \
+  --phase build \
   --value-index \
-  --value-index-label heuristic
+  --value-index-label existing
 ```
+
+`gen_all_dev` records exact/sampled value statistics and writes a sampled-statistics value-index plan into each RC. The `build` phase consumes that plan without repeating the statistics scan. To inspect or retune policies without database access, run `enrich_rc --phase plan --value-index-label sampled`; its summary is written to `value_index/plan.json`. `sampled+llm` asks an LLM only to arbitrate `review` columns.
 
 ## 5. Prepare and confirm dataset
 

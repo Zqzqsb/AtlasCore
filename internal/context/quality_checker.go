@@ -145,7 +145,7 @@ func (qc *QualityChecker) runAllLight(ctx context.Context, table *TableMetadata)
 // collectValueStatsLight pulls a prefix sample (SQLite stops after LIMIT) and
 // derives sample_values / rough distinct estimate in Go — no full table scan.
 func (qc *QualityChecker) collectValueStatsLight(ctx context.Context, colName, colType string, totalRows int64) *ValueStats {
-	stats := &ValueStats{}
+	stats := &ValueStats{DistinctMode: "sampled"}
 	limit := 500
 	if isTextType(strings.ToUpper(colType)) {
 		limit = 800
@@ -178,8 +178,16 @@ func (qc *QualityChecker) collectValueStatsLight(ctx context.Context, colName, c
 		seen[val]++
 	}
 
-	sampleN := len(result.Rows)
+	sampleN := 0
+	for _, count := range seen {
+		sampleN += count
+	}
 	stats.DistinctCount = len(seen) // distinct within sample (lower bound if sample saturated)
+	stats.ObservedNDV = len(seen)
+	stats.SampleRows = sampleN
+	if sampleN > 0 {
+		stats.Uniqueness = float64(len(seen)) / float64(sampleN)
+	}
 	if sampleN > 0 && len(seen) <= 30 {
 		// Looks low-card in sample → export as enum frequencies over the sample
 		for _, v := range order {
@@ -409,6 +417,12 @@ func (qc *QualityChecker) collectValueStats(ctx context.Context, colName, colTyp
 		row := basicResult.Rows[0]
 		stats.NullCount = toInt(row["null_cnt"])
 		stats.DistinctCount = toInt(row["distinct_cnt"])
+		stats.DistinctMode = "exact"
+		stats.ObservedNDV = stats.DistinctCount
+		stats.SampleRows = int(totalRows) - stats.NullCount
+		if stats.SampleRows > 0 {
+			stats.Uniqueness = float64(stats.DistinctCount) / float64(stats.SampleRows)
+		}
 		stats.NullPercent = float64(stats.NullCount) / float64(totalRows) * 100
 	}
 

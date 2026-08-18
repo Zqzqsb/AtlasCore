@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"flag"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -13,6 +14,10 @@ import (
 )
 
 func main() {
+	contextDir := flag.String("context-dir", "contexts/sqlite/bird_heldout_v1_vi", "RC directory containing value_index sidecars")
+	limit := flag.Int("limit", 30, "Questions to audit (0 = all)")
+	flag.Parse()
+
 	var tests []map[string]any
 	var golds []map[string]any
 	b, _ := os.ReadFile("benchmarks/bird/heldout_v1_smoke/test.json")
@@ -20,7 +25,10 @@ func main() {
 	b, _ = os.ReadFile("benchmarks/bird/heldout_v1_smoke_private/gold.json")
 	_ = json.Unmarshal(b, &golds)
 
-	n := 30
+	n := *limit
+	if n <= 0 {
+		n = len(tests)
+	}
 	if len(tests) < n {
 		n = len(tests)
 	}
@@ -30,7 +38,7 @@ func main() {
 		q := tests[i]["question"].(string)
 		ev, _ := tests[i]["evidence"].(string)
 		gsql := golds[i]["SQL"].(string)
-		path := filepath.Join("contexts/sqlite/bird_heldout_v1_vi", "value_index", db+".sqlite")
+		path := filepath.Join(*contextDir, "value_index", db+".sqlite")
 		st, err := valueindex.OpenStore(path)
 		if err != nil {
 			fmt.Printf("#%d %s NO_STORE\n", i, db)

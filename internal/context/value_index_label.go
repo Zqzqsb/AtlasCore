@@ -106,10 +106,10 @@ func (c *SharedContext) LabelValueIndexWithLLM(ctx context.Context, llm llms.Mod
 
 	var b strings.Builder
 	b.WriteString("You label columns for a business-value inverted index used in Text-to-SQL linking.\n")
-	b.WriteString("For each column output ONE line: table.column | include|exclude|unknown | short reason\n")
+	b.WriteString("For each column output ONE line: table.column | include|exclude|review | short reason\n")
 	b.WriteString("include = high-value entity/category literals worth indexing (customer/product/city/status...)\n")
 	b.WriteString("exclude = ids, timestamps, free text, urls, PII, codes not used as filter names\n")
-	b.WriteString("unknown = unsure\n")
+	b.WriteString("review = unsure\n")
 	b.WriteString("Max 80 lines. No markdown.\n\nColumns:\n")
 	limit := len(cands)
 	if limit > 80 {
@@ -183,7 +183,7 @@ func parseValueIndexLabels(resp string) map[string]viLabel {
 			reason = strings.TrimSpace(parts[2])
 		}
 		switch policy {
-		case valueindex.PolicyInclude, valueindex.PolicyExclude, valueindex.PolicyUnknown:
+		case valueindex.PolicyInclude, valueindex.PolicyExclude, valueindex.PolicyUnknown, valueindex.PolicyReview:
 		default:
 			continue
 		}

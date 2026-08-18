@@ -41,7 +41,7 @@ var defaultGenPaths = map[string]map[string]string{
 
 func main() {
 	benchmark := flag.String("benchmark", "", "Benchmark: spider | bird (if empty, will ask interactively)")
-	modelType := flag.String("model", "deepseek-v4-pro", "Model: deepseek-v3 | deepseek-v3.2 | deepseek-v4-pro | deepseek-v4-flash | qwen-max | qwen3-max | qwen3.5 | doubao-seed2-pro | qwen3-coder-plus | ali-deepseek-v3.2")
+	modelType := flag.String("model", "deepseek-v4-pro", "Model: deepseek-v3 | deepseek-v3.2 | deepseek-v4-pro | deepseek-v4-pro-official | deepseek-v4-flash | qwen-max | qwen3-max | qwen3.5 | doubao-seed2-pro | qwen3-coder-plus | ali-deepseek-v3.2")
 	workers := flag.Int("workers", 2, "Number of concurrent workers")
 	skipExisting := flag.Bool("skip-existing", true, "Skip databases that already have Rich Context")
 	devFile := flag.String("dev-file", "", "Spider dev dataset JSON file path (auto-detected)")
@@ -198,6 +198,8 @@ func parseModelType(modelType string) llm.ModelType {
 		return llm.ModelDeepSeekV32
 	case "deepseek-v4-pro":
 		return llm.ModelDeepSeekV4Pro
+	case "deepseek-v4-pro-official":
+		return llm.ModelDeepSeekV4ProOfficial
 	case "deepseek-v4-flash":
 		return llm.ModelDeepSeekV4Flash
 	case "qwen-max":
@@ -213,7 +215,7 @@ func parseModelType(modelType string) llm.ModelType {
 	case "qwen3-coder-plus":
 		return llm.ModelQwen3CoderPlus
 	default:
-		log.Fatalf("Unknown model type: %s. Available: deepseek-v3, deepseek-v3.2, deepseek-v4-pro, deepseek-v4-flash, qwen-max, qwen3-max, qwen3.5, doubao-seed2-pro, qwen3-coder-plus, ali-deepseek-v3.2", modelType)
+		log.Fatalf("Unknown model type: %s. Available: deepseek-v3, deepseek-v3.2, deepseek-v4-pro, deepseek-v4-pro-official, deepseek-v4-flash, qwen-max, qwen3-max, qwen3.5, doubao-seed2-pro, qwen3-coder-plus, ali-deepseek-v3.2", modelType)
 		return ""
 	}
 }
@@ -535,6 +537,10 @@ func processDatabase(model llm.ModelType, dbDir, outputDir, dbName string, loadS
 	wg.Wait()
 
 	sharedCtx.BakeOfficialDesc()
+	// Value statistics were collected by each worker's deterministic quality
+	// pass. Compile an index plan now so RC is self-contained; the plan can be
+	// retuned later with enrich_rc --phase plan without rerunning RC LLMs.
+	sharedCtx.LabelValueIndexSampled()
 
 	// 6. Analyze JOIN paths
 	update("Analyzing JOIN paths", 92)

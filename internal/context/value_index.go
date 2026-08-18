@@ -48,8 +48,25 @@ func (c *SharedContext) BuildValueIndex(
 	// Re-run policy on the same specs to stamp per-column status (cheap).
 	decisions := valueindex.SelectColumns(cols, opt)
 	statusByKey := make(map[string]valueindex.Decision, len(decisions))
+	actual := make(map[string]struct{}, len(report.IndexedColumnKeys))
+	for _, key := range report.IndexedColumnKeys {
+		actual[key] = struct{}{}
+	}
+	truncated := make(map[string]struct{}, len(report.TruncatedColumnKeys))
+	for _, key := range report.TruncatedColumnKeys {
+		truncated[key] = struct{}{}
+	}
 	for _, d := range decisions {
 		key := d.Spec.Table + "\x00" + d.Spec.Column
+		if d.Status == "indexed" {
+			if _, ok := actual[key]; !ok {
+				d.Status = "build_cap"
+				d.Reason = "document_or_posting_cap"
+			} else if _, ok := truncated[key]; ok {
+				d.Status = "indexed_truncated"
+				d.Reason = "per_column_posting_cap"
+			}
+		}
 		statusByKey[key] = d
 	}
 	c.mu.Lock()
@@ -94,7 +111,7 @@ func (c *SharedContext) columnSpecsForValueIndex() []valueindex.ColumnSpec {
 	defer c.mu.RUnlock()
 	var maps map[string]struct{}
 	if c.officialDesc != nil {
-		maps = c.officialDesc.MappingColumns()
+		maps = c.officialDesc.IndexedValueColumns()
 	}
 	var out []valueindex.ColumnSpec
 	for tName, table := range c.Tables {
@@ -103,12 +120,14 @@ func (c *SharedContext) columnSpecsForValueIndex() []valueindex.ColumnSpec {
 		}
 		for _, col := range table.Columns {
 			spec := valueindex.ColumnSpec{
-				Table:    tName,
-				Column:   col.Name,
-				DeclType: col.Type,
-				IsPK:     col.IsPrimaryKey,
-				NRows:    table.RowCount,
-				Policy:   col.ValueIndexPolicy,
+				Table:              tName,
+				Column:             col.Name,
+				DeclType:           col.Type,
+				IsPK:               col.IsPrimaryKey,
+				NRows:              table.RowCount,
+				Policy:             col.ValueIndexPolicy,
+				EstimatedDocuments: col.ValueIndexEstimatedDocs,
+				Kind:               col.ValueIndexKind,
 			}
 			if col.ValueStats != nil {
 				spec.NDV = col.ValueStats.DistinctCount

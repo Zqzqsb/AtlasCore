@@ -48,6 +48,24 @@ if ClosedDate is null or empty, it means this post is not well-finished`}
 	}
 }
 
+func TestIndexedValueColumnsIncludesEnumAndMapping(t *testing.T) {
+	d := &Database{Columns: []*Column{
+		{Table: "sets", Name: "type", Kind: KindEnum},
+		{Table: "sets", Name: "foil", Kind: KindMapping},
+		{Table: "sets", Name: "score", Kind: KindRule},
+	}}
+	got := d.IndexedValueColumns()
+	if _, ok := got["sets|type"]; !ok {
+		t.Fatal("enum column missing")
+	}
+	if _, ok := got["sets|foil"]; !ok {
+		t.Fatal("mapping column missing")
+	}
+	if _, ok := got["sets|score"]; ok {
+		t.Fatal("rule column should not be forced")
+	}
+}
+
 func TestParseCSVAndPrompt(t *testing.T) {
 	raw := `original_column_name,column_name,column_description,data_format,value_description
 type,,The expansion type of the set.,text,"""alchemy"", ""commander"", ""expansion"""

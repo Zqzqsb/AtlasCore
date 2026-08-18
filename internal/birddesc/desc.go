@@ -33,7 +33,7 @@ type Column struct {
 	Description string
 	ValueDesc   string
 	Kind        Kind
-	Enums       []string          // closed stored values
+	Enums       []string            // closed stored values
 	Aliases     map[string][]string // stored value → extra lookup strings
 	RuleText    string
 }
@@ -396,6 +396,23 @@ func (d *Database) MappingColumns() map[string]struct{} {
 	}
 	for _, c := range d.Columns {
 		if c.Kind != KindMapping {
+			continue
+		}
+		out[strings.ToLower(c.Table)+"|"+strings.ToLower(c.Name)] = struct{}{}
+	}
+	return out
+}
+
+// IndexedValueColumns lists columns whose official description provides
+// closed-set values or stored-value aliases. They must be eligible for value
+// indexing even when their physical type or column name would be gated out.
+func (d *Database) IndexedValueColumns() map[string]struct{} {
+	out := map[string]struct{}{}
+	if d == nil {
+		return out
+	}
+	for _, c := range d.Columns {
+		if c.Kind != KindMapping && c.Kind != KindEnum {
 			continue
 		}
 		out[strings.ToLower(c.Table)+"|"+strings.ToLower(c.Name)] = struct{}{}

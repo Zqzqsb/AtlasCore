@@ -78,13 +78,14 @@ if [[ "$SKIP_PREP" != "1" ]]; then
   ENRICH_ARGS=(
     --context-dir "$CONTEXT_DIR"
     --db-dir "$DB_DIR"
+    --phase build
     --value-index
-    --value-index-label heuristic
+    --value-index-label existing
   )
   if [[ -n "$COLUMN_MEANING" && -f "$COLUMN_MEANING" ]]; then
     ENRICH_ARGS+=(--column-meaning "$COLUMN_MEANING")
   fi
-  echo "→ value index (heuristic): ${ENRICH_ARGS[*]}"
+  echo "→ value index (sampled plan from RC): ${ENRICH_ARGS[*]}"
   go run ./cmd/enrich_rc "${ENRICH_ARGS[@]}"
 fi
 

@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"fmt"
 	"path/filepath"
+	"sort"
 	"strings"
 	"time"
 	"unicode/utf8"
@@ -55,12 +56,7 @@ func Build(ctx context.Context, sourceDBPath, outPath, dbID string, columns []Co
 	for _, d := range decisions {
 		switch d.Status {
 		case "indexed":
-			report.ColumnsIndexed++
-			if d.Lane == LaneEntity {
-				report.EntityIndexed++
-			} else {
-				report.CategoryIndexed++
-			}
+			report.ColumnsSelected++
 		case "hard_gate":
 			report.HardGate++
 			report.ColumnsSkipped++
@@ -76,16 +72,25 @@ func Build(ctx context.Context, sourceDBPath, outPath, dbID string, columns []Co
 	}
 
 	var docs []Document
+	estimatedPostings := 0
+	truncatedColumns := map[string]struct{}{}
+buildColumns:
 	for _, d := range IndexedColumns(decisions) {
-		vals, err := loadDistinct(ctx, src, d.Spec, opt)
+		columnKey := d.Spec.Table + "\x00" + d.Spec.Column
+		vals, err := loadDistinct(ctx, src, d.Spec, d.Lane, opt)
 		if err != nil {
 			report.QueryFailures++
 			continue
 		}
 		kind := string(d.Lane)
+		columnPostings := 0
+		columnPostingCap := opt.EntityColumnPostings
+		if d.Lane == LaneCategory {
+			columnPostingCap = opt.CategoryColumnPostings
+		}
 		for _, v := range vals {
 			if len(docs) >= opt.MaxDocuments {
-				break
+				break buildColumns
 			}
 			display := strings.TrimSpace(v)
 			if display == "" {
@@ -103,6 +108,15 @@ func Build(ctx context.Context, sourceDBPath, outPath, dbID string, columns []Co
 			if norm == "" || len(toks) == 0 {
 				continue
 			}
+			if columnPostings+len(toks) > columnPostingCap {
+				truncatedColumns[columnKey] = struct{}{}
+				break
+			}
+			if estimatedPostings+len(toks) > opt.MaxPostings {
+				report.PostingCapReached = true
+				truncatedColumns[columnKey] = struct{}{}
+				break buildColumns
+			}
 			docs = append(docs, Document{
 				Table:           d.Spec.Table,
 				Column:          d.Spec.Column,
@@ -112,10 +126,30 @@ func Build(ctx context.Context, sourceDBPath, outPath, dbID string, columns []Co
 				SemanticRole:    kind,
 				Tokens:          toks,
 			})
+			estimatedPostings += len(toks)
+			columnPostings += len(toks)
 		}
-		if len(docs) >= opt.MaxDocuments {
-			docs = docs[:opt.MaxDocuments]
-			break
+	}
+	actualColumns := map[string]string{}
+	for _, doc := range docs {
+		actualColumns[doc.Table+"\x00"+doc.Column] = doc.ValueKind
+	}
+	report.ColumnsIndexed = len(actualColumns)
+	for key := range actualColumns {
+		report.IndexedColumnKeys = append(report.IndexedColumnKeys, key)
+	}
+	sort.Strings(report.IndexedColumnKeys)
+	for key := range truncatedColumns {
+		report.TruncatedColumnKeys = append(report.TruncatedColumnKeys, key)
+	}
+	sort.Strings(report.TruncatedColumnKeys)
+	report.EntityIndexed = 0
+	report.CategoryIndexed = 0
+	for _, kind := range actualColumns {
+		if kind == string(LaneEntity) {
+			report.EntityIndexed++
+		} else {
+			report.CategoryIndexed++
 		}
 	}
 
@@ -196,14 +230,14 @@ func countRows(ctx context.Context, db *sql.DB, table string) (int64, error) {
 	return n, err
 }
 
-func loadDistinct(ctx context.Context, db *sql.DB, col ColumnSpec, opt Options) ([]string, error) {
+func loadDistinct(ctx context.Context, db *sql.DB, col ColumnSpec, lane Lane, opt Options) ([]string, error) {
 	qctx, cancel := context.WithTimeout(ctx, opt.ColumnQueryTimeout)
 	defer cancel()
 
 	colq := qident(col.Column)
 	tq := qident(col.Table)
 	limit := opt.EntityNDVCap
-	if lane, _, _ := ClassifyLane(col); lane == LaneCategory {
+	if lane == LaneCategory {
 		limit = opt.CategoryNDVCap
 	}
 	if limit <= 0 {

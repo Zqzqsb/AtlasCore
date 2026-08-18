@@ -9,9 +9,9 @@ import (
 
 // Default budget caps (iter14 / WiseCat MR90-aligned, per DB).
 const (
-	DefaultMaxColumns       = 64
+	DefaultMaxColumns       = 104
 	DefaultEntityColumns    = 40
-	DefaultCategoryColumns  = 24
+	DefaultCategoryColumns  = 64
 	DefaultEntityNDVCap     = 50_000
 	DefaultCategoryNDVCap   = 5_000
 	DefaultMaxDocuments     = 100_000
@@ -30,16 +30,19 @@ var (
 
 // Options controls offline index build budgets.
 type Options struct {
-	MaxColumns           int
-	EntityColumns        int
-	CategoryColumns      int
-	EntityNDVCap         int
-	CategoryNDVCap       int
-	MaxDocuments         int
-	MaxValueRunes        int
-	ExactDistinctMaxRows int64
-	SampleDistinctCap    int
-	ColumnQueryTimeout   time.Duration
+	MaxColumns             int
+	EntityColumns          int
+	CategoryColumns        int
+	EntityNDVCap           int
+	CategoryNDVCap         int
+	MaxDocuments           int
+	MaxPostings            int
+	EntityColumnPostings   int
+	CategoryColumnPostings int
+	MaxValueRunes          int
+	ExactDistinctMaxRows   int64
+	SampleDistinctCap      int
+	ColumnQueryTimeout     time.Duration
 	// Aliases: lower(table)|lower(column)|display → extra strings tokenized onto that value.
 	Aliases map[string][]string
 }
@@ -47,16 +50,19 @@ type Options struct {
 // DefaultOptions returns iter14 recommended caps.
 func DefaultOptions() Options {
 	return Options{
-		MaxColumns:           DefaultMaxColumns,
-		EntityColumns:        DefaultEntityColumns,
-		CategoryColumns:      DefaultCategoryColumns,
-		EntityNDVCap:         DefaultEntityNDVCap,
-		CategoryNDVCap:       DefaultCategoryNDVCap,
-		MaxDocuments:         DefaultMaxDocuments,
-		MaxValueRunes:        DefaultMaxValueRunes,
-		ExactDistinctMaxRows: DefaultExactDistinctMax,
-		SampleDistinctCap:    DefaultSampleDistinct,
-		ColumnQueryTimeout:   20 * time.Second,
+		MaxColumns:             DefaultMaxColumns,
+		EntityColumns:          DefaultEntityColumns,
+		CategoryColumns:        DefaultCategoryColumns,
+		EntityNDVCap:           DefaultEntityNDVCap,
+		CategoryNDVCap:         DefaultCategoryNDVCap,
+		MaxDocuments:           DefaultMaxDocuments,
+		MaxPostings:            500_000,
+		EntityColumnPostings:   100_000,
+		CategoryColumnPostings: 50_000,
+		MaxValueRunes:          DefaultMaxValueRunes,
+		ExactDistinctMaxRows:   DefaultExactDistinctMax,
+		SampleDistinctCap:      DefaultSampleDistinct,
+		ColumnQueryTimeout:     20 * time.Second,
 	}
 }
 
@@ -80,6 +86,15 @@ func (o Options) withDefaults() Options {
 	if o.MaxDocuments <= 0 {
 		o.MaxDocuments = d.MaxDocuments
 	}
+	if o.MaxPostings <= 0 {
+		o.MaxPostings = d.MaxPostings
+	}
+	if o.EntityColumnPostings <= 0 {
+		o.EntityColumnPostings = d.EntityColumnPostings
+	}
+	if o.CategoryColumnPostings <= 0 {
+		o.CategoryColumnPostings = d.CategoryColumnPostings
+	}
 	if o.MaxValueRunes <= 0 {
 		o.MaxValueRunes = d.MaxValueRunes
 	}
@@ -100,18 +115,21 @@ const (
 	PolicyInclude = "include"
 	PolicyExclude = "exclude"
 	PolicyUnknown = "unknown"
+	PolicyReview  = "review"
 )
 
 // ColumnSpec describes one physical column considered for indexing.
 type ColumnSpec struct {
-	Table      string
-	Column     string
-	DeclType   string
-	IsPK       bool
-	NRows      int64
-	NDV        int    // 0 unknown; prefer ValueStats.DistinctCount when available
-	Policy     string // include|exclude|unknown (empty = unknown)
-	ForceIndex bool   // official value encoding: index even if non-text
+	Table              string
+	Column             string
+	DeclType           string
+	IsPK               bool
+	NRows              int64
+	NDV                int    // 0 unknown; prefer ValueStats.DistinctCount when available
+	Policy             string // include|exclude|unknown (empty = unknown)
+	ForceIndex         bool   // official value encoding: index even if non-text
+	EstimatedDocuments int    // planner estimate; 0 falls back to NDV/NRows
+	Kind               string // planner lane: entity|category
 }
 
 // Lane is entity vs category selection pool.
@@ -151,11 +169,11 @@ func IsTextDecl(decl string) bool {
 
 // ClassifyLane returns entity/category or empty if hard-gated.
 func ClassifyLane(col ColumnSpec) (Lane, string, string) {
-	if col.IsPK {
-		return "", "hard_gate", "primary_key"
-	}
 	if col.ForceIndex {
 		return LaneCategory, "", "official_value_desc"
+	}
+	if col.IsPK {
+		return "", "hard_gate", "primary_key"
 	}
 	if !IsTextDecl(col.DeclType) {
 		return "", "non_text", "non_text_type"
@@ -171,6 +189,12 @@ func ClassifyLane(col ColumnSpec) (Lane, string, string) {
 }
 
 func estimatedDocs(c ColumnSpec, ndvCap int) int {
+	if c.EstimatedDocuments > 0 {
+		if c.EstimatedDocuments > ndvCap {
+			return ndvCap
+		}
+		return c.EstimatedDocuments
+	}
 	if c.NDV > 0 {
 		return c.NDV
 	}
@@ -230,13 +254,26 @@ func SelectColumns(cols []ColumnSpec, opt Options) []Decision {
 			rejected = append(rejected, Decision{Spec: c, Status: "excluded", Reason: "policy_exclude"})
 			continue
 		}
+		if policy == PolicyReview {
+			rejected = append(rejected, Decision{Spec: c, Status: "review", Reason: "policy_review"})
+			continue
+		}
 
 		lane, status, reason := ClassifyLane(c)
 		if policy == PolicyInclude {
-			// Agent/heuristic include overrides name miss — still respect PK/non-text hard gates.
-			if status == "hard_gate" || status == "non_text" {
+			// A sampled/LLM include may rescue misleading names such as
+			// DESCRIPTION when value stats show a small semantic enum. Primary
+			// keys and non-text types remain hard gates (official mappings use
+			// ForceIndex and were handled above).
+			if status == "non_text" || (status == "hard_gate" && reason != "name_gate") {
 				rejected = append(rejected, Decision{Spec: c, Status: status, Reason: reason})
 				continue
+			}
+			switch Lane(strings.ToLower(strings.TrimSpace(c.Kind))) {
+			case LaneEntity:
+				lane = LaneEntity
+			case LaneCategory:
+				lane = LaneCategory
 			}
 			if lane == "" {
 				lane = LaneEntity
@@ -255,8 +292,7 @@ func SelectColumns(cols []ColumnSpec, opt Options) []Decision {
 			continue
 		}
 		d := Decision{Spec: c, Lane: lane, Status: "candidate"}
-		if lane == LaneEntity || policy == PolicyInclude {
-			d.Lane = LaneEntity
+		if lane == LaneEntity {
 			entity = append(entity, d)
 		} else {
 			category = append(category, d)

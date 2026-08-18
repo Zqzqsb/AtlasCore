@@ -459,7 +459,7 @@ Workflow:
 %d. If unclear which columns needed → use clarify_fields`, step))
 			step++
 			sb.WriteString(fmt.Sprintf(`
-%d. If string values uncertain → use probe_column_values (preferred) or execute_sql`, step))
+%d. If string values uncertain → probe_column_values once per column (preferred) or execute_sql; never re-probe the same column`, step))
 			step++
 		} else if p.config.EnableProposeFields {
 			if p.projAlignToolActive() {
@@ -472,12 +472,12 @@ Workflow:
 			step++
 			if p.config.EnableProbeTool {
 				sb.WriteString(fmt.Sprintf(`
-%d. If string/enum literals uncertain (see Value Probe Hints) → use probe_column_values BEFORE writing WHERE`, step))
+%d. If string/enum literals uncertain (see Value Probe Hints) → probe_column_values once per column, then write WHERE; never re-probe the same column`, step))
 				step++
 			}
 		} else if p.config.EnableProbeTool {
 			sb.WriteString(fmt.Sprintf(`
-%d. If string/enum literals uncertain → use probe_column_values BEFORE writing WHERE`, step))
+%d. If string/enum literals uncertain → probe_column_values once per column, then write WHERE; never re-probe the same column`, step))
 			step++
 		} else {
 			sb.WriteString(fmt.Sprintf(`
