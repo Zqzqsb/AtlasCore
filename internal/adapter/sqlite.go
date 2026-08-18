@@ -9,6 +9,11 @@ import (
 	_ "modernc.org/sqlite"
 )
 
+// DefaultQueryTimeout bounds a SQLite query when the caller ctx has no deadline.
+// modernc honors ctx via sqlite3_interrupt; without this, an unmaterialized CTE
+// can burn CPU for tens of minutes and stall a whole eval shard.
+const DefaultQueryTimeout = 30 * time.Second
+
 // SQLiteAdapter SQLite adapter
 type SQLiteAdapter struct {
 	db     *sql.DB
@@ -33,9 +38,12 @@ func (a *SQLiteAdapter) Connect(ctx context.Context) error {
 	if err != nil {
 		return fmt.Errorf("failed to open database: %w", err)
 	}
+	db.SetMaxOpenConns(1)
+	db.SetMaxIdleConns(1)
 
 	// Test connection
 	if err := db.PingContext(ctx); err != nil {
+		_ = db.Close()
 		return fmt.Errorf("failed to ping database: %w", err)
 	}
 
@@ -51,9 +59,21 @@ func (a *SQLiteAdapter) Close() error {
 	return nil
 }
 
+func withQueryTimeout(ctx context.Context) (context.Context, context.CancelFunc) {
+	if ctx == nil {
+		ctx = context.Background()
+	}
+	if _, ok := ctx.Deadline(); ok {
+		return ctx, func() {}
+	}
+	return context.WithTimeout(ctx, DefaultQueryTimeout)
+}
+
 // ExecuteQuery executes query
 func (a *SQLiteAdapter) ExecuteQuery(ctx context.Context, query string) (*QueryResult, error) {
 	start := time.Now()
+	ctx, cancel := withQueryTimeout(ctx)
+	defer cancel()
 
 	rows, err := a.db.QueryContext(ctx, query)
 	if err != nil {

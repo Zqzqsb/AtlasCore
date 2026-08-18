@@ -6,18 +6,15 @@ import (
 	"path/filepath"
 	"regexp"
 	"strings"
-	"sync"
 	"unicode"
 
 	"github.com/Zqzqsb/AtlasCore/internal/valueindex"
 )
 
 var (
-	cjkLiteralRe    = regexp.MustCompile(`[\p{Han}]{2,24}`)
-	properNounRe    = regexp.MustCompile(`\b[A-Z][a-zA-Z0-9]+(?:\s+[A-Z][a-zA-Z0-9]+){0,3}\b`)
-	pureNumberRe    = regexp.MustCompile(`^\d+(\.\d+)?%?$`)
-	valueIndexMu    sync.Mutex
-	valueIndexCache = map[string]*valueindex.Store{}
+	cjkLiteralRe = regexp.MustCompile(`[\p{Han}]{2,24}`)
+	properNounRe = regexp.MustCompile(`\b[A-Z][a-zA-Z0-9]+(?:\s+[A-Z][a-zA-Z0-9]+){0,3}\b`)
+	pureNumberRe = regexp.MustCompile(`^\d+(\.\d+)?%?$`)
 
 	// English interrogatives / verbs that were matching random token postings
 	// ("What"→Powhatan, "Tell"→Blood Will Tell, …).
@@ -137,17 +134,7 @@ func (p *Pipeline) openValueIndex() (*valueindex.Store, error) {
 	if _, err := os.Stat(path); err != nil {
 		return nil, nil
 	}
-	valueIndexMu.Lock()
-	defer valueIndexMu.Unlock()
-	if s, ok := valueIndexCache[path]; ok {
-		return s, nil
-	}
-	s, err := valueindex.OpenStore(path)
-	if err != nil {
-		return nil, err
-	}
-	valueIndexCache[path] = s
-	return s, nil
+	return valueindex.OpenStore(path)
 }
 
 // keepValueIndexHit: inject only exact matches by default. Strong token hits are
@@ -174,6 +161,7 @@ func (p *Pipeline) LookupValueIndexHits(ctx context.Context, question, evidence 
 	if err != nil || store == nil {
 		return nil, err
 	}
+	defer store.Close()
 	queries := ExtractValueIndexQueries(question, evidence)
 	var all []valueindex.Hit
 	seen := map[string]struct{}{}

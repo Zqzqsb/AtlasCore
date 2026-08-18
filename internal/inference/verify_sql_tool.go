@@ -2,6 +2,7 @@ package inference
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"regexp"
 	"strings"
@@ -67,16 +68,22 @@ func (t *VerifySQLTool) Call(ctx context.Context, input string) (string, error) 
 		return result, nil
 	}
 
-	// 2. Execute SQL for validation and result analysis
-	data, err := t.adapter.ExecuteQuery(ctx, sql)
+	// 2. Execute SQL for validation and result analysis (capped so a nested CTE cannot stall ReAct)
+	execCtx, cancel := context.WithTimeout(ctx, adapter.DefaultQueryTimeout)
+	defer cancel()
+	data, err := t.adapter.ExecuteQuery(execCtx, sql)
 	if err != nil {
 		hint := ""
-		low := strings.ToLower(err.Error())
-		if strings.Contains(low, "iif") {
-			hint = "\nHint: use CASE WHEN … THEN … ELSE … END instead of IIF (older SQLite)."
-		}
-		if strings.Contains(low, "right") || strings.Contains(low, "full outer") {
-			hint += "\nHint: SQLite has no RIGHT/FULL JOIN — rewrite as LEFT JOIN."
+		if isQueryTimeout(err) {
+			hint = fmt.Sprintf("\nHint: query exceeded %s (likely a nested scan or unmaterialized CTE). Rewrite as a simple GROUP BY / LIMIT and retry.", adapter.DefaultQueryTimeout)
+		} else {
+			low := strings.ToLower(err.Error())
+			if strings.Contains(low, "iif") {
+				hint = "\nHint: use CASE WHEN … THEN … ELSE … END instead of IIF (older SQLite)."
+			}
+			if strings.Contains(low, "right") || strings.Contains(low, "full outer") {
+				hint += "\nHint: SQLite has no RIGHT/FULL JOIN — rewrite as LEFT JOIN."
+			}
 		}
 		result := fmt.Sprintf("❌ SQL validation failed (database check):\n%v%s\n\nPlease fix the error and try again.", err, hint)
 		logf("Output: %s\n", result)
@@ -308,6 +315,17 @@ func (t *VerifySQLTool) checkParentheses(sql string) error {
 	}
 
 	return nil
+}
+
+func isQueryTimeout(err error) bool {
+	if err == nil {
+		return false
+	}
+	if errors.Is(err, context.DeadlineExceeded) || errors.Is(err, context.Canceled) {
+		return true
+	}
+	low := strings.ToLower(err.Error())
+	return strings.Contains(low, "deadline") || strings.Contains(low, "interrupt") || strings.Contains(low, "canceled")
 }
 
 // NewVerifySQLTool creates verification tool
