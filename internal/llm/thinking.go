@@ -10,10 +10,12 @@ import (
 )
 
 // thinkingTypeForConfig returns the Chat Completions thinking.type to inject.
-// Default is "disabled". "enabled" / "auto" / "omit" skip injection.
+// Default is "disabled". "enabled" / "on" send type=enabled. "auto" / "omit" skip injection.
 func thinkingTypeForConfig(cfg ModelConfig) string {
 	switch strings.ToLower(strings.TrimSpace(cfg.Thinking)) {
-	case "enabled", "auto", "on", "omit":
+	case "enabled", "on":
+		return "enabled"
+	case "auto", "omit":
 		return ""
 	case "", "disabled", "off", "none":
 		return "disabled"

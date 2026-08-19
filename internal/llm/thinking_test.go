@@ -13,8 +13,8 @@ func TestThinkingTypeForConfigDefaultDisabled(t *testing.T) {
 	if got := thinkingTypeForConfig(ModelConfig{}); got != "disabled" {
 		t.Fatalf("empty config thinking=%q, want disabled", got)
 	}
-	if got := thinkingTypeForConfig(ModelConfig{Thinking: "enabled"}); got != "" {
-		t.Fatalf("enabled should skip inject, got %q", got)
+	if got := thinkingTypeForConfig(ModelConfig{Thinking: "enabled"}); got != "enabled" {
+		t.Fatalf("enabled should inject type=enabled, got %q", got)
 	}
 	if got := thinkingTypeForConfig(ModelConfig{Thinking: "DISABLED"}); got != "disabled" {
 		t.Fatalf("got %q", got)

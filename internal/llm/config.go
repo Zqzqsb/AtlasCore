@@ -16,8 +16,8 @@ type ModelConfig struct {
 	BaseURL         string `json:"base_url"`
 	ReasoningEffort string `json:"reasoning_effort,omitempty"`
 	// Thinking is sent as Chat Completions top-level {"thinking":{"type": ...}}.
-	// Empty / "disabled" (default) turns thinking off. "enabled" / "auto" leaves
-	// the provider default. "omit" does not send the field.
+	// Empty / "disabled" (default) turns thinking off. "enabled" / "on" send
+	// type=enabled. "auto" / "omit" leave the field unset.
 	Thinking string `json:"thinking,omitempty"`
 }
 
