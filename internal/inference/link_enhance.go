@@ -4,7 +4,9 @@ import (
 	"context"
 	"fmt"
 	"regexp"
+	"sort"
 	"strings"
+	"unicode"
 
 	"github.com/Zqzqsb/AtlasCore/internal/valueindex"
 )
@@ -13,6 +15,21 @@ var (
 	quotedLiteralRe = regexp.MustCompile(`'([^']{1,80})'|"([^"]{1,80})"`)
 	percentTokenRe  = regexp.MustCompile(`\b\d+(?:\.\d+)?\s*%`)
 )
+
+func resolveTableName(name string, allTables map[string]*TableInfo) string {
+	if name == "" || len(allTables) == 0 {
+		return ""
+	}
+	if _, ok := allTables[name]; ok {
+		return name
+	}
+	for k := range allTables {
+		if strings.EqualFold(k, name) {
+			return k
+		}
+	}
+	return ""
+}
 
 // ExpandTablesWithFK adds 1-hop parent tables (child → referenced parent).
 // Does not reverse-expand children of a selected table (that floods SQL-gen).
@@ -23,19 +40,8 @@ func ExpandTablesWithFK(selected []string, allTables map[string]*TableInfo) []st
 	set := map[string]struct{}{}
 	var out []string
 	add := func(name string) {
+		name = resolveTableName(name, allTables)
 		if name == "" {
-			return
-		}
-		if _, ok := allTables[name]; !ok {
-			// case-insensitive fallback
-			for k := range allTables {
-				if strings.EqualFold(k, name) {
-					name = k
-					break
-				}
-			}
-		}
-		if _, ok := allTables[name]; !ok {
 			return
 		}
 		if _, seen := set[name]; seen {
@@ -58,6 +64,192 @@ func ExpandTablesWithFK(selected []string, allTables map[string]*TableInfo) []st
 		}
 	}
 	return out
+}
+
+const maxHomonymHistoryAdd = 4
+
+func isHistoryTableName(name string) bool {
+	return strings.Contains(strings.ToLower(name), "history")
+}
+
+func skipHomonymColumn(name string) bool {
+	n := strings.ToLower(strings.TrimSpace(name))
+	if n == "" {
+		return true
+	}
+	compact := strings.Map(func(r rune) rune {
+		if r == '_' || r == ' ' || r == '-' {
+			return -1
+		}
+		return unicode.ToLower(r)
+	}, n)
+	switch compact {
+	case "id", "name", "title", "type", "status", "description", "comment", "notes",
+		"date", "time", "datetime", "timestamp", "created", "createdat", "updated",
+		"updatedat", "modifieddate", "lastupdate", "createdate":
+		return true
+	}
+	if n == "id" || strings.HasSuffix(n, "_id") || strings.HasSuffix(compact, "id") {
+		return true
+	}
+	alnum := 0
+	for _, r := range compact {
+		if unicode.IsLetter(r) || unicode.IsDigit(r) {
+			alnum++
+		}
+	}
+	return alnum < 5
+}
+
+func distinctiveColumns(info *TableInfo) map[string]string {
+	out := map[string]string{}
+	if info == nil {
+		return out
+	}
+	fkCols := map[string]struct{}{}
+	for _, fk := range info.ForeignKeys {
+		fkCols[strings.ToLower(strings.TrimSpace(fk.ColumnName))] = struct{}{}
+	}
+	for _, col := range info.Columns {
+		lc := strings.ToLower(strings.TrimSpace(col))
+		if lc == "" {
+			continue
+		}
+		if _, isFK := fkCols[lc]; isFK {
+			continue
+		}
+		if skipHomonymColumn(col) {
+			continue
+		}
+		out[lc] = col
+	}
+	return out
+}
+
+// ExpandHomonymHistoryTables adds *History children that share a distinctive
+// non-key column with a selected parent (e.g. Product.StandardCost vs
+// ProductCostHistory.StandardCost). Does not reverse-expand all children.
+func ExpandHomonymHistoryTables(selected []string, allTables map[string]*TableInfo) []string {
+	if len(selected) == 0 || len(allTables) == 0 {
+		return selected
+	}
+	set := map[string]struct{}{}
+	out := make([]string, 0, len(selected)+maxHomonymHistoryAdd)
+	parentCols := map[string]string{}
+	for _, t := range selected {
+		name := resolveTableName(t, allTables)
+		if name == "" {
+			continue
+		}
+		if _, seen := set[name]; seen {
+			continue
+		}
+		set[name] = struct{}{}
+		out = append(out, name)
+		for lc, orig := range distinctiveColumns(allTables[name]) {
+			if _, ok := parentCols[lc]; !ok {
+				parentCols[lc] = orig
+			}
+		}
+	}
+	if len(parentCols) == 0 {
+		return out
+	}
+
+	type cand struct{ name string }
+	var cands []cand
+	for childName, child := range allTables {
+		if _, seen := set[childName]; seen {
+			continue
+		}
+		if !isHistoryTableName(childName) {
+			continue
+		}
+		parentHit := false
+		for _, fk := range child.ForeignKeys {
+			ref := resolveTableName(fk.ReferencedTable, allTables)
+			if _, ok := set[ref]; ok {
+				parentHit = true
+				break
+			}
+		}
+		if !parentHit {
+			continue
+		}
+		shared := false
+		for lc := range distinctiveColumns(child) {
+			if _, ok := parentCols[lc]; ok {
+				shared = true
+				break
+			}
+		}
+		if !shared {
+			continue
+		}
+		cands = append(cands, cand{name: childName})
+	}
+	sort.Slice(cands, func(i, j int) bool { return cands[i].name < cands[j].name })
+	added := 0
+	for _, c := range cands {
+		if added >= maxHomonymHistoryAdd {
+			break
+		}
+		if _, seen := set[c.name]; seen {
+			continue
+		}
+		set[c.name] = struct{}{}
+		out = append(out, c.name)
+		added++
+	}
+	return out
+}
+
+// FormatHomonymColumnHints lists distinctive column names that appear on more
+// than one table in the (expanded) set. Neutral: snapshot vs row history.
+func FormatHomonymColumnHints(tables []string, allTables map[string]*TableInfo) string {
+	if len(tables) < 2 || len(allTables) == 0 {
+		return ""
+	}
+	owners := map[string][]string{}
+	origCol := map[string]string{}
+	seenTable := map[string]struct{}{}
+	for _, t := range tables {
+		name := resolveTableName(t, allTables)
+		if name == "" {
+			continue
+		}
+		if _, dup := seenTable[name]; dup {
+			continue
+		}
+		seenTable[name] = struct{}{}
+		for lc, orig := range distinctiveColumns(allTables[name]) {
+			origCol[lc] = orig
+			owners[lc] = append(owners[lc], name)
+		}
+	}
+	var cols []string
+	for lc, ts := range owners {
+		if len(ts) >= 2 {
+			cols = append(cols, lc)
+		}
+	}
+	if len(cols) == 0 {
+		return ""
+	}
+	sort.Strings(cols)
+	if len(cols) > 8 {
+		cols = cols[:8]
+	}
+	var b strings.Builder
+	b.WriteString("## Homonym columns\n")
+	b.WriteString("These names exist on more than one related table (often a current snapshot vs row-level *History). They are not interchangeable:\n")
+	for _, lc := range cols {
+		ts := append([]string{}, owners[lc]...)
+		sort.Strings(ts)
+		b.WriteString(fmt.Sprintf("- %s: %s\n", origCol[lc], strings.Join(ts, ", ")))
+	}
+	b.WriteString("\n")
+	return b.String()
 }
 
 // ExtractEvidenceLiterals pulls quoted strings and percent tokens for probe hints.
@@ -266,11 +458,18 @@ func (p *Pipeline) ApplyLinkEnhance(ctx context.Context, query string, tables []
 	if len(expanded) > len(tables) {
 		p.Logger.Printf("🔗 FK expand (parents): %v → %v\n", tables, expanded)
 	}
+	if hist := ExpandHomonymHistoryTables(expanded, allTables); len(hist) > len(expanded) {
+		p.Logger.Printf("🔗 Homonym *History expand: %v → %v\n", expanded, hist)
+		expanded = hist
+	}
 
 	qOnly, evOnly := splitQuestionEvidence(query)
 	literals := ExtractEvidenceLiterals(qOnly, evOnly)
 	eavQueries := append([]string{}, literals...)
 	var parts []string
+	if block := FormatHomonymColumnHints(expanded, allTables); block != "" {
+		parts = append(parts, block)
+	}
 
 	// Value index: high-precision positive evidence only.
 	// Hits are restricted to linker-selected + FK-expanded tables — never expand

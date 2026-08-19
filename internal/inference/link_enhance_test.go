@@ -7,6 +7,65 @@ import (
 	contextpkg "github.com/Zqzqsb/AtlasCore/internal/context"
 )
 
+func TestExpandHomonymHistoryTables(t *testing.T) {
+	all := map[string]*TableInfo{
+		"Product": {
+			Name:    "Product",
+			Columns: []string{"ProductID", "Name", "ProductNumber", "StandardCost", "ListPrice", "ModifiedDate"},
+		},
+		"ProductCostHistory": {
+			Name:    "ProductCostHistory",
+			Columns: []string{"ProductID", "StartDate", "StandardCost", "ModifiedDate"},
+			ForeignKeys: []contextpkg.ForeignKeyMetadata{
+				{ColumnName: "ProductID", ReferencedTable: "Product", ReferencedColumn: "ProductID"},
+			},
+		},
+		"ProductListPriceHistory": {
+			Name:    "ProductListPriceHistory",
+			Columns: []string{"ProductID", "StartDate", "ListPrice", "ModifiedDate"},
+			ForeignKeys: []contextpkg.ForeignKeyMetadata{
+				{ColumnName: "ProductID", ReferencedTable: "Product", ReferencedColumn: "ProductID"},
+			},
+		},
+		"TransactionHistory": {
+			Name:    "TransactionHistory",
+			Columns: []string{"TransactionID", "ProductID", "Quantity", "ModifiedDate"},
+			ForeignKeys: []contextpkg.ForeignKeyMetadata{
+				{ColumnName: "ProductID", ReferencedTable: "Product", ReferencedColumn: "ProductID"},
+			},
+		},
+		"ProductReview": {
+			Name:    "ProductReview",
+			Columns: []string{"ProductReviewID", "ProductID", "Comments", "ModifiedDate"},
+			ForeignKeys: []contextpkg.ForeignKeyMetadata{
+				{ColumnName: "ProductID", ReferencedTable: "Product", ReferencedColumn: "ProductID"},
+			},
+		},
+	}
+	got := ExpandHomonymHistoryTables([]string{"Product"}, all)
+	has := map[string]bool{}
+	for _, g := range got {
+		has[g] = true
+	}
+	if !has["Product"] || !has["ProductCostHistory"] || !has["ProductListPriceHistory"] {
+		t.Fatalf("expected Product + cost/price history, got %v", got)
+	}
+	if has["TransactionHistory"] {
+		t.Fatalf("TransactionHistory shares only ModifiedDate; must not expand, got %v", got)
+	}
+	if has["ProductReview"] {
+		t.Fatalf("ProductReview is not *History; must not reverse-expand, got %v", got)
+	}
+
+	hint := FormatHomonymColumnHints(got, all)
+	if !strings.Contains(hint, "StandardCost") || !strings.Contains(hint, "ListPrice") {
+		t.Fatalf("hint should name the shared measures:\n%s", hint)
+	}
+	if strings.Contains(hint, "ModifiedDate") {
+		t.Fatalf("hint must not dump ModifiedDate:\n%s", hint)
+	}
+}
+
 func TestExpandTablesWithFK(t *testing.T) {
 	all := map[string]*TableInfo{
 		"orders": {
