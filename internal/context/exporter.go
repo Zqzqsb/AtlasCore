@@ -352,20 +352,10 @@ func (c *SharedContext) ExportToCompactPrompt(opts *ExportOptions) string {
 			}
 		}
 
-		// Relationship summary for this table (1:N awareness)
-		if opts.IncludeRelationships && len(table.ForeignKeys) > 0 {
-			sb.WriteString("  Relationships:\n")
-			for _, fk := range table.ForeignKeys {
-				card := fk.Cardinality
-				if card == "" {
-					card = "N:1"
-				}
-				line := fmt.Sprintf("    * %s.%s → %s.%s [%s]",
-					table.Name, fk.ColumnName, fk.ReferencedTable, fk.ReferencedColumn, card)
-				if fk.ParentToChild == "1:N" {
-					line += " (parent 1:N — JOIN may multiply rows; DISTINCT if unique parents needed)"
-				}
-				sb.WriteString(line + "\n")
+		// FK already appears on the column line; only keep 1:N fan-out warnings.
+		if opts.IncludeRelationships {
+			if warn := formatFanoutJoins(table); warn != "" {
+				sb.WriteString(warn)
 			}
 		}
 
@@ -378,17 +368,11 @@ func (c *SharedContext) ExportToCompactPrompt(opts *ExportOptions) string {
 			}
 		}
 
-		// Rich Context (LLM-generated business notes only — quality issues already shown above)
+		// Rich Context (LLM notes that are not already on the column line)
 		if opts.IncludeRichContext && len(table.RichContext) > 0 {
-			// Filter: only show business notes, skip old quality_issue keys
 			businessNotes := make(map[string]RichContextValue)
 			for key, note := range table.RichContext {
-				if strings.Contains(key, "quality_issue") || strings.Contains(key, "orphan_issue") {
-					continue // skip — now handled by structured QualityIssues
-				}
-				// Skip metadata keys that duplicate column/index info
-				if strings.HasSuffix(key, "_columns") || strings.HasSuffix(key, "_indexes") ||
-					strings.HasSuffix(key, "_rowcount") || strings.HasSuffix(key, "_foreignkeys") {
+				if skipDuplicateRichContextNote(key, table, opts) {
 					continue
 				}
 				businessNotes[key] = note
@@ -463,13 +447,14 @@ func (c *SharedContext) BuildCrossTableQualitySummary(selectedTables []string) s
 	var crossIssues []issueEntry
 
 	for tableName, table := range c.Tables {
+		if selected[tableName] {
+			continue // per-table Quality Issues already listed in compact prompt
+		}
 		for _, qi := range table.QualityIssues {
-			// Always include orphan issues (they affect JOINs)
 			if qi.Type == "orphan" {
 				crossIssues = append(crossIssues, issueEntry{tableName, qi})
 				continue
 			}
-			// Include whitespace/type_mismatch on FK columns (affects JOIN correctness)
 			if qi.Type == "whitespace" || qi.Type == "type_mismatch" {
 				for _, op := range qi.AffectedOps {
 					if op == "JOIN" {
@@ -477,14 +462,7 @@ func (c *SharedContext) BuildCrossTableQualitySummary(selectedTables []string) s
 						break
 					}
 				}
-				continue
 			}
-			// For non-selected tables, skip non-JOIN issues
-			if !selected[tableName] {
-				continue
-			}
-			// For selected tables, include critical issues not already in compact prompt
-			// (they ARE already shown — skip to avoid duplication)
 		}
 	}
 
@@ -523,4 +501,79 @@ func (c *SharedContext) filterTables(tableNames []string) []string {
 		}
 	}
 	return result
+}
+
+func formatFanoutJoins(table *TableMetadata) string {
+	if table == nil {
+		return ""
+	}
+	var b strings.Builder
+	n := 0
+	for _, fk := range table.ForeignKeys {
+		if fk.ParentToChild != "1:N" && !(fk.Cardinality == "N:1" && fk.AvgChildren > 1.05) {
+			continue
+		}
+		if n == 0 {
+			b.WriteString("  1:N JOINs (rows may multiply):\n")
+		}
+		n++
+		line := fmt.Sprintf("    * %s.%s → %s.%s", table.Name, fk.ColumnName, fk.ReferencedTable, fk.ReferencedColumn)
+		if fk.AvgChildren > 1.05 {
+			line += fmt.Sprintf(" ~%.1fx", fk.AvgChildren)
+		}
+		b.WriteString(line + "\n")
+	}
+	return b.String()
+}
+
+func skipDuplicateRichContextNote(key string, table *TableMetadata, opts *ExportOptions) bool {
+	k := strings.ToLower(strings.TrimSpace(key))
+	if strings.Contains(k, "quality_issue") || strings.Contains(k, "orphan_issue") {
+		return true
+	}
+	if strings.HasSuffix(k, "_columns") || strings.HasSuffix(k, "_indexes") ||
+		strings.HasSuffix(k, "_rowcount") || strings.HasSuffix(k, "_foreignkeys") {
+		return true
+	}
+	if table == nil {
+		return false
+	}
+	cols := make(map[string]ColumnMetadata, len(table.Columns))
+	for _, col := range table.Columns {
+		cols[strings.ToLower(col.Name)] = col
+	}
+	if opts != nil && opts.IncludeValueStats {
+		if col, ok := noteColumnSuffix(k, "_values", cols); ok && columnHasInlineValues(col) {
+			return true
+		}
+	}
+	if opts != nil && opts.IncludeOfficialMeaning {
+		if col, ok := noteColumnSuffix(k, "_meaning", cols); ok && strings.TrimSpace(col.OfficialMeaning) != "" {
+			return true
+		}
+	}
+	return false
+}
+
+func noteColumnSuffix(key, suffix string, cols map[string]ColumnMetadata) (ColumnMetadata, bool) {
+	if !strings.HasSuffix(key, suffix) {
+		return ColumnMetadata{}, false
+	}
+	name := strings.TrimSuffix(key, suffix)
+	col, ok := cols[name]
+	return col, ok
+}
+
+func columnHasInlineValues(col ColumnMetadata) bool {
+	if col.ValueStats == nil {
+		return false
+	}
+	vs := col.ValueStats
+	if vs.DistinctCount > 0 && vs.DistinctCount <= 30 && len(vs.TopValues) > 0 {
+		return true
+	}
+	if len(vs.SampleValues) > 0 || vs.Range != nil {
+		return true
+	}
+	return false
 }

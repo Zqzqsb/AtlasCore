@@ -529,21 +529,11 @@ func ExtractTableInfo(ctx *contextpkg.SharedContext) map[string]*TableInfo {
 			columns[i] = col.Name
 		}
 
-		// Prefer LLM-generated description
+		// Prefer LLM-generated table description, then DDL comment.
+		// Do not fall back to an arbitrary rich_context note (often a column meaning).
 		description := table.Description
 		if description == "" {
-			// Fallback: use table comment
 			description = table.Comment
-		}
-		if description == "" && len(table.RichContext) > 0 {
-			// Last resort: use first rich_context entry (skip metadata keys)
-			for k, v := range table.RichContext {
-				if !strings.HasSuffix(k, "_columns") && !strings.HasSuffix(k, "_indexes") &&
-					!strings.HasSuffix(k, "_rowcount") && !strings.HasSuffix(k, "_foreignkeys") {
-					description = v.Content
-					break
-				}
-			}
 		}
 
 		// Build quality summary from structured issues

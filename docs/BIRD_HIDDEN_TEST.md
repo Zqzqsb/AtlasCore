@@ -100,7 +100,7 @@ go run ./cmd/eval \
   --data /path/to/test.json \
   --db-dir /path/to/test_databases \
   --context-dir contexts/sqlite/bird_official_test \
-  --grounding-mode off \
+  --grounding-mode all \
   --limit 3 \
   --output-dir results/bird/official_test_smoke
 ```
@@ -125,7 +125,7 @@ go run ./cmd/eval \
   --data /path/to/test.json \
   --db-dir /path/to/test_databases \
   --context-dir contexts/sqlite/bird_official_test \
-  --grounding-mode off \
+  --grounding-mode all \
   --limit 0 \
   --parallel 4 \
   --tpm-control none \
@@ -177,6 +177,7 @@ CSV filename = table name. Column names match `original_column_name`.
 | Flag | Values | Meaning |
 | --- | --- | --- |
 | `--parallel` | integer, default `1` | Split questions into N shards under `output-dir/p0`…`p{N-1}`, then merge `predict.sql` / `results.json` / `logs/` |
+| `--grounding-mode` | `all` / `sparse` / `meaning` / `profile` / `legacy` / `off`, default `all` | Inline official column meanings (and profile notes) on schema lines |
 | `--tpm-control` | `50` / `100` / `none`, default `100` | Internal TPM gate: 50% or 100% of 20M tokens/min; `none` disables the gate (429 backoff stays on) |
 
 ### tmux and logs

@@ -100,7 +100,7 @@ go run ./cmd/eval \
   --data /path/to/test.json \
   --db-dir /path/to/test_databases \
   --context-dir contexts/sqlite/bird_official_test \
-  --grounding-mode off \
+  --grounding-mode all \
   --limit 3 \
   --output-dir results/bird/official_test_smoke
 ```
@@ -125,7 +125,7 @@ go run ./cmd/eval \
   --data /path/to/test.json \
   --db-dir /path/to/test_databases \
   --context-dir contexts/sqlite/bird_official_test \
-  --grounding-mode off \
+  --grounding-mode all \
   --limit 0 \
   --parallel 4 \
   --tpm-control none \
@@ -177,6 +177,7 @@ csv 文件名 = 表名。列名对 `original_column_name`。
 | 参数 | 取值 | 说明 |
 | --- | --- | --- |
 | `--parallel` | 正整数，默认 `1` | `N` 把题目切成 N 段，写到 `output-dir/p0`…`p{N-1}`，再合成 `predict.sql` / `results.json` / `logs/` |
+| `--grounding-mode` | `all` / `sparse` / `meaning` / `profile` / `legacy` / `off`，默认 `all` | 在列行后贴官方列义（以及 profile 短注） |
 | `--tpm-control` | `50` / `100` / `none`，默认 `100` | 内部 TPM 闸：默认预算 20M tokens/分钟的 50% 或 100%；`none` 关掉闸（429 退避仍在） |
 
 ### tmux 与日志

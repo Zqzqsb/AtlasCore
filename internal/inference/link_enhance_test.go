@@ -90,6 +90,15 @@ func TestCompactExportOptionsSparseGrounding(t *testing.T) {
 	if off.IncludeOfficialMeaning || off.IncludeProfileNL {
 		t.Fatalf("off mode must emit no grounding: %+v", off)
 	}
+
+	all := (&Pipeline{config: &Config{GroundingMode: "all"}}).compactExportOptions([]string{"orders"}, relevant, false)
+	if !all.IncludeOfficialMeaning || !all.IncludeProfileNL || all.GroundingColumns != nil {
+		t.Fatalf("all mode should ground every selected-table column: %+v", all)
+	}
+	empty := (&Pipeline{config: &Config{}}).compactExportOptions([]string{"orders"}, relevant, false)
+	if !empty.IncludeOfficialMeaning || !empty.IncludeProfileNL {
+		t.Fatalf("default grounding should be all: %+v", empty)
+	}
 }
 
 func TestFingerprintPreservesColumnOrder(t *testing.T) {

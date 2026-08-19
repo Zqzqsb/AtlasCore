@@ -10,8 +10,8 @@ OUTPUT_DIR="${OUTPUT_DIR:-results/bird/heldout_vi_n100_r1}"
 MODEL="${MODEL:-deepseek-v4-pro}"
 START="${START:-0}"
 LIMIT="${LIMIT:-100}"
-# off = no ProfileNL/sparse dump; value index is injected via LinkEnhance only
-GROUNDING_MODE="${GROUNDING_MODE:-off}"
+# all = official column meanings + sparse profile notes on every selected-table column
+GROUNDING_MODE="${GROUNDING_MODE:-all}"
 
 if [[ ! -d "$CONTEXT_DIR" ]]; then
   echo "missing context dir: $CONTEXT_DIR (run scripts/run_value_index_offline.sh first)" >&2

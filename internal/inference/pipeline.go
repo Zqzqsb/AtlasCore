@@ -43,7 +43,7 @@ type Config struct {
 	EnableProposeFields  bool               // Expose propose_output_fields tool
 	ColumnMeaning        ColumnMeaningStore // Optional official column_meaning.json
 	ScaleCandidates      int                // 0/1 = off; >=2 enables scale_light vote
-	GroundingMode        string             // sparse (default) | all | meaning | profile | legacy | off
+	GroundingMode        string             // all (default) | sparse | meaning | profile | legacy | off
 
 	// Linker / sampling enhancements (WiseCat + DeepEye + DataGallery distill)
 	EnableLinkEnhance bool // FK expand + column refine + evidence literal hints
@@ -215,13 +215,13 @@ func (p *Pipeline) bakeOfficialMeaningsIntoRC() {
 
 func (p *Pipeline) normalizedGroundingMode() string {
 	if p == nil || p.config == nil {
-		return "sparse"
+		return "all"
 	}
 	switch strings.ToLower(strings.TrimSpace(p.config.GroundingMode)) {
 	case "off", "all", "meaning", "profile", "legacy", "sparse":
 		return strings.ToLower(strings.TrimSpace(p.config.GroundingMode))
 	default:
-		return "sparse"
+		return "all"
 	}
 }
 

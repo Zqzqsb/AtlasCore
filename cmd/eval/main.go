@@ -180,7 +180,7 @@ func main() {
 	dbDirFlag := flag.String("db-dir", "", "Override database directory")
 	contextDirFlag := flag.String("context-dir", "", "Override rich context directory")
 	columnMeaningPath := flag.String("column-meaning", "", "Optional column_meaning.json (official / held-out)")
-	groundingMode := flag.String("grounding-mode", "sparse", "Column grounding: sparse | all | meaning | profile | legacy | off")
+	groundingMode := flag.String("grounding-mode", "all", "Column grounding: all | sparse | meaning | profile | legacy | off")
 	ignoreGoldFields := flag.Bool("ignore-gold-fields", false, "Do not pass result_fields even if present in JSON (black-box)")
 	parallel := flag.Int("parallel", 1, "Concurrent question shards (1 = sequential). Writes output-dir/p0.. then merges.")
 	tpmControl := flag.String("tpm-control", "100", "TPM gate: 50 | 100 | none (percent of 20M tokens/min; none disables the gate)")
@@ -196,7 +196,7 @@ func main() {
 	case "sparse", "all", "meaning", "profile", "legacy", "off":
 		*groundingMode = strings.ToLower(strings.TrimSpace(*groundingMode))
 	default:
-		log.Fatalf("Invalid --grounding-mode %q (want sparse|all|meaning|profile|legacy|off)", *groundingMode)
+		log.Fatalf("Invalid --grounding-mode %q (want all|sparse|meaning|profile|legacy|off)", *groundingMode)
 	}
 
 	reader := bufio.NewReader(os.Stdin)

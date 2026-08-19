@@ -102,10 +102,78 @@ func TestExportCompactIncludesSamplesAndCardinality(t *testing.T) {
 		},
 	}
 	out := shared.ExportToCompactPrompt(DefaultExportOptions())
-	for _, want := range []string{"child entities", "[N:1]", "samples=[hello, world]", "values=[", "Relationships:", "1:N"} {
+	for _, want := range []string{"child entities", "[N:1]", "samples=[hello, world]", "values=[", "1:N JOINs", "~4.0x"} {
 		if !strings.Contains(out, want) {
 			t.Fatalf("missing %q in:\n%s", want, out)
 		}
+	}
+	if strings.Contains(out, "Relationships:") {
+		t.Fatalf("full FK dump should be gone:\n%s", out)
+	}
+}
+
+func TestExportCompactDropsDuplicateColumnNotes(t *testing.T) {
+	shared := NewSharedContext("demo", "sqlite")
+	shared.Tables["biz"] = &TableMetadata{
+		Name: "biz",
+		Columns: []ColumnMetadata{{
+			Name:            "active",
+			Type:            "TEXT",
+			OfficialMeaning: "whether the business is open",
+			ValueStats: &ValueStats{
+				DistinctCount: 2,
+				TopValues:     []ValueFrequency{{Value: "true", Count: 9}, {Value: "false", Count: 1}},
+			},
+		}},
+		RichContext: map[string]RichContextValue{
+			"active_values":  {BusinessNote: BusinessNote{Content: "true=open(90%), false=closed(10%)"}},
+			"active_meaning": {BusinessNote: BusinessNote{Content: "Boolean flag indicating whether the business is currently active"}},
+			"business_rules": {BusinessNote: BusinessNote{Content: "Yelp-style listings in Phoenix"}},
+			"attr_13_values": {BusinessNote: BusinessNote{Content: "13=Has bike parking"}},
+		},
+	}
+	out := shared.ExportToCompactPrompt(DefaultExportOptions())
+	if !strings.Contains(out, "whether the business is open") {
+		t.Fatalf("official meaning missing:\n%s", out)
+	}
+	if !strings.Contains(out, "values=[true(9)") {
+		t.Fatalf("inline values missing:\n%s", out)
+	}
+	if !strings.Contains(out, "Yelp-style listings") || !strings.Contains(out, "Has bike parking") {
+		t.Fatalf("non-duplicate notes should remain:\n%s", out)
+	}
+	for _, dup := range []string{"true=open(90%)", "Boolean flag indicating whether the business is currently active"} {
+		if strings.Contains(out, dup) {
+			t.Fatalf("duplicate note %q still present:\n%s", dup, out)
+		}
+	}
+}
+
+func TestCrossTableQualitySkipsSelectedTableIssues(t *testing.T) {
+	shared := NewSharedContext("demo", "sqlite")
+	shared.Tables["biz"] = &TableMetadata{
+		Name: "biz",
+		QualityIssues: []QualityIssue{{
+			Table: "biz", Column: "city", Type: "whitespace",
+			Description: "Contains leading/trailing whitespace",
+			SQLFix:      `TRIM("city")`,
+			AffectedOps: []string{"JOIN"},
+		}},
+	}
+	shared.Tables["other"] = &TableMetadata{
+		Name: "other",
+		QualityIssues: []QualityIssue{{
+			Table: "other", Column: "biz_id", Type: "orphan",
+			Description: "orphan FK",
+			SQLFix:      "check parent",
+		}},
+	}
+	got := shared.BuildCrossTableQualitySummary([]string{"biz"})
+	if strings.Contains(got, "whitespace") {
+		t.Fatalf("selected-table issue duplicated:\n%s", got)
+	}
+	if !strings.Contains(got, "orphan FK") {
+		t.Fatalf("unselected JOIN/orphan should remain:\n%s", got)
 	}
 }
 
@@ -132,7 +200,7 @@ func TestExportCompactFeatureSwitches(t *testing.T) {
 	opts.IncludeProfileNL = false
 	opts.IncludeRelationships = false
 	out := shared.ExportToCompactPrompt(opts)
-	for _, unwanted := range []string{"samples=[", "business code", "stored-as-text", "Relationships:"} {
+	for _, unwanted := range []string{"samples=[", "business code", "stored-as-text", "Relationships:", "1:N JOINs"} {
 		if strings.Contains(out, unwanted) {
 			t.Fatalf("switch should remove %q from:\n%s", unwanted, out)
 		}
