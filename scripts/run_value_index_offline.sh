@@ -8,7 +8,8 @@ cd "$ROOT"
 SRC_RC="${SRC_RC:-contexts/sqlite/bird_heldout_v1_pre_profile}"
 DST_RC="${DST_RC:-contexts/sqlite/bird_heldout_v1_vi}"
 DB_DIR="${DB_DIR:-benchmarks/bird/heldout_v1_smoke/test_databases}"
-COLUMN_MEANING="${COLUMN_MEANING:-benchmarks/bird/heldout_v1_smoke/column_meaning.json}"
+# Optional overlay of column_meaning.json into RC OfficialMeaning (CSV is already baked at gen).
+COLUMN_MEANING="${COLUMN_MEANING:-}"
 LABEL="${LABEL:-sampled}"     # sampled | sampled+llm | heuristic | llm
 LABEL_MODEL="${LABEL_MODEL:-deepseek-v4-flash}"
 DB_FILTER="${DB:-}"            # optional single db_id
@@ -33,7 +34,7 @@ ARGS=(
   --value-index
   --value-index-label "$LABEL"
 )
-if [[ -f "$COLUMN_MEANING" ]]; then
+if [[ -n "$COLUMN_MEANING" && -f "$COLUMN_MEANING" ]]; then
   ARGS+=(--column-meaning "$COLUMN_MEANING")
 fi
 if [[ "$LABEL" == "llm" || "$LABEL" == "sampled+llm" ]]; then

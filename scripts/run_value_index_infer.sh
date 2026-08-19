@@ -10,7 +10,7 @@ OUTPUT_DIR="${OUTPUT_DIR:-results/bird/heldout_vi_n100_r1}"
 MODEL="${MODEL:-deepseek-v4-pro}"
 START="${START:-0}"
 LIMIT="${LIMIT:-100}"
-# all = official column meanings + sparse profile notes on every selected-table column
+# all = RC official_meaning + profile notes on every selected-table column
 GROUNDING_MODE="${GROUNDING_MODE:-all}"
 
 if [[ ! -d "$CONTEXT_DIR" ]]; then
@@ -43,7 +43,6 @@ go build -o /tmp/eval_bird_vi ./cmd/eval
   --data benchmarks/bird/heldout_v1_smoke/test.json \
   --db-dir benchmarks/bird/heldout_v1_smoke/test_databases \
   --context-dir "$CONTEXT_DIR" \
-  --column-meaning benchmarks/bird/heldout_v1_smoke/column_meaning.json \
   --grounding-mode "$GROUNDING_MODE" \
   --start "$START" \
   --limit "$LIMIT" \

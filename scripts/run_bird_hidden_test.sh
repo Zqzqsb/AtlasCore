@@ -124,9 +124,6 @@ EVAL_ARGS=(
   --tpm-control "$TPM_CONTROL"
   --output-dir "$OUTPUT_DIR"
 )
-if [[ -n "$COLUMN_MEANING" && -f "$COLUMN_MEANING" ]]; then
-  EVAL_ARGS+=(--column-meaning "$COLUMN_MEANING")
-fi
 
 echo "→ inference: ${EVAL_ARGS[*]}"
 "$EVAL_BIN" "${EVAL_ARGS[@]}"

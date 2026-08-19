@@ -2,9 +2,7 @@ package inference
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
-	"os"
 	"strings"
 	"time"
 
@@ -39,11 +37,13 @@ type Config struct {
 	Benchmark string // "spider" | "bird" — controls prompt strategy
 
 	// Leaderboard / black-box helpers (no gold SQL)
-	EnableOutputContract bool               // Derive projection hints from question+evidence
-	EnableProposeFields  bool               // Expose propose_output_fields tool
-	ColumnMeaning        ColumnMeaningStore // Optional official column_meaning.json
-	ScaleCandidates      int                // 0/1 = off; >=2 enables scale_light vote
-	GroundingMode        string             // all (default) | sparse | meaning | profile | legacy | off
+	EnableOutputContract bool // Derive projection hints from question+evidence
+	EnableProposeFields  bool // Expose propose_output_fields tool
+	// ColumnMeaning is ignored at inference. Official text is baked into RC
+	// offline (gen_all_dev / enrich_rc). Kept so old callers still compile.
+	ColumnMeaning   ColumnMeaningStore
+	ScaleCandidates int    // 0/1 = off; >=2 enables scale_light vote
+	GroundingMode   string // all (default) | sparse | meaning | profile | legacy | off
 
 	// Linker / sampling enhancements (WiseCat + DeepEye + DataGallery distill)
 	EnableLinkEnhance bool // FK expand + column refine + evidence literal hints
@@ -174,43 +174,18 @@ func NewPipeline(llm llms.Model, adapter adapter.DBAdapter, config *Config) *Pip
 	// Share logger with schema linker
 	linker.logger = p.Logger
 
-	// Load Context file (if provided)
-	// Note: context always loaded for Schema Linking
-	// UseRichContext only controls using rich_context in SQL Generation
+	// Load RC as-is. Do not overlay column_meaning.json at inference.
 	if config.ContextFile != "" {
 		if ctx, err := p.loadContext(config.ContextFile); err == nil {
 			p.context = ctx
-			p.bakeOfficialMeaningsIntoRC()
+			if adapter != nil {
+				p.context.RefreshIndexesFromDB(context.Background(), adapter)
+				p.context.RefreshEAVFromDB(context.Background(), adapter)
+			}
 		}
 	}
 
 	return p
-}
-
-// bakeOfficialMeaningsIntoRC writes column_meaning into ColumnMetadata.OfficialMeaning
-// so ExportToCompactPrompt can show one fused column line (no second FormatForDB dump).
-// Prefer enrich_rc --column-meaning to bake offline; this is the same API in-memory.
-func (p *Pipeline) bakeOfficialMeaningsIntoRC() {
-	if p == nil || p.context == nil || len(p.config.ColumnMeaning) == 0 || p.config.DBName == "" {
-		return
-	}
-	mode := p.normalizedGroundingMode()
-	if mode == "off" || mode == "profile" || mode == "legacy" {
-		if p.Logger != nil {
-			p.Logger.Printf("📚 Skip official_meaning bake (grounding-mode=%s)\n", mode)
-		}
-		return
-	}
-	lookup := contextpkg.ParseColumnMeaningForDB(map[string]string(p.config.ColumnMeaning), p.config.DBName)
-	if len(lookup) == 0 {
-		return
-	}
-	if n := p.context.ApplyOfficialMeanings(lookup); n > 0 {
-		p.context.RefreshColumnGrounding()
-		if p.Logger != nil {
-			p.Logger.Printf("📚 Baked %d official_meaning into RC columns for %s\n", n, p.config.DBName)
-		}
-	}
 }
 
 func (p *Pipeline) normalizedGroundingMode() string {
@@ -230,7 +205,7 @@ func (p *Pipeline) compactExportOptions(tables []string, relevant map[string]str
 		Tables:                 tables,
 		IncludeColumns:         true,
 		IncludeIndexes:         true,
-		IncludeRichContext:     true,
+		IncludeRichContext:     !schemaLinking,
 		IncludeStats:           true,
 		IncludeValueStats:      true,
 		IncludeRelationships:   !schemaLinking,
@@ -238,6 +213,8 @@ func (p *Pipeline) compactExportOptions(tables []string, relevant map[string]str
 		IncludeProfileNL:       false,
 	}
 	if schemaLinking {
+		// One-shot / ReAct linker: types + FK + values=/samples= + table desc.
+		// No Business Notes, no official_meaning dump, no 1:N fanout walls.
 		return opts
 	}
 	switch p.normalizedGroundingMode() {
@@ -254,8 +231,12 @@ func (p *Pipeline) compactExportOptions(tables []string, relevant map[string]str
 		} else {
 			opts.GroundingColumns = relevant
 		}
-	case "legacy", "off":
-		// legacy appends FormatForDB later; off emits no grounding.
+	case "legacy":
+		// Deprecated dump of column_meaning.json. Now pass through RC official_meaning.
+		opts.IncludeOfficialMeaning = true
+		opts.GroundingColumns = relevant
+	case "off":
+		// RC notes/stats still export; column // meaning+profile stay off.
 	default: // sparse
 		opts.IncludeOfficialMeaning = true
 		if relevant == nil {
@@ -307,7 +288,8 @@ func (p *Pipeline) Execute(ctx context.Context, query string) (*Result, error) {
 		}
 	}
 
-	// Build full RC prompt for Schema Linker (so it can read everything and output focused context)
+	// Mid-weight compact RC for the linker: types, FK, values=/samples=, table desc.
+	// Business Notes / official_meaning stay off (SQL-gen export adds those later).
 	var fullRCPrompt string
 	if p.config.UseRichContext && p.context != nil {
 		fullRCOpts := p.compactExportOptions(nil, nil, true)
@@ -335,7 +317,7 @@ func (p *Pipeline) Execute(ctx context.Context, query string) (*Result, error) {
 
 	p.Logger.Printf("📋 Selected Tables: %v\n\n", tables)
 
-	// 1b. Link enhance: FK expand + relevant columns + evidence literal hints
+	// 1b. Link enhance: forward FK parents + relevant columns + evidence literal hints
 	var linkInject string
 	var relevantColumns map[string]struct{}
 	if p.config.EnableLinkEnhance {
@@ -395,14 +377,6 @@ func (p *Pipeline) Execute(ctx context.Context, query string) (*Result, error) {
 		qOnly, evOnly := splitQuestionEvidence(query)
 		p.config.OutputContract = BuildOutputContract(qOnly, evOnly)
 		p.Logger.Printf("📝 Output contract keywords: %v\n", p.config.OutputContract.Keywords)
-	}
-
-	// No-RC and explicit legacy mode retain the separate meaning block.
-	if len(p.config.ColumnMeaning) > 0 && (p.context == nil || p.normalizedGroundingMode() == "legacy") {
-		cmBlock := p.config.ColumnMeaning.FormatForDB(p.config.DBName, tables)
-		if cmBlock != "" {
-			contextPrompt = contextPrompt + "\n" + cmBlock
-		}
 	}
 
 	// 3. Generate SQL
@@ -469,17 +443,7 @@ func (p *Pipeline) Execute(ctx context.Context, query string) (*Result, error) {
 
 // loadContext loads Rich Context
 func (p *Pipeline) loadContext(path string) (*contextpkg.SharedContext, error) {
-	data, err := os.ReadFile(path)
-	if err != nil {
-		return nil, err
-	}
-
-	var ctx contextpkg.SharedContext
-	if err := json.Unmarshal(data, &ctx); err != nil {
-		return nil, err
-	}
-
-	return &ctx, nil
+	return contextpkg.LoadContextFromFile(path)
 }
 
 // extractTableInfoFromDB extracts table info from DB

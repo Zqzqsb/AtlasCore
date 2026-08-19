@@ -21,7 +21,7 @@ type ExportOptions struct {
 	IncludeStats bool
 	// Include inline value samples/enums/ranges.
 	IncludeValueStats bool
-	// Include baked official column meanings.
+	// Include official_meaning already stored on the column (RC pass-through).
 	IncludeOfficialMeaning bool
 	// Include deterministic sparse profile notes.
 	IncludeProfileNL bool
@@ -246,8 +246,8 @@ func (c *SharedContext) ExportToPrompt(opts *ExportOptions) string {
 				if fk.AvgChildren > 1.05 {
 					extra = fmt.Sprintf(" (avg %.1f children/parent)", fk.AvgChildren)
 				}
-				sb.WriteString(fmt.Sprintf("- `%s` → `%s.%s` [%s]%s\n",
-					fk.ColumnName, fk.ReferencedTable, fk.ReferencedColumn, card, extra))
+				sb.WriteString(fmt.Sprintf("- `%s` → `%s` [%s]%s\n",
+					fk.ColumnName, formatFKTarget(fk), card, extra))
 			}
 			sb.WriteString("\n")
 		}
@@ -307,7 +307,7 @@ func (c *SharedContext) ExportToCompactPrompt(opts *ExportOptions) string {
 						if card == "" {
 							card = "N:1"
 						}
-						fkInfo = fmt.Sprintf(" → %s.%s [%s]", fk.ReferencedTable, fk.ReferencedColumn, card)
+						fkInfo = fmt.Sprintf(" → %s [%s]", formatFKTarget(fk), card)
 						if fk.AvgChildren > 1.05 {
 							fkInfo += fmt.Sprintf(" ~%.1fx", fk.AvgChildren)
 						}
@@ -319,8 +319,7 @@ func (c *SharedContext) ExportToCompactPrompt(opts *ExportOptions) string {
 				statsInfo := ""
 				if opts.IncludeValueStats && col.ValueStats != nil {
 					vs := col.ValueStats
-					if vs.DistinctCount > 0 && vs.DistinctCount <= 30 && len(vs.TopValues) > 0 {
-						// Enum display (aligned with storage threshold)
+					if statsLookClosedEnum(table, vs) {
 						vals := make([]string, 0, len(vs.TopValues))
 						for _, tv := range vs.TopValues {
 							if len(vals) >= 8 {
@@ -330,6 +329,16 @@ func (c *SharedContext) ExportToCompactPrompt(opts *ExportOptions) string {
 							vals = append(vals, fmt.Sprintf("%s(%d)", tv.Value, tv.Count))
 						}
 						statsInfo = fmt.Sprintf(" values=[%s]", strings.Join(vals, ", "))
+					} else if len(vs.TopValues) > 0 && statsAreSampled(table, vs) {
+						vals := make([]string, 0, len(vs.TopValues))
+						for _, tv := range vs.TopValues {
+							if len(vals) >= 6 {
+								vals = append(vals, "...")
+								break
+							}
+							vals = append(vals, tv.Value)
+						}
+						statsInfo = fmt.Sprintf(" samples=[%s] (prefix-sampled)", strings.Join(vals, ", "))
 					} else if len(vs.SampleValues) > 0 {
 						vals := make([]string, 0, len(vs.SampleValues))
 						for _, s := range vs.SampleValues {
@@ -350,6 +359,10 @@ func (c *SharedContext) ExportToCompactPrompt(opts *ExportOptions) string {
 
 				sb.WriteString(fmt.Sprintf("  - %s: %s%s%s%s%s\n", col.Name, col.Type, pk, fkInfo, statsInfo, groundInfo))
 			}
+		}
+
+		if opts.IncludeIndexes {
+			sb.WriteString(formatCompactIndexes(table))
 		}
 
 		// FK already appears on the column line; only keep 1:N fan-out warnings.
@@ -517,7 +530,7 @@ func formatFanoutJoins(table *TableMetadata) string {
 			b.WriteString("  1:N JOINs (rows may multiply):\n")
 		}
 		n++
-		line := fmt.Sprintf("    * %s.%s → %s.%s", table.Name, fk.ColumnName, fk.ReferencedTable, fk.ReferencedColumn)
+		line := fmt.Sprintf("    * %s.%s → %s", table.Name, fk.ColumnName, formatFKTarget(fk))
 		if fk.AvgChildren > 1.05 {
 			line += fmt.Sprintf(" ~%.1fx", fk.AvgChildren)
 		}
@@ -541,6 +554,11 @@ func skipDuplicateRichContextNote(key string, table *TableMetadata, opts *Export
 	cols := make(map[string]ColumnMetadata, len(table.Columns))
 	for _, col := range table.Columns {
 		cols[strings.ToLower(col.Name)] = col
+	}
+	if table.EAVCatalog != nil {
+		if strings.Contains(k, "_id_") && strings.HasSuffix(k, "_values") {
+			return true
+		}
 	}
 	if opts != nil && opts.IncludeValueStats {
 		if col, ok := noteColumnSuffix(k, "_values", cols); ok && columnHasInlineValues(col) {
@@ -576,4 +594,55 @@ func columnHasInlineValues(col ColumnMetadata) bool {
 		return true
 	}
 	return false
+}
+
+func statsAreSampled(table *TableMetadata, vs *ValueStats) bool {
+	if vs == nil {
+		return false
+	}
+	if strings.EqualFold(strings.TrimSpace(vs.DistinctMode), "sampled") {
+		return true
+	}
+	covered := vs.SampleRows
+	if covered <= 0 {
+		for _, tv := range vs.TopValues {
+			covered += tv.Count
+		}
+	}
+	if table != nil && table.RowCount > 0 && covered > 0 && table.RowCount > int64(covered)*2 {
+		return true
+	}
+	return false
+}
+
+func statsLookClosedEnum(table *TableMetadata, vs *ValueStats) bool {
+	if vs == nil || vs.DistinctCount <= 0 || vs.DistinctCount > 30 || len(vs.TopValues) == 0 {
+		return false
+	}
+	return !statsAreSampled(table, vs)
+}
+
+func formatCompactIndexes(table *TableMetadata) string {
+	if table == nil {
+		return ""
+	}
+	var b strings.Builder
+	for _, idx := range table.Indexes {
+		if idx.IsPrimary || skipPrimaryIndex(idx.Name, "") || len(idx.Columns) == 0 {
+			continue
+		}
+		kind := "index"
+		if idx.IsUnique {
+			kind = "unique index"
+		}
+		b.WriteString(fmt.Sprintf("  %s %s(%s)\n", kind, idx.Name, strings.Join(idx.Columns, ", ")))
+	}
+	return b.String()
+}
+
+func formatFKTarget(fk ForeignKeyMetadata) string {
+	if missingReferencedColumn(fk.ReferencedColumn) {
+		return fk.ReferencedTable
+	}
+	return fk.ReferencedTable + "." + fk.ReferencedColumn
 }

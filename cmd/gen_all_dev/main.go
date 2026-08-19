@@ -545,6 +545,7 @@ func processDatabase(model llm.ModelType, dbDir, outputDir, dbName string, loadS
 	// 6. Analyze JOIN paths
 	update("Analyzing JOIN paths", 92)
 	sharedCtx.AnalyzeJoinPaths()
+	sharedCtx.RefreshEAVFromDB(ctx, dbAdapter)
 	if !sharedCtx.Quiet {
 		progLogger.PrintSummary()
 	}

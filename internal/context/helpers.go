@@ -5,15 +5,33 @@ import (
 	"strings"
 )
 
-// getString safely gets string value from map
+// getString safely gets a string from a map. SQL NULL / Go nil become ""
+// rather than the literal "<nil>" (SQLite PRAGMA foreign_key_list.to).
 func getString(m map[string]interface{}, key string) string {
-	if val, ok := m[key]; ok {
-		if str, ok := val.(string); ok {
-			return str
-		}
-		return fmt.Sprintf("%v", val)
+	val, ok := m[key]
+	if !ok || val == nil {
+		return ""
 	}
-	return ""
+	if str, ok := val.(string); ok {
+		if isNilDisplay(str) {
+			return ""
+		}
+		return str
+	}
+	s := fmt.Sprintf("%v", val)
+	if isNilDisplay(s) {
+		return ""
+	}
+	return s
+}
+
+func isNilDisplay(s string) bool {
+	return strings.TrimSpace(s) == "<nil>"
+}
+
+func missingReferencedColumn(s string) bool {
+	s = strings.TrimSpace(s)
+	return s == "" || isNilDisplay(s)
 }
 
 // getInt safely gets integer value from map

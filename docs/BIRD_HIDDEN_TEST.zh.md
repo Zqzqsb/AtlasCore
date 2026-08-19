@@ -172,12 +172,30 @@ PY
 
 csv 文件名 = 表名。列名对 `original_column_name`。
 
+官方描述只在 **离线** 进 RC / value index。推理不再读 csv 或 `column_meaning.json`。
+
+```
+离线
+  sqlite + database_description/*.csv
+    → gen_all_dev：worker 把官方当参考，自己写 notes
+    → BakeOfficialDesc：column_description → 列 official_meaning；规则 → business_rules
+    → planner：读 official_meaning，建 value_index sidecar
+  （可选）enrich_rc --column-meaning：用 JSON 覆盖 RC 里的 official_meaning
+
+推理（只吃 RC + index + sqlite）
+  RC JSON 原样导出给 SQL-gen（grounding-mode 控制是否把 official_meaning 打到列行 //）
+  value_index sidecar 给 linker 召回
+  不读 database_description / column_meaning.json
+```
+
+`--column-meaning` 若仍传给 `cmd/eval`，会被忽略。
+
 ### 推理参数
 
 | 参数 | 取值 | 说明 |
 | --- | --- | --- |
 | `--parallel` | 正整数，默认 `1` | `N` 把题目切成 N 段，写到 `output-dir/p0`…`p{N-1}`，再合成 `predict.sql` / `results.json` / `logs/` |
-| `--grounding-mode` | `all` / `sparse` / `meaning` / `profile` / `legacy` / `off`，默认 `all` | 在列行后贴官方列义（以及 profile 短注） |
+| `--grounding-mode` | `all` / `sparse` / `meaning` / `profile` / `legacy` / `off`，默认 `all` | 是否把 RC 里已有的 `official_meaning`（以及 profile 短注）打到列行。不读外部官方文件 |
 | `--tpm-control` | `50` / `100` / `none`，默认 `100` | 内部 TPM 闸：默认预算 20M tokens/分钟的 50% 或 100%；`none` 关掉闸（429 退避仍在） |
 
 ### tmux 与日志

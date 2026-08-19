@@ -37,5 +37,7 @@ func (c *SharedContext) EnrichDeterministic(ctx context.Context, dbAdapter adapt
 
 	c.AnalyzeJoinPaths()
 	c.RefreshColumnGrounding()
+	c.RefreshIndexesFromDB(ctx, dbAdapter)
+	c.RefreshEAVFromDB(ctx, dbAdapter)
 	return firstErr
 }

@@ -94,6 +94,9 @@ type SharedContext struct {
 
 	// Quiet suppresses verbose log output (used by gen_all_dev multi-progress mode)
 	Quiet bool `json:"-"`
+
+	indexesRefreshed bool `json:"-"`
+	eavRefreshed     bool `json:"-"`
 }
 
 // BusinessNote Rich Context entry (content + expiry)
@@ -186,6 +189,9 @@ type TableMetadata struct {
 
 	// Structured quality issues (deterministic, not LLM-generated)
 	QualityIssues []QualityIssue `json:"quality_issues,omitempty"`
+
+	// EAV dictionary for this fact table (id → name → per-key value dist).
+	EAVCatalog *EAVCatalog `json:"eav_catalog,omitempty"`
 }
 
 // ColumnMetadata column metadata
@@ -198,8 +204,8 @@ type ColumnMetadata struct {
 	IsPrimaryKey bool        `json:"is_primary_key,omitempty"`
 	ValueStats   *ValueStats `json:"value_stats,omitempty"` // Deterministic value statistics
 
-	// Grounding baked at enrich time (export only reads these — no inference dual-dump)
-	OfficialMeaning string `json:"official_meaning,omitempty"` // from column_meaning.json
+	// Written offline (gen BakeOfficialDesc / enrich). Inference only exports.
+	OfficialMeaning string `json:"official_meaning,omitempty"`
 	ProfileNL       string `json:"profile_nl,omitempty"`       // deterministic NL from ValueStats
 
 	// Value-index policy metadata (no postings / values in RC JSON)
@@ -646,6 +652,7 @@ func LoadContextFromFile(filepath string) (*SharedContext, error) {
 	if err := json.Unmarshal(data, &ctx); err != nil {
 		return nil, err
 	}
+	ctx.ResolveImpliedFKColumns()
 
 	return &ctx, nil
 }
@@ -659,6 +666,7 @@ func (c *SharedContext) SaveToFile(filepath string) error {
 	if len(c.Tables) == 0 && len(c.tempData) > 0 {
 		c.buildTablesFromTempData()
 	}
+	c.resolveImpliedFKColumnsLocked()
 
 	// Generate Mermaid ER diagram
 	if len(c.Tables) > 0 {
@@ -722,60 +730,7 @@ func (c *SharedContext) BuildTableMetadata(tableName string) {
 
 	// Parse index info
 	if indexesData, ok := c.tempData[tableName+"_indexes"]; ok {
-		indexMap := make(map[string]*IndexMetadata)
-		switch idxs := indexesData.(type) {
-		case []interface{}:
-			for _, idxData := range idxs {
-				if idxMap, ok := idxData.(map[string]interface{}); ok {
-					keyName := getString(idxMap, "Key_name")
-					if keyName == "" {
-						continue
-					}
-					if _, exists := indexMap[keyName]; !exists {
-						indexMap[keyName] = &IndexMetadata{
-							Name:      keyName,
-							Columns:   []string{},
-							IsPrimary: keyName == "PRIMARY",
-						}
-						if nonUnique, ok := idxMap["Non_unique"]; ok {
-							if nu, ok := nonUnique.(float64); ok {
-								indexMap[keyName].IsUnique = (nu == 0)
-							}
-						}
-					}
-					if colName := getString(idxMap, "Column_name"); colName != "" {
-						indexMap[keyName].Columns = append(indexMap[keyName].Columns, colName)
-					}
-				}
-			}
-		case []map[string]interface{}:
-			for _, idxMap := range idxs {
-				keyName := getString(idxMap, "Key_name")
-				if keyName == "" {
-					continue
-				}
-				if _, exists := indexMap[keyName]; !exists {
-					indexMap[keyName] = &IndexMetadata{
-						Name:      keyName,
-						Columns:   []string{},
-						IsPrimary: keyName == "PRIMARY",
-					}
-					if nonUnique, ok := idxMap["Non_unique"]; ok {
-						if nu, ok := nonUnique.(float64); ok {
-							indexMap[keyName].IsUnique = (nu == 0)
-						} else if nu, ok := nonUnique.(int64); ok {
-							indexMap[keyName].IsUnique = (nu == 0)
-						}
-					}
-				}
-				if colName := getString(idxMap, "Column_name"); colName != "" {
-					indexMap[keyName].Columns = append(indexMap[keyName].Columns, colName)
-				}
-			}
-		}
-		for _, idx := range indexMap {
-			table.Indexes = append(table.Indexes, *idx)
-		}
+		table.Indexes = indexesFromTempData(indexesData)
 	}
 
 	// Parse FK info
@@ -909,60 +864,7 @@ func (c *SharedContext) buildTablesFromTempData() {
 
 		// Parse index info
 		if indexesData, ok := c.tempData[tableName+"_indexes"]; ok {
-			indexMap := make(map[string]*IndexMetadata)
-			switch idxs := indexesData.(type) {
-			case []interface{}:
-				for _, idxData := range idxs {
-					if idxMap, ok := idxData.(map[string]interface{}); ok {
-						keyName := getString(idxMap, "Key_name")
-						if keyName == "" {
-							continue
-						}
-						if _, exists := indexMap[keyName]; !exists {
-							indexMap[keyName] = &IndexMetadata{
-								Name:      keyName,
-								Columns:   []string{},
-								IsPrimary: keyName == "PRIMARY",
-							}
-							if nonUnique, ok := idxMap["Non_unique"]; ok {
-								if nu, ok := nonUnique.(float64); ok {
-									indexMap[keyName].IsUnique = (nu == 0)
-								}
-							}
-						}
-						if colName := getString(idxMap, "Column_name"); colName != "" {
-							indexMap[keyName].Columns = append(indexMap[keyName].Columns, colName)
-						}
-					}
-				}
-			case []map[string]interface{}:
-				for _, idxMap := range idxs {
-					keyName := getString(idxMap, "Key_name")
-					if keyName == "" {
-						continue
-					}
-					if _, exists := indexMap[keyName]; !exists {
-						indexMap[keyName] = &IndexMetadata{
-							Name:      keyName,
-							Columns:   []string{},
-							IsPrimary: keyName == "PRIMARY",
-						}
-						if nonUnique, ok := idxMap["Non_unique"]; ok {
-							if nu, ok := nonUnique.(float64); ok {
-								indexMap[keyName].IsUnique = (nu == 0)
-							} else if nu, ok := nonUnique.(int64); ok {
-								indexMap[keyName].IsUnique = (nu == 0)
-							}
-						}
-					}
-					if colName := getString(idxMap, "Column_name"); colName != "" {
-						indexMap[keyName].Columns = append(indexMap[keyName].Columns, colName)
-					}
-				}
-			}
-			for _, idx := range indexMap {
-				table.Indexes = append(table.Indexes, *idx)
-			}
+			table.Indexes = indexesFromTempData(indexesData)
 		}
 
 		// Parse row count

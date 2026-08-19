@@ -172,12 +172,30 @@ Place them next to each sqlite (official BIRD train/dev/test layout). `gen_all_d
 
 CSV filename = table name. Column names match `original_column_name`.
 
+Official descriptions are ingested **offline** into RC / the value index. Inference does not reread the CSV or `column_meaning.json`.
+
+```
+offline
+  sqlite + database_description/*.csv
+    → gen_all_dev: workers treat official text as reference, then write their own notes
+    → BakeOfficialDesc: column_description → column official_meaning; rules → business_rules
+    → planner: reads official_meaning, builds the value_index sidecar
+  (optional) enrich_rc --column-meaning: overlay JSON onto RC official_meaning
+
+inference (RC + index + sqlite only)
+  SQL-gen exports the RC JSON as-is (grounding-mode controls whether official_meaning is printed on column lines)
+  linker recalls from the value_index sidecar
+  no database_description / column_meaning.json
+```
+
+`--column-meaning` passed to `cmd/eval` is ignored.
+
 ### Inference flags
 
 | Flag | Values | Meaning |
 | --- | --- | --- |
 | `--parallel` | integer, default `1` | Split questions into N shards under `output-dir/p0`…`p{N-1}`, then merge `predict.sql` / `results.json` / `logs/` |
-| `--grounding-mode` | `all` / `sparse` / `meaning` / `profile` / `legacy` / `off`, default `all` | Inline official column meanings (and profile notes) on schema lines |
+| `--grounding-mode` | `all` / `sparse` / `meaning` / `profile` / `legacy` / `off`, default `all` | Whether to print `official_meaning` already stored in RC (and profile notes) on column lines. Does not read external official files |
 | `--tpm-control` | `50` / `100` / `none`, default `100` | Internal TPM gate: 50% or 100% of 20M tokens/min; `none` disables the gate (429 backoff stays on) |
 
 ### tmux and logs

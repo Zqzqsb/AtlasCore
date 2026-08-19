@@ -30,8 +30,23 @@ func TestExpandTablesWithFK(t *testing.T) {
 	for _, g := range got {
 		has[g] = true
 	}
-	if !has["orders"] || !has["customers"] || !has["items"] {
-		t.Fatalf("expected orders+customers+items, got %v", got)
+	if !has["orders"] || !has["customers"] {
+		t.Fatalf("expected orders+customers, got %v", got)
+	}
+	if has["items"] {
+		t.Fatalf("must not reverse-expand children of orders, got %v", got)
+	}
+
+	fromItems := ExpandTablesWithFK([]string{"items"}, all)
+	hasItems := map[string]bool{}
+	for _, g := range fromItems {
+		hasItems[g] = true
+	}
+	if !hasItems["items"] || !hasItems["orders"] {
+		t.Fatalf("items should pull parent orders, got %v", fromItems)
+	}
+	if hasItems["customers"] {
+		t.Fatalf("1-hop forward should not pull customers from items, got %v", fromItems)
 	}
 }
 
@@ -77,8 +92,11 @@ func TestCompactExportOptionsSparseGrounding(t *testing.T) {
 	}
 
 	linkerOpts := p.compactExportOptions(nil, nil, true)
-	if linkerOpts.IncludeOfficialMeaning || linkerOpts.IncludeProfileNL || linkerOpts.IncludeRelationships {
-		t.Fatalf("schema linker should not receive duplicate grounding: %+v", linkerOpts)
+	if linkerOpts.IncludeOfficialMeaning || linkerOpts.IncludeProfileNL || linkerOpts.IncludeRelationships || linkerOpts.IncludeRichContext {
+		t.Fatalf("schema linker should stay mid-weight (no notes/meaning/fanout): %+v", linkerOpts)
+	}
+	if !linkerOpts.IncludeValueStats || !linkerOpts.IncludeColumns {
+		t.Fatalf("schema linker should still see columns and values=: %+v", linkerOpts)
 	}
 
 	fallback := p.compactExportOptions([]string{"orders"}, nil, false)
@@ -89,6 +107,11 @@ func TestCompactExportOptionsSparseGrounding(t *testing.T) {
 	off := (&Pipeline{config: &Config{GroundingMode: "off"}}).compactExportOptions([]string{"orders"}, relevant, false)
 	if off.IncludeOfficialMeaning || off.IncludeProfileNL {
 		t.Fatalf("off mode must emit no grounding: %+v", off)
+	}
+
+	legacy := (&Pipeline{config: &Config{GroundingMode: "legacy"}}).compactExportOptions([]string{"orders"}, relevant, false)
+	if !legacy.IncludeOfficialMeaning {
+		t.Fatalf("legacy should pass through RC official_meaning: %+v", legacy)
 	}
 
 	all := (&Pipeline{config: &Config{GroundingMode: "all"}}).compactExportOptions([]string{"orders"}, relevant, false)

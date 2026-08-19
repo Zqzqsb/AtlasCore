@@ -41,7 +41,6 @@ go build -o /tmp/eval_bird_sparse ./cmd/eval
   --data benchmarks/bird/heldout_v1_smoke/test.json \
   --db-dir benchmarks/bird/heldout_v1_smoke/test_databases \
   --context-dir "$CONTEXT_DIR" \
-  --column-meaning benchmarks/bird/heldout_v1_smoke/column_meaning.json \
   --grounding-mode sparse \
   --start "$START" \
   --limit "$LIMIT" \

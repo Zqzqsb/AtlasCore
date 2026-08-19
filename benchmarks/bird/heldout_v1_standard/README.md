@@ -53,7 +53,6 @@ go run ./cmd/eval --benchmark bird --mode leaderboard \
   --data benchmarks/bird/heldout_v1_standard/test.json \
   --db-dir benchmarks/bird/heldout_v1_standard/test_databases \
   --context-dir contexts/sqlite/bird_heldout_v1 \
-  --column-meaning benchmarks/bird/heldout_v1_standard/column_meaning.json \
   --output-dir results/bird/heldout_v1_standard_leaderboard
 ```
 

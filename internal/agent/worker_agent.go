@@ -198,6 +198,7 @@ func (a *WorkerAgent) collectBasicMetadata(ctx context.Context) error {
 
 	// Build basic metadata after all queries complete
 	a.sharedCtx.BuildTableMetadata(a.tableName)
+	a.sharedCtx.LoadAndSetTableIndexes(ctx, a.adapter, a.tableName)
 	return nil
 }
 

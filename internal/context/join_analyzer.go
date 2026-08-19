@@ -13,6 +13,8 @@ func (c *SharedContext) AnalyzeJoinPaths() {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 
+	c.resolveImpliedFKColumnsLocked()
+
 	c.JoinPaths = make(map[string]*JoinPath)
 	c.FieldSemantics = make(map[string]*FieldSemantic)
 
@@ -68,6 +70,85 @@ func (c *SharedContext) AnalyzeJoinPaths() {
 
 func joinEdgeKey(fromTable, fromColumn, toTable, toColumn string) string {
 	return fmt.Sprintf("%s.%s→%s.%s", fromTable, fromColumn, toTable, toColumn)
+}
+
+// ResolveImpliedFKColumns fills SQLite unnamed REFERENCES (PRAGMA to IS NULL)
+// with the parent table's primary key. Safe to call on already-saved RC JSON
+// that stored the literal "<nil>".
+func (c *SharedContext) ResolveImpliedFKColumns() int {
+	if c == nil {
+		return 0
+	}
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	return c.resolveImpliedFKColumnsLocked()
+}
+
+func (c *SharedContext) resolveImpliedFKColumnsLocked() int {
+	n := 0
+	for _, table := range c.Tables {
+		if table == nil {
+			continue
+		}
+		for i := range table.ForeignKeys {
+			fk := &table.ForeignKeys[i]
+			if !missingReferencedColumn(fk.ReferencedColumn) {
+				continue
+			}
+			pks := primaryKeyColumns(c.findTableLocked(fk.ReferencedTable))
+			target := impliedFKTargetColumn(fk.ColumnName, pks)
+			if target == "" {
+				continue
+			}
+			fk.ReferencedColumn = target
+			n++
+		}
+	}
+	return n
+}
+
+func (c *SharedContext) findTableLocked(name string) *TableMetadata {
+	if t := c.Tables[name]; t != nil {
+		return t
+	}
+	for n, t := range c.Tables {
+		if strings.EqualFold(n, name) {
+			return t
+		}
+	}
+	return nil
+}
+
+func primaryKeyColumns(t *TableMetadata) []string {
+	if t == nil {
+		return nil
+	}
+	if len(t.PrimaryKey) > 0 {
+		return append([]string{}, t.PrimaryKey...)
+	}
+	var out []string
+	for _, col := range t.Columns {
+		if col.IsPrimaryKey {
+			out = append(out, col.Name)
+		}
+	}
+	return out
+}
+
+func impliedFKTargetColumn(childCol string, pks []string) string {
+	switch len(pks) {
+	case 0:
+		return ""
+	case 1:
+		return pks[0]
+	default:
+		for _, pk := range pks {
+			if strings.EqualFold(pk, childCol) {
+				return pk
+			}
+		}
+		return ""
+	}
 }
 
 // analyzeFieldSemanticsLocked assumes c.mu is held.

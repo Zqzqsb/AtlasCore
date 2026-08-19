@@ -64,9 +64,14 @@ func (l *LLMSchemaLinker) Link(ctx context.Context, query string, allTables map[
 	return l.linkOneShot(ctx, query, allTables, fullRCPrompt)
 }
 
-// linkOneShot One-shot Schema Linking
-func (l *LLMSchemaLinker) linkOneShot(ctx context.Context, query string, allTables map[string]*TableInfo, fullRCPrompt string) (*SchemaLinkResult, error) {
-	// Build table info description (formatted as readable list, include FK info)
+func linkerSchemaSection(allTables map[string]*TableInfo, fullRCPrompt string) string {
+	if strings.TrimSpace(fullRCPrompt) != "" {
+		return fullRCPrompt
+	}
+	return formatSkinnyTableList(allTables)
+}
+
+func formatSkinnyTableList(allTables map[string]*TableInfo) string {
 	var schemaDesc strings.Builder
 	for _, table := range allTables {
 		schemaDesc.WriteString(fmt.Sprintf("- %s\n", table.Name))
@@ -74,7 +79,7 @@ func (l *LLMSchemaLinker) linkOneShot(ctx context.Context, query string, allTabl
 		if len(table.ForeignKeys) > 0 {
 			schemaDesc.WriteString("  Foreign Keys:\n")
 			for _, fk := range table.ForeignKeys {
-				schemaDesc.WriteString(fmt.Sprintf("    %s → %s.%s\n", fk.ColumnName, fk.ReferencedTable, fk.ReferencedColumn))
+				schemaDesc.WriteString(fmt.Sprintf("    %s → %s\n", fk.ColumnName, formatLinkerFKTarget(fk)))
 			}
 		}
 		if table.Description != "" {
@@ -85,6 +90,20 @@ func (l *LLMSchemaLinker) linkOneShot(ctx context.Context, query string, allTabl
 		}
 		schemaDesc.WriteString("\n")
 	}
+	return schemaDesc.String()
+}
+
+func formatLinkerFKTarget(fk contextpkg.ForeignKeyMetadata) string {
+	col := strings.TrimSpace(fk.ReferencedColumn)
+	if col == "" || col == "<nil>" {
+		return fk.ReferencedTable
+	}
+	return fk.ReferencedTable + "." + col
+}
+
+// linkOneShot One-shot Schema Linking
+func (l *LLMSchemaLinker) linkOneShot(ctx context.Context, query string, allTables map[string]*TableInfo, fullRCPrompt string) (*SchemaLinkResult, error) {
+	schemaSection := linkerSchemaSection(allTables, fullRCPrompt)
 
 	// Build Prompt
 	prompt := fmt.Sprintf(`You are a database expert. Identify which tables are relevant to answer the question.
@@ -101,7 +120,7 @@ Output format: table1, table2, table3 (comma-separated, no extra text)
 If all tables are needed, output: all
 If no tables are needed, output: none
 
-Output:`, schemaDesc.String(), query)
+Output:`, schemaSection, query)
 
 	// Print summary to stdout + dump full prompt to log file
 	if l.logger != nil {
@@ -272,31 +291,8 @@ func (l *LLMSchemaLinker) linkWithReact(ctx context.Context, query string, allTa
 		return nil, err
 	}
 
-	// Build schema description: use full RC if available, otherwise use basic table info
-	var schemaSection string
-	if fullRCPrompt != "" {
-		schemaSection = fullRCPrompt
-	} else {
-		var schemaDesc strings.Builder
-		for _, table := range allTables {
-			schemaDesc.WriteString(fmt.Sprintf("- %s\n", table.Name))
-			schemaDesc.WriteString(fmt.Sprintf("  Columns: %s\n", strings.Join(table.Columns, ", ")))
-			if len(table.ForeignKeys) > 0 {
-				schemaDesc.WriteString("  Foreign Keys:\n")
-				for _, fk := range table.ForeignKeys {
-					schemaDesc.WriteString(fmt.Sprintf("    %s → %s.%s\n", fk.ColumnName, fk.ReferencedTable, fk.ReferencedColumn))
-				}
-			}
-			if table.Description != "" {
-				schemaDesc.WriteString(fmt.Sprintf("  Description: %s\n", table.Description))
-			}
-			if table.QualitySummary != "" {
-				schemaDesc.WriteString(fmt.Sprintf("  %s\n", table.QualitySummary))
-			}
-			schemaDesc.WriteString("\n")
-		}
-		schemaSection = schemaDesc.String()
-	}
+	// Build schema description: compact RC (types/FK/values) when available
+	schemaSection := linkerSchemaSection(allTables, fullRCPrompt)
 
 	// Build Prompt — with full RC, linker outputs BOTH tables AND focused context
 	prompt := fmt.Sprintf(`You are a database expert. Your task has TWO parts:

@@ -14,7 +14,8 @@ var (
 	percentTokenRe  = regexp.MustCompile(`\b\d+(?:\.\d+)?\s*%`)
 )
 
-// ExpandTablesWithFK adds 1-hop FK neighbor tables (DeepEye recall bias: prefer over-include).
+// ExpandTablesWithFK adds 1-hop parent tables (child → referenced parent).
+// Does not reverse-expand children of a selected table (that floods SQL-gen).
 func ExpandTablesWithFK(selected []string, allTables map[string]*TableInfo) []string {
 	if len(selected) == 0 || len(allTables) == 0 {
 		return selected
@@ -46,7 +47,6 @@ func ExpandTablesWithFK(selected []string, allTables map[string]*TableInfo) []st
 	for _, t := range selected {
 		add(t)
 	}
-	// snapshot originals
 	base := append([]string{}, out...)
 	for _, t := range base {
 		info, ok := allTables[t]
@@ -55,18 +55,6 @@ func ExpandTablesWithFK(selected []string, allTables map[string]*TableInfo) []st
 		}
 		for _, fk := range info.ForeignKeys {
 			add(fk.ReferencedTable)
-		}
-	}
-	// reverse: tables that reference selected tables
-	for name, info := range allTables {
-		if _, already := set[name]; already {
-			continue
-		}
-		for _, fk := range info.ForeignKeys {
-			if _, hit := set[fk.ReferencedTable]; hit {
-				add(name)
-				break
-			}
 		}
 	}
 	return out
@@ -276,11 +264,12 @@ func parseRelevantColumnLines(resp string, tables []string, allTables map[string
 func (p *Pipeline) ApplyLinkEnhance(ctx context.Context, query string, tables []string, allTables map[string]*TableInfo) (expanded []string, inject string, relevant map[string]struct{}, err error) {
 	expanded = ExpandTablesWithFK(tables, allTables)
 	if len(expanded) > len(tables) {
-		p.Logger.Printf("🔗 FK expand: %v → %v\n", tables, expanded)
+		p.Logger.Printf("🔗 FK expand (parents): %v → %v\n", tables, expanded)
 	}
 
 	qOnly, evOnly := splitQuestionEvidence(query)
 	literals := ExtractEvidenceLiterals(qOnly, evOnly)
+	eavQueries := append([]string{}, literals...)
 	var parts []string
 
 	// Value index: high-precision positive evidence only.
@@ -298,8 +287,18 @@ func (p *Pipeline) ApplyLinkEnhance(ctx context.Context, query string, tables []
 			p.Logger.Printf("🔎 Value index exact/strong hits=%d (raw=%d, in-schema only; no table expand)\n",
 				len(hits), rawN)
 			literals = filterLiteralsWithoutExactHit(literals, hits)
+			for _, h := range hits {
+				eavQueries = append(eavQueries, h.DisplayValue, h.MatchedText)
+			}
 		} else if rawN > 0 {
 			p.Logger.Printf("🔎 Value index raw hits=%d dropped (outside selected/FK tables)\n", rawN)
+		}
+	}
+
+	if p.context != nil {
+		if block := p.context.FormatMatchedEAV(expanded, eavQueries); block != "" {
+			parts = append(parts, block+"\n")
+			p.Logger.Printf("🔑 EAV matched keys injected (%d chars)\n", len(block))
 		}
 	}
 

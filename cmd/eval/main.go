@@ -179,7 +179,7 @@ func main() {
 	dataPath := flag.String("data", "", "Override questions JSON (e.g. heldout test.json; SQL may be empty)")
 	dbDirFlag := flag.String("db-dir", "", "Override database directory")
 	contextDirFlag := flag.String("context-dir", "", "Override rich context directory")
-	columnMeaningPath := flag.String("column-meaning", "", "Optional column_meaning.json (official / held-out)")
+	columnMeaningPath := flag.String("column-meaning", "", "Ignored: official text is already in RC. Kept so old scripts do not fail.")
 	groundingMode := flag.String("grounding-mode", "all", "Column grounding: all | sparse | meaning | profile | legacy | off")
 	ignoreGoldFields := flag.Bool("ignore-gold-fields", false, "Do not pass result_fields even if present in JSON (black-box)")
 	parallel := flag.Int("parallel", 1, "Concurrent question shards (1 = sequential). Writes output-dir/p0.. then merges.")
@@ -524,7 +524,7 @@ func main() {
 		fmt.Printf("  ProjFewShot:    %s\n", p)
 	}
 	if *columnMeaningPath != "" {
-		fmt.Printf("  ColumnMeaning:  %s\n", *columnMeaningPath)
+		fmt.Printf("  ColumnMeaning:  %s (ignored at inference; RC only)\n", *columnMeaningPath)
 	}
 	fmt.Printf("  GroundingMode:  %s\n", *groundingMode)
 	fmt.Printf("  Parallel:       %d\n", *parallel)
@@ -543,11 +543,7 @@ func main() {
 
 	var columnMeaning inference.ColumnMeaningStore
 	if *columnMeaningPath != "" {
-		columnMeaning, err = inference.LoadColumnMeaningJSON(*columnMeaningPath)
-		if err != nil {
-			log.Fatalf("Failed to load column_meaning: %v", err)
-		}
-		fmt.Printf("📚 Loaded column_meaning entries: %d\n", len(columnMeaning))
+		fmt.Printf("📚 --column-meaning is ignored at inference; SQL-gen reads RC only\n")
 	}
 
 	stripGoldFields := *ignoreGoldFields || selectedMode.Name == "leaderboard" || selectedMode.Name == "leaderboard_scale"
