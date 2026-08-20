@@ -243,7 +243,7 @@ func formatReactParseError(errStr string) string {
 }
 
 // recoverSQLAfterReactFailure salvages SQL when the executor still fails after retries
-// (bare SQL dump, or last successful verify_sql).
+// (bare SQL dump, or last successful verify_sql). Parse failures only — not max-iter.
 func recoverSQLAfterReactFailure(err error, verify *VerifySQLTool) string {
 	if err == nil {
 		return ""
@@ -390,6 +390,15 @@ func (p *Pipeline) buildPrompt(query string, contextPrompt string, crossTableSum
 	sb.WriteString(FormatShapeHintForPrompt(p.projAlignShape))
 
 	sb.WriteString(fmt.Sprintf("Question: %s\n\n", query))
+	if p.config != nil {
+		if hint := strings.TrimSpace(p.config.RetryHint); hint != "" {
+			sb.WriteString(hint)
+			if !strings.HasSuffix(hint, "\n") {
+				sb.WriteString("\n")
+			}
+			sb.WriteString("\n")
+		}
+	}
 
 	// force mode: mandatory field info in prompt
 	if p.config.ClarifyMode == "force" && len(p.config.ResultFields) > 0 {

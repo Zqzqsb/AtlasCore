@@ -939,11 +939,7 @@ func evaluateSpider(
 		GroundingMode:           groundingMode,
 	}
 
-	pipeline := inference.NewPipeline(llm, dbAdapter, pipelineConfig)
-	if logger != nil {
-		pipeline.SetLogger(logger)
-	}
-	inferResult, err := pipeline.Execute(ctx, example.Question)
+	inferResult, err := runPipelineWithRetry(ctx, llm, dbAdapter, pipelineConfig, logger, example.Question)
 	if err != nil {
 		result.Error = fmt.Sprintf("inference: %v", err)
 		return result
@@ -1059,11 +1055,7 @@ func evaluateBird(
 		ProjFewShotPath:         inference.ProjFewShotPathFromEnv(),
 	}
 
-	pipeline := inference.NewPipeline(llm, dbAdapter, pipelineConfig)
-	if logger != nil {
-		pipeline.SetLogger(logger)
-	}
-	inferResult, err := pipeline.Execute(ctx, question)
+	inferResult, err := runPipelineWithRetry(ctx, llm, dbAdapter, pipelineConfig, logger, question)
 	if err != nil {
 		result.Error = fmt.Sprintf("inference: %v", err)
 		return result

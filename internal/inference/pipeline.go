@@ -57,6 +57,9 @@ type Config struct {
 	// Static projection few-shot (ablation; empty path = off)
 	ProjFewShotPath string // JSON pool path; empty → PROJ_FEWSHOT_PATH env → off
 
+	// RetryHint is injected only on a whole-question retry (eval layer).
+	RetryHint string
+
 	// Filled per Execute() — not a user-facing flag
 	OutputContract *OutputContract
 }
@@ -389,7 +392,7 @@ func (p *Pipeline) Execute(ctx context.Context, query string) (*Result, error) {
 	}
 
 	if err != nil {
-		return nil, fmt.Errorf("SQL generation failed: %w", err)
+		return result, fmt.Errorf("SQL generation failed: %w", err)
 	}
 
 	// 3b. Optional scale_light: extra one-shot variants + execution vote
