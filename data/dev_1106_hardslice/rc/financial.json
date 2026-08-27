@@ -1,0 +1,1913 @@
+{
+  "database_name": "financial",
+  "database_type": "sqlite",
+  "collected_at": "2026-08-20T15:50:08.857587086+08:00",
+  "schema_diagram": {
+    "format": "mermaid-er",
+    "description": "Entity-Relationship diagram showing database schema and relationships",
+    "content": "erDiagram\n    DISTRICT ||--o{ ACCOUNT : \"has\"\n    DISP ||--o{ CARD : \"has\"\n    DISTRICT ||--o{ CLIENT : \"has\"\n    CLIENT ||--o{ DISP : \"has\"\n    ACCOUNT ||--o{ DISP : \"has\"\n    ACCOUNT ||--o{ TRANS : \"has\"\n\n    DISP {\n        int disp_id PK\n        int client_id FK\n        int account_id FK\n        text type\n    }\n    DISTRICT {\n        int district_id PK\n        text A2\n        text A3\n        text A4\n        text A5\n        text A6\n        text A7\n        int A8\n        int A9\n        float A10\n        int A11\n        float A12\n        float A13\n        int A14\n        int A15\n        int A16\n    }\n    LOAN {\n        int loan_id PK\n        int account_id\n        datetime date\n        int amount\n        int duration\n        float payments\n        text status\n    }\n    ORDER {\n        int order_id PK\n        int account_id\n        text bank_to\n        int account_to\n        float amount\n        text k_symbol\n    }\n    TRANS {\n        int trans_id PK\n        int account_id FK\n        datetime date\n        text type\n        text operation\n        int amount\n        int balance\n        text k_symbol\n        text bank\n        int account\n    }\n    ACCOUNT {\n        int account_id PK\n        int district_id FK\n        text frequency\n        datetime date\n    }\n    CARD {\n        int card_id PK\n        int disp_id FK\n        text type\n        datetime issued\n    }\n    CLIENT {\n        int client_id PK\n        text gender\n        datetime birth_date\n        int district_id FK\n    }\n"
+  },
+  "tables": {
+    "account": {
+      "name": "account",
+      "row_count": 4500,
+      "columns": [
+        {
+          "name": "account_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 4500,
+            "distinct_mode": "exact",
+            "sample_rows": 4500,
+            "observed_ndv": 4500,
+            "uniqueness_ratio": 1,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 11382,
+              "avg": 2786.0675555555554
+            }
+          },
+          "official_meaning": "the id of the account",
+          "profile_nl": "distinct=4500; range=[1..11382]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "primary_key,ndv_exact=4500",
+          "value_index_confidence": 1,
+          "value_index_evidence": [
+            "primary_key",
+            "ndv_exact=4500"
+          ],
+          "value_index_estimated_docs": 4500,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "district_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_stats": {
+            "distinct_count": 77,
+            "distinct_mode": "exact",
+            "sample_rows": 4500,
+            "observed_ndv": 77,
+            "uniqueness_ratio": 0.01711111111111111,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 77,
+              "avg": 37.31044444444444
+            }
+          },
+          "official_meaning": "location of branch",
+          "profile_nl": "distinct=77; range=[1..77]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=77",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=77"
+          ],
+          "value_index_estimated_docs": 77,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "frequency",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 3,
+            "distinct_mode": "exact",
+            "sample_rows": 4500,
+            "observed_ndv": 3,
+            "uniqueness_ratio": 0.0006666666666666666,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "POPLATEK MESICNE",
+                "count": 4167,
+                "percent": 92.60000000000001
+              },
+              {
+                "value": "POPLATEK TYDNE",
+                "count": 240,
+                "percent": 5.333333333333334
+              },
+              {
+                "value": "POPLATEK PO OBRATU",
+                "count": 93,
+                "percent": 2.0666666666666664
+              }
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 15.934666666666667
+          },
+          "official_meaning": "frequency of the acount",
+          "profile_nl": "distinct=3; shape=alpha(~16 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "low_cardinality,short_semantic_values,ndv_exact=3",
+          "value_index_confidence": 0.96,
+          "value_index_evidence": [
+            "low_cardinality",
+            "short_semantic_values",
+            "ndv_exact=3"
+          ],
+          "value_index_estimated_docs": 3,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "date",
+          "type": "DATE",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 1535,
+            "distinct_mode": "exact",
+            "sample_rows": 4500,
+            "observed_ndv": 1535,
+            "uniqueness_ratio": 0.3411111111111111,
+            "null_count": 0,
+            "null_percent": 0
+          },
+          "official_meaning": "the creation date of the account",
+          "profile_nl": "distinct=1535",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=1535",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=1535"
+          ],
+          "value_index_estimated_docs": 1535,
+          "value_index_status": "excluded"
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "district_id",
+          "referenced_table": "district",
+          "referenced_column": "district_id",
+          "cardinality": "N:1",
+          "parent_to_child": "1:N",
+          "avg_children": 58.44155844155844,
+          "child_distinct_fk": 77,
+          "child_rows": 4500
+        }
+      ],
+      "rich_context": {
+        "account_id_meaning": {
+          "content": "Primary key, unique identifier for each account. Values range from 1 to 11382 with gaps; 4500 total accounts.",
+          "expires_at": "2026-08-27T15:52:25+08:00"
+        },
+        "business_rules": {
+          "content": "date: in the form YYMMDD",
+          "expires_at": "2026-08-27T15:58:52+08:00"
+        },
+        "date_meaning": {
+          "content": "Account creation date. Stored as ISO date text 'YYYY-MM-DD' (with optional timestamp); NOT the YYMMDD format described in the official reference. Range: 1993-01-01 to 1997-12-29.",
+          "expires_at": "2026-08-27T15:53:10+08:00"
+        },
+        "district_id_meaning": {
+          "content": "Location (branch district) where the account was opened. Foreign key to district.district_id. No orphan records; values range 1-77.",
+          "expires_at": "2026-08-27T15:53:04+08:00"
+        },
+        "frequency_meaning": {
+          "content": "Account statement frequency. POPLATEK MESICNE = monthly, POPLATEK TYDNE = weekly, POPLATEK PO OBRATU = per transaction.",
+          "expires_at": "2026-08-27T15:52:52+08:00"
+        },
+        "frequency_values": {
+          "content": "POPLATEK MESICNE=monthly(4167, 92.6%), POPLATEK TYDNE=weekly(240, 5.3%), POPLATEK PO OBRATU=per transaction(93, 2.1%)",
+          "expires_at": "2026-08-27T15:50:53+08:00"
+        }
+      }
+    },
+    "card": {
+      "name": "card",
+      "row_count": 892,
+      "columns": [
+        {
+          "name": "card_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 892,
+            "distinct_mode": "exact",
+            "sample_rows": 892,
+            "observed_ndv": 892,
+            "uniqueness_ratio": 1,
+            "null_count": 0,
+            "null_percent": 0
+          },
+          "official_meaning": "id number of credit card",
+          "profile_nl": "distinct=892",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "primary_key,ndv_exact=892",
+          "value_index_confidence": 1,
+          "value_index_evidence": [
+            "primary_key",
+            "ndv_exact=892"
+          ],
+          "value_index_estimated_docs": 892,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "disp_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 892,
+            "distinct_mode": "exact",
+            "sample_rows": 892,
+            "observed_ndv": 892,
+            "uniqueness_ratio": 1,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 9,
+              "max": 13660,
+              "avg": 3511.8621076233185
+            }
+          },
+          "official_meaning": "disposition id",
+          "profile_nl": "distinct=892; range=[9..13660]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=892",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=892"
+          ],
+          "value_index_estimated_docs": 892,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "type",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 3,
+            "distinct_mode": "exact",
+            "sample_rows": 892,
+            "observed_ndv": 3,
+            "uniqueness_ratio": 0.0033632286995515697,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "classic",
+                "count": 659,
+                "percent": 73.87892376681614
+              },
+              {
+                "value": "junior",
+                "count": 145,
+                "percent": 16.255605381165918
+              },
+              {
+                "value": "gold",
+                "count": 88,
+                "percent": 9.865470852017937
+              }
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 6.541479820627803
+          },
+          "official_meaning": "type of credit card",
+          "profile_nl": "distinct=3; shape=alpha(~7 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "official_value_description,ndv_exact=3",
+          "value_index_confidence": 1,
+          "value_index_evidence": [
+            "official_value_description",
+            "ndv_exact=3"
+          ],
+          "value_index_estimated_docs": 3,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "issued",
+          "type": "DATE",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 607,
+            "distinct_mode": "exact",
+            "sample_rows": 892,
+            "observed_ndv": 607,
+            "uniqueness_ratio": 0.6804932735426009,
+            "null_count": 0,
+            "null_percent": 0
+          },
+          "official_meaning": "the date when the credit card issued",
+          "profile_nl": "distinct=607",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=607",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=607"
+          ],
+          "value_index_estimated_docs": 607,
+          "value_index_status": "excluded"
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "disp_id",
+          "referenced_table": "disp",
+          "referenced_column": "disp_id",
+          "cardinality": "1:1",
+          "parent_to_child": "1:1",
+          "avg_children": 1,
+          "child_distinct_fk": 892,
+          "child_rows": 892
+        }
+      ],
+      "rich_context": {
+        "business_rules": {
+          "content": "issued: in the form YYMMDD",
+          "expires_at": "2026-08-27T15:58:52+08:00"
+        },
+        "type_values": {
+          "content": "classic=659(73.9%), junior=145(16.3%), gold=88(9.9%)",
+          "expires_at": "2026-08-27T15:52:17+08:00"
+        }
+      }
+    },
+    "client": {
+      "name": "client",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "client_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "is_primary_key": true,
+          "official_meaning": "the unique number",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "primary_key,ndv_sampled=0",
+          "value_index_confidence": 1,
+          "value_index_evidence": [
+            "primary_key",
+            "ndv_sampled=0"
+          ],
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "gender",
+          "type": "TEXT",
+          "nullable": false,
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "constant_or_empty,ndv_sampled=0",
+          "value_index_confidence": 0.95,
+          "value_index_evidence": [
+            "constant_or_empty",
+            "ndv_sampled=0"
+          ],
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "birth_date",
+          "type": "DATE",
+          "nullable": false,
+          "official_meaning": "birth date",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_sampled=0",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_sampled=0"
+          ],
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "district_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "official_meaning": "location of branch",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_sampled=0",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_sampled=0"
+          ],
+          "value_index_status": "excluded"
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "district_id",
+          "referenced_table": "district",
+          "referenced_column": "district_id"
+        }
+      ],
+      "rich_context": {
+        "business_rules": {
+          "content": "gender: F：female M：male",
+          "expires_at": "2026-08-27T15:58:52+08:00"
+        }
+      }
+    },
+    "disp": {
+      "name": "disp",
+      "description": "This table links each client to an account and defines their disposition type (owner or disponent) for that account.",
+      "row_count": 5369,
+      "columns": [
+        {
+          "name": "disp_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 5369,
+            "distinct_mode": "exact",
+            "sample_rows": 5369,
+            "observed_ndv": 5369,
+            "uniqueness_ratio": 1,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 13690,
+              "avg": 3337.0979698267834
+            }
+          },
+          "official_meaning": "unique number of identifying this row of record",
+          "profile_nl": "distinct=5369; range=[1..13690]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "primary_key,ndv_exact=5369",
+          "value_index_confidence": 1,
+          "value_index_evidence": [
+            "primary_key",
+            "ndv_exact=5369"
+          ],
+          "value_index_estimated_docs": 5369,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "client_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 5369,
+            "distinct_mode": "exact",
+            "sample_rows": 5369,
+            "observed_ndv": 5369,
+            "uniqueness_ratio": 1,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 13998,
+              "avg": 3359.0119202831065
+            }
+          },
+          "official_meaning": "id number of client",
+          "profile_nl": "distinct=5369; range=[1..13998]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=5369",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=5369"
+          ],
+          "value_index_estimated_docs": 5369,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "account_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 4500,
+            "distinct_mode": "exact",
+            "sample_rows": 5369,
+            "observed_ndv": 4500,
+            "uniqueness_ratio": 0.8381449059415161,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 11382,
+              "avg": 2767.4969268020113
+            }
+          },
+          "official_meaning": "id number of account",
+          "profile_nl": "distinct=4500; range=[1..11382]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=4500",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=4500"
+          ],
+          "value_index_estimated_docs": 4500,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "type",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 2,
+            "distinct_mode": "exact",
+            "sample_rows": 5369,
+            "observed_ndv": 2,
+            "uniqueness_ratio": 0.00037250884708511827,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "OWNER",
+                "count": 4500,
+                "percent": 83.81449059415161
+              },
+              {
+                "value": "DISPONENT",
+                "count": 869,
+                "percent": 16.18550940584839
+              }
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 5.647420376233936
+          },
+          "official_meaning": "type of disposition",
+          "profile_nl": "distinct=2; shape=alpha(~6 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "low_cardinality,short_semantic_values,ndv_exact=2",
+          "value_index_confidence": 0.96,
+          "value_index_evidence": [
+            "low_cardinality",
+            "short_semantic_values",
+            "ndv_exact=2"
+          ],
+          "value_index_estimated_docs": 2,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "client_id",
+          "referenced_table": "client",
+          "referenced_column": "client_id",
+          "cardinality": "1:1",
+          "parent_to_child": "1:1",
+          "avg_children": 1,
+          "child_distinct_fk": 5369,
+          "child_rows": 5369
+        },
+        {
+          "column_name": "account_id",
+          "referenced_table": "account",
+          "referenced_column": "account_id",
+          "cardinality": "N:1",
+          "parent_to_child": "1:N",
+          "avg_children": 1.193111111111111,
+          "child_distinct_fk": 4500,
+          "child_rows": 5369
+        }
+      ],
+      "rich_context": {
+        "business_rules": {
+          "content": "type: \"OWNER\" : \"USER\" : \"DISPONENT\" commonsense evidence: the account can only have the right to issue permanent orders or apply for loans",
+          "expires_at": "2026-08-27T15:58:52+08:00"
+        },
+        "client_id_meaning": {
+          "content": "Client identifier; each row links one client to one account. Here 5369 unique clients = 5369 total rows, so each client occurs only once in this table.",
+          "expires_at": "2026-08-27T15:55:04+08:00"
+        },
+        "disp_id_meaning": {
+          "content": "Primary key; unique row identifier for each client-account disposition record.",
+          "expires_at": "2026-08-27T15:53:30+08:00"
+        },
+        "type_values": {
+          "content": "OWNER=4500(83.8%), DISPONENT=869(16.2%); no USER values present",
+          "expires_at": "2026-08-27T15:50:49+08:00"
+        }
+      }
+    },
+    "district": {
+      "name": "district",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "district_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "is_primary_key": true,
+          "official_meaning": "location of branch",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "primary_key,ndv_sampled=0",
+          "value_index_confidence": 1,
+          "value_index_evidence": [
+            "primary_key",
+            "ndv_sampled=0"
+          ],
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "A2",
+          "type": "TEXT",
+          "nullable": false,
+          "official_meaning": "district_name",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "constant_or_empty,ndv_sampled=0",
+          "value_index_confidence": 0.95,
+          "value_index_evidence": [
+            "constant_or_empty",
+            "ndv_sampled=0"
+          ],
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "A3",
+          "type": "TEXT",
+          "nullable": false,
+          "official_meaning": "region",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "constant_or_empty,ndv_sampled=0",
+          "value_index_confidence": 0.95,
+          "value_index_evidence": [
+            "constant_or_empty",
+            "ndv_sampled=0"
+          ],
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "A4",
+          "type": "TEXT",
+          "nullable": false,
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "constant_or_empty,ndv_sampled=0",
+          "value_index_confidence": 0.95,
+          "value_index_evidence": [
+            "constant_or_empty",
+            "ndv_sampled=0"
+          ],
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "A5",
+          "type": "TEXT",
+          "nullable": false,
+          "official_meaning": "municipality \u003c district \u003c region",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "constant_or_empty,ndv_sampled=0",
+          "value_index_confidence": 0.95,
+          "value_index_evidence": [
+            "constant_or_empty",
+            "ndv_sampled=0"
+          ],
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "A6",
+          "type": "TEXT",
+          "nullable": false,
+          "official_meaning": "municipality \u003c district \u003c region",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "constant_or_empty,ndv_sampled=0",
+          "value_index_confidence": 0.95,
+          "value_index_evidence": [
+            "constant_or_empty",
+            "ndv_sampled=0"
+          ],
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "A7",
+          "type": "TEXT",
+          "nullable": false,
+          "official_meaning": "municipality \u003c district \u003c region",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "constant_or_empty,ndv_sampled=0",
+          "value_index_confidence": 0.95,
+          "value_index_evidence": [
+            "constant_or_empty",
+            "ndv_sampled=0"
+          ],
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "A8",
+          "type": "INTEGER",
+          "nullable": false,
+          "official_meaning": "municipality \u003c district \u003c region",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_sampled=0",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_sampled=0"
+          ],
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "A9",
+          "type": "INTEGER",
+          "nullable": false,
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_sampled=0",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_sampled=0"
+          ],
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "A10",
+          "type": "REAL",
+          "nullable": false,
+          "official_meaning": "ratio of urban inhabitants",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_sampled=0",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_sampled=0"
+          ],
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "A11",
+          "type": "INTEGER",
+          "nullable": false,
+          "official_meaning": "average salary",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_sampled=0",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_sampled=0"
+          ],
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "A12",
+          "type": "REAL",
+          "nullable": true,
+          "official_meaning": "unemployment rate 1995",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_sampled=0",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_sampled=0"
+          ],
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "A13",
+          "type": "REAL",
+          "nullable": false,
+          "official_meaning": "unemployment rate 1996",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_sampled=0",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_sampled=0"
+          ],
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "A14",
+          "type": "INTEGER",
+          "nullable": false,
+          "official_meaning": "no. of entrepreneurs per 1000 inhabitants",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_sampled=0",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_sampled=0"
+          ],
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "A15",
+          "type": "INTEGER",
+          "nullable": true,
+          "official_meaning": "no. of committed crimes 1995",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_sampled=0",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_sampled=0"
+          ],
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "A16",
+          "type": "INTEGER",
+          "nullable": false,
+          "official_meaning": "no. of committed crimes 1996",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_sampled=0",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_sampled=0"
+          ],
+          "value_index_status": "excluded"
+        }
+      ],
+      "indexes": [],
+      "rich_context": {
+        "A3_meaning": {
+          "content": "Czech regional grouping (NUTS-like) of districts: Prague, central Bohemia, south Bohemia, west Bohemia, north Bohemia, east Bohemia, south Moravia, north Moravia.",
+          "expires_at": "2026-08-27T15:56:15+08:00"
+        },
+        "A3_values": {
+          "content": "Prague=1(1%), central Bohemia=12(16%), south Moravia=14(18%), north Moravia=11(14%), east Bohemia=11(14%), west Bohemia=10(13%), north Bohemia=10(13%), south Bohemia=8(10%)",
+          "expires_at": "2026-08-27T15:56:13+08:00"
+        },
+        "business_rules": {
+          "content": "A9: not useful",
+          "expires_at": "2026-08-27T15:58:52+08:00"
+        }
+      }
+    },
+    "loan": {
+      "name": "loan",
+      "description": "This table tracks loan contracts and their current status, including whether they are finished, running, or in debt.",
+      "row_count": 682,
+      "columns": [
+        {
+          "name": "loan_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 682,
+            "distinct_mode": "exact",
+            "sample_rows": 682,
+            "observed_ndv": 682,
+            "uniqueness_ratio": 1,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 4959,
+              "max": 7308,
+              "avg": 6172.466275659824
+            }
+          },
+          "official_meaning": "the id number identifying the loan data",
+          "profile_nl": "distinct=682; range=[4959..7308]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "primary_key,ndv_exact=682",
+          "value_index_confidence": 1,
+          "value_index_evidence": [
+            "primary_key",
+            "ndv_exact=682"
+          ],
+          "value_index_estimated_docs": 682,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "account_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 682,
+            "distinct_mode": "exact",
+            "sample_rows": 682,
+            "observed_ndv": 682,
+            "uniqueness_ratio": 1,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 2,
+              "max": 11362,
+              "avg": 5824.162756598241
+            }
+          },
+          "official_meaning": "the id number identifying the account",
+          "profile_nl": "distinct=682; range=[2..11362]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=682",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=682"
+          ],
+          "value_index_estimated_docs": 682,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "date",
+          "type": "DATE",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 559,
+            "distinct_mode": "exact",
+            "sample_rows": 682,
+            "observed_ndv": 559,
+            "uniqueness_ratio": 0.8196480938416423,
+            "null_count": 0,
+            "null_percent": 0
+          },
+          "official_meaning": "the date when the loan is approved",
+          "profile_nl": "distinct=559",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=559",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=559"
+          ],
+          "value_index_estimated_docs": 559,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "amount",
+          "type": "INTEGER",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 645,
+            "distinct_mode": "exact",
+            "sample_rows": 682,
+            "observed_ndv": 645,
+            "uniqueness_ratio": 0.9457478005865103,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 4980,
+              "max": 590820,
+              "avg": 151410.1759530792
+            }
+          },
+          "official_meaning": "approved amount",
+          "profile_nl": "distinct=645; range=[4980..590820]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=645",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=645"
+          ],
+          "value_index_estimated_docs": 645,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "duration",
+          "type": "INTEGER",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 5,
+            "distinct_mode": "exact",
+            "sample_rows": 682,
+            "observed_ndv": 5,
+            "uniqueness_ratio": 0.007331378299120235,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "60",
+                "count": 145,
+                "percent": 21.26099706744868
+              },
+              {
+                "value": "48",
+                "count": 138,
+                "percent": 20.234604105571847
+              },
+              {
+                "value": "24",
+                "count": 138,
+                "percent": 20.234604105571847
+              },
+              {
+                "value": "12",
+                "count": 131,
+                "percent": 19.208211143695014
+              },
+              {
+                "value": "36",
+                "count": 130,
+                "percent": 19.06158357771261
+              }
+            ],
+            "range": {
+              "min": 12,
+              "max": 60,
+              "avg": 36.49266862170088
+            },
+            "dominant_shape": "digits",
+            "avg_len": 2
+          },
+          "official_meaning": "loan duration",
+          "profile_nl": "distinct=5; shape=digits(~2 chars); range=[12..60]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=5",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=5"
+          ],
+          "value_index_estimated_docs": 5,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "payments",
+          "type": "REAL",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 577,
+            "distinct_mode": "exact",
+            "sample_rows": 682,
+            "observed_ndv": 577,
+            "uniqueness_ratio": 0.8460410557184751,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 304,
+              "max": 9910,
+              "avg": 4190.6642228739
+            }
+          },
+          "official_meaning": "monthly payments",
+          "profile_nl": "distinct=577; range=[304..9910]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=577",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=577"
+          ],
+          "value_index_estimated_docs": 577,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "status",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 4,
+            "distinct_mode": "exact",
+            "sample_rows": 682,
+            "observed_ndv": 4,
+            "uniqueness_ratio": 0.005865102639296188,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "C",
+                "count": 403,
+                "percent": 59.09090909090909
+              },
+              {
+                "value": "A",
+                "count": 203,
+                "percent": 29.765395894428153
+              },
+              {
+                "value": "D",
+                "count": 45,
+                "percent": 6.598240469208211
+              },
+              {
+                "value": "B",
+                "count": 31,
+                "percent": 4.545454545454546
+              }
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 1
+          },
+          "official_meaning": "repayment status",
+          "profile_nl": "distinct=4; shape=alpha(~1 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "low_cardinality,short_semantic_values,ndv_exact=4",
+          "value_index_confidence": 0.96,
+          "value_index_evidence": [
+            "low_cardinality",
+            "short_semantic_values",
+            "ndv_exact=4"
+          ],
+          "value_index_estimated_docs": 4,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        }
+      ],
+      "indexes": [],
+      "rich_context": {
+        "business_rules": {
+          "content": "amount: unit：US dollar | duration: unit：month | payments: unit：month | status: 'A' stands for contract finished, no problems; 'B' stands for contract finished, loan not paid; 'C' stands for running contract, OK so far; 'D' stands for running contract, client in debt",
+          "expires_at": "2026-08-27T15:58:52+08:00"
+        },
+        "status_values": {
+          "content": "A=contract finished, no problems(203, 29.8%), B=contract finished, loan not paid(31, 4.5%), C=running contract, OK so far(403, 59.1%), D=running contract, client in debt(45, 6.6%)",
+          "expires_at": "2026-08-27T15:51:31+08:00"
+        }
+      }
+    },
+    "order": {
+      "name": "order",
+      "row_count": 6471,
+      "columns": [
+        {
+          "name": "order_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 6471,
+            "distinct_mode": "exact",
+            "sample_rows": 6471,
+            "observed_ndv": 6471,
+            "uniqueness_ratio": 1,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 29401,
+              "max": 46338,
+              "avg": 33778.197496522946
+            }
+          },
+          "official_meaning": "identifying the unique order",
+          "profile_nl": "distinct=6471; range=[29401..46338]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "primary_key,ndv_exact=6471",
+          "value_index_confidence": 1,
+          "value_index_evidence": [
+            "primary_key",
+            "ndv_exact=6471"
+          ],
+          "value_index_estimated_docs": 6471,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "account_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 3758,
+            "distinct_mode": "exact",
+            "sample_rows": 6471,
+            "observed_ndv": 3758,
+            "uniqueness_ratio": 0.5807448616906197,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 11362,
+              "avg": 2962.302889816103
+            }
+          },
+          "official_meaning": "id number of account",
+          "profile_nl": "distinct=3758; range=[1..11362]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=3758",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=3758"
+          ],
+          "value_index_estimated_docs": 3758,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "bank_to",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 13,
+            "distinct_mode": "exact",
+            "sample_rows": 6471,
+            "observed_ndv": 13,
+            "uniqueness_ratio": 0.00200896306598671,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "QR",
+                "count": 531,
+                "percent": 8.205841446453407
+              },
+              {
+                "value": "YZ",
+                "count": 521,
+                "percent": 8.051305825992891
+              },
+              {
+                "value": "AB",
+                "count": 519,
+                "percent": 8.020398701900788
+              },
+              {
+                "value": "WX",
+                "count": 515,
+                "percent": 7.958584453716582
+              },
+              {
+                "value": "ST",
+                "count": 511,
+                "percent": 7.896770205532374
+              },
+              {
+                "value": "KL",
+                "count": 500,
+                "percent": 7.726781023025807
+              },
+              {
+                "value": "UV",
+                "count": 499,
+                "percent": 7.7113274609797555
+              },
+              {
+                "value": "IJ",
+                "count": 496,
+                "percent": 7.664966774841601
+              },
+              {
+                "value": "GH",
+                "count": 487,
+                "percent": 7.525884716427137
+              },
+              {
+                "value": "OP",
+                "count": 485,
+                "percent": 7.494977592335034
+              },
+              {
+                "value": "EF",
+                "count": 483,
+                "percent": 7.464070468242929
+              },
+              {
+                "value": "MN",
+                "count": 466,
+                "percent": 7.2013599134600526
+              },
+              {
+                "value": "CD",
+                "count": 458,
+                "percent": 7.07773141709164
+              }
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 2
+          },
+          "official_meaning": "bank of the recipient",
+          "profile_nl": "distinct=13; shape=alpha(~2 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "low_cardinality,short_semantic_values,ndv_exact=13",
+          "value_index_confidence": 0.96,
+          "value_index_evidence": [
+            "low_cardinality",
+            "short_semantic_values",
+            "ndv_exact=13"
+          ],
+          "value_index_estimated_docs": 13,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "account_to",
+          "type": "INTEGER",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 6446,
+            "distinct_mode": "exact",
+            "sample_rows": 6471,
+            "observed_ndv": 6446,
+            "uniqueness_ratio": 0.9961366094884871,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 399,
+              "max": 99994199,
+              "avg": 49399036.8511822
+            }
+          },
+          "official_meaning": "account of the recipient",
+          "profile_nl": "distinct=6446; range=[399..99994199]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=6446",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=6446"
+          ],
+          "value_index_estimated_docs": 6446,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "amount",
+          "type": "REAL",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 4412,
+            "distinct_mode": "exact",
+            "sample_rows": 6471,
+            "observed_ndv": 4412,
+            "uniqueness_ratio": 0.6818111574717972,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 14882,
+              "avg": 3280.6356977283267
+            }
+          },
+          "official_meaning": "debited amount",
+          "profile_nl": "distinct=4412; range=[1..14882]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=4412",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=4412"
+          ],
+          "value_index_estimated_docs": 4412,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "k_symbol",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 5,
+            "distinct_mode": "exact",
+            "sample_rows": 6471,
+            "observed_ndv": 5,
+            "uniqueness_ratio": 0.0007726781023025807,
+            "null_count": 0,
+            "null_percent": 0,
+            "empty_count": 1379,
+            "top_values": [
+              {
+                "value": "SIPO",
+                "count": 3502,
+                "percent": 54.11837428527275
+              },
+              {
+                "value": "",
+                "count": 1379,
+                "percent": 21.310462061505177
+              },
+              {
+                "value": "UVER",
+                "count": 717,
+                "percent": 11.080203987019008
+              },
+              {
+                "value": "POJISTNE",
+                "count": 532,
+                "percent": 8.221295008499458
+              },
+              {
+                "value": "LEASING",
+                "count": 341,
+                "percent": 5.269664657703601
+              }
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 4.6188138256087985
+          },
+          "official_meaning": "purpose of the payment",
+          "profile_nl": "1379 empty-string; distinct=5; shape=alpha(~5 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "official_value_description,ndv_exact=5",
+          "value_index_confidence": 1,
+          "value_index_evidence": [
+            "official_value_description",
+            "ndv_exact=5"
+          ],
+          "value_index_estimated_docs": 5,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        }
+      ],
+      "indexes": [],
+      "rich_context": {
+        "bank_to_values": {
+          "content": "13 bank codes, roughly even distribution: QR=531(8.2%), YZ=521(8.1%), AB=519(8.0%), WX=515(8.0%), ST=511(7.9%), KL=500(7.7%), UV=499(7.7%), IJ=496(7.7%), GH=487(7.5%), OP=485(7.5%), EF=483(7.5%), MN=466(7.2%), CD=458(7.1%)",
+          "expires_at": "2026-08-27T15:52:39+08:00"
+        },
+        "business_rules": {
+          "content": "account_to: each bank has unique two-letter code",
+          "expires_at": "2026-08-27T15:58:52+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "order",
+          "column": "k_symbol",
+          "type": "empty_string",
+          "severity": "warning",
+          "description": "Contains 1379 empty string values in addition to NULLs",
+          "sql_fix": "WHERE \"k_symbol\" IS NOT NULL AND \"k_symbol\" != ''",
+          "affected_ops": [
+            "WHERE",
+            "GROUP BY"
+          ]
+        }
+      ]
+    },
+    "trans": {
+      "name": "trans",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "trans_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "is_primary_key": true,
+          "official_meaning": "transaction id",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "primary_key,ndv_sampled=0",
+          "value_index_confidence": 1,
+          "value_index_evidence": [
+            "primary_key",
+            "ndv_sampled=0"
+          ],
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "account_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "default": "0",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_sampled=0",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_sampled=0"
+          ],
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "date",
+          "type": "DATE",
+          "nullable": false,
+          "official_meaning": "date of transaction",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_sampled=0",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_sampled=0"
+          ],
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "type",
+          "type": "TEXT",
+          "nullable": false,
+          "official_meaning": "+/- transaction",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "official_value_description,ndv_sampled=0",
+          "value_index_confidence": 1,
+          "value_index_evidence": [
+            "official_value_description",
+            "ndv_sampled=0"
+          ],
+          "value_index_estimated_docs": 1,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "operation",
+          "type": "TEXT",
+          "nullable": true,
+          "official_meaning": "mode of transaction",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "official_value_description,ndv_sampled=0",
+          "value_index_confidence": 1,
+          "value_index_evidence": [
+            "official_value_description",
+            "ndv_sampled=0"
+          ],
+          "value_index_estimated_docs": 1,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "amount",
+          "type": "INTEGER",
+          "nullable": false,
+          "official_meaning": "amount of money",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_sampled=0",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_sampled=0"
+          ],
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "balance",
+          "type": "INTEGER",
+          "nullable": false,
+          "official_meaning": "balance after transaction",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_sampled=0",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_sampled=0"
+          ],
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "k_symbol",
+          "type": "TEXT",
+          "nullable": true,
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "official_value_description,ndv_sampled=0",
+          "value_index_confidence": 1,
+          "value_index_evidence": [
+            "official_value_description",
+            "ndv_sampled=0"
+          ],
+          "value_index_estimated_docs": 1,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "bank",
+          "type": "TEXT",
+          "nullable": true,
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "constant_or_empty,ndv_sampled=0",
+          "value_index_confidence": 0.95,
+          "value_index_evidence": [
+            "constant_or_empty",
+            "ndv_sampled=0"
+          ],
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "account",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_sampled=0",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_sampled=0"
+          ],
+          "value_index_status": "excluded"
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "account_id",
+          "referenced_table": "account",
+          "referenced_column": "account_id"
+        }
+      ],
+      "rich_context": {
+        "business_rules": {
+          "content": "amount: Unit：USD | balance: Unit：USD | bank: each bank has unique two-letter code",
+          "expires_at": "2026-08-27T15:58:52+08:00"
+        },
+        "type_values": {
+          "content": "PRIJEM=credit/incoming(38.35%), VYDAJ=debit/outgoing(60.07%), VYBER=cash withdrawal(1.58%)",
+          "expires_at": "2026-08-27T15:54:40+08:00"
+        }
+      }
+    }
+  },
+  "total_tables": 0,
+  "total_rows": 0,
+  "join_paths": {
+    "account.account_id→disp.account_id": {
+      "from_table": "account",
+      "to_table": "disp",
+      "path": [
+        "account",
+        "disp"
+      ],
+      "join_clauses": [
+        "disp.account_id = account.account_id"
+      ],
+      "description": "account → disp via disp.account_id [1:N]; selecting child after JOIN can duplicate parent rows",
+      "cardinality": "1:N"
+    },
+    "account.account_id→trans.account_id": {
+      "from_table": "account",
+      "to_table": "trans",
+      "path": [
+        "account",
+        "trans"
+      ],
+      "join_clauses": [
+        "trans.account_id = account.account_id"
+      ],
+      "description": "account → trans via trans.account_id [1:N]",
+      "cardinality": "1:N"
+    },
+    "account.district_id→district.district_id": {
+      "from_table": "account",
+      "to_table": "district",
+      "path": [
+        "account",
+        "district"
+      ],
+      "join_clauses": [
+        "account.district_id = district.district_id"
+      ],
+      "description": "account.district_id → district.district_id [N:1]; avg 58.4 child rows/parent — JOIN may multiply rows; use DISTINCT when listing unique parents",
+      "cardinality": "N:1"
+    },
+    "card.disp_id→disp.disp_id": {
+      "from_table": "card",
+      "to_table": "disp",
+      "path": [
+        "card",
+        "disp"
+      ],
+      "join_clauses": [
+        "card.disp_id = disp.disp_id"
+      ],
+      "description": "card.disp_id → disp.disp_id [1:1]",
+      "cardinality": "1:1"
+    },
+    "client.client_id→disp.client_id": {
+      "from_table": "client",
+      "to_table": "disp",
+      "path": [
+        "client",
+        "disp"
+      ],
+      "join_clauses": [
+        "disp.client_id = client.client_id"
+      ],
+      "description": "client → disp via disp.client_id [1:1]",
+      "cardinality": "1:1"
+    },
+    "client.district_id→district.district_id": {
+      "from_table": "client",
+      "to_table": "district",
+      "path": [
+        "client",
+        "district"
+      ],
+      "join_clauses": [
+        "client.district_id = district.district_id"
+      ],
+      "description": "client.district_id → district.district_id [N:1]",
+      "cardinality": "N:1"
+    },
+    "disp.account_id→account.account_id": {
+      "from_table": "disp",
+      "to_table": "account",
+      "path": [
+        "disp",
+        "account"
+      ],
+      "join_clauses": [
+        "disp.account_id = account.account_id"
+      ],
+      "description": "disp.account_id → account.account_id [N:1]; avg 1.2 child rows/parent — JOIN may multiply rows; use DISTINCT when listing unique parents",
+      "cardinality": "N:1"
+    },
+    "disp.client_id→client.client_id": {
+      "from_table": "disp",
+      "to_table": "client",
+      "path": [
+        "disp",
+        "client"
+      ],
+      "join_clauses": [
+        "disp.client_id = client.client_id"
+      ],
+      "description": "disp.client_id → client.client_id [1:1]",
+      "cardinality": "1:1"
+    },
+    "disp.disp_id→card.disp_id": {
+      "from_table": "disp",
+      "to_table": "card",
+      "path": [
+        "disp",
+        "card"
+      ],
+      "join_clauses": [
+        "card.disp_id = disp.disp_id"
+      ],
+      "description": "disp → card via card.disp_id [1:1]",
+      "cardinality": "1:1"
+    },
+    "district.district_id→account.district_id": {
+      "from_table": "district",
+      "to_table": "account",
+      "path": [
+        "district",
+        "account"
+      ],
+      "join_clauses": [
+        "account.district_id = district.district_id"
+      ],
+      "description": "district → account via account.district_id [1:N]; selecting child after JOIN can duplicate parent rows",
+      "cardinality": "1:N"
+    },
+    "district.district_id→client.district_id": {
+      "from_table": "district",
+      "to_table": "client",
+      "path": [
+        "district",
+        "client"
+      ],
+      "join_clauses": [
+        "client.district_id = district.district_id"
+      ],
+      "description": "district → client via client.district_id [1:N]",
+      "cardinality": "1:N"
+    },
+    "trans.account_id→account.account_id": {
+      "from_table": "trans",
+      "to_table": "account",
+      "path": [
+        "trans",
+        "account"
+      ],
+      "join_clauses": [
+        "trans.account_id = account.account_id"
+      ],
+      "description": "trans.account_id → account.account_id [N:1]",
+      "cardinality": "N:1"
+    }
+  },
+  "field_semantics": {
+    "account.account_id": {
+      "table_name": "account",
+      "column_name": "account_id",
+      "storage_type": "primary_key",
+      "note": "Primary key of account"
+    },
+    "account.district_id": {
+      "table_name": "account",
+      "column_name": "district_id",
+      "storage_type": "foreign_key",
+      "references": "district.district_id",
+      "note": "FK → district.district_id [N:1]. Stores ID, not display name — JOIN parent to get names. Parent→child is 1:N: JOIN from parent multiplies rows; DISTINCT if listing unique parents."
+    },
+    "card.card_id": {
+      "table_name": "card",
+      "column_name": "card_id",
+      "storage_type": "primary_key",
+      "note": "Primary key of card"
+    },
+    "card.disp_id": {
+      "table_name": "card",
+      "column_name": "disp_id",
+      "storage_type": "foreign_key",
+      "references": "disp.disp_id",
+      "note": "FK → disp.disp_id [1:1]. Stores ID, not display name — JOIN parent to get names."
+    },
+    "client.client_id": {
+      "table_name": "client",
+      "column_name": "client_id",
+      "storage_type": "primary_key",
+      "note": "Primary key of client"
+    },
+    "client.district_id": {
+      "table_name": "client",
+      "column_name": "district_id",
+      "storage_type": "foreign_key",
+      "references": "district.district_id",
+      "note": "FK → district.district_id [N:1]. Stores ID, not display name — JOIN parent to get names."
+    },
+    "disp.account_id": {
+      "table_name": "disp",
+      "column_name": "account_id",
+      "storage_type": "foreign_key",
+      "references": "account.account_id",
+      "note": "FK → account.account_id [N:1]. Stores ID, not display name — JOIN parent to get names. Parent→child is 1:N: JOIN from parent multiplies rows; DISTINCT if listing unique parents."
+    },
+    "disp.client_id": {
+      "table_name": "disp",
+      "column_name": "client_id",
+      "storage_type": "foreign_key",
+      "references": "client.client_id",
+      "note": "FK → client.client_id [1:1]. Stores ID, not display name — JOIN parent to get names."
+    },
+    "disp.disp_id": {
+      "table_name": "disp",
+      "column_name": "disp_id",
+      "storage_type": "primary_key",
+      "note": "Primary key of disp"
+    },
+    "district.district_id": {
+      "table_name": "district",
+      "column_name": "district_id",
+      "storage_type": "primary_key",
+      "note": "Primary key of district"
+    },
+    "loan.loan_id": {
+      "table_name": "loan",
+      "column_name": "loan_id",
+      "storage_type": "primary_key",
+      "note": "Primary key of loan"
+    },
+    "order.order_id": {
+      "table_name": "order",
+      "column_name": "order_id",
+      "storage_type": "primary_key",
+      "note": "Primary key of order"
+    },
+    "trans.account_id": {
+      "table_name": "trans",
+      "column_name": "account_id",
+      "storage_type": "foreign_key",
+      "references": "account.account_id",
+      "note": "FK → account.account_id [N:1]. Stores ID, not display name — JOIN parent to get names."
+    },
+    "trans.trans_id": {
+      "table_name": "trans",
+      "column_name": "trans_id",
+      "storage_type": "primary_key",
+      "note": "Primary key of trans"
+    }
+  },
+  "value_index": {
+    "path": "value_index/financial.sqlite",
+    "documents": 44,
+    "postings": 180,
+    "columns_indexed": 9,
+    "built_at": "2026-08-20T08:13:02.786255494Z",
+    "label_source": "sampled-v1",
+    "planned_at": "0001-01-01T00:00:00Z"
+  }
+}

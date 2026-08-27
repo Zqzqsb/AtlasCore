@@ -1,0 +1,463 @@
+{
+  "n": 45,
+  "budget": {
+    "('financial', '能力')": 12,
+    "('california_schools', '能力')": 12,
+    "('financial', '信息')": 8,
+    "('california_schools', '信息')": 5,
+    "('financial', 'correct')": 4,
+    "('california_schools', 'correct')": 4
+  },
+  "items": [
+    {
+      "idx": 94,
+      "question_id": 94,
+      "db_id": "financial",
+      "difficulty": "challenging",
+      "bucket": "能力",
+      "root": "能力",
+      "why": "join_or_formula",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 100,
+      "question_id": 100,
+      "db_id": "financial",
+      "difficulty": "challenging",
+      "bucket": "能力",
+      "root": "能力",
+      "why": "join_or_formula",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 105,
+      "question_id": 105,
+      "db_id": "financial",
+      "difficulty": "challenging",
+      "bucket": "能力",
+      "root": "能力",
+      "why": "join_or_formula",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 111,
+      "question_id": 111,
+      "db_id": "financial",
+      "difficulty": "challenging",
+      "bucket": "能力",
+      "root": "能力",
+      "why": "join_or_formula",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 112,
+      "question_id": 112,
+      "db_id": "financial",
+      "difficulty": "challenging",
+      "bucket": "能力",
+      "root": "能力",
+      "why": "join_or_formula",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 115,
+      "question_id": 115,
+      "db_id": "financial",
+      "difficulty": "challenging",
+      "bucket": "能力",
+      "root": "能力",
+      "why": "join_or_formula",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 118,
+      "question_id": 118,
+      "db_id": "financial",
+      "difficulty": "challenging",
+      "bucket": "能力",
+      "root": "能力",
+      "why": "join_or_formula",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 119,
+      "question_id": 119,
+      "db_id": "financial",
+      "difficulty": "challenging",
+      "bucket": "能力",
+      "root": "能力",
+      "why": "join_or_formula",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 121,
+      "question_id": 121,
+      "db_id": "financial",
+      "difficulty": "challenging",
+      "bucket": "能力",
+      "root": "能力",
+      "why": "join_or_formula",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 123,
+      "question_id": 123,
+      "db_id": "financial",
+      "difficulty": "challenging",
+      "bucket": "能力",
+      "root": "能力",
+      "why": "join_or_formula",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 124,
+      "question_id": 124,
+      "db_id": "financial",
+      "difficulty": "challenging",
+      "bucket": "能力",
+      "root": "能力",
+      "why": "join_or_formula",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 125,
+      "question_id": 125,
+      "db_id": "financial",
+      "difficulty": "challenging",
+      "bucket": "能力",
+      "root": "能力",
+      "why": "join_or_formula",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 0,
+      "question_id": 0,
+      "db_id": "california_schools",
+      "difficulty": "challenging",
+      "bucket": "能力",
+      "root": "能力",
+      "why": "join_or_formula",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 2,
+      "question_id": 2,
+      "db_id": "california_schools",
+      "difficulty": "challenging",
+      "bucket": "能力",
+      "root": "能力",
+      "why": "join_or_formula",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 3,
+      "question_id": 3,
+      "db_id": "california_schools",
+      "difficulty": "challenging",
+      "bucket": "能力",
+      "root": "能力",
+      "why": "join_or_formula",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 5,
+      "question_id": 5,
+      "db_id": "california_schools",
+      "difficulty": "challenging",
+      "bucket": "能力",
+      "root": "能力",
+      "why": "join_or_formula",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 6,
+      "question_id": 6,
+      "db_id": "california_schools",
+      "difficulty": "challenging",
+      "bucket": "能力",
+      "root": "能力",
+      "why": "join_or_formula",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 8,
+      "question_id": 8,
+      "db_id": "california_schools",
+      "difficulty": "challenging",
+      "bucket": "能力",
+      "root": "能力",
+      "why": "join_or_formula",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 10,
+      "question_id": 10,
+      "db_id": "california_schools",
+      "difficulty": "challenging",
+      "bucket": "能力",
+      "root": "能力",
+      "why": "join_or_formula",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 12,
+      "question_id": 12,
+      "db_id": "california_schools",
+      "difficulty": "challenging",
+      "bucket": "能力",
+      "root": "能力",
+      "why": "join_or_formula",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 13,
+      "question_id": 13,
+      "db_id": "california_schools",
+      "difficulty": "challenging",
+      "bucket": "能力",
+      "root": "能力",
+      "why": "join_or_formula",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 18,
+      "question_id": 18,
+      "db_id": "california_schools",
+      "difficulty": "challenging",
+      "bucket": "能力",
+      "root": "能力",
+      "why": "join_or_formula",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 19,
+      "question_id": 19,
+      "db_id": "california_schools",
+      "difficulty": "challenging",
+      "bucket": "能力",
+      "root": "能力",
+      "why": "join_or_formula",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 21,
+      "question_id": 21,
+      "db_id": "california_schools",
+      "difficulty": "challenging",
+      "bucket": "能力",
+      "root": "能力",
+      "why": "join_or_formula",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 96,
+      "question_id": 96,
+      "db_id": "financial",
+      "difficulty": "challenging",
+      "bucket": "信息",
+      "root": "信息",
+      "why": "missing_table:card,loan",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 97,
+      "question_id": 97,
+      "db_id": "financial",
+      "difficulty": "challenging",
+      "bucket": "信息",
+      "root": "信息",
+      "why": "missing_table:district",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 103,
+      "question_id": 103,
+      "db_id": "financial",
+      "difficulty": "challenging",
+      "bucket": "信息",
+      "root": "信息",
+      "why": "missing_table:account",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 104,
+      "question_id": 104,
+      "db_id": "financial",
+      "difficulty": "challenging",
+      "bucket": "信息",
+      "root": "信息",
+      "why": "missing_table:district",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 106,
+      "question_id": 106,
+      "db_id": "financial",
+      "difficulty": "challenging",
+      "bucket": "信息",
+      "root": "信息",
+      "why": "missing_table:account",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 113,
+      "question_id": 113,
+      "db_id": "financial",
+      "difficulty": "challenging",
+      "bucket": "信息",
+      "root": "信息",
+      "why": "missing_table:account,account,account",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 117,
+      "question_id": 117,
+      "db_id": "financial",
+      "difficulty": "challenging",
+      "bucket": "信息",
+      "root": "信息",
+      "why": "missing_table:disp,client",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 122,
+      "question_id": 122,
+      "db_id": "financial",
+      "difficulty": "challenging",
+      "bucket": "信息",
+      "root": "信息",
+      "why": "missing_table:trans",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 11,
+      "question_id": 11,
+      "db_id": "california_schools",
+      "difficulty": "challenging",
+      "bucket": "信息",
+      "root": "信息",
+      "why": "missing_table:schools",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 20,
+      "question_id": 20,
+      "db_id": "california_schools",
+      "difficulty": "challenging",
+      "bucket": "信息",
+      "root": "信息",
+      "why": "missing_table:schools",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 62,
+      "question_id": 62,
+      "db_id": "california_schools",
+      "difficulty": "challenging",
+      "bucket": "信息",
+      "root": "信息",
+      "why": "missing_table:schools,satscores",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 79,
+      "question_id": 79,
+      "db_id": "california_schools",
+      "difficulty": "challenging",
+      "bucket": "信息",
+      "root": "信息",
+      "why": "missing_table:schools,frpm,satscores",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 75,
+      "question_id": 75,
+      "db_id": "california_schools",
+      "difficulty": "simple",
+      "bucket": "信息",
+      "root": "信息",
+      "why": "missing_table:schools",
+      "baseline_official_ok": false
+    },
+    {
+      "idx": 89,
+      "question_id": 89,
+      "db_id": "financial",
+      "difficulty": "moderate",
+      "bucket": "correct",
+      "root": null,
+      "why": null,
+      "baseline_official_ok": true
+    },
+    {
+      "idx": 93,
+      "question_id": 93,
+      "db_id": "financial",
+      "difficulty": "moderate",
+      "bucket": "correct",
+      "root": null,
+      "why": null,
+      "baseline_official_ok": true
+    },
+    {
+      "idx": 98,
+      "question_id": 98,
+      "db_id": "financial",
+      "difficulty": "moderate",
+      "bucket": "correct",
+      "root": null,
+      "why": null,
+      "baseline_official_ok": true
+    },
+    {
+      "idx": 99,
+      "question_id": 99,
+      "db_id": "financial",
+      "difficulty": "moderate",
+      "bucket": "correct",
+      "root": null,
+      "why": null,
+      "baseline_official_ok": true
+    },
+    {
+      "idx": 1,
+      "question_id": 1,
+      "db_id": "california_schools",
+      "difficulty": "moderate",
+      "bucket": "correct",
+      "root": null,
+      "why": null,
+      "baseline_official_ok": true
+    },
+    {
+      "idx": 4,
+      "question_id": 4,
+      "db_id": "california_schools",
+      "difficulty": "moderate",
+      "bucket": "correct",
+      "root": null,
+      "why": null,
+      "baseline_official_ok": true
+    },
+    {
+      "idx": 26,
+      "question_id": 26,
+      "db_id": "california_schools",
+      "difficulty": "moderate",
+      "bucket": "correct",
+      "root": null,
+      "why": null,
+      "baseline_official_ok": true
+    },
+    {
+      "idx": 34,
+      "question_id": 34,
+      "db_id": "california_schools",
+      "difficulty": "moderate",
+      "bucket": "correct",
+      "root": null,
+      "why": null,
+      "baseline_official_ok": true
+    }
+  ]
+}

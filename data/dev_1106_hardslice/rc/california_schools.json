@@ -1,0 +1,4664 @@
+{
+  "database_name": "california_schools",
+  "database_type": "sqlite",
+  "collected_at": "2026-08-20T15:28:20.25807348+08:00",
+  "schema_diagram": {
+    "format": "mermaid-er",
+    "description": "Entity-Relationship diagram showing database schema and relationships",
+    "content": "erDiagram\n    SCHOOLS ||--o{ SATSCORES : \"has\"\n    SCHOOLS ||--o{ FRPM : \"has\"\n\n    FRPM {\n        text CDSCode PK,FK\n        text Academic Year\n        text County Code\n        int District Code\n        text School Code\n        text County Name\n        text District Name\n        text School Name\n        text District Type\n        text School Type\n        text Educational Option Type\n        text NSLP Provision Status\n        int Charter School (Y/N)\n        text Charter School Number\n        text Charter Funding Type\n        int IRC\n        text Low Grade\n        text High Grade\n        float Enrollment (K-12)\n        float Free Meal Count (K-12)\n        float Percent (%) Eligible Free (K-12)\n        float FRPM Count (K-12)\n        float Percent (%) Eligible FRPM (K-12)\n        float Enrollment (Ages 5-17)\n        float Free Meal Count (Ages 5-17)\n        float Percent (%) Eligible Free (Ages 5-17)\n        float FRPM Count (Ages 5-17)\n        float Percent (%) Eligible FRPM (Ages 5-17)\n        int 2013-14 CALPADS Fall 1 Certification Status\n    }\n    SATSCORES {\n        text cds PK,FK\n        text rtype\n        text sname\n        text dname\n        text cname\n        int enroll12\n        int NumTstTakr\n        int AvgScrRead\n        int AvgScrMath\n        int AvgScrWrite\n        int NumGE1500\n    }\n    SCHOOLS {\n        text CDSCode PK\n        text NCESDist\n        text NCESSchool\n        text StatusType\n        text County\n        text District\n        text School\n        text Street\n        text StreetAbr\n        text City\n        text Zip\n        text State\n        text MailStreet\n        text MailStrAbr\n        text MailCity\n        text MailZip\n        text MailState\n        text Phone\n        text Ext\n        text Website\n        datetime OpenDate\n        datetime ClosedDate\n        int Charter\n        text CharterNum\n        text FundingType\n        text DOC\n        text DOCType\n        text SOC\n        text SOCType\n        text EdOpsCode\n        text EdOpsName\n        text EILCode\n        text EILName\n        text GSoffered\n        text GSserved\n        text Virtual\n        int Magnet\n        float Latitude\n        float Longitude\n        text AdmFName1\n        text AdmLName1\n        text AdmEmail1\n        text AdmFName2\n        text AdmLName2\n        text AdmEmail2\n        text AdmFName3\n        text AdmLName3\n        text AdmEmail3\n        datetime LastUpdate\n    }\n"
+  },
+  "tables": {
+    "frpm": {
+      "name": "frpm",
+      "row_count": 9986,
+      "columns": [
+        {
+          "name": "CDSCode",
+          "type": "TEXT",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 9986,
+            "distinct_mode": "exact",
+            "sample_rows": 9986,
+            "observed_ndv": 9986,
+            "uniqueness_ratio": 1,
+            "null_count": 0,
+            "null_percent": 0,
+            "sample_values": [
+              "01100170109835",
+              "01100170112607",
+              "01100170118489",
+              "01100170123968",
+              "01100170124172",
+              "01100170125567",
+              "01100170130401",
+              "01100170130419",
+              "01100176001788",
+              "01100176002000"
+            ],
+            "dominant_shape": "digits",
+            "avg_len": 14
+          },
+          "official_meaning": "CDSCode",
+          "profile_nl": "distinct=9986; shape=digits(~14 chars)",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "primary_key,ndv_exact=9986",
+          "value_index_confidence": 1,
+          "value_index_evidence": [
+            "primary_key",
+            "ndv_exact=9986"
+          ],
+          "value_index_estimated_docs": 9986,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "Academic Year",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1,
+            "distinct_mode": "exact",
+            "sample_rows": 9986,
+            "observed_ndv": 1,
+            "uniqueness_ratio": 0.0001001401962747847,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "2014-2015",
+                "count": 9986,
+                "percent": 100
+              }
+            ],
+            "dominant_shape": "alnum",
+            "avg_len": 9
+          },
+          "official_meaning": "Academic Year",
+          "profile_nl": "distinct=1; shape=alnum(~9 chars)",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "constant_or_empty,ndv_exact=1",
+          "value_index_confidence": 0.95,
+          "value_index_evidence": [
+            "constant_or_empty",
+            "ndv_exact=1"
+          ],
+          "value_index_estimated_docs": 1,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "County Code",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 58,
+            "distinct_mode": "exact",
+            "sample_rows": 9986,
+            "observed_ndv": 58,
+            "uniqueness_ratio": 0.005808131383937512,
+            "null_count": 0,
+            "null_percent": 0,
+            "sample_values": [
+              "01"
+            ],
+            "dominant_shape": "digits",
+            "avg_len": 2
+          },
+          "official_meaning": "County Code",
+          "profile_nl": "distinct=58; shape=digits(~2 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "low_cardinality,short_semantic_values,ndv_exact=58",
+          "value_index_confidence": 0.96,
+          "value_index_evidence": [
+            "low_cardinality",
+            "short_semantic_values",
+            "ndv_exact=58"
+          ],
+          "value_index_estimated_docs": 58,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "District Code",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1012,
+            "distinct_mode": "exact",
+            "sample_rows": 9986,
+            "observed_ndv": 1012,
+            "uniqueness_ratio": 0.10134187863008212,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 10017,
+              "max": 76901,
+              "avg": 65651.53024233927
+            }
+          },
+          "official_meaning": "District Code",
+          "profile_nl": "distinct=1012; range=[10017..76901]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=1012",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=1012"
+          ],
+          "value_index_estimated_docs": 1012,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "School Code",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 9942,
+            "distinct_mode": "exact",
+            "sample_rows": 9986,
+            "observed_ndv": 9942,
+            "uniqueness_ratio": 0.9955938313639094,
+            "null_count": 0,
+            "null_percent": 0,
+            "sample_values": [
+              "0109835",
+              "0112607",
+              "0118489",
+              "0123968",
+              "0124172",
+              "0125567",
+              "0130401",
+              "0130419",
+              "6001788",
+              "6002000"
+            ],
+            "dominant_shape": "digits",
+            "avg_len": 7
+          },
+          "official_meaning": "School Code",
+          "profile_nl": "distinct=9942; shape=digits(~7 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "entity_semantic_name,ndv_exact=9942",
+          "value_index_confidence": 0.9,
+          "value_index_evidence": [
+            "entity_semantic_name",
+            "ndv_exact=9942"
+          ],
+          "value_index_estimated_docs": 9942,
+          "value_index_status": "indexed",
+          "value_index_kind": "entity"
+        },
+        {
+          "name": "County Name",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 58,
+            "distinct_mode": "exact",
+            "sample_rows": 9986,
+            "observed_ndv": 58,
+            "uniqueness_ratio": 0.005808131383937512,
+            "null_count": 0,
+            "null_percent": 0,
+            "sample_values": [
+              "Alameda"
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 7
+          },
+          "official_meaning": "County Code",
+          "profile_nl": "distinct=58; shape=alpha(~7 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "low_cardinality,short_semantic_values,ndv_exact=58",
+          "value_index_confidence": 0.96,
+          "value_index_evidence": [
+            "low_cardinality",
+            "short_semantic_values",
+            "ndv_exact=58"
+          ],
+          "value_index_estimated_docs": 58,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "District Name",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1000,
+            "distinct_mode": "exact",
+            "sample_rows": 9986,
+            "observed_ndv": 1000,
+            "uniqueness_ratio": 0.1001401962747847,
+            "null_count": 0,
+            "null_percent": 0,
+            "sample_values": [
+              "Alameda County Office of Education",
+              "California School for the Blind (State Special Schl)",
+              "California School for the Deaf-Fremont (State Special Schl)",
+              "Alameda Unified",
+              "Albany City Unified",
+              "Berkeley Unified"
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 32.5
+          },
+          "official_meaning": "District Name",
+          "profile_nl": "distinct=1000; shape=alpha(~32 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "entity_semantic_name,ndv_exact=1000",
+          "value_index_confidence": 0.9,
+          "value_index_evidence": [
+            "entity_semantic_name",
+            "ndv_exact=1000"
+          ],
+          "value_index_estimated_docs": 1000,
+          "value_index_status": "indexed",
+          "value_index_kind": "entity"
+        },
+        {
+          "name": "School Name",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8652,
+            "distinct_mode": "exact",
+            "sample_rows": 9986,
+            "observed_ndv": 8652,
+            "uniqueness_ratio": 0.8664129781694372,
+            "null_count": 0,
+            "null_percent": 0,
+            "sample_values": [
+              "FAME Public Charter",
+              "Envision Academy for Arts \u0026 Technology",
+              "Aspire California College Preparatory Academy",
+              "Community School for Creative Education",
+              "Yu Ming Charter",
+              "Urban Montessori Charter",
+              "Alameda County Juvenile Hall/Court",
+              "Alameda County Community",
+              "Cox Academy",
+              "Lazear Charter Academy"
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 27.1
+          },
+          "official_meaning": "School Name",
+          "profile_nl": "distinct=8652; shape=alpha(~27 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "entity_semantic_name,ndv_exact=8652",
+          "value_index_confidence": 0.9,
+          "value_index_evidence": [
+            "entity_semantic_name",
+            "ndv_exact=8652"
+          ],
+          "value_index_estimated_docs": 8652,
+          "value_index_status": "indexed_truncated",
+          "value_index_kind": "entity"
+        },
+        {
+          "name": "District Type",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8,
+            "distinct_mode": "exact",
+            "sample_rows": 9986,
+            "observed_ndv": 8,
+            "uniqueness_ratio": 0.0008011215701982776,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Unified School District",
+                "count": 6744,
+                "percent": 67.53454836771479
+              },
+              {
+                "value": "Elementary School District",
+                "count": 2356,
+                "percent": 23.593030242339275
+              },
+              {
+                "value": "High School District",
+                "count": 529,
+                "percent": 5.2974163829361105
+              },
+              {
+                "value": "County Office of Education (COE)",
+                "count": 334,
+                "percent": 3.344682555577809
+              },
+              {
+                "value": "State Board of Education",
+                "count": 10,
+                "percent": 0.1001401962747847
+              },
+              {
+                "value": "Statewide Benefit Charter",
+                "count": 6,
+                "percent": 0.06008411776487082
+              },
+              {
+                "value": "Non-School Locations",
+                "count": 4,
+                "percent": 0.040056078509913884
+              },
+              {
+                "value": "State Special Schools",
+                "count": 3,
+                "percent": 0.03004205888243541
+              }
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 23.850290406569197
+          },
+          "official_meaning": "District Type",
+          "profile_nl": "distinct=8; shape=alpha(~24 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "low_cardinality,short_semantic_values,ndv_exact=8",
+          "value_index_confidence": 0.96,
+          "value_index_evidence": [
+            "low_cardinality",
+            "short_semantic_values",
+            "ndv_exact=8"
+          ],
+          "value_index_estimated_docs": 8,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "School Type",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 17,
+            "distinct_mode": "exact",
+            "sample_rows": 9941,
+            "observed_ndv": 17,
+            "uniqueness_ratio": 0.0017100895282164772,
+            "null_count": 45,
+            "null_percent": 0.45063088323653117,
+            "top_values": [
+              {
+                "value": "Elementary Schools (Public)",
+                "count": 5584,
+                "percent": 55.91828559983978
+              },
+              {
+                "value": "High Schools (Public)",
+                "count": 1331,
+                "percent": 13.328660124173844
+              },
+              {
+                "value": "Intermediate/Middle Schools (Public)",
+                "count": 1299,
+                "percent": 13.008211496094532
+              },
+              {
+                "value": "Continuation High Schools",
+                "count": 459,
+                "percent": 4.596435009012618
+              },
+              {
+                "value": "Alternative Schools of Choice",
+                "count": 259,
+                "percent": 2.593631083516924
+              },
+              {
+                "value": "K-12 Schools (Public)",
+                "count": 240,
+                "percent": 2.403364710594833
+              },
+              {
+                "value": "Elemen Schools In 1 School Dist. (Public)",
+                "count": 206,
+                "percent": 2.062888043260565
+              },
+              {
+                "value": "District Community Day Schools",
+                "count": 203,
+                "percent": 2.0328459843781297
+              },
+              {
+                "value": "Special Education Schools (Public)",
+                "count": 132,
+                "percent": 1.321850590827158
+              },
+              {
+                "value": "County Community",
+                "count": 75,
+                "percent": 0.7510514720608852
+              },
+              {
+                "value": "Juvenile Court Schools",
+                "count": 74,
+                "percent": 0.7410374524334068
+              },
+              {
+                "value": "Junior High Schools (Public)",
+                "count": 46,
+                "percent": 0.4606449028640096
+              },
+              {
+                "value": "Opportunity Schools",
+                "count": 23,
+                "percent": 0.2303224514320048
+              },
+              {
+                "value": "Youth Authority Facilities",
+                "count": 4,
+                "percent": 0.040056078509913884
+              },
+              {
+                "value": "State Special Schools",
+                "count": 3,
+                "percent": 0.03004205888243541
+              }
+            ],
+            "dominant_shape": "mixed",
+            "avg_len": 27.49577379754478
+          },
+          "official_meaning": "School Type",
+          "profile_nl": "distinct=17; avgLen=27",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "low_cardinality,short_semantic_values,ndv_exact=17",
+          "value_index_confidence": 0.96,
+          "value_index_evidence": [
+            "low_cardinality",
+            "short_semantic_values",
+            "ndv_exact=17"
+          ],
+          "value_index_estimated_docs": 17,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "Educational Option Type",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 12,
+            "distinct_mode": "exact",
+            "sample_rows": 9941,
+            "observed_ndv": 12,
+            "uniqueness_ratio": 0.0012071220199175133,
+            "null_count": 45,
+            "null_percent": 0.45063088323653117,
+            "top_values": [
+              {
+                "value": "Traditional",
+                "count": 8696,
+                "percent": 87.08191468055277
+              },
+              {
+                "value": "Continuation School",
+                "count": 459,
+                "percent": 4.596435009012618
+              },
+              {
+                "value": "Alternative School of Choice",
+                "count": 259,
+                "percent": 2.593631083516924
+              },
+              {
+                "value": "Community Day School",
+                "count": 203,
+                "percent": 2.0328459843781297
+              },
+              {
+                "value": "Special Education School",
+                "count": 128,
+                "percent": 1.2817945123172443
+              },
+              {
+                "value": "County Community School",
+                "count": 84,
+                "percent": 0.8411776487081914
+              },
+              {
+                "value": "Juvenile Court School",
+                "count": 74,
+                "percent": 0.7410374524334068
+              },
+              {
+                "value": "Opportunity School",
+                "count": 24,
+                "percent": 0.24033647105948328
+              },
+              {
+                "value": "Youth Authority School",
+                "count": 4,
+                "percent": 0.040056078509913884
+              },
+              {
+                "value": "District Special Education Consortia School",
+                "count": 4,
+                "percent": 0.040056078509913884
+              },
+              {
+                "value": "State Special School",
+                "count": 3,
+                "percent": 0.03004205888243541
+              },
+              {
+                "value": "Home and Hospital",
+                "count": 3,
+                "percent": 0.03004205888243541
+              }
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 12.3780303792375
+          },
+          "official_meaning": "Educational Option Type",
+          "profile_nl": "distinct=12; shape=alpha(~12 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "low_cardinality,short_semantic_values,ndv_exact=12",
+          "value_index_confidence": 0.96,
+          "value_index_evidence": [
+            "low_cardinality",
+            "short_semantic_values",
+            "ndv_exact=12"
+          ],
+          "value_index_estimated_docs": 12,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "NSLP Provision Status",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 7,
+            "distinct_mode": "exact",
+            "sample_rows": 1847,
+            "observed_ndv": 7,
+            "uniqueness_ratio": 0.003789929615592853,
+            "null_count": 8139,
+            "null_percent": 81.50410574804727,
+            "top_values": [
+              {
+                "value": "Provision 2",
+                "count": 1365,
+                "percent": 13.66913679150811
+              },
+              {
+                "value": "Breakfast Provision 2",
+                "count": 285,
+                "percent": 2.853995593831364
+              },
+              {
+                "value": "CEP",
+                "count": 172,
+                "percent": 1.7224113759262967
+              },
+              {
+                "value": "Multiple Provision Types",
+                "count": 11,
+                "percent": 0.11015421590226317
+              },
+              {
+                "value": "Provision 1",
+                "count": 7,
+                "percent": 0.0700981373923493
+              },
+              {
+                "value": "Lunch Provision 2",
+                "count": 5,
+                "percent": 0.05007009813739235
+              },
+              {
+                "value": "Provision 3",
+                "count": 2,
+                "percent": 0.020028039254956942
+              }
+            ],
+            "dominant_shape": "alnum",
+            "avg_len": 11.891716296697346
+          },
+          "official_meaning": "NSLP Provision Status",
+          "profile_nl": "82% NULL; distinct=7; shape=alnum(~12 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "low_cardinality,short_semantic_values,ndv_exact=7",
+          "value_index_confidence": 0.96,
+          "value_index_evidence": [
+            "low_cardinality",
+            "short_semantic_values",
+            "ndv_exact=7"
+          ],
+          "value_index_estimated_docs": 7,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "Charter School (Y/N)",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2,
+            "distinct_mode": "exact",
+            "sample_rows": 9941,
+            "observed_ndv": 2,
+            "uniqueness_ratio": 0.00020118700331958554,
+            "null_count": 45,
+            "null_percent": 0.45063088323653117,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 8774,
+                "percent": 87.8630082114961
+              },
+              {
+                "value": "1",
+                "count": 1167,
+                "percent": 11.686360905267374
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "avg": 0.11739261643697817
+            },
+            "dominant_shape": "digits",
+            "avg_len": 1
+          },
+          "official_meaning": "Charter School (Y/N)",
+          "profile_nl": "distinct=2; shape=digits(~1 chars); range=[0..1]",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "official_value_description,ndv_exact=2",
+          "value_index_confidence": 1,
+          "value_index_evidence": [
+            "official_value_description",
+            "ndv_exact=2"
+          ],
+          "value_index_estimated_docs": 2,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "Charter School Number",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1152,
+            "distinct_mode": "exact",
+            "sample_rows": 1167,
+            "observed_ndv": 1152,
+            "uniqueness_ratio": 0.987146529562982,
+            "null_count": 8819,
+            "null_percent": 88.31363909473262,
+            "sample_values": [
+              "0728",
+              "0811",
+              "1049",
+              "1284",
+              "1296",
+              "1383",
+              "0740",
+              "1464",
+              "1066",
+              "1181"
+            ],
+            "dominant_shape": "digits",
+            "avg_len": 4
+          },
+          "official_meaning": "Charter School Number",
+          "profile_nl": "88% NULL; distinct=1152; shape=digits(~4 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "entity_semantic_name,ndv_exact=1152",
+          "value_index_confidence": 0.9,
+          "value_index_evidence": [
+            "entity_semantic_name",
+            "ndv_exact=1152"
+          ],
+          "value_index_estimated_docs": 1152,
+          "value_index_status": "indexed",
+          "value_index_kind": "entity"
+        },
+        {
+          "name": "Charter Funding Type",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3,
+            "distinct_mode": "exact",
+            "sample_rows": 1167,
+            "observed_ndv": 3,
+            "uniqueness_ratio": 0.002570694087403599,
+            "null_count": 8819,
+            "null_percent": 88.31363909473262,
+            "top_values": [
+              {
+                "value": "Directly funded",
+                "count": 838,
+                "percent": 8.391748447826958
+              },
+              {
+                "value": "Locally funded",
+                "count": 328,
+                "percent": 3.2845984378129383
+              },
+              {
+                "value": "Not in CS funding model",
+                "count": 1,
+                "percent": 0.010014019627478471
+              }
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 14.725792630676949
+          },
+          "official_meaning": "Charter Funding Type",
+          "profile_nl": "88% NULL; distinct=3; shape=alpha(~15 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "low_cardinality,short_semantic_values,ndv_exact=3",
+          "value_index_confidence": 0.96,
+          "value_index_evidence": [
+            "low_cardinality",
+            "short_semantic_values",
+            "ndv_exact=3"
+          ],
+          "value_index_estimated_docs": 3,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "IRC",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2,
+            "distinct_mode": "exact",
+            "sample_rows": 9941,
+            "observed_ndv": 2,
+            "uniqueness_ratio": 0.00020118700331958554,
+            "null_count": 45,
+            "null_percent": 0.45063088323653117,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 9212,
+                "percent": 92.24914880833165
+              },
+              {
+                "value": "1",
+                "count": 729,
+                "percent": 7.300220308431804
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "avg": 0.07333266270998894
+            },
+            "dominant_shape": "digits",
+            "avg_len": 1
+          },
+          "profile_nl": "distinct=2; shape=digits(~1 chars); range=[0..1]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=2",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=2"
+          ],
+          "value_index_estimated_docs": 2,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "Low Grade",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 15,
+            "distinct_mode": "exact",
+            "sample_rows": 9986,
+            "observed_ndv": 15,
+            "uniqueness_ratio": 0.0015021029441217705,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "K",
+                "count": 6057,
+                "percent": 60.654916883637085
+              },
+              {
+                "value": "9",
+                "count": 1733,
+                "percent": 17.354296014420186
+              },
+              {
+                "value": "6",
+                "count": 1024,
+                "percent": 10.254356098537954
+              },
+              {
+                "value": "7",
+                "count": 651,
+                "percent": 6.519126777488483
+              },
+              {
+                "value": "P",
+                "count": 181,
+                "percent": 1.812537552573603
+              },
+              {
+                "value": "5",
+                "count": 99,
+                "percent": 0.9913879431203685
+              },
+              {
+                "value": "4",
+                "count": 68,
+                "percent": 0.6809533346685359
+              },
+              {
+                "value": "10",
+                "count": 44,
+                "percent": 0.44061686360905267
+              },
+              {
+                "value": "1",
+                "count": 42,
+                "percent": 0.4205888243540957
+              },
+              {
+                "value": "3",
+                "count": 38,
+                "percent": 0.38053274584418184
+              },
+              {
+                "value": "2",
+                "count": 19,
+                "percent": 0.19026637292209092
+              },
+              {
+                "value": "11",
+                "count": 14,
+                "percent": 0.1401962747846986
+              },
+              {
+                "value": "8",
+                "count": 10,
+                "percent": 0.1001401962747847
+              },
+              {
+                "value": "Adult",
+                "count": 3,
+                "percent": 0.03004205888243541
+              },
+              {
+                "value": "12",
+                "count": 3,
+                "percent": 0.03004205888243541
+              }
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 1.0073102343280593
+          },
+          "official_meaning": "Low Grade",
+          "profile_nl": "distinct=15; shape=alpha(~1 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "low_cardinality,short_semantic_values,ndv_exact=15",
+          "value_index_confidence": 0.96,
+          "value_index_evidence": [
+            "low_cardinality",
+            "short_semantic_values",
+            "ndv_exact=15"
+          ],
+          "value_index_estimated_docs": 15,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "High Grade",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 17,
+            "distinct_mode": "exact",
+            "sample_rows": 9986,
+            "observed_ndv": 17,
+            "uniqueness_ratio": 0.00170238333667134,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "12",
+                "count": 2641,
+                "percent": 26.44702583617064
+              },
+              {
+                "value": "5",
+                "count": 2534,
+                "percent": 25.37552573603044
+              },
+              {
+                "value": "8",
+                "count": 2401,
+                "percent": 24.043661125575806
+              },
+              {
+                "value": "6",
+                "count": 2091,
+                "percent": 20.93931504105748
+              },
+              {
+                "value": "3",
+                "count": 68,
+                "percent": 0.6809533346685359
+              },
+              {
+                "value": "4",
+                "count": 65,
+                "percent": 0.6509112757861005
+              },
+              {
+                "value": "2",
+                "count": 40,
+                "percent": 0.4005607850991388
+              },
+              {
+                "value": "Adult",
+                "count": 35,
+                "percent": 0.35049068696174646
+              },
+              {
+                "value": "7",
+                "count": 30,
+                "percent": 0.30042058882435413
+              },
+              {
+                "value": "1",
+                "count": 22,
+                "percent": 0.22030843180452633
+              },
+              {
+                "value": "9",
+                "count": 19,
+                "percent": 0.19026637292209092
+              },
+              {
+                "value": "K",
+                "count": 18,
+                "percent": 0.18025235329461245
+              },
+              {
+                "value": "10",
+                "count": 13,
+                "percent": 0.13018225515722012
+              },
+              {
+                "value": "11",
+                "count": 5,
+                "percent": 0.05007009813739235
+              },
+              {
+                "value": "P",
+                "count": 2,
+                "percent": 0.020028039254956942
+              }
+            ],
+            "dominant_shape": "digits",
+            "avg_len": 1.2803485576923077
+          },
+          "official_meaning": "High Grade",
+          "profile_nl": "distinct=17; shape=digits(~1 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "low_cardinality,short_semantic_values,ndv_exact=17",
+          "value_index_confidence": 0.96,
+          "value_index_evidence": [
+            "low_cardinality",
+            "short_semantic_values",
+            "ndv_exact=17"
+          ],
+          "value_index_estimated_docs": 17,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "Enrollment (K-12)",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1882,
+            "distinct_mode": "exact",
+            "sample_rows": 9986,
+            "observed_ndv": 1882,
+            "uniqueness_ratio": 0.18846384938914482,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 1,
+              "max": 5333,
+              "avg": 620.8260564790706
+            }
+          },
+          "official_meaning": "Enrollment (K-12)",
+          "profile_nl": "distinct=1882; range=[1..5333]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=1882",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=1882"
+          ],
+          "value_index_estimated_docs": 1882,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "Free Meal Count (K-12)",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1216,
+            "distinct_mode": "exact",
+            "sample_rows": 9930,
+            "observed_ndv": 1216,
+            "uniqueness_ratio": 0.12245720040281974,
+            "null_count": 56,
+            "null_percent": 0.5607850991387944,
+            "range": {
+              "min": 1,
+              "max": 3927,
+              "avg": 312.003524672709
+            }
+          },
+          "official_meaning": "Free Meal Count (K-12)",
+          "profile_nl": "distinct=1216; range=[1..3927]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=1216",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=1216"
+          ],
+          "value_index_estimated_docs": 1216,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "Percent (%) Eligible Free (K-12)",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8658,
+            "distinct_mode": "exact",
+            "sample_rows": 9930,
+            "observed_ndv": 8658,
+            "uniqueness_ratio": 0.8719033232628399,
+            "null_count": 56,
+            "null_percent": 0.5607850991387944,
+            "range": {
+              "min": 0.00176056338028169,
+              "max": 1,
+              "avg": 0.5296390500259784
+            }
+          },
+          "profile_nl": "distinct=8658; range=[0..1]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=8658",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=8658"
+          ],
+          "value_index_estimated_docs": 8658,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "FRPM Count (K-12)",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1361,
+            "distinct_mode": "exact",
+            "sample_rows": 9936,
+            "observed_ndv": 1361,
+            "uniqueness_ratio": 0.13697665056360708,
+            "null_count": 50,
+            "null_percent": 0.5007009813739235,
+            "range": {
+              "min": 1,
+              "max": 4419,
+              "avg": 365.4796698872786
+            }
+          },
+          "official_meaning": "Free or Reduced Price Meal Count (K-12)",
+          "profile_nl": "distinct=1361; range=[1..4419]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=1361",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=1361"
+          ],
+          "value_index_estimated_docs": 1361,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "Percent (%) Eligible FRPM (K-12)",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8623,
+            "distinct_mode": "exact",
+            "sample_rows": 9936,
+            "observed_ndv": 8623,
+            "uniqueness_ratio": 0.8678542673107891,
+            "null_count": 50,
+            "null_percent": 0.5007009813739235,
+            "range": {
+              "min": 0.00220507166482911,
+              "max": 1,
+              "avg": 0.6120854984478289
+            }
+          },
+          "profile_nl": "distinct=8623; range=[0..1]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=8623",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=8623"
+          ],
+          "value_index_estimated_docs": 8623,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "Enrollment (Ages 5-17)",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1845,
+            "distinct_mode": "exact",
+            "sample_rows": 9972,
+            "observed_ndv": 1845,
+            "uniqueness_ratio": 0.18501805054151624,
+            "null_count": 14,
+            "null_percent": 0.1401962747846986,
+            "range": {
+              "min": 1,
+              "max": 5271,
+              "avg": 605.3251103088649
+            }
+          },
+          "official_meaning": "Enrollment (Ages 5-17)",
+          "profile_nl": "distinct=1845; range=[1..5271]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=1845",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=1845"
+          ],
+          "value_index_estimated_docs": 1845,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "Free Meal Count (Ages 5-17)",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1205,
+            "distinct_mode": "exact",
+            "sample_rows": 9908,
+            "observed_ndv": 1205,
+            "uniqueness_ratio": 0.12161889382317319,
+            "null_count": 78,
+            "null_percent": 0.7810935309433207,
+            "range": {
+              "min": 1,
+              "max": 3864,
+              "avg": 304.0320952765442
+            }
+          },
+          "official_meaning": "Free Meal Count (Ages 5-17)",
+          "profile_nl": "distinct=1205; range=[1..3864]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=1205",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=1205"
+          ],
+          "value_index_estimated_docs": 1205,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "Percent (%) Eligible Free (Ages 5-17)",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8552,
+            "distinct_mode": "exact",
+            "sample_rows": 9908,
+            "observed_ndv": 8552,
+            "uniqueness_ratio": 0.8631408962454582,
+            "null_count": 78,
+            "null_percent": 0.7810935309433207,
+            "range": {
+              "min": 0.00179856115107914,
+              "max": 1,
+              "avg": 0.5317077962838158
+            }
+          },
+          "profile_nl": "distinct=8552; range=[0..1]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=8552",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=8552"
+          ],
+          "value_index_estimated_docs": 8552,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "FRPM Count (Ages 5-17)",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1330,
+            "distinct_mode": "exact",
+            "sample_rows": 9914,
+            "observed_ndv": 1330,
+            "uniqueness_ratio": 0.1341537220092798,
+            "null_count": 72,
+            "null_percent": 0.7210094131784498,
+            "range": {
+              "min": 1,
+              "max": 4347,
+              "avg": 356.51432317934234
+            }
+          },
+          "profile_nl": "distinct=1330; range=[1..4347]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=1330",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=1330"
+          ],
+          "value_index_estimated_docs": 1330,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "Percent (%) Eligible FRPM (Ages 5-17)",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 8557,
+            "distinct_mode": "exact",
+            "sample_rows": 9914,
+            "observed_ndv": 8557,
+            "uniqueness_ratio": 0.8631228565664717,
+            "null_count": 72,
+            "null_percent": 0.7210094131784498,
+            "range": {
+              "min": 0.00220507166482911,
+              "max": 1,
+              "avg": 0.6146177416194049
+            }
+          },
+          "profile_nl": "distinct=8557; range=[0..1]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=8557",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=8557"
+          ],
+          "value_index_estimated_docs": 8557,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "2013-14 CALPADS Fall 1 Certification Status",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1,
+            "distinct_mode": "exact",
+            "sample_rows": 9986,
+            "observed_ndv": 1,
+            "uniqueness_ratio": 0.0001001401962747847,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "1",
+                "count": 9986,
+                "percent": 100
+              }
+            ],
+            "range": {
+              "min": 1,
+              "max": 1,
+              "avg": 1
+            },
+            "dominant_shape": "digits",
+            "avg_len": 1
+          },
+          "official_meaning": "2013-14 CALPADS Fall 1 Certification Status",
+          "profile_nl": "distinct=1; shape=digits(~1 chars); range=[1..1]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=1",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=1"
+          ],
+          "value_index_estimated_docs": 1,
+          "value_index_status": "excluded"
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "CDSCode",
+          "referenced_table": "schools",
+          "referenced_column": "CDSCode",
+          "cardinality": "1:1",
+          "parent_to_child": "1:1",
+          "avg_children": 1,
+          "child_distinct_fk": 9986,
+          "child_rows": 9986
+        }
+      ],
+      "rich_context": {
+        "business_rules": {
+          "content": "IRC: Not useful | Enrollment (K-12): commonsense evidence: K-12: 1st grade - 12nd grade | Free Meal Count (K-12): commonsense evidence: eligible free rate = Free Meal Count / Enrollment | FRPM Count (K-12): commonsense evidence: eligible FRPM rate = FRPM / Enrollment | Free Meal Count (Ages 5-17): commonsense evidence: eligible free rate = Free Meal Count / Enrollment",
+          "expires_at": "2026-08-27T15:37:35+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "frpm",
+          "column": "CDSCode",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 9986/9986 non-empty)",
+          "sql_fix": "CAST(\"CDSCode\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "frpm",
+          "column": "Academic Year",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 9986/9986 non-empty)",
+          "sql_fix": "CAST(\"Academic Year\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "frpm",
+          "column": "County Code",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 9986/9986 non-empty)",
+          "sql_fix": "CAST(\"County Code\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "frpm",
+          "column": "School Code",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 9986/9986 non-empty)",
+          "sql_fix": "CAST(\"School Code\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "frpm",
+          "column": "NSLP Provision Status",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "82% NULL values (8139/9986)",
+          "sql_fix": "WHERE \"NSLP Provision Status\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "frpm",
+          "column": "Charter School Number",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (98% numeric, 1149/1167 non-empty)",
+          "sql_fix": "CAST(\"Charter School Number\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "frpm",
+          "column": "Charter School Number",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "88% NULL values (8819/9986)",
+          "sql_fix": "WHERE \"Charter School Number\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "frpm",
+          "column": "Charter Funding Type",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "88% NULL values (8819/9986)",
+          "sql_fix": "WHERE \"Charter Funding Type\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "frpm",
+          "column": "High Grade",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (99% numeric, 9930/9986 non-empty)",
+          "sql_fix": "CAST(\"High Grade\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        }
+      ]
+    },
+    "satscores": {
+      "name": "satscores",
+      "row_count": 2269,
+      "columns": [
+        {
+          "name": "cds",
+          "type": "TEXT",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 2269,
+            "distinct_mode": "exact",
+            "sample_rows": 2269,
+            "observed_ndv": 2269,
+            "uniqueness_ratio": 1,
+            "null_count": 0,
+            "null_percent": 0,
+            "sample_values": [
+              "10101080000000",
+              "10101080109991",
+              "10101080111682",
+              "10101080119628",
+              "10621170000000",
+              "10621170113555",
+              "10621170118018",
+              "10621171030196",
+              "10621171030469",
+              "10621171030501"
+            ],
+            "dominant_shape": "digits",
+            "avg_len": 14
+          },
+          "official_meaning": "California Department Schools",
+          "profile_nl": "distinct=2269; shape=digits(~14 chars)",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "primary_key,ndv_exact=2269",
+          "value_index_confidence": 1,
+          "value_index_evidence": [
+            "primary_key",
+            "ndv_exact=2269"
+          ],
+          "value_index_estimated_docs": 2269,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "rtype",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 2,
+            "distinct_mode": "exact",
+            "sample_rows": 2269,
+            "observed_ndv": 2,
+            "uniqueness_ratio": 0.0008814455707360071,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "S",
+                "count": 1749,
+                "percent": 77.08241516086382
+              },
+              {
+                "value": "D",
+                "count": 520,
+                "percent": 22.917584839136186
+              }
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 1
+          },
+          "official_meaning": "rtype",
+          "profile_nl": "distinct=2; shape=alpha(~1 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "low_cardinality,short_semantic_values,ndv_exact=2",
+          "value_index_confidence": 0.96,
+          "value_index_evidence": [
+            "low_cardinality",
+            "short_semantic_values",
+            "ndv_exact=2"
+          ],
+          "value_index_estimated_docs": 2,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "sname",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1665,
+            "distinct_mode": "exact",
+            "sample_rows": 1749,
+            "observed_ndv": 1665,
+            "uniqueness_ratio": 0.9519725557461407,
+            "null_count": 520,
+            "null_percent": 22.917584839136186,
+            "sample_values": [
+              "FAME Public Charter",
+              "Envision Academy for Arts \u0026 Technology",
+              "Aspire California College Preparatory Academy",
+              "Alameda Science and Technology Institute",
+              "Nea Community Learning Center",
+              "Alameda High",
+              "Alameda Community Learning Center",
+              "Alternatives in Action",
+              "Encinal High",
+              "Island High (Continuation)"
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 27.6
+          },
+          "official_meaning": "school name",
+          "profile_nl": "23% NULL; distinct=1665; shape=alpha(~28 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "entity_semantic_name,ndv_exact=1665",
+          "value_index_confidence": 0.9,
+          "value_index_evidence": [
+            "entity_semantic_name",
+            "ndv_exact=1665"
+          ],
+          "value_index_estimated_docs": 1665,
+          "value_index_status": "indexed",
+          "value_index_kind": "entity"
+        },
+        {
+          "name": "dname",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 520,
+            "distinct_mode": "exact",
+            "sample_rows": 2269,
+            "observed_ndv": 520,
+            "uniqueness_ratio": 0.22917584839136185,
+            "null_count": 0,
+            "null_percent": 0,
+            "sample_values": [
+              "Alameda County Office of Education",
+              "Alameda Unified",
+              "Albany City Unified",
+              "Berkeley Unified",
+              "Castro Valley Unified",
+              "Emery Unified",
+              "Fremont Unified",
+              "Hayward Unified",
+              "Livermore Valley Joint Unified"
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 19.77777777777778
+          },
+          "official_meaning": "district segment",
+          "profile_nl": "distinct=520; shape=alpha(~20 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "entity_semantic_name,ndv_exact=520",
+          "value_index_confidence": 0.9,
+          "value_index_evidence": [
+            "entity_semantic_name",
+            "ndv_exact=520"
+          ],
+          "value_index_estimated_docs": 520,
+          "value_index_status": "indexed",
+          "value_index_kind": "entity"
+        },
+        {
+          "name": "cname",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 57,
+            "distinct_mode": "exact",
+            "sample_rows": 2269,
+            "observed_ndv": 57,
+            "uniqueness_ratio": 0.0251211987659762,
+            "null_count": 0,
+            "null_percent": 0,
+            "sample_values": [
+              "Alameda"
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 7
+          },
+          "official_meaning": "county name",
+          "profile_nl": "distinct=57; shape=alpha(~7 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "low_cardinality,short_semantic_values,ndv_exact=57",
+          "value_index_confidence": 0.96,
+          "value_index_evidence": [
+            "low_cardinality",
+            "short_semantic_values",
+            "ndv_exact=57"
+          ],
+          "value_index_estimated_docs": 57,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "enroll12",
+          "type": "INTEGER",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 835,
+            "distinct_mode": "exact",
+            "sample_rows": 2269,
+            "observed_ndv": 835,
+            "uniqueness_ratio": 0.36800352578228296,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 0,
+              "max": 43324,
+              "avg": 419.5191714411635
+            }
+          },
+          "official_meaning": "enrollment (1st-12nd grade)",
+          "profile_nl": "distinct=835; range=[0..43324]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=835",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=835"
+          ],
+          "value_index_estimated_docs": 835,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "NumTstTakr",
+          "type": "INTEGER",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 547,
+            "distinct_mode": "exact",
+            "sample_rows": 2269,
+            "observed_ndv": 547,
+            "uniqueness_ratio": 0.24107536359629794,
+            "null_count": 0,
+            "null_percent": 0,
+            "range": {
+              "min": 0,
+              "max": 24305,
+              "avg": 185.0978404583517
+            }
+          },
+          "official_meaning": "Number of Test Takers in this school",
+          "profile_nl": "distinct=547; range=[0..24305]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=547",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=547"
+          ],
+          "value_index_estimated_docs": 547,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "AvgScrRead",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 269,
+            "distinct_mode": "exact",
+            "sample_rows": 1673,
+            "observed_ndv": 269,
+            "uniqueness_ratio": 0.1607890017931859,
+            "null_count": 596,
+            "null_percent": 26.26707800793301,
+            "range": {
+              "min": 308,
+              "max": 653,
+              "avg": 479.6993424985057
+            }
+          },
+          "official_meaning": "average scores in Reading",
+          "profile_nl": "26% NULL; distinct=269; range=[308..653]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=269",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=269"
+          ],
+          "value_index_estimated_docs": 269,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "AvgScrMath",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 295,
+            "distinct_mode": "exact",
+            "sample_rows": 1673,
+            "observed_ndv": 295,
+            "uniqueness_ratio": 0.1763299462044232,
+            "null_count": 596,
+            "null_percent": 26.26707800793301,
+            "range": {
+              "min": 289,
+              "max": 699,
+              "avg": 484.4608487746563
+            }
+          },
+          "official_meaning": "average scores in Math",
+          "profile_nl": "26% NULL; distinct=295; range=[289..699]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=295",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=295"
+          ],
+          "value_index_estimated_docs": 295,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "AvgScrWrite",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 267,
+            "distinct_mode": "exact",
+            "sample_rows": 1673,
+            "observed_ndv": 267,
+            "uniqueness_ratio": 0.15959354453078303,
+            "null_count": 596,
+            "null_percent": 26.26707800793301,
+            "range": {
+              "min": 312,
+              "max": 671,
+              "avg": 472.52898983861326
+            }
+          },
+          "official_meaning": "average scores in writing",
+          "profile_nl": "26% NULL; distinct=267; range=[312..671]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=267",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=267"
+          ],
+          "value_index_estimated_docs": 267,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "NumGE1500",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 368,
+            "distinct_mode": "exact",
+            "sample_rows": 1673,
+            "observed_ndv": 368,
+            "uniqueness_ratio": 0.2199641362821279,
+            "null_count": 596,
+            "null_percent": 26.26707800793301,
+            "range": {
+              "min": 0,
+              "max": 5837,
+              "avg": 111.0789001793186
+            }
+          },
+          "official_meaning": "Number of Test Takers Whose Total SAT Scores Are Greater or Equal to 1500",
+          "profile_nl": "26% NULL; distinct=368; range=[0..5837]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=368",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=368"
+          ],
+          "value_index_estimated_docs": 368,
+          "value_index_status": "excluded"
+        }
+      ],
+      "indexes": [],
+      "foreign_keys": [
+        {
+          "column_name": "cds",
+          "referenced_table": "schools",
+          "referenced_column": "CDSCode",
+          "cardinality": "1:1",
+          "parent_to_child": "1:1",
+          "avg_children": 1,
+          "child_distinct_fk": 2269,
+          "child_rows": 2269
+        }
+      ],
+      "rich_context": {
+        "business_rules": {
+          "content": "rtype: unuseful | NumTstTakr: number of test takers in each school | AvgScrRead: average scores in Reading | AvgScrMath: average scores in Math | AvgScrWrite: average scores in writing | NumGE1500: Number of Test Takers Whose Total SAT Scores Are Greater or Equal to 1500 commonsense evidence: Excellence Rate = NumGE1500 / NumTstTakr",
+          "expires_at": "2026-08-27T15:37:35+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "satscores",
+          "column": "cds",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 2269/2269 non-empty)",
+          "sql_fix": "CAST(\"cds\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "satscores",
+          "column": "cds",
+          "type": "orphan",
+          "severity": "warning",
+          "description": "211 orphan records (cds not in schools.CDSCode)",
+          "sql_fix": "LEFT JOIN \"schools\" ON \"satscores\".\"cds\" = \"schools\".\"CDSCode\"",
+          "affected_ops": [
+            "JOIN"
+          ]
+        }
+      ]
+    },
+    "schools": {
+      "name": "schools",
+      "row_count": 17686,
+      "columns": [
+        {
+          "name": "CDSCode",
+          "type": "TEXT",
+          "nullable": false,
+          "is_primary_key": true,
+          "value_stats": {
+            "distinct_count": 17686,
+            "distinct_mode": "exact",
+            "sample_rows": 17686,
+            "observed_ndv": 17686,
+            "uniqueness_ratio": 1,
+            "null_count": 0,
+            "null_percent": 0,
+            "sample_values": [
+              "01100170000000",
+              "01100170109835",
+              "01100170112607",
+              "01100170118489",
+              "01100170123968",
+              "01100170124172",
+              "01100170125567",
+              "01100170130302",
+              "01100170130401",
+              "01100170130419"
+            ],
+            "dominant_shape": "digits",
+            "avg_len": 14
+          },
+          "official_meaning": "CDSCode",
+          "profile_nl": "distinct=17686; shape=digits(~14 chars)",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "primary_key,ndv_exact=17686",
+          "value_index_confidence": 1,
+          "value_index_evidence": [
+            "primary_key",
+            "ndv_exact=17686"
+          ],
+          "value_index_estimated_docs": 17686,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "NCESDist",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1193,
+            "distinct_mode": "exact",
+            "sample_rows": 16656,
+            "observed_ndv": 1193,
+            "uniqueness_ratio": 0.07162584053794428,
+            "null_count": 1030,
+            "null_percent": 5.823815447246409,
+            "sample_values": [
+              "0691051",
+              "0600002",
+              "0600003"
+            ],
+            "dominant_shape": "digits",
+            "avg_len": 7
+          },
+          "official_meaning": "This field represents the 7-digit National Center for Educational Statistics (NCES) school district identification number. The first 2 digits identify the state and the last 5 digits identify the s...",
+          "profile_nl": "6% NULL; distinct=1193; shape=digits(~7 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "bounded_cardinality,ndv_exact=1193",
+          "value_index_confidence": 0.78,
+          "value_index_evidence": [
+            "bounded_cardinality",
+            "ndv_exact=1193"
+          ],
+          "value_index_estimated_docs": 1193,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "NCESSchool",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 12321,
+            "distinct_mode": "exact",
+            "sample_rows": 12646,
+            "observed_ndv": 12321,
+            "uniqueness_ratio": 0.9743001739680531,
+            "null_count": 5040,
+            "null_percent": 28.49711636322515,
+            "sample_values": [
+              "10546",
+              "10947",
+              "12283",
+              "12844",
+              "12901",
+              "13008",
+              "09264",
+              "06830",
+              "09265",
+              "13887"
+            ],
+            "dominant_shape": "digits",
+            "avg_len": 5
+          },
+          "official_meaning": "This field represents the 5-digit NCES school identification number. The NCESSchool combined with the NCESDist form a unique 12-digit ID for each school.",
+          "profile_nl": "28% NULL; distinct=12321; shape=digits(~5 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "entity_semantic_name,ndv_exact=12321",
+          "value_index_confidence": 0.9,
+          "value_index_evidence": [
+            "entity_semantic_name",
+            "ndv_exact=12321"
+          ],
+          "value_index_estimated_docs": 12321,
+          "value_index_status": "indexed",
+          "value_index_kind": "entity"
+        },
+        {
+          "name": "StatusType",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 4,
+            "distinct_mode": "exact",
+            "sample_rows": 17686,
+            "observed_ndv": 4,
+            "uniqueness_ratio": 0.00022616759018432659,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Active",
+                "count": 11708,
+                "percent": 66.1992536469524
+              },
+              {
+                "value": "Closed",
+                "count": 4518,
+                "percent": 25.54562931131969
+              },
+              {
+                "value": "Merged",
+                "count": 1448,
+                "percent": 8.187266764672623
+              },
+              {
+                "value": "Pending",
+                "count": 12,
+                "percent": 0.06785027705529798
+              }
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 6.000678502770553
+          },
+          "official_meaning": "This field identifies the status of the district.",
+          "profile_nl": "distinct=4; shape=alpha(~6 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "low_cardinality,short_semantic_values,ndv_exact=4",
+          "value_index_confidence": 0.96,
+          "value_index_evidence": [
+            "low_cardinality",
+            "short_semantic_values",
+            "ndv_exact=4"
+          ],
+          "value_index_estimated_docs": 4,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "County",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 58,
+            "distinct_mode": "exact",
+            "sample_rows": 17686,
+            "observed_ndv": 58,
+            "uniqueness_ratio": 0.0032794300576727354,
+            "null_count": 0,
+            "null_percent": 0,
+            "sample_values": [
+              "Alameda"
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 7
+          },
+          "official_meaning": "County name",
+          "profile_nl": "distinct=58; shape=alpha(~7 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "low_cardinality,short_semantic_values,ndv_exact=58",
+          "value_index_confidence": 0.96,
+          "value_index_evidence": [
+            "low_cardinality",
+            "short_semantic_values",
+            "ndv_exact=58"
+          ],
+          "value_index_estimated_docs": 58,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "District",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 1411,
+            "distinct_mode": "exact",
+            "sample_rows": 17686,
+            "observed_ndv": 1411,
+            "uniqueness_ratio": 0.0797806174375212,
+            "null_count": 0,
+            "null_percent": 0,
+            "sample_values": [
+              "Alameda County Office of Education",
+              "California School for the Blind (State Special Schl)",
+              "California School for the Deaf-Fremont (State Special Schl)"
+            ],
+            "dominant_shape": "mixed",
+            "avg_len": 48.333333333333336
+          },
+          "official_meaning": "District",
+          "profile_nl": "distinct=1411; avgLen=48",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "bounded_cardinality,ndv_exact=1411",
+          "value_index_confidence": 0.78,
+          "value_index_evidence": [
+            "bounded_cardinality",
+            "ndv_exact=1411"
+          ],
+          "value_index_estimated_docs": 1411,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "School",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 13875,
+            "distinct_mode": "exact",
+            "sample_rows": 16317,
+            "observed_ndv": 13875,
+            "uniqueness_ratio": 0.8503401360544217,
+            "null_count": 1369,
+            "null_percent": 7.740585774058577,
+            "sample_values": [
+              "FAME Public Charter",
+              "Envision Academy for Arts \u0026 Technology",
+              "Aspire California College Preparatory Academy",
+              "Community School for Creative Education",
+              "Yu Ming Charter",
+              "Urban Montessori Charter",
+              "Technical, Agricultural \u0026 Nat.",
+              "Alameda County Juvenile Hall/Court",
+              "Alameda County Community",
+              "Alameda County Opportunity"
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 29.4
+          },
+          "official_meaning": "School",
+          "profile_nl": "8% NULL; distinct=13875; shape=alpha(~29 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "entity_semantic_name,ndv_exact=13875",
+          "value_index_confidence": 0.9,
+          "value_index_evidence": [
+            "entity_semantic_name",
+            "ndv_exact=13875"
+          ],
+          "value_index_estimated_docs": 13875,
+          "value_index_status": "indexed_truncated",
+          "value_index_kind": "entity"
+        },
+        {
+          "name": "Street",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 13593,
+            "distinct_mode": "exact",
+            "sample_rows": 17392,
+            "observed_ndv": 13593,
+            "uniqueness_ratio": 0.781566237350506,
+            "null_count": 294,
+            "null_percent": 1.6623317878548003,
+            "sample_values": [
+              "313 West Winton Avenue",
+              "39899 Balentine Drive, Suite 335",
+              "1515 Webster Street",
+              "2125 Jefferson Avenue",
+              "2111 International Boulevard",
+              "1086 Alcatraz Avenue",
+              "5328 Brann Street",
+              "597 C Street",
+              "2500 Fairmont Avenue",
+              "7200 Bancroft Avenue # 261"
+            ],
+            "dominant_shape": "alnum",
+            "avg_len": 21.7
+          },
+          "official_meaning": "Street",
+          "profile_nl": "distinct=13593; shape=alnum(~22 chars)",
+          "value_index_policy": "review",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "high_cost_or_ambiguous,ndv_exact=13593",
+          "value_index_confidence": 0.55,
+          "value_index_evidence": [
+            "high_cost_or_ambiguous",
+            "ndv_exact=13593"
+          ],
+          "value_index_estimated_docs": 13593,
+          "value_index_status": "review"
+        },
+        {
+          "name": "StreetAbr",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 13633,
+            "distinct_mode": "exact",
+            "sample_rows": 17392,
+            "observed_ndv": 13633,
+            "uniqueness_ratio": 0.7838661453541859,
+            "null_count": 294,
+            "null_percent": 1.6623317878548003,
+            "sample_values": [
+              "313 West Winton Ave.",
+              "39899 Balentine Dr., Ste. 335",
+              "1515 Webster St.",
+              "2125 Jefferson Ave.",
+              "2111 International Blvd.",
+              "1086 Alcatraz Ave.",
+              "5328 Brann St.",
+              "597 C St.",
+              "2500 Fairmont Ave.",
+              "7200 Bancroft Ave. # 261"
+            ],
+            "dominant_shape": "alnum",
+            "avg_len": 19.1
+          },
+          "official_meaning": "The abbreviated street address of the school, district, or administrative authority’s physical location.",
+          "profile_nl": "distinct=13633; shape=alnum(~19 chars)",
+          "value_index_policy": "review",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "high_cost_or_ambiguous,ndv_exact=13633",
+          "value_index_confidence": 0.55,
+          "value_index_evidence": [
+            "high_cost_or_ambiguous",
+            "ndv_exact=13633"
+          ],
+          "value_index_estimated_docs": 13633,
+          "value_index_status": "review"
+        },
+        {
+          "name": "City",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1165,
+            "distinct_mode": "exact",
+            "sample_rows": 17393,
+            "observed_ndv": 1165,
+            "uniqueness_ratio": 0.06698096935548783,
+            "null_count": 293,
+            "null_percent": 1.656677598100192,
+            "sample_values": [
+              "Hayward",
+              "Newark",
+              "Oakland",
+              "Berkeley",
+              "San Leandro",
+              "Dublin",
+              "Fremont",
+              "Sacramento",
+              "Alameda"
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 7.666666666666667
+          },
+          "official_meaning": "City",
+          "profile_nl": "distinct=1165; shape=alpha(~8 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "entity_semantic_name,ndv_exact=1165",
+          "value_index_confidence": 0.9,
+          "value_index_evidence": [
+            "entity_semantic_name",
+            "ndv_exact=1165"
+          ],
+          "value_index_estimated_docs": 1165,
+          "value_index_status": "indexed",
+          "value_index_kind": "entity"
+        },
+        {
+          "name": "Zip",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 11184,
+            "distinct_mode": "exact",
+            "sample_rows": 17393,
+            "observed_ndv": 11184,
+            "uniqueness_ratio": 0.6430173058126832,
+            "null_count": 293,
+            "null_percent": 1.656677598100192,
+            "sample_values": [
+              "94544-1136",
+              "94560-5359",
+              "94612-3355",
+              "94703-1414",
+              "94606-4903",
+              "94608-1265",
+              "94619-3312",
+              "94541",
+              "94578-1005",
+              "94605-2403"
+            ],
+            "dominant_shape": "alnum",
+            "avg_len": 9.5
+          },
+          "official_meaning": "Zip",
+          "profile_nl": "distinct=11184; shape=alnum(~10 chars)",
+          "value_index_policy": "review",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "high_cost_or_ambiguous,ndv_exact=11184",
+          "value_index_confidence": 0.55,
+          "value_index_evidence": [
+            "high_cost_or_ambiguous",
+            "ndv_exact=11184"
+          ],
+          "value_index_estimated_docs": 11184,
+          "value_index_status": "review"
+        },
+        {
+          "name": "State",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1,
+            "distinct_mode": "exact",
+            "sample_rows": 17393,
+            "observed_ndv": 1,
+            "uniqueness_ratio": 0.00005749439429655609,
+            "null_count": 293,
+            "null_percent": 1.656677598100192,
+            "top_values": [
+              {
+                "value": "CA",
+                "count": 17393,
+                "percent": 98.34332240189981
+              }
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 2
+          },
+          "official_meaning": "State",
+          "profile_nl": "distinct=1; shape=alpha(~2 chars)",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "constant_or_empty,ndv_exact=1",
+          "value_index_confidence": 0.95,
+          "value_index_evidence": [
+            "constant_or_empty",
+            "ndv_exact=1"
+          ],
+          "value_index_estimated_docs": 1,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "MailStreet",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 12395,
+            "distinct_mode": "exact",
+            "sample_rows": 17394,
+            "observed_ndv": 12395,
+            "uniqueness_ratio": 0.7126020466827642,
+            "null_count": 292,
+            "null_percent": 1.6510234083455841,
+            "sample_values": [
+              "313 West Winton Avenue",
+              "39899 Balentine Drive, Suite 335",
+              "1515 Webster Street",
+              "1001 22nd Avenue, Suite 100",
+              "2111 International Boulevard",
+              "1086 Alcatraz Avenue",
+              "5328 Brann Street",
+              "597 C Street",
+              "2500 Fairmont Avenue",
+              "6038 Brann Street"
+            ],
+            "dominant_shape": "alnum",
+            "avg_len": 21.4
+          },
+          "official_meaning": "MailStreet",
+          "profile_nl": "distinct=12395; shape=alnum(~21 chars)",
+          "value_index_policy": "review",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "high_cost_or_ambiguous,ndv_exact=12395",
+          "value_index_confidence": 0.55,
+          "value_index_evidence": [
+            "high_cost_or_ambiguous",
+            "ndv_exact=12395"
+          ],
+          "value_index_estimated_docs": 12395,
+          "value_index_status": "review"
+        },
+        {
+          "name": "MailStrAbr",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 12429,
+            "distinct_mode": "exact",
+            "sample_rows": 17394,
+            "observed_ndv": 12429,
+            "uniqueness_ratio": 0.7145567437047258,
+            "null_count": 292,
+            "null_percent": 1.6510234083455841,
+            "sample_values": [
+              "313 West Winton Ave.",
+              "39899 Balentine Dr., Ste. 335",
+              "1515 Webster St.",
+              "1001 22nd Ave., Ste. 100",
+              "2111 International Blvd.",
+              "1086 Alcatraz Ave.",
+              "5328 Brann St.",
+              "597 C St.",
+              "2500 Fairmont Ave.",
+              "6038 Brann St."
+            ],
+            "dominant_shape": "alnum",
+            "avg_len": 18.6
+          },
+          "profile_nl": "distinct=12429; shape=alnum(~19 chars)",
+          "value_index_policy": "review",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "high_cost_or_ambiguous,ndv_exact=12429",
+          "value_index_confidence": 0.55,
+          "value_index_evidence": [
+            "high_cost_or_ambiguous",
+            "ndv_exact=12429"
+          ],
+          "value_index_estimated_docs": 12429,
+          "value_index_status": "review"
+        },
+        {
+          "name": "MailCity",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1132,
+            "distinct_mode": "exact",
+            "sample_rows": 17394,
+            "observed_ndv": 1132,
+            "uniqueness_ratio": 0.0650799126135449,
+            "null_count": 292,
+            "null_percent": 1.6510234083455841,
+            "sample_values": [
+              "Hayward",
+              "Newark",
+              "Oakland",
+              "San Leandro",
+              "Dublin",
+              "Fremont",
+              "Berkeley",
+              "Sacramento",
+              "Alameda"
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 7.666666666666667
+          },
+          "profile_nl": "distinct=1132; shape=alpha(~8 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "entity_semantic_name,ndv_exact=1132",
+          "value_index_confidence": 0.9,
+          "value_index_evidence": [
+            "entity_semantic_name",
+            "ndv_exact=1132"
+          ],
+          "value_index_estimated_docs": 1132,
+          "value_index_status": "indexed",
+          "value_index_kind": "entity"
+        },
+        {
+          "name": "MailZip",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 10298,
+            "distinct_mode": "exact",
+            "sample_rows": 17394,
+            "observed_ndv": 10298,
+            "uniqueness_ratio": 0.5920432332988387,
+            "null_count": 292,
+            "null_percent": 1.6510234083455841,
+            "sample_values": [
+              "94544-1136",
+              "94560-5359",
+              "94612",
+              "94606",
+              "94606-4903",
+              "94608-1265",
+              "94619-3312",
+              "94541",
+              "94578-1005",
+              "94605-1544"
+            ],
+            "dominant_shape": "alnum",
+            "avg_len": 8.5
+          },
+          "profile_nl": "distinct=10298; shape=alnum(~8 chars)",
+          "value_index_policy": "review",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "high_cost_or_ambiguous,ndv_exact=10298",
+          "value_index_confidence": 0.55,
+          "value_index_evidence": [
+            "high_cost_or_ambiguous",
+            "ndv_exact=10298"
+          ],
+          "value_index_estimated_docs": 10298,
+          "value_index_status": "review"
+        },
+        {
+          "name": "MailState",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1,
+            "distinct_mode": "exact",
+            "sample_rows": 17394,
+            "observed_ndv": 1,
+            "uniqueness_ratio": 0.00005749108888122341,
+            "null_count": 292,
+            "null_percent": 1.6510234083455841,
+            "top_values": [
+              {
+                "value": "CA",
+                "count": 17394,
+                "percent": 98.34897659165442
+              }
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 2
+          },
+          "profile_nl": "distinct=1; shape=alpha(~2 chars)",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "constant_or_empty,ndv_exact=1",
+          "value_index_confidence": 0.95,
+          "value_index_evidence": [
+            "constant_or_empty",
+            "ndv_exact=1"
+          ],
+          "value_index_estimated_docs": 1,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "Phone",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 10632,
+            "distinct_mode": "exact",
+            "sample_rows": 11717,
+            "observed_ndv": 10632,
+            "uniqueness_ratio": 0.9073995049927456,
+            "null_count": 5969,
+            "null_percent": 33.74985864525614,
+            "sample_values": [
+              "(510) 887-0152",
+              "(510) 596-8901",
+              "(510) 686-4131",
+              "(510) 452-2063",
+              "(510) 842-1181",
+              "(510) 667-7435",
+              "(510) 670-4590",
+              "(510) 969-5302",
+              "(510) 904-6300",
+              "(510) 689-2018"
+            ],
+            "dominant_shape": "mixed",
+            "avg_len": 14
+          },
+          "official_meaning": "Phone",
+          "profile_nl": "34% NULL; distinct=10632; avgLen=14",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "secret_or_free_text_name,ndv_exact=10632",
+          "value_index_confidence": 0.99,
+          "value_index_evidence": [
+            "secret_or_free_text_name",
+            "ndv_exact=10632"
+          ],
+          "value_index_estimated_docs": 10632,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "Ext",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 379,
+            "distinct_mode": "exact",
+            "sample_rows": 540,
+            "observed_ndv": 379,
+            "uniqueness_ratio": 0.7018518518518518,
+            "null_count": 17146,
+            "null_percent": 96.94673753251159,
+            "sample_values": [
+              "130",
+              "1240",
+              "1200",
+              "1311",
+              "39117",
+              "2050",
+              "470",
+              "8002",
+              "6605",
+              "6805"
+            ],
+            "dominant_shape": "digits",
+            "avg_len": 3.9
+          },
+          "official_meaning": "The phone number extension of the school, district, or administrative authority.",
+          "profile_nl": "97% NULL; distinct=379; shape=digits(~4 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "official_value_description,ndv_exact=379",
+          "value_index_confidence": 1,
+          "value_index_evidence": [
+            "official_value_description",
+            "ndv_exact=379"
+          ],
+          "value_index_estimated_docs": 379,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "Website",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 4082,
+            "distinct_mode": "exact",
+            "sample_rows": 6964,
+            "observed_ndv": 4082,
+            "uniqueness_ratio": 0.5861573808156232,
+            "null_count": 10722,
+            "null_percent": 60.62422254890875,
+            "sample_values": [
+              "www.acoe.org",
+              "www.envisionacademy.org/",
+              "www.aspirepublicschools.org",
+              "www.communityschoolforcreativeeducation.org",
+              "www.yumingschool.org",
+              "www.urbanmontessori.org",
+              "www.unitymiddle.org",
+              "www.efcps.org",
+              "www.csb-cde.ca.gov",
+              "www.csdeagles.com"
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 21.6
+          },
+          "official_meaning": "The website address of the school, district, or administrative authority.",
+          "profile_nl": "61% NULL; distinct=4082; shape=alpha(~22 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "official_value_description,ndv_exact=4082",
+          "value_index_confidence": 1,
+          "value_index_evidence": [
+            "official_value_description",
+            "ndv_exact=4082"
+          ],
+          "value_index_estimated_docs": 4082,
+          "value_index_status": "indexed_truncated",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "OpenDate",
+          "type": "DATE",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1406,
+            "distinct_mode": "exact",
+            "sample_rows": 16317,
+            "observed_ndv": 1406,
+            "uniqueness_ratio": 0.08616780045351474,
+            "null_count": 1369,
+            "null_percent": 7.740585774058577
+          },
+          "official_meaning": "The date the school opened.",
+          "profile_nl": "8% NULL; distinct=1406",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=1406",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=1406"
+          ],
+          "value_index_estimated_docs": 1406,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "ClosedDate",
+          "type": "DATE",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 899,
+            "distinct_mode": "exact",
+            "sample_rows": 5694,
+            "observed_ndv": 899,
+            "uniqueness_ratio": 0.15788549350193185,
+            "null_count": 11992,
+            "null_percent": 67.80504353726111
+          },
+          "official_meaning": "The date the school closed.",
+          "profile_nl": "68% NULL; distinct=899",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=899",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=899"
+          ],
+          "value_index_estimated_docs": 899,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "Charter",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2,
+            "distinct_mode": "exact",
+            "sample_rows": 16317,
+            "observed_ndv": 2,
+            "uniqueness_ratio": 0.00012257155114297973,
+            "null_count": 1369,
+            "null_percent": 7.740585774058577,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 14588,
+                "percent": 82.48332014022391
+              },
+              {
+                "value": "1",
+                "count": 1729,
+                "percent": 9.776094085717517
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "avg": 0.10596310596310596
+            },
+            "dominant_shape": "digits",
+            "avg_len": 1
+          },
+          "official_meaning": "This field identifies a charter school.",
+          "profile_nl": "8% NULL; distinct=2; shape=digits(~1 chars); range=[0..1]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=2",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=2"
+          ],
+          "value_index_estimated_docs": 2,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "CharterNum",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 1763,
+            "distinct_mode": "exact",
+            "sample_rows": 1801,
+            "observed_ndv": 1763,
+            "uniqueness_ratio": 0.9789006107717935,
+            "null_count": 15885,
+            "null_percent": 89.8168042519507,
+            "sample_values": [
+              "0728",
+              "0811",
+              "1049",
+              "1284",
+              "1296",
+              "1383",
+              "1707",
+              "0740",
+              "1464",
+              "0107"
+            ],
+            "dominant_shape": "digits",
+            "avg_len": 4
+          },
+          "official_meaning": "The charter school number,",
+          "profile_nl": "90% NULL; distinct=1763; shape=digits(~4 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "bounded_cardinality,ndv_exact=1763",
+          "value_index_confidence": 0.78,
+          "value_index_evidence": [
+            "bounded_cardinality",
+            "ndv_exact=1763"
+          ],
+          "value_index_estimated_docs": 1763,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "FundingType",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3,
+            "distinct_mode": "exact",
+            "sample_rows": 1642,
+            "observed_ndv": 3,
+            "uniqueness_ratio": 0.0018270401948842874,
+            "null_count": 16044,
+            "null_percent": 90.71582042293339,
+            "top_values": [
+              {
+                "value": "Directly funded",
+                "count": 1176,
+                "percent": 6.649327151419201
+              },
+              {
+                "value": "Locally funded",
+                "count": 460,
+                "percent": 2.600927287119756
+              },
+              {
+                "value": "Not in CS funding model",
+                "count": 6,
+                "percent": 0.03392513852764899
+              }
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 14.749086479902559
+          },
+          "official_meaning": "Indicates the charter school funding type",
+          "profile_nl": "91% NULL; distinct=3; shape=alpha(~15 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "low_cardinality,short_semantic_values,ndv_exact=3",
+          "value_index_confidence": 0.96,
+          "value_index_evidence": [
+            "low_cardinality",
+            "short_semantic_values",
+            "ndv_exact=3"
+          ],
+          "value_index_estimated_docs": 3,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "DOC",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 12,
+            "distinct_mode": "exact",
+            "sample_rows": 17686,
+            "observed_ndv": 12,
+            "uniqueness_ratio": 0.0006785027705529798,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "54",
+                "count": 10190,
+                "percent": 57.6161935994572
+              },
+              {
+                "value": "52",
+                "count": 4378,
+                "percent": 24.754042745674546
+              },
+              {
+                "value": "00",
+                "count": 1703,
+                "percent": 9.629085152097705
+              },
+              {
+                "value": "56",
+                "count": 1079,
+                "percent": 6.10087074522221
+              },
+              {
+                "value": "98",
+                "count": 156,
+                "percent": 0.8820536017188737
+              },
+              {
+                "value": "02",
+                "count": 69,
+                "percent": 0.39013909306796335
+              },
+              {
+                "value": "34",
+                "count": 49,
+                "percent": 0.2770552979758001
+              },
+              {
+                "value": "58",
+                "count": 33,
+                "percent": 0.18658826190206945
+              },
+              {
+                "value": "03",
+                "count": 11,
+                "percent": 0.062196087300689804
+              },
+              {
+                "value": "99",
+                "count": 10,
+                "percent": 0.056541897546081646
+              },
+              {
+                "value": "31",
+                "count": 6,
+                "percent": 0.03392513852764899
+              },
+              {
+                "value": "42",
+                "count": 2,
+                "percent": 0.01130837950921633
+              }
+            ],
+            "dominant_shape": "digits",
+            "avg_len": 2
+          },
+          "official_meaning": "District Ownership Code",
+          "profile_nl": "distinct=12; shape=digits(~2 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "low_cardinality,short_semantic_values,ndv_exact=12",
+          "value_index_confidence": 0.96,
+          "value_index_evidence": [
+            "low_cardinality",
+            "short_semantic_values",
+            "ndv_exact=12"
+          ],
+          "value_index_estimated_docs": 12,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "DOCType",
+          "type": "TEXT",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 12,
+            "distinct_mode": "exact",
+            "sample_rows": 17686,
+            "observed_ndv": 12,
+            "uniqueness_ratio": 0.0006785027705529798,
+            "null_count": 0,
+            "null_percent": 0,
+            "top_values": [
+              {
+                "value": "Unified School District",
+                "count": 10190,
+                "percent": 57.6161935994572
+              },
+              {
+                "value": "Elementary School District",
+                "count": 4378,
+                "percent": 24.754042745674546
+              },
+              {
+                "value": "County Office of Education (COE)",
+                "count": 1703,
+                "percent": 9.629085152097705
+              },
+              {
+                "value": "High School District",
+                "count": 1079,
+                "percent": 6.10087074522221
+              },
+              {
+                "value": "Regional Occupation Center/Program (ROC/P)",
+                "count": 156,
+                "percent": 0.8820536017188737
+              },
+              {
+                "value": "State Board of Education",
+                "count": 69,
+                "percent": 0.39013909306796335
+              },
+              {
+                "value": "Non-School Locations",
+                "count": 49,
+                "percent": 0.2770552979758001
+              },
+              {
+                "value": "Community College District",
+                "count": 33,
+                "percent": 0.18658826190206945
+              },
+              {
+                "value": "Statewide Benefit Charter",
+                "count": 11,
+                "percent": 0.062196087300689804
+              },
+              {
+                "value": "Administration Only",
+                "count": 10,
+                "percent": 0.056541897546081646
+              },
+              {
+                "value": "State Special Schools",
+                "count": 6,
+                "percent": 0.03392513852764899
+              },
+              {
+                "value": "Joint Powers Authority (JPA)",
+                "count": 2,
+                "percent": 0.01130837950921633
+              }
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 24.593859549926496
+          },
+          "official_meaning": "The District Ownership Code Type is the text description of the DOC category.",
+          "profile_nl": "distinct=12; shape=alpha(~25 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "low_cardinality,short_semantic_values,ndv_exact=12",
+          "value_index_confidence": 0.96,
+          "value_index_evidence": [
+            "low_cardinality",
+            "short_semantic_values",
+            "ndv_exact=12"
+          ],
+          "value_index_estimated_docs": 12,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "SOC",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 20,
+            "distinct_mode": "exact",
+            "sample_rows": 16317,
+            "observed_ndv": 20,
+            "uniqueness_ratio": 0.0012257155114297972,
+            "null_count": 1369,
+            "null_percent": 7.740585774058577,
+            "top_values": [
+              {
+                "value": "60",
+                "count": 7591,
+                "percent": 42.920954427230576
+              },
+              {
+                "value": "66",
+                "count": 1776,
+                "percent": 10.0418410041841
+              },
+              {
+                "value": "62",
+                "count": 1652,
+                "percent": 9.340721474612689
+              },
+              {
+                "value": "68",
+                "count": 754,
+                "percent": 4.263259074974556
+              },
+              {
+                "value": "09",
+                "count": 750,
+                "percent": 4.240642315956124
+              },
+              {
+                "value": "69",
+                "count": 615,
+                "percent": 3.4773266990840215
+              },
+              {
+                "value": "70",
+                "count": 551,
+                "percent": 3.115458554789099
+              },
+              {
+                "value": "63",
+                "count": 500,
+                "percent": 2.8270948773040825
+              },
+              {
+                "value": "10",
+                "count": 500,
+                "percent": 2.8270948773040825
+              },
+              {
+                "value": "65",
+                "count": 438,
+                "percent": 2.476535112518376
+              },
+              {
+                "value": "61",
+                "count": 273,
+                "percent": 1.543593803008029
+              },
+              {
+                "value": "08",
+                "count": 272,
+                "percent": 1.5379396132534207
+              },
+              {
+                "value": "14",
+                "count": 254,
+                "percent": 1.4361641976704738
+              },
+              {
+                "value": "64",
+                "count": 122,
+                "percent": 0.6898111500621961
+              },
+              {
+                "value": "13",
+                "count": 120,
+                "percent": 0.6785027705529798
+              }
+            ],
+            "dominant_shape": "digits",
+            "avg_len": 2
+          },
+          "official_meaning": "The School Ownership Code is a numeric code used to identify the type of school.",
+          "profile_nl": "8% NULL; distinct=20; shape=digits(~2 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "low_cardinality,short_semantic_values,ndv_exact=20",
+          "value_index_confidence": 0.96,
+          "value_index_evidence": [
+            "low_cardinality",
+            "short_semantic_values",
+            "ndv_exact=20"
+          ],
+          "value_index_estimated_docs": 20,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "SOCType",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 20,
+            "distinct_mode": "exact",
+            "sample_rows": 16317,
+            "observed_ndv": 20,
+            "uniqueness_ratio": 0.0012257155114297972,
+            "null_count": 1369,
+            "null_percent": 7.740585774058577,
+            "top_values": [
+              {
+                "value": "Elementary Schools (Public)",
+                "count": 7591,
+                "percent": 42.920954427230576
+              },
+              {
+                "value": "High Schools (Public)",
+                "count": 1776,
+                "percent": 10.0418410041841
+              },
+              {
+                "value": "Intermediate/Middle Schools (Public)",
+                "count": 1652,
+                "percent": 9.340721474612689
+              },
+              {
+                "value": "Continuation High Schools",
+                "count": 754,
+                "percent": 4.263259074974556
+              },
+              {
+                "value": "Special Education Schools (Public)",
+                "count": 750,
+                "percent": 4.240642315956124
+              },
+              {
+                "value": "District Community Day Schools",
+                "count": 615,
+                "percent": 3.4773266990840215
+              },
+              {
+                "value": "Adult Education Centers",
+                "count": 551,
+                "percent": 3.115458554789099
+              },
+              {
+                "value": "County Community",
+                "count": 500,
+                "percent": 2.8270948773040825
+              },
+              {
+                "value": "Alternative Schools of Choice",
+                "count": 500,
+                "percent": 2.8270948773040825
+              },
+              {
+                "value": "K-12 Schools (Public)",
+                "count": 438,
+                "percent": 2.476535112518376
+              },
+              {
+                "value": "Elemen Schools In 1 School Dist. (Public)",
+                "count": 273,
+                "percent": 1.543593803008029
+              },
+              {
+                "value": "Preschool",
+                "count": 272,
+                "percent": 1.5379396132534207
+              },
+              {
+                "value": "Juvenile Court Schools",
+                "count": 254,
+                "percent": 1.4361641976704738
+              },
+              {
+                "value": "Junior High Schools (Public)",
+                "count": 122,
+                "percent": 0.6898111500621961
+              },
+              {
+                "value": "Opportunity Schools",
+                "count": 120,
+                "percent": 0.6785027705529798
+              }
+            ],
+            "dominant_shape": "mixed",
+            "avg_len": 26.832075705096486
+          },
+          "official_meaning": "The School Ownership Code Type is the text description of the type of school.",
+          "profile_nl": "8% NULL; distinct=20; avgLen=27",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "low_cardinality,short_semantic_values,ndv_exact=20",
+          "value_index_confidence": 0.96,
+          "value_index_evidence": [
+            "low_cardinality",
+            "short_semantic_values",
+            "ndv_exact=20"
+          ],
+          "value_index_estimated_docs": 20,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "EdOpsCode",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 13,
+            "distinct_mode": "exact",
+            "sample_rows": 11975,
+            "observed_ndv": 13,
+            "uniqueness_ratio": 0.0010855949895615866,
+            "null_count": 5711,
+            "null_percent": 32.29107768856723,
+            "top_values": [
+              {
+                "value": "TRAD",
+                "count": 10103,
+                "percent": 57.12427909080628
+              },
+              {
+                "value": "CON",
+                "count": 539,
+                "percent": 3.0476082777338007
+              },
+              {
+                "value": "COMMDAY",
+                "count": 486,
+                "percent": 2.747936220739568
+              },
+              {
+                "value": "ALTSOC",
+                "count": 320,
+                "percent": 1.8093407214746127
+              },
+              {
+                "value": "SPEC",
+                "count": 228,
+                "percent": 1.2891552640506616
+              },
+              {
+                "value": "COMM",
+                "count": 133,
+                "percent": 0.7520072373628859
+              },
+              {
+                "value": "JUV",
+                "count": 94,
+                "percent": 0.5314938369331674
+              },
+              {
+                "value": "OPP",
+                "count": 47,
+                "percent": 0.2657469184665837
+              },
+              {
+                "value": "YTH",
+                "count": 6,
+                "percent": 0.03392513852764899
+              },
+              {
+                "value": "ROP",
+                "count": 6,
+                "percent": 0.03392513852764899
+              },
+              {
+                "value": "SPECON",
+                "count": 5,
+                "percent": 0.028270948773040823
+              },
+              {
+                "value": "HOMHOS",
+                "count": 5,
+                "percent": 0.028270948773040823
+              },
+              {
+                "value": "SSS",
+                "count": 3,
+                "percent": 0.016962569263824494
+              }
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 4.118830897703549
+          },
+          "official_meaning": "The Education Option Code is a short text description of the type of education offered.",
+          "profile_nl": "32% NULL; distinct=13; shape=alpha(~4 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "low_cardinality,short_semantic_values,ndv_exact=13",
+          "value_index_confidence": 0.96,
+          "value_index_evidence": [
+            "low_cardinality",
+            "short_semantic_values",
+            "ndv_exact=13"
+          ],
+          "value_index_estimated_docs": 13,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "EdOpsName",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 13,
+            "distinct_mode": "exact",
+            "sample_rows": 11975,
+            "observed_ndv": 13,
+            "uniqueness_ratio": 0.0010855949895615866,
+            "null_count": 5711,
+            "null_percent": 32.29107768856723,
+            "top_values": [
+              {
+                "value": "Traditional",
+                "count": 10103,
+                "percent": 57.12427909080628
+              },
+              {
+                "value": "Continuation School",
+                "count": 539,
+                "percent": 3.0476082777338007
+              },
+              {
+                "value": "Community Day School",
+                "count": 486,
+                "percent": 2.747936220739568
+              },
+              {
+                "value": "Alternative School of Choice",
+                "count": 320,
+                "percent": 1.8093407214746127
+              },
+              {
+                "value": "Special Education School",
+                "count": 228,
+                "percent": 1.2891552640506616
+              },
+              {
+                "value": "County Community School",
+                "count": 133,
+                "percent": 0.7520072373628859
+              },
+              {
+                "value": "Juvenile Court School",
+                "count": 94,
+                "percent": 0.5314938369331674
+              },
+              {
+                "value": "Opportunity School",
+                "count": 47,
+                "percent": 0.2657469184665837
+              },
+              {
+                "value": "Youth Authority School",
+                "count": 6,
+                "percent": 0.03392513852764899
+              },
+              {
+                "value": "ROP",
+                "count": 6,
+                "percent": 0.03392513852764899
+              },
+              {
+                "value": "Home and Hospital",
+                "count": 5,
+                "percent": 0.028270948773040823
+              },
+              {
+                "value": "District Special Education Consortia School",
+                "count": 5,
+                "percent": 0.028270948773040823
+              },
+              {
+                "value": "State Special School",
+                "count": 3,
+                "percent": 0.016962569263824494
+              }
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 12.686012526096034
+          },
+          "official_meaning": "Educational Option Name",
+          "profile_nl": "32% NULL; distinct=13; shape=alpha(~13 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "low_cardinality,short_semantic_values,ndv_exact=13",
+          "value_index_confidence": 0.96,
+          "value_index_evidence": [
+            "low_cardinality",
+            "short_semantic_values",
+            "ndv_exact=13"
+          ],
+          "value_index_estimated_docs": 13,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "EILCode",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 7,
+            "distinct_mode": "exact",
+            "sample_rows": 16317,
+            "observed_ndv": 7,
+            "uniqueness_ratio": 0.000429000429000429,
+            "null_count": 1369,
+            "null_percent": 7.740585774058577,
+            "top_values": [
+              {
+                "value": "ELEM",
+                "count": 7298,
+                "percent": 41.26427682913039
+              },
+              {
+                "value": "HS",
+                "count": 3367,
+                "percent": 19.03765690376569
+              },
+              {
+                "value": "UG",
+                "count": 2525,
+                "percent": 14.276829130385615
+              },
+              {
+                "value": "INTMIDJR",
+                "count": 1845,
+                "percent": 10.431980097252064
+              },
+              {
+                "value": "ELEMHIGH",
+                "count": 774,
+                "percent": 4.376342870066719
+              },
+              {
+                "value": "A",
+                "count": 352,
+                "percent": 1.9902747936220737
+              },
+              {
+                "value": "PS",
+                "count": 156,
+                "percent": 0.8820536017188737
+              }
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 3.835999264570693
+          },
+          "official_meaning": "The Educational Instruction Level Code is a short text description of the institution's type relative to the grade range served.",
+          "profile_nl": "8% NULL; distinct=7; shape=alpha(~4 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "low_cardinality,short_semantic_values,ndv_exact=7",
+          "value_index_confidence": 0.96,
+          "value_index_evidence": [
+            "low_cardinality",
+            "short_semantic_values",
+            "ndv_exact=7"
+          ],
+          "value_index_estimated_docs": 7,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "EILName",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 7,
+            "distinct_mode": "exact",
+            "sample_rows": 16317,
+            "observed_ndv": 7,
+            "uniqueness_ratio": 0.000429000429000429,
+            "null_count": 1369,
+            "null_percent": 7.740585774058577,
+            "top_values": [
+              {
+                "value": "Elementary",
+                "count": 7298,
+                "percent": 41.26427682913039
+              },
+              {
+                "value": "High School",
+                "count": 3367,
+                "percent": 19.03765690376569
+              },
+              {
+                "value": "Ungraded",
+                "count": 2525,
+                "percent": 14.276829130385615
+              },
+              {
+                "value": "Intermediate/Middle/Junior High",
+                "count": 1845,
+                "percent": 10.431980097252064
+              },
+              {
+                "value": "Elementary-High Combination",
+                "count": 774,
+                "percent": 4.376342870066719
+              },
+              {
+                "value": "Adult",
+                "count": 352,
+                "percent": 1.9902747936220737
+              },
+              {
+                "value": "Preschool",
+                "count": 156,
+                "percent": 0.8820536017188737
+              }
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 12.960348103205247
+          },
+          "official_meaning": "The Educational Instruction Level Name is the long text description of the institution’s type relative to the grade range served.",
+          "profile_nl": "8% NULL; distinct=7; shape=alpha(~13 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "low_cardinality,short_semantic_values,ndv_exact=7",
+          "value_index_confidence": 0.96,
+          "value_index_evidence": [
+            "low_cardinality",
+            "short_semantic_values",
+            "ndv_exact=7"
+          ],
+          "value_index_estimated_docs": 7,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "GSoffered",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 94,
+            "distinct_mode": "exact",
+            "sample_rows": 13804,
+            "observed_ndv": 94,
+            "uniqueness_ratio": 0.006809620399884092,
+            "null_count": 3882,
+            "null_percent": 21.949564627388895,
+            "sample_values": [
+              "K-12",
+              "9-12",
+              "K-8",
+              "7-12",
+              "6-8",
+              "P-5",
+              "5-12",
+              "P",
+              "K-4",
+              "1-Adult"
+            ],
+            "dominant_shape": "alnum",
+            "avg_len": 3.6
+          },
+          "official_meaning": "The grade span offered is the lowest grade and the highest grade offered or supported by the school, district, or administrative authority. This field might differ from the grade span served as rep...",
+          "profile_nl": "22% NULL; distinct=94; shape=alnum(~4 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "official_value_description,ndv_exact=94",
+          "value_index_confidence": 1,
+          "value_index_evidence": [
+            "official_value_description",
+            "ndv_exact=94"
+          ],
+          "value_index_estimated_docs": 94,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "GSserved",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 81,
+            "distinct_mode": "exact",
+            "sample_rows": 11943,
+            "observed_ndv": 81,
+            "uniqueness_ratio": 0.006782215523737754,
+            "null_count": 5743,
+            "null_percent": 32.47201176071469,
+            "sample_values": [
+              "K-12",
+              "9-12",
+              "K-7",
+              "K-5",
+              "8-12",
+              "7-12",
+              "6-7",
+              "K-8",
+              "6-8",
+              "6-12"
+            ],
+            "dominant_shape": "alnum",
+            "avg_len": 3.5
+          },
+          "official_meaning": "It is the lowest grade and the highest grade of student enrollment as reported in the most recent certified CALPADS Fall 1 data collection. Only K–12 enrollment is reported through CALPADS. This ...",
+          "profile_nl": "32% NULL; distinct=81; shape=alnum(~4 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "low_cardinality,short_semantic_values,ndv_exact=81",
+          "value_index_confidence": 0.96,
+          "value_index_evidence": [
+            "low_cardinality",
+            "short_semantic_values",
+            "ndv_exact=81"
+          ],
+          "value_index_estimated_docs": 81,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "Virtual",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 3,
+            "distinct_mode": "exact",
+            "sample_rows": 10818,
+            "observed_ndv": 3,
+            "uniqueness_ratio": 0.00027731558513588466,
+            "null_count": 6868,
+            "null_percent": 38.83297523464888,
+            "top_values": [
+              {
+                "value": "N",
+                "count": 9703,
+                "percent": 54.86260318896302
+              },
+              {
+                "value": "P",
+                "count": 1046,
+                "percent": 5.91428248332014
+              },
+              {
+                "value": "F",
+                "count": 69,
+                "percent": 0.39013909306796335
+              }
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 1
+          },
+          "official_meaning": "This field identifies the type of virtual instruction offered by the school. Virtual instruction is instruction in which students and teachers are separated by time and/or location, and interaction...",
+          "profile_nl": "39% NULL; distinct=3; shape=alpha(~1 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "low_cardinality,short_semantic_values,ndv_exact=3",
+          "value_index_confidence": 0.96,
+          "value_index_evidence": [
+            "low_cardinality",
+            "short_semantic_values",
+            "ndv_exact=3"
+          ],
+          "value_index_estimated_docs": 3,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "Magnet",
+          "type": "INTEGER",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2,
+            "distinct_mode": "exact",
+            "sample_rows": 10610,
+            "observed_ndv": 2,
+            "uniqueness_ratio": 0.00018850141376060322,
+            "null_count": 7076,
+            "null_percent": 40.00904670360737,
+            "top_values": [
+              {
+                "value": "0",
+                "count": 10091,
+                "percent": 57.05642881375099
+              },
+              {
+                "value": "1",
+                "count": 519,
+                "percent": 2.9345244826416375
+              }
+            ],
+            "range": {
+              "min": 0,
+              "max": 1,
+              "avg": 0.04891611687087653
+            },
+            "dominant_shape": "digits",
+            "avg_len": 1
+          },
+          "official_meaning": "This field identifies whether a school is a magnet school and/or provides a magnet program.",
+          "profile_nl": "40% NULL; distinct=2; shape=digits(~1 chars); range=[0..1]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=2",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=2"
+          ],
+          "value_index_estimated_docs": 2,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "Latitude",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 11436,
+            "distinct_mode": "exact",
+            "sample_rows": 12863,
+            "observed_ndv": 11436,
+            "uniqueness_ratio": 0.8890616496929177,
+            "null_count": 4823,
+            "null_percent": 27.27015718647518,
+            "range": {
+              "min": 32.547737,
+              "max": 44.219305,
+              "avg": 36.00771538910052
+            }
+          },
+          "official_meaning": "The angular distance (expressed in degrees) between the location of the school, district, or administrative authority and the equator measured north to south.",
+          "profile_nl": "27% NULL; distinct=11436; range=[33..44]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=11436",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=11436"
+          ],
+          "value_index_estimated_docs": 11436,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "Longitude",
+          "type": "REAL",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 11278,
+            "distinct_mode": "exact",
+            "sample_rows": 12863,
+            "observed_ndv": 11278,
+            "uniqueness_ratio": 0.8767783565264713,
+            "null_count": 4823,
+            "null_percent": 27.27015718647518,
+            "range": {
+              "min": -124.28481,
+              "max": -83.781133,
+              "avg": -119.69425543838918
+            }
+          },
+          "official_meaning": "The angular distance (expressed in degrees) between the location of the school, district, or administrative authority and the prime meridian (Greenwich, England) measured from west to east.",
+          "profile_nl": "27% NULL; distinct=11278; range=[-124..-84]",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=11278",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=11278"
+          ],
+          "value_index_estimated_docs": 11278,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "AdmFName1",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 2327,
+            "distinct_mode": "exact",
+            "sample_rows": 11700,
+            "observed_ndv": 2327,
+            "uniqueness_ratio": 0.1988888888888889,
+            "null_count": 5986,
+            "null_percent": 33.845979871084474,
+            "sample_values": [
+              "L Karen",
+              "Laura",
+              "Clifford",
+              "Sue",
+              "David",
+              "Michael",
+              "Carolyn",
+              "Damon",
+              "Kevin",
+              "Sarah"
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 5.7
+          },
+          "official_meaning": "administrator's first name",
+          "profile_nl": "34% NULL; distinct=2327; shape=alpha(~6 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "entity_semantic_name,ndv_exact=2327",
+          "value_index_confidence": 0.9,
+          "value_index_evidence": [
+            "entity_semantic_name",
+            "ndv_exact=2327"
+          ],
+          "value_index_estimated_docs": 2327,
+          "value_index_status": "indexed",
+          "value_index_kind": "entity"
+        },
+        {
+          "name": "AdmLName1",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 6394,
+            "distinct_mode": "exact",
+            "sample_rows": 11700,
+            "observed_ndv": 6394,
+            "uniqueness_ratio": 0.5464957264957265,
+            "null_count": 5986,
+            "null_percent": 33.845979871084474,
+            "sample_values": [
+              "Monroe",
+              "Robell",
+              "Thompson",
+              "Park",
+              "Castillo",
+              "Hermosillo",
+              "Hobbs",
+              "Grant",
+              "King",
+              "Morrill"
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 6.3
+          },
+          "official_meaning": "administrator's last name",
+          "profile_nl": "34% NULL; distinct=6394; shape=alpha(~6 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "entity_semantic_name,ndv_exact=6394",
+          "value_index_confidence": 0.9,
+          "value_index_evidence": [
+            "entity_semantic_name",
+            "ndv_exact=6394"
+          ],
+          "value_index_estimated_docs": 6394,
+          "value_index_status": "indexed",
+          "value_index_kind": "entity"
+        },
+        {
+          "name": "AdmEmail1",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 10492,
+            "distinct_mode": "exact",
+            "sample_rows": 11674,
+            "observed_ndv": 10492,
+            "uniqueness_ratio": 0.898749357546685,
+            "null_count": 6012,
+            "null_percent": 33.99298880470429,
+            "sample_values": [
+              "lkmonroe@acoe.org",
+              "laura@envisionacademy.org",
+              "cliffordt@communityschoolforcreativeeducation.org",
+              "spark@yumingschool.org",
+              "davidc@urbanmontessori.org",
+              "mhermosillo@acoe.org",
+              "chobbs@acoe.org",
+              "dgrant@unitymiddle.org",
+              "kking@efcps.net",
+              "smorrill@efcps.net"
+            ],
+            "dominant_shape": "emailish",
+            "avg_len": 22.9
+          },
+          "official_meaning": "administrator's email address",
+          "profile_nl": "34% NULL; distinct=10492; shape=emailish(~23 chars)",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "secret_or_free_text_name,ndv_exact=10492",
+          "value_index_confidence": 0.99,
+          "value_index_evidence": [
+            "secret_or_free_text_name",
+            "ndv_exact=10492"
+          ],
+          "value_index_estimated_docs": 10492,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "AdmFName2",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 285,
+            "distinct_mode": "exact",
+            "sample_rows": 431,
+            "observed_ndv": 285,
+            "uniqueness_ratio": 0.6612529002320185,
+            "null_count": 17255,
+            "null_percent": 97.56304421576388,
+            "sample_values": [
+              "Sau-Lim (Lance)",
+              "Jennifer",
+              "Annalisa",
+              "Woo",
+              "David",
+              "Sam",
+              "Brandon",
+              "Jarod",
+              "Sailaja",
+              "Sophath"
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 6.8
+          },
+          "profile_nl": "98% NULL; distinct=285; shape=alpha(~7 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "entity_semantic_name,ndv_exact=285",
+          "value_index_confidence": 0.9,
+          "value_index_evidence": [
+            "entity_semantic_name",
+            "ndv_exact=285"
+          ],
+          "value_index_estimated_docs": 285,
+          "value_index_status": "indexed",
+          "value_index_kind": "entity"
+        },
+        {
+          "name": "AdmLName2",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 363,
+            "distinct_mode": "exact",
+            "sample_rows": 431,
+            "observed_ndv": 363,
+            "uniqueness_ratio": 0.8422273781902552,
+            "null_count": 17255,
+            "null_percent": 97.56304421576388,
+            "sample_values": [
+              "Tsang",
+              "Koelling",
+              "Moore",
+              "Williams",
+              "Hoopes",
+              "Pasarow",
+              "Paige",
+              "Scott",
+              "Saresh",
+              "Mey"
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 5.8
+          },
+          "profile_nl": "98% NULL; distinct=363; shape=alpha(~6 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "entity_semantic_name,ndv_exact=363",
+          "value_index_confidence": 0.9,
+          "value_index_evidence": [
+            "entity_semantic_name",
+            "ndv_exact=363"
+          ],
+          "value_index_estimated_docs": 363,
+          "value_index_status": "indexed",
+          "value_index_kind": "entity"
+        },
+        {
+          "name": "AdmEmail2",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 382,
+            "distinct_mode": "exact",
+            "sample_rows": 424,
+            "observed_ndv": 382,
+            "uniqueness_ratio": 0.9009433962264151,
+            "null_count": 17262,
+            "null_percent": 97.60262354404614,
+            "sample_values": [
+              "stsang@unityhigh.org",
+              "jkoelling@efcps.net",
+              "annalisa.moore@neaclc.org",
+              "wwilliams@aoaschools.org",
+              "david.hoopes@alamedaclc.org",
+              "sampasarow@berkeley.net",
+              "brandon.paige@lighthousecharter.org",
+              "jarod.scott@ousd.org",
+              "sailaga.saresh@ousd.org",
+              "smey@vincentacademy.org"
+            ],
+            "dominant_shape": "emailish",
+            "avg_len": 23.9
+          },
+          "profile_nl": "98% NULL; distinct=382; shape=emailish(~24 chars)",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "secret_or_free_text_name,ndv_exact=382",
+          "value_index_confidence": 0.99,
+          "value_index_evidence": [
+            "secret_or_free_text_name",
+            "ndv_exact=382"
+          ],
+          "value_index_estimated_docs": 382,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "AdmFName3",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 40,
+            "distinct_mode": "exact",
+            "sample_rows": 42,
+            "observed_ndv": 40,
+            "uniqueness_ratio": 0.9523809523809523,
+            "null_count": 17644,
+            "null_percent": 99.76252403030645,
+            "sample_values": [
+              "Drew",
+              "Irma",
+              "Vickie",
+              "Barbara",
+              "Kelly",
+              "Patsy",
+              "Dustin",
+              "Joy",
+              "Sabrina",
+              "Eric"
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 5.1
+          },
+          "profile_nl": "100% NULL; distinct=40; shape=alpha(~5 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "low_cardinality,short_semantic_values,ndv_exact=40",
+          "value_index_confidence": 0.96,
+          "value_index_evidence": [
+            "low_cardinality",
+            "short_semantic_values",
+            "ndv_exact=40"
+          ],
+          "value_index_estimated_docs": 40,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "AdmLName3",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 42,
+            "distinct_mode": "exact",
+            "sample_rows": 42,
+            "observed_ndv": 42,
+            "uniqueness_ratio": 1,
+            "null_count": 17644,
+            "null_percent": 99.76252403030645,
+            "sample_values": [
+              "Sarratore",
+              "Munoz",
+              "Chang",
+              "Mandelbaum",
+              "Kriss",
+              "Oxford",
+              "Kerns",
+              "DeBoer",
+              "Ayala",
+              "Bergmann"
+            ],
+            "dominant_shape": "alpha",
+            "avg_len": 6.4
+          },
+          "profile_nl": "100% NULL; distinct=42; shape=alpha(~6 chars)",
+          "value_index_policy": "include",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "low_cardinality,short_semantic_values,ndv_exact=42",
+          "value_index_confidence": 0.96,
+          "value_index_evidence": [
+            "low_cardinality",
+            "short_semantic_values",
+            "ndv_exact=42"
+          ],
+          "value_index_estimated_docs": 42,
+          "value_index_status": "indexed",
+          "value_index_kind": "category"
+        },
+        {
+          "name": "AdmEmail3",
+          "type": "TEXT",
+          "nullable": true,
+          "value_stats": {
+            "distinct_count": 42,
+            "distinct_mode": "exact",
+            "sample_rows": 42,
+            "observed_ndv": 42,
+            "uniqueness_ratio": 1,
+            "null_count": 17644,
+            "null_percent": 99.76252403030645,
+            "sample_values": [
+              "dsarratore@vincentacademy.org",
+              "gmunoz@piedmont.k12.ca.us",
+              "vickiechang@acoe.org",
+              "bmandelbaum@bcoe.org",
+              "kkriss@pusdk12.org",
+              "poxford@puesd.org",
+              "dustin.kerns@imagineschools.com",
+              "jdeboer@learn4life.org",
+              "sayala@greendot.org",
+              "ebergmann@smusd.us"
+            ],
+            "dominant_shape": "emailish",
+            "avg_len": 21.9
+          },
+          "profile_nl": "100% NULL; distinct=42; shape=emailish(~22 chars)",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "secret_or_free_text_name,ndv_exact=42",
+          "value_index_confidence": 0.99,
+          "value_index_evidence": [
+            "secret_or_free_text_name",
+            "ndv_exact=42"
+          ],
+          "value_index_estimated_docs": 42,
+          "value_index_status": "excluded"
+        },
+        {
+          "name": "LastUpdate",
+          "type": "DATE",
+          "nullable": false,
+          "value_stats": {
+            "distinct_count": 757,
+            "distinct_mode": "exact",
+            "sample_rows": 17686,
+            "observed_ndv": 757,
+            "uniqueness_ratio": 0.04280221644238381,
+            "null_count": 0,
+            "null_percent": 0
+          },
+          "profile_nl": "distinct=757",
+          "value_index_policy": "exclude",
+          "value_index_policy_source": "sampled-v1",
+          "value_index_policy_reason": "non_business_text_type,ndv_exact=757",
+          "value_index_confidence": 0.98,
+          "value_index_evidence": [
+            "non_business_text_type",
+            "ndv_exact=757"
+          ],
+          "value_index_estimated_docs": 757,
+          "value_index_status": "excluded"
+        }
+      ],
+      "indexes": [],
+      "rich_context": {
+        "Charter_values": {
+          "content": "0=not charter(14588, 82.5%), 1=charter(1729, 9.8%), NULL=1369(7.7%)",
+          "expires_at": "2026-08-27T15:28:41+08:00"
+        },
+        "FundingType_values": {
+          "content": "Directly funded=1176(6.6%), Locally funded=460(2.6%), Not in CS funding model=6(0.03%), NULL=16044(90.7%)",
+          "expires_at": "2026-08-27T15:28:47+08:00"
+        },
+        "StatusType_meaning": {
+          "content": "Status of district/school: Active=in operation, Closed=no longer operating, Merged=combined with another district, Pending=not yet opened but plans to within 9-12 months",
+          "expires_at": "2026-08-27T15:29:52+08:00"
+        },
+        "StatusType_values": {
+          "content": "Active=11708(66.2%), Closed=4518(25.5%), Merged=1448(8.2%), Pending=12(0.1%)",
+          "expires_at": "2026-08-27T15:28:33+08:00"
+        },
+        "business_rules": {
+          "content": "StatusType: Definitions of the valid status types are listed below: · Active: The district is in operation and providing instructional services. · Closed: The district is not in operation and no longer providing instructional services. · Merged: The district has combined with another district or districts. · Pending: The district has not opened for operation and instructional services yet, but plans to open within the next 9–12 months. | StreetAbr: The abbreviated street address of the school, district, or administrative authority’s physical location. Note: Some records (primarily records of closed or retired schools) may not have data in this field. | MailStreet: The unabbreviated mailing address of the school, district, or administrative authority. Note: 1) Some entities (primarily closed or retired schools) may not have data in this field; 2) Many active entities have not provided a mailing street address. For your convenience we have filled the unpopulated MailStreet cells with Street data. | MailStrAbr: the abbreviated mailing street address of the school, district, or administrative authority.Note: Many active entities have not provided a mailing street address. For your convenience we have filled the unpopulated MailStrAbr cells with StreetAbr data. | MailCity: The city associated with the mailing address of the school, district, or administrative authority. Note: Many entities have not provided a mailing address city. For your convenience we have filled the unpopulated MailCity cells with City data. | MailZip: The zip code associated with the mailing address of the school, district, or administrative authority. Note: Many entities have not provided a mailing address zip code. For your convenience we have filled the unpopulated MailZip cells with Zip data. | MailState: The state within the mailing address. For your convenience we have filled the unpopulated MailState cells with State data. | Charter: The field is coded as follows: · 1 = The school is a charter · 0 = The school is not a charter | CharterNum: 4-digit number assigned to a charter school. | FundingType: Values are as follows: · Not in CS (California School) funding model · Locally funded · Directly funded | DOC: The District Ownership Code (DOC) is the numeric code used to identify the category of the Administrative Authority. • 00 - County Office of Education • 02 – State Board of Education • 03 – Statewide Benefit Charter • 31 – State Special Schools • 34 – Non-school Location* • 52 – Elementary School District • 54 – Unified School District • 56 – High School District • 98 – Regional Occupational Center/Program (ROC/P) commonsense evidence: *Only the California Education Authority has been included in the non-school location category. | DOCType: (See text values in DOC field description above) | SOC: • 08 - Preschool • 09 – Special Education Schools (Public) • 11 – Youth Authority Facilities (CEA) • 13 – Opportunity Schools • 14 – Juvenile Court Schools • 15 – Other County or District Programs • 31 – State Special Schools • 60 – Elementary School (Public) • 61 – Elementary School in 1 School District (Public) • 62 – Intermediate/Middle Schools (Public) • 63 – Alternative Schools of Choice • 64 – Junior High Schools (Public) • 65 – K-12 Schools (Public) • 66 – High Schools (Public) • 67 – High Schools in 1 School District (Public) • 68 – Continuation High Schools • 69 – District Community Day Schools • 70 – Adult Education Centers • 98 – Regional Occupational Center/Program (ROC/P) | SOCType: The School Ownership Code Type is the text description of the type of school. | EdOpsCode: • ALTSOC – Alternative School of Choice • COMM – County Community School • COMMDAY – Community Day School • CON – Continuation School • JUV – Juvenile Court School • OPP – Opportunity School • YTH – Youth Authority School • SSS – State Special School • SPEC – Special Education School • TRAD – Traditional • ROP – Regional Occupational Program • HOMHOS – Home and Hospital • SPECON – District Consortia Special Education School | EdOpsName: The Educational Option Name is the long text description of the type of education being offered. | EILCode: • A – Adult • ELEM – Elementary • ELEMHIGH – Elementary-High Combination • HS – High School • INTMIDJR – Intermediate/Middle/Junior High • PS – Preschool • UG – Ungraded | EILName: The Educational Instruction Level Name is the long text description of the institution’s type relative to the grade range served. | GSserved: commonsense evidence: 1. Only K–12 enrollment is reported through CALPADS 2. Note: Special programs at independent study, alternative education, and special education schools will often exceed the typical grade span for schools of that type | Virtual: The field is coded as follows: · F = Exclusively Virtual – The school has no physical building where students meet with each other or with teachers, all instruction is virtual. · V = Primarily Virtual – The school focuses on a systematic program of virtual instruction but includes some physical meetings among students or with teachers. · C = Primarily Classroom – The school offers virtual courses but virtual instruction is not the primary means of instruction. · N = Not Virtual – The school does not offer any virtual instruction. · P = Partial Virtual – The school offers some, but not all, instruction through virtual instruction. Note: This value was retired and replaced with the Primarily Virtual and Primarily Classroom values beginning with the 2016–17 school year. | Magnet: The field is coded as follows: · 1 = Magnet - The school is a magnet school and/or offers a magnet program. · 0 = Not Magnet - The school is not a magnet school and/or does not offer a magnet program. commonsense evidence: Note: Preschools and adult education centers do not contain a magnet school indicator. | Latitude: The angular distance (expressed in degrees) between the location of the school, district, or administrative authority and the equator measured north to south. | Longitude: The angular distance (expressed in degrees) between the location of the school, district, or administrative authority and the prime meridian (Greenwich, England) measured from west to east. | AdmFName1: The superintendent’s or principal’s first name. commonsense evidence: Only active and pending districts and schools will display administrator information, if applicable. | AdmLName1: The superintendent’s or principal’s last name. commonsense evidence: Only active and pending districts and schools will display administrator information, if applicable. | AdmEmail1: The superintendent’s or principal’s email address. commonsense evidence: Only active and pending districts and schools will display administrator information, if applicable. | AdmFName2: SAME as 1 | AdmFName3: not useful | AdmLName3: not useful | AdmEmail3: not useful | LastUpdate: when is this record updated last time",
+          "expires_at": "2026-08-27T15:37:35+08:00"
+        }
+      },
+      "quality_issues": [
+        {
+          "table": "schools",
+          "column": "CDSCode",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 17686/17686 non-empty)",
+          "sql_fix": "CAST(\"CDSCode\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "NCESDist",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 16656/16656 non-empty)",
+          "sql_fix": "CAST(\"NCESDist\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "NCESSchool",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 12646/12646 non-empty)",
+          "sql_fix": "CAST(\"NCESSchool\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "Zip",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 17393/17393 non-empty)",
+          "sql_fix": "CAST(\"Zip\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "MailZip",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 17394/17394 non-empty)",
+          "sql_fix": "CAST(\"MailZip\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "Ext",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 540/540 non-empty)",
+          "sql_fix": "CAST(\"Ext\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "Ext",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "97% NULL values (17146/17686)",
+          "sql_fix": "WHERE \"Ext\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "Website",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "61% NULL values (10722/17686)",
+          "sql_fix": "WHERE \"Website\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "ClosedDate",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "68% NULL values (11992/17686)",
+          "sql_fix": "WHERE \"ClosedDate\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "CharterNum",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (99% numeric, 1781/1801 non-empty)",
+          "sql_fix": "CAST(\"CharterNum\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "CharterNum",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "90% NULL values (15885/17686)",
+          "sql_fix": "WHERE \"CharterNum\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "FundingType",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "91% NULL values (16044/17686)",
+          "sql_fix": "WHERE \"FundingType\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "DOC",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 17686/17686 non-empty)",
+          "sql_fix": "CAST(\"DOC\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "SOC",
+          "type": "type_mismatch",
+          "severity": "critical",
+          "description": "TEXT field storing numeric values (100% numeric, 16317/16317 non-empty)",
+          "sql_fix": "CAST(\"SOC\" AS INTEGER)",
+          "affected_ops": [
+            "WHERE",
+            "ORDER BY",
+            "GROUP BY",
+            "HAVING"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "AdmFName2",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "98% NULL values (17255/17686)",
+          "sql_fix": "WHERE \"AdmFName2\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "AdmLName2",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "98% NULL values (17255/17686)",
+          "sql_fix": "WHERE \"AdmLName2\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "AdmEmail2",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "98% NULL values (17262/17686)",
+          "sql_fix": "WHERE \"AdmEmail2\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "AdmFName3",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "100% NULL values (17644/17686)",
+          "sql_fix": "WHERE \"AdmFName3\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "AdmLName3",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "100% NULL values (17644/17686)",
+          "sql_fix": "WHERE \"AdmLName3\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        },
+        {
+          "table": "schools",
+          "column": "AdmEmail3",
+          "type": "null_heavy",
+          "severity": "warning",
+          "description": "100% NULL values (17644/17686)",
+          "sql_fix": "WHERE \"AdmEmail3\" IS NOT NULL",
+          "affected_ops": [
+            "WHERE",
+            "JOIN",
+            "GROUP BY"
+          ]
+        }
+      ]
+    }
+  },
+  "total_tables": 0,
+  "total_rows": 0,
+  "join_paths": {
+    "frpm.CDSCode→schools.CDSCode": {
+      "from_table": "frpm",
+      "to_table": "schools",
+      "path": [
+        "frpm",
+        "schools"
+      ],
+      "join_clauses": [
+        "frpm.CDSCode = schools.CDSCode"
+      ],
+      "description": "frpm.CDSCode → schools.CDSCode [1:1]",
+      "cardinality": "1:1"
+    },
+    "satscores.cds→schools.CDSCode": {
+      "from_table": "satscores",
+      "to_table": "schools",
+      "path": [
+        "satscores",
+        "schools"
+      ],
+      "join_clauses": [
+        "satscores.cds = schools.CDSCode"
+      ],
+      "description": "satscores.cds → schools.CDSCode [1:1]",
+      "cardinality": "1:1"
+    },
+    "schools.CDSCode→frpm.CDSCode": {
+      "from_table": "schools",
+      "to_table": "frpm",
+      "path": [
+        "schools",
+        "frpm"
+      ],
+      "join_clauses": [
+        "frpm.CDSCode = schools.CDSCode"
+      ],
+      "description": "schools → frpm via frpm.CDSCode [1:1]",
+      "cardinality": "1:1"
+    },
+    "schools.CDSCode→satscores.cds": {
+      "from_table": "schools",
+      "to_table": "satscores",
+      "path": [
+        "schools",
+        "satscores"
+      ],
+      "join_clauses": [
+        "satscores.cds = schools.CDSCode"
+      ],
+      "description": "schools → satscores via satscores.cds [1:1]",
+      "cardinality": "1:1"
+    }
+  },
+  "field_semantics": {
+    "frpm.CDSCode": {
+      "table_name": "frpm",
+      "column_name": "CDSCode",
+      "storage_type": "foreign_key",
+      "references": "schools.CDSCode",
+      "note": "FK → schools.CDSCode [1:1]. Stores ID, not display name — JOIN parent to get names."
+    },
+    "satscores.cds": {
+      "table_name": "satscores",
+      "column_name": "cds",
+      "storage_type": "foreign_key",
+      "references": "schools.CDSCode",
+      "note": "FK → schools.CDSCode [1:1]. Stores ID, not display name — JOIN parent to get names."
+    }
+  },
+  "value_index": {
+    "path": "value_index/california_schools.sqlite",
+    "documents": 56832,
+    "postings": 499996,
+    "columns_indexed": 47,
+    "built_at": "2026-08-20T08:12:42.11748269Z",
+    "label_source": "sampled-v1",
+    "planned_at": "0001-01-01T00:00:00Z"
+  }
+}
