@@ -83,7 +83,8 @@ mode = "heldout"
 # Official <mode>_gold.sql: SQL\\tdb_id per line
 with (stage / f"{mode}_gold.sql").open("w") as f:
     for g in gold_slice:
-        f.write(f"{g['SQL']}\t{g['db_id']}\n")
+        sql = " ".join((g.get("SQL") or "").split())
+        f.write(f"{sql}\t{g['db_id']}\n")
 
 # difficulty json for by-diff breakdown (heldout has none → leave unset / unknown)
 diff_items = []
