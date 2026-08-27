@@ -184,6 +184,7 @@ func main() {
 	ignoreGoldFields := flag.Bool("ignore-gold-fields", false, "Do not pass result_fields even if present in JSON (black-box)")
 	parallel := flag.Int("parallel", 1, "Concurrent question shards (1 = sequential). Writes output-dir/p0.. then merges.")
 	tpmControl := flag.String("tpm-control", "100", "TPM gate: 50 | 100 | none (percent of 20M tokens/min; none disables the gate)")
+	thinkingOverride := flag.String("thinking", "", "Override llm_config thinking: enabled | disabled | auto (empty = config default)")
 
 	flag.Parse()
 	if err := llm.ApplyTPMControl(*tpmControl); err != nil {
@@ -529,6 +530,9 @@ func main() {
 	fmt.Printf("  GroundingMode:  %s\n", *groundingMode)
 	fmt.Printf("  Parallel:       %d\n", *parallel)
 	fmt.Printf("  TPM control:    %s\n", *tpmControl)
+	if strings.TrimSpace(*thinkingOverride) != "" {
+		fmt.Printf("  Thinking:       %s (flag override)\n", strings.ToLower(strings.TrimSpace(*thinkingOverride)))
+	}
 	if *difficulty != "" {
 		fmt.Printf("  Difficulty:     %s\n", *difficulty)
 	}
@@ -536,7 +540,16 @@ func main() {
 	fmt.Println()
 
 	// ── Step 8: Initialize LLM ──
-	llmModel, err := llm.CreateLLMByType(modelTypeEnum)
+	modelCfg := llm.GetModelByType(modelTypeEnum)
+	if t := strings.ToLower(strings.TrimSpace(*thinkingOverride)); t != "" {
+		switch t {
+		case "enabled", "on", "disabled", "off", "none", "auto", "omit":
+			modelCfg.Thinking = t
+		default:
+			log.Fatalf("--thinking %q invalid (want enabled|disabled|auto)", *thinkingOverride)
+		}
+	}
+	llmModel, err := llm.CreateLLM(modelCfg)
 	if err != nil {
 		log.Fatalf("Failed to create LLM: %v", err)
 	}
