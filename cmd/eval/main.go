@@ -168,7 +168,7 @@ var evalModes = []EvalMode{
 func main() {
 	// Command line flags
 	benchmark := flag.String("benchmark", "", "Benchmark: spider | bird (if empty, will ask interactively)")
-	modelType := flag.String("model", "deepseek-v4-pro", "Model: deepseek-v3 | deepseek-v3.2 | deepseek-v4-pro | deepseek-v4-pro-official | deepseek-v4-flash | qwen-max | qwen3-max | qwen3.5 | doubao-seed2-pro | qwen3-coder-plus | ali-deepseek-v3.2")
+	modelType := flag.String("model", "deepseek-v4-pro", "Model: deepseek-v3 | deepseek-v3.2 | deepseek-v4-pro | deepseek-v4-pro-official | deepseek-v4-flash | qwen-max | qwen3-max | qwen3.5 | qwen3.8-max | doubao-seed2-pro | qwen3-coder-plus | ali-deepseek-v3.2")
 	mode := flag.String("mode", "", "Evaluation mode (if empty, will show interactive menu)")
 	limit := flag.Int("limit", 0, "Limit number of examples (0 = all)")
 	startIdx := flag.Int("start", 0, "Start index")
@@ -252,6 +252,7 @@ func main() {
 			{"qwen3-max", "Qwen3-Max (Aliyun)", cfg.Qwen3Max.ModelName},
 			{"ali-deepseek-v3.2", "DeepSeek-V3.2 (Aliyun)", cfg.AliDeepSeek.ModelName},
 			{"qwen3.5", "Qwen3.5 (Aliyun)", cfg.Qwen35.ModelName},
+			{"qwen3.8-max", "Qwen3.8-Max (Aliyun)", cfg.Qwen38Max.ModelName},
 			{"doubao-seed2-pro", "Doubao-Seed2-Pro (Volcano)", cfg.DoubaoSeed2Pro.ModelName},
 			{"qwen3-coder-plus", "Qwen3-Coder-Plus (Aliyun)", cfg.Qwen3CoderPlus.ModelName},
 		}
@@ -1160,6 +1161,8 @@ func parseModelType(modelType string) llm.ModelType {
 		return llm.ModelQwen3Max
 	case "qwen3.5":
 		return llm.ModelQwen35
+	case "qwen3.8-max":
+		return llm.ModelQwen38Max
 	case "doubao-seed2-pro":
 		return llm.ModelDoubaoSeed2Pro
 	case "ali-deepseek-v3.2":
@@ -1167,7 +1170,7 @@ func parseModelType(modelType string) llm.ModelType {
 	case "qwen3-coder-plus":
 		return llm.ModelQwen3CoderPlus
 	default:
-		log.Fatalf("Unknown model type: %s. Available: deepseek-v3, deepseek-v3.2, deepseek-v4-pro, deepseek-v4-pro-official, deepseek-v4-flash, qwen-max, qwen3-max, qwen3.5, doubao-seed2-pro, qwen3-coder-plus, ali-deepseek-v3.2", modelType)
+		log.Fatalf("Unknown model type: %s. Available: deepseek-v3, deepseek-v3.2, deepseek-v4-pro, deepseek-v4-pro-official, deepseek-v4-flash, qwen-max, qwen3-max, qwen3.5, qwen3.8-max, doubao-seed2-pro, qwen3-coder-plus, ali-deepseek-v3.2", modelType)
 		return ""
 	}
 }

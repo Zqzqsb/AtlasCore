@@ -31,6 +31,7 @@ type ConfigFile struct {
 	QwenMax        ModelConfig `json:"qwen_max"`
 	Qwen3Max       ModelConfig `json:"qwen3_max"`
 	Qwen35         ModelConfig `json:"qwen3.5"`
+	Qwen38Max      ModelConfig `json:"qwen3.8-max"`
 	AliDeepSeek    ModelConfig `json:"ali_deepseek_v3_2"`
 	DoubaoSeed2Pro  ModelConfig `json:"doubao_seed2_pro"`
 	Qwen3CoderPlus ModelConfig `json:"qwen3_coder_plus"`
@@ -143,6 +144,7 @@ const (
 	ModelQwenMax        ModelType = "qwen-max"
 	ModelQwen3Max       ModelType = "qwen3-max"
 	ModelQwen35         ModelType = "qwen3.5"
+	ModelQwen38Max      ModelType = "qwen3.8-max"
 	ModelAliDeepSeekV32 ModelType = "ali-deepseek-v3.2"
 	ModelDoubaoSeed2Pro ModelType = "doubao-seed2-pro"
 	ModelQwen3CoderPlus ModelType = "qwen3-coder-plus"
@@ -168,6 +170,8 @@ func GetModelByType(modelType ModelType) ModelConfig {
 		return cfg.Qwen3Max
 	case ModelQwen35:
 		return cfg.Qwen35
+	case ModelQwen38Max:
+		return cfg.Qwen38Max
 	case ModelAliDeepSeekV32:
 		return cfg.AliDeepSeek
 	case ModelDoubaoSeed2Pro:
@@ -198,6 +202,8 @@ func GetModelDisplayName(modelType ModelType) string {
 		return "Qwen3-Max (Aliyun)"
 	case ModelQwen35:
 		return "Qwen3.5 (Aliyun)"
+	case ModelQwen38Max:
+		return "Qwen3.8-Max (Aliyun)"
 	case ModelAliDeepSeekV32:
 		return "DeepSeek-V3.2 (Aliyun)"
 	case ModelDoubaoSeed2Pro:
