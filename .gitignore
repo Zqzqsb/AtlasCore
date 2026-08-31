@@ -67,6 +67,10 @@ benchmarks/spider/database/
 benchmarks/bird/dev/dev_databases/
 benchmarks/bird/dev/dev_databases.zip
 benchmarks/bird/dev/minidev/
+benchmarks/bird/train/
+benchmarks/bird/heldout_v1_*/test_databases/
+benchmarks/bird/heldout_v1_*/test_databases
+benchmarks/bird/heldout_v1_*_private/
 
 # Generated contexts (can be regenerated via gen_rich_context_*)
 contexts/sqlite/
@@ -75,5 +79,18 @@ contexts/sqlite/
 .data_stash/
 
 iters/
+My-Iterations
+
+# Official bird_eval staging (gold + predict dumps; regenerate via scripts/run_bird_official_ex.sh)
+open_results/**/bird_official_ex/
+
+# Projection-field SFT wash (regenerate via scripts/wash_proj_fields.py)
+data/proj_fields/
+data/proj_fields_v2/*.jsonl
+scripts/__pycache__/
+
+# 300-slice lives on prepare_for_bird_test; keep local copies off main status
+data/dev_strat300/
+scripts/build_dev_strat300.py
 
 third_party/
