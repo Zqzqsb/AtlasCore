@@ -1,0 +1,171 @@
+{
+  "n": 18,
+  "fail": [
+    2,
+    32,
+    26,
+    42,
+    224,
+    232,
+    379,
+    1150,
+    1176,
+    1178,
+    1179,
+    1180
+  ],
+  "control": [
+    1,
+    93,
+    349,
+    849,
+    1154,
+    1313
+  ],
+  "items": [
+    {
+      "id": 2,
+      "question_id": 1,
+      "db_id": "california_schools",
+      "difficulty": "moderate",
+      "bucket": "fail",
+      "q": "Please list the lowest three eligible free rates for students aged 5-17 in continuation schools."
+    },
+    {
+      "id": 32,
+      "question_id": 31,
+      "db_id": "california_schools",
+      "difficulty": "moderate",
+      "bucket": "fail",
+      "q": "What is the eligible free rate of the 10th and 11th schools with the highest enrolment for students "
+    },
+    {
+      "id": 26,
+      "question_id": 25,
+      "db_id": "california_schools",
+      "difficulty": "moderate",
+      "bucket": "fail",
+      "q": "Name schools in Riverside which the average of average math score for SAT is grater than 400, what i"
+    },
+    {
+      "id": 42,
+      "question_id": 41,
+      "db_id": "california_schools",
+      "difficulty": "simple",
+      "bucket": "fail",
+      "q": "List the names of virtual schools that are among the top 5 in their respective counties based on ave"
+    },
+    {
+      "id": 224,
+      "question_id": 223,
+      "db_id": "toxicology",
+      "difficulty": "simple",
+      "bucket": "fail",
+      "q": "What are the atom IDs of the bond TR000_2_5?"
+    },
+    {
+      "id": 232,
+      "question_id": 231,
+      "db_id": "toxicology",
+      "difficulty": "challenging",
+      "bucket": "fail",
+      "q": "Which bond type accounted for the majority of the bonds found in molecule TR010 and state whether or"
+    },
+    {
+      "id": 379,
+      "question_id": 378,
+      "db_id": "card_games",
+      "difficulty": "simple",
+      "bucket": "fail",
+      "q": "What are the foiled cards that are incredibly powerful when paired with non foiled cards? List the I"
+    },
+    {
+      "id": 1150,
+      "question_id": 1149,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "moderate",
+      "bucket": "fail",
+      "q": "Are there more in-patient or outpatient who were male? What is the deviation in percentage?"
+    },
+    {
+      "id": 1176,
+      "question_id": 1175,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "moderate",
+      "bucket": "fail",
+      "q": "How old was the patient who had the highest hemoglobin count at the time of the examination, and wha"
+    },
+    {
+      "id": 1178,
+      "question_id": 1177,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "simple",
+      "bucket": "fail",
+      "q": "Was the total cholesterol status for the patient id 2927464 on 1995-9-4 at the normal level?"
+    },
+    {
+      "id": 1179,
+      "question_id": 1178,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "simple",
+      "bucket": "fail",
+      "q": "What was the gender of the first AORTITIS diagnosed patient?"
+    },
+    {
+      "id": 1180,
+      "question_id": 1179,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "moderate",
+      "bucket": "fail",
+      "q": "For the patient who was diagnosed with SLE on 1994/2/19, what was his/her anti-Cardiolipin antibody "
+    },
+    {
+      "id": 1,
+      "question_id": 0,
+      "db_id": "california_schools",
+      "difficulty": "simple",
+      "bucket": "control",
+      "q": "What is the highest eligible free rate for K-12 students in the schools in Alameda County?"
+    },
+    {
+      "id": 93,
+      "question_id": 92,
+      "db_id": "financial",
+      "difficulty": "simple",
+      "bucket": "control",
+      "q": "List out the no. of districts that have female average salary is more than 6000 but less than 10000?"
+    },
+    {
+      "id": 349,
+      "question_id": 348,
+      "db_id": "card_games",
+      "difficulty": "simple",
+      "bucket": "control",
+      "q": "Describe the information about rulings for card named 'Sublime Epiphany' with number 74s."
+    },
+    {
+      "id": 849,
+      "question_id": 848,
+      "db_id": "formula_1",
+      "difficulty": "simple",
+      "bucket": "control",
+      "q": "Please list the year during which the race is held on circuits in Shanghai."
+    },
+    {
+      "id": 1154,
+      "question_id": 1153,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "simple",
+      "bucket": "control",
+      "q": "What is the disease patient '30609' diagnosed with. List all the date of laboratory tests done for t"
+    },
+    {
+      "id": 1313,
+      "question_id": 1312,
+      "db_id": "student_club",
+      "difficulty": "simple",
+      "bucket": "control",
+      "q": "What's Angela Sanders's major?"
+    }
+  ]
+}
