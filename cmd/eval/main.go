@@ -154,8 +154,15 @@ func main() {
 	outputDir := flag.String("output-dir", "", "Output directory (auto-generated if empty)")
 	logMode := flag.String("log-mode", "simple", "Log mode: simple | full")
 	difficulty := flag.String("difficulty", "", "BIRD only: filter by difficulty (simple/moderate/challenging)")
+	dataPath := flag.String("data", "", "Override questions JSON (e.g. a 300-slice); empty = default benchmark file")
+	dbDirFlag := flag.String("db-dir", "", "Override database directory")
+	contextDirFlag := flag.String("context-dir", "", "Override rich context directory")
+	parallel := flag.Int("parallel", 1, "Concurrent question shards (1 = sequential). Writes output-dir/p0.. then merges.")
 
 	flag.Parse()
+	if *parallel < 1 {
+		log.Fatalf("--parallel must be >= 1")
+	}
 
 	reader := bufio.NewReader(os.Stdin)
 
@@ -236,8 +243,17 @@ func main() {
 	// ── Step 3: Validate paths ──
 	paths := defaultPaths[*benchmark]
 	devPath := paths["dev"]
+	if *dataPath != "" {
+		devPath = *dataPath
+	}
 	dbDir := paths["db-dir"]
+	if *dbDirFlag != "" {
+		dbDir = *dbDirFlag
+	}
 	contextDir := paths["context"]
+	if *contextDirFlag != "" {
+		contextDir = *contextDirFlag
+	}
 
 	// Check dev file
 	if _, err := os.Stat(devPath); os.IsNotExist(err) {
@@ -446,12 +462,14 @@ func main() {
 	fmt.Printf("  Benchmark:      %s\n", *benchmark)
 	fmt.Printf("  Mode:           %s\n", selectedMode.Name)
 	fmt.Printf("  Model:          %s\n", modelDisplayName)
+	fmt.Printf("  Data:           %s\n", devPath)
 	if totalCount != datasetSize {
 		fmt.Printf("  Examples:       %d / %d\n", totalCount, datasetSize)
 	} else {
 		fmt.Printf("  Examples:       %d\n", totalCount)
 	}
 	fmt.Printf("  Log Mode:       %s\n", *logMode)
+	fmt.Printf("  Parallel:       %d\n", *parallel)
 	fmt.Printf("  Output:         %s\n", *outputDir)
 	fmt.Println("  ─────────────────────────────────────────────")
 	fmt.Printf("  Use ReAct:      %v\n", selectedMode.UseReact)
@@ -480,6 +498,20 @@ func main() {
 		fmt.Printf("📋 Using configured model name: %s\n\n", modelDisplayName)
 	} else {
 		fmt.Printf("🤖 %s\n\n", strings.TrimSpace(identityResponse))
+	}
+
+	if *parallel > 1 {
+		if err := os.MkdirAll(*outputDir, 0755); err != nil {
+			log.Fatalf("Failed to create output dir: %v", err)
+		}
+		if _, err := os.Stat(filepath.Join(*outputDir, "predict.sql")); err == nil {
+			log.Fatalf("refusing to overwrite: %s/predict.sql", *outputDir)
+		}
+		stats := runParallelEval(context.Background(), examples, *outputDir,
+			*benchmark, dbDir, contextDir, *logMode, selectedMode.Name,
+			selectedMode, llmModel, *parallel)
+		printEvalSummary(*benchmark, selectedMode.Name, modelDisplayName, *outputDir, totalCount, stats)
+		return
 	}
 
 	// ── Step 9: Create output files ──
