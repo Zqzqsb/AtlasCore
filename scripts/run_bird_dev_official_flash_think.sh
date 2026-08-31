@@ -19,6 +19,8 @@ PARALLEL="${PARALLEL:-4}"
 TPM_CONTROL="${TPM_CONTROL:-none}"
 PYTHON="${PYTHON:-python3.12}"
 command -v "$PYTHON" >/dev/null 2>&1 || PYTHON="python3"
+# evaluation.py needs func_timeout, which only the system python3 has here.
+EX_PYTHON="${EX_PYTHON:-python3}"
 
 EVAL_BIN="${EVAL_BIN:-/tmp/eval_bird_dev_official_flash}"
 GEN_BIN="${GEN_BIN:-/tmp/gen_all_dev_official_flash}"
@@ -124,7 +126,7 @@ if [[ ! -f "$OUTPUT_DIR/bird_official_ex/ex_official.txt" ]]; then
   TEST_JSON="$DATA" \
   DB_DIR="$DB_DIR" \
   OUT_DIR="$OUTPUT_DIR/bird_official_ex" \
-  START=0 LIMIT=0 PYTHON="$PYTHON" \
+  START=0 LIMIT=0 PYTHON="$EX_PYTHON" \
     bash "$ROOT/scripts/run_bird_official_ex.sh" || true
 else
   echo "skip official EX" | tee -a "$LOG"
