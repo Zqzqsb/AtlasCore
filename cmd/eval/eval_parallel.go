@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"context"
 	"encoding/json"
 	"fmt"
@@ -124,26 +125,56 @@ func runEvalShard(
 	if err := os.MkdirAll(logsDir, 0755); err != nil {
 		return st, err
 	}
-	sqlFile, err := os.Create(filepath.Join(outputDir, "predict.sql"))
+
+	skip, err := prepareShardResume(outputDir, len(examples))
+	if err != nil {
+		return st, err
+	}
+	if skip >= len(examples) {
+		fmt.Printf("skip complete shard %s (%d/%d)\n", filepath.Base(outputDir), skip, len(examples))
+		return st, nil
+	}
+	if skip > 0 {
+		fmt.Printf("resume %s from %d/%d\n", filepath.Base(outputDir), skip, len(examples))
+	}
+
+	sqlFlag := os.O_WRONLY | os.O_CREATE
+	jsonFlag := os.O_WRONLY | os.O_CREATE
+	infFlag := os.O_WRONLY | os.O_CREATE
+	if skip > 0 {
+		sqlFlag |= os.O_APPEND
+		jsonFlag |= os.O_APPEND
+		infFlag |= os.O_APPEND
+	} else {
+		sqlFlag |= os.O_TRUNC
+		jsonFlag |= os.O_TRUNC
+		infFlag |= os.O_TRUNC
+	}
+	sqlFile, err := os.OpenFile(filepath.Join(outputDir, "predict.sql"), sqlFlag, 0644)
 	if err != nil {
 		return st, err
 	}
 	defer sqlFile.Close()
-	jsonFile, err := os.Create(filepath.Join(outputDir, "results.json"))
+	jsonFile, err := os.OpenFile(filepath.Join(outputDir, "results.json"), jsonFlag, 0644)
 	if err != nil {
 		return st, err
 	}
 	defer jsonFile.Close()
-	infFile, err := os.Create(filepath.Join(outputDir, "inference.log"))
+	infFile, err := os.OpenFile(filepath.Join(outputDir, "inference.log"), infFlag, 0644)
 	if err != nil {
 		return st, err
 	}
 	defer infFile.Close()
 
-	jsonFile.WriteString("[\n")
+	if skip == 0 {
+		jsonFile.WriteString("[\n")
+	}
 	evalLogger := inference.NewInferenceLogger()
 
 	for i, example := range examples {
+		if i < skip {
+			continue
+		}
 		globalI := indexBase + i
 		result := evalOneExample(ctx, example, globalI, totalCount, benchmark, dbDir, contextDir,
 			logMode, groundingMode, modeName, mode, llmModel, columnMeaning, stripGoldFields,
@@ -233,6 +264,128 @@ func evalOneExample(
 		evalLogger.CloseFile()
 	}
 	return result
+}
+
+func countNonEmptyLines(path string) int {
+	f, err := os.Open(path)
+	if err != nil {
+		return 0
+	}
+	defer f.Close()
+	n := 0
+	sc := bufio.NewScanner(f)
+	sc.Buffer(make([]byte, 0, 64*1024), 4*1024*1024)
+	for sc.Scan() {
+		if strings.TrimSpace(sc.Text()) != "" {
+			n++
+		}
+	}
+	return n
+}
+
+func decodePartialResultsJSON(path string) []json.RawMessage {
+	f, err := os.Open(path)
+	if err != nil {
+		return nil
+	}
+	defer f.Close()
+	dec := json.NewDecoder(f)
+	tok, err := dec.Token()
+	if err != nil {
+		return nil
+	}
+	d, ok := tok.(json.Delim)
+	if !ok || d != '[' {
+		return nil
+	}
+	var out []json.RawMessage
+	for dec.More() {
+		var raw json.RawMessage
+		if err := dec.Decode(&raw); err != nil {
+			break
+		}
+		out = append(out, raw)
+	}
+	return out
+}
+
+func truncateLines(path string, keep int) error {
+	f, err := os.Open(path)
+	if err != nil {
+		if os.IsNotExist(err) {
+			return nil
+		}
+		return err
+	}
+	var lines []string
+	sc := bufio.NewScanner(f)
+	sc.Buffer(make([]byte, 0, 64*1024), 4*1024*1024)
+	for sc.Scan() {
+		lines = append(lines, sc.Text())
+	}
+	_ = f.Close()
+	if keep > len(lines) {
+		keep = len(lines)
+	}
+	return os.WriteFile(path, []byte(strings.Join(lines[:keep], "\n")+"\n"), 0644)
+}
+
+func writeOpenResultsJSON(path string, objs []json.RawMessage) error {
+	var b strings.Builder
+	b.WriteString("[\n")
+	for i, raw := range objs {
+		if i > 0 {
+			b.WriteString(",\n")
+		}
+		b.WriteString("  ")
+		b.Write(raw)
+	}
+	return os.WriteFile(path, []byte(b.String()), 0644)
+}
+
+func writeClosedResultsJSON(path string, objs []json.RawMessage) error {
+	var b strings.Builder
+	b.WriteString("[\n")
+	for i, raw := range objs {
+		if i > 0 {
+			b.WriteString(",\n")
+		}
+		b.WriteString("  ")
+		b.Write(raw)
+	}
+	b.WriteString("\n]\n")
+	return os.WriteFile(path, []byte(b.String()), 0644)
+}
+
+// prepareShardResume keeps already-scored items and returns how many to skip.
+func prepareShardResume(dir string, shardN int) (int, error) {
+	predPath := filepath.Join(dir, "predict.sql")
+	jsonPath := filepath.Join(dir, "results.json")
+	nPred := countNonEmptyLines(predPath)
+	objs := decodePartialResultsJSON(jsonPath)
+	skip := nPred
+	if len(objs) < skip {
+		skip = len(objs)
+	}
+	if skip <= 0 {
+		return 0, nil
+	}
+	if skip > shardN {
+		skip = shardN
+	}
+	if err := truncateLines(predPath, skip); err != nil {
+		return 0, err
+	}
+	if skip >= shardN {
+		if err := writeClosedResultsJSON(jsonPath, objs[:skip]); err != nil {
+			return 0, err
+		}
+		return skip, nil
+	}
+	if err := writeOpenResultsJSON(jsonPath, objs[:skip]); err != nil {
+		return 0, err
+	}
+	return skip, nil
 }
 
 func writePredictLine(sqlFile *os.File, result EvalResult) {
