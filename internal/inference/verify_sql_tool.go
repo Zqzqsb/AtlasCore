@@ -14,6 +14,9 @@ type VerifySQLTool struct {
 	adapter adapter.DBAdapter
 	dbType  string
 	logger  *InferenceLogger
+	// LastValidSQL is the most recent SQL that passed DB execution.
+	// Used as a ReAct parse-failure fallback when the model dumps bare SQL.
+	LastValidSQL string
 }
 
 // Name returns tool name
@@ -61,6 +64,7 @@ func (t *VerifySQLTool) Call(ctx context.Context, input string) (string, error) 
 		logf("Output: %s\n", result)
 		return result, nil
 	}
+	t.LastValidSQL = sql
 
 	var report strings.Builder
 	report.WriteString("✓ SQL is valid!\n")
