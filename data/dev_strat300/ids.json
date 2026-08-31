@@ -1,0 +1,2181 @@
+{
+  "n": 300,
+  "seed": 42,
+  "source_run": "open_results/20260324_151835_react+rich_context+clarify",
+  "historical_ok": 229,
+  "historical_ex": 0.7633,
+  "note": "Mix matches the 20260324 run. Re-running clarify on this slice should land near 76% if the original setup is reproduced. Do not read that as an unbiased estimate of a new method.",
+  "target_cells": {
+    "simple|ok_exact": 34,
+    "simple|ok_equiv": 108,
+    "simple|row_count": 23,
+    "simple|data_mismatch": 15,
+    "simple|other": 0,
+    "moderate|ok_exact": 6,
+    "moderate|ok_equiv": 60,
+    "moderate|row_count": 10,
+    "moderate|data_mismatch": 14,
+    "moderate|other": 1,
+    "challenging|ok_exact": 1,
+    "challenging|ok_equiv": 20,
+    "challenging|row_count": 4,
+    "challenging|data_mismatch": 4,
+    "challenging|other": 0
+  },
+  "full": {
+    "difficulty": {
+      "simple": 925,
+      "moderate": 464,
+      "challenging": 145
+    },
+    "bucket": {
+      "ok_equiv": 964,
+      "data_mismatch": 168,
+      "ok_exact": 207,
+      "row_count": 190,
+      "other": 5
+    },
+    "db": {
+      "california_schools": 89,
+      "financial": 106,
+      "toxicology": 145,
+      "card_games": 191,
+      "codebase_community": 186,
+      "superhero": 129,
+      "formula_1": 174,
+      "european_football_2": 129,
+      "thrombosis_prediction": 163,
+      "student_club": 158,
+      "debit_card_specializing": 64
+    }
+  },
+  "sample": {
+    "difficulty": {
+      "simple": 180,
+      "moderate": 91,
+      "challenging": 29
+    },
+    "bucket": {
+      "ok_equiv": 188,
+      "data_mismatch": 33,
+      "row_count": 37,
+      "ok_exact": 41,
+      "other": 1
+    },
+    "db": {
+      "california_schools": 18,
+      "financial": 21,
+      "toxicology": 28,
+      "card_games": 35,
+      "codebase_community": 34,
+      "superhero": 25,
+      "formula_1": 35,
+      "european_football_2": 26,
+      "thrombosis_prediction": 33,
+      "student_club": 32,
+      "debit_card_specializing": 13
+    }
+  },
+  "items": [
+    {
+      "id": 1,
+      "question_id": 0,
+      "db_id": "california_schools",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 3,
+      "question_id": 2,
+      "db_id": "california_schools",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 4,
+      "question_id": 3,
+      "db_id": "california_schools",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 15,
+      "question_id": 14,
+      "db_id": "california_schools",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 16,
+      "question_id": 15,
+      "db_id": "california_schools",
+      "difficulty": "simple",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 20,
+      "question_id": 19,
+      "db_id": "california_schools",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 24,
+      "question_id": 23,
+      "db_id": "california_schools",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 34,
+      "question_id": 33,
+      "db_id": "california_schools",
+      "difficulty": "moderate",
+      "bucket": "row_count"
+    },
+    {
+      "id": 48,
+      "question_id": 47,
+      "db_id": "california_schools",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 54,
+      "question_id": 53,
+      "db_id": "california_schools",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 56,
+      "question_id": 55,
+      "db_id": "california_schools",
+      "difficulty": "moderate",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 59,
+      "question_id": 58,
+      "db_id": "california_schools",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 73,
+      "question_id": 72,
+      "db_id": "california_schools",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 74,
+      "question_id": 73,
+      "db_id": "california_schools",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 75,
+      "question_id": 74,
+      "db_id": "california_schools",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 83,
+      "question_id": 82,
+      "db_id": "california_schools",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 84,
+      "question_id": 83,
+      "db_id": "california_schools",
+      "difficulty": "challenging",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 85,
+      "question_id": 84,
+      "db_id": "california_schools",
+      "difficulty": "simple",
+      "bucket": "row_count"
+    },
+    {
+      "id": 91,
+      "question_id": 90,
+      "db_id": "financial",
+      "difficulty": "simple",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 95,
+      "question_id": 94,
+      "db_id": "financial",
+      "difficulty": "challenging",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 102,
+      "question_id": 101,
+      "db_id": "financial",
+      "difficulty": "simple",
+      "bucket": "row_count"
+    },
+    {
+      "id": 105,
+      "question_id": 104,
+      "db_id": "financial",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 110,
+      "question_id": 109,
+      "db_id": "financial",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 114,
+      "question_id": 113,
+      "db_id": "financial",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 118,
+      "question_id": 117,
+      "db_id": "financial",
+      "difficulty": "moderate",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 120,
+      "question_id": 119,
+      "db_id": "financial",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 133,
+      "question_id": 132,
+      "db_id": "financial",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 138,
+      "question_id": 137,
+      "db_id": "financial",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 152,
+      "question_id": 151,
+      "db_id": "financial",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 155,
+      "question_id": 154,
+      "db_id": "financial",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 163,
+      "question_id": 162,
+      "db_id": "financial",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 169,
+      "question_id": 168,
+      "db_id": "financial",
+      "difficulty": "moderate",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 173,
+      "question_id": 172,
+      "db_id": "financial",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 174,
+      "question_id": 173,
+      "db_id": "financial",
+      "difficulty": "challenging",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 177,
+      "question_id": 176,
+      "db_id": "financial",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 179,
+      "question_id": 178,
+      "db_id": "financial",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 187,
+      "question_id": 186,
+      "db_id": "financial",
+      "difficulty": "moderate",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 190,
+      "question_id": 189,
+      "db_id": "financial",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 192,
+      "question_id": 191,
+      "db_id": "financial",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 201,
+      "question_id": 200,
+      "db_id": "toxicology",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 202,
+      "question_id": 201,
+      "db_id": "toxicology",
+      "difficulty": "moderate",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 207,
+      "question_id": 206,
+      "db_id": "toxicology",
+      "difficulty": "challenging",
+      "bucket": "row_count"
+    },
+    {
+      "id": 217,
+      "question_id": 216,
+      "db_id": "toxicology",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 221,
+      "question_id": 220,
+      "db_id": "toxicology",
+      "difficulty": "challenging",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 229,
+      "question_id": 228,
+      "db_id": "toxicology",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 232,
+      "question_id": 231,
+      "db_id": "toxicology",
+      "difficulty": "challenging",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 235,
+      "question_id": 234,
+      "db_id": "toxicology",
+      "difficulty": "moderate",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 242,
+      "question_id": 241,
+      "db_id": "toxicology",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 246,
+      "question_id": 245,
+      "db_id": "toxicology",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 256,
+      "question_id": 255,
+      "db_id": "toxicology",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 257,
+      "question_id": 256,
+      "db_id": "toxicology",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 260,
+      "question_id": 259,
+      "db_id": "toxicology",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 264,
+      "question_id": 263,
+      "db_id": "toxicology",
+      "difficulty": "challenging",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 279,
+      "question_id": 278,
+      "db_id": "toxicology",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 284,
+      "question_id": 283,
+      "db_id": "toxicology",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 285,
+      "question_id": 284,
+      "db_id": "toxicology",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 289,
+      "question_id": 288,
+      "db_id": "toxicology",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 290,
+      "question_id": 289,
+      "db_id": "toxicology",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 296,
+      "question_id": 295,
+      "db_id": "toxicology",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 297,
+      "question_id": 296,
+      "db_id": "toxicology",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 298,
+      "question_id": 297,
+      "db_id": "toxicology",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 302,
+      "question_id": 301,
+      "db_id": "toxicology",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 310,
+      "question_id": 309,
+      "db_id": "toxicology",
+      "difficulty": "simple",
+      "bucket": "row_count"
+    },
+    {
+      "id": 313,
+      "question_id": 312,
+      "db_id": "toxicology",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 323,
+      "question_id": 322,
+      "db_id": "toxicology",
+      "difficulty": "challenging",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 336,
+      "question_id": 335,
+      "db_id": "toxicology",
+      "difficulty": "simple",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 338,
+      "question_id": 337,
+      "db_id": "toxicology",
+      "difficulty": "challenging",
+      "bucket": "row_count"
+    },
+    {
+      "id": 343,
+      "question_id": 342,
+      "db_id": "card_games",
+      "difficulty": "simple",
+      "bucket": "row_count"
+    },
+    {
+      "id": 345,
+      "question_id": 344,
+      "db_id": "card_games",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 346,
+      "question_id": 345,
+      "db_id": "card_games",
+      "difficulty": "moderate",
+      "bucket": "row_count"
+    },
+    {
+      "id": 350,
+      "question_id": 349,
+      "db_id": "card_games",
+      "difficulty": "moderate",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 359,
+      "question_id": 358,
+      "db_id": "card_games",
+      "difficulty": "simple",
+      "bucket": "row_count"
+    },
+    {
+      "id": 362,
+      "question_id": 361,
+      "db_id": "card_games",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 372,
+      "question_id": 371,
+      "db_id": "card_games",
+      "difficulty": "challenging",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 376,
+      "question_id": 375,
+      "db_id": "card_games",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 388,
+      "question_id": 387,
+      "db_id": "card_games",
+      "difficulty": "simple",
+      "bucket": "row_count"
+    },
+    {
+      "id": 393,
+      "question_id": 392,
+      "db_id": "card_games",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 398,
+      "question_id": 397,
+      "db_id": "card_games",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 400,
+      "question_id": 399,
+      "db_id": "card_games",
+      "difficulty": "simple",
+      "bucket": "row_count"
+    },
+    {
+      "id": 404,
+      "question_id": 403,
+      "db_id": "card_games",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 405,
+      "question_id": 404,
+      "db_id": "card_games",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 410,
+      "question_id": 409,
+      "db_id": "card_games",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 421,
+      "question_id": 420,
+      "db_id": "card_games",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 426,
+      "question_id": 425,
+      "db_id": "card_games",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 429,
+      "question_id": 428,
+      "db_id": "card_games",
+      "difficulty": "simple",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 433,
+      "question_id": 432,
+      "db_id": "card_games",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 440,
+      "question_id": 439,
+      "db_id": "card_games",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 442,
+      "question_id": 441,
+      "db_id": "card_games",
+      "difficulty": "simple",
+      "bucket": "row_count"
+    },
+    {
+      "id": 443,
+      "question_id": 442,
+      "db_id": "card_games",
+      "difficulty": "simple",
+      "bucket": "row_count"
+    },
+    {
+      "id": 452,
+      "question_id": 451,
+      "db_id": "card_games",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 454,
+      "question_id": 453,
+      "db_id": "card_games",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 464,
+      "question_id": 463,
+      "db_id": "card_games",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 465,
+      "question_id": 464,
+      "db_id": "card_games",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 472,
+      "question_id": 471,
+      "db_id": "card_games",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 476,
+      "question_id": 475,
+      "db_id": "card_games",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 481,
+      "question_id": 480,
+      "db_id": "card_games",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 485,
+      "question_id": 484,
+      "db_id": "card_games",
+      "difficulty": "moderate",
+      "bucket": "row_count"
+    },
+    {
+      "id": 495,
+      "question_id": 494,
+      "db_id": "card_games",
+      "difficulty": "challenging",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 500,
+      "question_id": 499,
+      "db_id": "card_games",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 509,
+      "question_id": 508,
+      "db_id": "card_games",
+      "difficulty": "moderate",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 525,
+      "question_id": 524,
+      "db_id": "card_games",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 527,
+      "question_id": 526,
+      "db_id": "card_games",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 534,
+      "question_id": 533,
+      "db_id": "codebase_community",
+      "difficulty": "simple",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 536,
+      "question_id": 535,
+      "db_id": "codebase_community",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 539,
+      "question_id": 538,
+      "db_id": "codebase_community",
+      "difficulty": "simple",
+      "bucket": "row_count"
+    },
+    {
+      "id": 547,
+      "question_id": 546,
+      "db_id": "codebase_community",
+      "difficulty": "simple",
+      "bucket": "row_count"
+    },
+    {
+      "id": 549,
+      "question_id": 548,
+      "db_id": "codebase_community",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 552,
+      "question_id": 551,
+      "db_id": "codebase_community",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 553,
+      "question_id": 552,
+      "db_id": "codebase_community",
+      "difficulty": "simple",
+      "bucket": "row_count"
+    },
+    {
+      "id": 556,
+      "question_id": 555,
+      "db_id": "codebase_community",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 565,
+      "question_id": 564,
+      "db_id": "codebase_community",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 568,
+      "question_id": 567,
+      "db_id": "codebase_community",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 573,
+      "question_id": 572,
+      "db_id": "codebase_community",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 577,
+      "question_id": 576,
+      "db_id": "codebase_community",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 578,
+      "question_id": 577,
+      "db_id": "codebase_community",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 582,
+      "question_id": 581,
+      "db_id": "codebase_community",
+      "difficulty": "moderate",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 589,
+      "question_id": 588,
+      "db_id": "codebase_community",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 596,
+      "question_id": 595,
+      "db_id": "codebase_community",
+      "difficulty": "moderate",
+      "bucket": "row_count"
+    },
+    {
+      "id": 597,
+      "question_id": 596,
+      "db_id": "codebase_community",
+      "difficulty": "simple",
+      "bucket": "row_count"
+    },
+    {
+      "id": 598,
+      "question_id": 597,
+      "db_id": "codebase_community",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 607,
+      "question_id": 606,
+      "db_id": "codebase_community",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 608,
+      "question_id": 607,
+      "db_id": "codebase_community",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 612,
+      "question_id": 611,
+      "db_id": "codebase_community",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 624,
+      "question_id": 623,
+      "db_id": "codebase_community",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 625,
+      "question_id": 624,
+      "db_id": "codebase_community",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 659,
+      "question_id": 658,
+      "db_id": "codebase_community",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 662,
+      "question_id": 661,
+      "db_id": "codebase_community",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 666,
+      "question_id": 665,
+      "db_id": "codebase_community",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 668,
+      "question_id": 667,
+      "db_id": "codebase_community",
+      "difficulty": "simple",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 676,
+      "question_id": 675,
+      "db_id": "codebase_community",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 679,
+      "question_id": 678,
+      "db_id": "codebase_community",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 687,
+      "question_id": 686,
+      "db_id": "codebase_community",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 688,
+      "question_id": 687,
+      "db_id": "codebase_community",
+      "difficulty": "simple",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 701,
+      "question_id": 700,
+      "db_id": "codebase_community",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 709,
+      "question_id": 708,
+      "db_id": "codebase_community",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 715,
+      "question_id": 714,
+      "db_id": "codebase_community",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 737,
+      "question_id": 736,
+      "db_id": "superhero",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 739,
+      "question_id": 738,
+      "db_id": "superhero",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 745,
+      "question_id": 744,
+      "db_id": "superhero",
+      "difficulty": "challenging",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 749,
+      "question_id": 748,
+      "db_id": "superhero",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 751,
+      "question_id": 750,
+      "db_id": "superhero",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 759,
+      "question_id": 758,
+      "db_id": "superhero",
+      "difficulty": "moderate",
+      "bucket": "row_count"
+    },
+    {
+      "id": 762,
+      "question_id": 761,
+      "db_id": "superhero",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 763,
+      "question_id": 762,
+      "db_id": "superhero",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 769,
+      "question_id": 768,
+      "db_id": "superhero",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 770,
+      "question_id": 769,
+      "db_id": "superhero",
+      "difficulty": "challenging",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 775,
+      "question_id": 774,
+      "db_id": "superhero",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 780,
+      "question_id": 779,
+      "db_id": "superhero",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 784,
+      "question_id": 783,
+      "db_id": "superhero",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 785,
+      "question_id": 784,
+      "db_id": "superhero",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 787,
+      "question_id": 786,
+      "db_id": "superhero",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 789,
+      "question_id": 788,
+      "db_id": "superhero",
+      "difficulty": "challenging",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 792,
+      "question_id": 791,
+      "db_id": "superhero",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 796,
+      "question_id": 795,
+      "db_id": "superhero",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 801,
+      "question_id": 800,
+      "db_id": "superhero",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 804,
+      "question_id": 803,
+      "db_id": "superhero",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 813,
+      "question_id": 812,
+      "db_id": "superhero",
+      "difficulty": "simple",
+      "bucket": "row_count"
+    },
+    {
+      "id": 823,
+      "question_id": 822,
+      "db_id": "superhero",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 826,
+      "question_id": 825,
+      "db_id": "superhero",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 844,
+      "question_id": 843,
+      "db_id": "superhero",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 845,
+      "question_id": 844,
+      "db_id": "superhero",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 847,
+      "question_id": 846,
+      "db_id": "formula_1",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 851,
+      "question_id": 850,
+      "db_id": "formula_1",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 852,
+      "question_id": 851,
+      "db_id": "formula_1",
+      "difficulty": "simple",
+      "bucket": "row_count"
+    },
+    {
+      "id": 853,
+      "question_id": 852,
+      "db_id": "formula_1",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 855,
+      "question_id": 854,
+      "db_id": "formula_1",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 858,
+      "question_id": 857,
+      "db_id": "formula_1",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 877,
+      "question_id": 876,
+      "db_id": "formula_1",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 878,
+      "question_id": 877,
+      "db_id": "formula_1",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 884,
+      "question_id": 883,
+      "db_id": "formula_1",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 886,
+      "question_id": 885,
+      "db_id": "formula_1",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 890,
+      "question_id": 889,
+      "db_id": "formula_1",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 893,
+      "question_id": 892,
+      "db_id": "formula_1",
+      "difficulty": "moderate",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 898,
+      "question_id": 897,
+      "db_id": "formula_1",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 908,
+      "question_id": 907,
+      "db_id": "formula_1",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 916,
+      "question_id": 915,
+      "db_id": "formula_1",
+      "difficulty": "simple",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 925,
+      "question_id": 924,
+      "db_id": "formula_1",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 930,
+      "question_id": 929,
+      "db_id": "formula_1",
+      "difficulty": "simple",
+      "bucket": "row_count"
+    },
+    {
+      "id": 937,
+      "question_id": 936,
+      "db_id": "formula_1",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 939,
+      "question_id": 938,
+      "db_id": "formula_1",
+      "difficulty": "moderate",
+      "bucket": "other"
+    },
+    {
+      "id": 942,
+      "question_id": 941,
+      "db_id": "formula_1",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 952,
+      "question_id": 951,
+      "db_id": "formula_1",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 954,
+      "question_id": 953,
+      "db_id": "formula_1",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 956,
+      "question_id": 955,
+      "db_id": "formula_1",
+      "difficulty": "challenging",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 963,
+      "question_id": 962,
+      "db_id": "formula_1",
+      "difficulty": "challenging",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 966,
+      "question_id": 965,
+      "db_id": "formula_1",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 975,
+      "question_id": 974,
+      "db_id": "formula_1",
+      "difficulty": "simple",
+      "bucket": "row_count"
+    },
+    {
+      "id": 982,
+      "question_id": 981,
+      "db_id": "formula_1",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 985,
+      "question_id": 984,
+      "db_id": "formula_1",
+      "difficulty": "simple",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 988,
+      "question_id": 987,
+      "db_id": "formula_1",
+      "difficulty": "simple",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 1005,
+      "question_id": 1004,
+      "db_id": "formula_1",
+      "difficulty": "simple",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 1007,
+      "question_id": 1006,
+      "db_id": "formula_1",
+      "difficulty": "challenging",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 1010,
+      "question_id": 1009,
+      "db_id": "formula_1",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1012,
+      "question_id": 1011,
+      "db_id": "formula_1",
+      "difficulty": "challenging",
+      "bucket": "row_count"
+    },
+    {
+      "id": 1018,
+      "question_id": 1017,
+      "db_id": "formula_1",
+      "difficulty": "moderate",
+      "bucket": "row_count"
+    },
+    {
+      "id": 1020,
+      "question_id": 1019,
+      "db_id": "formula_1",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1030,
+      "question_id": 1029,
+      "db_id": "european_football_2",
+      "difficulty": "moderate",
+      "bucket": "row_count"
+    },
+    {
+      "id": 1041,
+      "question_id": 1040,
+      "db_id": "european_football_2",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1042,
+      "question_id": 1041,
+      "db_id": "european_football_2",
+      "difficulty": "challenging",
+      "bucket": "row_count"
+    },
+    {
+      "id": 1043,
+      "question_id": 1042,
+      "db_id": "european_football_2",
+      "difficulty": "challenging",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1044,
+      "question_id": 1043,
+      "db_id": "european_football_2",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 1047,
+      "question_id": 1046,
+      "db_id": "european_football_2",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1048,
+      "question_id": 1047,
+      "db_id": "european_football_2",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1050,
+      "question_id": 1049,
+      "db_id": "european_football_2",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1058,
+      "question_id": 1057,
+      "db_id": "european_football_2",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1070,
+      "question_id": 1069,
+      "db_id": "european_football_2",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 1079,
+      "question_id": 1078,
+      "db_id": "european_football_2",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1083,
+      "question_id": 1082,
+      "db_id": "european_football_2",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1084,
+      "question_id": 1083,
+      "db_id": "european_football_2",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1092,
+      "question_id": 1091,
+      "db_id": "european_football_2",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1093,
+      "question_id": 1092,
+      "db_id": "european_football_2",
+      "difficulty": "simple",
+      "bucket": "row_count"
+    },
+    {
+      "id": 1094,
+      "question_id": 1093,
+      "db_id": "european_football_2",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1095,
+      "question_id": 1094,
+      "db_id": "european_football_2",
+      "difficulty": "challenging",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1121,
+      "question_id": 1120,
+      "db_id": "european_football_2",
+      "difficulty": "moderate",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 1123,
+      "question_id": 1122,
+      "db_id": "european_football_2",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1124,
+      "question_id": 1123,
+      "db_id": "european_football_2",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1126,
+      "question_id": 1125,
+      "db_id": "european_football_2",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1129,
+      "question_id": 1128,
+      "db_id": "european_football_2",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1130,
+      "question_id": 1129,
+      "db_id": "european_football_2",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1134,
+      "question_id": 1133,
+      "db_id": "european_football_2",
+      "difficulty": "simple",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 1145,
+      "question_id": 1144,
+      "db_id": "european_football_2",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1149,
+      "question_id": 1148,
+      "db_id": "european_football_2",
+      "difficulty": "moderate",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 1153,
+      "question_id": 1152,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1154,
+      "question_id": 1153,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1161,
+      "question_id": 1160,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "moderate",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 1170,
+      "question_id": 1169,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "challenging",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1173,
+      "question_id": 1172,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1176,
+      "question_id": 1175,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1181,
+      "question_id": 1180,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1183,
+      "question_id": 1182,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1184,
+      "question_id": 1183,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "challenging",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1188,
+      "question_id": 1187,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "moderate",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 1189,
+      "question_id": 1188,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1192,
+      "question_id": 1191,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "challenging",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1197,
+      "question_id": 1196,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1210,
+      "question_id": 1209,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "moderate",
+      "bucket": "row_count"
+    },
+    {
+      "id": 1217,
+      "question_id": 1216,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1218,
+      "question_id": 1217,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "moderate",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 1224,
+      "question_id": 1223,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "challenging",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1225,
+      "question_id": 1224,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1228,
+      "question_id": 1227,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1229,
+      "question_id": 1228,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "simple",
+      "bucket": "row_count"
+    },
+    {
+      "id": 1248,
+      "question_id": 1247,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "challenging",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 1252,
+      "question_id": 1251,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "simple",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 1263,
+      "question_id": 1262,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1268,
+      "question_id": 1267,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "moderate",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 1274,
+      "question_id": 1273,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "moderate",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 1275,
+      "question_id": 1274,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "moderate",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 1288,
+      "question_id": 1287,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1291,
+      "question_id": 1290,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 1297,
+      "question_id": 1296,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1298,
+      "question_id": 1297,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1308,
+      "question_id": 1307,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "challenging",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1311,
+      "question_id": 1310,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1312,
+      "question_id": 1311,
+      "db_id": "thrombosis_prediction",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1318,
+      "question_id": 1317,
+      "db_id": "student_club",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1324,
+      "question_id": 1323,
+      "db_id": "student_club",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1330,
+      "question_id": 1329,
+      "db_id": "student_club",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1331,
+      "question_id": 1330,
+      "db_id": "student_club",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1332,
+      "question_id": 1331,
+      "db_id": "student_club",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1335,
+      "question_id": 1334,
+      "db_id": "student_club",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1345,
+      "question_id": 1344,
+      "db_id": "student_club",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 1354,
+      "question_id": 1353,
+      "db_id": "student_club",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1358,
+      "question_id": 1357,
+      "db_id": "student_club",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1359,
+      "question_id": 1358,
+      "db_id": "student_club",
+      "difficulty": "simple",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 1361,
+      "question_id": 1360,
+      "db_id": "student_club",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1375,
+      "question_id": 1374,
+      "db_id": "student_club",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 1376,
+      "question_id": 1375,
+      "db_id": "student_club",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1381,
+      "question_id": 1380,
+      "db_id": "student_club",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 1388,
+      "question_id": 1387,
+      "db_id": "student_club",
+      "difficulty": "moderate",
+      "bucket": "row_count"
+    },
+    {
+      "id": 1398,
+      "question_id": 1397,
+      "db_id": "student_club",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 1402,
+      "question_id": 1401,
+      "db_id": "student_club",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1407,
+      "question_id": 1406,
+      "db_id": "student_club",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1409,
+      "question_id": 1408,
+      "db_id": "student_club",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 1412,
+      "question_id": 1411,
+      "db_id": "student_club",
+      "difficulty": "simple",
+      "bucket": "row_count"
+    },
+    {
+      "id": 1414,
+      "question_id": 1413,
+      "db_id": "student_club",
+      "difficulty": "simple",
+      "bucket": "row_count"
+    },
+    {
+      "id": 1415,
+      "question_id": 1414,
+      "db_id": "student_club",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1417,
+      "question_id": 1416,
+      "db_id": "student_club",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1419,
+      "question_id": 1418,
+      "db_id": "student_club",
+      "difficulty": "simple",
+      "bucket": "row_count"
+    },
+    {
+      "id": 1422,
+      "question_id": 1421,
+      "db_id": "student_club",
+      "difficulty": "moderate",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 1436,
+      "question_id": 1435,
+      "db_id": "student_club",
+      "difficulty": "moderate",
+      "bucket": "row_count"
+    },
+    {
+      "id": 1441,
+      "question_id": 1440,
+      "db_id": "student_club",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1445,
+      "question_id": 1444,
+      "db_id": "student_club",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 1449,
+      "question_id": 1448,
+      "db_id": "student_club",
+      "difficulty": "challenging",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1453,
+      "question_id": 1452,
+      "db_id": "student_club",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1463,
+      "question_id": 1462,
+      "db_id": "student_club",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1466,
+      "question_id": 1465,
+      "db_id": "student_club",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1475,
+      "question_id": 1474,
+      "db_id": "debit_card_specializing",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1477,
+      "question_id": 1476,
+      "db_id": "debit_card_specializing",
+      "difficulty": "challenging",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1478,
+      "question_id": 1477,
+      "db_id": "debit_card_specializing",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 1490,
+      "question_id": 1489,
+      "db_id": "debit_card_specializing",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1492,
+      "question_id": 1491,
+      "db_id": "debit_card_specializing",
+      "difficulty": "simple",
+      "bucket": "row_count"
+    },
+    {
+      "id": 1493,
+      "question_id": 1492,
+      "db_id": "debit_card_specializing",
+      "difficulty": "simple",
+      "bucket": "ok_exact"
+    },
+    {
+      "id": 1496,
+      "question_id": 1495,
+      "db_id": "debit_card_specializing",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1499,
+      "question_id": 1498,
+      "db_id": "debit_card_specializing",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1517,
+      "question_id": 1516,
+      "db_id": "debit_card_specializing",
+      "difficulty": "moderate",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 1523,
+      "question_id": 1522,
+      "db_id": "debit_card_specializing",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1528,
+      "question_id": 1527,
+      "db_id": "debit_card_specializing",
+      "difficulty": "simple",
+      "bucket": "data_mismatch"
+    },
+    {
+      "id": 1533,
+      "question_id": 1532,
+      "db_id": "debit_card_specializing",
+      "difficulty": "simple",
+      "bucket": "ok_equiv"
+    },
+    {
+      "id": 1534,
+      "question_id": 1533,
+      "db_id": "debit_card_specializing",
+      "difficulty": "moderate",
+      "bucket": "ok_equiv"
+    }
+  ]
+}
