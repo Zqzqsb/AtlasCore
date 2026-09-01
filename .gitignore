@@ -71,6 +71,8 @@ benchmarks/bird/train/
 benchmarks/bird/heldout_v1_*/test_databases/
 benchmarks/bird/heldout_v1_*/test_databases
 benchmarks/bird/heldout_v1_*_private/
+# question JSON lives on prepare_for_bird_test; local checkout for smoke400
+benchmarks/bird/heldout_v1_*/test.json
 
 # Generated contexts (can be regenerated via gen_rich_context_*)
 contexts/sqlite/
