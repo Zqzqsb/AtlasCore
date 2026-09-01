@@ -18,6 +18,7 @@ import (
 	"github.com/Zqzqsb/AtlasCore/internal/adapter"
 	"github.com/Zqzqsb/AtlasCore/internal/inference"
 	"github.com/Zqzqsb/AtlasCore/internal/llm"
+	"github.com/Zqzqsb/AtlasCore/internal/stamp"
 
 	"github.com/tmc/langchaingo/llms"
 )
@@ -37,14 +38,14 @@ type SpiderExample struct {
 
 // BirdExample BIRD dataset example
 type BirdExample struct {
-	QuestionID int    `json:"question_id"`
-	DbID       string `json:"db_id"`
-	Question   string `json:"question"`
-	Evidence   string `json:"evidence"`
-	SQL        string `json:"SQL"`
-	Difficulty string `json:"difficulty"`
-	ResultFields           []string `json:"result_fields"`
-	ResultFieldsDescription string  `json:"result_fields_description"`
+	QuestionID              int      `json:"question_id"`
+	DbID                    string   `json:"db_id"`
+	Question                string   `json:"question"`
+	Evidence                string   `json:"evidence"`
+	SQL                     string   `json:"SQL"`
+	Difficulty              string   `json:"difficulty"`
+	ResultFields            []string `json:"result_fields"`
+	ResultFieldsDescription string   `json:"result_fields_description"`
 }
 
 // EvalResult unified evaluation result
@@ -483,6 +484,29 @@ func main() {
 	fmt.Println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 	fmt.Println()
 
+	if err := os.MkdirAll(*outputDir, 0755); err != nil {
+		log.Fatalf("Failed to create output dir: %v", err)
+	}
+	if *parallel > 1 {
+		if _, err := os.Stat(filepath.Join(*outputDir, "predict.sql")); err == nil {
+			log.Fatalf("refusing to overwrite: %s/predict.sql", *outputDir)
+		}
+	}
+	writeRunStamp(*outputDir, map[string]string{
+		"kind":        "eval",
+		"started":     stamp.Now(),
+		"commit":      stamp.GitHEAD(),
+		"benchmark":   *benchmark,
+		"mode":        selectedMode.Name,
+		"model":       *modelType,
+		"data":        devPath,
+		"db_dir":      dbDir,
+		"context_dir": contextDir,
+		"parallel":    fmt.Sprintf("%d", *parallel),
+		"n":           fmt.Sprintf("%d", totalCount),
+		"output_dir":  *outputDir,
+	})
+
 	// ── Step 8: Initialize LLM ──
 	llmModel, err := llm.CreateLLMByType(modelTypeEnum)
 	if err != nil {
@@ -501,16 +525,11 @@ func main() {
 	}
 
 	if *parallel > 1 {
-		if err := os.MkdirAll(*outputDir, 0755); err != nil {
-			log.Fatalf("Failed to create output dir: %v", err)
-		}
-		if _, err := os.Stat(filepath.Join(*outputDir, "predict.sql")); err == nil {
-			log.Fatalf("refusing to overwrite: %s/predict.sql", *outputDir)
-		}
 		stats := runParallelEval(context.Background(), examples, *outputDir,
 			*benchmark, dbDir, contextDir, *logMode, selectedMode.Name,
 			selectedMode, llmModel, *parallel)
 		printEvalSummary(*benchmark, selectedMode.Name, modelDisplayName, *outputDir, totalCount, stats)
+		finishRunStamp(*outputDir)
 		return
 	}
 
@@ -802,6 +821,20 @@ func main() {
 	both("  cat logs/0001_*.log                  # single example\n")
 	both("  grep '❌' inference.log              # failed examples\n")
 	both("  tail -f log.txt                      # watch live output\n")
+
+	finishRunStamp(*outputDir)
+}
+
+func writeRunStamp(dir string, kv map[string]string) {
+	if err := stamp.Write(dir, "run_stamp.txt", kv); err != nil {
+		log.Printf("warning: run_stamp: %v", err)
+	}
+}
+
+func finishRunStamp(dir string) {
+	if err := stamp.Merge(dir, "run_stamp.txt", map[string]string{"finished": stamp.Now()}); err != nil {
+		log.Printf("warning: run_stamp: %v", err)
+	}
 }
 
 // ─────────────────────────────────────────────────────

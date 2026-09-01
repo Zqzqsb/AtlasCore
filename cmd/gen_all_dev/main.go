@@ -18,6 +18,7 @@ import (
 	contextpkg "github.com/Zqzqsb/AtlasCore/internal/context"
 	"github.com/Zqzqsb/AtlasCore/internal/llm"
 	"github.com/Zqzqsb/AtlasCore/internal/logger"
+	"github.com/Zqzqsb/AtlasCore/internal/stamp"
 )
 
 // devQueryEntry represents one entry in the Spider dev JSON file
@@ -244,8 +245,22 @@ func runSpider(model llm.ModelType, devFile, dbDir, outputDir string, workerCoun
 	}
 	fmt.Printf("Found %d databases in Spider dev set\n\n", len(databases))
 
-	databases = filterExisting(databases, outputDir, skipExisting)
-	runBatch(model, databases, dbDir, outputDir, workerCount, true)
+	todo := filterExisting(databases, outputDir, skipExisting)
+	writeRCGenStamp(outputDir, map[string]string{
+		"kind":          "rc_gen",
+		"started":       stamp.Now(),
+		"commit":        stamp.GitHEAD(),
+		"benchmark":     "spider",
+		"model":         string(model),
+		"db_dir":        dbDir,
+		"output_dir":    outputDir,
+		"workers":       fmt.Sprintf("%d", workerCount),
+		"skip_existing": fmt.Sprintf("%t", skipExisting),
+		"n_existing":    fmt.Sprintf("%d", existingCount),
+		"n_todo":        fmt.Sprintf("%d", len(todo)),
+	})
+	runBatch(model, todo, dbDir, outputDir, workerCount, true)
+	finishRCGenStamp(outputDir)
 }
 
 // extractSpiderDevDBIDs reads the dev JSON file and returns sorted unique db_ids
@@ -309,8 +324,22 @@ func runBird(model llm.ModelType, dbDir, outputDir string, workerCount int, skip
 	sort.Strings(databases)
 	fmt.Printf("Found %d databases in BIRD dev set\n\n", len(databases))
 
-	databases = filterExisting(databases, outputDir, skipExisting)
-	runBatch(model, databases, dbDir, outputDir, workerCount, false)
+	todo := filterExisting(databases, outputDir, skipExisting)
+	writeRCGenStamp(outputDir, map[string]string{
+		"kind":          "rc_gen",
+		"started":       stamp.Now(),
+		"commit":        stamp.GitHEAD(),
+		"benchmark":     "bird",
+		"model":         string(model),
+		"db_dir":        dbDir,
+		"output_dir":    outputDir,
+		"workers":       fmt.Sprintf("%d", workerCount),
+		"skip_existing": fmt.Sprintf("%t", skipExisting),
+		"n_existing":    fmt.Sprintf("%d", existingCount),
+		"n_todo":        fmt.Sprintf("%d", len(todo)),
+	})
+	runBatch(model, todo, dbDir, outputDir, workerCount, false)
+	finishRCGenStamp(outputDir)
 }
 
 // ─────────────────────────────────────────────────────
@@ -378,6 +407,22 @@ func runBatch(model llm.ModelType, databases []string, dbDir, outputDir string, 
 	// Print summary
 	fmt.Print(mp.Summary())
 	fmt.Printf("✅ Rich Context files saved to: %s\n", outputDir)
+}
+
+func writeRCGenStamp(dir string, kv map[string]string) {
+	if err := stamp.Write(dir, "rc_gen_stamp.txt", kv); err != nil {
+		log.Printf("warning: rc_gen_stamp: %v", err)
+	}
+}
+
+func finishRCGenStamp(dir string) {
+	kv := map[string]string{
+		"finished": stamp.Now(),
+		"n_json":   fmt.Sprintf("%d", countExistingContexts(dir)),
+	}
+	if err := stamp.Merge(dir, "rc_gen_stamp.txt", kv); err != nil {
+		log.Printf("warning: rc_gen_stamp: %v", err)
+	}
 }
 
 // ─────────────────────────────────────────────────────
